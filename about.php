@@ -356,13 +356,32 @@ require_once __DIR__ . '/includes/topbar.php';
     <!-- ═══════════════ DATA CENTERS ═══════════════ -->
     <section class="global reveal">
         <div class="container">
-            <div class="section-header">
-                <div class="section-tag">Infrastructure</div>
-                <h2>Data Centers Worldwide</h2>
-                <p>We are proud to have our own data center in Romania. Additionally, we partner with over 6 other data centers, offering our services and servers in more than 50 locations.</p>
-            </div>
-
-            <div class="global-map-visual">
+            <div class="global-layout">
+                <div class="global-content">
+                    <div class="section-tag">Infrastructure</div>
+                    <h2 class="global-title">Data Centers Worldwide</h2>
+                    <p class="global-desc">We are proud to have our own data center in Romania. Additionally, we partner with over 6 other data centers, offering our services and servers in more than 50 locations.</p>
+                    <p class="global-desc">Our infrastructure spans multiple continents through strategic data center partnerships.</p>
+                    <div class="global-stats">
+                        <div class="global-stat">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Server Locations</div>
+                        </div>
+                        <div class="global-stat">
+                            <div class="stat-number">100+</div>
+                            <div class="stat-label">Gbit/s Capacity</div>
+                        </div>
+                        <div class="global-stat">
+                            <div class="stat-number">8</div>
+                            <div class="stat-label">DC Partners</div>
+                        </div>
+                        <div class="global-stat">
+                            <div class="stat-number">6</div>
+                            <div class="stat-label">Continents</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="global-map-visual">
                     <div class="dc-map" id="dcMapAbout">
                         <svg class="dc-map-svg" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
                             <defs>
@@ -469,26 +488,6 @@ require_once __DIR__ . '/includes/topbar.php';
                         </svg>
                         <div class="dc-tooltip" id="dcTooltipAbout"></div>
                     </div>
-            </div>
-
-            <p class="about-dc-subtext">Our infrastructure spans multiple continents through strategic data center partnerships.</p>
-
-            <div class="global-stats">
-                <div class="global-stat">
-                    <div class="stat-number">50+</div>
-                    <div class="stat-label">Server Locations</div>
-                </div>
-                <div class="global-stat">
-                    <div class="stat-number">100+</div>
-                    <div class="stat-label">Gbit/s Capacity</div>
-                </div>
-                <div class="global-stat">
-                    <div class="stat-number">8</div>
-                    <div class="stat-label">DC Partners</div>
-                </div>
-                <div class="global-stat">
-                    <div class="stat-number">6</div>
-                    <div class="stat-label">Continents</div>
                 </div>
             </div>
         </div>
@@ -506,57 +505,57 @@ require_once __DIR__ . '/includes/topbar.php';
             <div class="swiper team-swiper" id="teamSwiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide"><div class="team-card">
-                        <div class="team-avatar"><i class="fas fa-user"></i></div>
+                        <div class="team-avatar"><img src="https://i.pravatar.cc/150?img=11" alt="Petru A." loading="lazy"></div>
                         <h4>Petru A.</h4>
                         <span class="team-role">Head of Technical Support</span>
                     </div></div>
                     <div class="swiper-slide"><div class="team-card">
-                        <div class="team-avatar"><i class="fas fa-user"></i></div>
+                        <div class="team-avatar"><img src="https://i.pravatar.cc/150?img=12" alt="Daniel C." loading="lazy"></div>
                         <h4>Daniel C.</h4>
                         <span class="team-role">Support Engineer</span>
                     </div></div>
                     <div class="swiper-slide"><div class="team-card">
-                        <div class="team-avatar"><i class="fas fa-user"></i></div>
+                        <div class="team-avatar"><img src="https://i.pravatar.cc/150?img=14" alt="Alper A." loading="lazy"></div>
                         <h4>Alper A.</h4>
                         <span class="team-role">Support Engineer</span>
                     </div></div>
                     <div class="swiper-slide"><div class="team-card">
-                        <div class="team-avatar"><i class="fas fa-user"></i></div>
+                        <div class="team-avatar"><img src="https://i.pravatar.cc/150?img=32" alt="Maria A." loading="lazy"></div>
                         <h4>Maria A.</h4>
                         <span class="team-role">Accountant</span>
                     </div></div>
                     <div class="swiper-slide"><div class="team-card">
-                        <div class="team-avatar"><i class="fas fa-user"></i></div>
+                        <div class="team-avatar"><img src="https://i.pravatar.cc/150?img=44" alt="Julie Y." loading="lazy"></div>
                         <h4>Julie Y.</h4>
                         <span class="team-role">Marketer</span>
                     </div></div>
                     <div class="swiper-slide"><div class="team-card">
-                        <div class="team-avatar"><i class="fas fa-user"></i></div>
+                        <div class="team-avatar"><img src="https://i.pravatar.cc/150?img=59" alt="Aseel B." loading="lazy"></div>
                         <h4>Aseel B.</h4>
                         <span class="team-role">Support Engineer</span>
                     </div></div>
                     <div class="swiper-slide"><div class="team-card">
-                        <div class="team-avatar"><i class="fas fa-user"></i></div>
+                        <div class="team-avatar"><img src="https://i.pravatar.cc/150?img=53" alt="Denis L." loading="lazy"></div>
                         <h4>Denis L.</h4>
                         <span class="team-role">Support Engineer</span>
                     </div></div>
                     <div class="swiper-slide"><div class="team-card">
-                        <div class="team-avatar"><i class="fas fa-user"></i></div>
+                        <div class="team-avatar"><img src="https://i.pravatar.cc/150?img=60" alt="Andrei M." loading="lazy"></div>
                         <h4>Andrei M.</h4>
                         <span class="team-role">Developer</span>
                     </div></div>
                     <div class="swiper-slide"><div class="team-card">
-                        <div class="team-avatar"><i class="fas fa-user"></i></div>
+                        <div class="team-avatar"><img src="https://i.pravatar.cc/150?img=52" alt="AlMhyar M." loading="lazy"></div>
                         <h4>AlMhyar M.</h4>
                         <span class="team-role">Support Engineer</span>
                     </div></div>
                     <div class="swiper-slide"><div class="team-card">
-                        <div class="team-avatar"><i class="fas fa-user"></i></div>
+                        <div class="team-avatar"><img src="https://i.pravatar.cc/150?img=57" alt="Gabriel B." loading="lazy"></div>
                         <h4>Gabriel B.</h4>
                         <span class="team-role">Developer</span>
                     </div></div>
                     <div class="swiper-slide"><div class="team-card">
-                        <div class="team-avatar"><i class="fas fa-user"></i></div>
+                        <div class="team-avatar"><img src="https://i.pravatar.cc/150?img=26" alt="Mirella E." loading="lazy"></div>
                         <h4>Mirella E.</h4>
                         <span class="team-role">Accountant Manager</span>
                     </div></div>

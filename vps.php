@@ -1016,6 +1016,9 @@ require_once __DIR__ . '/includes/topbar.php';
         </div>
     </section>
 
+    <!-- ═══════════════ COMPETITORS COMPARISON ═══════════════ -->
+    <?php include __DIR__ . '/includes/section-competitors.php'; ?>
+
     <!-- ═══════════════ PROMOTIONS CTA ═══════════════ -->
     <section class="promo-cta reveal">
         <div class="container">

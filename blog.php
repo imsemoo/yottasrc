@@ -105,35 +105,6 @@ require_once __DIR__ . '/includes/topbar.php';
         </div>
     </section>
 
-    <!-- ═══════════════ FEATURED ARTICLE ═══════════════ -->
-    <section class="blog-featured reveal">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-tag">Featured</div>
-                <h2>Editor's Pick</h2>
-                <p>Our team's top recommendation for this week.</p>
-            </div>
-
-            <a href="#" class="blog-featured-card">
-                <div class="blog-featured-img">
-                    <div class="blog-img-placeholder">
-                        <i class="fas fa-server"></i>
-                    </div>
-                    <span class="blog-cat-badge badge-vps">VPS</span>
-                </div>
-                <div class="blog-featured-body">
-                    <h3>How to Choose the Right VPS for Your Project</h3>
-                    <p>A practical guide to selecting the best VPS configuration for performance, scalability, and cost. Learn how to match CPU, RAM, and storage to your workload.</p>
-                    <div class="blog-card-meta">
-                        <span class="blog-meta-item"><i class="fas fa-user-circle"></i> YottaSrc Team</span>
-                        <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> Mar 8, 2026</span>
-                        <span class="blog-meta-item"><i class="fas fa-clock"></i> 8 min read</span>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </section>
-
     <!-- ═══════════════ BLOG GRID + SIDEBAR ═══════════════ -->
     <section class="blog-main reveal">
         <div class="container">
@@ -149,135 +120,148 @@ require_once __DIR__ . '/includes/topbar.php';
 
                     <a href="#" class="blog-card" data-category="hosting">
                         <div class="blog-card-thumb">
-                            <div class="blog-img-placeholder"><i class="fas fa-tachometer-alt"></i></div>
+                            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=340&fit=crop" alt="cPanel vs DirectAdmin" loading="lazy">
                             <span class="blog-cat-badge badge-hosting">Hosting</span>
                         </div>
                         <div class="blog-card-body">
                             <h4>cPanel vs DirectAdmin: Which Control Panel Is Best?</h4>
                             <p>An in-depth comparison of two popular control panels for shared and reseller hosting.</p>
                             <div class="blog-card-meta">
-                                <span class="blog-meta-item"><i class="fas fa-clock"></i> 6 min</span>
                                 <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> Mar 5, 2026</span>
+                                <span class="blog-meta-item"><i class="fas fa-eye"></i> 2,341 views</span>
                             </div>
                         </div>
                     </a>
 
                     <a href="#" class="blog-card" data-category="cloud">
                         <div class="blog-card-thumb">
-                            <div class="blog-img-placeholder"><i class="fas fa-cloud-upload-alt"></i></div>
+                            <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&h=340&fit=crop" alt="Cloud Servers Guide" loading="lazy">
                             <span class="blog-cat-badge badge-cloud">Cloud</span>
                         </div>
                         <div class="blog-card-body">
                             <h4>Getting Started with Cloud Servers: A Beginner's Guide</h4>
                             <p>Everything you need to know to deploy your first cloud instance in under 5 minutes.</p>
                             <div class="blog-card-meta">
-                                <span class="blog-meta-item"><i class="fas fa-clock"></i> 5 min</span>
                                 <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> Mar 2, 2026</span>
+                                <span class="blog-meta-item"><i class="fas fa-eye"></i> 1,876 views</span>
                             </div>
                         </div>
                     </a>
-
+  <a href="#" class="blog-card" data-category="cloud">
+                        <div class="blog-card-thumb">
+                            <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&h=340&fit=crop" alt="Cloud Servers Guide" loading="lazy">
+                            <span class="blog-cat-badge badge-cloud">Cloud</span>
+                        </div>
+                        <div class="blog-card-body">
+                            <h4>Getting Started with Cloud Servers: A Beginner's Guide</h4>
+                            <p>Everything you need to know to deploy your first cloud instance in under 5 minutes.</p>
+                            <div class="blog-card-meta">
+                                <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> Mar 2, 2026</span>
+                                <span class="blog-meta-item"><i class="fas fa-eye"></i> 1,876 views</span>
+                            </div>
+                        </div>
+                    </a>
                     <a href="#" class="blog-card" data-category="security">
                         <div class="blog-card-thumb">
-                            <div class="blog-img-placeholder"><i class="fas fa-shield-alt"></i></div>
+                            <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=600&h=340&fit=crop" alt="Server Security Practices" loading="lazy">
                             <span class="blog-cat-badge badge-security">Security</span>
                         </div>
                         <div class="blog-card-body">
                             <h4>Top 10 Server Security Practices Every Admin Should Know</h4>
                             <p>Protect your infrastructure with firewalls, SSH hardening, fail2ban, and more.</p>
                             <div class="blog-card-meta">
-                                <span class="blog-meta-item"><i class="fas fa-clock"></i> 7 min</span>
                                 <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> Feb 28, 2026</span>
+                                <span class="blog-meta-item"><i class="fas fa-eye"></i> 3,512 views</span>
                             </div>
                         </div>
                     </a>
 
                     <a href="#" class="blog-card" data-category="tutorials">
                         <div class="blog-card-thumb">
-                            <div class="blog-img-placeholder"><i class="fas fa-terminal"></i></div>
+                            <img src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=600&h=340&fit=crop" alt="Deploy Node.js on VPS" loading="lazy">
                             <span class="blog-cat-badge badge-tutorials">Tutorial</span>
                         </div>
                         <div class="blog-card-body">
                             <h4>How to Deploy a Node.js App on a Linux VPS</h4>
                             <p>Step-by-step: Nginx reverse proxy, PM2 process manager, and SSL with Let's Encrypt.</p>
                             <div class="blog-card-meta">
-                                <span class="blog-meta-item"><i class="fas fa-clock"></i> 10 min</span>
                                 <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> Feb 24, 2026</span>
+                                <span class="blog-meta-item"><i class="fas fa-eye"></i> 4,107 views</span>
                             </div>
                         </div>
                     </a>
 
                     <a href="#" class="blog-card" data-category="reseller">
                         <div class="blog-card-thumb">
-                            <div class="blog-img-placeholder"><i class="fas fa-sitemap"></i></div>
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=340&fit=crop" alt="Reseller Hosting Guide" loading="lazy">
                             <span class="blog-cat-badge badge-reseller">Reseller</span>
                         </div>
                         <div class="blog-card-body">
                             <h4>Start Your Own Hosting Business: Reseller Hosting Guide</h4>
                             <p>Learn how to build a hosting brand with white-label reseller plans and WHM.</p>
                             <div class="blog-card-meta">
-                                <span class="blog-meta-item"><i class="fas fa-clock"></i> 9 min</span>
                                 <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> Feb 20, 2026</span>
+                                <span class="blog-meta-item"><i class="fas fa-eye"></i> 1,953 views</span>
                             </div>
                         </div>
                     </a>
 
                     <a href="#" class="blog-card" data-category="vps">
                         <div class="blog-card-thumb">
-                            <div class="blog-img-placeholder"><i class="fab fa-linux"></i></div>
+                            <img src="https://images.unsplash.com/photo-1597852074816-d933c7d2b988?w=600&h=340&fit=crop" alt="KVM vs OpenVZ" loading="lazy">
                             <span class="blog-cat-badge badge-vps">VPS</span>
                         </div>
                         <div class="blog-card-body">
                             <h4>KVM vs OpenVZ: Understanding VPS Virtualization</h4>
                             <p>Kernel-level isolation, dedicated resources, and why KVM is the industry standard.</p>
                             <div class="blog-card-meta">
-                                <span class="blog-meta-item"><i class="fas fa-clock"></i> 5 min</span>
                                 <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> Feb 16, 2026</span>
+                                <span class="blog-meta-item"><i class="fas fa-eye"></i> 2,684 views</span>
                             </div>
                         </div>
                     </a>
 
                     <a href="#" class="blog-card" data-category="hosting">
                         <div class="blog-card-thumb">
-                            <div class="blog-img-placeholder"><i class="fas fa-bolt"></i></div>
+                            <img src="https://images.unsplash.com/photo-1484417894907-623942c8ee29?w=600&h=340&fit=crop" alt="LiteSpeed vs Apache vs Nginx" loading="lazy">
                             <span class="blog-cat-badge badge-hosting">Hosting</span>
                         </div>
                         <div class="blog-card-body">
                             <h4>LiteSpeed vs Apache vs Nginx: Web Server Showdown</h4>
                             <p>Which web server delivers the best performance for WordPress and PHP workloads?</p>
                             <div class="blog-card-meta">
-                                <span class="blog-meta-item"><i class="fas fa-clock"></i> 6 min</span>
                                 <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> Feb 12, 2026</span>
+                                <span class="blog-meta-item"><i class="fas fa-eye"></i> 3,219 views</span>
                             </div>
                         </div>
                     </a>
 
                     <a href="#" class="blog-card" data-category="news">
                         <div class="blog-card-thumb">
-                            <div class="blog-img-placeholder"><i class="fas fa-bullhorn"></i></div>
+                            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=340&fit=crop" alt="New Data Center Locations" loading="lazy">
                             <span class="blog-cat-badge badge-news">News</span>
                         </div>
                         <div class="blog-card-body">
                             <h4>YottaSrc Expands to 5 New Data Center Locations</h4>
                             <p>New infrastructure in São Paulo, Mumbai, Tokyo, Sydney, and Johannesburg.</p>
                             <div class="blog-card-meta">
-                                <span class="blog-meta-item"><i class="fas fa-clock"></i> 3 min</span>
                                 <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> Feb 8, 2026</span>
+                                <span class="blog-meta-item"><i class="fas fa-eye"></i> 1,547 views</span>
                             </div>
                         </div>
                     </a>
 
                     <a href="#" class="blog-card" data-category="tutorials">
                         <div class="blog-card-thumb">
-                            <div class="blog-img-placeholder"><i class="fas fa-database"></i></div>
+                            <img src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=600&h=340&fit=crop" alt="MySQL Performance Tuning" loading="lazy">
                             <span class="blog-cat-badge badge-tutorials">Tutorial</span>
                         </div>
                         <div class="blog-card-body">
                             <h4>MySQL Performance Tuning for High-Traffic Websites</h4>
                             <p>Optimize queries, indexing, and buffer pools to handle millions of requests.</p>
                             <div class="blog-card-meta">
-                                <span class="blog-meta-item"><i class="fas fa-clock"></i> 8 min</span>
                                 <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> Feb 4, 2026</span>
+                                <span class="blog-meta-item"><i class="fas fa-eye"></i> 2,890 views</span>
                             </div>
                         </div>
                     </a>
@@ -295,35 +279,35 @@ require_once __DIR__ . '/includes/topbar.php';
                                 <span class="sidebar-post-num">01</span>
                                 <div>
                                     <strong>How to Choose the Right VPS for Your Project</strong>
-                                    <span class="sidebar-post-meta">8 min read</span>
+                                    <span class="sidebar-post-meta">5,230 views</span>
                                 </div>
                             </a></li>
                             <li><a href="#">
                                 <span class="sidebar-post-num">02</span>
                                 <div>
                                     <strong>Top 10 Server Security Practices</strong>
-                                    <span class="sidebar-post-meta">7 min read</span>
+                                    <span class="sidebar-post-meta">3,512 views</span>
                                 </div>
                             </a></li>
                             <li><a href="#">
                                 <span class="sidebar-post-num">03</span>
                                 <div>
                                     <strong>LiteSpeed vs Apache vs Nginx</strong>
-                                    <span class="sidebar-post-meta">6 min read</span>
+                                    <span class="sidebar-post-meta">3,219 views</span>
                                 </div>
                             </a></li>
                             <li><a href="#">
                                 <span class="sidebar-post-num">04</span>
                                 <div>
                                     <strong>Deploy a Node.js App on Linux VPS</strong>
-                                    <span class="sidebar-post-meta">10 min read</span>
+                                    <span class="sidebar-post-meta">4,107 views</span>
                                 </div>
                             </a></li>
                             <li><a href="#">
                                 <span class="sidebar-post-num">05</span>
                                 <div>
                                     <strong>Getting Started with Cloud Servers</strong>
-                                    <span class="sidebar-post-meta">5 min read</span>
+                                    <span class="sidebar-post-meta">1,876 views</span>
                                 </div>
                             </a></li>
                         </ul>

@@ -951,7 +951,6 @@ document.addEventListener('DOMContentLoaded', function () {
             var searchInput = document.getElementById('blogSearch');
             var tags = document.querySelectorAll('.blog-tag');
             var cards = document.querySelectorAll('.blog-card[data-category]');
-            var featuredCard = document.querySelector('.blog-featured-card');
             var noResults = document.getElementById('blogNoResults');
             var pagination = document.getElementById('blogPagination');
 
@@ -979,12 +978,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         card.style.display = 'none';
                     }
                 });
-
-                // Hide featured card when filtering by search or category
-                if (featuredCard) {
-                    featuredCard.closest('.blog-featured').style.display =
-                        (query || activeCategory !== 'all') ? 'none' : '';
-                }
 
                 if (noResults) {
                     noResults.style.display = visibleCount === 0 ? 'block' : 'none';

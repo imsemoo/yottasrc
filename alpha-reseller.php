@@ -649,6 +649,12 @@ require_once __DIR__ . '/includes/topbar.php';
         </div>
     </section>
 
+    <!-- ═══════════════ ClouDNS PARTNERSHIP ═══════════════ -->
+    <?php include __DIR__ . '/includes/section-cloudns.php'; ?>
+
+    <!-- ═══════════════ MAILCHANNELS PARTNERSHIP ═══════════════ -->
+    <?php include __DIR__ . '/includes/section-mailchannels.php'; ?>
+
     <!-- ═══════════════ BOTTOM CTA ═══════════════ -->
     <section class="promo-cta reveal">
         <div class="container">
