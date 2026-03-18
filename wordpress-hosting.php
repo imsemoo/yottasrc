@@ -287,36 +287,16 @@ require_once __DIR__ . '/includes/topbar.php';
             </div>
 
             <div class="bento-grid">
-                <div class="bento-card bento-lg">
+                <div class="bento-card bento-sm">
                     <div class="bento-card-icon"><i class="fas fa-bolt"></i></div>
-                    <h3>LiteSpeed + LSCache</h3>
-                    <p>Server-level caching purpose-built for WordPress. Pages are served from cache without touching PHP — delivering sub-200ms response times on every request.</p>
-                    <div class="bento-metrics">
-                        <div class="bento-metric">
-                            <span class="bento-metric-val">12x</span>
-                            <span class="bento-metric-label">Faster than Apache</span>
-                        </div>
-                        <div class="bento-metric">
-                            <span class="bento-metric-val">&lt;200ms</span>
-                            <span class="bento-metric-label">TTFB</span>
-                        </div>
-                    </div>
+                    <h4>LiteSpeed + LSCache</h4>
+                    <p>Server-level caching for WordPress. Pages served from cache without touching PHP — sub-200ms response times.</p>
                 </div>
 
-                <div class="bento-card bento-lg bento-green">
+                <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-green"><i class="fas fa-sync-alt"></i></div>
-                    <h3>Automatic Updates</h3>
-                    <p>WordPress core updates are applied automatically to keep your site secure. You always run the latest stable WordPress version without lifting a finger.</p>
-                    <div class="bento-metrics">
-                        <div class="bento-metric">
-                            <span class="bento-metric-val">Auto</span>
-                            <span class="bento-metric-label">Core Updates</span>
-                        </div>
-                        <div class="bento-metric">
-                            <span class="bento-metric-val">24/7</span>
-                            <span class="bento-metric-label">Security Patches</span>
-                        </div>
-                    </div>
+                    <h4>Automatic Updates</h4>
+                    <p>WordPress core updates applied automatically. Always run the latest stable version without lifting a finger.</p>
                 </div>
 
                 <div class="bento-card bento-sm">
@@ -341,6 +321,18 @@ require_once __DIR__ . '/includes/topbar.php';
                     <div class="bento-card-icon icon-green"><i class="fas fa-th"></i></div>
                     <h4>1-Click Install</h4>
                     <p>Deploy WordPress in seconds via Softaculous — themes and plugins included.</p>
+                </div>
+
+                <div class="bento-card bento-sm">
+                    <div class="bento-card-icon icon-blue"><i class="fas fa-globe"></i></div>
+                    <h4>Free CDN</h4>
+                    <p>Integrated content delivery network for faster global page loads.</p>
+                </div>
+
+                <div class="bento-card bento-sm">
+                    <div class="bento-card-icon icon-rose"><i class="fas fa-database"></i></div>
+                    <h4>Optimized MySQL</h4>
+                    <p>Tuned MariaDB with query caching and InnoDB optimization for faster WordPress database queries.</p>
                 </div>
             </div>
         </div>
@@ -404,60 +396,10 @@ require_once __DIR__ . '/includes/topbar.php';
     </section>
 
     <!-- ═══════════════ GLOBAL LOCATIONS ═══════════════ -->
-    <section class="dc-showcase dc-showcase-compact reveal">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-tag">Global Infrastructure</div>
-                <h2>Deploy closer to your audience</h2>
-                <p>Choose from 20+ server locations across 4 continents. Lower latency, faster load times, better SEO.</p>
-            </div>
-            <div class="dc-strip-stats">
-                <div class="dc-strip-stat"><i class="fas fa-server"></i> <strong>20+</strong> Locations</div>
-                <div class="dc-strip-stat"><i class="fas fa-network-wired"></i> <strong>10 Gbit/s</strong> Network</div>
-                <div class="dc-strip-stat"><i class="fas fa-globe"></i> <strong>4</strong> Continents</div>
-                <div class="dc-strip-stat"><i class="fas fa-tachometer-alt"></i> <strong>&lt;30ms</strong> Latency</div>
-            </div>
-            <div class="dc-map-grid">
-                <div class="dc-continent">
-                    <div class="dc-continent-label"><i class="fas fa-globe-europe"></i> Europe <span class="dc-continent-count">9</span></div>
-                    <div class="dc-continent-locs">
-                        <a class="dc-pin"><span class="fi fi-fi"></span> Finland</a>
-                        <a class="dc-pin"><span class="fi fi-de"></span> Germany</a>
-                        <a class="dc-pin"><span class="fi fi-fr"></span> France</a>
-                        <a class="dc-pin"><span class="fi fi-gb"></span> UK</a>
-                        <a class="dc-pin"><span class="fi fi-nl"></span> Netherlands</a>
-                        <a class="dc-pin dc-pin-hq"><span class="fi fi-ro"></span> Romania <span class="dc-hq-badge">HQ</span></a>
-                        <a class="dc-pin"><span class="fi fi-tr"></span> Turkey</a>
-                        <a class="dc-pin"><span class="fi fi-pl"></span> Poland</a>
-                        <a class="dc-pin"><span class="fi fi-at"></span> Austria</a>
-                    </div>
-                </div>
-                <div class="dc-continent">
-                    <div class="dc-continent-label"><i class="fas fa-globe-americas"></i> Americas <span class="dc-continent-count">2</span></div>
-                    <div class="dc-continent-locs">
-                        <a class="dc-pin"><span class="fi fi-us"></span> USA</a>
-                        <a class="dc-pin"><span class="fi fi-ca"></span> Canada</a>
-                    </div>
-                </div>
-                <div class="dc-continent">
-                    <div class="dc-continent-label"><i class="fas fa-globe-asia"></i> Asia <span class="dc-continent-count">5</span></div>
-                    <div class="dc-continent-locs">
-                        <a class="dc-pin"><span class="fi fi-in"></span> India</a>
-                        <a class="dc-pin"><span class="fi fi-sg"></span> Singapore</a>
-                        <a class="dc-pin"><span class="fi fi-jp"></span> Japan</a>
-                        <a class="dc-pin"><span class="fi fi-hk"></span> Hong Kong</a>
-                        <a class="dc-pin"><span class="fi fi-th"></span> Thailand</a>
-                    </div>
-                </div>
-                <div class="dc-continent">
-                    <div class="dc-continent-label"><i class="fas fa-globe"></i> Oceania <span class="dc-continent-count">1</span></div>
-                    <div class="dc-continent-locs">
-                        <a class="dc-pin"><span class="fi fi-au"></span> Australia</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<?php
+$dc_heading = 'Deploy closer to your audience';
+include __DIR__ . '/includes/section-dc-showcase.php';
+?>
 
     <!-- ═══════════════ ClouDNS ═══════════════ -->
 <?php include __DIR__ . '/includes/section-cloudns.php'; ?>

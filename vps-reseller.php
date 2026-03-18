@@ -334,36 +334,16 @@ require_once __DIR__ . '/includes/topbar.php';
             </div>
 
             <div class="bento-grid">
-                <div class="bento-card bento-lg">
+                <div class="bento-card bento-sm">
                     <div class="bento-card-icon"><i class="fas fa-terminal"></i></div>
-                    <h3>REST API &amp; Automation</h3>
-                    <p>Full API access for provisioning, scaling, snapshotting, and managing VPS instances. Integrate with WHMCS, Blesta, or build custom frontends. Webhooks for real-time event notifications.</p>
-                    <div class="bento-metrics">
-                        <div class="bento-metric">
-                            <span class="bento-metric-val">REST</span>
-                            <span class="bento-metric-label">API v2</span>
-                        </div>
-                        <div class="bento-metric">
-                            <span class="bento-metric-val">Webhooks</span>
-                            <span class="bento-metric-label">Real-Time</span>
-                        </div>
-                    </div>
+                    <h4>REST API &amp; Automation</h4>
+                    <p>Full API access for provisioning, scaling, and managing VPS instances. Integrates with WHMCS and Blesta.</p>
                 </div>
 
-                <div class="bento-card bento-lg bento-green">
+                <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-green"><i class="fas fa-expand-arrows-alt"></i></div>
-                    <h3>Instant Scaling</h3>
-                    <p>Scale VPS resources up or down instantly — CPU, RAM, and storage. No downtime required for most upgrades. Clients can scale from their dashboard or you can manage it via API.</p>
-                    <div class="bento-metrics">
-                        <div class="bento-metric">
-                            <span class="bento-metric-val">0s</span>
-                            <span class="bento-metric-label">Scale Downtime</span>
-                        </div>
-                        <div class="bento-metric">
-                            <span class="bento-metric-val">CPU/RAM/SSD</span>
-                            <span class="bento-metric-label">All Scalable</span>
-                        </div>
-                    </div>
+                    <h4>Instant Scaling</h4>
+                    <p>Scale CPU, RAM, and storage up or down instantly — no downtime required for most upgrades.</p>
                 </div>
 
                 <div class="bento-card bento-sm">
@@ -385,6 +365,11 @@ require_once __DIR__ . '/includes/topbar.php';
                     <div class="bento-card-icon icon-green"><i class="fas fa-compact-disc"></i></div>
                     <h4>OS Templates</h4>
                     <p>Ubuntu, Debian, CentOS, Windows, and more.</p>
+                </div>
+                <div class="bento-card bento-sm">
+                    <div class="bento-card-icon icon-blue"><i class="fas fa-cloud-download-alt"></i></div>
+                    <h4>Automated Backups</h4>
+                    <p>Scheduled snapshots and off-site backup storage.</p>
                 </div>
             </div>
         </div>
@@ -484,31 +469,13 @@ require_once __DIR__ . '/includes/topbar.php';
                 <div class="dc-strip-stat"><i class="fas fa-tachometer-alt"></i> <strong>&lt;30ms</strong> Latency</div>
             </div>
 
-            <div class="dc-country-grid">
-                <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-france-location/" class="dc-country-card">
-                    <span class="fi fi-fr"></span>
-                    <span>France</span>
-                </a>
-                <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-germany-location/" class="dc-country-card">
-                    <span class="fi fi-de"></span>
-                    <span>Germany</span>
-                </a>
-                <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-uk-location/" class="dc-country-card">
-                    <span class="fi fi-gb"></span>
-                    <span>UK</span>
-                </a>
-                <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-netherlands-location/" class="dc-country-card">
-                    <span class="fi fi-nl"></span>
-                    <span>Netherlands</span>
-                </a>
-                <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-turkey-location/" class="dc-country-card">
-                    <span class="fi fi-tr"></span>
-                    <span>Turkey</span>
-                </a>
-                <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-usa-location/" class="dc-country-card">
-                    <span class="fi fi-us"></span>
-                    <span>USA</span>
-                </a>
+            <div class="loc-card-grid">
+                <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-france-location/" class="location-card"><span class="fi fi-fr"></span> France</a>
+                <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-germany-location/" class="location-card location-card--active"><span class="fi fi-de"></span> Germany</a>
+                <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-uk-location/" class="location-card"><span class="fi fi-gb"></span> UK</a>
+                <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-netherlands-location/" class="location-card"><span class="fi fi-nl"></span> Netherlands</a>
+                <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-turkey-location/" class="location-card"><span class="fi fi-tr"></span> Turkey</a>
+                <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-usa-location/" class="location-card"><span class="fi fi-us"></span> USA</a>
             </div>
         </div>
     </section>
@@ -643,12 +610,6 @@ require_once __DIR__ . '/includes/topbar.php';
             </div>
         </div>
     </section>
-
-    <!-- ═══════════════ ClouDNS PARTNERSHIP ═══════════════ -->
-    <?php include __DIR__ . '/includes/section-cloudns.php'; ?>
-
-    <!-- ═══════════════ MAILCHANNELS PARTNERSHIP ═══════════════ -->
-    <?php include __DIR__ . '/includes/section-mailchannels.php'; ?>
 
     <!-- ═══════════════ BOTTOM CTA ═══════════════ -->
     <section class="promo-cta reveal">

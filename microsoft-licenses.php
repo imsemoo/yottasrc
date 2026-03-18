@@ -141,8 +141,8 @@ require_once __DIR__ . '/includes/topbar.php';
         </div>
     </section>
 
-    <!-- ═══════════════ PRODUCT CATALOG ═══════════════ -->
-    <section class="ms-products reveal" id="catalog">
+    <!-- ═══════════════ CATEGORY NAVIGATION ═══════════════ -->
+    <section class="ms-cat-nav reveal" id="catalog">
         <div class="container">
             <div class="section-header">
                 <div class="section-tag">Catalog</div>
@@ -150,8 +150,67 @@ require_once __DIR__ . '/includes/topbar.php';
                 <p>Browse our complete catalog of genuine Microsoft licenses. All keys activate through official Microsoft servers.</p>
             </div>
 
+            <!-- Search Bar -->
+            <div class="ms-search-wrap">
+                <i class="fas fa-search ms-search-icon"></i>
+                <input type="text" id="msProductSearch" class="ms-search-input" placeholder="Search products — e.g. Windows 11, Office 365, Visual Studio…" autocomplete="off">
+                <span class="ms-search-clear" id="msSearchClear" title="Clear search">&times;</span>
+            </div>
+
+            <!-- Category Cards -->
+            <div class="ms-cat-grid">
+                <a href="#cat-windows" class="ms-cat-card">
+                    <div class="ms-cat-card-icon"><i class="fab fa-windows"></i></div>
+                    <div class="ms-cat-card-body">
+                        <h3>Windows</h3>
+                        <span class="ms-cat-count">7 Products</span>
+                        <span class="ms-cat-price">From €3.50</span>
+                    </div>
+                    <i class="fas fa-arrow-right ms-cat-arrow"></i>
+                </a>
+                <a href="#cat-office" class="ms-cat-card">
+                    <div class="ms-cat-card-icon icon-amber"><i class="fab fa-microsoft"></i></div>
+                    <div class="ms-cat-card-body">
+                        <h3>Office</h3>
+                        <span class="ms-cat-count">7 Products</span>
+                        <span class="ms-cat-price">From €1.50</span>
+                    </div>
+                    <i class="fas fa-arrow-right ms-cat-arrow"></i>
+                </a>
+                <a href="#cat-server" class="ms-cat-card">
+                    <div class="ms-cat-card-icon icon-purple"><i class="fas fa-server"></i></div>
+                    <div class="ms-cat-card-body">
+                        <h3>Windows Server</h3>
+                        <span class="ms-cat-count">5 Products</span>
+                        <span class="ms-cat-price">From €8.00</span>
+                    </div>
+                    <i class="fas fa-arrow-right ms-cat-arrow"></i>
+                </a>
+                <a href="#cat-devtools" class="ms-cat-card">
+                    <div class="ms-cat-card-icon icon-green"><i class="fas fa-tools"></i></div>
+                    <div class="ms-cat-card-body">
+                        <h3>Developer &amp; Business</h3>
+                        <span class="ms-cat-count">6 Products</span>
+                        <span class="ms-cat-price">From €3.50</span>
+                    </div>
+                    <i class="fas fa-arrow-right ms-cat-arrow"></i>
+                </a>
+            </div>
+
+            <!-- No results message -->
+            <div class="ms-search-empty" id="msSearchEmpty" hidden>
+                <i class="fas fa-search"></i>
+                <p>No products match your search.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ PRODUCT CATALOG ═══════════════ -->
+    <section class="ms-products reveal">
+        <div class="container">
+
             <!-- Windows Licenses -->
-            <div class="ms-category">
+            <div class="ms-category" id="cat-windows">
                 <div class="ms-category-header">
                     <div class="ms-category-icon"><i class="fab fa-windows"></i></div>
                     <div class="ms-category-info">
@@ -159,32 +218,61 @@ require_once __DIR__ . '/includes/topbar.php';
                         <p>Windows 11, 10, and legacy versions — Home, Pro, and Enterprise editions.</p>
                     </div>
                 </div>
-                <div class="ms-price-table-wrap">
-                    <table class="ms-price-table">
-                        <thead>
-                            <tr>
-                                <th>Product</th>
-                                <th>Edition</th>
-                                <th>Activation</th>
-                                <th>Price</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>Windows 11 Pro</td><td>Pro</td><td>Retail (Online)</td><td class="ms-price">€6.50</td><td><a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order</a></td></tr>
-                            <tr><td>Windows 11 Pro</td><td>Pro</td><td>Phone Activation</td><td class="ms-price">€3.50</td><td><a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order</a></td></tr>
-                            <tr><td>Windows 11 Home</td><td>Home</td><td>Retail (Online)</td><td class="ms-price">€5.50</td><td><a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order</a></td></tr>
-                            <tr><td>Windows 10 Pro</td><td>Pro</td><td>Retail (Online)</td><td class="ms-price">€5.00</td><td><a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order</a></td></tr>
-                            <tr><td>Windows 10 Pro</td><td>Pro</td><td>Phone Activation</td><td class="ms-price">€3.50</td><td><a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order</a></td></tr>
-                            <tr><td>Windows 10 Home</td><td>Home</td><td>Retail (Online)</td><td class="ms-price">€4.50</td><td><a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order</a></td></tr>
-                            <tr><td>Windows 10 Enterprise</td><td>Enterprise</td><td>LTSC</td><td class="ms-price">€8.00</td><td><a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order</a></td></tr>
-                        </tbody>
-                    </table>
+                <div class="ms-product-grid">
+                    <div class="ms-product-card">
+                        <div class="ms-product-name">Windows 11 Pro <span class="ms-product-badge">Retail</span></div>
+                        <p class="ms-product-desc">Full retail key — instant online activation via Microsoft servers.</p>
+                        <div class="ms-product-price">€6.50</div>
+                        <p class="ms-reseller-note">Reseller price from €5.00 (10+ keys)</p>
+                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="ms-product-card">
+                        <div class="ms-product-name">Windows 11 Pro <span class="ms-product-badge badge-alt">Phone</span></div>
+                        <p class="ms-product-desc">Genuine key — activated via Microsoft's free automated phone line.</p>
+                        <div class="ms-product-price">€3.50</div>
+                        <p class="ms-reseller-note">Reseller price from €2.50 (10+ keys)</p>
+                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="ms-product-card">
+                        <div class="ms-product-name">Windows 11 Home <span class="ms-product-badge">Retail</span></div>
+                        <p class="ms-product-desc">Home edition retail key with instant online activation.</p>
+                        <div class="ms-product-price">€5.50</div>
+                        <p class="ms-reseller-note">Reseller price from €4.00 (10+ keys)</p>
+                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="ms-product-card">
+                        <div class="ms-product-name">Windows 10 Pro <span class="ms-product-badge">Retail</span></div>
+                        <p class="ms-product-desc">Full retail key for Windows 10 Professional — online activation.</p>
+                        <div class="ms-product-price">€5.00</div>
+                        <p class="ms-reseller-note">Reseller price from €3.50 (10+ keys)</p>
+                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="ms-product-card">
+                        <div class="ms-product-name">Windows 10 Pro <span class="ms-product-badge badge-alt">Phone</span></div>
+                        <p class="ms-product-desc">Genuine key activated via Microsoft's free automated phone system.</p>
+                        <div class="ms-product-price">€3.50</div>
+                        <p class="ms-reseller-note">Reseller price from €2.50 (10+ keys)</p>
+                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="ms-product-card">
+                        <div class="ms-product-name">Windows 10 Home <span class="ms-product-badge">Retail</span></div>
+                        <p class="ms-product-desc">Home edition retail key with instant online activation.</p>
+                        <div class="ms-product-price">€4.50</div>
+                        <p class="ms-reseller-note">Reseller price from €3.00 (10+ keys)</p>
+                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="ms-product-card">
+                        <div class="ms-product-name">Windows 10 Enterprise <span class="ms-product-badge badge-alt">LTSC</span></div>
+                        <p class="ms-product-desc">Long-Term Servicing Channel — ideal for enterprise and kiosk deployments.</p>
+                        <div class="ms-product-price">€8.00</div>
+                        <p class="ms-reseller-note">Reseller price from €6.00 (10+ keys)</p>
+                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                    </div>
                 </div>
             </div>
 
             <!-- Office Licenses -->
-            <div class="ms-category">
+            <div class="ms-category" id="cat-office">
                 <div class="ms-category-header">
                     <div class="ms-category-icon icon-amber"><i class="fab fa-microsoft"></i></div>
                     <div class="ms-category-info">
@@ -192,32 +280,61 @@ require_once __DIR__ . '/includes/topbar.php';
                         <p>Office 365, 2021, 2019, and 2016 — subscriptions and lifetime licenses.</p>
                     </div>
                 </div>
-                <div class="ms-price-table-wrap">
-                    <table class="ms-price-table">
-                        <thead>
-                            <tr>
-                                <th>Product</th>
-                                <th>Edition</th>
-                                <th>Type</th>
-                                <th>Price</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>Office 365 (1 Year)</td><td>Personal</td><td>Subscription</td><td class="ms-price">€1.50</td><td><a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order</a></td></tr>
-                            <tr><td>Office 365 (1 Year)</td><td>Family (6 Users)</td><td>Subscription</td><td class="ms-price">€3.00</td><td><a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order</a></td></tr>
-                            <tr><td>Office 2021 Pro Plus</td><td>Pro Plus</td><td>Lifetime</td><td class="ms-price">€3.50</td><td><a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order</a></td></tr>
-                            <tr><td>Office 2021 Pro Plus</td><td>Pro Plus</td><td>Phone Activation</td><td class="ms-price">€2.00</td><td><a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order</a></td></tr>
-                            <tr><td>Office 2019 Pro Plus</td><td>Pro Plus</td><td>Lifetime</td><td class="ms-price">€2.50</td><td><a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order</a></td></tr>
-                            <tr><td>Office 2016 Pro Plus</td><td>Pro Plus</td><td>Phone Activation</td><td class="ms-price">€1.50</td><td><a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order</a></td></tr>
-                            <tr><td>Outlook 2021</td><td>Standard</td><td>Lifetime</td><td class="ms-price">€2.00</td><td><a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order</a></td></tr>
-                        </tbody>
-                    </table>
+                <div class="ms-product-grid">
+                    <div class="ms-product-card">
+                        <div class="ms-product-name">Office 365 Personal <span class="ms-product-badge badge-alt">1 Year</span></div>
+                        <p class="ms-product-desc">1 user subscription with Word, Excel, PowerPoint, Outlook, and 1TB OneDrive.</p>
+                        <div class="ms-product-price">€1.50</div>
+                        <p class="ms-reseller-note">Reseller price from €1.00 (10+ keys)</p>
+                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="ms-product-card">
+                        <div class="ms-product-name">Office 365 Family <span class="ms-product-badge badge-alt">1 Year</span></div>
+                        <p class="ms-product-desc">Up to 6 users — includes all Office apps, 6TB OneDrive total.</p>
+                        <div class="ms-product-price">€3.00</div>
+                        <p class="ms-reseller-note">Reseller price from €2.00 (10+ keys)</p>
+                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="ms-product-card">
+                        <div class="ms-product-name">Office 2021 Professional Plus <span class="ms-product-badge">Lifetime</span></div>
+                        <p class="ms-product-desc">One-time purchase — Word, Excel, PowerPoint, Outlook, Access, Publisher.</p>
+                        <div class="ms-product-price">€3.50</div>
+                        <p class="ms-reseller-note">Reseller price from €2.50 (10+ keys)</p>
+                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="ms-product-card">
+                        <div class="ms-product-name">Office 2021 Pro Plus <span class="ms-product-badge badge-alt">Phone</span></div>
+                        <p class="ms-product-desc">Same Office suite — activated via Microsoft's free phone system.</p>
+                        <div class="ms-product-price">€2.00</div>
+                        <p class="ms-reseller-note">Reseller price from €1.50 (10+ keys)</p>
+                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="ms-product-card">
+                        <div class="ms-product-name">Office 2019 Professional Plus <span class="ms-product-badge">Lifetime</span></div>
+                        <p class="ms-product-desc">Legacy version — reliable and lightweight for older hardware.</p>
+                        <div class="ms-product-price">€2.50</div>
+                        <p class="ms-reseller-note">Reseller price from €1.50 (10+ keys)</p>
+                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="ms-product-card">
+                        <div class="ms-product-name">Office 2016 Professional Plus <span class="ms-product-badge badge-alt">Phone</span></div>
+                        <p class="ms-product-desc">Budget-friendly option with phone activation. Full Office suite.</p>
+                        <div class="ms-product-price">€1.50</div>
+                        <p class="ms-reseller-note">Reseller price from €1.00 (10+ keys)</p>
+                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="ms-product-card">
+                        <div class="ms-product-name">Outlook 2021 <span class="ms-product-badge">Lifetime</span></div>
+                        <p class="ms-product-desc">Standalone Outlook email client — one-time purchase, no subscription.</p>
+                        <div class="ms-product-price">€2.00</div>
+                        <p class="ms-reseller-note">Reseller price from €1.50 (10+ keys)</p>
+                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                    </div>
                 </div>
             </div>
 
             <!-- Windows Server -->
-            <div class="ms-category">
+            <div class="ms-category" id="cat-server">
                 <div class="ms-category-header">
                     <div class="ms-category-icon icon-purple"><i class="fas fa-server"></i></div>
                     <div class="ms-category-info">
@@ -225,30 +342,47 @@ require_once __DIR__ . '/includes/topbar.php';
                         <p>Windows Server 2022 and 2019 — Standard and Datacenter editions.</p>
                     </div>
                 </div>
-                <div class="ms-price-table-wrap">
-                    <table class="ms-price-table">
-                        <thead>
-                            <tr>
-                                <th>Product</th>
-                                <th>Edition</th>
-                                <th>Activation</th>
-                                <th>Price</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>Windows Server 2022</td><td>Standard</td><td>Retail</td><td class="ms-price">€12.00</td><td><a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order</a></td></tr>
-                            <tr><td>Windows Server 2022</td><td>Datacenter</td><td>Retail</td><td class="ms-price">€18.00</td><td><a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order</a></td></tr>
-                            <tr><td>Windows Server 2019</td><td>Standard</td><td>Retail</td><td class="ms-price">€10.00</td><td><a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order</a></td></tr>
-                            <tr><td>Windows Server 2019</td><td>Datacenter</td><td>Retail</td><td class="ms-price">€15.00</td><td><a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order</a></td></tr>
-                            <tr><td>SQL Server 2019</td><td>Standard</td><td>Retail</td><td class="ms-price">€8.00</td><td><a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order</a></td></tr>
-                        </tbody>
-                    </table>
+                <div class="ms-product-grid">
+                    <div class="ms-product-card">
+                        <div class="ms-product-name">Windows Server 2022 Standard <span class="ms-product-badge">Retail</span></div>
+                        <p class="ms-product-desc">Latest server OS — Hyper-V, containers, Azure hybrid support.</p>
+                        <div class="ms-product-price">€12.00</div>
+                        <p class="ms-reseller-note">Reseller price from €9.00 (10+ keys)</p>
+                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="ms-product-card">
+                        <div class="ms-product-name">Windows Server 2022 Datacenter <span class="ms-product-badge">Retail</span></div>
+                        <p class="ms-product-desc">Unlimited VMs, shielded VMs, Storage Spaces Direct, and full Hyper-V.</p>
+                        <div class="ms-product-price">€18.00</div>
+                        <p class="ms-reseller-note">Reseller price from €14.00 (10+ keys)</p>
+                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="ms-product-card">
+                        <div class="ms-product-name">Windows Server 2019 Standard <span class="ms-product-badge">Retail</span></div>
+                        <p class="ms-product-desc">Proven server OS — Active Directory, IIS, DNS, and Hyper-V.</p>
+                        <div class="ms-product-price">€10.00</div>
+                        <p class="ms-reseller-note">Reseller price from €7.50 (10+ keys)</p>
+                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="ms-product-card">
+                        <div class="ms-product-name">Windows Server 2019 Datacenter <span class="ms-product-badge">Retail</span></div>
+                        <p class="ms-product-desc">Full datacenter features with unlimited containers and VMs.</p>
+                        <div class="ms-product-price">€15.00</div>
+                        <p class="ms-reseller-note">Reseller price from €11.00 (10+ keys)</p>
+                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="ms-product-card">
+                        <div class="ms-product-name">SQL Server 2019 Standard <span class="ms-product-badge">Retail</span></div>
+                        <p class="ms-product-desc">Enterprise database engine — full T-SQL, reporting, and analytics.</p>
+                        <div class="ms-product-price">€8.00</div>
+                        <p class="ms-reseller-note">Reseller price from €6.00 (10+ keys)</p>
+                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                    </div>
                 </div>
             </div>
 
             <!-- Visual Studio, Project, Visio -->
-            <div class="ms-category">
+            <div class="ms-category" id="cat-devtools">
                 <div class="ms-category-header">
                     <div class="ms-category-icon icon-green"><i class="fas fa-tools"></i></div>
                     <div class="ms-category-info">
@@ -256,26 +390,49 @@ require_once __DIR__ . '/includes/topbar.php';
                         <p>Visual Studio, Project, and Visio licenses for developers and businesses.</p>
                     </div>
                 </div>
-                <div class="ms-price-table-wrap">
-                    <table class="ms-price-table">
-                        <thead>
-                            <tr>
-                                <th>Product</th>
-                                <th>Edition</th>
-                                <th>Type</th>
-                                <th>Price</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>Visual Studio 2022</td><td>Professional</td><td>Lifetime</td><td class="ms-price">€12.00</td><td><a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order</a></td></tr>
-                            <tr><td>Visual Studio 2022</td><td>Enterprise</td><td>Lifetime</td><td class="ms-price">€18.00</td><td><a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order</a></td></tr>
-                            <tr><td>Project 2021</td><td>Professional</td><td>Lifetime</td><td class="ms-price">€4.00</td><td><a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order</a></td></tr>
-                            <tr><td>Project 2019</td><td>Professional</td><td>Lifetime</td><td class="ms-price">€3.50</td><td><a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order</a></td></tr>
-                            <tr><td>Visio 2021</td><td>Professional</td><td>Lifetime</td><td class="ms-price">€4.50</td><td><a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order</a></td></tr>
-                            <tr><td>Visio 2019</td><td>Professional</td><td>Lifetime</td><td class="ms-price">€3.50</td><td><a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order</a></td></tr>
-                        </tbody>
-                    </table>
+                <div class="ms-product-grid">
+                    <div class="ms-product-card">
+                        <div class="ms-product-name">Visual Studio 2022 Professional <span class="ms-product-badge">Lifetime</span></div>
+                        <p class="ms-product-desc">Full IDE for .NET, C++, Python, and web development.</p>
+                        <div class="ms-product-price">€12.00</div>
+                        <p class="ms-reseller-note">Reseller price from €9.00 (10+ keys)</p>
+                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="ms-product-card">
+                        <div class="ms-product-name">Visual Studio 2022 Enterprise <span class="ms-product-badge">Lifetime</span></div>
+                        <p class="ms-product-desc">Enterprise IDE — IntelliTest, Live Unit Testing, Architecture tools.</p>
+                        <div class="ms-product-price">€18.00</div>
+                        <p class="ms-reseller-note">Reseller price from €14.00 (10+ keys)</p>
+                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="ms-product-card">
+                        <div class="ms-product-name">Project 2021 Professional <span class="ms-product-badge">Lifetime</span></div>
+                        <p class="ms-product-desc">Project management with Gantt charts, timelines, and resource tracking.</p>
+                        <div class="ms-product-price">€4.00</div>
+                        <p class="ms-reseller-note">Reseller price from €3.00 (10+ keys)</p>
+                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="ms-product-card">
+                        <div class="ms-product-name">Project 2019 Professional <span class="ms-product-badge">Lifetime</span></div>
+                        <p class="ms-product-desc">Legacy version — full project management features at a lower price.</p>
+                        <div class="ms-product-price">€3.50</div>
+                        <p class="ms-reseller-note">Reseller price from €2.50 (10+ keys)</p>
+                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="ms-product-card">
+                        <div class="ms-product-name">Visio 2021 Professional <span class="ms-product-badge">Lifetime</span></div>
+                        <p class="ms-product-desc">Diagrams, flowcharts, and network topology visualization.</p>
+                        <div class="ms-product-price">€4.50</div>
+                        <p class="ms-reseller-note">Reseller price from €3.50 (10+ keys)</p>
+                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="ms-product-card">
+                        <div class="ms-product-name">Visio 2019 Professional <span class="ms-product-badge">Lifetime</span></div>
+                        <p class="ms-product-desc">Legacy version with full diagramming and visualization tools.</p>
+                        <div class="ms-product-price">€3.50</div>
+                        <p class="ms-reseller-note">Reseller price from €2.50 (10+ keys)</p>
+                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                    </div>
                 </div>
             </div>
         </div>

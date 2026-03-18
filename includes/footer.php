@@ -45,6 +45,7 @@
                         <li><a href="<?php echo e(SITE_URL); ?>/cloud/">Cloud Servers</a></li>
                         <li><a href="<?php echo e(SITE_URL); ?>/dedicated-servers/">Dedicated</a></li>
                         <li><a href="<?php echo e(SITE_URL); ?>/hosting-reseller">Reseller</a></li>
+                        <li><a href="<?php echo e(SITE_URL); ?>/datacenter/">Datacenter</a></li>
                     </ul>
                 </div>
 
@@ -55,18 +56,19 @@
                         <li><a href="<?php echo e(SITE_URL); ?>/contact-us/">Contact</a></li>
                         <li><a href="<?php echo e(SITE_URL); ?>/affiliate">Affiliate</a></li>
                         <li><a href="<?php echo e(SITE_URL); ?>/payment-methods/">Payments</a></li>
-                        <li><a href="<?php echo e(SITE_URL); ?>/looking-glass/">Looking Glass</a></li>
+                        <li><a href="<?php echo e(SITE_URL); ?>/domains-registration/">Domains</a></li>
+                        <li><a href="<?php echo e(SITE_URL); ?>/promotions/">Promotions</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-column">
                     <h5>Legal</h5>
                     <ul>
-                        <li><a href="<?php echo e(SITE_URL); ?>/terms-conditions">Terms</a></li>
-                        <li><a href="<?php echo e(SITE_URL); ?>/privacy-policy">Privacy</a></li>
+                        <li><a href="<?php echo e(SITE_URL); ?>/terms/">Terms of Service</a></li>
+                        <li><a href="<?php echo e(SITE_URL); ?>/privacy-policy/">Privacy Policy</a></li>
                         <li><a href="<?php echo e(SITE_URL); ?>/legal/refund-policy">Refund Policy</a></li>
                         <li><a href="<?php echo e(SITE_URL); ?>/data/resource-usage/">Fair Usage</a></li>
-                        <li><a href="<?php echo e(SITE_URL); ?>/legal/report-abuse">Report Abuse</a></li>
+                        <li><a href="<?php echo e(SITE_URL); ?>/report-abuse/">Report Abuse</a></li>
                     </ul>
                 </div>
             </div>
@@ -88,6 +90,9 @@
             </div>
         </div>
     </footer>
+
+    <!-- Order Modal -->
+    <?php require_once __DIR__ . '/order-modal.php'; ?>
 
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>

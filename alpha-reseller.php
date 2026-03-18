@@ -387,36 +387,16 @@ require_once __DIR__ . '/includes/topbar.php';
             </div>
 
             <div class="bento-grid">
-                <div class="bento-card bento-lg">
+                <div class="bento-card bento-sm">
                     <div class="bento-card-icon"><i class="fas fa-project-diagram"></i></div>
-                    <h3>Three-Tier Management</h3>
-                    <p>Create Master Reseller packages, each with their own limits for sub-resellers. Masters create Resellers who manage cPanel accounts — and you oversee it all from one dashboard.</p>
-                    <div class="bento-metrics">
-                        <div class="bento-metric">
-                            <span class="bento-metric-val">Unlimited</span>
-                            <span class="bento-metric-label">Master Accounts</span>
-                        </div>
-                        <div class="bento-metric">
-                            <span class="bento-metric-val">3 Tiers</span>
-                            <span class="bento-metric-label">of Management</span>
-                        </div>
-                    </div>
+                    <h4>Three-Tier Management</h4>
+                    <p>Create Master Reseller packages with sub-reseller limits. You oversee Masters, Resellers, and cPanel accounts from one dashboard.</p>
                 </div>
 
-                <div class="bento-card bento-lg bento-green">
+                <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-green"><i class="fas fa-chart-bar"></i></div>
-                    <h3>Full Resource Oversight</h3>
-                    <p>Monitor disk, bandwidth, and account usage across all Masters, Resellers, and cPanel accounts simultaneously. Reallocate resources on the fly.</p>
-                    <div class="bento-metrics">
-                        <div class="bento-metric">
-                            <span class="bento-metric-val">Scalable</span>
-                            <span class="bento-metric-label">Disk Allocation</span>
-                        </div>
-                        <div class="bento-metric">
-                            <span class="bento-metric-val">All Tiers</span>
-                            <span class="bento-metric-label">Visible</span>
-                        </div>
-                    </div>
+                    <h4>Full Resource Oversight</h4>
+                    <p>Monitor disk, bandwidth, and account usage across all tiers simultaneously. Reallocate resources on the fly.</p>
                 </div>
 
                 <div class="bento-card bento-sm">
@@ -443,6 +423,13 @@ require_once __DIR__ . '/includes/topbar.php';
                     <div class="bento-card-icon icon-amber"><i class="fas fa-plug"></i></div>
                     <h4>WHMReseller Plugin</h4>
                     <p>Create and manage reseller accounts directly from WHM.</p>
+                </div>
+            </div>
+
+            <div class="article-callout" style="margin-top: 24px;">
+                <i class="fas fa-info-circle"></i>
+                <div>
+                    <strong>Important:</strong> Alpha Reseller plans do not include root or SSH access. All management is handled through WHM and cPanel's built-in multi-tier reseller tools.
                 </div>
             </div>
         </div>
@@ -499,62 +486,12 @@ require_once __DIR__ . '/includes/topbar.php';
     </section>
 
     <!-- ═══════════════ GLOBAL INFRASTRUCTURE (compact) ═══════════════ -->
-    <section class="dc-showcase dc-showcase-compact reveal">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-tag">Global Infrastructure</div>
-                <h2>Enterprise-grade infrastructure worldwide</h2>
-                <p>All tiers in your hierarchy share the same enterprise hardware and global network.</p>
-            </div>
-
-            <div class="dc-strip-stats">
-                <div class="dc-strip-stat"><i class="fas fa-server"></i> <strong>20+</strong> Locations</div>
-                <div class="dc-strip-stat"><i class="fas fa-network-wired"></i> <strong>10 Gbit/s</strong> Network</div>
-                <div class="dc-strip-stat"><i class="fas fa-globe"></i> <strong>4</strong> Continents</div>
-                <div class="dc-strip-stat"><i class="fas fa-tachometer-alt"></i> <strong>&lt;30ms</strong> Latency</div>
-            </div>
-
-            <div class="dc-map-grid">
-                <div class="dc-continent">
-                    <div class="dc-continent-label"><i class="fas fa-globe-europe"></i> Europe <span class="dc-continent-count">9</span></div>
-                    <div class="dc-continent-locs">
-                        <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-finland-location/" class="dc-pin"><span class="fi fi-fi"></span> Finland</a>
-                        <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-germany-location/" class="dc-pin"><span class="fi fi-de"></span> Germany</a>
-                        <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-france-location/" class="dc-pin"><span class="fi fi-fr"></span> France</a>
-                        <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-uk-location/" class="dc-pin"><span class="fi fi-gb"></span> UK</a>
-                        <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-netherlands-location/" class="dc-pin"><span class="fi fi-nl"></span> Netherlands</a>
-                        <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-romania-location/" class="dc-pin dc-pin-hq"><span class="fi fi-ro"></span> Romania <span class="dc-hq-badge">HQ</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-turkey-location/" class="dc-pin"><span class="fi fi-tr"></span> Turkey</a>
-                        <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-poland-location/" class="dc-pin"><span class="fi fi-pl"></span> Poland</a>
-                        <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-austria-location/" class="dc-pin"><span class="fi fi-at"></span> Austria</a>
-                    </div>
-                </div>
-                <div class="dc-continent">
-                    <div class="dc-continent-label"><i class="fas fa-globe-americas"></i> Americas <span class="dc-continent-count">2</span></div>
-                    <div class="dc-continent-locs">
-                        <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-usa-location/" class="dc-pin"><span class="fi fi-us"></span> USA</a>
-                        <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-canada-location/" class="dc-pin"><span class="fi fi-ca"></span> Canada</a>
-                    </div>
-                </div>
-                <div class="dc-continent">
-                    <div class="dc-continent-label"><i class="fas fa-globe-asia"></i> Asia <span class="dc-continent-count">5</span></div>
-                    <div class="dc-continent-locs">
-                        <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-india-location/" class="dc-pin"><span class="fi fi-in"></span> India</a>
-                        <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-singapore-location/" class="dc-pin"><span class="fi fi-sg"></span> Singapore</a>
-                        <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-japan-location/" class="dc-pin"><span class="fi fi-jp"></span> Japan</a>
-                        <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-hong-kong-location/" class="dc-pin"><span class="fi fi-hk"></span> Hong Kong</a>
-                        <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-thailand-location/" class="dc-pin"><span class="fi fi-th"></span> Thailand</a>
-                    </div>
-                </div>
-                <div class="dc-continent">
-                    <div class="dc-continent-label"><i class="fas fa-globe"></i> Oceania <span class="dc-continent-count">1</span></div>
-                    <div class="dc-continent-locs">
-                        <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-australia-location/" class="dc-pin"><span class="fi fi-au"></span> Australia</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<?php
+$dc_heading = 'Enterprise-grade infrastructure worldwide';
+$dc_desc = 'All tiers in your hierarchy share the same enterprise hardware and global network.';
+$dc_link_prefix = '/cheap-cpanel';
+include __DIR__ . '/includes/section-dc-showcase.php';
+?>
 
     <!-- ═══════════════ FAQ ═══════════════ -->
     <section class="faq-section reveal">
@@ -654,6 +591,9 @@ require_once __DIR__ . '/includes/topbar.php';
 
     <!-- ═══════════════ MAILCHANNELS PARTNERSHIP ═══════════════ -->
     <?php include __DIR__ . '/includes/section-mailchannels.php'; ?>
+
+    <!-- ═══════════════ COMPETITORS COMPARISON ═══════════════ -->
+    <?php include __DIR__ . '/includes/section-competitors.php'; ?>
 
     <!-- ═══════════════ BOTTOM CTA ═══════════════ -->
     <section class="promo-cta reveal">

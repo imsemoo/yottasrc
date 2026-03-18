@@ -489,76 +489,76 @@ require_once __DIR__ . '/includes/topbar.php';
 
             <div class="locations-panels">
                 <div class="loc-panel active" id="vps-europe">
-                    <div class="loc-grid">
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Netherland-location/" class="loc-item"><span class="fi fi-nl"></span> Netherlands</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-France-location/" class="loc-item"><span class="fi fi-fr"></span> France</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Turkey-location/" class="loc-item"><span class="fi fi-tr"></span> Turkey</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Germany-location/" class="loc-item"><span class="fi fi-de"></span> Germany</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-UK-location/" class="loc-item"><span class="fi fi-gb"></span> United Kingdom</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Finland-location/" class="loc-item"><span class="fi fi-fi"></span> Finland</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Italy-location/" class="loc-item"><span class="fi fi-it"></span> Italy</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Serbia-location/" class="loc-item"><span class="fi fi-rs"></span> Serbia</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Greece-location/" class="loc-item"><span class="fi fi-gr"></span> Greece</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Lithuania-location/" class="loc-item"><span class="fi fi-lt"></span> Lithuania</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Luxembourg-location/" class="loc-item"><span class="fi fi-lu"></span> Luxembourg</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Poland-location/" class="loc-item"><span class="fi fi-pl"></span> Poland</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Portugal-location/" class="loc-item"><span class="fi fi-pt"></span> Portugal</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Ireland-location/" class="loc-item"><span class="fi fi-ie"></span> Ireland</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Russia-location/" class="loc-item"><span class="fi fi-ru"></span> Russia</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Switzerland-location/" class="loc-item"><span class="fi fi-ch"></span> Switzerland</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Ukraine-location/" class="loc-item"><span class="fi fi-ua"></span> Ukraine</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Austria-location/" class="loc-item"><span class="fi fi-at"></span> Austria</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Spain-location/" class="loc-item"><span class="fi fi-es"></span> Spain</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Sweden-location/" class="loc-item"><span class="fi fi-se"></span> Sweden</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Romania-location/" class="loc-item"><span class="fi fi-ro"></span> Romania</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Norway-location/" class="loc-item"><span class="fi fi-no"></span> Norway</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Estonia-location/" class="loc-item"><span class="fi fi-ee"></span> Estonia</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Bulgaria-location/" class="loc-item"><span class="fi fi-bg"></span> Bulgaria</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Belgium-location/" class="loc-item"><span class="fi fi-be"></span> Belgium</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Cyprus-location/" class="loc-item"><span class="fi fi-cy"></span> Cyprus</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Denmark-location/" class="loc-item"><span class="fi fi-dk"></span> Denmark</a>
+                    <div class="loc-card-grid">
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Netherland-location/" class="location-card location-card--active"><span class="fi fi-nl"></span> Netherlands</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-France-location/" class="location-card"><span class="fi fi-fr"></span> France</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Turkey-location/" class="location-card"><span class="fi fi-tr"></span> Turkey</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Germany-location/" class="location-card"><span class="fi fi-de"></span> Germany</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-UK-location/" class="location-card"><span class="fi fi-gb"></span> United Kingdom</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Finland-location/" class="location-card"><span class="fi fi-fi"></span> Finland</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Italy-location/" class="location-card"><span class="fi fi-it"></span> Italy</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Serbia-location/" class="location-card"><span class="fi fi-rs"></span> Serbia</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Greece-location/" class="location-card"><span class="fi fi-gr"></span> Greece</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Lithuania-location/" class="location-card"><span class="fi fi-lt"></span> Lithuania</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Luxembourg-location/" class="location-card"><span class="fi fi-lu"></span> Luxembourg</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Poland-location/" class="location-card"><span class="fi fi-pl"></span> Poland</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Portugal-location/" class="location-card"><span class="fi fi-pt"></span> Portugal</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Ireland-location/" class="location-card"><span class="fi fi-ie"></span> Ireland</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Russia-location/" class="location-card"><span class="fi fi-ru"></span> Russia</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Switzerland-location/" class="location-card"><span class="fi fi-ch"></span> Switzerland</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Ukraine-location/" class="location-card"><span class="fi fi-ua"></span> Ukraine</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Austria-location/" class="location-card"><span class="fi fi-at"></span> Austria</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Spain-location/" class="location-card"><span class="fi fi-es"></span> Spain</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Sweden-location/" class="location-card"><span class="fi fi-se"></span> Sweden</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Romania-location/" class="location-card"><span class="fi fi-ro"></span> Romania</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Norway-location/" class="location-card"><span class="fi fi-no"></span> Norway</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Estonia-location/" class="location-card"><span class="fi fi-ee"></span> Estonia</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Bulgaria-location/" class="location-card"><span class="fi fi-bg"></span> Bulgaria</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Belgium-location/" class="location-card"><span class="fi fi-be"></span> Belgium</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Cyprus-location/" class="location-card"><span class="fi fi-cy"></span> Cyprus</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Denmark-location/" class="location-card"><span class="fi fi-dk"></span> Denmark</a>
                     </div>
                 </div>
                 <div class="loc-panel" id="vps-asia">
-                    <div class="loc-grid">
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-India-location/" class="loc-item"><span class="fi fi-in"></span> India</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Malaysia-location/" class="loc-item"><span class="fi fi-my"></span> Malaysia</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Singapore-location/" class="loc-item"><span class="fi fi-sg"></span> Singapore</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Israel-location/" class="loc-item"><span class="fi fi-il"></span> Israel</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Hong Kong-location/" class="loc-item"><span class="fi fi-hk"></span> Hong Kong</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Japan-location/" class="loc-item"><span class="fi fi-jp"></span> Japan</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-UAE (Dubai)-location/" class="loc-item"><span class="fi fi-ae"></span> UAE (Dubai)</a>
+                    <div class="loc-card-grid">
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-India-location/" class="location-card"><span class="fi fi-in"></span> India</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Malaysia-location/" class="location-card"><span class="fi fi-my"></span> Malaysia</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Singapore-location/" class="location-card"><span class="fi fi-sg"></span> Singapore</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Israel-location/" class="location-card"><span class="fi fi-il"></span> Israel</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Hong Kong-location/" class="location-card"><span class="fi fi-hk"></span> Hong Kong</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Japan-location/" class="location-card"><span class="fi fi-jp"></span> Japan</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-UAE (Dubai)-location/" class="location-card"><span class="fi fi-ae"></span> UAE (Dubai)</a>
                     </div>
                 </div>
                 <div class="loc-panel" id="vps-africa">
-                    <div class="loc-grid">
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Morocco-location/" class="loc-item"><span class="fi fi-ma"></span> Morocco</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Nigeria-location/" class="loc-item"><span class="fi fi-ng"></span> Nigeria</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-South Africa-location/" class="loc-item"><span class="fi fi-za"></span> South Africa</a>
+                    <div class="loc-card-grid">
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Morocco-location/" class="location-card"><span class="fi fi-ma"></span> Morocco</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Nigeria-location/" class="location-card"><span class="fi fi-ng"></span> Nigeria</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-South Africa-location/" class="location-card"><span class="fi fi-za"></span> South Africa</a>
                     </div>
                 </div>
                 <div class="loc-panel" id="vps-south-america">
-                    <div class="loc-grid">
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Peru-location/" class="loc-item"><span class="fi fi-pe"></span> Peru</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Bolivia-location/" class="loc-item"><span class="fi fi-bo"></span> Bolivia</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Chile-location/" class="loc-item"><span class="fi fi-cl"></span> Chile</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Costa Rica-location/" class="loc-item"><span class="fi fi-cr"></span> Costa Rica</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Brazil-location/" class="loc-item"><span class="fi fi-br"></span> Brazil</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Argentina-location/" class="loc-item"><span class="fi fi-ar"></span> Argentina</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Colombia-location/" class="loc-item"><span class="fi fi-co"></span> Colombia</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Ecuador-location/" class="loc-item"><span class="fi fi-ec"></span> Ecuador</a>
+                    <div class="loc-card-grid">
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Peru-location/" class="location-card"><span class="fi fi-pe"></span> Peru</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Bolivia-location/" class="location-card"><span class="fi fi-bo"></span> Bolivia</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Chile-location/" class="location-card"><span class="fi fi-cl"></span> Chile</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Costa Rica-location/" class="location-card"><span class="fi fi-cr"></span> Costa Rica</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Brazil-location/" class="location-card"><span class="fi fi-br"></span> Brazil</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Argentina-location/" class="location-card"><span class="fi fi-ar"></span> Argentina</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Colombia-location/" class="location-card"><span class="fi fi-co"></span> Colombia</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Ecuador-location/" class="location-card"><span class="fi fi-ec"></span> Ecuador</a>
                     </div>
                 </div>
                 <div class="loc-panel" id="vps-north-america">
-                    <div class="loc-grid">
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-USA-location/" class="loc-item"><span class="fi fi-us"></span> USA</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Canada-location/" class="loc-item"><span class="fi fi-ca"></span> Canada</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Mexico-location/" class="loc-item"><span class="fi fi-mx"></span> Mexico</a>
+                    <div class="loc-card-grid">
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-USA-location/" class="location-card"><span class="fi fi-us"></span> USA</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Canada-location/" class="location-card"><span class="fi fi-ca"></span> Canada</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Mexico-location/" class="location-card"><span class="fi fi-mx"></span> Mexico</a>
                     </div>
                 </div>
                 <div class="loc-panel" id="vps-oceania">
-                    <div class="loc-grid">
-                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Australia-location/" class="loc-item"><span class="fi fi-au"></span> Australia</a>
+                    <div class="loc-card-grid">
+                        <a href="<?php echo e(SITE_URL); ?>/vps/cheap-vps-Australia-location/" class="location-card"><span class="fi fi-au"></span> Australia</a>
                     </div>
                 </div>
             </div>
@@ -1017,7 +1017,79 @@ require_once __DIR__ . '/includes/topbar.php';
     </section>
 
     <!-- ═══════════════ COMPETITORS COMPARISON ═══════════════ -->
-    <?php include __DIR__ . '/includes/section-competitors.php'; ?>
+    <section class="section-compare reveal">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">Comparison</div>
+                <h2>Why YottaSrc VPS beats the competition</h2>
+                <p>See how our Linux VPS stacks up against other providers on performance, pricing, and flexibility.</p>
+            </div>
+
+            <div class="compare-table-wrap">
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th class="compare-highlight">YottaSrc VPS</th>
+                            <th>Other VPS Providers</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><i class="fas fa-coins"></i> Starting Price</td>
+                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> From €2.75/mo</td>
+                            <td><i class="fas fa-minus-circle"></i> From $5–6/mo</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-microchip"></i> Virtualization</td>
+                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> Full KVM isolation</td>
+                            <td><i class="fas fa-minus-circle"></i> Often OpenVZ / shared</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-hdd"></i> Storage</td>
+                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> NVMe SSD on all plans</td>
+                            <td><i class="fas fa-minus-circle"></i> SATA SSD or HDD common</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-network-wired"></i> Network</td>
+                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> Up to 10 Gbit/s</td>
+                            <td><i class="fas fa-minus-circle"></i> 1 Gbit/s typical</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-globe"></i> Locations</td>
+                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> 50+ regions, 6 continents</td>
+                            <td><i class="fas fa-minus-circle"></i> 5–15 regions</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-terminal"></i> Root Access</td>
+                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> Full root SSH on all plans</td>
+                            <td><i class="fas fa-check-circle"></i> Usually available</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-shield-alt"></i> DDoS Protection</td>
+                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> Free on all plans</td>
+                            <td><i class="fas fa-times-circle"></i> Paid add-on or limited</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-tag"></i> Renewal Price</td>
+                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> Same price on renewal</td>
+                            <td><i class="fas fa-times-circle"></i> 2–3× price increase</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-credit-card"></i> Crypto Payments</td>
+                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> BTC, USDT, TRX &amp; more</td>
+                            <td><i class="fas fa-times-circle"></i> Cards/PayPal only</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-headset"></i> Support</td>
+                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> &lt;10 min response, 24/7</td>
+                            <td><i class="fas fa-minus-circle"></i> Ticket-based, hours to days</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
 
     <!-- ═══════════════ PROMOTIONS CTA ═══════════════ -->
     <section class="promo-cta reveal">

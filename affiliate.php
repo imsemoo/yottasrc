@@ -111,34 +111,16 @@ require_once __DIR__ . '/includes/topbar.php';
                         <rect x="348" y="336" width="44" height="14" rx="4" fill="var(--brand-accent)" opacity="0.2"/>
                         <text x="370" y="346" text-anchor="middle" fill="var(--brand-accent)" font-size="6.5" font-family="var(--font-mono)" font-weight="600" opacity="0.6">Share</text>
 
-                        <!-- Floating badges -->
-                        <rect x="356" y="2" width="80" height="36" rx="10" fill="var(--bg-card)" stroke="var(--border-primary)" stroke-width="1">
-                            <animate attributeName="y" values="2;8;2" dur="5s" repeatCount="indefinite"/>
-                        </rect>
-                        <text x="372" y="17" fill="var(--text-tertiary)" font-size="7" font-family="var(--font-mono)" font-weight="600" opacity="0.6">
-                            COMMISSION
-                            <animate attributeName="y" values="17;23;17" dur="5s" repeatCount="indefinite"/>
-                        </text>
-                        <text x="372" y="31" fill="var(--brand-secondary)" font-size="13" font-family="var(--font-display)" font-weight="800" opacity="0.8">
-                            20%
-                            <animate attributeName="y" values="31;37;31" dur="5s" repeatCount="indefinite"/>
-                        </text>
+                        <!-- Static badges -->
+                        <rect x="356" y="2" width="80" height="36" rx="10" fill="var(--bg-card)" stroke="var(--border-primary)" stroke-width="1"/>
+                        <text x="372" y="17" fill="var(--text-tertiary)" font-size="7" font-family="var(--font-mono)" font-weight="600" opacity="0.6">COMMISSION</text>
+                        <text x="372" y="31" fill="var(--brand-secondary)" font-size="13" font-family="var(--font-display)" font-weight="800" opacity="0.8">20%</text>
 
-                        <rect x="0" y="310" width="80" height="36" rx="10" fill="var(--bg-card)" stroke="var(--border-primary)" stroke-width="1">
-                            <animate attributeName="y" values="310;304;310" dur="6s" repeatCount="indefinite"/>
-                        </rect>
-                        <text x="16" y="325" fill="var(--text-tertiary)" font-size="7" font-family="var(--font-mono)" font-weight="600" opacity="0.6">
-                            WITHDRAW
-                            <animate attributeName="y" values="325;319;325" dur="6s" repeatCount="indefinite"/>
-                        </text>
-                        <text x="16" y="339" fill="var(--brand-primary)" font-size="13" font-family="var(--font-display)" font-weight="800" opacity="0.8">
-                            Min €25
-                            <animate attributeName="y" values="339;333;339" dur="6s" repeatCount="indefinite"/>
-                        </text>
+                        <rect x="0" y="310" width="80" height="36" rx="10" fill="var(--bg-card)" stroke="var(--border-primary)" stroke-width="1"/>
+                        <text x="16" y="325" fill="var(--text-tertiary)" font-size="7" font-family="var(--font-mono)" font-weight="600" opacity="0.6">WITHDRAW</text>
+                        <text x="16" y="339" fill="var(--brand-primary)" font-size="13" font-family="var(--font-display)" font-weight="800" opacity="0.8">Min €25</text>
 
-                        <circle cx="8" cy="80" r="3" fill="var(--brand-primary)" opacity="0.25">
-                            <animate attributeName="opacity" values="0.25;0.6;0.25" dur="3s" repeatCount="indefinite"/>
-                        </circle>
+                        <circle cx="8" cy="80" r="3" fill="var(--brand-primary)" opacity="0.4"/>
                     </svg>
                 </div>
             </div>

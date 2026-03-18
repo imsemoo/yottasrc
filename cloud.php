@@ -243,76 +243,76 @@ require_once __DIR__ . '/includes/topbar.php';
 
             <div class="locations-panels">
                 <div class="loc-panel active" id="cloud-europe">
-                    <div class="loc-dir">
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Netherland-location/" class="loc-entry"><span class="loc-signal green"></span><span class="fi fi-nl"></span><span class="loc-city">Amsterdam</span><span class="loc-ms">8 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Germany-location/" class="loc-entry"><span class="loc-signal green"></span><span class="fi fi-de"></span><span class="loc-city">Frankfurt</span><span class="loc-ms">5 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-France-location/" class="loc-entry"><span class="loc-signal green"></span><span class="fi fi-fr"></span><span class="loc-city">Paris</span><span class="loc-ms">12 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-UK-location/" class="loc-entry"><span class="loc-signal green"></span><span class="fi fi-gb"></span><span class="loc-city">London</span><span class="loc-ms">15 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Switzerland-location/" class="loc-entry"><span class="loc-signal green"></span><span class="fi fi-ch"></span><span class="loc-city">Zurich</span><span class="loc-ms">8 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Belgium-location/" class="loc-entry"><span class="loc-signal green"></span><span class="fi fi-be"></span><span class="loc-city">Brussels</span><span class="loc-ms">10 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Luxembourg-location/" class="loc-entry"><span class="loc-signal green"></span><span class="fi fi-lu"></span><span class="loc-city">Luxembourg</span><span class="loc-ms">10 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Austria-location/" class="loc-entry"><span class="loc-signal green"></span><span class="fi fi-at"></span><span class="loc-city">Vienna</span><span class="loc-ms">12 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Italy-location/" class="loc-entry"><span class="loc-signal green"></span><span class="fi fi-it"></span><span class="loc-city">Milan</span><span class="loc-ms">18 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Denmark-location/" class="loc-entry"><span class="loc-signal green"></span><span class="fi fi-dk"></span><span class="loc-city">Copenhagen</span><span class="loc-ms">22 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Ireland-location/" class="loc-entry"><span class="loc-signal green"></span><span class="fi fi-ie"></span><span class="loc-city">Dublin</span><span class="loc-ms">22 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Poland-location/" class="loc-entry"><span class="loc-signal green"></span><span class="fi fi-pl"></span><span class="loc-city">Warsaw</span><span class="loc-ms">28 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Spain-location/" class="loc-entry"><span class="loc-signal green"></span><span class="fi fi-es"></span><span class="loc-city">Madrid</span><span class="loc-ms">28 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Norway-location/" class="loc-entry"><span class="loc-signal yellow"></span><span class="fi fi-no"></span><span class="loc-city">Oslo</span><span class="loc-ms">30 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Serbia-location/" class="loc-entry"><span class="loc-signal yellow"></span><span class="fi fi-rs"></span><span class="loc-city">Belgrade</span><span class="loc-ms">32 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Sweden-location/" class="loc-entry"><span class="loc-signal yellow"></span><span class="fi fi-se"></span><span class="loc-city">Stockholm</span><span class="loc-ms">32 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Finland-location/" class="loc-entry"><span class="loc-signal yellow"></span><span class="fi fi-fi"></span><span class="loc-city">Helsinki</span><span class="loc-ms">35 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Portugal-location/" class="loc-entry"><span class="loc-signal yellow"></span><span class="fi fi-pt"></span><span class="loc-city">Lisbon</span><span class="loc-ms">35 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Estonia-location/" class="loc-entry"><span class="loc-signal yellow"></span><span class="fi fi-ee"></span><span class="loc-city">Tallinn</span><span class="loc-ms">36 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Lithuania-location/" class="loc-entry"><span class="loc-signal yellow"></span><span class="fi fi-lt"></span><span class="loc-city">Vilnius</span><span class="loc-ms">38 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Romania-location/" class="loc-entry"><span class="loc-signal yellow"></span><span class="fi fi-ro"></span><span class="loc-city">Bucharest</span><span class="loc-ms">38 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Bulgaria-location/" class="loc-entry"><span class="loc-signal yellow"></span><span class="fi fi-bg"></span><span class="loc-city">Sofia</span><span class="loc-ms">40 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Greece-location/" class="loc-entry"><span class="loc-signal yellow"></span><span class="fi fi-gr"></span><span class="loc-city">Athens</span><span class="loc-ms">42 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Ukraine-location/" class="loc-entry"><span class="loc-signal yellow"></span><span class="fi fi-ua"></span><span class="loc-city">Kyiv</span><span class="loc-ms">42 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Turkey-location/" class="loc-entry"><span class="loc-signal yellow"></span><span class="fi fi-tr"></span><span class="loc-city">Istanbul</span><span class="loc-ms">45 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Russia-location/" class="loc-entry"><span class="loc-signal yellow"></span><span class="fi fi-ru"></span><span class="loc-city">Moscow</span><span class="loc-ms">48 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Cyprus-location/" class="loc-entry"><span class="loc-signal yellow"></span><span class="fi fi-cy"></span><span class="loc-city">Nicosia</span><span class="loc-ms">55 ms</span></a>
+                    <div class="loc-card-grid">
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Netherland-location/" class="location-card"><span class="fi fi-nl"></span> Amsterdam, Netherlands <span class="loc-ms">8 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Germany-location/" class="location-card location-card--active"><span class="fi fi-de"></span> Frankfurt, Germany <span class="loc-ms">5 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-France-location/" class="location-card"><span class="fi fi-fr"></span> Paris, France <span class="loc-ms">12 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-UK-location/" class="location-card"><span class="fi fi-gb"></span> London, UK <span class="loc-ms">15 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Switzerland-location/" class="location-card"><span class="fi fi-ch"></span> Zurich, Switzerland <span class="loc-ms">8 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Belgium-location/" class="location-card"><span class="fi fi-be"></span> Brussels, Belgium <span class="loc-ms">10 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Luxembourg-location/" class="location-card"><span class="fi fi-lu"></span> Luxembourg <span class="loc-ms">10 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Austria-location/" class="location-card"><span class="fi fi-at"></span> Vienna, Austria <span class="loc-ms">12 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Italy-location/" class="location-card"><span class="fi fi-it"></span> Milan, Italy <span class="loc-ms">18 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Denmark-location/" class="location-card"><span class="fi fi-dk"></span> Copenhagen, Denmark <span class="loc-ms">22 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Ireland-location/" class="location-card"><span class="fi fi-ie"></span> Dublin, Ireland <span class="loc-ms">22 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Poland-location/" class="location-card"><span class="fi fi-pl"></span> Warsaw, Poland <span class="loc-ms">28 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Spain-location/" class="location-card"><span class="fi fi-es"></span> Madrid, Spain <span class="loc-ms">28 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Norway-location/" class="location-card"><span class="fi fi-no"></span> Oslo, Norway <span class="loc-ms">30 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Serbia-location/" class="location-card"><span class="fi fi-rs"></span> Belgrade, Serbia <span class="loc-ms">32 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Sweden-location/" class="location-card"><span class="fi fi-se"></span> Stockholm, Sweden <span class="loc-ms">32 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Finland-location/" class="location-card"><span class="fi fi-fi"></span> Helsinki, Finland <span class="loc-ms">35 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Portugal-location/" class="location-card"><span class="fi fi-pt"></span> Lisbon, Portugal <span class="loc-ms">35 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Estonia-location/" class="location-card"><span class="fi fi-ee"></span> Tallinn, Estonia <span class="loc-ms">36 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Lithuania-location/" class="location-card"><span class="fi fi-lt"></span> Vilnius, Lithuania <span class="loc-ms">38 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Romania-location/" class="location-card"><span class="fi fi-ro"></span> Bucharest, Romania <span class="loc-ms">38 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Bulgaria-location/" class="location-card"><span class="fi fi-bg"></span> Sofia, Bulgaria <span class="loc-ms">40 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Greece-location/" class="location-card"><span class="fi fi-gr"></span> Athens, Greece <span class="loc-ms">42 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Ukraine-location/" class="location-card"><span class="fi fi-ua"></span> Kyiv, Ukraine <span class="loc-ms">42 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Turkey-location/" class="location-card"><span class="fi fi-tr"></span> Istanbul, Turkey <span class="loc-ms">45 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Russia-location/" class="location-card"><span class="fi fi-ru"></span> Moscow, Russia <span class="loc-ms">48 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Cyprus-location/" class="location-card"><span class="fi fi-cy"></span> Nicosia, Cyprus <span class="loc-ms">55 ms</span></a>
                     </div>
                 </div>
                 <div class="loc-panel" id="cloud-asia">
-                    <div class="loc-dir">
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Israel-location/" class="loc-entry"><span class="loc-signal yellow"></span><span class="fi fi-il"></span><span class="loc-city">Tel Aviv</span><span class="loc-ms">58 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-UAE (Dubai)-location/" class="loc-entry"><span class="loc-signal orange"></span><span class="fi fi-ae"></span><span class="loc-city">Dubai</span><span class="loc-ms">95 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-India-location/" class="loc-entry"><span class="loc-signal orange"></span><span class="fi fi-in"></span><span class="loc-city">Mumbai</span><span class="loc-ms">120 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Singapore-location/" class="loc-entry"><span class="loc-signal orange"></span><span class="fi fi-sg"></span><span class="loc-city">Singapore</span><span class="loc-ms">175 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Malaysia-location/" class="loc-entry"><span class="loc-signal orange"></span><span class="fi fi-my"></span><span class="loc-city">Kuala Lumpur</span><span class="loc-ms">180 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Hong Kong-location/" class="loc-entry"><span class="loc-signal orange"></span><span class="fi fi-hk"></span><span class="loc-city">Hong Kong</span><span class="loc-ms">195 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Japan-location/" class="loc-entry"><span class="loc-signal red"></span><span class="fi fi-jp"></span><span class="loc-city">Tokyo</span><span class="loc-ms">230 ms</span></a>
+                    <div class="loc-card-grid">
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Israel-location/" class="location-card"><span class="fi fi-il"></span> Tel Aviv, Israel <span class="loc-ms">58 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-UAE (Dubai)-location/" class="location-card"><span class="fi fi-ae"></span> Dubai, UAE <span class="loc-ms">95 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-India-location/" class="location-card"><span class="fi fi-in"></span> Mumbai, India <span class="loc-ms">120 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Singapore-location/" class="location-card"><span class="fi fi-sg"></span> Singapore <span class="loc-ms">175 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Malaysia-location/" class="location-card"><span class="fi fi-my"></span> Kuala Lumpur, Malaysia <span class="loc-ms">180 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Hong Kong-location/" class="location-card"><span class="fi fi-hk"></span> Hong Kong <span class="loc-ms">195 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Japan-location/" class="location-card"><span class="fi fi-jp"></span> Tokyo, Japan <span class="loc-ms">230 ms</span></a>
                     </div>
                 </div>
                 <div class="loc-panel" id="cloud-africa">
-                    <div class="loc-dir">
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Morocco-location/" class="loc-entry"><span class="loc-signal yellow"></span><span class="fi fi-ma"></span><span class="loc-city">Casablanca</span><span class="loc-ms">45 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Nigeria-location/" class="loc-entry"><span class="loc-signal orange"></span><span class="fi fi-ng"></span><span class="loc-city">Lagos</span><span class="loc-ms">110 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-South Africa-location/" class="loc-entry"><span class="loc-signal orange"></span><span class="fi fi-za"></span><span class="loc-city">Johannesburg</span><span class="loc-ms">160 ms</span></a>
+                    <div class="loc-card-grid">
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Morocco-location/" class="location-card"><span class="fi fi-ma"></span> Casablanca, Morocco <span class="loc-ms">45 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Nigeria-location/" class="location-card"><span class="fi fi-ng"></span> Lagos, Nigeria <span class="loc-ms">110 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-South Africa-location/" class="location-card"><span class="fi fi-za"></span> Johannesburg, South Africa <span class="loc-ms">160 ms</span></a>
                     </div>
                 </div>
                 <div class="loc-panel" id="cloud-south-america">
-                    <div class="loc-dir">
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Costa Rica-location/" class="loc-entry"><span class="loc-signal orange"></span><span class="fi fi-cr"></span><span class="loc-city">San José</span><span class="loc-ms">170 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Colombia-location/" class="loc-entry"><span class="loc-signal orange"></span><span class="fi fi-co"></span><span class="loc-city">Bogotá</span><span class="loc-ms">175 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Ecuador-location/" class="loc-entry"><span class="loc-signal orange"></span><span class="fi fi-ec"></span><span class="loc-city">Quito</span><span class="loc-ms">180 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Peru-location/" class="loc-entry"><span class="loc-signal orange"></span><span class="fi fi-pe"></span><span class="loc-city">Lima</span><span class="loc-ms">185 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Brazil-location/" class="loc-entry"><span class="loc-signal orange"></span><span class="fi fi-br"></span><span class="loc-city">São Paulo</span><span class="loc-ms">190 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Bolivia-location/" class="loc-entry"><span class="loc-signal orange"></span><span class="fi fi-bo"></span><span class="loc-city">Santa Cruz</span><span class="loc-ms">195 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Chile-location/" class="loc-entry"><span class="loc-signal red"></span><span class="fi fi-cl"></span><span class="loc-city">Santiago</span><span class="loc-ms">210 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Argentina-location/" class="loc-entry"><span class="loc-signal red"></span><span class="fi fi-ar"></span><span class="loc-city">Buenos Aires</span><span class="loc-ms">215 ms</span></a>
+                    <div class="loc-card-grid">
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Costa Rica-location/" class="location-card"><span class="fi fi-cr"></span> San Jos&eacute;, Costa Rica <span class="loc-ms">170 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Colombia-location/" class="location-card"><span class="fi fi-co"></span> Bogot&aacute;, Colombia <span class="loc-ms">175 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Ecuador-location/" class="location-card"><span class="fi fi-ec"></span> Quito, Ecuador <span class="loc-ms">180 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Peru-location/" class="location-card"><span class="fi fi-pe"></span> Lima, Peru <span class="loc-ms">185 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Brazil-location/" class="location-card"><span class="fi fi-br"></span> S&atilde;o Paulo, Brazil <span class="loc-ms">190 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Bolivia-location/" class="location-card"><span class="fi fi-bo"></span> Santa Cruz, Bolivia <span class="loc-ms">195 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Chile-location/" class="location-card"><span class="fi fi-cl"></span> Santiago, Chile <span class="loc-ms">210 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Argentina-location/" class="location-card"><span class="fi fi-ar"></span> Buenos Aires, Argentina <span class="loc-ms">215 ms</span></a>
                     </div>
                 </div>
                 <div class="loc-panel" id="cloud-north-america">
-                    <div class="loc-dir">
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-USA-location/" class="loc-entry"><span class="loc-signal orange"></span><span class="fi fi-us"></span><span class="loc-city">Ashburn</span><span class="loc-ms">85 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Canada-location/" class="loc-entry"><span class="loc-signal orange"></span><span class="fi fi-ca"></span><span class="loc-city">Toronto</span><span class="loc-ms">95 ms</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Mexico-location/" class="loc-entry"><span class="loc-signal orange"></span><span class="fi fi-mx"></span><span class="loc-city">Mexico City</span><span class="loc-ms">130 ms</span></a>
+                    <div class="loc-card-grid">
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-USA-location/" class="location-card"><span class="fi fi-us"></span> Ashburn, USA <span class="loc-ms">85 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Canada-location/" class="location-card"><span class="fi fi-ca"></span> Toronto, Canada <span class="loc-ms">95 ms</span></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Mexico-location/" class="location-card"><span class="fi fi-mx"></span> Mexico City, Mexico <span class="loc-ms">130 ms</span></a>
                     </div>
                 </div>
                 <div class="loc-panel" id="cloud-oceania">
-                    <div class="loc-dir">
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Australia-location/" class="loc-entry"><span class="loc-signal red"></span><span class="fi fi-au"></span><span class="loc-city">Sydney</span><span class="loc-ms">275 ms</span></a>
+                    <div class="loc-card-grid">
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/cheap-cloud-Australia-location/" class="location-card"><span class="fi fi-au"></span> Sydney, Australia <span class="loc-ms">275 ms</span></a>
                     </div>
                 </div>
             </div>
@@ -721,6 +721,9 @@ require_once __DIR__ . '/includes/topbar.php';
             </div>
         </div>
     </section>
+
+    <!-- ═══════════════ COMPETITORS COMPARISON ═══════════════ -->
+    <?php include __DIR__ . '/includes/section-competitors.php'; ?>
 
     <!-- ═══════════════ PROMOTIONS CTA ═══════════════ -->
     <section class="promo-cta reveal">

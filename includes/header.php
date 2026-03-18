@@ -87,13 +87,15 @@
                         </button>
                         <div class="switcher-menu">
                             <div class="switcher-menu-title"><?php echo ($current_lang === 'ar') ? 'اختر اللغة' : 'Language'; ?></div>
-                            <?php foreach ($lang_options as $code => $opt): ?>
-                            <a href="?lang=<?php echo e($code); ?>" class="switcher-option<?php echo ($current_lang === $code) ? ' active' : ''; ?>">
-                                <span class="fi fi-<?php echo e($opt['flag']); ?>"></span>
-                                <span><?php echo e($opt['label']); ?></span>
-                                <?php if ($current_lang === $code): ?><i class="fas fa-check"></i><?php endif; ?>
-                            </a>
-                            <?php endforeach; ?>
+                            <div class="lang-grid">
+                                <?php foreach ($lang_options as $code => $opt): ?>
+                                <a href="?lang=<?php echo e($code); ?>" class="switcher-option<?php echo ($current_lang === $code) ? ' active' : ''; ?>">
+                                    <span class="fi fi-<?php echo e($opt['flag']); ?>"></span>
+                                    <span><?php echo e($opt['label']); ?></span>
+                                    <?php if ($current_lang === $code): ?><i class="fas fa-check"></i><?php endif; ?>
+                                </a>
+                                <?php endforeach; ?>
+                            </div>
                         </div>
                     </div>
 
@@ -175,11 +177,17 @@
                             <a href="<?php echo e(SITE_URL); ?>/hosting-reseller"><i class="fas fa-sitemap"></i> cPanel Reseller</a>
                             <a href="<?php echo e(SITE_URL); ?>/master-reseller-cpanel-hosting/"><i class="fas fa-crown"></i> Master Reseller</a>
                             <a href="<?php echo e(SITE_URL); ?>/vps-reseller/"><i class="fas fa-cubes"></i> VPS Reseller</a>
-                            <a href="<?php echo e(SITE_URL); ?>/resell-yottasrc-services-wholesale/"><i class="fas fa-store"></i> Wholesale</a>
+                            <a href="<?php echo e(SITE_URL); ?>/wholesale/"><i class="fas fa-store"></i> Wholesale</a>
                         </div>
                     </li>
                     <li><a href="<?php echo e(SITE_URL); ?>/licenses/">Licenses</a></li>
-                    <li><a href="<?php echo e(CP_URL); ?>/cart.php?a=add&domain=register">Domains</a></li>
+                    <li>
+                        <button class="nav-dropdown-trigger">Domains <i class="fas fa-chevron-down"></i></button>
+                        <div class="nav-dropdown">
+                            <a href="<?php echo e(SITE_URL); ?>/domains-registration/"><i class="fas fa-globe"></i> Register Domain</a>
+                            <a href="<?php echo e(SITE_URL); ?>/domains-transfer/"><i class="fas fa-exchange-alt"></i> Transfer Domain</a>
+                        </div>
+                    </li>
                     <li>
                         <button class="nav-dropdown-trigger">Support <i class="fas fa-chevron-down"></i></button>
                         <div class="nav-dropdown">
@@ -232,11 +240,16 @@
                         <a href="<?php echo e(SITE_URL); ?>/hosting-reseller"><i class="fas fa-sitemap"></i> cPanel Reseller</a>
                         <a href="<?php echo e(SITE_URL); ?>/master-reseller-cpanel-hosting/"><i class="fas fa-crown"></i> Master Reseller</a>
                         <a href="<?php echo e(SITE_URL); ?>/vps-reseller/"><i class="fas fa-cubes"></i> VPS Reseller</a>
-                        <a href="<?php echo e(SITE_URL); ?>/resell-yottasrc-services-wholesale/"><i class="fas fa-store"></i> Wholesale</a>
+                        <a href="<?php echo e(SITE_URL); ?>/wholesale/"><i class="fas fa-store"></i> Wholesale</a>
                     </div>
                 </li>
-                <li><a href="<?php echo e(SITE_URL); ?>/licenses/" class="mobile-nav-link">Licenses</a></li>
-                <li><a href="<?php echo e(CP_URL); ?>/cart.php?a=add&domain=register" class="mobile-nav-link">Domains</a></li>
+                <li class="mobile-nav-group">
+                    <button class="mobile-nav-trigger">Domains <i class="fas fa-chevron-down"></i></button>
+                    <div class="mobile-nav-sub">
+                        <a href="<?php echo e(SITE_URL); ?>/domains-registration/"><i class="fas fa-globe"></i> Register Domain</a>
+                        <a href="<?php echo e(SITE_URL); ?>/domains-transfer/"><i class="fas fa-exchange-alt"></i> Transfer Domain</a>
+                    </div>
+                </li>
                 <li class="mobile-nav-group">
                     <button class="mobile-nav-trigger">Support <i class="fas fa-chevron-down"></i></button>
                     <div class="mobile-nav-sub">

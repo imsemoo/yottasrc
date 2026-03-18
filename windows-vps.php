@@ -187,6 +187,15 @@ require_once __DIR__ . '/includes/topbar.php';
                                 <span><i class="fas fa-check-circle"></i> <strong>24/7</strong> Support</span>
                                 <span><i class="fas fa-check-circle"></i> <strong>Dedicated</strong> IP</span>
                             </div>
+                            <div class="vps-row-details-locations">
+                                <div class="vps-loc-pills">
+                                    <span class="vps-loc-pill"><span class="fi fi-de"></span> Frankfurt <em>~8ms</em></span>
+                                    <span class="vps-loc-pill"><span class="fi fi-nl"></span> Amsterdam <em>~10ms</em></span>
+                                    <span class="vps-loc-pill"><span class="fi fi-gb"></span> London <em>~15ms</em></span>
+                                    <span class="vps-loc-pill"><span class="fi fi-fi"></span> Helsinki <em>~35ms</em></span>
+                                    <span class="vps-loc-pill"><span class="fi fi-us"></span> New York <em>~78ms</em></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -220,6 +229,15 @@ require_once __DIR__ . '/includes/topbar.php';
                                 <span><i class="fas fa-check-circle"></i> <strong>24/7</strong> Support</span>
                                 <span><i class="fas fa-check-circle"></i> <strong>Dedicated</strong> IP</span>
                             </div>
+                            <div class="vps-row-details-locations">
+                                <div class="vps-loc-pills">
+                                    <span class="vps-loc-pill"><span class="fi fi-de"></span> Frankfurt <em>~8ms</em></span>
+                                    <span class="vps-loc-pill"><span class="fi fi-nl"></span> Amsterdam <em>~10ms</em></span>
+                                    <span class="vps-loc-pill"><span class="fi fi-gb"></span> London <em>~15ms</em></span>
+                                    <span class="vps-loc-pill"><span class="fi fi-fi"></span> Helsinki <em>~35ms</em></span>
+                                    <span class="vps-loc-pill"><span class="fi fi-us"></span> New York <em>~78ms</em></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -251,6 +269,15 @@ require_once __DIR__ . '/includes/topbar.php';
                                 <span><i class="fas fa-check-circle"></i> <strong>RDP</strong> Included</span>
                                 <span><i class="fas fa-check-circle"></i> <strong>24/7</strong> Support</span>
                                 <span><i class="fas fa-check-circle"></i> <strong>Dedicated</strong> IP</span>
+                            </div>
+                            <div class="vps-row-details-locations">
+                                <div class="vps-loc-pills">
+                                    <span class="vps-loc-pill"><span class="fi fi-de"></span> Frankfurt <em>~8ms</em></span>
+                                    <span class="vps-loc-pill"><span class="fi fi-nl"></span> Amsterdam <em>~10ms</em></span>
+                                    <span class="vps-loc-pill"><span class="fi fi-gb"></span> London <em>~15ms</em></span>
+                                    <span class="vps-loc-pill"><span class="fi fi-fi"></span> Helsinki <em>~35ms</em></span>
+                                    <span class="vps-loc-pill"><span class="fi fi-us"></span> New York <em>~78ms</em></span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -284,8 +311,24 @@ require_once __DIR__ . '/includes/topbar.php';
                                 <span><i class="fas fa-check-circle"></i> <strong>24/7</strong> Support</span>
                                 <span><i class="fas fa-check-circle"></i> <strong>Dedicated</strong> IP</span>
                             </div>
+                            <div class="vps-row-details-locations">
+                                <div class="vps-loc-pills">
+                                    <span class="vps-loc-pill"><span class="fi fi-de"></span> Frankfurt <em>~8ms</em></span>
+                                    <span class="vps-loc-pill"><span class="fi fi-nl"></span> Amsterdam <em>~10ms</em></span>
+                                    <span class="vps-loc-pill"><span class="fi fi-gb"></span> London <em>~15ms</em></span>
+                                    <span class="vps-loc-pill"><span class="fi fi-fi"></span> Helsinki <em>~35ms</em></span>
+                                    <span class="vps-loc-pill"><span class="fi fi-us"></span> New York <em>~78ms</em></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div class="article-callout">
+                <i class="fas fa-info-circle"></i>
+                <div>
+                    <strong>This is a Windows VPS — not a shared RDP.</strong> Each plan includes fully dedicated CPU, RAM, and NVMe storage with a dedicated IPv4 address. You get full administrator access — not a shared desktop session.
                 </div>
             </div>
         </div>
@@ -297,24 +340,70 @@ require_once __DIR__ . '/includes/topbar.php';
             <div class="section-header">
                 <div class="section-tag">Operating Systems</div>
                 <h2>Supported Windows versions</h2>
-                <p>Choose your preferred Windows edition during server deployment.</p>
+                <p>Choose your preferred Windows edition during server deployment. Reinstall any time at no extra cost.</p>
             </div>
 
-            <div class="win-os-grid">
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fab fa-windows"></i></div>
-                    <h4>Windows Server 2019</h4>
-                    <p>Standard &amp; Datacenter editions with Long-Term Servicing Channel (LTSC) support. Ideal for production workloads.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon icon-green"><i class="fab fa-windows"></i></div>
-                    <h4>Windows Server 2022</h4>
-                    <p>Latest server OS with advanced security, Azure hybrid capabilities, and improved container support.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon icon-purple"><i class="fab fa-windows"></i></div>
-                    <h4>Windows 10 / 11</h4>
-                    <p>Desktop editions for RDP workstations, trading platforms, development environments, and remote access.</p>
+            <div class="os-ticker-wrap">
+                <div class="os-ticker">
+                    <div class="os-ticker-track">
+                        <div class="os-ticker-item">
+                            <div class="os-ticker-icon"><i class="fab fa-windows"></i></div>
+                            <div class="os-ticker-info">
+                                <span class="os-ticker-name">Windows Server 2019</span>
+                                <span class="os-ticker-ver">Standard / Datacenter</span>
+                            </div>
+                        </div>
+                        <div class="os-ticker-item">
+                            <div class="os-ticker-icon icon-green"><i class="fab fa-windows"></i></div>
+                            <div class="os-ticker-info">
+                                <span class="os-ticker-name">Windows Server 2022</span>
+                                <span class="os-ticker-ver">Standard / Datacenter</span>
+                            </div>
+                        </div>
+                        <div class="os-ticker-item">
+                            <div class="os-ticker-icon icon-purple"><i class="fab fa-windows"></i></div>
+                            <div class="os-ticker-info">
+                                <span class="os-ticker-name">Windows 10</span>
+                                <span class="os-ticker-ver">Pro / Enterprise</span>
+                            </div>
+                        </div>
+                        <div class="os-ticker-item">
+                            <div class="os-ticker-icon icon-amber"><i class="fab fa-windows"></i></div>
+                            <div class="os-ticker-info">
+                                <span class="os-ticker-name">Windows 11</span>
+                                <span class="os-ticker-ver">Pro / Enterprise</span>
+                            </div>
+                        </div>
+                        <!-- Duplicate set for seamless loop -->
+                        <div class="os-ticker-item">
+                            <div class="os-ticker-icon"><i class="fab fa-windows"></i></div>
+                            <div class="os-ticker-info">
+                                <span class="os-ticker-name">Windows Server 2019</span>
+                                <span class="os-ticker-ver">Standard / Datacenter</span>
+                            </div>
+                        </div>
+                        <div class="os-ticker-item">
+                            <div class="os-ticker-icon icon-green"><i class="fab fa-windows"></i></div>
+                            <div class="os-ticker-info">
+                                <span class="os-ticker-name">Windows Server 2022</span>
+                                <span class="os-ticker-ver">Standard / Datacenter</span>
+                            </div>
+                        </div>
+                        <div class="os-ticker-item">
+                            <div class="os-ticker-icon icon-purple"><i class="fab fa-windows"></i></div>
+                            <div class="os-ticker-info">
+                                <span class="os-ticker-name">Windows 10</span>
+                                <span class="os-ticker-ver">Pro / Enterprise</span>
+                            </div>
+                        </div>
+                        <div class="os-ticker-item">
+                            <div class="os-ticker-icon icon-amber"><i class="fab fa-windows"></i></div>
+                            <div class="os-ticker-info">
+                                <span class="os-ticker-name">Windows 11</span>
+                                <span class="os-ticker-ver">Pro / Enterprise</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -329,7 +418,7 @@ require_once __DIR__ . '/includes/topbar.php';
                 <p>From remote desktops to automated trading — Windows VPS handles it all.</p>
             </div>
 
-            <div class="usecase-grid">
+            <div class="usecase-grid usecase-grid--3">
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-desktop"></i></div>
                     <h4>RDP Hosting</h4>
@@ -350,60 +439,59 @@ require_once __DIR__ . '/includes/topbar.php';
                     <h4>Enterprise Apps</h4>
                     <p>Run .NET applications, SQL Server, Active Directory, IIS, and other Windows-native enterprise software.</p>
                 </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                    <h4>Web &amp; App Hosting</h4>
+                    <p>Host ASP.NET websites, WordPress on IIS, or any Windows-based web application with full server control.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon icon-green"><i class="fas fa-robot"></i></div>
+                    <h4>Automation &amp; Bots</h4>
+                    <p>Run scrapers, social media bots, bulk email tools, and task automation scripts 24/7 on a stable Windows environment.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- ═══════════════ INFRASTRUCTURE ═══════════════ -->
-    <section class="dc-showcase dc-showcase-compact reveal">
+    <!-- ═══════════════ GLOBAL LOCATIONS ═══════════════ -->
+    <section class="locations-section reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Infrastructure</div>
-                <h2>Global Windows VPS locations</h2>
+                <div class="section-tag">Locations</div>
+                <h2>Global Windows VPS Locations</h2>
                 <p>Deploy your Windows VPS close to your users for the lowest possible latency.</p>
             </div>
-            <div class="dc-strip-stats">
-                <div class="dc-strip-stat"><i class="fas fa-server"></i> <strong>20+</strong> Locations</div>
-                <div class="dc-strip-stat"><i class="fas fa-network-wired"></i> <strong>10 Gbit/s</strong> Network</div>
-                <div class="dc-strip-stat"><i class="fas fa-globe"></i> <strong>4</strong> Continents</div>
-                <div class="dc-strip-stat"><i class="fas fa-tachometer-alt"></i> <strong>&lt;30ms</strong> Latency</div>
+
+            <div class="locations-tabs">
+                <button class="loc-tab active" data-loc-target="winvps-europe"><i class="fas fa-globe-europe"></i> Europe</button>
+                <button class="loc-tab" data-loc-target="winvps-north-america"><i class="fas fa-globe-americas"></i> North America</button>
+                <button class="loc-tab" data-loc-target="winvps-asia"><i class="fas fa-globe-asia"></i> Asia</button>
             </div>
-            <div class="dc-map-grid">
-                <div class="dc-continent">
-                    <div class="dc-continent-label"><i class="fas fa-globe-europe"></i> Europe <span class="dc-continent-count">9</span></div>
-                    <div class="dc-continent-locs">
-                        <a class="dc-pin"><span class="fi fi-fi"></span> Finland</a>
-                        <a class="dc-pin"><span class="fi fi-de"></span> Germany</a>
-                        <a class="dc-pin"><span class="fi fi-fr"></span> France</a>
-                        <a class="dc-pin"><span class="fi fi-gb"></span> UK</a>
-                        <a class="dc-pin"><span class="fi fi-nl"></span> Netherlands</a>
-                        <a class="dc-pin dc-pin-hq"><span class="fi fi-ro"></span> Romania <span class="dc-hq-badge">HQ</span></a>
-                        <a class="dc-pin"><span class="fi fi-tr"></span> Turkey</a>
-                        <a class="dc-pin"><span class="fi fi-pl"></span> Poland</a>
-                        <a class="dc-pin"><span class="fi fi-at"></span> Austria</a>
+
+            <div class="locations-panels">
+                <div class="loc-panel active" id="winvps-europe">
+                    <div class="loc-card-grid">
+                        <a class="location-card location-card--active"><span class="fi fi-de"></span> Germany</a>
+                        <a class="location-card"><span class="fi fi-nl"></span> Netherlands</a>
+                        <a class="location-card"><span class="fi fi-gb"></span> United Kingdom</a>
+                        <a class="location-card"><span class="fi fi-fi"></span> Finland</a>
+                        <a class="location-card"><span class="fi fi-fr"></span> France</a>
+                        <a class="location-card"><span class="fi fi-pl"></span> Poland</a>
+                        <a class="location-card"><span class="fi fi-ro"></span> Romania</a>
+                        <a class="location-card"><span class="fi fi-se"></span> Sweden</a>
                     </div>
                 </div>
-                <div class="dc-continent">
-                    <div class="dc-continent-label"><i class="fas fa-globe-americas"></i> Americas <span class="dc-continent-count">2</span></div>
-                    <div class="dc-continent-locs">
-                        <a class="dc-pin"><span class="fi fi-us"></span> USA</a>
-                        <a class="dc-pin"><span class="fi fi-ca"></span> Canada</a>
+                <div class="loc-panel" id="winvps-north-america">
+                    <div class="loc-card-grid">
+                        <a class="location-card"><span class="fi fi-us"></span> USA</a>
+                        <a class="location-card"><span class="fi fi-ca"></span> Canada</a>
                     </div>
                 </div>
-                <div class="dc-continent">
-                    <div class="dc-continent-label"><i class="fas fa-globe-asia"></i> Asia <span class="dc-continent-count">5</span></div>
-                    <div class="dc-continent-locs">
-                        <a class="dc-pin"><span class="fi fi-in"></span> India</a>
-                        <a class="dc-pin"><span class="fi fi-sg"></span> Singapore</a>
-                        <a class="dc-pin"><span class="fi fi-jp"></span> Japan</a>
-                        <a class="dc-pin"><span class="fi fi-hk"></span> Hong Kong</a>
-                        <a class="dc-pin"><span class="fi fi-th"></span> Thailand</a>
-                    </div>
-                </div>
-                <div class="dc-continent">
-                    <div class="dc-continent-label"><i class="fas fa-globe"></i> Oceania <span class="dc-continent-count">1</span></div>
-                    <div class="dc-continent-locs">
-                        <a class="dc-pin"><span class="fi fi-au"></span> Australia</a>
+                <div class="loc-panel" id="winvps-asia">
+                    <div class="loc-card-grid">
+                        <a class="location-card"><span class="fi fi-sg"></span> Singapore</a>
+                        <a class="location-card"><span class="fi fi-jp"></span> Japan</a>
+                        <a class="location-card"><span class="fi fi-in"></span> India</a>
                     </div>
                 </div>
             </div>

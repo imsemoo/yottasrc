@@ -247,7 +247,7 @@ require_once __DIR__ . '/includes/header.php';
     </section>
 
     <!-- ═══════════════ FEATURED PLANS ═══════════════ -->
-    <section class="plans reveal">
+    <section class="plans home-plans reveal">
         <div class="container">
             <div class="section-header">
                 <div class="section-tag">Pricing</div>

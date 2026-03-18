@@ -8,6 +8,8 @@
 document.addEventListener('DOMContentLoaded', function () {
     'use strict';
 
+    var isRTL = document.documentElement.getAttribute('dir') === 'rtl';
+
     /* ═══════════════════════════════════════════
        Module 1: Theme Toggle
        ═══════════════════════════════════════════ */
@@ -57,12 +59,16 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!el || typeof Swiper === 'undefined') return;
             var key = panel.dataset.tab;
             if (swipers[key]) return;
+
+            var isHome = !!el.closest('.home-plans');
+
             swipers[key] = new Swiper(el, {
+                rtl: isRTL,
                 slidesPerView: 1,
-                spaceBetween: 12,
+                spaceBetween: isHome ? 20 : 12,
                 grabCursor: true,
-                loop: true,
-                autoplay: {
+                loop: !isHome,
+                autoplay: isHome ? false : {
                     delay: 4500,
                     disableOnInteraction: false,
                     pauseOnMouseEnter: true
@@ -71,7 +77,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     el: el.querySelector('.swiper-pagination'),
                     clickable: true
                 },
-                breakpoints: {
+                breakpoints: isHome ? {
+                    480: { slidesPerView: 2, spaceBetween: 16 },
+                    768: { slidesPerView: 3, spaceBetween: 20 }
+                } : {
                     480: { slidesPerView: 2 },
                     768: { slidesPerView: 3 },
                     1024: { slidesPerView: 4 }
@@ -121,12 +130,17 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 });
             }, {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
+                threshold: 0.05,
+                rootMargin: '0px 0px -20px 0px'
             });
 
             reveals.forEach(function (el) {
-                observer.observe(el);
+                var rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    el.classList.add('visible');
+                } else {
+                    observer.observe(el);
+                }
             });
         }
 
@@ -245,13 +259,30 @@ document.addEventListener('DOMContentLoaded', function () {
        Module 7: Plan CTA Buttons (replace inline onclick)
        ═══════════════════════════════════════════ */
     const PlanCTAs = (function () {
+        function extractPlanData(btn) {
+            var card = btn.closest('.plan-card');
+            if (!card) return null;
+            var nameEl = card.querySelector('.plan-name');
+            var amountEl = card.querySelector('.current-price .amount');
+            var currencyEl = card.querySelector('.current-price .currency');
+            var periodEl = card.querySelector('.current-price .period');
+            return {
+                name: nameEl ? nameEl.textContent.trim() : 'Plan',
+                amount: amountEl ? parseFloat(amountEl.textContent.trim()) : 0,
+                currency: currencyEl ? currencyEl.textContent.trim() : '$',
+                period: periodEl ? periodEl.textContent.trim() : '/mo',
+                url: btn.getAttribute('data-href') || '',
+                type: btn.getAttribute('data-type') || (card ? card.getAttribute('data-type') : '') || 'hosting'
+            };
+        }
+
         function init() {
-            var ctaButtons = document.querySelectorAll('.plan-cta[data-href]');
+            var ctaButtons = document.querySelectorAll('.plan-cta');
             ctaButtons.forEach(function (btn) {
                 btn.addEventListener('click', function () {
-                    var url = btn.getAttribute('data-href');
-                    if (url) {
-                        window.open(url, '_blank', 'noopener,noreferrer');
+                    var planData = extractPlanData(btn);
+                    if (typeof OrderModal !== 'undefined') {
+                        OrderModal.open(planData);
                     }
                 });
             });
@@ -518,6 +549,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!el || typeof Swiper === 'undefined') return;
 
             new Swiper(el, {
+                rtl: isRTL,
                 slidesPerView: 1,
                 spaceBetween: 20,
                 grabCursor: true,
@@ -551,6 +583,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!el || typeof Swiper === 'undefined') return;
 
             new Swiper(el, {
+                rtl: isRTL,
                 slidesPerView: 2,
                 spaceBetween: 16,
                 grabCursor: true,
@@ -585,6 +618,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!el || typeof Swiper === 'undefined') return;
 
             new Swiper(el, {
+                rtl: isRTL,
                 slidesPerView: 2,
                 spaceBetween: 16,
                 grabCursor: true,
@@ -619,6 +653,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!el || typeof Swiper === 'undefined') return;
 
             new Swiper(el, {
+                rtl: isRTL,
                 slidesPerView: 2,
                 spaceBetween: 16,
                 grabCursor: true,
@@ -653,6 +688,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!el || typeof Swiper === 'undefined') return;
 
             new Swiper(el, {
+                rtl: isRTL,
                 slidesPerView: 1,
                 spaceBetween: 20,
                 grabCursor: true,
@@ -686,6 +722,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!el || typeof Swiper === 'undefined') return;
 
             new Swiper(el, {
+                rtl: isRTL,
                 slidesPerView: 1,
                 spaceBetween: 20,
                 grabCursor: true,
@@ -826,6 +863,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!el || typeof Swiper === 'undefined') return;
 
             new Swiper(el, {
+                rtl: isRTL,
                 slidesPerView: 2,
                 spaceBetween: 16,
                 grabCursor: true,
@@ -859,6 +897,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!el || typeof Swiper === 'undefined') return;
 
             new Swiper(el, {
+                rtl: isRTL,
                 slidesPerView: 1,
                 spaceBetween: 20,
                 grabCursor: true,
@@ -892,6 +931,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!el || typeof Swiper === 'undefined') return;
 
             new Swiper(el, {
+                rtl: isRTL,
                 slidesPerView: 1,
                 spaceBetween: 20,
                 grabCursor: true,
@@ -936,6 +976,29 @@ document.addEventListener('DOMContentLoaded', function () {
                     var panel = document.getElementById(target);
                     if (panel) panel.classList.add('active');
                 });
+            });
+        }
+
+        return { init: init };
+    })();
+
+
+    /* ═══════════════════════════════════════════
+       Module 21b: Location Card Active State
+       ═══════════════════════════════════════════ */
+    const LocationCardActive = (function () {
+        function init() {
+            document.addEventListener('click', function (e) {
+                var card = e.target.closest('.location-card');
+                if (!card) return;
+
+                var grid = card.closest('.loc-card-grid, .dc-continent-locs, .dc-country-grid');
+                if (!grid) return;
+
+                grid.querySelectorAll('.location-card').forEach(function (c) {
+                    c.classList.remove('location-card--active');
+                });
+                card.classList.add('location-card--active');
             });
         }
 
@@ -1031,9 +1094,1034 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     /* ═══════════════════════════════════════════
+       Module 24: Partners Marquee
+       ═══════════════════════════════════════════ */
+    const PartnersMarquee = (function () {
+        function init() {
+            var containers = document.querySelectorAll('.partners-logos');
+            containers.forEach(function (container) {
+                var logos = Array.from(container.children);
+                if (logos.length < 2) return;
+
+                // Build first track with original logos
+                var track1 = document.createElement('div');
+                track1.className = 'partners-track';
+                logos.forEach(function (logo) {
+                    track1.appendChild(logo);
+                });
+
+                // Clone track for seamless infinite loop
+                var track2 = track1.cloneNode(true);
+                track2.setAttribute('aria-hidden', 'true');
+
+                // Replace container contents with the two tracks
+                container.innerHTML = '';
+                container.appendChild(track1);
+                container.appendChild(track2);
+                container.classList.add('partners-marquee');
+
+                // Click to pause, auto-resume after 3s
+                container.addEventListener('click', function () {
+                    container.classList.add('partners-paused');
+                    clearTimeout(container._resumeTimer);
+                    container._resumeTimer = setTimeout(function () {
+                        container.classList.remove('partners-paused');
+                    }, 3000);
+                });
+            });
+        }
+
+        return { init: init };
+    })();
+
+
+    /* ═══════════════════════════════════════════
+       Module 25: Order Modal (Multi-Step Wizard) — v2 Professional
+       ═══════════════════════════════════════════ */
+    const OrderModal = (function () {
+        var overlay, body, progressFill, stepsNav, stepNumEl;
+        var backBtn, nextBtn;
+        var currentStep = 1;
+        var totalSteps = 6;
+        var planData = {};
+        var discounts = { 1: 0, 3: 5, 6: 10, 12: 15, 24: 25, 36: 30 };
+
+        function init() {
+            overlay = document.getElementById('orderModal');
+            if (!overlay) return;
+
+            body = document.getElementById('omBody');
+            progressFill = document.getElementById('omProgressFill');
+            stepsNav = document.getElementById('omStepsNav');
+            stepNumEl = document.getElementById('omStepNum');
+            backBtn = document.getElementById('omBack');
+            nextBtn = document.getElementById('omNext');
+
+            // Close triggers
+            document.getElementById('omClose').addEventListener('click', close);
+            overlay.addEventListener('click', function (e) {
+                if (e.target === overlay) close();
+            });
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && overlay.classList.contains('om-open')) close();
+            });
+
+            // Navigation
+            backBtn.addEventListener('click', prevStep);
+            nextBtn.addEventListener('click', nextStepHandler);
+
+            // Step dots (allow clicking completed/active steps)
+            stepsNav.querySelectorAll('.om-step-dot').forEach(function (dot) {
+                dot.addEventListener('click', function () {
+                    var target = parseInt(dot.getAttribute('data-step'));
+                    if (target < currentStep) goToStep(target);
+                });
+            });
+
+            // Location tabs
+            initTabSwitcher('omLocTabs', 'om-loc-tab', 'data-continent', 'omLocGrid', 'om-loc-group', 'data-continent');
+
+            // Domain tabs
+            initDomainTabs();
+
+            // Domain search (register / transfer mock results)
+            initDomainSearch();
+
+            // Account tabs
+            initAccountTabs();
+
+            // Eye toggle buttons
+            overlay.querySelectorAll('.om-eye-toggle').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var input = btn.parentElement.querySelector('input');
+                    var icon = btn.querySelector('i');
+                    if (input.type === 'password') {
+                        input.type = 'text';
+                        icon.classList.replace('fa-eye', 'fa-eye-slash');
+                    } else {
+                        input.type = 'password';
+                        icon.classList.replace('fa-eye-slash', 'fa-eye');
+                    }
+                });
+            });
+
+            // Populate country select
+            populateCountries();
+
+            // Add pulse animation on card selection
+            initSelectionPulse();
+        }
+
+        function initSelectionPulse() {
+            // Add pulse + card float effect on selection for billing, location, payment cards
+            ['om-billing-card', 'om-loc-card', 'om-pay-card'].forEach(function (cls) {
+                overlay.querySelectorAll('.' + cls + ' input').forEach(function (input) {
+                    input.addEventListener('change', function () {
+                        var card = input.closest('.' + cls);
+                        if (!card) return;
+                        var inner = card.querySelector('.om-billing-inner, .om-pay-inner') || card;
+                        inner.classList.remove('om-pulse');
+                        void inner.offsetWidth; // force reflow
+                        inner.classList.add('om-pulse');
+                    });
+                });
+            });
+        }
+
+        function initTabSwitcher(tabsId, tabClass, tabAttr, gridId, groupClass, groupAttr) {
+            var container = document.getElementById(tabsId);
+            var grid = document.getElementById(gridId);
+            if (!container || !grid) return;
+
+            container.querySelectorAll('.' + tabClass).forEach(function (tab) {
+                tab.addEventListener('click', function () {
+                    container.querySelectorAll('.' + tabClass).forEach(function (t) { t.classList.remove('active'); });
+                    tab.classList.add('active');
+                    var val = tab.getAttribute(tabAttr);
+                    grid.querySelectorAll('.' + groupClass).forEach(function (g) {
+                        g.classList.toggle('active', g.getAttribute(groupAttr) === val);
+                    });
+                });
+            });
+        }
+
+        function initDomainTabs() {
+            var tabsEl = document.getElementById('omDomainTabs');
+            if (!tabsEl) return;
+            tabsEl.querySelectorAll('.om-domain-tab').forEach(function (tab) {
+                tab.addEventListener('click', function () {
+                    tabsEl.querySelectorAll('.om-domain-tab').forEach(function (t) { t.classList.remove('active'); });
+                    tab.classList.add('active');
+                    var val = tab.getAttribute('data-dtab');
+                    overlay.querySelectorAll('.om-domain-panel').forEach(function (p) {
+                        p.classList.toggle('active', p.getAttribute('data-dtab') === val);
+                    });
+                });
+            });
+        }
+
+        function initDomainSearch() {
+            var searchBtn = document.getElementById('omDomainSearch');
+            var transferBtn = document.getElementById('omTransferSearch');
+
+            if (searchBtn) {
+                searchBtn.addEventListener('click', function () {
+                    var input = document.getElementById('omDomainInput');
+                    var results = document.getElementById('omDomainResults');
+                    if (!input || !results) return;
+                    var val = input.value.trim();
+                    if (!val) {
+                        showStepAlert(3, 'Please enter a domain name.', 'error');
+                        return;
+                    }
+                    var domain = val.indexOf('.') === -1 ? val + '.com' : val;
+                    var isAvailable = Math.random() > 0.4;
+                    results.innerHTML =
+                        '<div class="om-domain-result ' + (isAvailable ? 'om-domain-available' : 'om-domain-taken') + '">' +
+                            '<div class="om-domain-result-left">' +
+                                '<span class="om-domain-status-icon"><i class="fas ' + (isAvailable ? 'fa-check-circle' : 'fa-times-circle') + '"></i></span>' +
+                                '<div class="om-domain-result-info">' +
+                                    '<strong>' + domain + '</strong>' +
+                                    '<span>' + (isAvailable ? 'This domain is available!' : 'This domain is already registered.') + '</span>' +
+                                '</div>' +
+                            '</div>' +
+                            '<div class="om-domain-result-right">' +
+                                (isAvailable
+                                    ? '<span class="om-domain-price">€9.99<small>/yr</small></span><button type="button" class="om-domain-select-btn"><i class="fas fa-plus"></i> Register</button>'
+                                    : '<span class="om-domain-badge-taken">Taken</span>') +
+                            '</div>' +
+                        '</div>';
+                    if (!isAvailable) {
+                        results.innerHTML +=
+                            '<div class="om-domain-suggestions">' +
+                                '<span class="om-domain-sug-label">Try these alternatives:</span>' +
+                                '<div class="om-domain-result om-domain-available om-domain-alt">' +
+                                    '<div class="om-domain-result-left">' +
+                                        '<span class="om-domain-status-icon"><i class="fas fa-check-circle"></i></span>' +
+                                        '<div class="om-domain-result-info"><strong>' + val.split('.')[0] + '.net</strong><span>Available</span></div>' +
+                                    '</div>' +
+                                    '<div class="om-domain-result-right">' +
+                                        '<span class="om-domain-price">€11.99<small>/yr</small></span><button type="button" class="om-domain-select-btn"><i class="fas fa-plus"></i> Register</button>' +
+                                    '</div>' +
+                                '</div>' +
+                                '<div class="om-domain-result om-domain-available om-domain-alt">' +
+                                    '<div class="om-domain-result-left">' +
+                                        '<span class="om-domain-status-icon"><i class="fas fa-check-circle"></i></span>' +
+                                        '<div class="om-domain-result-info"><strong>' + val.split('.')[0] + '.org</strong><span>Available</span></div>' +
+                                    '</div>' +
+                                    '<div class="om-domain-result-right">' +
+                                        '<span class="om-domain-price">€12.49<small>/yr</small></span><button type="button" class="om-domain-select-btn"><i class="fas fa-plus"></i> Register</button>' +
+                                    '</div>' +
+                                '</div>' +
+                            '</div>';
+                    }
+                });
+            }
+
+            if (transferBtn) {
+                transferBtn.addEventListener('click', function () {
+                    var input = document.getElementById('omTransferInput');
+                    var results = document.getElementById('omTransferResults');
+                    if (!input || !results) return;
+                    var val = input.value.trim();
+                    if (!val) {
+                        showStepAlert(3, 'Please enter a domain to transfer.', 'error');
+                        return;
+                    }
+                    var domain = val.indexOf('.') === -1 ? val + '.com' : val;
+                    var eligible = Math.random() > 0.3;
+                    results.innerHTML =
+                        '<div class="om-domain-result ' + (eligible ? 'om-domain-transfer-ok' : 'om-domain-transfer-no') + '">' +
+                            '<div class="om-domain-result-left">' +
+                                '<span class="om-domain-status-icon"><i class="fas ' + (eligible ? 'fa-exchange-alt' : 'fa-lock') + '"></i></span>' +
+                                '<div class="om-domain-result-info">' +
+                                    '<strong>' + domain + '</strong>' +
+                                    '<span>' + (eligible ? 'Eligible for transfer. EPP code required.' : 'Domain is locked or recently registered. Try again later.') + '</span>' +
+                                '</div>' +
+                            '</div>' +
+                            '<div class="om-domain-result-right">' +
+                                (eligible
+                                    ? '<span class="om-domain-price">€8.99<small>/yr</small></span><button type="button" class="om-domain-select-btn om-transfer-btn"><i class="fas fa-exchange-alt"></i> Transfer</button>'
+                                    : '<span class="om-domain-badge-locked"><i class="fas fa-lock"></i> Locked</span>') +
+                            '</div>' +
+                        '</div>';
+                });
+            }
+        }
+
+        function initAccountTabs() {
+            var tabsEl = document.getElementById('omAccountTabs');
+            if (!tabsEl) return;
+            tabsEl.querySelectorAll('.om-account-tab').forEach(function (tab) {
+                tab.addEventListener('click', function () {
+                    tabsEl.querySelectorAll('.om-account-tab').forEach(function (t) { t.classList.remove('active'); });
+                    tab.classList.add('active');
+                    var val = tab.getAttribute('data-atab');
+                    overlay.querySelectorAll('.om-account-panel').forEach(function (p) {
+                        p.classList.toggle('active', p.getAttribute('data-atab') === val);
+                    });
+                });
+            });
+        }
+
+        function populateCountries() {
+            var searchInput = document.getElementById('omRegCountrySearch');
+            var hiddenInput = document.getElementById('omRegCountry');
+            var dropdown = document.getElementById('omCountryDropdown');
+            var wrap = document.getElementById('omCountryWrap');
+            if (!searchInput || !dropdown || !wrap) return;
+
+            var countries = [
+                'Afghanistan','Albania','Algeria','Argentina','Armenia','Australia','Austria','Azerbaijan',
+                'Bahrain','Bangladesh','Belarus','Belgium','Bolivia','Bosnia','Brazil','Bulgaria',
+                'Cambodia','Cameroon','Canada','Chile','China','Colombia','Croatia','Czech Republic',
+                'Denmark','Ecuador','Egypt','Estonia','Ethiopia','Finland','France',
+                'Georgia','Germany','Ghana','Greece','Honduras','Hong Kong','Hungary',
+                'Iceland','India','Indonesia','Iran','Iraq','Ireland','Israel','Italy',
+                'Japan','Jordan','Kazakhstan','Kenya','Kuwait','Kyrgyzstan',
+                'Latvia','Lebanon','Libya','Lithuania','Luxembourg',
+                'Malaysia','Mexico','Moldova','Mongolia','Morocco','Myanmar',
+                'Nepal','Netherlands','New Zealand','Nigeria','North Macedonia','Norway',
+                'Oman','Pakistan','Palestine','Panama','Peru','Philippines','Poland','Portugal',
+                'Qatar','Romania','Russia','Rwanda',
+                'Saudi Arabia','Senegal','Serbia','Singapore','Slovakia','Slovenia','Somalia','South Africa','South Korea','Spain','Sri Lanka','Sudan','Sweden','Switzerland','Syria',
+                'Taiwan','Tanzania','Thailand','Tunisia','Turkey',
+                'UAE','UK','USA','Uganda','Ukraine','Uruguay','Uzbekistan',
+                'Venezuela','Vietnam','Yemen','Zambia','Zimbabwe'
+            ];
+
+            function renderOptions(filter) {
+                dropdown.innerHTML = '';
+                var q = (filter || '').toLowerCase();
+                countries.forEach(function (c) {
+                    if (q && c.toLowerCase().indexOf(q) === -1) return;
+                    var div = document.createElement('div');
+                    div.className = 'om-select-option';
+                    if (hiddenInput && hiddenInput.value === c) div.classList.add('selected');
+                    div.textContent = c;
+                    div.setAttribute('data-value', c);
+                    div.addEventListener('click', function () {
+                        if (hiddenInput) hiddenInput.value = c;
+                        searchInput.value = c;
+                        wrap.classList.remove('open');
+                    });
+                    dropdown.appendChild(div);
+                });
+            }
+
+            searchInput.addEventListener('focus', function () {
+                renderOptions(searchInput.value);
+                wrap.classList.add('open');
+            });
+
+            searchInput.addEventListener('input', function () {
+                renderOptions(searchInput.value);
+                if (!wrap.classList.contains('open')) wrap.classList.add('open');
+            });
+
+            document.addEventListener('click', function (e) {
+                if (!wrap.contains(e.target)) {
+                    wrap.classList.remove('open');
+                }
+            });
+
+            renderOptions('');
+        }
+
+        function open(data) {
+            planData = data || {};
+            currentStep = 1;
+
+            // Set plan chip
+            var chip = document.getElementById('omPlanChip');
+            if (chip) chip.textContent = planData.name || 'Plan';
+
+            // Handle modal variants (vps, keys, default hosting)
+            setupVariant(planData.type || 'hosting');
+
+            // Populate billing prices
+            populateBillingPrices();
+
+            // Reset UI
+            resetForm();
+            updateUI();
+
+            // Show
+            overlay.classList.add('om-open');
+            overlay.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+
+            // Focus close button after animation
+            setTimeout(function () {
+                var firstFocusable = overlay.querySelector('.om-close');
+                if (firstFocusable) firstFocusable.focus();
+            }, 150);
+        }
+
+        function setupVariant(type) {
+            var domainPanel = overlay.querySelector('.om-panel[data-panel="3"]');
+            var vpsPanel = overlay.querySelector('.om-panel[data-panel="3-vps"]');
+            var keysPanel = overlay.querySelector('.om-panel[data-panel="3-keys"]');
+            var locationPanel = overlay.querySelector('.om-panel[data-panel="2"]');
+            var step3Dot = overlay.querySelector('.om-step-dot[data-step="3"]');
+            var step2Dot = overlay.querySelector('.om-step-dot[data-step="2"]');
+
+            // Reset all panels
+            if (domainPanel) { domainPanel.style.display = ''; domainPanel.setAttribute('data-panel', '3'); }
+            if (vpsPanel) vpsPanel.style.display = 'none';
+            if (keysPanel) keysPanel.style.display = 'none';
+            if (locationPanel) locationPanel.style.display = '';
+            if (step3Dot) { var lbl3 = step3Dot.querySelector('.om-dot-label'); if (lbl3) lbl3.textContent = 'Domain'; }
+            if (step2Dot) step2Dot.style.display = '';
+            overlay.classList.remove('om-variant-keys');
+
+            if (type === 'vps') {
+                if (domainPanel) domainPanel.style.display = 'none';
+                if (vpsPanel) { vpsPanel.style.display = ''; vpsPanel.setAttribute('data-panel', '3'); }
+                if (step3Dot) { var l = step3Dot.querySelector('.om-dot-label'); if (l) l.textContent = 'Config'; }
+            } else if (type === 'keys') {
+                if (domainPanel) domainPanel.style.display = 'none';
+                if (keysPanel) { keysPanel.style.display = ''; keysPanel.setAttribute('data-panel', '3'); }
+                if (step3Dot) { var l2 = step3Dot.querySelector('.om-dot-label'); if (l2) l2.textContent = 'Details'; }
+                // Keys don't need location
+                if (locationPanel) locationPanel.style.display = 'none';
+                if (step2Dot) step2Dot.style.display = 'none';
+                overlay.classList.add('om-variant-keys');
+                // Populate keys info
+                var kp = document.getElementById('omKeysProduct');
+                if (kp) kp.textContent = planData.name || 'License Key';
+                var kpr = document.getElementById('omKeysPrice');
+                if (kpr) kpr.value = (planData.currency || '€') + (planData.amount || 0).toFixed(2);
+            }
+        }
+
+        function close() {
+            overlay.classList.remove('om-open');
+            overlay.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+
+        function populateBillingPrices() {
+            var monthlyPrice = planData.amount || 0;
+            var curr = planData.currency || '$';
+
+            overlay.querySelectorAll('.om-billing-card').forEach(function (card) {
+                var months = parseInt(card.getAttribute('data-months'));
+                var disc = discounts[months] || 0;
+                var total = monthlyPrice * months * (1 - disc / 100);
+                var perMonth = months > 0 ? total / months : total;
+                var priceEl = card.querySelector('[data-price-el]');
+                if (priceEl) {
+                    priceEl.textContent = curr + total.toFixed(2);
+                }
+                var permoEl = card.querySelector('[data-permo-el]');
+                if (permoEl) {
+                    if (months > 1) {
+                        permoEl.textContent = curr + perMonth.toFixed(2) + '/mo';
+                    } else {
+                        permoEl.textContent = 'per month';
+                    }
+                }
+            });
+        }
+
+        function resetForm() {
+            // Default selection: 1 month billing
+            var firstBilling = overlay.querySelector('.om-billing-card input[value="1"]');
+            if (firstBilling) firstBilling.checked = true;
+
+            // Clear other selections
+            overlay.querySelectorAll('input[name="om-location"]').forEach(function (r) { r.checked = false; });
+            overlay.querySelectorAll('input[name="om-payment"]').forEach(function (r) { r.checked = false; });
+
+            // Reset domain inputs
+            var domainInput = document.getElementById('omDomainInput');
+            if (domainInput) domainInput.value = '';
+            var transferInput = document.getElementById('omTransferInput');
+            if (transferInput) transferInput.value = '';
+            var existingInput = document.getElementById('omExistingInput');
+            if (existingInput) existingInput.value = '';
+
+            // Clear results
+            var dr = document.getElementById('omDomainResults');
+            if (dr) dr.innerHTML = '';
+            var tr = document.getElementById('omTransferResults');
+            if (tr) tr.innerHTML = '';
+
+            // Reset checkboxes
+            var termsEl = document.getElementById('omTerms');
+            if (termsEl) termsEl.checked = false;
+            var refundEl = document.getElementById('omRefund');
+            if (refundEl) refundEl.checked = false;
+
+            // Promo
+            var promoInput = document.getElementById('omPromoInput');
+            if (promoInput) promoInput.value = '';
+            var promoResult = document.getElementById('omPromoResult');
+            if (promoResult) promoResult.innerHTML = '';
+        }
+
+        function goToStep(step, direction) {
+            if (step < 1 || step > totalSteps) return;
+            var dir = direction || (step > currentStep ? 'forward' : 'back');
+            currentStep = step;
+
+            // Switch panels
+            overlay.querySelectorAll('.om-panel').forEach(function (p) { p.classList.remove('active', 'om-slide-back'); });
+            var target = overlay.querySelector('.om-panel[data-panel="' + step + '"]');
+            if (target) {
+                target.classList.add('active');
+                if (dir === 'back') target.classList.add('om-slide-back');
+            }
+
+            // Scroll body to top
+            if (body) body.scrollTop = 0;
+
+            // Update summary if on step 6
+            if (step === totalSteps) updateSummary();
+
+            updateUI();
+        }
+
+        function updateUI() {
+            // Progress fill
+            var pct = ((currentStep - 1) / (totalSteps - 1)) * 100;
+            if (progressFill) progressFill.style.width = pct + '%';
+
+            // Step counter
+            if (stepNumEl) stepNumEl.textContent = currentStep;
+
+            // Step dots
+            stepsNav.querySelectorAll('.om-step-dot').forEach(function (dot) {
+                var s = parseInt(dot.getAttribute('data-step'));
+                dot.classList.remove('active', 'completed');
+                if (s === currentStep) dot.classList.add('active');
+                else if (s < currentStep) dot.classList.add('completed');
+            });
+
+            // Step connecting lines
+            stepsNav.querySelectorAll('.om-step-line').forEach(function (line, idx) {
+                var stepBefore = idx + 1;
+                line.classList.toggle('om-line-done', stepBefore < currentStep);
+            });
+
+            // Back button
+            if (backBtn) {
+                backBtn.classList.toggle('om-hidden', currentStep === 1);
+            }
+
+            // Next button text
+            if (nextBtn) {
+                nextBtn.classList.remove('om-btn-submit');
+                if (currentStep === totalSteps) {
+                    nextBtn.innerHTML = '<i class="fas fa-lock"></i> Place Order';
+                    nextBtn.classList.add('om-btn-submit');
+                } else {
+                    nextBtn.innerHTML = 'Continue <i class="fas fa-arrow-right"></i>';
+                }
+            }
+        }
+
+        function isStepVisible(step) {
+            var panel = overlay.querySelector('.om-panel[data-panel="' + step + '"]');
+            return panel && panel.style.display !== 'none';
+        }
+
+        function prevStep() {
+            var s = currentStep - 1;
+            while (s >= 1 && !isStepVisible(s)) s--;
+            if (s >= 1) goToStep(s, 'back');
+        }
+
+        function nextStepHandler() {
+            if (!validateStep(currentStep)) return;
+
+            var s = currentStep + 1;
+            while (s <= totalSteps && !isStepVisible(s)) s++;
+            if (s <= totalSteps) {
+                goToStep(s, 'forward');
+            } else {
+                submitOrder();
+            }
+        }
+
+        function validateStep(step) {
+            switch (step) {
+                case 1:
+                    if (!overlay.querySelector('input[name="om-billing"]:checked')) {
+                        showStepAlert(step, 'Please select a billing cycle.', 'error');
+                        shakePanel(step);
+                        return false;
+                    }
+                    return true;
+                case 2:
+                    if (!overlay.querySelector('input[name="om-location"]:checked')) {
+                        showStepAlert(step, 'Please select a server location.', 'error');
+                        shakePanel(step);
+                        return false;
+                    }
+                    return true;
+                case 3:
+                    return true;
+                case 4:
+                    if (!overlay.querySelector('input[name="om-payment"]:checked')) {
+                        showStepAlert(step, 'Please select a payment method.', 'error');
+                        shakePanel(step);
+                        return false;
+                    }
+                    return true;
+                case 5:
+                    return true;
+                case 6:
+                    var termsChecked = document.getElementById('omTerms');
+                    var refundChecked = document.getElementById('omRefund');
+                    if (!termsChecked || !termsChecked.checked || !refundChecked || !refundChecked.checked) {
+                        showStepAlert(step, 'Please agree to the Terms & Refund Policy.', 'error');
+                        shakePanel(step);
+                        return false;
+                    }
+                    return true;
+                default:
+                    return true;
+            }
+        }
+
+        function shakePanel(step) {
+            var panel = overlay.querySelector('.om-panel[data-panel="' + step + '"]');
+            if (!panel) return;
+            panel.classList.remove('om-shake');
+            void panel.offsetWidth;
+            panel.classList.add('om-shake');
+            panel.addEventListener('animationend', function handler() {
+                panel.classList.remove('om-shake');
+                panel.removeEventListener('animationend', handler);
+            });
+        }
+
+        function showStepAlert(step, message, type) {
+            var panel = overlay.querySelector('.om-panel[data-panel="' + step + '"]');
+            if (!panel) return;
+            panel.querySelectorAll('.om-alert').forEach(function (a) { a.remove(); });
+            var alert = document.createElement('div');
+            alert.className = 'om-alert om-alert-' + type;
+            var icon = type === 'error' ? 'fa-exclamation-circle' :
+                       type === 'success' ? 'fa-check-circle' : 'fa-exclamation-triangle';
+            alert.innerHTML = '<i class="fas ' + icon + '"></i> ' + message;
+            var panelHead = panel.querySelector('.om-panel-head');
+            if (panelHead && panelHead.nextSibling) {
+                panel.insertBefore(alert, panelHead.nextSibling);
+            } else {
+                panel.insertBefore(alert, panel.firstChild);
+            }
+            setTimeout(function () {
+                if (alert.parentNode) alert.remove();
+            }, 4000);
+        }
+
+        function getSelectedValue(name) {
+            var el = overlay.querySelector('input[name="' + name + '"]:checked');
+            return el ? el.value : '';
+        }
+
+        function getSelectedLabel(name) {
+            var el = overlay.querySelector('input[name="' + name + '"]:checked');
+            if (!el) return '—';
+            var card = el.closest('label');
+            if (!card) return el.value;
+            var nameSpan = card.querySelector('.om-loc-name') || card.querySelector('.om-pay-name') || card.querySelector('.om-billing-period');
+            return nameSpan ? nameSpan.textContent.trim() : el.value;
+        }
+
+        function getDomainValue() {
+            var activeDTab = overlay.querySelector('.om-domain-tab.active');
+            if (!activeDTab) return '—';
+            var mode = activeDTab.getAttribute('data-dtab');
+            if (mode === 'register') {
+                var v = document.getElementById('omDomainInput');
+                return v && v.value.trim() ? v.value.trim() : 'Not specified';
+            } else if (mode === 'transfer') {
+                var t = document.getElementById('omTransferInput');
+                return t && t.value.trim() ? t.value.trim() : 'Not specified';
+            } else {
+                var e = document.getElementById('omExistingInput');
+                return e && e.value.trim() ? e.value.trim() : 'Will update later';
+            }
+        }
+
+        function updateSummary() {
+            var curr = planData.currency || '$';
+            var monthlyPrice = planData.amount || 0;
+            var months = parseInt(getSelectedValue('om-billing')) || 1;
+            var disc = discounts[months] || 0;
+            var subtotal = monthlyPrice * months * (1 - disc / 100);
+
+            // Gateway fee
+            var payCard = overlay.querySelector('input[name="om-payment"]:checked');
+            var feePct = 0;
+            var feeFix = 0;
+            if (payCard) {
+                var label = payCard.closest('.om-pay-card');
+                if (label) {
+                    feePct = parseFloat(label.getAttribute('data-fee-pct')) || 0;
+                    feeFix = parseFloat(label.getAttribute('data-fee-fix')) || 0;
+                }
+            }
+            var feeAmount = subtotal * (feePct / 100) + feeFix;
+            var total = subtotal + feeAmount;
+
+            // Populate summary
+            var prodEl = document.getElementById('omSumProduct');
+            if (prodEl) prodEl.textContent = planData.name || '—';
+
+            var billEl = document.getElementById('omSumBilling');
+            if (billEl) billEl.textContent = getSelectedLabel('om-billing');
+
+            var locEl = document.getElementById('omSumLocation');
+            if (locEl) locEl.textContent = getSelectedLabel('om-location');
+
+            var domEl = document.getElementById('omSumDomain');
+            if (domEl) domEl.textContent = getDomainValue();
+
+            var payEl = document.getElementById('omSumPayment');
+            if (payEl) payEl.textContent = getSelectedLabel('om-payment');
+
+            var subEl = document.getElementById('omSumSubtotal');
+            if (subEl) subEl.textContent = curr + subtotal.toFixed(2);
+
+            // Fee row
+            var feeRow = document.getElementById('omSumFeeRow');
+            var feeEl = document.getElementById('omSumFee');
+            if (feeRow && feeEl) {
+                if (feeAmount > 0) {
+                    feeRow.classList.add('om-visible');
+                    feeEl.textContent = '+' + curr + feeAmount.toFixed(2);
+                } else {
+                    feeRow.classList.remove('om-visible');
+                }
+            }
+
+            var totalEl = document.getElementById('omSumTotal');
+            if (totalEl) totalEl.textContent = curr + total.toFixed(2);
+        }
+
+        function submitOrder() {
+            var orderData = {
+                plan: planData.name,
+                planUrl: planData.url,
+                billing: getSelectedValue('om-billing'),
+                location: getSelectedValue('om-location'),
+                domain: getDomainValue(),
+                payment: getSelectedValue('om-payment'),
+                promo: (document.getElementById('omPromoInput') || {}).value || ''
+            };
+
+            if (planData.url) {
+                var url = planData.url;
+                var sep = url.indexOf('?') !== -1 ? '&' : '?';
+                url += sep + 'billingcycle=' + encodeURIComponent(orderData.billing);
+                if (orderData.location) url += '&location=' + encodeURIComponent(orderData.location);
+                if (orderData.payment) url += '&gateway=' + encodeURIComponent(orderData.payment);
+                if (orderData.promo) url += '&promo=' + encodeURIComponent(orderData.promo);
+                window.open(url, '_blank', 'noopener,noreferrer');
+            }
+            close();
+        }
+
+        return { init: init, open: open, close: close };
+    })();
+
+
+    /* ═══════════════════════════════════════════
+       Module: MS Product Search
+       ═══════════════════════════════════════════ */
+    const MsProductSearch = (function () {
+        const input = document.getElementById('msProductSearch');
+        const clearBtn = document.getElementById('msSearchClear');
+        const emptyMsg = document.getElementById('msSearchEmpty');
+        if (!input) return { init: function () {} };
+
+        const categories = document.querySelectorAll('.ms-products .ms-category');
+        const catNav = document.querySelector('.ms-cat-grid');
+
+        function filter() {
+            const q = input.value.trim().toLowerCase();
+            clearBtn.classList.toggle('visible', q.length > 0);
+
+            if (!q) {
+                // Show everything
+                categories.forEach(function (cat) {
+                    cat.style.display = '';
+                    cat.querySelectorAll('.ms-product-card').forEach(function (c) {
+                        c.style.display = '';
+                    });
+                });
+                if (catNav) catNav.style.display = '';
+                if (emptyMsg) emptyMsg.hidden = true;
+                return;
+            }
+
+            // Hide category nav when searching
+            if (catNav) catNav.style.display = 'none';
+
+            var totalVisible = 0;
+            categories.forEach(function (cat) {
+                var cards = cat.querySelectorAll('.ms-product-card');
+                var catVisible = 0;
+                cards.forEach(function (card) {
+                    var name = (card.querySelector('.ms-product-name') || {}).textContent || '';
+                    var desc = (card.querySelector('.ms-product-desc') || {}).textContent || '';
+                    var match = name.toLowerCase().indexOf(q) !== -1 || desc.toLowerCase().indexOf(q) !== -1;
+                    card.style.display = match ? '' : 'none';
+                    if (match) catVisible++;
+                });
+                cat.style.display = catVisible > 0 ? '' : 'none';
+                totalVisible += catVisible;
+            });
+
+            if (emptyMsg) emptyMsg.hidden = totalVisible > 0;
+        }
+
+        function init() {
+            input.addEventListener('input', filter);
+            clearBtn.addEventListener('click', function () {
+                input.value = '';
+                filter();
+                input.focus();
+            });
+        }
+
+        return { init: init };
+    })();
+
+    /* ═══════════════════════════════════════════
+       Module: Smooth Hero SVG Animations
+       Converts SMIL <animate> → CSS transform/opacity
+       for GPU-composited, jank-free rendering.
+       ═══════════════════════════════════════════ */
+    const SmoothHeroAnims = (function () {
+        function init() {
+            var svgs = document.querySelectorAll('.page-hero-visual svg');
+            if (!svgs.length) return;
+
+            svgs.forEach(function (svg) {
+                var anims = svg.querySelectorAll('animate');
+                if (!anims.length) return;
+
+                var rules = '';
+                var idx = 0;
+
+                anims.forEach(function (anim) {
+                    var attr = anim.getAttribute('attributeName');
+                    var raw = anim.getAttribute('values');
+                    if (!raw) { anim.remove(); return; }
+                    var vals = raw.split(';');
+                    var dur = anim.getAttribute('dur') || '3s';
+                    var delay = anim.getAttribute('begin') || '0s';
+                    var parent = anim.parentElement;
+                    if (!parent || vals.length < 2) { anim.remove(); return; }
+
+                    var name = '_ha' + idx++;
+
+                    if (attr === 'y' || attr === 'cy') {
+                        var from = parseFloat(vals[0]);
+                        var mid  = parseFloat(vals[1]);
+                        var diff = mid - from;
+                        rules += '@keyframes ' + name +
+                            '{0%,100%{transform:translateY(0)}' +
+                            '50%{transform:translateY(' + diff + 'px)}}';
+                        parent.style.animation = name + ' ' + dur + ' ease-in-out ' + delay + ' infinite';
+                        parent.style.willChange = 'transform';
+                    } else if (attr === 'opacity') {
+                        rules += '@keyframes ' + name +
+                            '{0%,100%{opacity:' + vals[0] + '}' +
+                            '50%{opacity:' + vals[1] + '}}';
+                        parent.removeAttribute('opacity');
+                        parent.style.animation = name + ' ' + dur + ' ease-in-out ' + delay + ' infinite';
+                    } else if (attr === 'r') {
+                        rules += '@keyframes ' + name +
+                            '{0%,100%{r:' + vals[0] + '}' +
+                            '50%{r:' + vals[1] + '}}';
+                        parent.style.animation = name + ' ' + dur + ' ease-in-out ' + delay + ' infinite';
+                    }
+
+                    anim.remove();
+                });
+
+                if (rules) {
+                    var s = document.createElementNS('http://www.w3.org/2000/svg', 'style');
+                    s.textContent = rules;
+                    svg.insertBefore(s, svg.firstChild);
+                }
+            });
+        }
+
+        return { init: init };
+    })();
+
+    /* ═══════════════════════════════════════════
+       PROMO CODE COPY
+       ═══════════════════════════════════════════ */
+    const PromoCodeCopy = (function () {
+        function init() {
+            document.querySelectorAll('.promo-code-copy').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    const code = btn.getAttribute('data-code');
+                    if (!code) return;
+                    navigator.clipboard.writeText(code).then(function () {
+                        btn.classList.add('copied');
+                        const icon = btn.querySelector('i');
+                        if (icon) {
+                            icon.className = 'fas fa-check';
+                            setTimeout(function () {
+                                icon.className = 'fas fa-copy';
+                                btn.classList.remove('copied');
+                            }, 2000);
+                        }
+                    });
+                });
+            });
+        }
+        return { init: init };
+    })();
+
+    /* ═══════════════════════════════════════════
+       DC LOCATION EXPAND / COLLAPSE
+       ═══════════════════════════════════════════ */
+    const DCLocationExpand = (function () {
+        function init() {
+            document.querySelectorAll('[data-dc-expand]').forEach(function (card) {
+                var btn = card.querySelector('.dc-loc-header');
+                if (!btn) return;
+                btn.addEventListener('click', function () {
+                    var wasOpen = card.classList.contains('open');
+                    // Close all siblings in the same region
+                    var region = card.closest('.dc-region');
+                    if (region) {
+                        region.querySelectorAll('[data-dc-expand].open').forEach(function (c) {
+                            c.classList.remove('open');
+                        });
+                    }
+                    // Toggle clicked card
+                    if (!wasOpen) card.classList.add('open');
+                });
+            });
+        }
+        return { init: init };
+    })();
+
+    /* ═══════════════════════════════════════════
+       TLD TABLE FILTER & SEARCH
+       ═══════════════════════════════════════════ */
+    const TldTableFilter = (function () {
+        function init() {
+            document.querySelectorAll('.domain-all-tlds').forEach(function (section) {
+                var filters = section.querySelectorAll('.tld-filter');
+                var searchInput = section.querySelector('.tld-search-input');
+                var rows = section.querySelectorAll('.tld-table tbody tr[data-category]');
+                var activeFilter = 'all';
+
+                filters.forEach(function (btn) {
+                    btn.addEventListener('click', function () {
+                        filters.forEach(function (f) { f.classList.remove('active'); });
+                        btn.classList.add('active');
+                        activeFilter = btn.getAttribute('data-filter');
+                        applyFilters();
+                    });
+                });
+
+                if (searchInput) {
+                    searchInput.addEventListener('input', function () {
+                        applyFilters();
+                    });
+                }
+
+                function applyFilters() {
+                    var term = searchInput ? searchInput.value.trim().toLowerCase() : '';
+                    var visibleCount = 0;
+                    rows.forEach(function (row) {
+                        var cat = row.getAttribute('data-category');
+                        var ext = row.querySelector('.tld-ext');
+                        var name = ext ? ext.textContent.toLowerCase() : '';
+                        var matchCat = activeFilter === 'all' || cat === activeFilter;
+                        var matchSearch = !term || name.indexOf(term) !== -1;
+                        if (matchCat && matchSearch) {
+                            row.classList.remove('tld-hidden');
+                            visibleCount++;
+                        } else {
+                            row.classList.add('tld-hidden');
+                        }
+                    });
+                    var emptyRow = section.querySelector('.tld-table-empty');
+                    if (emptyRow) {
+                        emptyRow.classList.toggle('visible', visibleCount === 0);
+                    }
+                }
+            });
+        }
+        return { init: init };
+    })();
+
+    /* ═══════════════════════════════════════════
+       Module 28: Microsoft Key Detail — Qty Controls
+       ═══════════════════════════════════════════ */
+    const MsKeyDetail = (function () {
+        function init() {
+            var minus = document.getElementById('mkdQtyMinus');
+            var plus = document.getElementById('mkdQtyPlus');
+            var input = document.getElementById('mkdQty');
+            if (!minus || !plus || !input) return;
+
+            minus.addEventListener('click', function () {
+                var v = parseInt(input.value) || 1;
+                if (v > 1) input.value = v - 1;
+                updateOrderBtn();
+            });
+            plus.addEventListener('click', function () {
+                var v = parseInt(input.value) || 1;
+                var max = parseInt(input.max) || 100;
+                if (v < max) input.value = v + 1;
+                updateOrderBtn();
+            });
+            input.addEventListener('change', function () {
+                var v = parseInt(input.value) || 1;
+                var max = parseInt(input.max) || 100;
+                if (v < 1) v = 1;
+                if (v > max) v = max;
+                input.value = v;
+                updateOrderBtn();
+            });
+
+            function updateOrderBtn() {
+                var btn = document.querySelector('.mkd-order-btn');
+                if (!btn) return;
+                var baseText = btn.getAttribute('data-base-label');
+                if (!baseText) {
+                    baseText = btn.textContent.trim();
+                    btn.setAttribute('data-base-label', baseText);
+                }
+                var qty = parseInt(input.value) || 1;
+                if (qty > 1) {
+                    var match = baseText.match(/[\€\$\£][\d\.]+/);
+                    if (match) {
+                        var unit = parseFloat(match[0].replace(/[^\d.]/g, ''));
+                        var symbol = match[0].replace(/[\d.]/g, '');
+                        var total = (unit * qty).toFixed(2);
+                        btn.innerHTML = '<i class="fas fa-shopping-cart"></i> Order ' + qty + '× — ' + symbol + total;
+                    }
+                } else {
+                    btn.innerHTML = '<i class="fas fa-shopping-cart"></i> ' + baseText.replace(/^.*?Order/, 'Order');
+                }
+            }
+        }
+        return { init: init };
+    })();
+
+
+    /* ═══════════════════════════════════════════
        INITIALIZE ALL MODULES
        ═══════════════════════════════════════════ */
     ThemeToggle.init();
+    SmoothHeroAnims.init();
     PlanTabs.init();
     ScrollReveal.init();
     CounterAnimation.init();
@@ -1054,6 +2142,14 @@ document.addEventListener('DOMContentLoaded', function () {
     CloudUsecasesSwiper.init();
     DsUsecasesSwiper.init();
     LocationTabs.init();
+    LocationCardActive.init();
     VpsRowToggle.init();
     BlogHub.init();
+    PartnersMarquee.init();
+    OrderModal.init();
+    MsProductSearch.init();
+    PromoCodeCopy.init();
+    DCLocationExpand.init();
+    TldTableFilter.init();
+    MsKeyDetail.init();
 });

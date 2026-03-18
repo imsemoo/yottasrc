@@ -364,36 +364,16 @@ require_once __DIR__ . '/includes/topbar.php';
             </div>
 
             <div class="bento-grid">
-                <div class="bento-card bento-lg">
+                <div class="bento-card bento-sm">
                     <div class="bento-card-icon"><i class="fas fa-palette"></i></div>
-                    <h3>Complete White-Labeling</h3>
-                    <p>Private nameservers (ns1.yourdomain.com), custom branding in cPanel, and your own support URLs. Clients see only your brand identity — never ours.</p>
-                    <div class="bento-metrics">
-                        <div class="bento-metric">
-                            <span class="bento-metric-val">Private</span>
-                            <span class="bento-metric-label">Nameservers</span>
-                        </div>
-                        <div class="bento-metric">
-                            <span class="bento-metric-val">100%</span>
-                            <span class="bento-metric-label">Your Brand</span>
-                        </div>
-                    </div>
+                    <h4>Complete White-Labeling</h4>
+                    <p>Private nameservers, custom cPanel branding, and your own support URLs. Clients see only your brand.</p>
                 </div>
 
-                <div class="bento-card bento-lg bento-green">
+                <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-green"><i class="fas fa-users-cog"></i></div>
-                    <h3>Account Management</h3>
-                    <p>Create, modify, suspend, and terminate cPanel accounts. Set individual resource limits for each client — disk space, bandwidth, email accounts, and databases.</p>
-                    <div class="bento-metrics">
-                        <div class="bento-metric">
-                            <span class="bento-metric-val">1-Click</span>
-                            <span class="bento-metric-label">Account Creation</span>
-                        </div>
-                        <div class="bento-metric">
-                            <span class="bento-metric-val">Custom</span>
-                            <span class="bento-metric-label">Resource Limits</span>
-                        </div>
-                    </div>
+                    <h4>Account Management</h4>
+                    <p>Create, modify, suspend, and terminate cPanel accounts with individual resource limits per client.</p>
                 </div>
 
                 <div class="bento-card bento-sm">
@@ -415,6 +395,18 @@ require_once __DIR__ . '/includes/topbar.php';
                     <div class="bento-card-icon icon-green"><i class="fas fa-lock"></i></div>
                     <h4>Free SSL for All</h4>
                     <p>AutoSSL for every client domain you add.</p>
+                </div>
+                <div class="bento-card bento-sm">
+                    <div class="bento-card-icon icon-blue"><i class="fas fa-th"></i></div>
+                    <h4>Softaculous Installer</h4>
+                    <p>400+ one-click apps for every client account.</p>
+                </div>
+            </div>
+
+            <div class="article-callout" style="margin-top: 24px;">
+                <i class="fas fa-info-circle"></i>
+                <div>
+                    <strong>Important:</strong> Reseller plans do not include root or SSH access. All server management is handled through WHM and cPanel's built-in reseller tools.
                 </div>
             </div>
         </div>
@@ -468,62 +460,11 @@ require_once __DIR__ . '/includes/topbar.php';
     </section>
 
     <!-- ═══════════════ GLOBAL INFRASTRUCTURE (compact) ═══════════════ -->
-    <section class="dc-showcase dc-showcase-compact reveal">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-tag">Global Infrastructure</div>
-                <h2>Deploy closer to your clients</h2>
-                <p>Choose from 20+ server locations across 4 continents. Lower latency, faster load times, better SEO.</p>
-            </div>
-
-            <div class="dc-strip-stats">
-                <div class="dc-strip-stat"><i class="fas fa-server"></i> <strong>20+</strong> Locations</div>
-                <div class="dc-strip-stat"><i class="fas fa-network-wired"></i> <strong>10 Gbit/s</strong> Network</div>
-                <div class="dc-strip-stat"><i class="fas fa-globe"></i> <strong>4</strong> Continents</div>
-                <div class="dc-strip-stat"><i class="fas fa-tachometer-alt"></i> <strong>&lt;30ms</strong> Latency</div>
-            </div>
-
-            <div class="dc-map-grid">
-                <div class="dc-continent">
-                    <div class="dc-continent-label"><i class="fas fa-globe-europe"></i> Europe <span class="dc-continent-count">9</span></div>
-                    <div class="dc-continent-locs">
-                        <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-finland-location/" class="dc-pin"><span class="fi fi-fi"></span> Finland</a>
-                        <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-germany-location/" class="dc-pin"><span class="fi fi-de"></span> Germany</a>
-                        <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-france-location/" class="dc-pin"><span class="fi fi-fr"></span> France</a>
-                        <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-uk-location/" class="dc-pin"><span class="fi fi-gb"></span> UK</a>
-                        <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-netherlands-location/" class="dc-pin"><span class="fi fi-nl"></span> Netherlands</a>
-                        <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-romania-location/" class="dc-pin dc-pin-hq"><span class="fi fi-ro"></span> Romania <span class="dc-hq-badge">HQ</span></a>
-                        <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-turkey-location/" class="dc-pin"><span class="fi fi-tr"></span> Turkey</a>
-                        <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-poland-location/" class="dc-pin"><span class="fi fi-pl"></span> Poland</a>
-                        <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-austria-location/" class="dc-pin"><span class="fi fi-at"></span> Austria</a>
-                    </div>
-                </div>
-                <div class="dc-continent">
-                    <div class="dc-continent-label"><i class="fas fa-globe-americas"></i> Americas <span class="dc-continent-count">2</span></div>
-                    <div class="dc-continent-locs">
-                        <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-usa-location/" class="dc-pin"><span class="fi fi-us"></span> USA</a>
-                        <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-canada-location/" class="dc-pin"><span class="fi fi-ca"></span> Canada</a>
-                    </div>
-                </div>
-                <div class="dc-continent">
-                    <div class="dc-continent-label"><i class="fas fa-globe-asia"></i> Asia <span class="dc-continent-count">5</span></div>
-                    <div class="dc-continent-locs">
-                        <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-india-location/" class="dc-pin"><span class="fi fi-in"></span> India</a>
-                        <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-singapore-location/" class="dc-pin"><span class="fi fi-sg"></span> Singapore</a>
-                        <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-japan-location/" class="dc-pin"><span class="fi fi-jp"></span> Japan</a>
-                        <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-hong-kong-location/" class="dc-pin"><span class="fi fi-hk"></span> Hong Kong</a>
-                        <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-thailand-location/" class="dc-pin"><span class="fi fi-th"></span> Thailand</a>
-                    </div>
-                </div>
-                <div class="dc-continent">
-                    <div class="dc-continent-label"><i class="fas fa-globe"></i> Oceania <span class="dc-continent-count">1</span></div>
-                    <div class="dc-continent-locs">
-                        <a href="<?php echo e(SITE_URL); ?>/cheap-cpanel-australia-location/" class="dc-pin"><span class="fi fi-au"></span> Australia</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<?php
+$dc_heading = 'Deploy closer to your clients';
+$dc_link_prefix = '/cheap-cpanel';
+include __DIR__ . '/includes/section-dc-showcase.php';
+?>
 
     <!-- ═══════════════ LAUNCH IN 4 STEPS ═══════════════ -->
     <section class="onboarding reveal">
@@ -734,6 +675,9 @@ require_once __DIR__ . '/includes/topbar.php';
 
     <!-- ═══════════════ MAILCHANNELS PARTNERSHIP ═══════════════ -->
     <?php include __DIR__ . '/includes/section-mailchannels.php'; ?>
+
+    <!-- ═══════════════ COMPETITORS COMPARISON ═══════════════ -->
+    <?php include __DIR__ . '/includes/section-competitors.php'; ?>
 
     <!-- ═══════════════ BOTTOM CTA ═══════════════ -->
     <section class="promo-cta reveal">

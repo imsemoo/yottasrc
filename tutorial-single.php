@@ -15,7 +15,7 @@ require_once __DIR__ . '/includes/topbar.php';
             <div class="page-breadcrumb">
                 <a href="<?php echo e(SITE_URL); ?>/">Home</a>
                 <i class="fas fa-chevron-right"></i>
-                <a href="<?php echo e(SITE_URL); ?>/faq">Knowledge Base</a>
+                <a href="<?php echo e(SITE_URL); ?>/tutorials/">Tutorials</a>
                 <i class="fas fa-chevron-right"></i>
                 <span>How to Deploy a Node.js App on VPS</span>
             </div>
@@ -36,7 +36,10 @@ require_once __DIR__ . '/includes/topbar.php';
         <div class="container">
             <div class="article-layout">
                 <article class="article-content">
-                    <img src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=900&h=400&fit=crop" alt="Node.js deployment" class="article-cover" loading="lazy">
+                    <!-- Optional YouTube video embed -->
+                    <div class="tutorial-video">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Tutorial Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                    </div>
 
                     <h2>Prerequisites</h2>
                     <p>Before you begin, make sure you have the following:</p>
@@ -131,15 +134,13 @@ sudo tail -f /var/log/nginx/error.log</code></pre>
 
                 <aside class="article-sidebar">
                     <div class="sidebar-card">
-                        <h5>Steps</h5>
-                        <ul class="sidebar-toc">
-                            <li><a href="#prerequisites">Prerequisites</a></li>
-                            <li><a href="#update">Update Your Server</a></li>
-                            <li><a href="#nodejs">Install Node.js</a></li>
-                            <li><a href="#upload">Upload Your Application</a></li>
-                            <li><a href="#pm2">Set Up PM2</a></li>
-                            <li><a href="#nginx">Configure Nginx</a></li>
-                            <li><a href="#test">Test Your Deployment</a></li>
+                        <h5><i class="fas fa-folder"></i> Tutorial Categories</h5>
+                        <ul class="sidebar-categories">
+                            <li><a href="<?php echo e(SITE_URL); ?>/tutorials/?cat=hosting"><span>Hosting</span> <span class="sidebar-cat-count">3</span></a></li>
+                            <li><a href="<?php echo e(SITE_URL); ?>/tutorials/?cat=vps"><span>VPS</span> <span class="sidebar-cat-count">4</span></a></li>
+                            <li><a href="<?php echo e(SITE_URL); ?>/tutorials/?cat=cloud"><span>Cloud</span> <span class="sidebar-cat-count">2</span></a></li>
+                            <li><a href="<?php echo e(SITE_URL); ?>/tutorials/?cat=security"><span>Security</span> <span class="sidebar-cat-count">2</span></a></li>
+                            <li><a href="<?php echo e(SITE_URL); ?>/tutorials/?cat=reseller"><span>Reseller</span> <span class="sidebar-cat-count">1</span></a></li>
                         </ul>
                     </div>
                     <div class="sidebar-card sidebar-cta">
@@ -160,46 +161,40 @@ sudo tail -f /var/log/nginx/error.log</code></pre>
                 <h2>Related Tutorials</h2>
             </div>
             <div class="related-grid">
-                <a href="#" class="blog-card">
-                    <div class="blog-card-thumb">
-                        <span class="blog-cat-badge badge-tutorials">Tutorials</span>
-                        <img src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=400&h=240&fit=crop" alt="MySQL tutorial" loading="lazy">
+                <a href="#" class="related-card">
+                    <div class="related-card-header">
+                        <span class="related-cat-badge badge-hosting">Hosting</span>
+                        <i class="fas fa-arrow-right related-card-arrow"></i>
                     </div>
-                    <div class="blog-card-body">
-                        <h4>Optimizing MySQL Performance on Your VPS</h4>
-                        <p>Learn how to tune MySQL configuration for better query performance and lower memory usage.</p>
-                        <div class="blog-card-meta">
-                            <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> Feb 22, 2026</span>
-                            <span class="blog-meta-item"><i class="fas fa-eye"></i> 4,500 views</span>
-                        </div>
+                    <h4>Optimizing MySQL Performance on Your VPS</h4>
+                    <p>Learn how to tune MySQL configuration for better query performance and lower memory usage.</p>
+                    <div class="related-card-footer">
+                        <span><i class="fas fa-calendar-alt"></i> Feb 22, 2026</span>
+                        <span><i class="fas fa-eye"></i> 4,500 views</span>
                     </div>
                 </a>
-                <a href="#" class="blog-card">
-                    <div class="blog-card-thumb">
-                        <span class="blog-cat-badge badge-security">Security</span>
-                        <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=400&h=240&fit=crop" alt="VPS security" loading="lazy">
+                <a href="#" class="related-card">
+                    <div class="related-card-header">
+                        <span class="related-cat-badge badge-security">Security</span>
+                        <i class="fas fa-arrow-right related-card-arrow"></i>
                     </div>
-                    <div class="blog-card-body">
-                        <h4>Essential VPS Security Checklist for 2026</h4>
-                        <p>Firewall rules, SSH hardening, fail2ban, and more — secure your Linux VPS from day one.</p>
-                        <div class="blog-card-meta">
-                            <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> Feb 18, 2026</span>
-                            <span class="blog-meta-item"><i class="fas fa-eye"></i> 3,900 views</span>
-                        </div>
+                    <h4>Essential VPS Security Checklist for 2026</h4>
+                    <p>Firewall rules, SSH hardening, fail2ban, and more — secure your Linux VPS from day one.</p>
+                    <div class="related-card-footer">
+                        <span><i class="fas fa-calendar-alt"></i> Feb 18, 2026</span>
+                        <span><i class="fas fa-eye"></i> 3,900 views</span>
                     </div>
                 </a>
-                <a href="#" class="blog-card">
-                    <div class="blog-card-thumb">
-                        <span class="blog-cat-badge badge-vps">VPS</span>
-                        <img src="https://images.unsplash.com/photo-1597852074816-d933c7d2b988?w=400&h=240&fit=crop" alt="Docker on VPS" loading="lazy">
+                <a href="#" class="related-card">
+                    <div class="related-card-header">
+                        <span class="related-cat-badge badge-vps">VPS</span>
+                        <i class="fas fa-arrow-right related-card-arrow"></i>
                     </div>
-                    <div class="blog-card-body">
-                        <h4>Getting Started with Docker on Your VPS</h4>
-                        <p>A beginner-friendly guide to installing and running Docker containers on a Linux VPS.</p>
-                        <div class="blog-card-meta">
-                            <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> Feb 10, 2026</span>
-                            <span class="blog-meta-item"><i class="fas fa-eye"></i> 5,100 views</span>
-                        </div>
+                    <h4>Getting Started with Docker on Your VPS</h4>
+                    <p>A beginner-friendly guide to installing and running Docker containers on a Linux VPS.</p>
+                    <div class="related-card-footer">
+                        <span><i class="fas fa-calendar-alt"></i> Feb 10, 2026</span>
+                        <span><i class="fas fa-eye"></i> 5,100 views</span>
                     </div>
                 </a>
             </div>

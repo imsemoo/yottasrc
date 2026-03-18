@@ -4,7 +4,7 @@
             <div class="section-header">
                 <div class="section-tag">Comparison</div>
                 <h2>Why YottaSrc beats the competition</h2>
-                <p>See how we stack up against typical hosting providers across performance, price, and support.</p>
+                <p>See how our cloud instances compare to other providers on pricing, regions, and flexibility.</p>
             </div>
 
             <div class="compare-table-wrap">
@@ -12,60 +12,60 @@
                     <thead>
                         <tr>
                             <th>Feature</th>
-                            <th class="compare-highlight">YottaSrc</th>
-                            <th>Competitors</th>
+                            <th class="compare-highlight">YottaSrc Cloud</th>
+                            <th>Other Cloud Providers</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><i class="fas fa-tachometer-alt"></i> Performance</td>
-                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> LiteSpeed + NVMe SSD</td>
-                            <td><i class="fas fa-minus-circle"></i> Apache / shared HDD</td>
+                            <td><i class="fas fa-coins"></i> Starting Price</td>
+                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> From €0.003/hr</td>
+                            <td><i class="fas fa-minus-circle"></i> From $0.007/hr+</td>
                         </tr>
                         <tr>
-                            <td><i class="fas fa-globe"></i> DNS Speed</td>
-                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> ~1ms via ClouDNS</td>
-                            <td><i class="fas fa-minus-circle"></i> 20–80ms average</td>
+                            <td><i class="fas fa-clock"></i> Billing Model</td>
+                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> True hourly, no minimum</td>
+                            <td><i class="fas fa-minus-circle"></i> Hourly with hidden bandwidth fees</td>
                         </tr>
                         <tr>
-                            <td><i class="fas fa-envelope"></i> Email Delivery</td>
-                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> MailChannels routing</td>
-                            <td><i class="fas fa-times-circle"></i> Shared IP reputation</td>
+                            <td><i class="fas fa-globe"></i> Regions</td>
+                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> 50+ regions, 6 continents</td>
+                            <td><i class="fas fa-minus-circle"></i> 10–30 regions typically</td>
                         </tr>
                         <tr>
-                            <td><i class="fas fa-tag"></i> Pricing</td>
-                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> Same price on renewal</td>
-                            <td><i class="fas fa-times-circle"></i> 2–3× price increase</td>
+                            <td><i class="fas fa-rocket"></i> Deploy Speed</td>
+                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> Under 30 seconds</td>
+                            <td><i class="fas fa-minus-circle"></i> 30s – 2 minutes</td>
                         </tr>
                         <tr>
-                            <td><i class="fas fa-server"></i> Infrastructure</td>
-                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> 20+ global locations</td>
-                            <td><i class="fas fa-minus-circle"></i> 1–3 regions</td>
+                            <td><i class="fas fa-id-card"></i> Signup Process</td>
+                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> Email only — no ID verification</td>
+                            <td><i class="fas fa-times-circle"></i> ID / credit card required</td>
                         </tr>
                         <tr>
-                            <td><i class="fas fa-shield-alt"></i> Security</td>
-                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> Imunify360 + Anti-DDoS</td>
-                            <td><i class="fas fa-minus-circle"></i> Basic firewall</td>
+                            <td><i class="fas fa-wallet"></i> Minimum Deposit</td>
+                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> €5 to start</td>
+                            <td><i class="fas fa-minus-circle"></i> $10–$50 or credit card hold</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-code"></i> API Access</td>
+                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> Full REST API included</td>
+                            <td><i class="fas fa-check-circle"></i> Available on most providers</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-expand-arrows-alt"></i> Instant Scaling</td>
+                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> Resize CPU/RAM live</td>
+                            <td><i class="fas fa-minus-circle"></i> Requires reboot or new instance</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-credit-card"></i> Crypto Payments</td>
+                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> BTC, USDT, TRX &amp; more</td>
+                            <td><i class="fas fa-times-circle"></i> Cards/PayPal only</td>
                         </tr>
                         <tr>
                             <td><i class="fas fa-headset"></i> Support</td>
-                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> &lt;10 min, 24/7</td>
-                            <td><i class="fas fa-minus-circle"></i> Limited hours / slow</td>
-                        </tr>
-                        <tr>
-                            <td><i class="fas fa-hdd"></i> Backups</td>
-                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> Free daily backups</td>
-                            <td><i class="fas fa-times-circle"></i> Paid add-on</td>
-                        </tr>
-                        <tr>
-                            <td><i class="fas fa-lock"></i> Free SSL</td>
-                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> AutoSSL included</td>
-                            <td><i class="fas fa-times-circle"></i> Extra cost</td>
-                        </tr>
-                        <tr>
-                            <td><i class="fas fa-exchange-alt"></i> Migration</td>
-                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> Free managed migration</td>
-                            <td><i class="fas fa-times-circle"></i> Paid or DIY only</td>
+                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> &lt;10 min response, 24/7</td>
+                            <td><i class="fas fa-minus-circle"></i> Ticket-based, hours to days</td>
                         </tr>
                     </tbody>
                 </table>

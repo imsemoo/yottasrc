@@ -37,6 +37,20 @@ require_once __DIR__ . '/includes/topbar.php';
                 </div>
                 <div class="page-hero-visual">
                     <svg viewBox="0 0 400 340" fill="none" xmlns="http://www.w3.org/2000/svg" class="hero-illustration" preserveAspectRatio="xMidYMid meet">
+                        <style>
+                            .float-a { animation: floatA 4s ease-in-out infinite; }
+                            .float-b { animation: floatB 5s ease-in-out infinite; }
+                            .float-c { animation: floatC 3.5s ease-in-out infinite; }
+                            .float-d { animation: floatD 4.5s ease-in-out infinite; }
+                            .pulse-a { animation: pulseA 3s ease-in-out infinite; }
+                            .pulse-b { animation: pulseB 4s ease-in-out infinite; }
+                            @keyframes floatA { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+                            @keyframes floatB { 0%,100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+                            @keyframes floatC { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+                            @keyframes floatD { 0%,100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+                            @keyframes pulseA { 0%,100% { opacity: 0.3; } 50% { opacity: 0.7; } }
+                            @keyframes pulseB { 0%,100% { opacity: 0.2; } 50% { opacity: 0.6; } }
+                        </style>
                         <!-- Browser frame -->
                         <rect x="50" y="30" width="300" height="200" rx="12" fill="var(--bg-card)" stroke="var(--border-primary)" stroke-width="1.5"/>
                         <rect x="50" y="30" width="300" height="28" rx="12" fill="var(--bg-tertiary)"/>
@@ -66,38 +80,29 @@ require_once __DIR__ . '/includes/topbar.php';
                         <rect x="258" y="158" width="68" height="24" rx="4" fill="var(--brand-primary)" opacity="0.1"/>
                         <rect x="258" y="188" width="44" height="4" rx="2" fill="var(--text-tertiary)" opacity="0.2"/>
                         <rect x="258" y="196" width="60" height="3" rx="1.5" fill="var(--text-tertiary)" opacity="0.1"/>
-                        <!-- Floating elements -->
-                        <rect x="20" y="100" width="38" height="38" rx="8" fill="var(--bg-card)" stroke="var(--border-primary)" stroke-width="1">
-                            <animate attributeName="y" values="100;94;100" dur="4s" repeatCount="indefinite"/>
-                        </rect>
-                        <text x="39" y="125" text-anchor="middle" font-size="16" fill="var(--brand-primary)" opacity="0.6">
-                            <animate attributeName="y" values="125;119;125" dur="4s" repeatCount="indefinite"/>&#x270E;
-                        </text>
-                        <rect x="342" y="120" width="38" height="38" rx="8" fill="var(--bg-card)" stroke="var(--border-primary)" stroke-width="1">
-                            <animate attributeName="y" values="120;126;120" dur="5s" repeatCount="indefinite"/>
-                        </rect>
-                        <text x="361" y="145" text-anchor="middle" font-size="16" fill="var(--brand-secondary)" opacity="0.6">
-                            <animate attributeName="y" values="145;151;145" dur="5s" repeatCount="indefinite"/>&#x1F4E1;
-                        </text>
+                        <!-- Floating elements (CSS transform-based for GPU acceleration) -->
+                        <g class="float-a">
+                            <rect x="20" y="100" width="38" height="38" rx="8" fill="var(--bg-card)" stroke="var(--border-primary)" stroke-width="1"/>
+                            <text x="39" y="125" text-anchor="middle" font-size="16" fill="var(--brand-primary)" opacity="0.6">&#x270E;</text>
+                        </g>
+                        <g class="float-b">
+                            <rect x="342" y="120" width="38" height="38" rx="8" fill="var(--bg-card)" stroke="var(--border-primary)" stroke-width="1"/>
+                            <text x="361" y="145" text-anchor="middle" font-size="16" fill="var(--brand-secondary)" opacity="0.6">&#x1F4E1;</text>
+                        </g>
                         <!-- Floating dots -->
-                        <circle cx="30" cy="250" r="3" fill="var(--brand-primary)" opacity="0.3"><animate attributeName="opacity" values="0.3;0.7;0.3" dur="3s" repeatCount="indefinite"/></circle>
-                        <circle cx="380" cy="80" r="2" fill="var(--brand-accent)" opacity="0.3"><animate attributeName="opacity" values="0.2;0.6;0.2" dur="4s" repeatCount="indefinite"/></circle>
+                        <circle cx="30" cy="250" r="3" fill="var(--brand-primary)" class="pulse-a"/>
+                        <circle cx="380" cy="80" r="2" fill="var(--brand-accent)" class="pulse-b"/>
                         <!-- Notification badge -->
-                        <rect x="310" y="260" width="70" height="30" rx="8" fill="var(--bg-card)" stroke="var(--border-primary)" stroke-width="1">
-                            <animate attributeName="y" values="260;254;260" dur="3.5s" repeatCount="indefinite"/>
-                        </rect>
-                        <circle cx="324" cy="275" r="4" fill="var(--brand-secondary)" opacity="0.5">
-                            <animate attributeName="cy" values="275;269;275" dur="3.5s" repeatCount="indefinite"/>
-                        </circle>
-                        <rect x="332" y="272" width="38" height="4" rx="2" fill="var(--text-tertiary)" opacity="0.3">
-                            <animate attributeName="y" values="272;266;272" dur="3.5s" repeatCount="indefinite"/>
-                        </rect>
+                        <g class="float-c">
+                            <rect x="310" y="260" width="70" height="30" rx="8" fill="var(--bg-card)" stroke="var(--border-primary)" stroke-width="1"/>
+                            <circle cx="324" cy="275" r="4" fill="var(--brand-secondary)" opacity="0.5"/>
+                            <rect x="332" y="272" width="38" height="4" rx="2" fill="var(--text-tertiary)" opacity="0.3"/>
+                        </g>
                         <!-- Bookmark float -->
-                        <rect x="20" y="200" width="34" height="34" rx="8" fill="var(--bg-card)" stroke="var(--border-primary)" stroke-width="1">
-                            <animate attributeName="y" values="200;206;200" dur="4.5s" repeatCount="indefinite"/>
-                        </rect>
-                        <text x="37" y="223" text-anchor="middle" font-size="14" fill="var(--brand-accent)" opacity="0.6">
-                            <animate attributeName="y" values="223;229;223" dur="4.5s" repeatCount="indefinite"/>&#x1F516;
+                        <g class="float-d">
+                            <rect x="20" y="200" width="34" height="34" rx="8" fill="var(--bg-card)" stroke="var(--border-primary)" stroke-width="1"/>
+                            <text x="37" y="223" text-anchor="middle" font-size="14" fill="var(--brand-accent)" opacity="0.6">&#x1F516;</text>
+                        </g>
                         </text>
                     </svg>
                 </div>
@@ -147,7 +152,7 @@ require_once __DIR__ . '/includes/topbar.php';
                             </div>
                         </div>
                     </a>
-  <a href="#" class="blog-card" data-category="cloud">
+            <a href="#" class="blog-card" data-category="cloud">
                         <div class="blog-card-thumb">
                             <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&h=340&fit=crop" alt="Cloud Servers Guide" loading="lazy">
                             <span class="blog-cat-badge badge-cloud">Cloud</span>
