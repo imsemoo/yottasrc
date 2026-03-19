@@ -37,19 +37,24 @@
                     <span class="om-dot-num"><span class="om-dot-digit">3</span><i class="fas fa-check om-dot-check"></i></span>
                     <span class="om-dot-label">Domain</span>
                 </button>
-                <span class="om-step-line"></span>
-                <button class="om-step-dot" data-step="4" type="button">
+                <span class="om-step-line om-step-line-4" style="display:none;"></span>
+                <button class="om-step-dot" data-step="4" type="button" style="display:none;">
                     <span class="om-dot-num"><span class="om-dot-digit">4</span><i class="fas fa-check om-dot-check"></i></span>
-                    <span class="om-dot-label">Payment</span>
+                    <span class="om-dot-label">Config</span>
                 </button>
-                <span class="om-step-line"></span>
+                <span class="om-step-line om-step-line-5"></span>
                 <button class="om-step-dot" data-step="5" type="button">
                     <span class="om-dot-num"><span class="om-dot-digit">5</span><i class="fas fa-check om-dot-check"></i></span>
-                    <span class="om-dot-label">Account</span>
+                    <span class="om-dot-label">Payment</span>
                 </button>
                 <span class="om-step-line"></span>
                 <button class="om-step-dot" data-step="6" type="button">
                     <span class="om-dot-num"><span class="om-dot-digit">6</span><i class="fas fa-check om-dot-check"></i></span>
+                    <span class="om-dot-label">Account</span>
+                </button>
+                <span class="om-step-line"></span>
+                <button class="om-step-dot" data-step="7" type="button">
+                    <span class="om-dot-num"><span class="om-dot-digit">7</span><i class="fas fa-check om-dot-check"></i></span>
                     <span class="om-dot-label">Review</span>
                 </button>
             </div>
@@ -187,7 +192,7 @@
             </div>
 
             <!-- ═══ Step 3: Domain ═══ -->
-            <div class="om-panel" data-panel="3">
+            <div class="om-panel om-panel-domain" data-panel="3">
                 <div class="om-panel-head">
                     <h4><i class="fas fa-link"></i> Domain Configuration</h4>
                     <p>Register a new domain, transfer one, or use an existing domain.</p>
@@ -246,14 +251,13 @@
                 </div>
             </div>
 
-            <!-- ═══ Step 3 VPS: OS & Configuration (hidden by default) ═══ -->
-            <div class="om-panel" data-panel="3-vps" style="display:none;">
+            <!-- ═══ Step 3 VPS: Operating System (hidden by default) ═══ -->
+            <div class="om-panel om-panel-vps" data-panel="3-vps" style="display:none;">
                 <div class="om-panel-head">
-                    <h4><i class="fas fa-server"></i> Server Configuration</h4>
-                    <p>Choose your operating system and server settings.</p>
+                    <h4><i class="fas fa-desktop"></i> Operating System</h4>
+                    <p>Choose the operating system for your VPS server.</p>
                 </div>
                 <div class="om-vps-section">
-                    <label class="om-section-label"><i class="fas fa-desktop"></i> Operating System</label>
                     <div class="om-os-grid" id="omOsGrid">
                         <label class="om-os-card">
                             <input type="radio" name="om-os" value="ubuntu-22" checked>
@@ -311,14 +315,6 @@
                         </label>
                     </div>
                 </div>
-                <div class="om-vps-section">
-                    <label class="om-section-label"><i class="fas fa-cog"></i> Hostname</label>
-                    <div class="om-search-bar">
-                        <div class="om-search-icon"><i class="fas fa-server"></i></div>
-                        <input type="text" class="om-input" id="omVpsHostname" placeholder="server1.example.com" autocomplete="off">
-                    </div>
-                    <p class="om-hint"><i class="fas fa-info-circle"></i> You can change the hostname later from your control panel.</p>
-                </div>
                 <div class="om-info-strip">
                     <div class="om-info-item"><i class="fas fa-shield-alt"></i> Full Root Access</div>
                     <div class="om-info-item"><i class="fas fa-sync-alt"></i> Free OS Reinstall</div>
@@ -326,8 +322,102 @@
                 </div>
             </div>
 
+            <!-- ═══ Step 4 VPS: Other Configuration (hidden by default) ═══ -->
+            <div class="om-panel om-panel-vps-config" data-panel="4" style="display:none;">
+                <div class="om-panel-head">
+                    <h4><i class="fas fa-cogs"></i> Select Other Configuration</h4>
+                    <p>Configure additional IPs, IP management, and hostname for your VPS.</p>
+                    <div class="om-config-badges" id="omConfigBadges">
+                        <span class="om-config-badge" id="omBadgeAddIp"><i class="fas fa-circle"></i> No additional IPs</span>
+                        <span class="om-config-badge" id="omBadgeChangeIp"><i class="fas fa-circle"></i> No need IP changes</span>
+                    </div>
+                </div>
+                <div class="om-vps-config-grid">
+                    <div class="om-vps-config-col">
+                        <label class="om-section-label"><i class="fas fa-network-wired"></i> Additional IPs</label>
+                        <p class="om-hint">You can have an additional IP for your VPS, if you want more IPs, please connect with us.</p>
+                        <div class="om-radio-list">
+                            <label class="om-radio-item">
+                                <input type="radio" name="om-addip" value="0" data-label="No additional IPs" data-price="0" checked>
+                                <span class="om-radio-mark"></span>
+                                <span class="om-radio-text">No additional IPs</span>
+                                <span class="om-radio-price">&euro;0.00 EUR</span>
+                            </label>
+                            <label class="om-radio-item">
+                                <input type="radio" name="om-addip" value="1" data-label="1 IP" data-price="75">
+                                <span class="om-radio-mark"></span>
+                                <span class="om-radio-text">1 IP</span>
+                                <span class="om-radio-price">&euro;75.00 EUR</span>
+                            </label>
+                            <label class="om-radio-item">
+                                <input type="radio" name="om-addip" value="2" data-label="2 IPs" data-price="133">
+                                <span class="om-radio-mark"></span>
+                                <span class="om-radio-text">2 IPs</span>
+                                <span class="om-radio-price">&euro;133.00 EUR</span>
+                            </label>
+                            <label class="om-radio-item">
+                                <input type="radio" name="om-addip" value="3" data-label="3 IPs" data-price="195">
+                                <span class="om-radio-mark"></span>
+                                <span class="om-radio-text">3 IPs</span>
+                                <span class="om-radio-price">&euro;195.00 EUR</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="om-vps-config-col">
+                        <label class="om-section-label"><i class="fas fa-exchange-alt"></i> Change/Management IPs</label>
+                        <p class="om-hint">Control and manage IPs, including changing IPs if you don't want the current one or the current range.</p>
+                        <div class="om-radio-list">
+                            <label class="om-radio-item">
+                                <input type="radio" name="om-changeip" value="0" data-label="No need IP changes" data-price="0" checked>
+                                <span class="om-radio-mark"></span>
+                                <span class="om-radio-text">No need IP changes</span>
+                                <span class="om-radio-price">&euro;0.00 EUR</span>
+                            </label>
+                            <label class="om-radio-item">
+                                <input type="radio" name="om-changeip" value="1" data-label="1 Change/month" data-price="35.64">
+                                <span class="om-radio-mark"></span>
+                                <span class="om-radio-text">1 Change Per month</span>
+                                <span class="om-radio-price">&euro;35.64 EUR</span>
+                            </label>
+                            <label class="om-radio-item">
+                                <input type="radio" name="om-changeip" value="3" data-label="3 Changes/month" data-price="99">
+                                <span class="om-radio-mark"></span>
+                                <span class="om-radio-text">3 Changes Per month</span>
+                                <span class="om-radio-price">&euro;99.00 EUR</span>
+                            </label>
+                            <label class="om-radio-item">
+                                <input type="radio" name="om-changeip" value="5" data-label="5 Changes/month" data-price="171">
+                                <span class="om-radio-mark"></span>
+                                <span class="om-radio-text">5 Changes Per month</span>
+                                <span class="om-radio-price">&euro;171.00 EUR</span>
+                            </label>
+                            <label class="om-radio-item">
+                                <input type="radio" name="om-changeip" value="10" data-label="10 Changes/month" data-price="324">
+                                <span class="om-radio-mark"></span>
+                                <span class="om-radio-text">10 Changes Per month</span>
+                                <span class="om-radio-price">&euro;324.00 EUR</span>
+                            </label>
+                            <label class="om-radio-item">
+                                <input type="radio" name="om-changeip" value="30" data-label="30 Changes/month" data-price="900">
+                                <span class="om-radio-mark"></span>
+                                <span class="om-radio-text">30 Changes Per month</span>
+                                <span class="om-radio-price">&euro;900.00 EUR</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="om-vps-section">
+                    <label class="om-section-label"><i class="fas fa-server"></i> Hostname</label>
+                    <div class="om-search-bar">
+                        <div class="om-search-icon"><i class="fas fa-server"></i></div>
+                        <input type="text" class="om-input" id="omVpsHostname" placeholder="server1.example.com" autocomplete="off">
+                    </div>
+                    <p class="om-hint"><i class="fas fa-info-circle"></i> You can change the hostname later from your control panel.</p>
+                </div>
+            </div>
+
             <!-- ═══ Step 3 Keys: Simple product (hidden by default) ═══ -->
-            <div class="om-panel" data-panel="3-keys" style="display:none;">
+            <div class="om-panel om-panel-keys" data-panel="3-keys" style="display:none;">
                 <div class="om-panel-head">
                     <h4><i class="fas fa-key"></i> License Details</h4>
                     <p>Review your license key order details.</p>
@@ -359,8 +449,8 @@
                 </div>
             </div>
 
-            <!-- ═══ Step 4: Payment Gateway ═══ -->
-            <div class="om-panel" data-panel="4">
+            <!-- ═══ Step 5: Payment Gateway ═══ -->
+            <div class="om-panel" data-panel="5">
                 <div class="om-panel-head">
                     <h4><i class="fas fa-credit-card"></i> Payment Method</h4>
                     <p>Choose your preferred payment gateway to complete the purchase.</p>
@@ -410,8 +500,8 @@
                 </div>
             </div>
 
-            <!-- ═══ Step 5: Account ═══ -->
-            <div class="om-panel" data-panel="5">
+            <!-- ═══ Step 6: Account ═══ -->
+            <div class="om-panel" data-panel="6">
                 <div class="om-panel-head">
                     <h4><i class="fas fa-user-circle"></i> Account Details</h4>
                     <p>Sign in to your existing account or create a new one.</p>
@@ -537,8 +627,8 @@
                 </div>
             </div>
 
-            <!-- ═══ Step 6: Order Summary ═══ -->
-            <div class="om-panel" data-panel="6">
+            <!-- ═══ Step 7: Order Summary ═══ -->
+            <div class="om-panel" data-panel="7">
                 <div class="om-panel-head">
                     <h4><i class="fas fa-receipt"></i> Order Summary</h4>
                     <p>Review your selections before placing the order.</p>
@@ -585,7 +675,7 @@
                 <i class="fas fa-arrow-left"></i> Back
             </button>
             <div class="om-footer-center">
-                <div class="om-step-counter">Step <span id="omStepNum">1</span> of 6</div>
+                <div class="om-step-counter">Step <span id="omStepNum">1</span> of <span id="omTotalSteps">7</span></div>
                 <div class="om-trust-icons">
                     <i class="fas fa-lock" title="SSL Secured"></i>
                     <i class="fas fa-shield-alt" title="Protected"></i>

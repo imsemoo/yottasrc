@@ -4399,23 +4399,28 @@ img {
 }
 
 /* ─── Hero ─── */
+/* Do NOT set direction:rtl on the grid — it breaks floating card
+   absolute positioning (left/right swap) and leaks into terminal text.
+   Instead swap columns via explicit grid placement. */
 [dir="rtl"] .hero .container {
-    direction: rtl;
+    grid-template-columns: 1fr 1fr; /* keep equal columns */
 }
 [dir="rtl"] .hero-content {
+    grid-column: 2;
+    grid-row: 1;
     text-align: right;
 }
+[dir="rtl"] .hero-visual {
+    grid-column: 1;
+    grid-row: 1;
+    direction: ltr;
+    unicode-bidi: isolate;
+}
 [dir="rtl"] .hero-ctas {
-    justify-content: flex-start;
+    justify-content: flex-end;
 }
 [dir="rtl"] .hero-trust {
-    justify-content: flex-start;
-}
-[dir="rtl"] .hero-visual {
-    direction: ltr;
-}
-[dir="rtl"] .hero-visual * {
-    direction: ltr;
+    justify-content: flex-end;
 }
 
 /* ─── Buttons Arrow Icons ─── */
@@ -4427,7 +4432,10 @@ img {
 [dir="rtl"] .btn-secondary:hover i.fa-arrow-right {
     transform: scaleX(-1) translateX(2px);
 }
-
+[dir="rtl"] .ds-config-num{
+        left: 16px;
+        right: unset;
+}
 /* ─── Partners Marquee ─── */
 [dir="rtl"] .partners-track {
     animation-name: partnersScrollRtl;

@@ -374,7 +374,65 @@ require_once __DIR__ . '/includes/topbar.php';
                                 <span class="os-ticker-ver">Pro / Enterprise</span>
                             </div>
                         </div>
-                        <!-- Duplicate set for seamless loop -->
+                        <!-- Duplicate set 1 for seamless loop -->
+                        <div class="os-ticker-item">
+                            <div class="os-ticker-icon"><i class="fab fa-windows"></i></div>
+                            <div class="os-ticker-info">
+                                <span class="os-ticker-name">Windows Server 2019</span>
+                                <span class="os-ticker-ver">Standard / Datacenter</span>
+                            </div>
+                        </div>
+                        <div class="os-ticker-item">
+                            <div class="os-ticker-icon icon-green"><i class="fab fa-windows"></i></div>
+                            <div class="os-ticker-info">
+                                <span class="os-ticker-name">Windows Server 2022</span>
+                                <span class="os-ticker-ver">Standard / Datacenter</span>
+                            </div>
+                        </div>
+                        <div class="os-ticker-item">
+                            <div class="os-ticker-icon icon-purple"><i class="fab fa-windows"></i></div>
+                            <div class="os-ticker-info">
+                                <span class="os-ticker-name">Windows 10</span>
+                                <span class="os-ticker-ver">Pro / Enterprise</span>
+                            </div>
+                        </div>
+                        <div class="os-ticker-item">
+                            <div class="os-ticker-icon icon-amber"><i class="fab fa-windows"></i></div>
+                            <div class="os-ticker-info">
+                                <span class="os-ticker-name">Windows 11</span>
+                                <span class="os-ticker-ver">Pro / Enterprise</span>
+                            </div>
+                        </div>
+                        <!-- Duplicate set 2 -->
+                        <div class="os-ticker-item">
+                            <div class="os-ticker-icon"><i class="fab fa-windows"></i></div>
+                            <div class="os-ticker-info">
+                                <span class="os-ticker-name">Windows Server 2019</span>
+                                <span class="os-ticker-ver">Standard / Datacenter</span>
+                            </div>
+                        </div>
+                        <div class="os-ticker-item">
+                            <div class="os-ticker-icon icon-green"><i class="fab fa-windows"></i></div>
+                            <div class="os-ticker-info">
+                                <span class="os-ticker-name">Windows Server 2022</span>
+                                <span class="os-ticker-ver">Standard / Datacenter</span>
+                            </div>
+                        </div>
+                        <div class="os-ticker-item">
+                            <div class="os-ticker-icon icon-purple"><i class="fab fa-windows"></i></div>
+                            <div class="os-ticker-info">
+                                <span class="os-ticker-name">Windows 10</span>
+                                <span class="os-ticker-ver">Pro / Enterprise</span>
+                            </div>
+                        </div>
+                        <div class="os-ticker-item">
+                            <div class="os-ticker-icon icon-amber"><i class="fab fa-windows"></i></div>
+                            <div class="os-ticker-info">
+                                <span class="os-ticker-name">Windows 11</span>
+                                <span class="os-ticker-ver">Pro / Enterprise</span>
+                            </div>
+                        </div>
+                        <!-- Duplicate set 3 -->
                         <div class="os-ticker-item">
                             <div class="os-ticker-icon"><i class="fab fa-windows"></i></div>
                             <div class="os-ticker-info">

@@ -22,11 +22,35 @@ require_once __DIR__ . '/includes/topbar.php';
                 <p class="page-hero-desc">
                     Our global network spans 50+ locations across 6 continents — powered by Tier III+ datacenters, redundant networking, and enterprise hardware built for maximum uptime and performance.
                 </p>
-                <div class="page-hero-stats">
-                    <div class="hero-stat"><span class="hero-stat-num" data-count="50">0</span><span class="hero-stat-suffix">+</span><span class="hero-stat-label">Locations</span></div>
-                    <div class="hero-stat"><span class="hero-stat-num" data-count="6">0</span><span class="hero-stat-label">Continents</span></div>
-                    <div class="hero-stat"><span class="hero-stat-num" data-count="99">0</span><span class="hero-stat-suffix">.9%</span><span class="hero-stat-label">Uptime SLA</span></div>
-                    <div class="hero-stat"><span class="hero-stat-num" data-count="10">0</span><span class="hero-stat-suffix"> Gbit/s</span><span class="hero-stat-label">Network</span></div>
+                <div class="dc-hero-stats">
+                    <div class="dc-hero-stat">
+                        <div class="dc-hero-stat-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="dc-hero-stat-body">
+                            <div class="dc-hero-stat-value"><span class="hero-stat-num" data-count="50">0</span><span class="dc-hero-stat-suffix">+</span></div>
+                            <div class="dc-hero-stat-label">Locations</div>
+                        </div>
+                    </div>
+                    <div class="dc-hero-stat">
+                        <div class="dc-hero-stat-icon"><i class="fas fa-globe-americas"></i></div>
+                        <div class="dc-hero-stat-body">
+                            <div class="dc-hero-stat-value"><span class="hero-stat-num" data-count="6">0</span></div>
+                            <div class="dc-hero-stat-label">Continents</div>
+                        </div>
+                    </div>
+                    <div class="dc-hero-stat">
+                        <div class="dc-hero-stat-icon"><i class="fas fa-shield-alt"></i></div>
+                        <div class="dc-hero-stat-body">
+                            <div class="dc-hero-stat-value"><span class="hero-stat-num" data-count="99">0</span><span class="dc-hero-stat-suffix">.9%</span></div>
+                            <div class="dc-hero-stat-label">Uptime SLA</div>
+                        </div>
+                    </div>
+                    <div class="dc-hero-stat">
+                        <div class="dc-hero-stat-icon"><i class="fas fa-network-wired"></i></div>
+                        <div class="dc-hero-stat-body">
+                            <div class="dc-hero-stat-value"><span class="hero-stat-num" data-count="10">0</span><span class="dc-hero-stat-suffix"> Gbit/s</span></div>
+                            <div class="dc-hero-stat-label">Network</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

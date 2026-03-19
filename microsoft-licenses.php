@@ -220,53 +220,60 @@ require_once __DIR__ . '/includes/topbar.php';
                 </div>
                 <div class="ms-product-grid">
                     <div class="ms-product-card">
+                        <img src="<?php echo BASE_PATH; ?>/assets/images/products/windows-11.svg" alt="Windows 11 Pro" class="ms-product-img">
                         <div class="ms-product-name">Windows 11 Pro <span class="ms-product-badge">Retail</span></div>
                         <p class="ms-product-desc">Full retail key — instant online activation via Microsoft servers.</p>
                         <div class="ms-product-price">€6.50</div>
                         <p class="ms-reseller-note">Reseller price from €5.00 (10+ keys)</p>
-                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
+                        <img src="<?php echo BASE_PATH; ?>/assets/images/products/windows-11.svg" alt="Windows 11 Pro" class="ms-product-img">
                         <div class="ms-product-name">Windows 11 Pro <span class="ms-product-badge badge-alt">Phone</span></div>
                         <p class="ms-product-desc">Genuine key — activated via Microsoft's free automated phone line.</p>
                         <div class="ms-product-price">€3.50</div>
                         <p class="ms-reseller-note">Reseller price from €2.50 (10+ keys)</p>
-                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
+                        <img src="<?php echo BASE_PATH; ?>/assets/images/products/windows-11.svg" alt="Windows 11 Home" class="ms-product-img">
                         <div class="ms-product-name">Windows 11 Home <span class="ms-product-badge">Retail</span></div>
                         <p class="ms-product-desc">Home edition retail key with instant online activation.</p>
                         <div class="ms-product-price">€5.50</div>
                         <p class="ms-reseller-note">Reseller price from €4.00 (10+ keys)</p>
-                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
+                        <img src="<?php echo BASE_PATH; ?>/assets/images/products/windows-10.svg" alt="Windows 10 Pro" class="ms-product-img">
                         <div class="ms-product-name">Windows 10 Pro <span class="ms-product-badge">Retail</span></div>
                         <p class="ms-product-desc">Full retail key for Windows 10 Professional — online activation.</p>
                         <div class="ms-product-price">€5.00</div>
                         <p class="ms-reseller-note">Reseller price from €3.50 (10+ keys)</p>
-                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
+                        <img src="<?php echo BASE_PATH; ?>/assets/images/products/windows-10.svg" alt="Windows 10 Pro" class="ms-product-img">
                         <div class="ms-product-name">Windows 10 Pro <span class="ms-product-badge badge-alt">Phone</span></div>
                         <p class="ms-product-desc">Genuine key activated via Microsoft's free automated phone system.</p>
                         <div class="ms-product-price">€3.50</div>
                         <p class="ms-reseller-note">Reseller price from €2.50 (10+ keys)</p>
-                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
+                        <img src="<?php echo BASE_PATH; ?>/assets/images/products/windows-10.svg" alt="Windows 10 Home" class="ms-product-img">
                         <div class="ms-product-name">Windows 10 Home <span class="ms-product-badge">Retail</span></div>
                         <p class="ms-product-desc">Home edition retail key with instant online activation.</p>
                         <div class="ms-product-price">€4.50</div>
                         <p class="ms-reseller-note">Reseller price from €3.00 (10+ keys)</p>
-                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
+                        <img src="<?php echo BASE_PATH; ?>/assets/images/products/windows-10.svg" alt="Windows 10 Enterprise" class="ms-product-img">
                         <div class="ms-product-name">Windows 10 Enterprise <span class="ms-product-badge badge-alt">LTSC</span></div>
                         <p class="ms-product-desc">Long-Term Servicing Channel — ideal for enterprise and kiosk deployments.</p>
                         <div class="ms-product-price">€8.00</div>
                         <p class="ms-reseller-note">Reseller price from €6.00 (10+ keys)</p>
-                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
             </div>
@@ -282,53 +289,60 @@ require_once __DIR__ . '/includes/topbar.php';
                 </div>
                 <div class="ms-product-grid">
                     <div class="ms-product-card">
+                        <img src="<?php echo BASE_PATH; ?>/assets/images/products/office-365.svg" alt="Office 365 Personal" class="ms-product-img">
                         <div class="ms-product-name">Office 365 Personal <span class="ms-product-badge badge-alt">1 Year</span></div>
                         <p class="ms-product-desc">1 user subscription with Word, Excel, PowerPoint, Outlook, and 1TB OneDrive.</p>
                         <div class="ms-product-price">€1.50</div>
                         <p class="ms-reseller-note">Reseller price from €1.00 (10+ keys)</p>
-                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
+                        <img src="<?php echo BASE_PATH; ?>/assets/images/products/office-365.svg" alt="Office 365 Family" class="ms-product-img">
                         <div class="ms-product-name">Office 365 Family <span class="ms-product-badge badge-alt">1 Year</span></div>
                         <p class="ms-product-desc">Up to 6 users — includes all Office apps, 6TB OneDrive total.</p>
                         <div class="ms-product-price">€3.00</div>
                         <p class="ms-reseller-note">Reseller price from €2.00 (10+ keys)</p>
-                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
+                        <img src="<?php echo BASE_PATH; ?>/assets/images/products/office-2021.svg" alt="Office 2021 Pro Plus" class="ms-product-img">
                         <div class="ms-product-name">Office 2021 Professional Plus <span class="ms-product-badge">Lifetime</span></div>
                         <p class="ms-product-desc">One-time purchase — Word, Excel, PowerPoint, Outlook, Access, Publisher.</p>
                         <div class="ms-product-price">€3.50</div>
                         <p class="ms-reseller-note">Reseller price from €2.50 (10+ keys)</p>
-                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
+                        <img src="<?php echo BASE_PATH; ?>/assets/images/products/office-2021.svg" alt="Office 2021 Pro Plus" class="ms-product-img">
                         <div class="ms-product-name">Office 2021 Pro Plus <span class="ms-product-badge badge-alt">Phone</span></div>
                         <p class="ms-product-desc">Same Office suite — activated via Microsoft's free phone system.</p>
                         <div class="ms-product-price">€2.00</div>
                         <p class="ms-reseller-note">Reseller price from €1.50 (10+ keys)</p>
-                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
+                        <img src="<?php echo BASE_PATH; ?>/assets/images/products/office-2019.svg" alt="Office 2019 Pro Plus" class="ms-product-img">
                         <div class="ms-product-name">Office 2019 Professional Plus <span class="ms-product-badge">Lifetime</span></div>
                         <p class="ms-product-desc">Legacy version — reliable and lightweight for older hardware.</p>
                         <div class="ms-product-price">€2.50</div>
                         <p class="ms-reseller-note">Reseller price from €1.50 (10+ keys)</p>
-                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
+                        <img src="<?php echo BASE_PATH; ?>/assets/images/products/office-2016.svg" alt="Office 2016 Pro Plus" class="ms-product-img">
                         <div class="ms-product-name">Office 2016 Professional Plus <span class="ms-product-badge badge-alt">Phone</span></div>
                         <p class="ms-product-desc">Budget-friendly option with phone activation. Full Office suite.</p>
                         <div class="ms-product-price">€1.50</div>
                         <p class="ms-reseller-note">Reseller price from €1.00 (10+ keys)</p>
-                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
+                        <img src="<?php echo BASE_PATH; ?>/assets/images/products/outlook.svg" alt="Outlook 2021" class="ms-product-img">
                         <div class="ms-product-name">Outlook 2021 <span class="ms-product-badge">Lifetime</span></div>
                         <p class="ms-product-desc">Standalone Outlook email client — one-time purchase, no subscription.</p>
                         <div class="ms-product-price">€2.00</div>
                         <p class="ms-reseller-note">Reseller price from €1.50 (10+ keys)</p>
-                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
             </div>
@@ -344,39 +358,44 @@ require_once __DIR__ . '/includes/topbar.php';
                 </div>
                 <div class="ms-product-grid">
                     <div class="ms-product-card">
+                        <img src="<?php echo BASE_PATH; ?>/assets/images/products/windows-server.svg" alt="Windows Server 2022" class="ms-product-img">
                         <div class="ms-product-name">Windows Server 2022 Standard <span class="ms-product-badge">Retail</span></div>
                         <p class="ms-product-desc">Latest server OS — Hyper-V, containers, Azure hybrid support.</p>
                         <div class="ms-product-price">€12.00</div>
                         <p class="ms-reseller-note">Reseller price from €9.00 (10+ keys)</p>
-                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
+                        <img src="<?php echo BASE_PATH; ?>/assets/images/products/windows-server.svg" alt="Windows Server 2022" class="ms-product-img">
                         <div class="ms-product-name">Windows Server 2022 Datacenter <span class="ms-product-badge">Retail</span></div>
                         <p class="ms-product-desc">Unlimited VMs, shielded VMs, Storage Spaces Direct, and full Hyper-V.</p>
                         <div class="ms-product-price">€18.00</div>
                         <p class="ms-reseller-note">Reseller price from €14.00 (10+ keys)</p>
-                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
+                        <img src="<?php echo BASE_PATH; ?>/assets/images/products/windows-server.svg" alt="Windows Server 2019" class="ms-product-img">
                         <div class="ms-product-name">Windows Server 2019 Standard <span class="ms-product-badge">Retail</span></div>
                         <p class="ms-product-desc">Proven server OS — Active Directory, IIS, DNS, and Hyper-V.</p>
                         <div class="ms-product-price">€10.00</div>
                         <p class="ms-reseller-note">Reseller price from €7.50 (10+ keys)</p>
-                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
+                        <img src="<?php echo BASE_PATH; ?>/assets/images/products/windows-server.svg" alt="Windows Server 2019" class="ms-product-img">
                         <div class="ms-product-name">Windows Server 2019 Datacenter <span class="ms-product-badge">Retail</span></div>
                         <p class="ms-product-desc">Full datacenter features with unlimited containers and VMs.</p>
                         <div class="ms-product-price">€15.00</div>
                         <p class="ms-reseller-note">Reseller price from €11.00 (10+ keys)</p>
-                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
+                        <img src="<?php echo BASE_PATH; ?>/assets/images/products/sql-server.svg" alt="SQL Server 2019" class="ms-product-img">
                         <div class="ms-product-name">SQL Server 2019 Standard <span class="ms-product-badge">Retail</span></div>
                         <p class="ms-product-desc">Enterprise database engine — full T-SQL, reporting, and analytics.</p>
                         <div class="ms-product-price">€8.00</div>
                         <p class="ms-reseller-note">Reseller price from €6.00 (10+ keys)</p>
-                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
             </div>
@@ -392,46 +411,52 @@ require_once __DIR__ . '/includes/topbar.php';
                 </div>
                 <div class="ms-product-grid">
                     <div class="ms-product-card">
+                        <img src="<?php echo BASE_PATH; ?>/assets/images/products/visual-studio.svg" alt="Visual Studio 2022" class="ms-product-img">
                         <div class="ms-product-name">Visual Studio 2022 Professional <span class="ms-product-badge">Lifetime</span></div>
                         <p class="ms-product-desc">Full IDE for .NET, C++, Python, and web development.</p>
                         <div class="ms-product-price">€12.00</div>
                         <p class="ms-reseller-note">Reseller price from €9.00 (10+ keys)</p>
-                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
+                        <img src="<?php echo BASE_PATH; ?>/assets/images/products/visual-studio.svg" alt="Visual Studio 2022" class="ms-product-img">
                         <div class="ms-product-name">Visual Studio 2022 Enterprise <span class="ms-product-badge">Lifetime</span></div>
                         <p class="ms-product-desc">Enterprise IDE — IntelliTest, Live Unit Testing, Architecture tools.</p>
                         <div class="ms-product-price">€18.00</div>
                         <p class="ms-reseller-note">Reseller price from €14.00 (10+ keys)</p>
-                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
+                        <img src="<?php echo BASE_PATH; ?>/assets/images/products/project.svg" alt="Project 2021" class="ms-product-img">
                         <div class="ms-product-name">Project 2021 Professional <span class="ms-product-badge">Lifetime</span></div>
                         <p class="ms-product-desc">Project management with Gantt charts, timelines, and resource tracking.</p>
                         <div class="ms-product-price">€4.00</div>
                         <p class="ms-reseller-note">Reseller price from €3.00 (10+ keys)</p>
-                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
+                        <img src="<?php echo BASE_PATH; ?>/assets/images/products/project.svg" alt="Project 2019" class="ms-product-img">
                         <div class="ms-product-name">Project 2019 Professional <span class="ms-product-badge">Lifetime</span></div>
                         <p class="ms-product-desc">Legacy version — full project management features at a lower price.</p>
                         <div class="ms-product-price">€3.50</div>
                         <p class="ms-reseller-note">Reseller price from €2.50 (10+ keys)</p>
-                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
+                        <img src="<?php echo BASE_PATH; ?>/assets/images/products/visio.svg" alt="Visio 2021" class="ms-product-img">
                         <div class="ms-product-name">Visio 2021 Professional <span class="ms-product-badge">Lifetime</span></div>
                         <p class="ms-product-desc">Diagrams, flowcharts, and network topology visualization.</p>
                         <div class="ms-product-price">€4.50</div>
                         <p class="ms-reseller-note">Reseller price from €3.50 (10+ keys)</p>
-                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
+                        <img src="<?php echo BASE_PATH; ?>/assets/images/products/visio.svg" alt="Visio 2019" class="ms-product-img">
                         <div class="ms-product-name">Visio 2019 Professional <span class="ms-product-badge">Lifetime</span></div>
                         <p class="ms-product-desc">Legacy version with full diagramming and visualization tools.</p>
                         <div class="ms-product-price">€3.50</div>
                         <p class="ms-reseller-note">Reseller price from €2.50 (10+ keys)</p>
-                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></a>
+                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
             </div>

@@ -597,7 +597,7 @@ include __DIR__ . '/includes/section-dc-showcase.php';
     <?php include __DIR__ . '/includes/section-mailchannels.php'; ?>
 
     <!-- ═══════════════ COMPETITORS COMPARISON ═══════════════ -->
-    <?php include __DIR__ . '/includes/section-competitors.php'; ?>
+    <?php $compare_type = 'reseller'; include __DIR__ . '/includes/section-competitors.php'; ?>
 
     <!-- ═══════════════ BOTTOM CTA ═══════════════ -->
     <section class="promo-cta reveal">

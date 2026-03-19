@@ -103,22 +103,37 @@
     margin-top: 32px;
 }
 
-.page-hero-stat {
+.page-hero-stat,
+.hero-stat {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
-.page-hero-stat .stat-num {
+.page-hero-stat .stat-num,
+.hero-stat-num {
     font-family: var(--font-display);
     font-size: 1.8rem;
     font-weight: 800;
     color: var(--text-primary);
+    line-height: 1;
+    display: inline;
 }
 
-.page-hero-stat .stat-text {
+.hero-stat-suffix {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    display: inline;
+}
+
+.page-hero-stat .stat-text,
+.hero-stat-label {
     font-size: 0.85rem;
     color: var(--text-tertiary);
-    margin-top: 2px;
+    margin-top: 4px;
 }
 
 .page-hero-ctas {
@@ -1403,10 +1418,9 @@
 
 /* ─── Location Card (compact, reusable across all pages) ─── */
 .loc-card-grid {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 10px;
-    justify-content: center;
 }
 
 .location-card {
@@ -1459,15 +1473,21 @@
     box-shadow: 0 4px 16px rgba(37, 99, 235, 0.12);
 }
 
+@media (max-width: 992px) {
+    .loc-card-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 @media (max-width: 768px) {
     .loc-card-grid {
+        grid-template-columns: repeat(2, 1fr);
         gap: 8px;
     }
 
     .location-card {
         padding: 10px 12px;
         font-size: 0.78rem;
-        width: 48%;
     }
 }
 
@@ -3734,7 +3754,7 @@
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    width: max-content;
+    max-width: 100%;
 }
 
 .faq-hub-section .faq-tabs::-webkit-scrollbar {
@@ -4962,7 +4982,7 @@
 
 @keyframes osTicker {
     0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    100% { transform: translateX(-25%); }
 }
 
 .os-ticker-item {
@@ -6674,6 +6694,14 @@
     gap: 6px;
     position: relative;
     transition: border-color var(--duration-normal) ease, box-shadow var(--duration-normal) ease;
+}
+
+.ms-product-img {
+    width: 100%;
+    height: 230px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-bottom: 6px;
 }
 
 .ms-product-card:hover {
@@ -8732,8 +8760,10 @@ body .partner-feature + .partner-feature {
     font-size: 0.76rem;
     font-weight: 700;
     font-family: var(--font-display);
+    border: none;
     border-radius: var(--radius-sm);
     text-decoration: none;
+    cursor: pointer;
     transition: background var(--duration-fast) ease;
     white-space: nowrap;
     align-self: flex-start;
@@ -10467,6 +10497,55 @@ body .partner-feature + .partner-feature {
     white-space: nowrap;
 }
 
+.tld-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.tld-page-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 36px;
+    padding: 0 10px;
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-sm);
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--duration-fast) ease;
+}
+
+.tld-page-btn:hover:not([disabled]) {
+    border-color: var(--brand-primary);
+    color: var(--brand-primary);
+    background: rgba(37, 99, 235, 0.04);
+}
+
+.tld-page-btn.active {
+    background: var(--brand-primary);
+    border-color: var(--brand-primary);
+    color: #fff;
+}
+
+.tld-page-btn[disabled] {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.tld-page-info {
+    font-size: 0.78rem;
+    color: var(--text-tertiary);
+    margin-left: 12px;
+}
+
 .tld-table-footer {
     margin-top: 20px;
     text-align: center;
@@ -11090,6 +11169,90 @@ body .partner-feature + .partner-feature {
 
 
 /* ═══════════════════════════════════════════
+   DATACENTER PAGE — Hero Stats
+   ═══════════════════════════════════════════ */
+.dc-hero-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+}
+
+.dc-hero-stat {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-md);
+    padding: 18px 20px;
+    text-align: left;
+    transition: border-color var(--duration-fast) ease, box-shadow var(--duration-fast) ease;
+}
+
+.dc-hero-stat:hover {
+    border-color: var(--brand-primary);
+    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.08);
+}
+
+.dc-hero-stat-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    background: rgba(37, 99, 235, 0.08);
+    color: var(--brand-primary);
+}
+
+.dc-hero-stat-body {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.dc-hero-stat-value {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1.1;
+}
+
+.dc-hero-stat-suffix {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.dc-hero-stat-label {
+    font-size: 0.78rem;
+    color: var(--text-tertiary);
+    margin-top: 2px;
+    font-weight: 500;
+}
+
+@media (max-width: 992px) {
+    .dc-hero-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .dc-hero-stats {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    .dc-hero-stat {
+        padding: 14px 16px;
+    }
+}
+
+/* ═══════════════════════════════════════════
    DATACENTER PAGE — Location Details (Expandable)
    ═══════════════════════════════════════════ */
 .dc-locations {
@@ -11098,7 +11261,7 @@ body .partner-feature + .partner-feature {
 }
 
 .dc-locations-inner {
-    max-width: 860px;
+    max-width: 100%;
     margin: 0 auto;
 }
 
@@ -13695,6 +13858,117 @@ body .partner-feature + .partner-feature {
     color: var(--brand-warning);
 }
 
+/* ═══ Step 4 VPS: Other Configuration ═══ */
+.om-config-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+}
+.om-config-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 12px;
+    background: rgba(37, 99, 235, 0.08);
+    border: 1px solid rgba(37, 99, 235, 0.15);
+    border-radius: var(--radius-full);
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--brand-primary);
+}
+.om-config-badge i {
+    font-size: 0.45rem;
+}
+.om-vps-config-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 20px;
+}
+.om-vps-config-col .om-section-label {
+    margin-bottom: 4px;
+}
+.om-vps-config-col > .om-hint {
+    margin-bottom: 12px;
+    font-size: 0.7rem;
+    line-height: 1.5;
+}
+.om-radio-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.om-radio-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background var(--duration-fast);
+    position: relative;
+}
+.om-radio-item:hover {
+    background: var(--bg-tertiary);
+}
+.om-radio-item input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+.om-radio-mark {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid var(--border-secondary);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--duration-fast);
+}
+.om-radio-mark::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--brand-primary);
+    transform: scale(0);
+    transition: transform var(--duration-fast);
+}
+.om-radio-item input:checked ~ .om-radio-mark {
+    border-color: var(--brand-primary);
+}
+.om-radio-item input:checked ~ .om-radio-mark::after {
+    transform: scale(1);
+}
+.om-radio-text {
+    flex: 1;
+    font-size: 0.76rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+.om-radio-price {
+    font-size: 0.74rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+.om-radio-item input:checked ~ .om-radio-text {
+    color: var(--brand-primary);
+    font-weight: 600;
+}
+.om-radio-item input:checked ~ .om-radio-price {
+    color: var(--brand-primary);
+}
+@media (max-width: 640px) {
+    .om-vps-config-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+}
+
 /* ═══ Step 3 Keys: License Details ═══ */
 .om-keys-summary {
     margin-bottom: 12px;
@@ -14407,20 +14681,35 @@ body .partner-feature + .partner-feature {
     text-align: right;
 }
 [dir="rtl"] .page-hero-split {
-    direction: rtl;
+    /* Do NOT set direction:rtl — it leaks into SVG <text> elements,
+       breaking anchors, baselines, and overlapping labels.
+       Instead swap columns via explicit grid placement. */
+    grid-template-columns: 1fr 1.4fr;
+}
+[dir="rtl"] .page-hero-split > .page-hero-content {
+    grid-column: 2;
+    grid-row: 1;
+}
+[dir="rtl"] .page-hero-split > .page-hero-visual {
+    grid-column: 1;
+    grid-row: 1;
 }
 [dir="rtl"] .page-breadcrumb {
     direction: rtl;
 }
 
 /* ─── Hero Illustrations ─── */
-/* Isolate SVGs from RTL — they contain readable text.
-   The parent grid direction:rtl swaps columns; the visual stays LTR inside. */
+/* Belt-and-suspenders: ensure the visual container and everything
+   inside it stays LTR so SVG text/coordinates are never affected. */
 [dir="rtl"] .page-hero-visual {
     direction: ltr;
+    unicode-bidi: isolate;
+    text-align: left;
 }
-[dir="rtl"] .page-hero-visual * {
+[dir="rtl"] .page-hero-visual svg,
+[dir="rtl"] .page-hero-visual svg * {
     direction: ltr;
+    unicode-bidi: bidi-override;
 }
 
 /* ─── Legal Pages ─── */
@@ -14648,4 +14937,40 @@ body .partner-feature + .partner-feature {
 /* ─── Domain Pricing ─── */
 [dir="rtl"] .domain-tld-card {
     text-align: right;
+}
+
+/* ─── OS Ticker RTL ─── */
+[dir="rtl"] .os-ticker-track {
+    animation-name: osTickerRtl;
+}
+@keyframes osTickerRtl {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(25%); }
+}
+
+/* ─── TLD Pagination RTL ─── */
+[dir="rtl"] .tld-pagination {
+    direction: rtl;
+}
+[dir="rtl"] .tld-page-info {
+    margin-left: 0;
+    margin-right: 12px;
+}
+
+/* ─── Location Card Grid RTL ─── */
+[dir="rtl"] .loc-card-grid {
+    direction: rtl;
+}
+[dir="rtl"] .location-card {
+    direction: rtl;
+}
+
+/* ─── Info Split Sections RTL (image + text side-by-side) ─── */
+[dir="rtl"] .info-split,
+[dir="rtl"] .feature-split {
+    direction: rtl;
+}
+[dir="rtl"] .info-split img,
+[dir="rtl"] .feature-split img {
+    direction: ltr;
 }

@@ -595,81 +595,6 @@ include __DIR__ . '/includes/section-dc-showcase.php';
         </div>
     </section>
 
-    <!-- ═══════════════ COMPETITORS COMPARISON ═══════════════ -->
-    <section class="rs-compare reveal">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-tag">Comparison</div>
-                <h2>Why YottaSrc is better</h2>
-                <p>See how our reseller hosting stacks up against the competition.</p>
-            </div>
-
-            <div class="compare-table-wrap">
-                <table class="compare-table">
-                    <thead>
-                        <tr>
-                            <th>Feature</th>
-                            <th class="compare-highlight">YottaSrc</th>
-                            <th>Typical Hosting</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>NVMe SSD Storage</td>
-                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> Full NVMe</td>
-                            <td><i class="fas fa-minus-circle"></i> Limited / HDD</td>
-                        </tr>
-                        <tr>
-                            <td>High I/O Speed</td>
-                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> 100 MB/s</td>
-                            <td><i class="fas fa-minus-circle"></i> Slow shared I/O</td>
-                        </tr>
-                        <tr>
-                            <td>LiteSpeed Web Server</td>
-                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> Included</td>
-                            <td><i class="fas fa-minus-circle"></i> Apache only</td>
-                        </tr>
-                        <tr>
-                            <td>Free Migration</td>
-                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> Free</td>
-                            <td><i class="fas fa-times-circle"></i> Paid or none</td>
-                        </tr>
-                        <tr>
-                            <td>Same Price on Renewal</td>
-                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> Guaranteed</td>
-                            <td><i class="fas fa-times-circle"></i> Price increase</td>
-                        </tr>
-                        <tr>
-                            <td>White-Label Branding</td>
-                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> Full</td>
-                            <td><i class="fas fa-minus-circle"></i> Partial</td>
-                        </tr>
-                        <tr>
-                            <td>Free SSL &amp; Backups</td>
-                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> Included</td>
-                            <td><i class="fas fa-times-circle"></i> Extra cost</td>
-                        </tr>
-                        <tr>
-                            <td>24/7 Expert Support</td>
-                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> &lt;10 min response</td>
-                            <td><i class="fas fa-minus-circle"></i> Limited hours</td>
-                        </tr>
-                        <tr>
-                            <td>Global Locations</td>
-                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> 20+ locations</td>
-                            <td><i class="fas fa-minus-circle"></i> 1–3 regions</td>
-                        </tr>
-                        <tr>
-                            <td>Imunify360 Security</td>
-                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> AI-powered</td>
-                            <td><i class="fas fa-times-circle"></i> Basic firewall</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-
     <!-- ═══════════════ ClouDNS PARTNERSHIP ═══════════════ -->
     <?php include __DIR__ . '/includes/section-cloudns.php'; ?>
 
@@ -677,7 +602,7 @@ include __DIR__ . '/includes/section-dc-showcase.php';
     <?php include __DIR__ . '/includes/section-mailchannels.php'; ?>
 
     <!-- ═══════════════ COMPETITORS COMPARISON ═══════════════ -->
-    <?php include __DIR__ . '/includes/section-competitors.php'; ?>
+    <?php $compare_type = 'reseller'; include __DIR__ . '/includes/section-competitors.php'; ?>
 
     <!-- ═══════════════ BOTTOM CTA ═══════════════ -->
     <section class="promo-cta reveal">

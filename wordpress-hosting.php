@@ -408,7 +408,7 @@ include __DIR__ . '/includes/section-dc-showcase.php';
 <?php include __DIR__ . '/includes/section-mailchannels.php'; ?>
 
     <!-- ═══════════════ COMPETITORS ═══════════════ -->
-<?php include __DIR__ . '/includes/section-competitors.php'; ?>
+<?php $compare_type = 'hosting'; include __DIR__ . '/includes/section-competitors.php'; ?>
 
     <!-- ═══════════════ FAQ ═══════════════ -->
     <section class="faq-section reveal">

@@ -182,20 +182,51 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
 
+        function animateHeroStats(container) {
+            var nums = container.querySelectorAll('.hero-stat-num[data-count]');
+            nums.forEach(function (el) {
+                var target = parseInt(el.getAttribute('data-count'), 10);
+                if (isNaN(target)) return;
+                var duration = 1500;
+                var start = performance.now();
+
+                function update(now) {
+                    var elapsed = now - start;
+                    var progress = Math.min(elapsed / duration, 1);
+                    var eased = 1 - Math.pow(1 - progress, 3);
+                    el.textContent = Math.floor(target * eased);
+                    if (progress < 1) requestAnimationFrame(update);
+                }
+                requestAnimationFrame(update);
+            });
+        }
+
         function init() {
             var statsSection = document.querySelector('.proof-stats');
-            if (!statsSection) return;
+            if (statsSection) {
+                var statsObserver = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            animateCounters();
+                            statsObserver.disconnect();
+                        }
+                    });
+                }, { threshold: 0.3 });
+                statsObserver.observe(statsSection);
+            }
 
-            var statsObserver = new IntersectionObserver(function (entries) {
-                entries.forEach(function (entry) {
-                    if (entry.isIntersecting) {
-                        animateCounters();
-                        statsObserver.disconnect();
-                    }
-                });
-            }, { threshold: 0.3 });
-
-            statsObserver.observe(statsSection);
+            var heroStats = document.querySelectorAll('.page-hero-stats, .dc-hero-stats');
+            heroStats.forEach(function (hs) {
+                var heroObserver = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            animateHeroStats(entry.target);
+                            heroObserver.disconnect();
+                        }
+                    });
+                }, { threshold: 0.3 });
+                heroObserver.observe(hs);
+            });
         }
 
         return { init: init };
@@ -288,6 +319,104 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
 
+        return { init: init };
+    })();
+
+
+    /* ═══════════════════════════════════════════
+       Module 7b: VPS CTA Buttons — open modal with type=vps
+       ═══════════════════════════════════════════ */
+    const VpsCTAs = (function () {
+        function init() {
+            document.querySelectorAll('.vps-row-btn').forEach(function (btn) {
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    var row = btn.closest('.vps-row');
+                    if (!row) return;
+                    var nameEl = row.querySelector('.vps-row-name');
+                    var amountEl = row.querySelector('.vps-row-amount');
+                    var rawAmount = amountEl ? amountEl.textContent.trim() : '0';
+                    var currency = rawAmount.replace(/[\d.,]/g, '') || '€';
+                    var amount = parseFloat(rawAmount.replace(/[^\d.,]/g, '').replace(',', '.')) || 0;
+                    var planData = {
+                        name: nameEl ? nameEl.textContent.trim() : 'VPS',
+                        amount: amount,
+                        currency: currency,
+                        period: '/mo',
+                        url: btn.getAttribute('href') || '',
+                        type: 'vps'
+                    };
+                    if (typeof OrderModal !== 'undefined') {
+                        OrderModal.open(planData);
+                    }
+                });
+            });
+        }
+        return { init: init };
+    })();
+
+
+    /* ═══════════════════════════════════════════
+       Module 7c: MS Keys CTA Buttons — open modal with type=keys
+       ═══════════════════════════════════════════ */
+    const MsKeysCTAs = (function () {
+        function extractFromCard(btn) {
+            var card = btn.closest('.ms-product-card');
+            if (!card) return null;
+            var nameEl = card.querySelector('.ms-product-name');
+            var priceEl = card.querySelector('.ms-product-price');
+            var rawPrice = priceEl ? priceEl.textContent.trim() : '0';
+            var currency = rawPrice.replace(/[\d.,]/g, '') || '€';
+            var amount = parseFloat(rawPrice.replace(/[^\d.,]/g, '').replace(',', '.')) || 0;
+            var name = nameEl ? nameEl.textContent.trim() : 'License Key';
+            var badgeEl = nameEl ? nameEl.querySelector('.ms-product-badge') : null;
+            if (badgeEl) name = name.replace(badgeEl.textContent.trim(), '').trim();
+            return { name: name, amount: amount, currency: currency, period: '', url: '', type: 'keys' };
+        }
+
+        function extractFromDetailPage(btn) {
+            var nameEl = document.querySelector('.mkd-product-title');
+            var priceEl = document.querySelector('.mkd-current-price');
+            var rawPrice = priceEl ? priceEl.textContent.trim() : '0';
+            var currency = rawPrice.replace(/[\d.,]/g, '') || '€';
+            var amount = parseFloat(rawPrice.replace(/[^\d.,]/g, '').replace(',', '.')) || 0;
+            var qty = document.getElementById('mkdQty');
+            var q = qty ? parseInt(qty.value) || 1 : 1;
+            return {
+                name: nameEl ? nameEl.textContent.trim() : 'License Key',
+                amount: amount * q,
+                currency: currency,
+                period: '',
+                url: '',
+                type: 'keys'
+            };
+        }
+
+        function init() {
+            // Use event delegation for reliability
+            document.addEventListener('click', function (e) {
+                var btn = e.target.closest('.ms-order-btn');
+                if (btn) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    var planData = extractFromCard(btn);
+                    if (planData && typeof OrderModal !== 'undefined') {
+                        OrderModal.open(planData);
+                    }
+                    return;
+                }
+
+                var mkdBtn = e.target.closest('.mkd-order-btn');
+                if (mkdBtn) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    var data = extractFromDetailPage(mkdBtn);
+                    if (data && typeof OrderModal !== 'undefined') {
+                        OrderModal.open(data);
+                    }
+                }
+            });
+        }
         return { init: init };
     })();
 
@@ -1103,12 +1232,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 var logos = Array.from(container.children);
                 if (logos.length < 2) return;
 
-                // Build first track with original logos
+                // Build first track — duplicate logos enough times so track is always wider than viewport
                 var track1 = document.createElement('div');
                 track1.className = 'partners-track';
-                logos.forEach(function (logo) {
-                    track1.appendChild(logo);
-                });
+                var copies = Math.max(2, Math.ceil(6 / logos.length));
+                for (var c = 0; c < copies; c++) {
+                    logos.forEach(function (logo) {
+                        track1.appendChild(logo.cloneNode(true));
+                    });
+                }
 
                 // Clone track for seamless infinite loop
                 var track2 = track1.cloneNode(true);
@@ -1139,10 +1271,10 @@ document.addEventListener('DOMContentLoaded', function () {
        Module 25: Order Modal (Multi-Step Wizard) — v2 Professional
        ═══════════════════════════════════════════ */
     const OrderModal = (function () {
-        var overlay, body, progressFill, stepsNav, stepNumEl;
+        var overlay, body, progressFill, stepsNav, stepNumEl, stepTotalEl;
         var backBtn, nextBtn;
         var currentStep = 1;
-        var totalSteps = 6;
+        var totalSteps = 7;
         var planData = {};
         var discounts = { 1: 0, 3: 5, 6: 10, 12: 15, 24: 25, 36: 30 };
 
@@ -1154,8 +1286,12 @@ document.addEventListener('DOMContentLoaded', function () {
             progressFill = document.getElementById('omProgressFill');
             stepsNav = document.getElementById('omStepsNav');
             stepNumEl = document.getElementById('omStepNum');
+            stepTotalEl = document.getElementById('omTotalSteps');
             backBtn = document.getElementById('omBack');
             nextBtn = document.getElementById('omNext');
+
+            // VPS Config badge listeners
+            initConfigBadges();
 
             // Close triggers
             document.getElementById('omClose').addEventListener('click', close);
@@ -1429,6 +1565,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         function open(data) {
+            if (!overlay) return;
+
             planData = data || {};
             currentStep = 1;
 
@@ -1437,14 +1575,16 @@ document.addEventListener('DOMContentLoaded', function () {
             if (chip) chip.textContent = planData.name || 'Plan';
 
             // Handle modal variants (vps, keys, default hosting)
-            setupVariant(planData.type || 'hosting');
+            try { setupVariant(planData.type || 'hosting'); } catch (e) { console.warn('[OrderModal] variant error', e); }
 
             // Populate billing prices
-            populateBillingPrices();
+            try { populateBillingPrices(); } catch (e) { console.warn('[OrderModal] billing error', e); }
 
             // Reset UI
-            resetForm();
-            updateUI();
+            try { resetForm(); } catch (e) { console.warn('[OrderModal] resetForm error', e); }
+
+            // Ensure step 1 panel is active
+            try { goToStep(1, 'forward'); } catch (e) { console.warn('[OrderModal] goToStep error', e); }
 
             // Show
             overlay.classList.add('om-open');
@@ -1459,33 +1599,53 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         function setupVariant(type) {
-            var domainPanel = overlay.querySelector('.om-panel[data-panel="3"]');
-            var vpsPanel = overlay.querySelector('.om-panel[data-panel="3-vps"]');
-            var keysPanel = overlay.querySelector('.om-panel[data-panel="3-keys"]');
+            // Gather all step-3 variant panels by their CSS class
+            var allStep3 = overlay.querySelectorAll('.om-panel[data-panel="3"], .om-panel[data-panel="3-vps"], .om-panel[data-panel="3-keys"], .om-panel[data-panel="3-domain"]');
+            var domainPanel = null, vpsPanel = null, keysPanel = null;
+            allStep3.forEach(function (p) {
+                if (p.classList.contains('om-panel-domain')) domainPanel = p;
+                else if (p.classList.contains('om-panel-vps')) vpsPanel = p;
+                else if (p.classList.contains('om-panel-keys')) keysPanel = p;
+            });
             var locationPanel = overlay.querySelector('.om-panel[data-panel="2"]');
-            var step3Dot = overlay.querySelector('.om-step-dot[data-step="3"]');
+            var vpsConfigPanel = overlay.querySelector('.om-panel-vps-config');
             var step2Dot = overlay.querySelector('.om-step-dot[data-step="2"]');
+            var step2Line = step2Dot ? step2Dot.previousElementSibling : null;
+            var step3Dot = overlay.querySelector('.om-step-dot[data-step="3"]');
+            var step4Dot = overlay.querySelector('.om-step-dot[data-step="4"]');
+            var step4Line = overlay.querySelector('.om-step-line-4');
 
-            // Reset all panels
+            // Reset: restore defaults (hosting mode)
             if (domainPanel) { domainPanel.style.display = ''; domainPanel.setAttribute('data-panel', '3'); }
-            if (vpsPanel) vpsPanel.style.display = 'none';
-            if (keysPanel) keysPanel.style.display = 'none';
+            if (vpsPanel) { vpsPanel.style.display = 'none'; vpsPanel.setAttribute('data-panel', '3-vps'); }
+            if (keysPanel) { keysPanel.style.display = 'none'; keysPanel.setAttribute('data-panel', '3-keys'); }
             if (locationPanel) locationPanel.style.display = '';
-            if (step3Dot) { var lbl3 = step3Dot.querySelector('.om-dot-label'); if (lbl3) lbl3.textContent = 'Domain'; }
+            if (vpsConfigPanel) vpsConfigPanel.style.display = 'none';
             if (step2Dot) step2Dot.style.display = '';
-            overlay.classList.remove('om-variant-keys');
+            if (step2Line) step2Line.style.display = '';
+            if (step3Dot) { var lbl3 = step3Dot.querySelector('.om-dot-label'); if (lbl3) lbl3.textContent = 'Domain'; }
+            if (step4Dot) step4Dot.style.display = 'none';
+            if (step4Line) step4Line.style.display = 'none';
+            overlay.classList.remove('om-variant-keys', 'om-variant-vps');
 
             if (type === 'vps') {
-                if (domainPanel) domainPanel.style.display = 'none';
+                // Hide domain, show VPS OS as step 3
+                if (domainPanel) { domainPanel.style.display = 'none'; domainPanel.setAttribute('data-panel', '3-domain'); }
                 if (vpsPanel) { vpsPanel.style.display = ''; vpsPanel.setAttribute('data-panel', '3'); }
-                if (step3Dot) { var l = step3Dot.querySelector('.om-dot-label'); if (l) l.textContent = 'Config'; }
+                if (step3Dot) { var l = step3Dot.querySelector('.om-dot-label'); if (l) l.textContent = 'OS'; }
+                // Show VPS Config as step 4
+                if (vpsConfigPanel) vpsConfigPanel.style.display = '';
+                if (step4Dot) step4Dot.style.display = '';
+                if (step4Line) step4Line.style.display = '';
+                overlay.classList.add('om-variant-vps');
             } else if (type === 'keys') {
-                if (domainPanel) domainPanel.style.display = 'none';
+                // Hide domain, show keys details as step 3; skip location & config
+                if (domainPanel) { domainPanel.style.display = 'none'; domainPanel.setAttribute('data-panel', '3-domain'); }
                 if (keysPanel) { keysPanel.style.display = ''; keysPanel.setAttribute('data-panel', '3'); }
                 if (step3Dot) { var l2 = step3Dot.querySelector('.om-dot-label'); if (l2) l2.textContent = 'Details'; }
-                // Keys don't need location
                 if (locationPanel) locationPanel.style.display = 'none';
                 if (step2Dot) step2Dot.style.display = 'none';
+                if (step2Line) step2Line.style.display = 'none';
                 overlay.classList.add('om-variant-keys');
                 // Populate keys info
                 var kp = document.getElementById('omKeysProduct');
@@ -1493,6 +1653,22 @@ document.addEventListener('DOMContentLoaded', function () {
                 var kpr = document.getElementById('omKeysPrice');
                 if (kpr) kpr.value = (planData.currency || '€') + (planData.amount || 0).toFixed(2);
             }
+        }
+
+        function initConfigBadges() {
+            var badgeAddIp = document.getElementById('omBadgeAddIp');
+            var badgeChangeIp = document.getElementById('omBadgeChangeIp');
+
+            overlay.querySelectorAll('input[name="om-addip"]').forEach(function (r) {
+                r.addEventListener('change', function () {
+                    if (badgeAddIp) badgeAddIp.innerHTML = '<i class="fas fa-circle"></i> ' + (r.getAttribute('data-label') || 'No additional IPs');
+                });
+            });
+            overlay.querySelectorAll('input[name="om-changeip"]').forEach(function (r) {
+                r.addEventListener('change', function () {
+                    if (badgeChangeIp) badgeChangeIp.innerHTML = '<i class="fas fa-circle"></i> ' + (r.getAttribute('data-label') || 'No need IP changes');
+                });
+            });
         }
 
         function close() {
@@ -1533,6 +1709,19 @@ document.addEventListener('DOMContentLoaded', function () {
             // Clear other selections
             overlay.querySelectorAll('input[name="om-location"]').forEach(function (r) { r.checked = false; });
             overlay.querySelectorAll('input[name="om-payment"]').forEach(function (r) { r.checked = false; });
+
+            // Reset VPS config radios to defaults
+            var defaultAddIp = overlay.querySelector('input[name="om-addip"][value="0"]');
+            if (defaultAddIp) defaultAddIp.checked = true;
+            var defaultChangeIp = overlay.querySelector('input[name="om-changeip"][value="0"]');
+            if (defaultChangeIp) defaultChangeIp.checked = true;
+            var hostnameInput = document.getElementById('omVpsHostname');
+            if (hostnameInput) hostnameInput.value = '';
+            // Reset badges
+            var badgeAddIp = document.getElementById('omBadgeAddIp');
+            if (badgeAddIp) badgeAddIp.innerHTML = '<i class="fas fa-circle"></i> No additional IPs';
+            var badgeChangeIp = document.getElementById('omBadgeChangeIp');
+            if (badgeChangeIp) badgeChangeIp.innerHTML = '<i class="fas fa-circle"></i> No need IP changes';
 
             // Reset domain inputs
             var domainInput = document.getElementById('omDomainInput');
@@ -1577,19 +1766,33 @@ document.addEventListener('DOMContentLoaded', function () {
             // Scroll body to top
             if (body) body.scrollTop = 0;
 
-            // Update summary if on step 6
-            if (step === totalSteps) updateSummary();
+            // Update summary if on last visible step
+            var vs = getVisibleSteps();
+            if (step === vs[vs.length - 1]) updateSummary();
 
             updateUI();
         }
 
+        function getVisibleSteps() {
+            var steps = [];
+            for (var i = 1; i <= totalSteps; i++) {
+                if (isStepVisible(i)) steps.push(i);
+            }
+            return steps;
+        }
+
         function updateUI() {
-            // Progress fill
-            var pct = ((currentStep - 1) / (totalSteps - 1)) * 100;
+            var visibleSteps = getVisibleSteps();
+            var currentIdx = visibleSteps.indexOf(currentStep);
+            if (currentIdx === -1) currentIdx = 0;
+
+            // Progress fill (based on visible steps)
+            var pct = visibleSteps.length > 1 ? (currentIdx / (visibleSteps.length - 1)) * 100 : 100;
             if (progressFill) progressFill.style.width = pct + '%';
 
-            // Step counter
-            if (stepNumEl) stepNumEl.textContent = currentStep;
+            // Step counter (visible position)
+            if (stepNumEl) stepNumEl.textContent = currentIdx + 1;
+            if (stepTotalEl) stepTotalEl.textContent = visibleSteps.length;
 
             // Step dots
             stepsNav.querySelectorAll('.om-step-dot').forEach(function (dot) {
@@ -1610,10 +1813,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 backBtn.classList.toggle('om-hidden', currentStep === 1);
             }
 
-            // Next button text
+            // Next button text — check if this is the last visible step
+            var isLastStep = (currentIdx === visibleSteps.length - 1);
             if (nextBtn) {
                 nextBtn.classList.remove('om-btn-submit');
-                if (currentStep === totalSteps) {
+                if (isLastStep) {
                     nextBtn.innerHTML = '<i class="fas fa-lock"></i> Place Order';
                     nextBtn.classList.add('om-btn-submit');
                 } else {
@@ -1664,15 +1868,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 case 3:
                     return true;
                 case 4:
+                    return true;
+                case 5:
                     if (!overlay.querySelector('input[name="om-payment"]:checked')) {
                         showStepAlert(step, 'Please select a payment method.', 'error');
                         shakePanel(step);
                         return false;
                     }
                     return true;
-                case 5:
-                    return true;
                 case 6:
+                    return true;
+                case 7:
                     var termsChecked = document.getElementById('omTerms');
                     var refundChecked = document.getElementById('omRefund');
                     if (!termsChecked || !termsChecked.checked || !refundChecked || !refundChecked.checked) {
@@ -2013,49 +2219,98 @@ document.addEventListener('DOMContentLoaded', function () {
        TLD TABLE FILTER & SEARCH
        ═══════════════════════════════════════════ */
     const TldTableFilter = (function () {
+        var PER_PAGE = 10;
+
         function init() {
             document.querySelectorAll('.domain-all-tlds').forEach(function (section) {
                 var filters = section.querySelectorAll('.tld-filter');
                 var searchInput = section.querySelector('.tld-search-input');
-                var rows = section.querySelectorAll('.tld-table tbody tr[data-category]');
+                var rows = Array.from(section.querySelectorAll('.tld-table tbody tr[data-category]'));
                 var activeFilter = 'all';
+                var currentPage = 1;
+
+                // Build pagination UI
+                var paginationWrap = document.createElement('div');
+                paginationWrap.className = 'tld-pagination';
+                var tableWrap = section.querySelector('.tld-table-wrap');
+                if (tableWrap) tableWrap.parentNode.insertBefore(paginationWrap, tableWrap.nextSibling);
 
                 filters.forEach(function (btn) {
                     btn.addEventListener('click', function () {
                         filters.forEach(function (f) { f.classList.remove('active'); });
                         btn.classList.add('active');
                         activeFilter = btn.getAttribute('data-filter');
+                        currentPage = 1;
                         applyFilters();
                     });
                 });
 
                 if (searchInput) {
                     searchInput.addEventListener('input', function () {
+                        currentPage = 1;
                         applyFilters();
                     });
                 }
 
-                function applyFilters() {
+                function getVisibleRows() {
                     var term = searchInput ? searchInput.value.trim().toLowerCase() : '';
-                    var visibleCount = 0;
+                    var visible = [];
                     rows.forEach(function (row) {
                         var cat = row.getAttribute('data-category');
                         var ext = row.querySelector('.tld-ext');
                         var name = ext ? ext.textContent.toLowerCase() : '';
                         var matchCat = activeFilter === 'all' || cat === activeFilter;
                         var matchSearch = !term || name.indexOf(term) !== -1;
-                        if (matchCat && matchSearch) {
-                            row.classList.remove('tld-hidden');
-                            visibleCount++;
-                        } else {
-                            row.classList.add('tld-hidden');
-                        }
+                        if (matchCat && matchSearch) visible.push(row);
                     });
-                    var emptyRow = section.querySelector('.tld-table-empty');
-                    if (emptyRow) {
-                        emptyRow.classList.toggle('visible', visibleCount === 0);
-                    }
+                    return visible;
                 }
+
+                function applyFilters() {
+                    var visible = getVisibleRows();
+                    var totalPages = Math.max(1, Math.ceil(visible.length / PER_PAGE));
+                    if (currentPage > totalPages) currentPage = totalPages;
+
+                    var startIdx = (currentPage - 1) * PER_PAGE;
+                    var endIdx = startIdx + PER_PAGE;
+
+                    rows.forEach(function (row) { row.classList.add('tld-hidden'); });
+                    visible.forEach(function (row, i) {
+                        if (i >= startIdx && i < endIdx) row.classList.remove('tld-hidden');
+                    });
+
+                    var emptyRow = section.querySelector('.tld-table-empty');
+                    if (emptyRow) emptyRow.classList.toggle('visible', visible.length === 0);
+
+                    renderPagination(totalPages, visible.length);
+                }
+
+                function renderPagination(totalPages, totalItems) {
+                    if (totalPages <= 1) { paginationWrap.innerHTML = ''; return; }
+                    var html = '<button class="tld-page-btn tld-page-prev" ' + (currentPage <= 1 ? 'disabled' : '') + '><i class="fas fa-chevron-left"></i></button>';
+                    var startPage = Math.max(1, currentPage - 2);
+                    var endPage = Math.min(totalPages, startPage + 4);
+                    if (endPage - startPage < 4) startPage = Math.max(1, endPage - 4);
+                    for (var p = startPage; p <= endPage; p++) {
+                        html += '<button class="tld-page-btn' + (p === currentPage ? ' active' : '') + '" data-page="' + p + '">' + p + '</button>';
+                    }
+                    html += '<button class="tld-page-btn tld-page-next" ' + (currentPage >= totalPages ? 'disabled' : '') + '><i class="fas fa-chevron-right"></i></button>';
+                    html += '<span class="tld-page-info">' + totalItems + ' extensions</span>';
+                    paginationWrap.innerHTML = html;
+
+                    paginationWrap.querySelectorAll('.tld-page-btn[data-page]').forEach(function (btn) {
+                        btn.addEventListener('click', function () {
+                            currentPage = parseInt(btn.getAttribute('data-page'), 10);
+                            applyFilters();
+                        });
+                    });
+                    var prev = paginationWrap.querySelector('.tld-page-prev');
+                    var next = paginationWrap.querySelector('.tld-page-next');
+                    if (prev) prev.addEventListener('click', function () { if (currentPage > 1) { currentPage--; applyFilters(); } });
+                    if (next) next.addEventListener('click', function () { if (currentPage < totalPages) { currentPage++; applyFilters(); } });
+                }
+
+                applyFilters();
             });
         }
         return { init: init };
@@ -2128,6 +2383,8 @@ document.addEventListener('DOMContentLoaded', function () {
     NavScroll.init();
     PromoBar.init();
     PlanCTAs.init();
+    VpsCTAs.init();
+    MsKeysCTAs.init();
     SwitcherDropdowns.init();
     MobileDrawer.init();
     FAQSection.init();

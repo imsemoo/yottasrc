@@ -10,7 +10,7 @@ define('SITE_NAME',        'YottaSrc');
 define('SITE_URL',         'https://yottasrc.com');
 define('CONSOLE_URL',      'https://console.yottasrc.com');
 define('CP_URL',           'https://cp.yottasrc.com');
-define('ASSETS_VERSION',   '1.0.0');
+define('ASSETS_VERSION',   '1.0.5');
 
 // ── Base Path (auto-detect for local dev vs production) ──
 // On Laragon with localhost/yottasrc → BASE_PATH = '/yottasrc'

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" fill="none">
+  <defs>
+    <linearGradient id="vibg" x1="0" y1="0" x2="200" y2="120" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#1D4ED8"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="120" rx="12" fill="url(#vibg)"/>
+  <g transform="translate(66,14)">
+    <rect x="16" y="4" width="36" height="24" rx="4" fill="#fff" opacity="0.3"/>
+    <circle cx="34" cy="38" r="14" fill="none" stroke="#fff" stroke-width="2.5" opacity="0.8"/>
+    <polygon points="34,24 22,48 46,48" fill="none" stroke="#fff" stroke-width="2" opacity="0.6"/>
+    <line x1="16" y1="16" x2="34" y2="24" stroke="#fff" stroke-width="1.5" opacity="0.5"/>
+    <line x1="52" y1="16" x2="34" y2="24" stroke="#fff" stroke-width="1.5" opacity="0.5"/>
+  </g>
+  <text x="100" y="102" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="14" font-weight="700" fill="#fff" opacity="0.95">Visio</text>
+</svg>

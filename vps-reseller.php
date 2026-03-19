@@ -176,7 +176,7 @@ require_once __DIR__ . '/includes/topbar.php';
                                 <span class="current-price"><span class="currency">€</span><span class="amount">29.99</span><span class="period">EUR / mo</span></span>
                             </div>
                             <div class="plan-renewal"><i class="fas fa-check"></i> Same price on renewal</div>
-                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/order/vps-reseller/starter-pool">Choose Plan</button>
+                            <button class="plan-cta" data-type="vps" data-href="<?php echo e(CP_URL); ?>/order/vps-reseller/starter-pool">Choose Plan</button>
                             <div class="plan-resources">
                                 <div class="plan-res"><i class="fas fa-microchip"></i><span class="res-val">16 vCPU</span><span class="res-label">Total CPU Pool</span></div>
                                 <div class="plan-res"><i class="fas fa-memory"></i><span class="res-val">32 GB</span><span class="res-label">RAM Pool</span></div>
@@ -205,7 +205,7 @@ require_once __DIR__ . '/includes/topbar.php';
                                 <span class="current-price"><span class="currency">€</span><span class="amount">69.99</span><span class="period">EUR / mo</span></span>
                             </div>
                             <div class="plan-renewal"><i class="fas fa-check"></i> Same price on renewal</div>
-                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/order/vps-reseller/growth-pool">Choose Plan</button>
+                            <button class="plan-cta" data-type="vps" data-href="<?php echo e(CP_URL); ?>/order/vps-reseller/growth-pool">Choose Plan</button>
                             <div class="plan-resources">
                                 <div class="plan-res"><i class="fas fa-microchip"></i><span class="res-val">48 vCPU</span><span class="res-label">Total CPU Pool</span></div>
                                 <div class="plan-res"><i class="fas fa-memory"></i><span class="res-val">96 GB</span><span class="res-label">RAM Pool</span></div>
@@ -233,7 +233,7 @@ require_once __DIR__ . '/includes/topbar.php';
                                 <span class="current-price"><span class="currency">€</span><span class="amount">119.99</span><span class="period">EUR / mo</span></span>
                             </div>
                             <div class="plan-renewal"><i class="fas fa-check"></i> Same price on renewal</div>
-                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/order/vps-reseller/scale-pool">Choose Plan</button>
+                            <button class="plan-cta" data-type="vps" data-href="<?php echo e(CP_URL); ?>/order/vps-reseller/scale-pool">Choose Plan</button>
                             <div class="plan-resources">
                                 <div class="plan-res"><i class="fas fa-microchip"></i><span class="res-val">80 vCPU</span><span class="res-label">Total CPU Pool</span></div>
                                 <div class="plan-res"><i class="fas fa-memory"></i><span class="res-val">160 GB</span><span class="res-label">RAM Pool</span></div>
@@ -261,7 +261,7 @@ require_once __DIR__ . '/includes/topbar.php';
                                 <span class="current-price"><span class="currency">€</span><span class="amount">149.99</span><span class="period">EUR / mo</span></span>
                             </div>
                             <div class="plan-renewal"><i class="fas fa-check"></i> Same price on renewal</div>
-                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/order/vps-reseller/enterprise-pool">Choose Plan</button>
+                            <button class="plan-cta" data-type="vps" data-href="<?php echo e(CP_URL); ?>/order/vps-reseller/enterprise-pool">Choose Plan</button>
                             <div class="plan-resources">
                                 <div class="plan-res"><i class="fas fa-microchip"></i><span class="res-val">128 vCPU</span><span class="res-label">Total CPU Pool</span></div>
                                 <div class="plan-res"><i class="fas fa-memory"></i><span class="res-val">256 GB</span><span class="res-label">RAM Pool</span></div>

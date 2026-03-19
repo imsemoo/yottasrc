@@ -204,7 +204,7 @@ $product = [
                             </div>
                         </div>
 
-                        <button class="mkd-order-btn plan-cta" data-type="keys" type="button">
+                        <button class="mkd-order-btn" data-type="keys" type="button">
                             <i class="fas fa-shopping-cart"></i> Order Now — <?php echo e($product['price']); ?>
                         </button>
 
