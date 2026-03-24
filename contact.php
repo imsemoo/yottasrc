@@ -27,12 +27,12 @@ require_once __DIR__ . '/includes/topbar.php';
                     </div>
                     <div class="page-hero-stats">
                         <div class="page-hero-stat">
-                            <span class="stat-num">10<span class="stat-suffix">min</span></span>
+                            <span class="stat-num">&lt;10<span class="stat-suffix">min</span></span>
                             <span class="stat-text">Avg. Response</span>
                         </div>
                         <div class="page-hero-stat">
-                            <span class="stat-num">24/7</span>
-                            <span class="stat-text">Support</span>
+                            <span class="stat-num">24<span class="stat-suffix">/7</span></span>
+                            <span class="stat-text">Live Support</span>
                         </div>
                         <div class="page-hero-stat">
                             <span class="stat-num">250K<span class="stat-suffix">+</span></span>

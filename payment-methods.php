@@ -12,8 +12,8 @@ require_once __DIR__ . '/includes/topbar.php';
     <!-- ═══════════════ HERO ═══════════════ -->
     <section class="page-hero">
         <div class="container">
-            <div class="page-hero-content" style="text-align:center;max-width:720px;margin:0 auto;">
-                <div class="page-breadcrumb" style="justify-content:center;">
+            <div class="page-hero-content" >
+                <div class="page-breadcrumb" >
                     <a href="<?php echo e(SITE_URL); ?>/">Home</a>
                     <i class="fas fa-chevron-right"></i>
                     <span>Payment Methods</span>

@@ -294,26 +294,30 @@ $product = [
                 <span class="section-tag"><i class="fas fa-question-circle"></i> FAQ</span>
                 <h2>Common Questions</h2>
             </div>
-            <div class="faq-list" style="max-width:800px;margin:0 auto;">
-                <div class="faq-item">
-                    <button class="faq-question">Is this a genuine Microsoft product key? <i class="fas fa-chevron-down"></i></button>
-                    <div class="faq-answer"><p>Yes — all our keys are 100% genuine and activate directly on Microsoft's official activation servers. You'll see "Windows is activated with a digital license" in your Settings.</p></div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">What's the difference between Retail and OEM? <i class="fas fa-chevron-down"></i></button>
-                    <div class="faq-answer"><p><strong>Retail keys</strong> can be transferred to a new PC if you deactivate the old one. <strong>OEM keys</strong> are tied permanently to the first device they're activated on. Retail is more flexible; OEM is cheaper.</p></div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">Can I upgrade from Windows 10 to 11 with this key? <i class="fas fa-chevron-down"></i></button>
-                    <div class="faq-answer"><p>Yes. This key works on both Windows 10 and Windows 11. If you're on Windows 10, you can upgrade to 11 for free — your license carries over automatically.</p></div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">How fast is delivery? <i class="fas fa-chevron-down"></i></button>
-                    <div class="faq-answer"><p>Instant. As soon as payment is confirmed, the key is delivered to your email and appears in your YottaSrc dashboard. Typically within 1–2 minutes.</p></div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">What if the key doesn't work? <i class="fas fa-chevron-down"></i></button>
-                    <div class="faq-answer"><p>We offer free replacement. Contact our 24/7 support team and we'll issue a new key immediately — no questions asked.</p></div>
+            <div class="faq-layout faq-layout--full" style="max-width:800px;margin:0 auto;">
+                <div class="faq-panels">
+                    <div class="faq-panel active" id="faq-mkd-all">
+                        <div class="faq-item">
+                            <button class="faq-question"><span>Is this a genuine Microsoft product key?</span><i class="fas fa-chevron-down"></i></button>
+                            <div class="faq-answer"><p>Yes — all our keys are 100% genuine and activate directly on Microsoft's official activation servers. You'll see "Windows is activated with a digital license" in your Settings.</p></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question"><span>What's the difference between Retail and OEM?</span><i class="fas fa-chevron-down"></i></button>
+                            <div class="faq-answer"><p><strong>Retail keys</strong> can be transferred to a new PC if you deactivate the old one. <strong>OEM keys</strong> are tied permanently to the first device they're activated on. Retail is more flexible; OEM is cheaper.</p></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question"><span>Can I upgrade from Windows 10 to 11 with this key?</span><i class="fas fa-chevron-down"></i></button>
+                            <div class="faq-answer"><p>Yes. This key works on both Windows 10 and Windows 11. If you're on Windows 10, you can upgrade to 11 for free — your license carries over automatically.</p></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question"><span>How fast is delivery?</span><i class="fas fa-chevron-down"></i></button>
+                            <div class="faq-answer"><p>Instant. As soon as payment is confirmed, the key is delivered to your email and appears in your YottaSrc dashboard. Typically within 1–2 minutes.</p></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question"><span>What if the key doesn't work?</span><i class="fas fa-chevron-down"></i></button>
+                            <div class="faq-answer"><p>We offer free replacement. Contact our 24/7 support team and we'll issue a new key immediately — no questions asked.</p></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

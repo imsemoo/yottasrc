@@ -12,8 +12,8 @@ require_once __DIR__ . '/includes/topbar.php';
     <!-- ═══════════════ HERO ═══════════════ -->
     <section class="page-hero">
         <div class="container">
-            <div class="page-hero-content" style="text-align:center;max-width:760px;margin:0 auto;">
-                <div class="page-breadcrumb" style="justify-content:center;">
+            <div class="page-hero-content" >
+                <div class="page-breadcrumb" >
                     <a href="<?php echo e(SITE_URL); ?>/">Home</a>
                     <i class="fas fa-chevron-right"></i>
                     <a href="<?php echo e(SITE_URL); ?>/domains-registration/">Domains</a>
@@ -24,7 +24,7 @@ require_once __DIR__ . '/includes/topbar.php';
                 <p class="page-hero-desc">
                     Move your domains to YottaSrc in minutes. Get a free 1-year extension, free WHOIS privacy, and premium DNS — all at no extra cost.
                 </p>
-                <div class="page-hero-badges" style="justify-content:center;">
+                <div class="page-hero-badges" >
                     <div class="hero-badge-item"><i class="fas fa-check"></i> Free 1-Year Extension</div>
                     <div class="hero-badge-item"><i class="fas fa-check"></i> Free WHOIS Privacy</div>
                     <div class="hero-badge-item"><i class="fas fa-check"></i> Zero Downtime</div>

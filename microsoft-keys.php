@@ -176,13 +176,13 @@ require_once __DIR__ . '/includes/topbar.php';
         </div>
     </section>
 
-    <!-- ═══════════════ WHY RESELL KEYS ═══════════════ -->
-    <section class="cp-benefits reveal">
+    <!-- ═══════════════ WHY RESELL + GENUINE LICENSES (MERGED) ═══════════════ -->
+    <section class="cp-benefits ms-combined reveal">
         <div class="container">
             <div class="section-header">
                 <div class="section-tag">Why Resell</div>
-                <h2>Why resell software licenses?</h2>
-                <p>License keys are 100% digital — no shipping, no warehousing, maximum profit.</p>
+                <h2>Why resell genuine Microsoft licenses?</h2>
+                <p>100% digital, authentic keys — no shipping, no warehousing, maximum profit and client trust.</p>
             </div>
 
             <div class="cp-benefits-grid">
@@ -206,39 +206,25 @@ require_once __DIR__ . '/includes/topbar.php';
                     <h4>Global Demand</h4>
                     <p>Microsoft licenses sell worldwide — Windows and Office are used by billions. Evergreen demand for your business.</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══════════════ TRUST / GENUINE LICENSES ═══════════════ -->
-    <section class="ms-trust reveal">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-tag">Trust</div>
-                <h2>Genuine Microsoft licenses</h2>
-                <p>Every key we supply is authentic and activates through official Microsoft servers.</p>
-            </div>
-
-            <div class="cp-benefits-grid">
                 <div class="cp-security-card">
                     <div class="cp-security-icon"><i class="fas fa-shield-alt"></i></div>
                     <h4>Genuine Activation Keys</h4>
                     <p>Keys activate directly with Microsoft's official servers. No workarounds, no risk.</p>
                 </div>
                 <div class="cp-security-card">
-                    <div class="cp-security-icon icon-green"><i class="fas fa-bolt"></i></div>
-                    <h4>Instant Digital Delivery</h4>
-                    <p>Keys are delivered digitally with no waiting or shipping. Your clients get keys in seconds.</p>
-                </div>
-                <div class="cp-security-card">
-                    <div class="cp-security-icon icon-purple"><i class="fas fa-globe"></i></div>
+                    <div class="cp-security-icon icon-green"><i class="fas fa-certificate"></i></div>
                     <h4>Global Activation</h4>
                     <p>Licenses work in most regions worldwide. Sell to clients anywhere on the globe.</p>
                 </div>
                 <div class="cp-security-card">
-                    <div class="cp-security-icon icon-amber"><i class="fas fa-sync-alt"></i></div>
+                    <div class="cp-security-icon icon-purple"><i class="fas fa-sync-alt"></i></div>
                     <h4>Replacement Guarantee</h4>
                     <p>If a key has an issue, it will be replaced quickly — no questions asked.</p>
+                </div>
+                <div class="cp-security-card">
+                    <div class="cp-security-icon icon-amber"><i class="fas fa-headset"></i></div>
+                    <h4>Dedicated Reseller Support</h4>
+                    <p>Personal account manager and priority support for all reseller orders and inquiries.</p>
                 </div>
             </div>
         </div>

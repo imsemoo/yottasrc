@@ -464,7 +464,7 @@ require_once __DIR__ . '/includes/topbar.php';
     </section>
 
     <!-- ═══════════════ WHY BUY FROM US ═══════════════ -->
-    <section class="cp-benefits reveal">
+    <section class="cp-benefits ms-whybuy reveal">
         <div class="container">
             <div class="section-header">
                 <div class="section-tag">Guarantees</div>

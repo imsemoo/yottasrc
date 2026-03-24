@@ -12,8 +12,8 @@ require_once __DIR__ . '/includes/topbar.php';
     <!-- ═══════════════ HERO ═══════════════ -->
     <section class="page-hero">
         <div class="container">
-            <div class="page-hero-content" style="text-align:center;max-width:760px;margin:0 auto;">
-                <div class="page-breadcrumb" style="justify-content:center;">
+            <div class="page-hero-content" >
+                <div class="page-breadcrumb">
                     <a href="<?php echo e(SITE_URL); ?>/">Home</a>
                     <i class="fas fa-chevron-right"></i>
                     <a href="<?php echo e(SITE_URL); ?>/domains-registration/">Domains</a>
@@ -24,7 +24,7 @@ require_once __DIR__ . '/includes/topbar.php';
                 <p class="page-hero-desc">
                     Search from 500+ TLDs and register your domain in seconds. Free WHOIS privacy, DNS management, and email forwarding included with every domain.
                 </p>
-                <div class="page-hero-badges" style="justify-content:center;">
+                <div class="page-hero-badges" >
                     <div class="hero-badge-item"><i class="fas fa-check"></i> 500+ TLDs</div>
                     <div class="hero-badge-item"><i class="fas fa-check"></i> Free WHOIS Privacy</div>
                     <div class="hero-badge-item"><i class="fas fa-check"></i> Free DNS Management</div>
@@ -303,7 +303,7 @@ require_once __DIR__ . '/includes/topbar.php';
                     <p>Your personal information is hidden from public WHOIS lookups at no charge. Enabled by default on all eligible TLDs.</p>
                 </div>
                 <div class="bento-card bento-sm">
-                    <div class="bento-card-icon icon-green"><i class="fas fa-dns"></i></div>
+                    <div class="bento-card-icon icon-green"><i class="fas fa-server"></i></div>
                     <h3>DNS Management</h3>
                     <p>Full DNS zone editor with support for A, AAAA, CNAME, MX, TXT, SRV, and CAA records.</p>
                 </div>

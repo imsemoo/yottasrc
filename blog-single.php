@@ -94,15 +94,12 @@ OPTIMIZE TABLE wp_options;</code></pre>
 
                 <aside class="article-sidebar">
                     <div class="sidebar-card">
-                        <h5>Table of Contents</h5>
-                        <ul class="sidebar-toc">
-                            <li><a href="#intro">Introduction</a></li>
-                            <li><a href="#litespeed">Enable LiteSpeed Caching</a></li>
-                            <li><a href="#database">Optimize Your Database</a></li>
-                            <li><a href="#cdn">Use a CDN</a></li>
-                            <li><a href="#images">Compress Images</a></li>
-                            <li><a href="#http">Minimize HTTP Requests</a></li>
-                            <li><a href="#conclusion">Conclusion</a></li>
+                        <h5><i class="fas fa-concierge-bell"></i> Related Services</h5>
+                        <ul class="sidebar-services">
+                            <li><a href="<?php echo e(SITE_URL); ?>/cpanel-hosting/"><i class="fas fa-server"></i> cPanel Hosting</a></li>
+                            <li><a href="<?php echo e(SITE_URL); ?>/vps/"><i class="fas fa-cloud"></i> VPS Servers</a></li>
+                            <li><a href="<?php echo e(SITE_URL); ?>/cloud-hosting/"><i class="fas fa-bolt"></i> Cloud Hosting</a></li>
+                            <li><a href="<?php echo e(SITE_URL); ?>/dedicated/"><i class="fas fa-hdd"></i> Dedicated Servers</a></li>
                         </ul>
                     </div>
                     <div class="sidebar-card sidebar-cta">

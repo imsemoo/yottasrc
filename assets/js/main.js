@@ -749,7 +749,7 @@ document.addEventListener('DOMContentLoaded', function () {
             new Swiper(el, {
                 rtl: isRTL,
                 slidesPerView: 2,
-                spaceBetween: 16,
+                spaceBetween: 12,
                 grabCursor: true,
                 loop: true,
                 autoplay: {
@@ -762,7 +762,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     clickable: true
                 },
                 breakpoints: {
-                    640: { slidesPerView: 3 },
+                    640: { slidesPerView: 2, spaceBetween: 16 },
                     1024: { slidesPerView: 4 },
                     1280: { slidesPerView: 5 }
                 }
@@ -1098,8 +1098,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     var target = this.getAttribute('data-loc-target');
                     if (!target) return;
 
-                    tabs.forEach(function (t) { t.classList.remove('active'); });
-                    document.querySelectorAll('.loc-panel').forEach(function (p) { p.classList.remove('active'); });
+                    var section = this.closest('.locations-section') || this.closest('section') || document;
+                    section.querySelectorAll('.loc-tab').forEach(function (t) { t.classList.remove('active'); });
+                    section.querySelectorAll('.loc-panel').forEach(function (p) { p.classList.remove('active'); });
 
                     this.classList.add('active');
                     var panel = document.getElementById(target);
@@ -1235,7 +1236,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Build first track — duplicate logos enough times so track is always wider than viewport
                 var track1 = document.createElement('div');
                 track1.className = 'partners-track';
-                var copies = Math.max(2, Math.ceil(6 / logos.length));
+                var copies = Math.max(3, Math.ceil(10 / logos.length));
                 for (var c = 0; c < copies; c++) {
                     logos.forEach(function (logo) {
                         track1.appendChild(logo.cloneNode(true));
@@ -2373,6 +2374,115 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     /* ═══════════════════════════════════════════
+       Module 30: Mobile Grid → Swiper (mobile-only)
+       ═══════════════════════════════════════════ */
+    const MobileGridSwiper = (function () {
+        var instances = [];
+
+        function init() {
+            if (window.innerWidth > 768 || typeof Swiper === 'undefined') return;
+
+            var configs = [
+                // reseller pages — comparison tiers (promotional, OK as slider)
+                { grid: '.rs-hierarchy .rs-tiers-grid', rows: 1, perView: 1.3 },
+                // dedicated — "Build Your Server, Your Way" (6 config steps)
+                { grid: '.ds-config .ds-config-grid', rows: 1, perView: 1.3 },
+                // dedicated — "Enterprise Infrastructure You Can Trust" (6 cards, 2 rows)
+                { grid: '.ds-reliability .ds-reliability-grid', rows: 2, perView: 1.3 },
+                // microsoft-keys — "Products available for reselling" (4 cards)
+                { grid: '.ms-catalog .cp-benefits-grid', rows: 1, perView: 1.3 },
+                // microsoft-keys — merged "Why resell + Genuine licenses" (8 cards, 2 rows)
+                { grid: '.ms-combined .cp-benefits-grid', rows: 2, perView: 1.3 },
+                // microsoft-key-detail — "You May Also Like" (4 cards)
+                { grid: '.mkd-related .mkd-related-grid', rows: 1, perView: 1.3 },
+                // microsoft-licenses — product grids (many cards, 2 rows)
+                { grid: '.ms-products .ms-product-grid', rows: 2, perView: 1.3 },
+                // microsoft-licenses — "Why buy from YottaSrc" (6 cards, 2 rows)
+                { grid: '.ms-whybuy .cp-benefits-grid', rows: 2, perView: 1.3 },
+                // blog-single — "Related Articles" (3 cards)
+                { grid: '.related-articles .related-grid', rows: 1, perView: 1.15 },
+                // payment-methods — payment grid (2 rows)
+                { grid: '.payment-methods .payment-grid', rows: 2, perView: 1.3 },
+                // datacenter — "Built for reliability" (2 rows)
+                { grid: '.dc-sla .dc-sla-grid', rows: 2, perView: 1.3 },
+                // datacenter — "Enterprise server specifications"
+                { grid: '.dc-specs .dc-specs-grid', rows: 1, perView: 1.3 }
+            ];
+
+            configs.forEach(function (cfg) {
+                var grids = document.querySelectorAll(cfg.grid);
+                grids.forEach(function (grid) {
+                    if (grid.dataset.mobileSwiper) return;
+                    grid.dataset.mobileSwiper = '1';
+                    convertToSwiper(grid, cfg.rows, cfg.perView);
+                });
+            });
+        }
+
+        function convertToSwiper(grid, rows, perView) {
+            var items = Array.from(grid.children);
+            if (items.length < 2) return;
+
+            // Outer container holds swiper + pagination
+            var outer = document.createElement('div');
+            outer.className = 'mobile-grid-swiper-wrap';
+
+            var swiperEl = document.createElement('div');
+            swiperEl.className = 'swiper mobile-grid-swiper';
+
+            var wrapper = document.createElement('div');
+            wrapper.className = 'swiper-wrapper';
+
+            if (rows > 1) {
+                for (var i = 0; i < items.length; i += rows) {
+                    var slide = document.createElement('div');
+                    slide.className = 'swiper-slide';
+                    var stack = document.createElement('div');
+                    stack.className = 'mobile-swiper-stack';
+                    for (var j = 0; j < rows && (i + j) < items.length; j++) {
+                        stack.appendChild(items[i + j]);
+                    }
+                    slide.appendChild(stack);
+                    wrapper.appendChild(slide);
+                }
+            } else {
+                items.forEach(function (item) {
+                    var slide = document.createElement('div');
+                    slide.className = 'swiper-slide';
+                    slide.appendChild(item);
+                    wrapper.appendChild(slide);
+                });
+            }
+
+            // Pagination sits outside swiper so swiper can overflow:hidden
+            var pagination = document.createElement('div');
+            pagination.className = 'swiper-pagination mobile-grid-pagination';
+
+            swiperEl.appendChild(wrapper);
+            outer.appendChild(swiperEl);
+            outer.appendChild(pagination);
+
+            grid.parentNode.replaceChild(outer, grid);
+
+            var swiper = new Swiper(swiperEl, {
+                rtl: isRTL,
+                slidesPerView: perView || 1.15,
+                spaceBetween: 12,
+                grabCursor: true,
+                pagination: {
+                    el: pagination,
+                    clickable: true
+                }
+            });
+
+            instances.push(swiper);
+        }
+
+        return { init: init };
+    })();
+
+
+    /* ═══════════════════════════════════════════
        INITIALIZE ALL MODULES
        ═══════════════════════════════════════════ */
     ThemeToggle.init();
@@ -2409,4 +2519,5 @@ document.addEventListener('DOMContentLoaded', function () {
     DCLocationExpand.init();
     TldTableFilter.init();
     MsKeyDetail.init();
+    MobileGridSwiper.init();
 });

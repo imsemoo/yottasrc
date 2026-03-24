@@ -25,6 +25,10 @@
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
                         </a>
                     </div>
+                    <div class="footer-auth">
+                        <a href="<?php echo e(CONSOLE_URL); ?>/login" class="footer-auth-btn footer-login"><i class="fas fa-sign-in-alt"></i> Log In</a>
+                        <a href="<?php echo e(CONSOLE_URL); ?>/register" class="footer-auth-btn footer-register"><i class="fas fa-user-plus"></i> Get Started</a>
+                    </div>
                 </div>
 
                 <div class="footer-column">
@@ -70,6 +74,21 @@
                         <li><a href="<?php echo e(SITE_URL); ?>/data/resource-usage/">Fair Usage</a></li>
                         <li><a href="<?php echo e(SITE_URL); ?>/report-abuse/">Report Abuse</a></li>
                     </ul>
+                </div>
+            </div>
+
+            <div class="footer-trusted">
+                <div class="footer-trusted-logos">
+                    <span class="footer-trusted-logo"><i class="fas fa-shield-alt"></i> AbuseIPDB</span>
+                    <span class="footer-trusted-logo"><i class="fas fa-fingerprint"></i> FraudRecord</span>
+                    <span class="footer-trusted-logo"><i class="fas fa-network-wired"></i> RIPE NCC</span>
+                    <span class="footer-trusted-logo"><i class="fas fa-microchip"></i> AMD</span>
+                    <span class="footer-trusted-logo"><i class="fas fa-server"></i> Dell</span>
+                    <span class="footer-trusted-logo"><i class="fas fa-print"></i> HP</span>
+                    <span class="footer-trusted-logo"><i class="fas fa-sitemap"></i> Juniper</span>
+                    <span class="footer-trusted-logo"><i class="fas fa-project-diagram"></i> Cisco</span>
+                    <span class="footer-trusted-logo"><i class="fas fa-memory"></i> Intel</span>
+                    <span class="footer-trusted-logo"><i class="fab fa-cpanel"></i> cPanel</span>
                 </div>
             </div>
 
