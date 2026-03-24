@@ -271,6 +271,16 @@ require_once __DIR__ . '/includes/topbar.php';
                         </div>
                     </a>
 
+                    <!-- ── Pagination ── -->
+                    <nav class="blog-pagination" id="blogPagination">
+                        <a href="#" class="pagination-btn pagination-prev disabled"><i class="fas fa-arrow-left"></i> Previous</a>
+                        <div class="pagination-pages">
+                            <a href="#" class="pagination-num active">1</a>
+                            <a href="#" class="pagination-num">2</a>
+                            <a href="#" class="pagination-num">3</a>
+                        </div>
+                        <a href="#" class="pagination-btn pagination-next">Next <i class="fas fa-arrow-right"></i></a>
+                    </nav>
                 </div>
 
                 <!-- ── Sidebar ── -->
@@ -351,16 +361,6 @@ require_once __DIR__ . '/includes/topbar.php';
                 <p>No articles found matching your search.</p>
             </div>
 
-            <!-- ── Pagination ── -->
-            <nav class="blog-pagination" id="blogPagination">
-                <a href="#" class="pagination-btn pagination-prev disabled"><i class="fas fa-arrow-left"></i> Previous</a>
-                <div class="pagination-pages">
-                    <a href="#" class="pagination-num active">1</a>
-                    <a href="#" class="pagination-num">2</a>
-                    <a href="#" class="pagination-num">3</a>
-                </div>
-                <a href="#" class="pagination-btn pagination-next">Next <i class="fas fa-arrow-right"></i></a>
-            </nav>
         </div>
     </section>
 

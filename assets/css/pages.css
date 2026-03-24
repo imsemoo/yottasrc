@@ -6449,6 +6449,31 @@
         gap: 10px;
     }
 
+    /* ─── Timeline: compact for 2-per-slide on mobile ─── */
+    .tl-card {
+        padding: 16px 12px;
+    }
+
+    .tl-card h4 {
+        font-size: 0.82rem;
+    }
+
+    .tl-card p {
+        font-size: 0.72rem;
+    }
+
+    .tl-icon {
+        width: 34px;
+        height: 34px;
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+    }
+
+    .tl-year {
+        font-size: 0.75rem;
+        margin-bottom: 10px;
+    }
+
     /* ─── Wholesale: discount tier compact ─── */
     .ws-tier-pct {
         font-size: 0.95rem;
@@ -8537,9 +8562,10 @@
     justify-content: center;
     align-items: center;
     gap: 8px;
-    margin-top: 48px;
-    padding-top: 32px;
+    margin-top: 28px;
+    padding-top: 28px;
     border-top: 1px solid var(--border-primary);
+    grid-column: 1 / -1;
 }
 
 .pagination-btn {
@@ -12624,12 +12650,9 @@ body .partner-feature+.partner-feature {
 }
 
 .dc-loc-details {
-    padding: 0 20px 20px;
     border-top: 1px solid var(--border-primary);
-    padding-top: 16px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px 24px;
 }
 
 .dc-loc-detail {
@@ -12639,6 +12662,17 @@ body .partner-feature+.partner-feature {
     align-items: flex-start;
     gap: 10px;
     line-height: 1.55;
+    padding: 10px 20px;
+    border-bottom: 1px solid var(--border-primary);
+}
+
+.dc-loc-detail:nth-child(odd) {
+    background: var(--bg-tertiary);
+}
+
+.dc-loc-detail:nth-last-child(1),
+.dc-loc-detail:nth-last-child(2) {
+    border-bottom: none;
 }
 
 .dc-loc-detail i {
@@ -12660,21 +12694,49 @@ body .partner-feature+.partner-feature {
 /* ─── Responsive: DC Locations ─── */
 @media (max-width: 768px) {
     .dc-region {
-        margin-bottom: 20px;
+        margin-bottom: 24px;
     }
 
+    /* Region label as divider */
     .dc-region-label {
-        font-size: 0.72rem;
-        margin-bottom: 8px;
+        font-size: 0.7rem;
+        margin-bottom: 0;
+        padding: 10px 0;
+        border-bottom: 2px solid var(--brand-primary);
+        gap: 6px;
     }
 
+    .dc-region-label i {
+        font-size: 0.75rem;
+    }
+
+    /* Cards stack as unified group */
     .dc-loc-card {
-        margin-bottom: 4px;
+        margin-bottom: 0;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+        border-bottom: none;
+    }
+
+    .dc-loc-card:last-child {
+        border-bottom: 1px solid var(--border-primary);
+    }
+
+    .dc-loc-card:first-of-type {
+        border-top: none;
+    }
+
+    /* Open card accent */
+    .dc-loc-card.open {
+        border-left: 3px solid var(--brand-primary);
+        background: var(--bg-card);
+        box-shadow: none;
     }
 
     .dc-loc-header {
-        padding: 10px 14px;
-        gap: 8px;
+        padding: 12px 14px;
+        gap: 10px;
     }
 
     .dc-loc-operator {
@@ -12691,34 +12753,64 @@ body .partner-feature+.partner-feature {
 
     .dc-loc-details {
         grid-template-columns: 1fr;
-        padding: 0 14px 14px;
-        padding-top: 12px;
-        gap: 6px;
     }
 
     .dc-loc-detail {
-        font-size: 0.8rem;
+        font-size: 0.78rem;
         gap: 8px;
+        padding: 8px 14px;
+        flex-wrap: wrap;
+    }
+
+    /* Label on its own line for clarity */
+    .dc-loc-detail strong {
+        display: block;
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        color: var(--brand-primary);
+        margin-bottom: 1px;
+    }
+
+    .dc-loc-detail:nth-child(odd) {
+        background: var(--bg-tertiary);
+    }
+
+    .dc-loc-detail:nth-child(even) {
+        background: transparent;
+    }
+
+    .dc-loc-detail:nth-last-child(1) {
+        border-bottom: none;
+    }
+
+    .dc-loc-detail:nth-last-child(2) {
+        border-bottom: 1px solid var(--border-primary);
     }
 }
 
 @media (max-width: 480px) {
     .dc-loc-header {
-        padding: 9px 12px;
-        gap: 6px;
+        padding: 10px 12px;
+        gap: 8px;
     }
 
     .dc-loc-name {
-        font-size: 0.8rem;
+        font-size: 0.78rem;
     }
 
     .dc-loc-tier {
-        font-size: 0.58rem;
+        font-size: 0.56rem;
         padding: 2px 7px;
     }
 
     .dc-loc-detail {
-        font-size: 0.76rem;
+        font-size: 0.74rem;
+        padding: 7px 12px;
+    }
+
+    .dc-loc-detail strong {
+        font-size: 0.68rem;
     }
 }
 
@@ -13205,9 +13297,9 @@ body .partner-feature+.partner-feature {
 
 .ws-tier {
     display: grid;
-    grid-template-columns: 80px 1fr auto auto auto;
+    grid-template-columns: 56px 1fr auto auto auto;
     align-items: center;
-    gap: 20px;
+    gap: 16px;
     background: var(--bg-card);
     border: 1px solid var(--border-primary);
     border-radius: var(--radius-lg);
@@ -13248,8 +13340,8 @@ body .partner-feature+.partner-feature {
 /* Discount visual gauge */
 .ws-tier-discount {
     position: relative;
-    width: 72px;
-    height: 72px;
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
     background: var(--bg-tertiary);
     display: flex;
@@ -13257,7 +13349,8 @@ body .partner-feature+.partner-feature {
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    overflow: hidden;
+    border: 2px solid transparent;
+    transition: border-color var(--duration-fast) ease;
 }
 
 .ws-tier-discount::before {
@@ -13273,29 +13366,28 @@ body .partner-feature+.partner-feature {
 .ws-tier-discount::after {
     content: '';
     position: absolute;
-    inset: 5px;
+    inset: 3px;
     border-radius: 50%;
     background: var(--bg-card);
+}
+
+.ws-tier:hover .ws-tier-discount,
+.ws-tier:focus-within .ws-tier-discount {
+    border-color: var(--brand-primary);
 }
 
 .ws-tier-pct {
     position: relative;
     z-index: 1;
     font-family: var(--font-display);
-    font-size: 1.25rem;
+    font-size: 1.05rem;
     font-weight: 800;
     color: var(--brand-primary);
     line-height: 1;
 }
 
 .ws-tier-pct-label {
-    position: relative;
-    z-index: 1;
-    font-size: 0.58rem;
-    color: var(--text-tertiary);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-top: 1px;
+    display: none;
 }
 
 /* Plan name + target */
@@ -13410,20 +13502,20 @@ body .partner-feature+.partner-feature {
 /* ─── Responsive: WS Tiers ─── */
 @media (max-width: 900px) {
     .ws-tier {
-        grid-template-columns: 64px 1fr auto;
+        grid-template-columns: 50px 1fr auto;
         grid-template-rows: auto auto;
-        gap: 12px 16px;
-        padding: 18px 20px;
+        gap: 10px 14px;
+        padding: 16px 18px;
     }
 
     .ws-tier-discount {
         grid-row: 1 / 3;
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
     }
 
     .ws-tier-pct {
-        font-size: 1.1rem;
+        font-size: 0.95rem;
     }
 
     .ws-tier-meta {
@@ -13445,20 +13537,20 @@ body .partner-feature+.partner-feature {
 
 @media (max-width: 600px) {
     .ws-tier {
-        grid-template-columns: 56px 1fr;
-        gap: 10px 14px;
-        padding: 16px;
+        grid-template-columns: 44px 1fr;
+        gap: 8px 12px;
+        padding: 14px;
     }
 
     .ws-tier-discount {
         grid-row: 1;
         grid-column: 1;
-        width: 52px;
-        height: 52px;
+        width: 44px;
+        height: 44px;
     }
 
     .ws-tier-pct {
-        font-size: 1rem;
+        font-size: 0.88rem;
     }
 
     .ws-tier-info {

@@ -639,30 +639,88 @@ img {
     color: var(--brand-primary);
 }
 
-/* Language switcher: grid layout (2 per row) */
+/* Language switcher: premium grid layout */
 #langSwitcher .switcher-menu {
-    min-width: 280px;
-    display: flex;
-    flex-direction: column;
+    min-width: 320px;
+    padding: 10px;
 }
 
 #langSwitcher .switcher-menu-title {
-    width: 100%;
+    padding: 6px 8px 10px;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+#langSwitcher .switcher-menu-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border-primary);
 }
 
 .lang-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4px;
+    gap: 6px;
 }
 
 .lang-grid .switcher-option {
-    padding: 8px 10px;
-    font-size: 0.82rem;
+    padding: 12px 14px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-primary);
+    gap: 10px;
+    transition: all var(--duration-fast) ease;
+    position: relative;
+}
+
+.lang-grid .switcher-option .fi {
+    font-size: 1.35rem;
+    border-radius: 3px;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1));
+}
+
+.lang-grid .switcher-option:hover {
+    border-color: rgba(37, 99, 235, 0.3);
+    background: rgba(37, 99, 235, 0.04);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
 }
 
 .lang-grid .switcher-option .fa-check {
     display: none;
+}
+
+/* Radio indicator */
+.lang-grid .switcher-option::after {
+    content: '';
+    margin-left: auto;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid var(--border-primary);
+    flex-shrink: 0;
+    transition: all var(--duration-fast) ease;
+}
+
+.lang-grid .switcher-option:hover::after {
+    border-color: rgba(37, 99, 235, 0.4);
+}
+
+.lang-grid .switcher-option.active {
+    border-color: var(--brand-primary);
+    background: rgba(37, 99, 235, 0.06);
+    color: var(--text-primary);
+}
+
+.lang-grid .switcher-option.active::after {
+    border-color: var(--brand-primary);
+    background: var(--brand-primary);
+    box-shadow: inset 0 0 0 2.5px var(--bg-elevated);
 }
 
 [dir="rtl"] .switcher-menu {
@@ -671,6 +729,11 @@ img {
 }
 
 [dir="rtl"] .switcher-option .fa-check {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+[dir="rtl"] .lang-grid .switcher-option::after {
     margin-left: 0;
     margin-right: auto;
 }
@@ -3571,6 +3634,10 @@ img {
         grid-template-columns: 1fr;
     }
 
+    .hero-content {
+        max-width: 600px;
+    }
+
     .hero h1 {
         font-size: 2.8rem;
     }
@@ -3653,7 +3720,17 @@ img {
     #langSwitcher .switcher-menu {
         min-width: unset;
         width: calc(100vw - 24px);
-        max-width: 280px;
+        max-width: 340px;
+        padding: 10px;
+    }
+
+    .lang-grid .switcher-option {
+        padding: 10px 12px;
+        font-size: 0.84rem;
+    }
+
+    .lang-grid .switcher-option .fi {
+        font-size: 1.2rem;
     }
 
     [dir="rtl"] .switcher-dropdown .switcher-menu {
@@ -3691,15 +3768,8 @@ img {
         padding: 28px 0 32px;
     }
 
-    .hero .container {
-        text-align: center;
-    }
-
     .hero-content {
         max-width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
     }
 
     .hero h1 {
@@ -3731,7 +3801,6 @@ img {
     .hero-ctas .btn-primary,
     .hero-ctas .btn-secondary {
         flex: 1;
-        justify-content: center;
         padding: 12px 14px;
         font-size: 0.82rem;
         white-space: nowrap;
@@ -3740,7 +3809,6 @@ img {
     .hero-trust {
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: center;
         gap: 8px;
         width: 100%;
     }
@@ -4670,20 +4738,11 @@ img {
 @media (max-width: 768px) {
     [dir="rtl"] .hero .container {
         grid-template-columns: 1fr;
-        text-align: center;
     }
 
     [dir="rtl"] .hero-content {
         grid-column: 1;
-        text-align: center;
-    }
-
-    [dir="rtl"] .hero-ctas {
-        justify-content: center;
-    }
-
-    [dir="rtl"] .hero-trust {
-        justify-content: center;
+        text-align: right;
     }
 
     [dir="rtl"] .footer-auth {
