@@ -26,14 +26,14 @@
 }
 
 /* Hero content without visual — centered on desktop */
-.container > .page-hero-content {
+.container>.page-hero-content {
     text-align: center;
     margin: 0 auto;
 }
 
-.container > .page-hero-content .page-breadcrumb,
-.container > .page-hero-content .page-hero-badges,
-.container > .page-hero-content .page-hero-ctas {
+.container>.page-hero-content .page-breadcrumb,
+.container>.page-hero-content .page-hero-badges,
+.container>.page-hero-content .page-hero-ctas {
     justify-content: center;
 }
 
@@ -105,14 +105,11 @@
     font-size: 1.05rem;
     color: var(--text-secondary);
     line-height: 1.7;
-   
-    max-width: 600px;
     margin-bottom: 24px;
 }
 
 .page-hero-stats {
     display: flex;
-    justify-content: center;
     gap: 32px;
     margin-top: 32px;
 }
@@ -5831,14 +5828,14 @@
     }
 
     /* Hero content without visual — start-aligned on mobile */
-    .container > .page-hero-content {
+    .container>.page-hero-content {
         text-align: left;
         margin: 0;
     }
 
-    .container > .page-hero-content .page-breadcrumb,
-    .container > .page-hero-content .page-hero-badges,
-    .container > .page-hero-content .page-hero-ctas {
+    .container>.page-hero-content .page-breadcrumb,
+    .container>.page-hero-content .page-hero-badges,
+    .container>.page-hero-content .page-hero-ctas {
         justify-content: flex-start;
     }
 
@@ -5880,9 +5877,9 @@
     }
 
     /* Odd card count: last card spans full width */
-    .bento-grid > :last-child:nth-child(odd),
-    .features-grid > :last-child:nth-child(odd),
-    .dedicated-features-grid > :last-child:nth-child(odd) {
+    .bento-grid> :last-child:nth-child(odd),
+    .features-grid> :last-child:nth-child(odd),
+    .dedicated-features-grid> :last-child:nth-child(odd) {
         grid-column: 1 / -1 !important;
     }
 
@@ -12486,12 +12483,16 @@ body .partner-feature+.partner-feature {
         grid-template-columns: repeat(2, 1fr);
         gap: 10px;
     }
-.dc-hero-stat-suffix{
-    font-size: 1rem;
-}
-.page-hero-stat .stat-num, .hero-stat-num{
-       font-size: 1.2rem;
-}
+
+    .dc-hero-stat-suffix {
+        font-size: 1rem;
+    }
+
+    .page-hero-stat .stat-num,
+    .hero-stat-num {
+        font-size: 1.2rem;
+    }
+
     .dc-hero-stat {
         padding: 14px 16px;
     }
@@ -16447,10 +16448,7 @@ body .partner-feature+.partner-feature {
    RTL OVERRIDES — Pages
    ═══════════════════════════════════════════ */
 
-/* ─── Page Hero ─── */
-[dir="rtl"] .page-hero-content {
-    text-align: right;
-}
+
 
 [dir="rtl"] .page-hero-split {
     /* Do NOT set direction:rtl — it leaks into SVG <text> elements,
@@ -16459,15 +16457,7 @@ body .partner-feature+.partner-feature {
     grid-template-columns: 1fr 1.4fr;
 }
 
-[dir="rtl"] .page-hero-split>.page-hero-content {
-    grid-column: 2;
-    grid-row: 1;
-}
 
-[dir="rtl"] .page-hero-split>.page-hero-visual {
-    grid-column: 1;
-    grid-row: 1;
-}
 
 [dir="rtl"] .page-breadcrumb {
     direction: rtl;
@@ -16532,56 +16522,15 @@ body .partner-feature+.partner-feature {
     transform: scaleX(-1);
 }
 
-/* ─── Feature / Info Sections ─── */
-[dir="rtl"] .feature-card {
-    text-align: right;
-}
 
 [dir="rtl"] .feature-card-icon {
     margin-left: auto;
     margin-right: 0;
 }
 
-[dir="rtl"] .info-grid-item,
-[dir="rtl"] .why-card,
-[dir="rtl"] .benefit-card {
-    text-align: right;
-}
-
-/* ─── Hosting / VPS / Dedicated pages ─── */
-[dir="rtl"] .cp-hero .page-hero-content,
-[dir="rtl"] .vps-hero .page-hero-content,
-[dir="rtl"] .ds-hero .page-hero-content,
-[dir="rtl"] .rs-hero .page-hero-content,
-[dir="rtl"] .ms-hero .page-hero-content,
-[dir="rtl"] .wp-hero .page-hero-content {
-    text-align: right;
-}
-
-/* ─── Step / Timeline Items ─── */
-[dir="rtl"] .step-card,
-[dir="rtl"] .timeline-item {
-    text-align: right;
-}
 
 /* ─── Contact Page ─── */
-[dir="rtl"] .contact-form label {
-    text-align: right;
-}
 
-[dir="rtl"] .contact-card {
-    text-align: right;
-}
-
-/* ─── Blog / Tutorials ─── */
-[dir="rtl"] .blog-card,
-[dir="rtl"] .tutorial-card {
-    text-align: right;
-}
-
-[dir="rtl"] .article-content {
-    text-align: right;
-}
 
 [dir="rtl"] .article-content ul,
 [dir="rtl"] .article-content ol {
@@ -16590,20 +16539,7 @@ body .partner-feature+.partner-feature {
 }
 
 /* ─── Datacenter / Locations ─── */
-[dir="rtl"] .dc-spec-card {
-    text-align: right;
-}
 
-/* ─── Payments / Promotions ─── */
-[dir="rtl"] .payment-card,
-[dir="rtl"] .promo-card {
-    text-align: right;
-}
-
-/* ─── Order Modal ─── */
-[dir="rtl"] .om-panel-head {
-    text-align: right;
-}
 
 [dir="rtl"] .om-billing-inner,
 [dir="rtl"] .om-loc-card,
@@ -16615,9 +16551,7 @@ body .partner-feature+.partner-feature {
     direction: rtl;
 }
 
-[dir="rtl"] .om-input {
-    text-align: right;
-}
+
 
 [dir="rtl"] .om-input-wrap .om-eye-toggle {
     right: auto;
@@ -16663,9 +16597,6 @@ body .partner-feature+.partner-feature {
     direction: rtl;
 }
 
-[dir="rtl"] .om-domain-result-info {
-    text-align: right;
-}
 
 [dir="rtl"] .om-alert {
     direction: rtl;
@@ -16689,14 +16620,7 @@ body .partner-feature+.partner-feature {
     border-radius: var(--radius-sm) 0 0 var(--radius-sm);
 }
 
-/* Searchable select dropdown in RTL */
-[dir="rtl"] .om-searchable-select .om-input {
-    text-align: right;
-}
 
-[dir="rtl"] .om-select-dropdown .om-select-option {
-    text-align: right;
-}
 
 /* Modal footer buttons */
 [dir="rtl"] .om-footer {
@@ -16721,33 +16645,9 @@ body .partner-feature+.partner-feature {
     direction: rtl;
 }
 
-[dir="rtl"] .om-keys-info {
-    text-align: right;
-}
 
-/* ─── Microsoft Pages ─── */
-[dir="rtl"] .ms-product-card,
-[dir="rtl"] .ms-cat-card {
-    text-align: right;
-}
 
-/* ─── About Page ─── */
-[dir="rtl"] .about-card,
-[dir="rtl"] .team-card {
-    text-align: right;
-}
 
-/* ─── Abuse / Wholesale ─── */
-[dir="rtl"] .abuse-info-card,
-[dir="rtl"] .ws-tier-card,
-[dir="rtl"] .ws-feature-card {
-    text-align: right;
-}
-
-/* ─── Domain Pricing ─── */
-[dir="rtl"] .domain-tld-card {
-    text-align: right;
-}
 
 /* ─── OS Ticker RTL ─── */
 [dir="rtl"] .os-ticker-track {
@@ -16783,6 +16683,12 @@ body .partner-feature+.partner-feature {
     direction: rtl;
 }
 
+[dir="rtl"] .ws-tier-cta i {
+    transform: rotateZ(180deg);
+    margin-right: 4px;
+    margin-left: o;
+}
+
 /* ─── Info Split Sections RTL (image + text side-by-side) ─── */
 [dir="rtl"] .info-split,
 [dir="rtl"] .feature-split {
@@ -16811,13 +16717,13 @@ body .partner-feature+.partner-feature {
     }
 
     /* RTL non-split hero — right-aligned on mobile */
-    [dir="rtl"] .container > .page-hero-content {
+    [dir="rtl"] .container>.page-hero-content {
         text-align: right;
     }
 
-    [dir="rtl"] .container > .page-hero-content .page-breadcrumb,
-    [dir="rtl"] .container > .page-hero-content .page-hero-badges,
-    [dir="rtl"] .container > .page-hero-content .page-hero-ctas {
+    [dir="rtl"] .container>.page-hero-content .page-breadcrumb,
+    [dir="rtl"] .container>.page-hero-content .page-hero-badges,
+    [dir="rtl"] .container>.page-hero-content .page-hero-ctas {
         justify-content: flex-start;
     }
 

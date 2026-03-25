@@ -4604,6 +4604,12 @@ img {
    8. RTL OVERRIDES
    ═══════════════════════════════════════════ */
 
+/* ─── RTL Font: Tajawal for Arabic ─── */
+[dir="rtl"] {
+    --font-display: 'Tajawal', sans-serif;
+    --font-body: 'Tajawal', sans-serif;
+}
+
 /* ─── Promo Bar ─── */
 [dir="rtl"] .promo-marquee {
     animation-name: marqueeRtl;
@@ -4634,22 +4640,15 @@ img {
     grid-template-columns: 1fr 1fr; /* keep equal columns */
 }
 [dir="rtl"] .hero-content {
-    grid-column: 2;
-    grid-row: 1;
+  
     text-align: right;
 }
 [dir="rtl"] .hero-visual {
-    grid-column: 1;
-    grid-row: 1;
+
     direction: ltr;
     unicode-bidi: isolate;
 }
-[dir="rtl"] .hero-ctas {
-    justify-content: flex-end;
-}
-[dir="rtl"] .hero-trust {
-    justify-content: flex-end;
-}
+
 
 /* ─── Buttons Arrow Icons ─── */
 [dir="rtl"] .btn-primary i.fa-arrow-right,
@@ -4730,10 +4729,7 @@ img {
     direction: ltr;
 }
 
-/* ─── Footer Auth RTL ─── */
-[dir="rtl"] .footer-auth {
-    justify-content: flex-end;
-}
+
 
 /* ─── Mobile RTL Overrides ─── */
 @media (max-width: 768px) {
@@ -4754,5 +4750,100 @@ img {
 @media (max-width: 480px) {
     [dir="rtl"] .vps-row-price {
         text-align: right;
+    }
+}
+
+/* ─── Why Us: swap intro/grid columns ─── */
+[dir="rtl"] .why-us-layout {
+    direction: rtl;
+}
+[dir="rtl"] .why-us-intro {
+    text-align: right;
+}
+[dir="rtl"] .why-us-intro .section-tag {
+    margin-inline: 0;
+}
+[dir="rtl"] .why-us-cta {
+    justify-content: flex-start;
+}
+[dir="rtl"] .why-us-card {
+    text-align: right;
+}
+
+/* ─── Global Infrastructure: swap content/map columns ─── */
+[dir="rtl"] .global-layout {
+    direction: rtl;
+}
+
+[dir="rtl"] .global-content .section-tag {
+    margin-inline: 0;
+}
+[dir="rtl"] .global-map-visual {
+    direction: ltr;
+    unicode-bidi: isolate;
+}
+
+/* ─── Service Links ─── */
+[dir="rtl"] .service-column {
+    text-align: right;
+}
+
+
+/* ─── Onboarding Track Steps ─── */
+[dir="rtl"] .track {
+    text-align: right;
+}
+
+
+/* ─── Social Proof Stats ─── */
+[dir="rtl"] .proof-stats {
+    direction: rtl;
+}
+
+/* ─── Tutorials ─── */
+[dir="rtl"] .tutorial-card {
+    text-align: right;
+}
+
+[dir="rtl"] .tutorial-arrow i.fa-arrow-right {
+    transform: scaleX(-1);
+}
+
+/* ─── Nav Utility (arrow icon in CTA) ─── */
+[dir="rtl"] .btn-nav-primary i.fa-arrow-right {
+    transform: scaleX(-1);
+}
+
+/* ─── Section Headers ─── */
+[dir="rtl"] .section-header {
+    text-align: center;
+}
+
+/* ─── Plan Cards ─── */
+[dir="rtl"] .plan-features li {
+    direction: rtl;
+    text-align: right;
+}
+[dir="rtl"] .plan-features li i {
+    margin-inline-end: 8px;
+    margin-inline-start: 0;
+}
+
+
+
+/* ─── Mobile RTL: Why Us / Global stacked ─── */
+@media (max-width: 768px) {
+    [dir="rtl"] .why-us-layout {
+        grid-template-columns: 1fr;
+    }
+    [dir="rtl"] .why-us-intro {
+        position: static;
+    }
+    [dir="rtl"] .global-layout {
+        grid-template-columns: 1fr;
+    }
+    [dir="rtl"] .global-content {
+        align-items: center;
+        text-align: center;
     }
 }
