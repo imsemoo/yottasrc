@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" fill="none">
+  <defs>
+    <linearGradient id="w10bg" x1="0" y1="0" x2="200" y2="120" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0078D4"/>
+      <stop offset="100%" stop-color="#004E8C"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="120" rx="12" fill="url(#w10bg)"/>
+  <g transform="translate(72,22)">
+    <path d="M0 6.5L24 3v24L0 27V6.5z" fill="#fff" opacity="0.95"/>
+    <path d="M28 2.5L56 0v27.5H28V2.5z" fill="#fff" opacity="0.95"/>
+    <path d="M0 32L24 32v21L0 56.5V32z" fill="#fff" opacity="0.95"/>
+    <path d="M28 32H56v27.5L28 62.5V32z" fill="#fff" opacity="0.95"/>
+  </g>
+  <text x="100" y="102" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="14" font-weight="700" fill="#fff" opacity="0.95">Windows 10</text>
+</svg>

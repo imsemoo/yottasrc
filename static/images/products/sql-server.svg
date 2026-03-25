@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" fill="none">
+  <defs>
+    <linearGradient id="sqlbg" x1="0" y1="0" x2="200" y2="120" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#CC2131"/>
+      <stop offset="100%" stop-color="#A01929"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="120" rx="12" fill="url(#sqlbg)"/>
+  <g transform="translate(72,14)">
+    <ellipse cx="28" cy="16" rx="24" ry="10" fill="#fff" opacity="0.2"/>
+    <ellipse cx="28" cy="16" rx="24" ry="10" fill="none" stroke="#fff" stroke-width="2" opacity="0.9"/>
+    <rect x="4" y="16" width="48" height="28" fill="none" stroke="#fff" stroke-width="2" opacity="0.5"/>
+    <ellipse cx="28" cy="44" rx="24" ry="10" fill="none" stroke="#fff" stroke-width="2" opacity="0.9"/>
+    <line x1="4" y1="30" x2="52" y2="30" stroke="#fff" stroke-width="1.5" opacity="0.3"/>
+  </g>
+  <text x="100" y="102" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="700" fill="#fff" opacity="0.95">SQL Server 2019</text>
+</svg>
