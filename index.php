@@ -65,7 +65,7 @@ require_once __DIR__ . '/includes/header.php';
 
             <div class="hero-visual">
                 <div class="hero-float-card card-uptime">
-                    <div class="float-card-label">Uptime</div>
+                    <div class="float-card-label"><?php echo e(__('hero_float_uptime')); ?></div>
                     <div class="float-card-value">99.97%</div>
                 </div>
 
@@ -77,7 +77,7 @@ require_once __DIR__ . '/includes/header.php';
                         <span class="terminal-title">yottasrc-deploy</span>
                     </div>
                     <div class="terminal-body">
-                        <div><span class="comment">&#35; Deploy your site in minutes</span></div>
+                        <div><span class="comment">&#35; <?php echo e(__('hero_terminal_line1')); ?></span></div>
                         <div><span class="cmd">$</span> yotta <span class="flag">deploy</span> <span
                                 class="val">--plan</span> starter</div>
                         <div><span class="comment">&#35; Selecting location...</span></div>
@@ -91,7 +91,7 @@ require_once __DIR__ . '/includes/header.php';
                 </div>
 
                 <div class="hero-float-card card-speed">
-                    <div class="float-card-label">Network</div>
+                    <div class="float-card-label"><?php echo e(__('hero_float_network')); ?></div>
                     <div class="float-card-value blue">10 Gbit/s</div>
                 </div>
             </div>
@@ -101,7 +101,7 @@ require_once __DIR__ . '/includes/header.php';
     <!-- ═══════════════ PARTNERS ═══════════════ -->
     <section class="partners">
         <div class="container">
-            <span class="partners-label">Datacenter Partners</span>
+            <span class="partners-label"><?php echo e(__('partners_label')); ?></span>
             <div class="partners-logos">
                 <span class="partner-logo">Equinix</span>
                 <span class="partner-logo">Hetzner</span>
@@ -119,10 +119,9 @@ require_once __DIR__ . '/includes/header.php';
     <section class="services reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Choose Your Path</div>
-                <h2>What are you looking for?</h2>
-                <p>Whether you're launching your first website, managing servers, or building a hosting business —
-                    we have the right solution.</p>
+                <div class="section-tag"><?php echo e(__('services_tag')); ?></div>
+                <h2><?php echo e(__('services_title')); ?></h2>
+                <p><?php echo e(__('services_desc')); ?></p>
             </div>
 
             <div class="swiper services-swiper" id="servicesSwiper">
@@ -130,9 +129,8 @@ require_once __DIR__ . '/includes/header.php';
                     <!-- Slide 1: Websites & Apps -->
                     <div class="swiper-slide"><div class="service-column">
                         <div class="service-icon"><i class="fas fa-globe"></i></div>
-                        <h3>Websites &amp; Apps</h3>
-                        <p class="service-desc">Managed hosting with cPanel, LiteSpeed, free SSL, and daily backups —
-                            for any website.</p>
+                        <h3><?php echo e(__('services_col1_title')); ?></h3>
+                        <p class="service-desc"><?php echo e(__('services_col1_desc')); ?></p>
                         <div class="service-links">
                             <a href="<?php echo e(SITE_URL); ?>/best-cpanel-hosting/" class="service-link">
                                 <div class="service-link-left">
@@ -168,9 +166,8 @@ require_once __DIR__ . '/includes/header.php';
                     <!-- Slide 2: Servers & Cloud -->
                     <div class="swiper-slide"><div class="service-column">
                         <div class="service-icon"><i class="fas fa-microchip"></i></div>
-                        <h3>Servers &amp; Cloud</h3>
-                        <p class="service-desc">Full root access, KVM virtualization, NVMe SSD, and 10 Gbit/s
-                            connectivity in 50+ locations.</p>
+                        <h3><?php echo e(__('services_col2_title')); ?></h3>
+                        <p class="service-desc"><?php echo e(__('services_col2_desc')); ?></p>
                         <div class="service-links">
                             <a href="<?php echo e(SITE_URL); ?>/vps/" class="service-link">
                                 <div class="service-link-left">
@@ -206,9 +203,8 @@ require_once __DIR__ . '/includes/header.php';
                     <!-- Slide 3: Business & Reseller -->
                     <div class="swiper-slide"><div class="service-column">
                         <div class="service-icon"><i class="fas fa-briefcase"></i></div>
-                        <h3>Business &amp; Reseller</h3>
-                        <p class="service-desc">Start your own hosting business with white-label reseller plans,
-                            wholesale pricing, and software licenses.</p>
+                        <h3><?php echo e(__('services_col3_title')); ?></h3>
+                        <p class="service-desc"><?php echo e(__('services_col3_desc')); ?></p>
                         <div class="service-links">
                             <a href="<?php echo e(SITE_URL); ?>/hosting-reseller" class="service-link">
                                 <div class="service-link-left">
@@ -250,15 +246,15 @@ require_once __DIR__ . '/includes/header.php';
     <section class="plans home-plans reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Pricing</div>
-                <h2>Simple, transparent pricing</h2>
-                <p>Same price on renewal. No surprise increases. 30-day money-back guarantee on all plans.</p>
+                <div class="section-tag"><?php echo e(__('plans_tag')); ?></div>
+                <h2><?php echo e(__('plans_title')); ?></h2>
+                <p><?php echo e(__('plans_desc')); ?></p>
             </div>
 
             <div class="plans-tabs">
-                <button class="plan-tab active" data-target="hosting">Web Hosting</button>
-                <button class="plan-tab" data-target="vps">VPS / VDS</button>
-                <button class="plan-tab" data-target="cloud">Cloud</button>
+                <button class="plan-tab active" data-target="hosting"><?php echo e(__('plans_tab_hosting')); ?></button>
+                <button class="plan-tab" data-target="vps"><?php echo e(__('plans_tab_vps')); ?></button>
+                <button class="plan-tab" data-target="cloud"><?php echo e(__('plans_tab_cloud')); ?></button>
             </div>
 
             <!-- Hosting Plans -->
@@ -501,10 +497,9 @@ require_once __DIR__ . '/includes/header.php';
     <section class="tech-stack reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Technology</div>
-                <h2>Built for performance</h2>
-                <p>Enterprise-grade infrastructure with every plan. No add-ons, no upsells — everything included.
-                </p>
+                <div class="section-tag"><?php echo e(__('tech_tag')); ?></div>
+                <h2><?php echo e(__('tech_title')); ?></h2>
+                <p><?php echo e(__('tech_desc')); ?></p>
             </div>
 
             <div class="swiper tech-swiper" id="techSwiper">
@@ -580,43 +575,43 @@ require_once __DIR__ . '/includes/header.php';
         <div class="container">
             <div class="why-us-layout">
                 <div class="why-us-intro">
-                    <div class="section-tag">Advantages</div>
-                    <h2 class="why-us-title">Why YottaSrc?</h2>
-                    <p class="why-us-desc">We combine enterprise-grade infrastructure with genuinely responsive human support. Every plan includes the full stack — no upsells, no hidden fees, same price on renewal.</p>
+                    <div class="section-tag"><?php echo e(__('why_tag')); ?></div>
+                    <h2 class="why-us-title"><?php echo e(__('why_title')); ?></h2>
+                    <p class="why-us-desc"><?php echo e(__('why_desc')); ?></p>
                     <a href="<?php echo e(SITE_URL); ?>/about" class="btn-secondary why-us-cta">
-                        Learn More <i class="fas fa-arrow-right"></i>
+                        <?php echo e(__('why_cta')); ?> <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
                 <div class="why-us-grid">
                     <div class="why-us-card">
                         <div class="why-us-card-icon"><i class="fas fa-headset"></i></div>
-                        <h4>24/7 Expert Support</h4>
-                        <p>Dedicated team available around the clock. Average response time: 10 minutes.</p>
+                        <h4><?php echo e(__('why_support_title')); ?></h4>
+                        <p><?php echo e(__('why_support_desc')); ?></p>
                     </div>
                     <div class="why-us-card">
                         <div class="why-us-card-icon icon-green"><i class="fas fa-tachometer-alt"></i></div>
-                        <h4>High-Speed Performance</h4>
-                        <p>LiteSpeed servers with NVMe SSD storage and up to 10 Gbit/s connectivity.</p>
+                        <h4><?php echo e(__('why_performance_title')); ?></h4>
+                        <p><?php echo e(__('why_performance_desc')); ?></p>
                     </div>
                     <div class="why-us-card">
                         <div class="why-us-card-icon icon-purple"><i class="fas fa-shield-alt"></i></div>
-                        <h4>Secure &amp; Reliable</h4>
-                        <p>Imunify360 AI security, CloudLinux isolation, and 99.9% uptime guarantee.</p>
+                        <h4><?php echo e(__('why_security_title')); ?></h4>
+                        <p><?php echo e(__('why_security_desc')); ?></p>
                     </div>
                     <div class="why-us-card">
                         <div class="why-us-card-icon icon-amber"><i class="fas fa-globe"></i></div>
-                        <h4>Global Data Centers</h4>
-                        <p>Own datacenter in Romania + 6 partner facilities across 50+ locations worldwide.</p>
+                        <h4><?php echo e(__('why_global_title')); ?></h4>
+                        <p><?php echo e(__('why_global_desc')); ?></p>
                     </div>
                     <div class="why-us-card">
                         <div class="why-us-card-icon icon-green"><i class="fas fa-tags"></i></div>
-                        <h4>Best Price-Quality Ratio</h4>
-                        <p>Affordable plans with no compromise. Same price on renewal — no surprises.</p>
+                        <h4><?php echo e(__('why_price_title')); ?></h4>
+                        <p><?php echo e(__('why_price_desc')); ?></p>
                     </div>
                     <div class="why-us-card">
                         <div class="why-us-card-icon icon-purple"><i class="fas fa-th-large"></i></div>
-                        <h4>User-Friendly Dashboard</h4>
-                        <p>Intuitive cPanel control panel included with all hosting plans.</p>
+                        <h4><?php echo e(__('why_dashboard_title')); ?></h4>
+                        <p><?php echo e(__('why_dashboard_desc')); ?></p>
                     </div>
                 </div>
             </div>
@@ -628,31 +623,31 @@ require_once __DIR__ . '/includes/header.php';
         <div class="container">
             <div class="global-layout">
                 <div class="global-content">
-                    <div class="section-tag">Infrastructure</div>
-                    <h2 class="global-title">50+ locations, one platform</h2>
-                    <p class="global-desc">Own datacenter in Romania, with 6+ partner facilities globally. From Europe to Asia, North America to Oceania — your content is always close to your users.</p>
+                    <div class="section-tag"><?php echo e(__('global_tag')); ?></div>
+                    <h2 class="global-title"><?php echo e(__('global_title')); ?></h2>
+                    <p class="global-desc"><?php echo e(__('global_desc')); ?></p>
 
                     <div class="global-stats">
                         <div class="global-stat">
                             <div class="stat-number">50+</div>
-                            <div class="stat-label">Server Locations</div>
+                            <div class="stat-label"><?php echo e(__('global_stat_locations')); ?></div>
                         </div>
                         <div class="global-stat">
                             <div class="stat-number">100+</div>
-                            <div class="stat-label">Gbit/s Capacity</div>
+                            <div class="stat-label"><?php echo e(__('global_stat_capacity')); ?></div>
                         </div>
                         <div class="global-stat">
                             <div class="stat-number">8</div>
-                            <div class="stat-label">DC Partners</div>
+                            <div class="stat-label"><?php echo e(__('global_stat_partners')); ?></div>
                         </div>
                         <div class="global-stat">
                             <div class="stat-number">6</div>
-                            <div class="stat-label">Continents</div>
+                            <div class="stat-label"><?php echo e(__('global_stat_continents')); ?></div>
                         </div>
                     </div>
 
                     <a href="<?php echo e(SITE_URL); ?>/network" class="btn-secondary global-cta">
-                        View Network <i class="fas fa-arrow-right"></i>
+                        <?php echo e(__('global_cta')); ?> <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
 
@@ -794,27 +789,27 @@ require_once __DIR__ . '/includes/header.php';
     <section class="social-proof reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Trusted Worldwide</div>
-                <h2>Loved by 90,000+ clients</h2>
-                <p>From solo developers to agencies — hear what our customers have to say.</p>
+                <div class="section-tag"><?php echo e(__('proof_tag')); ?></div>
+                <h2><?php echo e(__('proof_title')); ?></h2>
+                <p><?php echo e(__('proof_desc')); ?></p>
             </div>
 
             <div class="proof-stats">
                 <div class="proof-stat">
                     <div class="stat-num">90K<span class="stat-suffix">+</span></div>
-                    <div class="stat-text">Active Clients</div>
+                    <div class="stat-text"><?php echo e(__('proof_active_clients')); ?></div>
                 </div>
                 <div class="proof-stat">
                     <div class="stat-num">250K<span class="stat-suffix">+</span></div>
-                    <div class="stat-text">Tickets Resolved</div>
+                    <div class="stat-text"><?php echo e(__('proof_tickets_resolved')); ?></div>
                 </div>
                 <div class="proof-stat">
                     <div class="stat-num">2018</div>
-                    <div class="stat-text">Founded</div>
+                    <div class="stat-text"><?php echo e(__('proof_founded')); ?></div>
                 </div>
                 <div class="proof-stat">
                     <div class="stat-num">30<span class="stat-suffix">+</span></div>
-                    <div class="stat-text">Team Members</div>
+                    <div class="stat-text"><?php echo e(__('proof_team_members')); ?></div>
                 </div>
             </div>
 

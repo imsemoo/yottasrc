@@ -15,11 +15,11 @@ require_once __DIR__ . '/includes/topbar.php';
             <div class="page-hero-split">
                 <div class="page-hero-content">
                     <div class="page-breadcrumb">
-                        <a href="<?php echo e(SITE_URL); ?>/">Home</a>
+                        <a href="<?php echo e(SITE_URL); ?>/"><?php echo e(__('breadcrumb_home')); ?></a>
                         <i class="fas fa-chevron-right"></i>
                         <a href="<?php echo e(SITE_URL); ?>/cpanel-reseller/">Reseller</a>
                         <i class="fas fa-chevron-right"></i>
-                        <span>cPanel Reseller</span>
+                        <span><?php echo e(__('reseller_cpanel_breadcrumb')); ?></span>
                     </div>
                     <h1>cPanel Reseller — <span class="highlight">Launch Your Hosting Brand</span></h1>
                     <p class="page-hero-desc">

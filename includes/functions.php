@@ -8,13 +8,21 @@
 /**
  * Translation helper.
  * Returns the translated string for the given key, or the key itself as fallback.
+ * Supports placeholder replacement: __('key', ['name' => 'John']) replaces :name
  *
- * @param  string $key  Translation key (dot notation not used — flat array)
+ * @param  string $key            Translation key (flat array)
+ * @param  array  $replacements   Associative array of [:placeholder => value]
  * @return string
  */
-function __($key) {
+function __($key, $replacements = []) {
     global $lang;
-    return $lang[$key] ?? $key;
+    $text = $lang[$key] ?? $key;
+
+    foreach ($replacements as $placeholder => $value) {
+        $text = str_replace(':' . $placeholder, (string) $value, $text);
+    }
+
+    return $text;
 }
 
 /**

@@ -16,15 +16,15 @@ require_once __DIR__ . '/includes/topbar.php';
         <div class="container">
             <div class="cloud-hero-center">
                 <div class="page-breadcrumb">
-                    <a href="<?php echo e(SITE_URL); ?>/">Home</a>
+                    <a href="<?php echo e(SITE_URL); ?>/"><?php echo e(__('breadcrumb_home')); ?></a>
                     <i class="fas fa-chevron-right"></i>
-                    <span>Cloud Servers</span>
+                    <span><?php echo e(__('cloud_breadcrumb')); ?></span>
                 </div>
-                <h1>Elastic <span class="highlight">Cloud Infrastructure</span><br>Billed by the Hour</h1>
-                <p class="cloud-hero-desc">Deploy instances in seconds across 50+ global regions. Scale CPU, RAM, and storage on demand — pay only for what you use.</p>
+                <h1><?php echo __('cloud_title'); ?></h1>
+                <p class="cloud-hero-desc"><?php echo e(__('cloud_desc')); ?></p>
                 <div class="page-hero-ctas">
-                    <a href="<?php echo e(CONSOLE_URL); ?>/cloud/" class="btn-primary">Launch Instance <i class="fas fa-arrow-right"></i></a>
-                    <a href="#cloud-instances" class="btn-secondary">View Pricing <i class="fas fa-arrow-down"></i></a>
+                    <a href="<?php echo e(CONSOLE_URL); ?>/cloud/" class="btn-primary"><?php echo e(__('cloud_cta_launch')); ?> <i class="fas fa-arrow-right"></i></a>
+                    <a href="#cloud-instances" class="btn-secondary"><?php echo e(__('cloud_cta_pricing')); ?> <i class="fas fa-arrow-down"></i></a>
                 </div>
             </div>
 
@@ -34,28 +34,28 @@ require_once __DIR__ . '/includes/topbar.php';
                     <div class="capsule-icon"><i class="fas fa-globe-europe"></i></div>
                     <div class="capsule-info">
                         <span class="capsule-val">50+</span>
-                        <span class="capsule-label">Global Regions</span>
+                        <span class="capsule-label"><?php echo e(__('cloud_metric_regions')); ?></span>
                     </div>
                 </div>
                 <div class="cloud-capsule accent">
                     <div class="capsule-icon"><i class="fas fa-bolt"></i></div>
                     <div class="capsule-info">
                         <span class="capsule-val">€0.003</span>
-                        <span class="capsule-label">Per Hour</span>
+                        <span class="capsule-label"><?php echo e(__('cloud_metric_price')); ?></span>
                     </div>
                 </div>
                 <div class="cloud-capsule">
                     <div class="capsule-icon"><i class="fas fa-shield-alt"></i></div>
                     <div class="capsule-info">
                         <span class="capsule-val">99.9%</span>
-                        <span class="capsule-label">Uptime SLA</span>
+                        <span class="capsule-label"><?php echo e(__('cloud_metric_uptime')); ?></span>
                     </div>
                 </div>
                 <div class="cloud-capsule">
                     <div class="capsule-icon"><i class="fas fa-code"></i></div>
                     <div class="capsule-info">
                         <span class="capsule-val">REST</span>
-                        <span class="capsule-label">Full API</span>
+                        <span class="capsule-label"><?php echo e(__('cloud_metric_api')); ?></span>
                     </div>
                 </div>
             </div>
@@ -86,9 +86,9 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="cloud-pricing reveal" id="cloud-instances">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Instances</div>
-                <h2>Cloud Instance Pricing</h2>
-                <p>Transparent per-hour pricing — no hidden fees, no minimum contract. Scale from a single core to a full production cluster.</p>
+                <div class="section-tag"><?php echo e(__('cloud_instances_tag')); ?></div>
+                <h2><?php echo e(__('cloud_instances_title')); ?></h2>
+                <p><?php echo e(__('cloud_instances_desc')); ?></p>
             </div>
 
             <div class="cloud-table-wrap">

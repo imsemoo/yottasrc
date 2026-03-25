@@ -6,12 +6,12 @@
                     <i class="fas fa-paper-plane"></i>
                 </div>
                 <div class="partner-feature-body">
-                    <h3>Email Delivery Powered by MailChannels</h3>
-                    <p>Outgoing emails are routed through MailChannels' global infrastructure — using thousands of IPs to ensure <strong>reliable inbox delivery</strong> and prevent spam reputation issues. Your emails always reach the inbox.</p>
+                    <h3><?php echo e(__('mailchannels_title')); ?></h3>
+                    <p><?php echo __('mailchannels_desc'); ?></p>
                 </div>
                 <div class="partner-feature-badge badge-green">
-                    <span class="partner-stat">99.9%</span>
-                    <span class="partner-stat-label">Inbox Rate</span>
+                    <span class="partner-stat"><?php echo e(__('mailchannels_stat')); ?></span>
+                    <span class="partner-stat-label"><?php echo e(__('mailchannels_stat_label')); ?></span>
                 </div>
             </div>
         </div>

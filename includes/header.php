@@ -66,8 +66,8 @@
     <header class="nav-wrapper" id="navWrapper">
         <?php
         $lang_options = [
-            'en' => ['flag' => 'gb', 'label' => 'English'],
-            'ar' => ['flag' => 'sa', 'label' => 'العربية'],
+            'en' => ['flag' => 'gb', 'label' => __('lang_en')],
+            'ar' => ['flag' => 'sa', 'label' => __('lang_ar')],
         ];
         ?>
         <!-- Top Tier: Brand + Utility -->
@@ -80,13 +80,13 @@
                 <div class="nav-utility">
                     <!-- Language Switcher -->
                     <div class="switcher-dropdown" id="langSwitcher">
-                        <button class="switcher-toggle" aria-label="Change language">
+                        <button class="switcher-toggle" aria-label="<?php echo e(__('nav_change_language')); ?>">
                             <span class="fi fi-<?php echo ($current_lang === 'ar') ? 'sa' : 'gb'; ?>"></span>
-                            <span class="switcher-label"><?php echo ($current_lang === 'ar') ? 'العربية' : 'EN'; ?></span>
+                            <span class="switcher-label"><?php echo e(__('nav_lang_short')); ?></span>
                             <i class="fas fa-chevron-down switcher-arrow"></i>
                         </button>
                         <div class="switcher-menu">
-                            <div class="switcher-menu-title"><?php echo ($current_lang === 'ar') ? 'اختر اللغة' : 'Language'; ?></div>
+                            <div class="switcher-menu-title"><?php echo e(__('nav_select_language')); ?></div>
                             <div class="lang-grid">
                                 <?php foreach ($lang_options as $code => $opt): ?>
                                 <a href="?lang=<?php echo e($code); ?>" class="switcher-option<?php echo ($current_lang === $code) ? ' active' : ''; ?>">
@@ -101,13 +101,13 @@
 
                     <!-- Currency Switcher -->
                     <div class="switcher-dropdown" id="currencySwitcher">
-                        <button class="switcher-toggle" aria-label="Change currency">
+                        <button class="switcher-toggle" aria-label="<?php echo e(__('nav_change_currency')); ?>">
                             <span class="switcher-currency-symbol"><?php echo e($supported_currencies[$current_currency]['symbol']); ?></span>
                             <span class="switcher-label"><?php echo e($current_currency); ?></span>
                             <i class="fas fa-chevron-down switcher-arrow"></i>
                         </button>
                         <div class="switcher-menu">
-                            <div class="switcher-menu-title"><?php echo ($current_lang === 'ar') ? 'اختر العملة' : 'Currency'; ?></div>
+                            <div class="switcher-menu-title"><?php echo e(__('nav_select_currency')); ?></div>
                             <?php foreach ($supported_currencies as $code => $cur): ?>
                             <a href="?currency=<?php echo e($code); ?>" class="switcher-option<?php echo ($current_currency === $code) ? ' active' : ''; ?>">
                                 <span class="switcher-currency-symbol"><?php echo e($cur['symbol']); ?></span>
@@ -120,7 +120,7 @@
 
                     <div class="nav-utility-divider desktop-only"></div>
 
-                    <button class="theme-toggle" id="themeToggle" title="Toggle Theme" aria-label="Toggle dark/light theme">
+                    <button class="theme-toggle" id="themeToggle" title="<?php echo e(__('nav_toggle_theme')); ?>" aria-label="<?php echo e(__('nav_toggle_theme')); ?>">
                         <span class="theme-toggle-icon">
                             <svg class="theme-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <circle cx="12" cy="12" r="5"></circle>
@@ -139,10 +139,10 @@
                         </span>
                     </button>
 
-                    <a href="<?php echo e(CONSOLE_URL); ?>/login" class="btn-nav-secondary desktop-only">Log In</a>
-                    <a href="<?php echo e(CONSOLE_URL); ?>/register" class="btn-nav-primary desktop-only">Get Started <i class="fas fa-arrow-right"></i></a>
+                    <a href="<?php echo e(CONSOLE_URL); ?>/login" class="btn-nav-secondary desktop-only"><?php echo e(__('nav_login')); ?></a>
+                    <a href="<?php echo e(CONSOLE_URL); ?>/register" class="btn-nav-primary desktop-only"><?php echo e(__('nav_get_started')); ?> <i class="fas fa-arrow-right"></i></a>
 
-                    <button class="nav-mobile-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
+                    <button class="nav-mobile-toggle" id="mobileMenuToggle" aria-label="<?php echo e(__('nav_toggle_mobile_menu')); ?>">
                         <i class="fas fa-bars"></i>
                     </button>
                 </div>
@@ -154,47 +154,47 @@
             <div class="container nav-bottom-inner">
                 <ul class="nav-links">
                     <li>
-                        <button class="nav-dropdown-trigger">Hosting <i class="fas fa-chevron-down"></i></button>
+                        <button class="nav-dropdown-trigger"><?php echo e(__('nav_hosting')); ?> <i class="fas fa-chevron-down"></i></button>
                         <div class="nav-dropdown">
-                            <a href="<?php echo e(SITE_URL); ?>/best-cpanel-hosting/"><i class="fas fa-server"></i> cPanel Hosting</a>
-                            <a href="<?php echo e(SITE_URL); ?>/best-wordpress-hosting/"><i class="fab fa-wordpress"></i> WordPress Hosting</a>
-                            <a href="<?php echo e(SITE_URL); ?>/telegram-bot-hosting/"><i class="fab fa-telegram"></i> Telegram Bot</a>
-                            <a href="<?php echo e(SITE_URL); ?>/cpanel-hosting-dmca-ignored/"><i class="fas fa-shield-alt"></i> DMCA Ignored</a>
+                            <a href="<?php echo e(SITE_URL); ?>/best-cpanel-hosting/"><i class="fas fa-server"></i> <?php echo e(__('nav_cpanel_hosting')); ?></a>
+                            <a href="<?php echo e(SITE_URL); ?>/best-wordpress-hosting/"><i class="fab fa-wordpress"></i> <?php echo e(__('nav_wordpress_hosting')); ?></a>
+                            <a href="<?php echo e(SITE_URL); ?>/telegram-bot-hosting/"><i class="fab fa-telegram"></i> <?php echo e(__('nav_telegram_bot')); ?></a>
+                            <a href="<?php echo e(SITE_URL); ?>/cpanel-hosting-dmca-ignored/"><i class="fas fa-shield-alt"></i> <?php echo e(__('nav_dmca_ignored')); ?></a>
                         </div>
                     </li>
                     <li>
-                        <button class="nav-dropdown-trigger">Servers <i class="fas fa-chevron-down"></i></button>
+                        <button class="nav-dropdown-trigger"><?php echo e(__('nav_servers')); ?> <i class="fas fa-chevron-down"></i></button>
                         <div class="nav-dropdown">
-                            <a href="<?php echo e(SITE_URL); ?>/vps/"><i class="fab fa-linux"></i> Linux VPS</a>
-                            <a href="<?php echo e(SITE_URL); ?>/vps/windows-servers/"><i class="fab fa-windows"></i> Windows VPS</a>
-                            <a href="<?php echo e(SITE_URL); ?>/cloud/"><i class="fas fa-cloud"></i> Cloud Servers</a>
-                            <a href="<?php echo e(SITE_URL); ?>/dedicated-servers/"><i class="fas fa-database"></i> Dedicated</a>
+                            <a href="<?php echo e(SITE_URL); ?>/vps/"><i class="fab fa-linux"></i> <?php echo e(__('nav_linux_vps')); ?></a>
+                            <a href="<?php echo e(SITE_URL); ?>/vps/windows-servers/"><i class="fab fa-windows"></i> <?php echo e(__('nav_windows_vps')); ?></a>
+                            <a href="<?php echo e(SITE_URL); ?>/cloud/"><i class="fas fa-cloud"></i> <?php echo e(__('nav_cloud_servers')); ?></a>
+                            <a href="<?php echo e(SITE_URL); ?>/dedicated-servers/"><i class="fas fa-database"></i> <?php echo e(__('nav_dedicated')); ?></a>
                         </div>
                     </li>
                     <li>
-                        <button class="nav-dropdown-trigger">Reseller <i class="fas fa-chevron-down"></i></button>
+                        <button class="nav-dropdown-trigger"><?php echo e(__('nav_reseller')); ?> <i class="fas fa-chevron-down"></i></button>
                         <div class="nav-dropdown">
-                            <a href="<?php echo e(SITE_URL); ?>/hosting-reseller"><i class="fas fa-sitemap"></i> cPanel Reseller</a>
-                            <a href="<?php echo e(SITE_URL); ?>/master-reseller-cpanel-hosting/"><i class="fas fa-crown"></i> Master Reseller</a>
-                            <a href="<?php echo e(SITE_URL); ?>/vps-reseller/"><i class="fas fa-cubes"></i> VPS Reseller</a>
-                            <a href="<?php echo e(SITE_URL); ?>/wholesale/"><i class="fas fa-store"></i> Wholesale</a>
+                            <a href="<?php echo e(SITE_URL); ?>/hosting-reseller"><i class="fas fa-sitemap"></i> <?php echo e(__('nav_cpanel_reseller')); ?></a>
+                            <a href="<?php echo e(SITE_URL); ?>/master-reseller-cpanel-hosting/"><i class="fas fa-crown"></i> <?php echo e(__('nav_master_reseller')); ?></a>
+                            <a href="<?php echo e(SITE_URL); ?>/vps-reseller/"><i class="fas fa-cubes"></i> <?php echo e(__('nav_vps_reseller')); ?></a>
+                            <a href="<?php echo e(SITE_URL); ?>/wholesale/"><i class="fas fa-store"></i> <?php echo e(__('nav_wholesale')); ?></a>
                         </div>
                     </li>
-                    <li><a href="<?php echo e(SITE_URL); ?>/licenses/">Licenses</a></li>
+                    <li><a href="<?php echo e(SITE_URL); ?>/licenses/"><?php echo e(__('nav_licenses')); ?></a></li>
                     <li>
-                        <button class="nav-dropdown-trigger">Domains <i class="fas fa-chevron-down"></i></button>
+                        <button class="nav-dropdown-trigger"><?php echo e(__('nav_domains')); ?> <i class="fas fa-chevron-down"></i></button>
                         <div class="nav-dropdown">
-                            <a href="<?php echo e(SITE_URL); ?>/domains-registration/"><i class="fas fa-globe"></i> Register Domain</a>
-                            <a href="<?php echo e(SITE_URL); ?>/domains-transfer/"><i class="fas fa-exchange-alt"></i> Transfer Domain</a>
+                            <a href="<?php echo e(SITE_URL); ?>/domains-registration/"><i class="fas fa-globe"></i> <?php echo e(__('nav_register_domain')); ?></a>
+                            <a href="<?php echo e(SITE_URL); ?>/domains-transfer/"><i class="fas fa-exchange-alt"></i> <?php echo e(__('nav_transfer_domain')); ?></a>
                         </div>
                     </li>
                     <li>
-                        <button class="nav-dropdown-trigger">Support <i class="fas fa-chevron-down"></i></button>
+                        <button class="nav-dropdown-trigger"><?php echo e(__('nav_support')); ?> <i class="fas fa-chevron-down"></i></button>
                         <div class="nav-dropdown">
-                            <a href="https://wiki.yottasrc.com/"><i class="fas fa-book"></i> Tutorials</a>
-                            <a href="https://blog.yottasrc.com/"><i class="fas fa-rss"></i> Blog</a>
-                            <a href="https://docs.yottasrc.com/"><i class="fas fa-file-code"></i> API Docs</a>
-                            <a href="<?php echo e(SITE_URL); ?>/contact-us/"><i class="fas fa-headset"></i> Contact Us</a>
+                            <a href="https://wiki.yottasrc.com/"><i class="fas fa-book"></i> <?php echo e(__('nav_tutorials')); ?></a>
+                            <a href="https://blog.yottasrc.com/"><i class="fas fa-rss"></i> <?php echo e(__('nav_blog')); ?></a>
+                            <a href="https://docs.yottasrc.com/"><i class="fas fa-file-code"></i> <?php echo e(__('nav_api_docs')); ?></a>
+                            <a href="<?php echo e(SITE_URL); ?>/contact-us/"><i class="fas fa-headset"></i> <?php echo e(__('nav_contact_us')); ?></a>
                         </div>
                     </li>
                 </ul>
@@ -209,7 +209,7 @@
             <a href="<?php echo e(SITE_URL); ?>/" class="nav-logo">
                 <img src="<?php echo BASE_PATH; ?>/logo-light.png" alt="<?php echo e(SITE_NAME); ?>" class="logo-icon">
             </a>
-            <button class="mobile-drawer-close" id="mobileDrawerClose" aria-label="Close menu">
+            <button class="mobile-drawer-close" id="mobileDrawerClose" aria-label="<?php echo e(__('nav_close_menu')); ?>">
                 <i class="fas fa-times"></i>
             </button>
         </div>
@@ -217,46 +217,46 @@
         <div class="mobile-drawer-body">
             <ul class="mobile-nav-list">
                 <li class="mobile-nav-group">
-                    <button class="mobile-nav-trigger">Hosting <i class="fas fa-chevron-down"></i></button>
+                    <button class="mobile-nav-trigger"><?php echo e(__('nav_hosting')); ?> <i class="fas fa-chevron-down"></i></button>
                     <div class="mobile-nav-sub">
-                        <a href="<?php echo e(SITE_URL); ?>/best-cpanel-hosting/"><i class="fas fa-server"></i> cPanel Hosting</a>
-                        <a href="<?php echo e(SITE_URL); ?>/best-wordpress-hosting/"><i class="fab fa-wordpress"></i> WordPress Hosting</a>
-                        <a href="<?php echo e(SITE_URL); ?>/telegram-bot-hosting/"><i class="fab fa-telegram"></i> Telegram Bot</a>
-                        <a href="<?php echo e(SITE_URL); ?>/cpanel-hosting-dmca-ignored/"><i class="fas fa-shield-alt"></i> DMCA Ignored</a>
+                        <a href="<?php echo e(SITE_URL); ?>/best-cpanel-hosting/"><i class="fas fa-server"></i> <?php echo e(__('nav_cpanel_hosting')); ?></a>
+                        <a href="<?php echo e(SITE_URL); ?>/best-wordpress-hosting/"><i class="fab fa-wordpress"></i> <?php echo e(__('nav_wordpress_hosting')); ?></a>
+                        <a href="<?php echo e(SITE_URL); ?>/telegram-bot-hosting/"><i class="fab fa-telegram"></i> <?php echo e(__('nav_telegram_bot')); ?></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cpanel-hosting-dmca-ignored/"><i class="fas fa-shield-alt"></i> <?php echo e(__('nav_dmca_ignored')); ?></a>
                     </div>
                 </li>
                 <li class="mobile-nav-group">
-                    <button class="mobile-nav-trigger">Servers <i class="fas fa-chevron-down"></i></button>
+                    <button class="mobile-nav-trigger"><?php echo e(__('nav_servers')); ?> <i class="fas fa-chevron-down"></i></button>
                     <div class="mobile-nav-sub">
-                        <a href="<?php echo e(SITE_URL); ?>/vps/"><i class="fab fa-linux"></i> Linux VPS</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/windows-servers/"><i class="fab fa-windows"></i> Windows VPS</a>
-                        <a href="<?php echo e(SITE_URL); ?>/cloud/"><i class="fas fa-cloud"></i> Cloud Servers</a>
-                        <a href="<?php echo e(SITE_URL); ?>/dedicated-servers/"><i class="fas fa-database"></i> Dedicated</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/"><i class="fab fa-linux"></i> <?php echo e(__('nav_linux_vps')); ?></a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/windows-servers/"><i class="fab fa-windows"></i> <?php echo e(__('nav_windows_vps')); ?></a>
+                        <a href="<?php echo e(SITE_URL); ?>/cloud/"><i class="fas fa-cloud"></i> <?php echo e(__('nav_cloud_servers')); ?></a>
+                        <a href="<?php echo e(SITE_URL); ?>/dedicated-servers/"><i class="fas fa-database"></i> <?php echo e(__('nav_dedicated')); ?></a>
                     </div>
                 </li>
                 <li class="mobile-nav-group">
-                    <button class="mobile-nav-trigger">Reseller <i class="fas fa-chevron-down"></i></button>
+                    <button class="mobile-nav-trigger"><?php echo e(__('nav_reseller')); ?> <i class="fas fa-chevron-down"></i></button>
                     <div class="mobile-nav-sub">
-                        <a href="<?php echo e(SITE_URL); ?>/hosting-reseller"><i class="fas fa-sitemap"></i> cPanel Reseller</a>
-                        <a href="<?php echo e(SITE_URL); ?>/master-reseller-cpanel-hosting/"><i class="fas fa-crown"></i> Master Reseller</a>
-                        <a href="<?php echo e(SITE_URL); ?>/vps-reseller/"><i class="fas fa-cubes"></i> VPS Reseller</a>
-                        <a href="<?php echo e(SITE_URL); ?>/wholesale/"><i class="fas fa-store"></i> Wholesale</a>
+                        <a href="<?php echo e(SITE_URL); ?>/hosting-reseller"><i class="fas fa-sitemap"></i> <?php echo e(__('nav_cpanel_reseller')); ?></a>
+                        <a href="<?php echo e(SITE_URL); ?>/master-reseller-cpanel-hosting/"><i class="fas fa-crown"></i> <?php echo e(__('nav_master_reseller')); ?></a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps-reseller/"><i class="fas fa-cubes"></i> <?php echo e(__('nav_vps_reseller')); ?></a>
+                        <a href="<?php echo e(SITE_URL); ?>/wholesale/"><i class="fas fa-store"></i> <?php echo e(__('nav_wholesale')); ?></a>
                     </div>
                 </li>
                 <li class="mobile-nav-group">
-                    <button class="mobile-nav-trigger">Domains <i class="fas fa-chevron-down"></i></button>
+                    <button class="mobile-nav-trigger"><?php echo e(__('nav_domains')); ?> <i class="fas fa-chevron-down"></i></button>
                     <div class="mobile-nav-sub">
-                        <a href="<?php echo e(SITE_URL); ?>/domains-registration/"><i class="fas fa-globe"></i> Register Domain</a>
-                        <a href="<?php echo e(SITE_URL); ?>/domains-transfer/"><i class="fas fa-exchange-alt"></i> Transfer Domain</a>
+                        <a href="<?php echo e(SITE_URL); ?>/domains-registration/"><i class="fas fa-globe"></i> <?php echo e(__('nav_register_domain')); ?></a>
+                        <a href="<?php echo e(SITE_URL); ?>/domains-transfer/"><i class="fas fa-exchange-alt"></i> <?php echo e(__('nav_transfer_domain')); ?></a>
                     </div>
                 </li>
                 <li class="mobile-nav-group">
-                    <button class="mobile-nav-trigger">Support <i class="fas fa-chevron-down"></i></button>
+                    <button class="mobile-nav-trigger"><?php echo e(__('nav_support')); ?> <i class="fas fa-chevron-down"></i></button>
                     <div class="mobile-nav-sub">
-                        <a href="https://wiki.yottasrc.com/"><i class="fas fa-book"></i> Tutorials</a>
-                        <a href="https://blog.yottasrc.com/"><i class="fas fa-rss"></i> Blog</a>
-                        <a href="https://docs.yottasrc.com/"><i class="fas fa-file-code"></i> API Docs</a>
-                        <a href="<?php echo e(SITE_URL); ?>/contact-us/"><i class="fas fa-headset"></i> Contact Us</a>
+                        <a href="https://wiki.yottasrc.com/"><i class="fas fa-book"></i> <?php echo e(__('nav_tutorials')); ?></a>
+                        <a href="https://blog.yottasrc.com/"><i class="fas fa-rss"></i> <?php echo e(__('nav_blog')); ?></a>
+                        <a href="https://docs.yottasrc.com/"><i class="fas fa-file-code"></i> <?php echo e(__('nav_api_docs')); ?></a>
+                        <a href="<?php echo e(SITE_URL); ?>/contact-us/"><i class="fas fa-headset"></i> <?php echo e(__('nav_contact_us')); ?></a>
                     </div>
                 </li>
             </ul>
@@ -264,7 +264,7 @@
             <!-- Mobile Switchers -->
             <div class="mobile-switchers">
                 <div class="mobile-switcher-row">
-                    <span class="mobile-switcher-label"><i class="fas fa-globe"></i> <?php echo ($current_lang === 'ar') ? 'اللغة' : 'Language'; ?></span>
+                    <span class="mobile-switcher-label"><i class="fas fa-globe"></i> <?php echo e(__('nav_language')); ?></span>
                     <div class="mobile-switcher-options">
                         <?php foreach ($lang_options as $code => $opt): ?>
                         <a href="?lang=<?php echo e($code); ?>" class="mobile-pill<?php echo ($current_lang === $code) ? ' active' : ''; ?>">
@@ -274,7 +274,7 @@
                     </div>
                 </div>
                 <div class="mobile-switcher-row">
-                    <span class="mobile-switcher-label"><i class="fas fa-coins"></i> <?php echo ($current_lang === 'ar') ? 'العملة' : 'Currency'; ?></span>
+                    <span class="mobile-switcher-label"><i class="fas fa-coins"></i> <?php echo e(__('nav_currency')); ?></span>
                     <div class="mobile-switcher-options">
                         <?php foreach ($supported_currencies as $code => $cur): ?>
                         <a href="?currency=<?php echo e($code); ?>" class="mobile-pill<?php echo ($current_currency === $code) ? ' active' : ''; ?>">
@@ -287,7 +287,7 @@
         </div>
 
         <div class="mobile-drawer-footer">
-            <a href="<?php echo e(CONSOLE_URL); ?>/login" class="mobile-cta-secondary">Log In</a>
-            <a href="<?php echo e(CONSOLE_URL); ?>/register" class="mobile-cta-primary">Get Started</a>
+            <a href="<?php echo e(CONSOLE_URL); ?>/login" class="mobile-cta-secondary"><?php echo e(__('nav_login')); ?></a>
+            <a href="<?php echo e(CONSOLE_URL); ?>/register" class="mobile-cta-primary"><?php echo e(__('nav_get_started')); ?></a>
         </div>
     </aside>

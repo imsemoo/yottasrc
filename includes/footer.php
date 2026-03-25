@@ -6,8 +6,7 @@
                     <a href="<?php echo e(SITE_URL); ?>/" class="nav-logo">
                        <img src="<?php echo BASE_PATH; ?>/logo-light.png" alt="<?php echo e(SITE_NAME); ?>" class="logo-icon">
                     </a>
-                    <p>High-performance cPanel hosting, WordPress hosting, VPS/VDS, and cloud solutions with 24/7
-                        expert support. Headquartered in Romania &amp; Saudi Arabia. Since 2018.</p>
+                    <p><?php echo e(__('footer_desc')); ?></p>
                     <div class="footer-socials">
                         <a href="https://www.facebook.com/YottaSrc" class="footer-social-link" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
@@ -26,53 +25,53 @@
                         </a>
                     </div>
                     <div class="footer-auth">
-                        <a href="<?php echo e(CONSOLE_URL); ?>/login" class="footer-auth-btn footer-login"><i class="fas fa-sign-in-alt"></i> Log In</a>
-                        <a href="<?php echo e(CONSOLE_URL); ?>/register" class="footer-auth-btn footer-register"><i class="fas fa-user-plus"></i> Get Started</a>
+                        <a href="<?php echo e(CONSOLE_URL); ?>/login" class="footer-auth-btn footer-login"><i class="fas fa-sign-in-alt"></i> <?php echo e(__('nav_login')); ?></a>
+                        <a href="<?php echo e(CONSOLE_URL); ?>/register" class="footer-auth-btn footer-register"><i class="fas fa-user-plus"></i> <?php echo e(__('nav_get_started')); ?></a>
                     </div>
                 </div>
 
                 <div class="footer-column">
-                    <h5>Hosting</h5>
+                    <h5><?php echo e(__('footer_col_hosting')); ?></h5>
                     <ul>
-                        <li><a href="<?php echo e(SITE_URL); ?>/best-cpanel-hosting/">cPanel Hosting</a></li>
-                        <li><a href="<?php echo e(SITE_URL); ?>/best-wordpress-hosting/">WordPress Hosting</a></li>
-                        <li><a href="<?php echo e(SITE_URL); ?>/telegram-bot-hosting/">Telegram Bot</a></li>
-                        <li><a href="<?php echo e(SITE_URL); ?>/cpanel-hosting-dmca-ignored/">DMCA Ignored</a></li>
+                        <li><a href="<?php echo e(SITE_URL); ?>/best-cpanel-hosting/"><?php echo e(__('nav_cpanel_hosting')); ?></a></li>
+                        <li><a href="<?php echo e(SITE_URL); ?>/best-wordpress-hosting/"><?php echo e(__('nav_wordpress_hosting')); ?></a></li>
+                        <li><a href="<?php echo e(SITE_URL); ?>/telegram-bot-hosting/"><?php echo e(__('nav_telegram_bot')); ?></a></li>
+                        <li><a href="<?php echo e(SITE_URL); ?>/cpanel-hosting-dmca-ignored/"><?php echo e(__('nav_dmca_ignored')); ?></a></li>
                     </ul>
                 </div>
 
                 <div class="footer-column">
-                    <h5>Servers</h5>
+                    <h5><?php echo e(__('footer_col_servers')); ?></h5>
                     <ul>
-                        <li><a href="<?php echo e(SITE_URL); ?>/vps/">Linux VPS</a></li>
-                        <li><a href="<?php echo e(SITE_URL); ?>/vps/windows-servers/">Windows VPS</a></li>
-                        <li><a href="<?php echo e(SITE_URL); ?>/cloud/">Cloud Servers</a></li>
-                        <li><a href="<?php echo e(SITE_URL); ?>/dedicated-servers/">Dedicated</a></li>
-                        <li><a href="<?php echo e(SITE_URL); ?>/hosting-reseller">Reseller</a></li>
-                        <li><a href="<?php echo e(SITE_URL); ?>/datacenter/">Datacenter</a></li>
+                        <li><a href="<?php echo e(SITE_URL); ?>/vps/"><?php echo e(__('nav_linux_vps')); ?></a></li>
+                        <li><a href="<?php echo e(SITE_URL); ?>/vps/windows-servers/"><?php echo e(__('nav_windows_vps')); ?></a></li>
+                        <li><a href="<?php echo e(SITE_URL); ?>/cloud/"><?php echo e(__('nav_cloud_servers')); ?></a></li>
+                        <li><a href="<?php echo e(SITE_URL); ?>/dedicated-servers/"><?php echo e(__('nav_dedicated')); ?></a></li>
+                        <li><a href="<?php echo e(SITE_URL); ?>/hosting-reseller"><?php echo e(__('nav_reseller')); ?></a></li>
+                        <li><a href="<?php echo e(SITE_URL); ?>/datacenter/"><?php echo e(__('footer_datacenter')); ?></a></li>
                     </ul>
                 </div>
 
                 <div class="footer-column">
-                    <h5>Company</h5>
+                    <h5><?php echo e(__('footer_col_company')); ?></h5>
                     <ul>
-                        <li><a href="<?php echo e(SITE_URL); ?>/about">About Us</a></li>
-                        <li><a href="<?php echo e(SITE_URL); ?>/contact-us/">Contact</a></li>
-                        <li><a href="<?php echo e(SITE_URL); ?>/affiliate">Affiliate</a></li>
-                        <li><a href="<?php echo e(SITE_URL); ?>/payment-methods/">Payments</a></li>
-                        <li><a href="<?php echo e(SITE_URL); ?>/domains-registration/">Domains</a></li>
-                        <li><a href="<?php echo e(SITE_URL); ?>/promotions/">Promotions</a></li>
+                        <li><a href="<?php echo e(SITE_URL); ?>/about"><?php echo e(__('footer_about_us')); ?></a></li>
+                        <li><a href="<?php echo e(SITE_URL); ?>/contact-us/"><?php echo e(__('footer_contact')); ?></a></li>
+                        <li><a href="<?php echo e(SITE_URL); ?>/affiliate"><?php echo e(__('footer_affiliate')); ?></a></li>
+                        <li><a href="<?php echo e(SITE_URL); ?>/payment-methods/"><?php echo e(__('footer_payments')); ?></a></li>
+                        <li><a href="<?php echo e(SITE_URL); ?>/domains-registration/"><?php echo e(__('footer_domains')); ?></a></li>
+                        <li><a href="<?php echo e(SITE_URL); ?>/promotions/"><?php echo e(__('footer_promotions')); ?></a></li>
                     </ul>
                 </div>
 
                 <div class="footer-column">
-                    <h5>Legal</h5>
+                    <h5><?php echo e(__('footer_col_legal')); ?></h5>
                     <ul>
-                        <li><a href="<?php echo e(SITE_URL); ?>/terms/">Terms of Service</a></li>
-                        <li><a href="<?php echo e(SITE_URL); ?>/privacy-policy/">Privacy Policy</a></li>
-                        <li><a href="<?php echo e(SITE_URL); ?>/legal/refund-policy">Refund Policy</a></li>
-                        <li><a href="<?php echo e(SITE_URL); ?>/data/resource-usage/">Fair Usage</a></li>
-                        <li><a href="<?php echo e(SITE_URL); ?>/report-abuse/">Report Abuse</a></li>
+                        <li><a href="<?php echo e(SITE_URL); ?>/terms/"><?php echo e(__('footer_terms')); ?></a></li>
+                        <li><a href="<?php echo e(SITE_URL); ?>/privacy-policy/"><?php echo e(__('footer_privacy')); ?></a></li>
+                        <li><a href="<?php echo e(SITE_URL); ?>/legal/refund-policy"><?php echo e(__('footer_refund')); ?></a></li>
+                        <li><a href="<?php echo e(SITE_URL); ?>/data/resource-usage/"><?php echo e(__('footer_fair_usage')); ?></a></li>
+                        <li><a href="<?php echo e(SITE_URL); ?>/report-abuse/"><?php echo e(__('footer_report_abuse')); ?></a></li>
                     </ul>
                 </div>
             </div>
@@ -94,7 +93,7 @@
 
             <div class="footer-bottom">
                 <div class="footer-copyright">
-                    &copy; 2018 – <?php echo date('Y'); ?> <?php echo e(SITE_NAME); ?>. All rights reserved.
+                    <?php echo e(__('footer_copyright', ['year' => date('Y'), 'site_name' => SITE_NAME])); ?>
                 </div>
                 <div class="footer-payments">
                     <span class="pay-icon" data-tooltip="Visa"><i class="fab fa-cc-visa"></i></span>

@@ -14,9 +14,9 @@ require_once __DIR__ . '/includes/topbar.php';
         <div class="container">
             <div class="page-hero-content" >
                 <div class="page-breadcrumb" >
-                    <a href="<?php echo e(SITE_URL); ?>/">Home</a>
+                    <a href="<?php echo e(SITE_URL); ?>/"><?php echo e(__('breadcrumb_home')); ?></a>
                     <i class="fas fa-chevron-right"></i>
-                    <span>Payment Methods</span>
+                    <span><?php echo e(__('payments_breadcrumb')); ?></span>
                 </div>
                 <h1>Flexible <span class="highlight">Payment Options</span></h1>
                 <p class="page-hero-desc">

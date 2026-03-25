@@ -15,23 +15,23 @@ require_once __DIR__ . '/includes/topbar.php';
             <div class="page-hero-split">
                 <div class="page-hero-content">
                     <div class="page-breadcrumb">
-                        <a href="<?php echo e(SITE_URL); ?>/">Home</a>
+                        <a href="<?php echo e(SITE_URL); ?>/"><?php echo e(__('breadcrumb_home')); ?></a>
                         <i class="fas fa-chevron-right"></i>
-                        <span>cPanel Hosting</span>
+                        <span><?php echo e(__('cpanel_breadcrumb')); ?></span>
                     </div>
-                    <h1>cPanel Hosting — <span class="highlight">Full Control</span>, Made Simple</h1>
+                    <h1><?php echo __('cpanel_title'); ?></h1>
                     <p class="page-hero-desc">
-                        The world's most trusted hosting control panel, powered by LiteSpeed on NVMe SSDs. Manage domains, emails, files, databases, SSL, and backups — all from one intuitive cPanel dashboard across 20+ global locations.
+                        <?php echo e(__('cpanel_desc')); ?>
                     </p>
                     <div class="page-hero-ctas">
-                        <a href="#plans" class="btn-primary">View Plans <i class="fas fa-arrow-down"></i></a>
-                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-secondary"><i class="fas fa-headset"></i> Talk to Sales</a>
+                        <a href="#plans" class="btn-primary"><?php echo e(__('common_view_plans')); ?> <i class="fas fa-arrow-down"></i></a>
+                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-secondary"><i class="fas fa-headset"></i> <?php echo e(__('common_talk_to_sales')); ?></a>
                     </div>
                     <div class="page-hero-badges">
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> cPanel Control Panel</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> LiteSpeed + NVMe SSD</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> Free SSL &amp; Daily Backups</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> 400+ 1-Click Apps</div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('cpanel_badge1')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('cpanel_badge2')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('cpanel_badge3')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('cpanel_badge4')); ?></div>
                     </div>
                 </div>
                 <div class="page-hero-visual">

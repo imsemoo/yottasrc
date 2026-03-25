@@ -15,24 +15,24 @@ require_once __DIR__ . '/includes/topbar.php';
             <div class="page-hero-split">
                 <div class="page-hero-content">
                     <div class="page-breadcrumb">
-                        <a href="<?php echo e(SITE_URL); ?>/">Home</a>
+                        <a href="<?php echo e(SITE_URL); ?>/"><?php echo e(__('breadcrumb_home')); ?></a>
                         <i class="fas fa-chevron-right"></i>
-                        <span>Linux VPS</span>
+                        <span><?php echo e(__('vps_breadcrumb')); ?></span>
                     </div>
-                    <h1>Virtual Servers — <span class="highlight">Built for Performance</span></h1>
+                    <h1><?php echo __('vps_title'); ?></h1>
                     <p class="page-hero-desc">
-                        Deploy high-performance KVM virtual servers with dedicated resources, NVMe storage, and 10Gbit/s networking across 50+ global locations. Full root access, instant provisioning.
+                        <?php echo e(__('vps_desc')); ?>
                     </p>
                     <div class="page-hero-ctas">
-                        <a href="#plans" class="btn-primary">View Plans <i class="fas fa-arrow-down"></i></a>
-                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-secondary"><i class="fas fa-headset"></i> Talk to Sales</a>
+                        <a href="#plans" class="btn-primary"><?php echo e(__('common_view_plans')); ?> <i class="fas fa-arrow-down"></i></a>
+                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-secondary"><i class="fas fa-headset"></i> <?php echo e(__('common_talk_to_sales')); ?></a>
                     </div>
                     <div class="page-hero-badges">
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> Dedicated Resources</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> Full Root Access</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> NVMe SSD</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> 10 Gbit/s Network</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> Instant Deploy</div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('vps_badge1')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('vps_badge2')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('vps_badge3')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('vps_badge4')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('vps_badge5')); ?></div>
                     </div>
                 </div>
                 <div class="page-hero-visual">

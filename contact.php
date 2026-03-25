@@ -14,29 +14,29 @@ require_once __DIR__ . '/includes/topbar.php';
             <div class="page-hero-split">
                 <div class="page-hero-content">
                     <div class="page-breadcrumb">
-                        <a href="<?php echo e(SITE_URL); ?>/">Home</a>
+                        <a href="<?php echo e(SITE_URL); ?>/"><?php echo e(__('breadcrumb_home')); ?></a>
                         <i class="fas fa-chevron-right"></i>
-                        <span>Contact Us</span>
+                        <span><?php echo e(__('contact_breadcrumb')); ?></span>
                     </div>
-                    <h1>Get In <span class="highlight">Touch</span></h1>
-                    <p class="page-hero-desc">Have questions about sales or pre-sales? Contact us and we'll get back to you promptly. For technical issues, please log in and open a ticket.</p>
+                    <h1><?php echo __('contact_title'); ?></h1>
+                    <p class="page-hero-desc"><?php echo e(__('contact_desc')); ?></p>
                     <div class="page-hero-badges">
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> 10-Min Avg. Response</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> 24/7 Support Team</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> 250K+ Tickets Resolved</div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('contact_badge1')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('contact_badge2')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('contact_badge3')); ?></div>
                     </div>
                     <div class="page-hero-stats">
                         <div class="page-hero-stat">
                             <span class="stat-num">&lt;10<span class="stat-suffix">min</span></span>
-                            <span class="stat-text">Avg. Response</span>
+                            <span class="stat-text"><?php echo e(__('contact_stat_response')); ?></span>
                         </div>
                         <div class="page-hero-stat">
                             <span class="stat-num">24<span class="stat-suffix">/7</span></span>
-                            <span class="stat-text">Live Support</span>
+                            <span class="stat-text"><?php echo e(__('contact_stat_support')); ?></span>
                         </div>
                         <div class="page-hero-stat">
                             <span class="stat-num">250K<span class="stat-suffix">+</span></span>
-                            <span class="stat-text">Tickets Resolved</span>
+                            <span class="stat-text"><?php echo e(__('contact_stat_tickets')); ?></span>
                         </div>
                     </div>
                 </div>

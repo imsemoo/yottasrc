@@ -14,9 +14,9 @@ require_once __DIR__ . '/includes/topbar.php';
             <div class="page-hero-split">
                 <div class="page-hero-content">
                     <div class="page-breadcrumb">
-                        <a href="<?php echo e(SITE_URL); ?>/">Home</a>
+                        <a href="<?php echo e(SITE_URL); ?>/"><?php echo e(__('breadcrumb_home')); ?></a>
                         <i class="fas fa-chevron-right"></i>
-                        <span>FAQ</span>
+                        <span><?php echo e(__('faq_breadcrumb')); ?></span>
                     </div>
                     <h1>Frequently Asked <span class="highlight">Questions</span></h1>
                     <p class="page-hero-desc">Can't find your answer? You can always contact us or open a support ticket — we respond within minutes.</p>

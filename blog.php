@@ -14,9 +14,9 @@ require_once __DIR__ . '/includes/topbar.php';
             <div class="page-hero-split">
                 <div class="page-hero-content">
                     <div class="page-breadcrumb">
-                        <a href="<?php echo e(SITE_URL); ?>/">Home</a>
+                        <a href="<?php echo e(SITE_URL); ?>/"><?php echo e(__('breadcrumb_home')); ?></a>
                         <i class="fas fa-chevron-right"></i>
-                        <span>Blog</span>
+                        <span><?php echo e(__('blog_breadcrumb')); ?></span>
                     </div>
                     <h1>YottaSrc <span class="highlight">Blog</span></h1>
                     <p class="page-hero-desc">Insights, tutorials, and updates from the YottaSrc team.</p>

@@ -13,7 +13,7 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="article-hero">
         <div class="container">
             <div class="page-breadcrumb">
-                <a href="<?php echo e(SITE_URL); ?>/">Home</a>
+                <a href="<?php echo e(SITE_URL); ?>/"><?php echo e(__('breadcrumb_home')); ?></a>
                 <i class="fas fa-chevron-right"></i>
                 <a href="<?php echo e(SITE_URL); ?>/tutorials/">Tutorials</a>
                 <i class="fas fa-chevron-right"></i>

@@ -16,9 +16,9 @@ require_once __DIR__ . '/includes/topbar.php';
             <div class="page-hero-split">
                 <div class="page-hero-content">
                     <div class="page-breadcrumb">
-                        <a href="<?php echo e(SITE_URL); ?>/">Home</a>
+                        <a href="<?php echo e(SITE_URL); ?>/"><?php echo e(__('breadcrumb_home')); ?></a>
                         <i class="fas fa-chevron-right"></i>
-                        <span>Dedicated Servers</span>
+                        <span><?php echo e(__('dedicated_breadcrumb')); ?></span>
                     </div>
                     <h1>Bare-Metal <span class="highlight">Dedicated Servers</span> for Enterprise Workloads</h1>
                     <p class="page-hero-desc">

@@ -14,11 +14,11 @@ require_once __DIR__ . '/includes/topbar.php';
         <div class="container">
             <div class="page-hero-content" >
                 <div class="page-breadcrumb" >
-                    <a href="<?php echo e(SITE_URL); ?>/">Home</a>
+                    <a href="<?php echo e(SITE_URL); ?>/"><?php echo e(__('breadcrumb_home')); ?></a>
                     <i class="fas fa-chevron-right"></i>
                     <a href="<?php echo e(SITE_URL); ?>/domains-registration/">Domains</a>
                     <i class="fas fa-chevron-right"></i>
-                    <span>Transfer</span>
+                    <span><?php echo e(__('domains_transfer_breadcrumb')); ?></span>
                 </div>
                 <h1>Transfer Your <span class="highlight">Domains</span> to YottaSrc</h1>
                 <p class="page-hero-desc">

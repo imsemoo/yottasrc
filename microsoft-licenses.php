@@ -16,11 +16,11 @@ require_once __DIR__ . '/includes/topbar.php';
             <div class="page-hero-split">
                 <div class="page-hero-content">
                     <div class="page-breadcrumb">
-                        <a href="<?php echo e(SITE_URL); ?>/">Home</a>
+                        <a href="<?php echo e(SITE_URL); ?>/"><?php echo e(__('breadcrumb_home')); ?></a>
                         <i class="fas fa-chevron-right"></i>
                         <a href="<?php echo e(SITE_URL); ?>/microsoft-products/">Microsoft</a>
                         <i class="fas fa-chevron-right"></i>
-                        <span>All Products</span>
+                        <span><?php echo e(__('mslicenses_breadcrumb')); ?></span>
                     </div>
                     <h1>Microsoft Licenses — <span class="highlight">Genuine &amp; Affordable</span></h1>
                     <p class="page-hero-desc">

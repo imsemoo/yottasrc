@@ -14,32 +14,32 @@ require_once __DIR__ . '/includes/topbar.php';
             <div class="page-hero-split">
                 <div class="page-hero-content">
                     <div class="page-breadcrumb">
-                        <a href="<?php echo e(SITE_URL); ?>/">Home</a>
+                        <a href="<?php echo e(SITE_URL); ?>/"><?php echo e(__('breadcrumb_home')); ?></a>
                         <i class="fas fa-chevron-right"></i>
-                        <span>About Us</span>
+                        <span><?php echo e(__('about_breadcrumb')); ?></span>
                     </div>
-                    <h1>About <span class="highlight">YottaSrc</span></h1>
-                    <p class="page-hero-desc">Founded in 2018, YottaSrc is headquartered in Romania and Saudi Arabia, serving a global client base with reliability and excellence. We deliver stable, high-performance hosting services for businesses and individuals.</p>
+                    <h1><?php echo __('about_title'); ?></h1>
+                    <p class="page-hero-desc"><?php echo e(__('about_desc')); ?></p>
                     <div class="page-hero-badges">
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> Established in 2018</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> 24/7 Expert Support</div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('about_badge1')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('about_badge2')); ?></div>
                     </div>
                     <div class="page-hero-stats about-stats">
                         <div class="page-hero-stat">
                             <span class="stat-num">90K<span class="stat-suffix">+</span></span>
-                            <span class="stat-text">Clients</span>
+                            <span class="stat-text"><?php echo e(__('about_stat_clients')); ?></span>
                         </div>
                         <div class="page-hero-stat">
                             <span class="stat-num">50<span class="stat-suffix">+</span></span>
-                            <span class="stat-text">Locations</span>
+                            <span class="stat-text"><?php echo e(__('about_stat_locations')); ?></span>
                         </div>
                         <div class="page-hero-stat">
                             <span class="stat-num">2018</span>
-                            <span class="stat-text">Founded</span>
+                            <span class="stat-text"><?php echo e(__('about_stat_founded')); ?></span>
                         </div>
                         <div class="page-hero-stat">
                             <span class="stat-num">30<span class="stat-suffix">+</span></span>
-                            <span class="stat-text">Team Members</span>
+                            <span class="stat-text"><?php echo e(__('about_stat_team')); ?></span>
                         </div>
                     </div>
                 </div>
