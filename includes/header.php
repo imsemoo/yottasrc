@@ -23,6 +23,9 @@
     <meta name="twitter:title" content="<?php echo e(__('meta_title')); ?>">
     <meta name="twitter:description" content="<?php echo e(__('meta_description')); ?>">
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="<?php echo asset('images/favicon.png'); ?>">
+
     <?php if (is_preview()): ?>
     <!-- Preview mode: block indexing -->
     <meta name="robots" content="noindex, nofollow">
@@ -74,7 +77,8 @@
         <div class="nav-top" id="navTop">
             <div class="container nav-top-inner">
                 <a href="<?php echo e(SITE_URL); ?>/" class="nav-logo">
-                    <img src="<?php echo BASE_PATH; ?>/logo-light.png" alt="<?php echo e(SITE_NAME); ?>" class="logo-icon">
+                    <img src="<?php echo asset('images/logo_dark.png'); ?>" alt="<?php echo e(SITE_NAME); ?>" class="logo-icon logo-dark">
+                    <img src="<?php echo asset('images/logo_light.png'); ?>" alt="<?php echo e(SITE_NAME); ?>" class="logo-icon logo-light">
                 </a>
 
                 <div class="nav-utility">
@@ -207,7 +211,8 @@
     <aside class="mobile-drawer" id="mobileDrawer">
         <div class="mobile-drawer-header">
             <a href="<?php echo e(SITE_URL); ?>/" class="nav-logo">
-                <img src="<?php echo BASE_PATH; ?>/logo-light.png" alt="<?php echo e(SITE_NAME); ?>" class="logo-icon">
+                <img src="<?php echo asset('images/logo_dark.png'); ?>" alt="<?php echo e(SITE_NAME); ?>" class="logo-icon logo-dark">
+                <img src="<?php echo asset('images/logo_light.png'); ?>" alt="<?php echo e(SITE_NAME); ?>" class="logo-icon logo-light">
             </a>
             <button class="mobile-drawer-close" id="mobileDrawerClose" aria-label="<?php echo e(__('nav_close_menu')); ?>">
                 <i class="fas fa-times"></i>

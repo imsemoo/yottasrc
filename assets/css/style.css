@@ -804,11 +804,12 @@ img {
     cursor: pointer;
 }
 
-/* ─── Logo: darken in light theme so it's visible ─── */
-[data-theme="light"] .nav-logo .logo-icon,
-[data-theme="light"] .footer-brand .logo-icon {
-    filter: brightness(0.15) saturate(80%);
-}
+/* ─── Logo: swap between dark/light variants per theme ─── */
+.logo-icon.logo-light { display: none; }
+.logo-icon.logo-dark { display: block; }
+
+[data-theme="light"] .logo-icon.logo-light { display: block; }
+[data-theme="light"] .logo-icon.logo-dark { display: none; }
 
 /* ─── Mobile Overlay & Drawer ─── */
 .mobile-overlay {

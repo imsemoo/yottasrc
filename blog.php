@@ -18,21 +18,21 @@ require_once __DIR__ . '/includes/topbar.php';
                         <i class="fas fa-chevron-right"></i>
                         <span><?php echo e(__('blog_breadcrumb')); ?></span>
                     </div>
-                    <h1>YottaSrc <span class="highlight">Blog</span></h1>
-                    <p class="page-hero-desc">Insights, tutorials, and updates from the YottaSrc team.</p>
+                    <h1><?php echo __('blog_title'); ?></h1>
+                    <p class="page-hero-desc"><?php echo e(__('blog_desc')); ?></p>
                     <div class="blog-search-wrap">
                         <i class="fas fa-search"></i>
-                        <input type="text" id="blogSearch" class="blog-search-input" placeholder="Search articles, tutorials, or guides..." autocomplete="off">
+                        <input type="text" id="blogSearch" class="blog-search-input" placeholder="<?php echo e(__('blog_search_placeholder')); ?>" autocomplete="off">
                     </div>
                     <div class="blog-hero-tags">
-                        <button class="blog-tag active" data-category="all">All</button>
-                        <button class="blog-tag" data-category="hosting">Hosting</button>
-                        <button class="blog-tag" data-category="vps">VPS</button>
-                        <button class="blog-tag" data-category="cloud">Cloud</button>
-                        <button class="blog-tag" data-category="reseller">Reseller</button>
-                        <button class="blog-tag" data-category="security">Security</button>
-                        <button class="blog-tag" data-category="tutorials">Tutorials</button>
-                        <button class="blog-tag" data-category="news">Company News</button>
+                        <button class="blog-tag active" data-category="all"><?php echo e(__('blog_all')); ?></button>
+                        <button class="blog-tag" data-category="hosting"><?php echo e(__('blog_cat_hosting')); ?></button>
+                        <button class="blog-tag" data-category="vps"><?php echo e(__('blog_cat_vps')); ?></button>
+                        <button class="blog-tag" data-category="cloud"><?php echo e(__('blog_cat_cloud')); ?></button>
+                        <button class="blog-tag" data-category="reseller"><?php echo e(__('blog_cat_reseller')); ?></button>
+                        <button class="blog-tag" data-category="security"><?php echo e(__('blog_cat_security')); ?></button>
+                        <button class="blog-tag" data-category="tutorials"><?php echo e(__('blog_cat_tutorials')); ?></button>
+                        <button class="blog-tag" data-category="news"><?php echo e(__('blog_cat_news')); ?></button>
                     </div>
                 </div>
                 <div class="page-hero-visual">
@@ -114,9 +114,9 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="blog-main reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Latest</div>
-                <h2>Recent Articles</h2>
-                <p>Stay up to date with hosting guides, infrastructure insights, and platform updates.</p>
+                <div class="section-tag"><?php echo e(__('blog_section_tag')); ?></div>
+                <h2><?php echo e(__('blog_section_title')); ?></h2>
+                <p><?php echo e(__('blog_section_desc')); ?></p>
             </div>
 
             <div class="blog-layout">
@@ -273,13 +273,13 @@ require_once __DIR__ . '/includes/topbar.php';
 
                     <!-- ── Pagination ── -->
                     <nav class="blog-pagination" id="blogPagination">
-                        <a href="#" class="pagination-btn pagination-prev disabled"><i class="fas fa-arrow-left"></i> Previous</a>
+                        <a href="#" class="pagination-btn pagination-prev disabled"><i class="fas fa-arrow-left"></i> <?php echo e(__('blog_previous')); ?></a>
                         <div class="pagination-pages">
                             <a href="#" class="pagination-num active">1</a>
                             <a href="#" class="pagination-num">2</a>
                             <a href="#" class="pagination-num">3</a>
                         </div>
-                        <a href="#" class="pagination-btn pagination-next">Next <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="pagination-btn pagination-next"><?php echo e(__('blog_next')); ?> <i class="fas fa-arrow-right"></i></a>
                     </nav>
                 </div>
 
@@ -288,7 +288,7 @@ require_once __DIR__ . '/includes/topbar.php';
 
                     <!-- Popular Posts -->
                     <div class="blog-sidebar-card">
-                        <h5 class="sidebar-card-title"><i class="fas fa-fire"></i> Popular Posts</h5>
+                        <h5 class="sidebar-card-title"><i class="fas fa-fire"></i> <?php echo e(__('blog_popular_posts')); ?></h5>
                         <ul class="sidebar-posts">
                             <li><a href="#">
                                 <span class="sidebar-post-num">01</span>
@@ -330,7 +330,7 @@ require_once __DIR__ . '/includes/topbar.php';
 
                     <!-- Categories -->
                     <div class="blog-sidebar-card">
-                        <h5 class="sidebar-card-title"><i class="fas fa-folder"></i> Categories</h5>
+                        <h5 class="sidebar-card-title"><i class="fas fa-folder"></i> <?php echo e(__('blog_categories')); ?></h5>
                         <ul class="sidebar-categories">
                             <li><a href="#"><span>Hosting</span><span class="sidebar-cat-count">12</span></a></li>
                             <li><a href="#"><span>VPS</span><span class="sidebar-cat-count">9</span></a></li>
@@ -344,11 +344,11 @@ require_once __DIR__ . '/includes/topbar.php';
                     <!-- Newsletter -->
                     <div class="blog-sidebar-card blog-newsletter">
                         <div class="newsletter-icon"><i class="fas fa-paper-plane"></i></div>
-                        <h5 class="sidebar-card-title">Stay Updated</h5>
-                        <p>Get the latest hosting guides and infrastructure insights.</p>
+                        <h5 class="sidebar-card-title"><?php echo e(__('blog_stay_updated')); ?></h5>
+                        <p><?php echo e(__('blog_newsletter_desc')); ?></p>
                         <form class="newsletter-form" onsubmit="return false;">
-                            <input type="email" placeholder="your@email.com" class="newsletter-input" required>
-                            <button type="submit" class="btn-primary newsletter-btn">Subscribe</button>
+                            <input type="email" placeholder="<?php echo e(__('blog_email_placeholder')); ?>" class="newsletter-input" required>
+                            <button type="submit" class="btn-primary newsletter-btn"><?php echo e(__('blog_subscribe')); ?></button>
                         </form>
                     </div>
 
@@ -358,7 +358,7 @@ require_once __DIR__ . '/includes/topbar.php';
             <!-- ── No Results (search) ── -->
             <div class="blog-no-results" id="blogNoResults">
                 <i class="fas fa-search"></i>
-                <p>No articles found matching your search.</p>
+                <p><?php echo e(__('blog_no_results')); ?></p>
             </div>
 
         </div>

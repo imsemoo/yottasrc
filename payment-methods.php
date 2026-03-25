@@ -18,9 +18,9 @@ require_once __DIR__ . '/includes/topbar.php';
                     <i class="fas fa-chevron-right"></i>
                     <span><?php echo e(__('payments_breadcrumb')); ?></span>
                 </div>
-                <h1>Flexible <span class="highlight">Payment Options</span></h1>
+                <h1><?php echo __('payments_title'); ?></h1>
                 <p class="page-hero-desc">
-                    We accept a wide range of secure payment methods so you can pay however you prefer. All transactions are encrypted and processed through trusted gateways.
+                    <?php echo e(__('payments_desc')); ?>
                 </p>
             </div>
         </div>
@@ -30,16 +30,16 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="payment-methods reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Payments</div>
-                <h2>Choose your preferred payment method</h2>
-                <p>We support multiple payment gateways to make checkout fast and convenient worldwide.</p>
+                <div class="section-tag"><?php echo e(__('payments_methods_tag')); ?></div>
+                <h2><?php echo e(__('payments_methods_title')); ?></h2>
+                <p><?php echo e(__('payments_methods_desc')); ?></p>
             </div>
 
             <div class="payment-grid">
                 <div class="payment-card">
                     <div class="payment-card-icon"><i class="fas fa-credit-card"></i></div>
-                    <h3>Credit &amp; Debit Card</h3>
-                    <p>Pay securely with Visa, Mastercard, American Express, or any major credit/debit card via our PCI-compliant payment gateway.</p>
+                    <h3><?php echo e(__('payments_card_title')); ?></h3>
+                    <p><?php echo e(__('payments_card_desc')); ?></p>
                     <div class="payment-card-brands">
                         <span class="payment-brand"><i class="fab fa-cc-visa"></i></span>
                         <span class="payment-brand"><i class="fab fa-cc-mastercard"></i></span>
@@ -49,8 +49,8 @@ require_once __DIR__ . '/includes/topbar.php';
 
                 <div class="payment-card">
                     <div class="payment-card-icon icon-blue"><i class="fab fa-paypal"></i></div>
-                    <h3>PayPal</h3>
-                    <p>Use your PayPal balance or linked bank account for fast, buyer-protected payments. Supports one-time and recurring billing.</p>
+                    <h3><?php echo e(__('payments_paypal_title')); ?></h3>
+                    <p><?php echo e(__('payments_paypal_desc')); ?></p>
                     <div class="payment-card-brands">
                         <span class="payment-brand"><i class="fab fa-cc-paypal"></i></span>
                     </div>
@@ -58,8 +58,8 @@ require_once __DIR__ . '/includes/topbar.php';
 
                 <div class="payment-card">
                     <div class="payment-card-icon icon-green"><i class="fab fa-bitcoin"></i></div>
-                    <h3>Cryptocurrency</h3>
-                    <p>Pay with Bitcoin, Ethereum, Litecoin, USDT, and 50+ other cryptocurrencies via CoinGate. Private and decentralized.</p>
+                    <h3><?php echo e(__('payments_crypto_title')); ?></h3>
+                    <p><?php echo e(__('payments_crypto_desc')); ?></p>
                     <div class="payment-card-brands">
                         <span class="payment-brand"><i class="fab fa-bitcoin"></i></span>
                         <span class="payment-brand"><i class="fab fa-ethereum"></i></span>
@@ -68,8 +68,8 @@ require_once __DIR__ . '/includes/topbar.php';
 
                 <div class="payment-card">
                     <div class="payment-card-icon icon-purple"><i class="fas fa-university"></i></div>
-                    <h3>Bank Transfer</h3>
-                    <p>Transfer funds directly from your bank account via SEPA or international wire transfer. Ideal for large invoices and enterprise clients.</p>
+                    <h3><?php echo e(__('payments_bank_title')); ?></h3>
+                    <p><?php echo e(__('payments_bank_desc')); ?></p>
                     <div class="payment-card-brands">
                         <span class="payment-brand"><i class="fas fa-building-columns"></i></span>
                     </div>
@@ -77,8 +77,8 @@ require_once __DIR__ . '/includes/topbar.php';
 
                 <div class="payment-card">
                     <div class="payment-card-icon icon-amber"><i class="fas fa-wallet"></i></div>
-                    <h3>Account Credit</h3>
-                    <p>Pre-load your YottaSrc account wallet and use the balance toward any service. Perfect for managing multiple subscriptions.</p>
+                    <h3><?php echo e(__('payments_credit_title')); ?></h3>
+                    <p><?php echo e(__('payments_credit_desc')); ?></p>
                     <div class="payment-card-brands">
                         <span class="payment-brand"><i class="fas fa-coins"></i></span>
                     </div>
@@ -86,8 +86,8 @@ require_once __DIR__ . '/includes/topbar.php';
 
                 <div class="payment-card">
                     <div class="payment-card-icon icon-rose"><i class="fas fa-globe"></i></div>
-                    <h3>Regional Methods</h3>
-                    <p>We also support Fawry, Vodafone Cash, Instapay, and other regional payment methods depending on your location and currency.</p>
+                    <h3><?php echo e(__('payments_regional_title')); ?></h3>
+                    <p><?php echo e(__('payments_regional_desc')); ?></p>
                     <div class="payment-card-brands">
                         <span class="payment-brand"><i class="fas fa-mobile-alt"></i></span>
                         <span class="payment-brand"><i class="fas fa-money-bill-wave"></i></span>
@@ -101,9 +101,9 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="pay-partners reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Our Partners</div>
-                <h2>Trusted payment partners</h2>
-                <p>We partner with industry-leading payment processors to offer you secure and reliable transactions worldwide.</p>
+                <div class="section-tag"><?php echo e(__('payments_partners_tag')); ?></div>
+                <h2><?php echo e(__('payments_partners_title')); ?></h2>
+                <p><?php echo e(__('payments_partners_desc')); ?></p>
             </div>
 
             <div class="pay-partners-grid">
@@ -111,15 +111,15 @@ require_once __DIR__ . '/includes/topbar.php';
                     <div class="pay-partner-logo">
                         <i class="fab fa-stripe-s"></i>
                     </div>
-                    <h4>Stripe</h4>
-                    <p>Credit/Debit cards, Google Pay &amp; Apple Pay</p>
+                    <h4><?php echo e(__('payments_stripe_title')); ?></h4>
+                    <p><?php echo __('payments_stripe_desc'); ?></p>
                 </div>
                 <div class="pay-partner-card">
                     <div class="pay-partner-logo pay-partner-logo--paypal">
                         <i class="fab fa-paypal"></i>
                     </div>
-                    <h4>PayPal</h4>
-                    <p>PayPal balance &amp; linked bank accounts</p>
+                    <h4><?php echo e(__('payments_paypal_partner_title')); ?></h4>
+                    <p><?php echo __('payments_paypal_partner_desc'); ?></p>
                 </div>
                 <div class="pay-partner-card">
                     <div class="pay-partner-logo pay-partner-logo--crypto">

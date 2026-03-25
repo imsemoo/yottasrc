@@ -4,7 +4,8 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="<?php echo e(SITE_URL); ?>/" class="nav-logo">
-                       <img src="<?php echo BASE_PATH; ?>/logo-light.png" alt="<?php echo e(SITE_NAME); ?>" class="logo-icon">
+                       <img src="<?php echo asset('images/logo_dark.png'); ?>" alt="<?php echo e(SITE_NAME); ?>" class="logo-icon logo-dark">
+                       <img src="<?php echo asset('images/logo_light.png'); ?>" alt="<?php echo e(SITE_NAME); ?>" class="logo-icon logo-light">
                     </a>
                     <p><?php echo e(__('footer_desc')); ?></p>
                     <div class="footer-socials">
