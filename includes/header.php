@@ -143,8 +143,31 @@
                         </span>
                     </button>
 
-                    <a href="<?php echo e(CONSOLE_URL); ?>/login" class="btn-nav-secondary desktop-only"><?php echo e(__('nav_login')); ?></a>
-                    <a href="<?php echo e(CONSOLE_URL); ?>/register" class="btn-nav-primary desktop-only"><?php echo e(__('nav_get_started')); ?> <i class="fas fa-arrow-right"></i></a>
+                    <!-- Guest state (default — not logged in) -->
+                    <div class="nav-auth nav-auth-guest">
+                        <a href="<?php echo e(CONSOLE_URL); ?>/login" class="btn-nav-secondary desktop-only"><?php echo e(__('nav_login')); ?></a>
+                        <a href="<?php echo e(CONSOLE_URL); ?>/register" class="btn-nav-primary desktop-only"><?php echo e(__('nav_get_started')); ?> <i class="fas fa-arrow-right"></i></a>
+                    </div>
+
+                    <!-- Logged-in state (authenticated user) -->
+                    <div class="nav-auth nav-auth-user" style="display:none;">
+                        <div class="switcher-dropdown" id="userMenu">
+                            <button class="nav-profile-circle" aria-label="<?php echo e(__('nav_my_account')); ?>">
+                                <i class="fas fa-user"></i>
+                            </button>
+                            <div class="switcher-menu">
+                                <div class="switcher-menu-title"><?php echo e(__('nav_my_account')); ?></div>
+                                <a href="<?php echo e(CONSOLE_URL); ?>/dashboard" class="switcher-option">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                    <span><?php echo e(__('nav_dashboard')); ?></span>
+                                </a>
+                                <a href="<?php echo e(CONSOLE_URL); ?>/logout" class="switcher-option">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    <span><?php echo e(__('nav_logout')); ?></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
 
                     <button class="nav-mobile-toggle" id="mobileMenuToggle" aria-label="<?php echo e(__('nav_toggle_mobile_menu')); ?>">
                         <i class="fas fa-bars"></i>
@@ -292,7 +315,16 @@
         </div>
 
         <div class="mobile-drawer-footer">
-            <a href="<?php echo e(CONSOLE_URL); ?>/login" class="mobile-cta-secondary"><?php echo e(__('nav_login')); ?></a>
-            <a href="<?php echo e(CONSOLE_URL); ?>/register" class="mobile-cta-primary"><?php echo e(__('nav_get_started')); ?></a>
+            <!-- Guest state (default — not logged in) -->
+            <div class="nav-auth-guest">
+                <a href="<?php echo e(CONSOLE_URL); ?>/login" class="mobile-cta-secondary"><?php echo e(__('nav_login')); ?></a>
+                <a href="<?php echo e(CONSOLE_URL); ?>/register" class="mobile-cta-primary"><?php echo e(__('nav_get_started')); ?></a>
+            </div>
+
+            <!-- Logged-in state (authenticated user) -->
+            <div class="nav-auth-user" style="display:none;">
+                <a href="<?php echo e(CONSOLE_URL); ?>/dashboard" class="mobile-cta-primary"><i class="fas fa-tachometer-alt"></i> <?php echo e(__('nav_dashboard')); ?></a>
+                <a href="<?php echo e(CONSOLE_URL); ?>/logout" class="mobile-cta-secondary"><i class="fas fa-sign-out-alt"></i> <?php echo e(__('nav_logout')); ?></a>
+            </div>
         </div>
     </aside>

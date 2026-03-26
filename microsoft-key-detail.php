@@ -33,9 +33,9 @@ $product = [
             <div class="page-breadcrumb">
                 <a href="<?php echo e(SITE_URL); ?>/"><?php echo e(__('breadcrumb_home')); ?></a>
                 <i class="fas fa-chevron-right"></i>
-                <a href="<?php echo e(SITE_URL); ?>/microsoft-products/">Microsoft</a>
+                <a href="<?php echo e(SITE_URL); ?>/microsoft-products/"><?php echo e(__('msdetail_breadcrumb_ms')); ?></a>
                 <i class="fas fa-chevron-right"></i>
-                <a href="<?php echo e(SITE_URL); ?>/licenses/keys/">Keys</a>
+                <a href="<?php echo e(SITE_URL); ?>/licenses/keys/"><?php echo e(__('msdetail_breadcrumb_keys')); ?></a>
                 <i class="fas fa-chevron-right"></i>
                 <span><?php echo e($product['name']); ?></span>
             </div>
@@ -61,48 +61,48 @@ $product = [
 
                     <!-- Key Features -->
                     <div class="mkd-section">
-                        <h2><i class="fas fa-star"></i> Key Features</h2>
+                        <h2><i class="fas fa-star"></i> <?php echo e(__('msdetail_features_title')); ?></h2>
                         <div class="mkd-features-grid">
                             <div class="mkd-feature">
                                 <div class="mkd-feature-icon"><i class="fas fa-bolt"></i></div>
                                 <div>
-                                    <strong>Instant Delivery</strong>
-                                    <span>Key delivered via email &amp; dashboard within seconds of payment.</span>
+                                    <strong><?php echo e(__('msdetail_feat_delivery_title')); ?></strong>
+                                    <span><?php echo __('msdetail_feat_delivery_desc'); ?></span>
                                 </div>
                             </div>
                             <div class="mkd-feature">
                                 <div class="mkd-feature-icon"><i class="fas fa-certificate"></i></div>
                                 <div>
-                                    <strong>Genuine Microsoft Key</strong>
-                                    <span>100% authentic — activates directly on Microsoft servers.</span>
+                                    <strong><?php echo e(__('msdetail_feat_genuine_title')); ?></strong>
+                                    <span><?php echo e(__('msdetail_feat_genuine_desc')); ?></span>
                                 </div>
                             </div>
                             <div class="mkd-feature">
                                 <div class="mkd-feature-icon"><i class="fas fa-infinity"></i></div>
                                 <div>
-                                    <strong>Lifetime License</strong>
-                                    <span>One-time purchase. No subscription, no recurring fees.</span>
+                                    <strong><?php echo e(__('msdetail_feat_lifetime_title')); ?></strong>
+                                    <span><?php echo e(__('msdetail_feat_lifetime_desc')); ?></span>
                                 </div>
                             </div>
                             <div class="mkd-feature">
                                 <div class="mkd-feature-icon"><i class="fas fa-sync-alt"></i></div>
                                 <div>
-                                    <strong>Free Replacement</strong>
-                                    <span>If your key doesn't activate, we replace it free of charge.</span>
+                                    <strong><?php echo e(__('msdetail_feat_replace_title')); ?></strong>
+                                    <span><?php echo e(__('msdetail_feat_replace_desc')); ?></span>
                                 </div>
                             </div>
                             <div class="mkd-feature">
                                 <div class="mkd-feature-icon"><i class="fas fa-laptop"></i></div>
                                 <div>
-                                    <strong>Windows 10 &amp; 11 Compatible</strong>
-                                    <span>Works on both Windows 10 and Windows 11 — upgrade anytime.</span>
+                                    <strong><?php echo __('msdetail_feat_compat_title'); ?></strong>
+                                    <span><?php echo e(__('msdetail_feat_compat_desc')); ?></span>
                                 </div>
                             </div>
                             <div class="mkd-feature">
                                 <div class="mkd-feature-icon"><i class="fas fa-headset"></i></div>
                                 <div>
-                                    <strong>24/7 Support</strong>
-                                    <span>Need help activating? Our team is available around the clock.</span>
+                                    <strong><?php echo e(__('msdetail_feat_support_title')); ?></strong>
+                                    <span><?php echo e(__('msdetail_feat_support_desc')); ?></span>
                                 </div>
                             </div>
                         </div>
@@ -110,34 +110,34 @@ $product = [
 
                     <!-- How to Activate -->
                     <div class="mkd-section">
-                        <h2><i class="fas fa-clipboard-check"></i> How to Activate</h2>
+                        <h2><i class="fas fa-clipboard-check"></i> <?php echo e(__('msdetail_activate_title')); ?></h2>
                         <div class="mkd-steps">
                             <div class="mkd-step">
                                 <div class="mkd-step-num">1</div>
                                 <div>
-                                    <strong>Purchase &amp; Receive Key</strong>
-                                    <span>Complete your order — the product key is delivered instantly to your email and dashboard.</span>
+                                    <strong><?php echo __('msdetail_activate_step1_title'); ?></strong>
+                                    <span><?php echo e(__('msdetail_activate_step1_desc')); ?></span>
                                 </div>
                             </div>
                             <div class="mkd-step">
                                 <div class="mkd-step-num">2</div>
                                 <div>
-                                    <strong>Open Settings</strong>
-                                    <span>Go to <code>Settings → System → Activation</code> on your Windows PC.</span>
+                                    <strong><?php echo e(__('msdetail_activate_step2_title')); ?></strong>
+                                    <span><?php echo __('msdetail_activate_step2_desc'); ?></span>
                                 </div>
                             </div>
                             <div class="mkd-step">
                                 <div class="mkd-step-num">3</div>
                                 <div>
-                                    <strong>Enter Product Key</strong>
-                                    <span>Click "Change product key" and paste the key you received.</span>
+                                    <strong><?php echo e(__('msdetail_activate_step3_title')); ?></strong>
+                                    <span><?php echo e(__('msdetail_activate_step3_desc')); ?></span>
                                 </div>
                             </div>
                             <div class="mkd-step">
                                 <div class="mkd-step-num">4</div>
                                 <div>
-                                    <strong>Activated!</strong>
-                                    <span>Windows activates online automatically. You're all set — enjoy your genuine license.</span>
+                                    <strong><?php echo e(__('msdetail_activate_step4_title')); ?></strong>
+                                    <span><?php echo e(__('msdetail_activate_step4_desc')); ?></span>
                                 </div>
                             </div>
                         </div>
@@ -145,14 +145,14 @@ $product = [
 
                     <!-- What's Included -->
                     <div class="mkd-section">
-                        <h2><i class="fas fa-box-open"></i> What's Included</h2>
+                        <h2><i class="fas fa-box-open"></i> <?php echo e(__('msdetail_included_title')); ?></h2>
                         <ul class="mkd-included-list">
-                            <li><i class="fas fa-check"></i> 1× Genuine Windows 10/11 Pro Product Key</li>
-                            <li><i class="fas fa-check"></i> Instant digital delivery (no physical shipment)</li>
-                            <li><i class="fas fa-check"></i> Official Microsoft online activation</li>
-                            <li><i class="fas fa-check"></i> Full Windows Pro features: BitLocker, Remote Desktop, Hyper-V</li>
-                            <li><i class="fas fa-check"></i> Free upgrade path from Windows 10 to 11</li>
-                            <li><i class="fas fa-check"></i> Lifetime validity — no expiry</li>
+                            <li><i class="fas fa-check"></i> <?php echo e(__('msdetail_included_1')); ?></li>
+                            <li><i class="fas fa-check"></i> <?php echo e(__('msdetail_included_2')); ?></li>
+                            <li><i class="fas fa-check"></i> <?php echo e(__('msdetail_included_3')); ?></li>
+                            <li><i class="fas fa-check"></i> <?php echo e(__('msdetail_included_4')); ?></li>
+                            <li><i class="fas fa-check"></i> <?php echo e(__('msdetail_included_5')); ?></li>
+                            <li><i class="fas fa-check"></i> <?php echo e(__('msdetail_included_6')); ?></li>
                         </ul>
                     </div>
                 </div>
@@ -167,36 +167,36 @@ $product = [
                         <div class="mkd-price-block">
                             <span class="mkd-old-price"><?php echo e($product['old_price']); ?></span>
                             <span class="mkd-current-price"><?php echo e($product['price']); ?></span>
-                            <span class="mkd-save-tag"><i class="fas fa-tag"></i> Save <?php echo round((1 - floatval(str_replace('€', '', $product['price'])) / floatval(str_replace('€', '', $product['old_price']))) * 100); ?>%</span>
+                            <span class="mkd-save-tag"><i class="fas fa-tag"></i> <?php echo e(__('msdetail_save', ['percent' => round((1 - floatval(str_replace('€', '', $product['price'])) / floatval(str_replace('€', '', $product['old_price']))) * 100)])); ?></span>
                         </div>
 
                         <div class="mkd-meta-grid">
                             <div class="mkd-meta-item">
                                 <i class="fas fa-barcode"></i>
-                                <div><strong>SKU</strong><span><?php echo e($product['sku']); ?></span></div>
+                                <div><strong><?php echo e(__('msdetail_meta_sku')); ?></strong><span><?php echo e($product['sku']); ?></span></div>
                             </div>
                             <div class="mkd-meta-item">
                                 <i class="fas fa-truck"></i>
-                                <div><strong>Delivery</strong><span><?php echo e($product['delivery']); ?></span></div>
+                                <div><strong><?php echo e(__('msdetail_meta_delivery')); ?></strong><span><?php echo e($product['delivery']); ?></span></div>
                             </div>
                             <div class="mkd-meta-item">
                                 <i class="fas fa-shield-alt"></i>
-                                <div><strong>Activation</strong><span><?php echo e($product['activation']); ?></span></div>
+                                <div><strong><?php echo e(__('msdetail_meta_activation')); ?></strong><span><?php echo e($product['activation']); ?></span></div>
                             </div>
                             <div class="mkd-meta-item">
                                 <i class="fas fa-desktop"></i>
-                                <div><strong>License</strong><span><?php echo e($product['platform']); ?></span></div>
+                                <div><strong><?php echo e(__('msdetail_meta_license')); ?></strong><span><?php echo e($product['platform']); ?></span></div>
                             </div>
                         </div>
 
                         <?php if ($product['stock']): ?>
-                        <div class="mkd-stock mkd-in-stock"><i class="fas fa-check-circle"></i> In Stock — Ready for Instant Delivery</div>
+                        <div class="mkd-stock mkd-in-stock"><i class="fas fa-check-circle"></i> <?php echo e(__('msdetail_in_stock')); ?></div>
                         <?php else: ?>
-                        <div class="mkd-stock mkd-out-stock"><i class="fas fa-times-circle"></i> Currently Unavailable</div>
+                        <div class="mkd-stock mkd-out-stock"><i class="fas fa-times-circle"></i> <?php echo e(__('msdetail_out_of_stock')); ?></div>
                         <?php endif; ?>
 
                         <div class="mkd-qty-row">
-                            <label for="mkdQty">Quantity</label>
+                            <label for="mkdQty"><?php echo e(__('msdetail_qty_label')); ?></label>
                             <div class="mkd-qty-control">
                                 <button type="button" class="mkd-qty-btn" id="mkdQtyMinus"><i class="fas fa-minus"></i></button>
                                 <input type="number" class="mkd-qty-input" id="mkdQty" value="1" min="1" max="100">
@@ -205,21 +205,21 @@ $product = [
                         </div>
 
                         <button class="mkd-order-btn" data-type="keys" type="button">
-                            <i class="fas fa-shopping-cart"></i> Order Now — <?php echo e($product['price']); ?>
+                            <i class="fas fa-shopping-cart"></i> <?php echo e(__('msdetail_order_btn', ['price' => $product['price']])); ?>
                         </button>
 
                         <div class="mkd-trust-row">
-                            <span><i class="fas fa-lock"></i> Secure Checkout</span>
-                            <span><i class="fas fa-undo"></i> Refund Policy</span>
-                            <span><i class="fas fa-headset"></i> 24/7 Support</span>
+                            <span><i class="fas fa-lock"></i> <?php echo e(__('msdetail_trust_secure')); ?></span>
+                            <span><i class="fas fa-undo"></i> <?php echo e(__('msdetail_trust_refund')); ?></span>
+                            <span><i class="fas fa-headset"></i> <?php echo e(__('msdetail_trust_support')); ?></span>
                         </div>
                     </div>
 
                     <!-- Volume Pricing -->
                     <div class="mkd-volume-card">
-                        <h4><i class="fas fa-layer-group"></i> Volume Discounts</h4>
+                        <h4><i class="fas fa-layer-group"></i> <?php echo e(__('msdetail_volume_title')); ?></h4>
                         <table class="mkd-volume-table">
-                            <thead><tr><th>Quantity</th><th>Unit Price</th><th>Savings</th></tr></thead>
+                            <thead><tr><th><?php echo e(__('msdetail_volume_th_qty')); ?></th><th><?php echo e(__('msdetail_volume_th_price')); ?></th><th><?php echo e(__('msdetail_volume_th_savings')); ?></th></tr></thead>
                             <tbody>
                                 <tr><td>1 – 9</td><td>€6.99</td><td>—</td></tr>
                                 <tr><td>10 – 49</td><td>€5.99</td><td class="mkd-save">14% off</td></tr>
@@ -227,12 +227,12 @@ $product = [
                                 <tr class="mkd-vol-highlight"><td>200+</td><td>€3.99</td><td class="mkd-save">43% off</td></tr>
                             </tbody>
                         </table>
-                        <p class="mkd-volume-note"><i class="fas fa-info-circle"></i> Need custom pricing? <a href="<?php echo e(SITE_URL); ?>/contact-us/">Contact Sales</a></p>
+                        <p class="mkd-volume-note"><i class="fas fa-info-circle"></i> <?php echo __('msdetail_volume_note', ['url' => e(SITE_URL) . '/contact-us/']); ?></p>
                     </div>
 
                     <!-- Payment Methods -->
                     <div class="mkd-payments-card">
-                        <h4><i class="fas fa-credit-card"></i> We Accept</h4>
+                        <h4><i class="fas fa-credit-card"></i> <?php echo e(__('msdetail_payments_title')); ?></h4>
                         <div class="mkd-pay-icons">
                             <i class="fab fa-cc-visa"></i>
                             <i class="fab fa-cc-mastercard"></i>
@@ -250,9 +250,9 @@ $product = [
     <section class="mkd-related reveal">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag"><i class="fas fa-th-large"></i> Related Products</span>
-                <h2>You May Also Like</h2>
-                <p>Explore other popular Microsoft license keys.</p>
+                <span class="section-tag"><i class="fas fa-th-large"></i> <?php echo e(__('msdetail_related_tag')); ?></span>
+                <h2><?php echo e(__('msdetail_related_title')); ?></h2>
+                <p><?php echo e(__('msdetail_related_desc')); ?></p>
             </div>
             <div class="mkd-related-grid">
                 <div class="mkd-related-card">
@@ -260,28 +260,28 @@ $product = [
                     <h4>Windows 10/11 Pro — 1 PC (OEM)</h4>
                     <p>OEM license — ties to one device, non-transferable. Budget option.</p>
                     <div class="mkd-rc-price">€3.99</div>
-                    <a href="#" class="mkd-rc-btn">View Details <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="mkd-rc-btn"><?php echo e(__('msdetail_related_view')); ?> <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="mkd-related-card">
                     <div class="mkd-rc-icon"><i class="fab fa-microsoft"></i></div>
                     <h4>Office 2021 Professional Plus</h4>
                     <p>Full Office suite — Word, Excel, PowerPoint, Outlook, Access, Publisher.</p>
                     <div class="mkd-rc-price">€3.50</div>
-                    <a href="#" class="mkd-rc-btn">View Details <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="mkd-rc-btn"><?php echo e(__('msdetail_related_view')); ?> <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="mkd-related-card">
                     <div class="mkd-rc-icon"><i class="fab fa-microsoft"></i></div>
                     <h4>Windows Server 2022 Standard</h4>
                     <p>Latest server OS — Hyper-V, containers, Azure hybrid support.</p>
                     <div class="mkd-rc-price">€12.00</div>
-                    <a href="#" class="mkd-rc-btn">View Details <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="mkd-rc-btn"><?php echo e(__('msdetail_related_view')); ?> <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="mkd-related-card">
                     <div class="mkd-rc-icon"><i class="fab fa-microsoft"></i></div>
                     <h4>Visual Studio 2022 Professional</h4>
                     <p>Full IDE for .NET, C++, Python, and web development.</p>
                     <div class="mkd-rc-price">€12.00</div>
-                    <a href="#" class="mkd-rc-btn">View Details <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="mkd-rc-btn"><?php echo e(__('msdetail_related_view')); ?> <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -291,31 +291,31 @@ $product = [
     <section class="mkd-faq reveal">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag"><i class="fas fa-question-circle"></i> FAQ</span>
-                <h2>Common Questions</h2>
+                <span class="section-tag"><i class="fas fa-question-circle"></i> <?php echo e(__('msdetail_faq_tag')); ?></span>
+                <h2><?php echo e(__('msdetail_faq_title')); ?></h2>
             </div>
             <div class="faq-layout faq-layout--full" style="max-width:800px;margin:0 auto;">
                 <div class="faq-panels">
                     <div class="faq-panel active" id="faq-mkd-all">
                         <div class="faq-item">
-                            <button class="faq-question"><span>Is this a genuine Microsoft product key?</span><i class="fas fa-chevron-down"></i></button>
-                            <div class="faq-answer"><p>Yes — all our keys are 100% genuine and activate directly on Microsoft's official activation servers. You'll see "Windows is activated with a digital license" in your Settings.</p></div>
+                            <button class="faq-question"><span><?php echo e(__('msdetail_faq_q1')); ?></span><i class="fas fa-chevron-down"></i></button>
+                            <div class="faq-answer"><p><?php echo __('msdetail_faq_a1'); ?></p></div>
                         </div>
                         <div class="faq-item">
-                            <button class="faq-question"><span>What's the difference between Retail and OEM?</span><i class="fas fa-chevron-down"></i></button>
-                            <div class="faq-answer"><p><strong>Retail keys</strong> can be transferred to a new PC if you deactivate the old one. <strong>OEM keys</strong> are tied permanently to the first device they're activated on. Retail is more flexible; OEM is cheaper.</p></div>
+                            <button class="faq-question"><span><?php echo e(__('msdetail_faq_q2')); ?></span><i class="fas fa-chevron-down"></i></button>
+                            <div class="faq-answer"><p><?php echo __('msdetail_faq_a2'); ?></p></div>
                         </div>
                         <div class="faq-item">
-                            <button class="faq-question"><span>Can I upgrade from Windows 10 to 11 with this key?</span><i class="fas fa-chevron-down"></i></button>
-                            <div class="faq-answer"><p>Yes. This key works on both Windows 10 and Windows 11. If you're on Windows 10, you can upgrade to 11 for free — your license carries over automatically.</p></div>
+                            <button class="faq-question"><span><?php echo e(__('msdetail_faq_q3')); ?></span><i class="fas fa-chevron-down"></i></button>
+                            <div class="faq-answer"><p><?php echo e(__('msdetail_faq_a3')); ?></p></div>
                         </div>
                         <div class="faq-item">
-                            <button class="faq-question"><span>How fast is delivery?</span><i class="fas fa-chevron-down"></i></button>
-                            <div class="faq-answer"><p>Instant. As soon as payment is confirmed, the key is delivered to your email and appears in your YottaSrc dashboard. Typically within 1–2 minutes.</p></div>
+                            <button class="faq-question"><span><?php echo e(__('msdetail_faq_q4')); ?></span><i class="fas fa-chevron-down"></i></button>
+                            <div class="faq-answer"><p><?php echo e(__('msdetail_faq_a4')); ?></p></div>
                         </div>
                         <div class="faq-item">
-                            <button class="faq-question"><span>What if the key doesn't work?</span><i class="fas fa-chevron-down"></i></button>
-                            <div class="faq-answer"><p>We offer free replacement. Contact our 24/7 support team and we'll issue a new key immediately — no questions asked.</p></div>
+                            <button class="faq-question"><span><?php echo e(__('msdetail_faq_q5')); ?></span><i class="fas fa-chevron-down"></i></button>
+                            <div class="faq-answer"><p><?php echo e(__('msdetail_faq_a5')); ?></p></div>
                         </div>
                     </div>
                 </div>

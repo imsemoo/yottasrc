@@ -17,24 +17,24 @@ require_once __DIR__ . '/includes/topbar.php';
                     <div class="page-breadcrumb">
                         <a href="<?php echo e(SITE_URL); ?>/"><?php echo e(__('breadcrumb_home')); ?></a>
                         <i class="fas fa-chevron-right"></i>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/">VPS</a>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/"><?php echo e(__('winvps_breadcrumb_vps')); ?></a>
                         <i class="fas fa-chevron-right"></i>
                         <span><?php echo e(__('winvps_breadcrumb')); ?></span>
                     </div>
-                    <h1>Windows VPS Servers — <span class="highlight">Full Admin Access</span></h1>
+                    <h1><?php echo __('winvps_title'); ?></h1>
                     <p class="page-hero-desc">
-                        Deploy Windows VPS instances with full RDP access, dedicated resources, and NVMe SSD storage. Run Windows Server 2019/2022 or Windows 10/11 — ideal for RDP hosting, trading bots, game servers, and enterprise apps.
+                        <?php echo e(__('winvps_desc')); ?>
                     </p>
                     <div class="page-hero-ctas">
-                        <a href="#plans" class="btn-primary">View Plans <i class="fas fa-arrow-down"></i></a>
-                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-secondary"><i class="fas fa-headset"></i> Talk to Sales</a>
+                        <a href="#plans" class="btn-primary"><?php echo e(__('common_view_plans')); ?> <i class="fas fa-arrow-down"></i></a>
+                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-secondary"><i class="fas fa-headset"></i> <?php echo e(__('common_talk_to_sales')); ?></a>
                     </div>
                     <div class="page-hero-badges">
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> Full RDP Access</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> NVMe SSD Storage</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> 10 Gbit/s Network</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> Instant Deploy</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> 20+ Locations</div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('winvps_badge_rdp')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('winvps_badge_nvme')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('winvps_badge_network')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('winvps_badge_deploy')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('winvps_badge_locations')); ?></div>
                     </div>
                 </div>
                 <div class="page-hero-visual">
@@ -55,7 +55,7 @@ require_once __DIR__ . '/includes/topbar.php';
                         <rect x="60" y="240" width="320" height="30" fill="var(--bg-tertiary)" stroke="var(--border-primary)" stroke-width="0.5"/>
                         <!-- Start button -->
                         <rect x="70" y="246" width="24" height="18" rx="3" fill="var(--brand-primary)" opacity="0.2"/>
-                        <text x="82" y="258" text-anchor="middle" fill="var(--brand-primary)" font-size="10" opacity="0.6">⊞</text>
+                        <text x="82" y="258" text-anchor="middle" fill="var(--brand-primary)" font-size="10" opacity="0.6">&#8862;</text>
                         <!-- Taskbar icons -->
                         <rect x="102" y="248" width="16" height="14" rx="2" fill="var(--text-tertiary)" opacity="0.15"/>
                         <rect x="122" y="248" width="16" height="14" rx="2" fill="var(--text-tertiary)" opacity="0.15"/>
@@ -65,15 +65,15 @@ require_once __DIR__ . '/includes/topbar.php';
 
                         <!-- Desktop icons -->
                         <rect x="78" y="80" width="40" height="40" rx="6" fill="var(--brand-primary)" opacity="0.1"/>
-                        <text x="98" y="105" text-anchor="middle" fill="var(--brand-primary)" font-size="16" opacity="0.5">📁</text>
+                        <text x="98" y="105" text-anchor="middle" fill="var(--brand-primary)" font-size="16" opacity="0.5">&#128193;</text>
                         <text x="98" y="132" text-anchor="middle" fill="var(--text-tertiary)" font-size="6.5" font-family="var(--font-mono)" opacity="0.5">Files</text>
 
                         <rect x="138" y="80" width="40" height="40" rx="6" fill="var(--brand-secondary)" opacity="0.1"/>
-                        <text x="158" y="105" text-anchor="middle" fill="var(--brand-secondary)" font-size="16" opacity="0.5">⚙</text>
+                        <text x="158" y="105" text-anchor="middle" fill="var(--brand-secondary)" font-size="16" opacity="0.5">&#9881;</text>
                         <text x="158" y="132" text-anchor="middle" fill="var(--text-tertiary)" font-size="6.5" font-family="var(--font-mono)" opacity="0.5">Settings</text>
 
                         <rect x="78" y="148" width="40" height="40" rx="6" fill="var(--brand-accent)" opacity="0.1"/>
-                        <text x="98" y="173" text-anchor="middle" fill="var(--brand-accent)" font-size="16" opacity="0.5">🖥</text>
+                        <text x="98" y="173" text-anchor="middle" fill="var(--brand-accent)" font-size="16" opacity="0.5">&#128421;</text>
                         <text x="98" y="200" text-anchor="middle" fill="var(--text-tertiary)" font-size="6.5" font-family="var(--font-mono)" opacity="0.5">Terminal</text>
 
                         <!-- Server Manager window -->
@@ -130,13 +130,13 @@ require_once __DIR__ . '/includes/topbar.php';
     <!-- ═══════════════ POWERED BY STRIP ═══════════════ -->
     <section class="partners">
         <div class="container">
-            <span class="partners-label">Powered By</span>
+            <span class="partners-label"><?php echo e(__('winvps_powered_by')); ?></span>
             <div class="partners-logos">
-                <span class="partner-logo"><i class="fab fa-windows"></i> Windows</span>
-                <span class="partner-logo"><i class="fas fa-server"></i> KVM</span>
-                <span class="partner-logo"><i class="fas fa-hdd"></i> NVMe SSD</span>
-                <span class="partner-logo"><i class="fas fa-shield-alt"></i> Anti-DDoS</span>
-                <span class="partner-logo"><i class="fas fa-network-wired"></i> 10 Gbit/s</span>
+                <span class="partner-logo"><i class="fab fa-windows"></i> <?php echo e(__('winvps_partner_windows')); ?></span>
+                <span class="partner-logo"><i class="fas fa-server"></i> <?php echo e(__('winvps_partner_kvm')); ?></span>
+                <span class="partner-logo"><i class="fas fa-hdd"></i> <?php echo e(__('winvps_partner_nvme')); ?></span>
+                <span class="partner-logo"><i class="fas fa-shield-alt"></i> <?php echo e(__('winvps_partner_antiddos')); ?></span>
+                <span class="partner-logo"><i class="fas fa-network-wired"></i> <?php echo e(__('winvps_partner_network')); ?></span>
             </div>
         </div>
     </section>
@@ -145,17 +145,17 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="plans reveal" id="plans">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Pricing</div>
-                <h2>Windows VPS Plans</h2>
-                <p>Full admin RDP access, dedicated resources, NVMe SSD. Same price on renewal.</p>
+                <div class="section-tag"><?php echo e(__('winvps_plans_tag')); ?></div>
+                <h2><?php echo e(__('winvps_plans_title')); ?></h2>
+                <p><?php echo e(__('winvps_plans_desc')); ?></p>
             </div>
 
             <div class="plans-panel active" data-tab="win-vps">
                 <div class="vps-rows-header">
-                    <span><i class="fas fa-check-circle"></i> Full Admin RDP Access</span>
-                    <span><i class="fas fa-check-circle"></i> Dedicated IPv4</span>
-                    <span><i class="fab fa-windows"></i> Windows Included</span>
-                    <span><i class="fas fa-sync-alt"></i> Same price on renewal</span>
+                    <span><i class="fas fa-check-circle"></i> <?php echo e(__('winvps_plan_feat_rdp')); ?></span>
+                    <span><i class="fas fa-check-circle"></i> <?php echo e(__('winvps_plan_feat_ipv4')); ?></span>
+                    <span><i class="fab fa-windows"></i> <?php echo e(__('winvps_plan_feat_win')); ?></span>
+                    <span><i class="fas fa-sync-alt"></i> <?php echo e(__('winvps_plan_feat_renewal')); ?></span>
                 </div>
                 <div class="vps-rows">
                     <!-- Win VPS 1 -->
@@ -163,37 +163,37 @@ require_once __DIR__ . '/includes/topbar.php';
                         <div class="vps-row-header">
                             <div class="vps-row-identity">
                                 <span class="vps-row-toggle"><i class="fas fa-chevron-down"></i></span>
-                                <span class="vps-row-name">Win VPS 1</span>
-                                <span class="vps-row-arch">x86</span>
+                                <span class="vps-row-name"><?php echo e(__('winvps_plan1_name')); ?></span>
+                                <span class="vps-row-arch"><?php echo e(__('winvps_plan_arch_x86')); ?></span>
                             </div>
                             <div class="vps-row-specs">
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">2 Cores</span><span class="vps-row-spec-label">CPU</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">4 GB</span><span class="vps-row-spec-label">RAM</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">50 GB</span><span class="vps-row-spec-label">NVMe</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">10 Gbit/s</span><span class="vps-row-spec-label">Network</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">25 TB</span><span class="vps-row-spec-label">Traffic</span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val"><?php echo e(__('winvps_plan1_cpu')); ?></span><span class="vps-row-spec-label"><?php echo e(__('winvps_spec_label_cpu')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val"><?php echo e(__('winvps_plan1_ram')); ?></span><span class="vps-row-spec-label"><?php echo e(__('winvps_spec_label_ram')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val"><?php echo e(__('winvps_plan1_nvme')); ?></span><span class="vps-row-spec-label"><?php echo e(__('winvps_spec_label_nvme')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val"><?php echo e(__('winvps_plan1_network')); ?></span><span class="vps-row-spec-label"><?php echo e(__('winvps_spec_label_network')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val"><?php echo e(__('winvps_plan1_traffic')); ?></span><span class="vps-row-spec-label"><?php echo e(__('winvps_spec_label_traffic')); ?></span></div>
                             </div>
                             <div class="vps-row-action">
-                                <div class="vps-row-price"><span class="vps-row-amount">€8.99</span><span class="vps-row-cycle">/mo</span></div>
-                                <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="vps-row-btn">Order Now</a>
+                                <div class="vps-row-price"><span class="vps-row-amount"><?php echo e(__('winvps_plan1_price')); ?></span><span class="vps-row-cycle"><?php echo e(__('winvps_plan_cycle')); ?></span></div>
+                                <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="vps-row-btn"><?php echo e(__('common_order_now')); ?></a>
                             </div>
                         </div>
                         <div class="vps-row-details">
                             <div class="vps-row-details-features">
-                                <span><i class="fas fa-check-circle"></i> <strong>FREE</strong> Anti-DDoS</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>99%</strong> Uptime SLA</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>Full</strong> Admin Access</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>RDP</strong> Included</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>24/7</strong> Support</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>Dedicated</strong> IP</span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('winvps_feat_free_antiddos'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('winvps_feat_uptime_sla'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('winvps_feat_full_admin'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('winvps_feat_rdp_included'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('winvps_feat_247_support'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('winvps_feat_dedicated_ip'); ?></span>
                             </div>
                             <div class="vps-row-details-locations">
                                 <div class="vps-loc-pills">
-                                    <span class="vps-loc-pill"><span class="fi fi-de"></span> Frankfurt <em>~8ms</em></span>
-                                    <span class="vps-loc-pill"><span class="fi fi-nl"></span> Amsterdam <em>~10ms</em></span>
-                                    <span class="vps-loc-pill"><span class="fi fi-gb"></span> London <em>~15ms</em></span>
-                                    <span class="vps-loc-pill"><span class="fi fi-fi"></span> Helsinki <em>~35ms</em></span>
-                                    <span class="vps-loc-pill"><span class="fi fi-us"></span> New York <em>~78ms</em></span>
+                                    <span class="vps-loc-pill"><span class="fi fi-de"></span> <?php echo e(__('winvps_loc_frankfurt')); ?> <em><?php echo e(__('winvps_loc_frankfurt_latency')); ?></em></span>
+                                    <span class="vps-loc-pill"><span class="fi fi-nl"></span> <?php echo e(__('winvps_loc_amsterdam')); ?> <em><?php echo e(__('winvps_loc_amsterdam_latency')); ?></em></span>
+                                    <span class="vps-loc-pill"><span class="fi fi-gb"></span> <?php echo e(__('winvps_loc_london')); ?> <em><?php echo e(__('winvps_loc_london_latency')); ?></em></span>
+                                    <span class="vps-loc-pill"><span class="fi fi-fi"></span> <?php echo e(__('winvps_loc_helsinki')); ?> <em><?php echo e(__('winvps_loc_helsinki_latency')); ?></em></span>
+                                    <span class="vps-loc-pill"><span class="fi fi-us"></span> <?php echo e(__('winvps_loc_newyork')); ?> <em><?php echo e(__('winvps_loc_newyork_latency')); ?></em></span>
                                 </div>
                             </div>
                         </div>
@@ -201,41 +201,41 @@ require_once __DIR__ . '/includes/topbar.php';
 
                     <!-- Win VPS 2 (Popular) -->
                     <div class="vps-row popular expanded">
-                        <span class="vps-row-badge">Best Value</span>
+                        <span class="vps-row-badge"><?php echo e(__('winvps_best_value')); ?></span>
                         <div class="vps-row-header">
                             <div class="vps-row-identity">
                                 <span class="vps-row-toggle"><i class="fas fa-chevron-down"></i></span>
-                                <span class="vps-row-name">Win VPS 2</span>
-                                <span class="vps-row-arch">x86</span>
+                                <span class="vps-row-name"><?php echo e(__('winvps_plan2_name')); ?></span>
+                                <span class="vps-row-arch"><?php echo e(__('winvps_plan_arch_x86')); ?></span>
                             </div>
                             <div class="vps-row-specs">
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">4 Cores</span><span class="vps-row-spec-label">CPU</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">8 GB</span><span class="vps-row-spec-label">RAM</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">100 GB</span><span class="vps-row-spec-label">NVMe</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">10 Gbit/s</span><span class="vps-row-spec-label">Network</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">30 TB</span><span class="vps-row-spec-label">Traffic</span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val"><?php echo e(__('winvps_plan2_cpu')); ?></span><span class="vps-row-spec-label"><?php echo e(__('winvps_spec_label_cpu')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val"><?php echo e(__('winvps_plan2_ram')); ?></span><span class="vps-row-spec-label"><?php echo e(__('winvps_spec_label_ram')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val"><?php echo e(__('winvps_plan2_nvme')); ?></span><span class="vps-row-spec-label"><?php echo e(__('winvps_spec_label_nvme')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val"><?php echo e(__('winvps_plan2_network')); ?></span><span class="vps-row-spec-label"><?php echo e(__('winvps_spec_label_network')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val"><?php echo e(__('winvps_plan2_traffic')); ?></span><span class="vps-row-spec-label"><?php echo e(__('winvps_spec_label_traffic')); ?></span></div>
                             </div>
                             <div class="vps-row-action">
-                                <div class="vps-row-price"><span class="vps-row-amount">€14.99</span><span class="vps-row-cycle">/mo</span></div>
-                                <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="vps-row-btn">Order Now</a>
+                                <div class="vps-row-price"><span class="vps-row-amount"><?php echo e(__('winvps_plan2_price')); ?></span><span class="vps-row-cycle"><?php echo e(__('winvps_plan_cycle')); ?></span></div>
+                                <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="vps-row-btn"><?php echo e(__('common_order_now')); ?></a>
                             </div>
                         </div>
                         <div class="vps-row-details">
                             <div class="vps-row-details-features">
-                                <span><i class="fas fa-check-circle"></i> <strong>FREE</strong> Anti-DDoS</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>99%</strong> Uptime SLA</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>Full</strong> Admin Access</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>RDP</strong> Included</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>24/7</strong> Support</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>Dedicated</strong> IP</span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('winvps_feat_free_antiddos'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('winvps_feat_uptime_sla'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('winvps_feat_full_admin'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('winvps_feat_rdp_included'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('winvps_feat_247_support'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('winvps_feat_dedicated_ip'); ?></span>
                             </div>
                             <div class="vps-row-details-locations">
                                 <div class="vps-loc-pills">
-                                    <span class="vps-loc-pill"><span class="fi fi-de"></span> Frankfurt <em>~8ms</em></span>
-                                    <span class="vps-loc-pill"><span class="fi fi-nl"></span> Amsterdam <em>~10ms</em></span>
-                                    <span class="vps-loc-pill"><span class="fi fi-gb"></span> London <em>~15ms</em></span>
-                                    <span class="vps-loc-pill"><span class="fi fi-fi"></span> Helsinki <em>~35ms</em></span>
-                                    <span class="vps-loc-pill"><span class="fi fi-us"></span> New York <em>~78ms</em></span>
+                                    <span class="vps-loc-pill"><span class="fi fi-de"></span> <?php echo e(__('winvps_loc_frankfurt')); ?> <em><?php echo e(__('winvps_loc_frankfurt_latency')); ?></em></span>
+                                    <span class="vps-loc-pill"><span class="fi fi-nl"></span> <?php echo e(__('winvps_loc_amsterdam')); ?> <em><?php echo e(__('winvps_loc_amsterdam_latency')); ?></em></span>
+                                    <span class="vps-loc-pill"><span class="fi fi-gb"></span> <?php echo e(__('winvps_loc_london')); ?> <em><?php echo e(__('winvps_loc_london_latency')); ?></em></span>
+                                    <span class="vps-loc-pill"><span class="fi fi-fi"></span> <?php echo e(__('winvps_loc_helsinki')); ?> <em><?php echo e(__('winvps_loc_helsinki_latency')); ?></em></span>
+                                    <span class="vps-loc-pill"><span class="fi fi-us"></span> <?php echo e(__('winvps_loc_newyork')); ?> <em><?php echo e(__('winvps_loc_newyork_latency')); ?></em></span>
                                 </div>
                             </div>
                         </div>
@@ -246,37 +246,37 @@ require_once __DIR__ . '/includes/topbar.php';
                         <div class="vps-row-header">
                             <div class="vps-row-identity">
                                 <span class="vps-row-toggle"><i class="fas fa-chevron-down"></i></span>
-                                <span class="vps-row-name">Win VPS 3</span>
-                                <span class="vps-row-arch">x86</span>
+                                <span class="vps-row-name"><?php echo e(__('winvps_plan3_name')); ?></span>
+                                <span class="vps-row-arch"><?php echo e(__('winvps_plan_arch_x86')); ?></span>
                             </div>
                             <div class="vps-row-specs">
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">6 Cores</span><span class="vps-row-spec-label">CPU</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">16 GB</span><span class="vps-row-spec-label">RAM</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">200 GB</span><span class="vps-row-spec-label">NVMe</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">10 Gbit/s</span><span class="vps-row-spec-label">Network</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">40 TB</span><span class="vps-row-spec-label">Traffic</span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val"><?php echo e(__('winvps_plan3_cpu')); ?></span><span class="vps-row-spec-label"><?php echo e(__('winvps_spec_label_cpu')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val"><?php echo e(__('winvps_plan3_ram')); ?></span><span class="vps-row-spec-label"><?php echo e(__('winvps_spec_label_ram')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val"><?php echo e(__('winvps_plan3_nvme')); ?></span><span class="vps-row-spec-label"><?php echo e(__('winvps_spec_label_nvme')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val"><?php echo e(__('winvps_plan3_network')); ?></span><span class="vps-row-spec-label"><?php echo e(__('winvps_spec_label_network')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val"><?php echo e(__('winvps_plan3_traffic')); ?></span><span class="vps-row-spec-label"><?php echo e(__('winvps_spec_label_traffic')); ?></span></div>
                             </div>
                             <div class="vps-row-action">
-                                <div class="vps-row-price"><span class="vps-row-amount">€24.99</span><span class="vps-row-cycle">/mo</span></div>
-                                <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="vps-row-btn">Order Now</a>
+                                <div class="vps-row-price"><span class="vps-row-amount"><?php echo e(__('winvps_plan3_price')); ?></span><span class="vps-row-cycle"><?php echo e(__('winvps_plan_cycle')); ?></span></div>
+                                <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="vps-row-btn"><?php echo e(__('common_order_now')); ?></a>
                             </div>
                         </div>
                         <div class="vps-row-details">
                             <div class="vps-row-details-features">
-                                <span><i class="fas fa-check-circle"></i> <strong>FREE</strong> Anti-DDoS</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>99%</strong> Uptime SLA</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>Full</strong> Admin Access</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>RDP</strong> Included</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>24/7</strong> Support</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>Dedicated</strong> IP</span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('winvps_feat_free_antiddos'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('winvps_feat_uptime_sla'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('winvps_feat_full_admin'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('winvps_feat_rdp_included'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('winvps_feat_247_support'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('winvps_feat_dedicated_ip'); ?></span>
                             </div>
                             <div class="vps-row-details-locations">
                                 <div class="vps-loc-pills">
-                                    <span class="vps-loc-pill"><span class="fi fi-de"></span> Frankfurt <em>~8ms</em></span>
-                                    <span class="vps-loc-pill"><span class="fi fi-nl"></span> Amsterdam <em>~10ms</em></span>
-                                    <span class="vps-loc-pill"><span class="fi fi-gb"></span> London <em>~15ms</em></span>
-                                    <span class="vps-loc-pill"><span class="fi fi-fi"></span> Helsinki <em>~35ms</em></span>
-                                    <span class="vps-loc-pill"><span class="fi fi-us"></span> New York <em>~78ms</em></span>
+                                    <span class="vps-loc-pill"><span class="fi fi-de"></span> <?php echo e(__('winvps_loc_frankfurt')); ?> <em><?php echo e(__('winvps_loc_frankfurt_latency')); ?></em></span>
+                                    <span class="vps-loc-pill"><span class="fi fi-nl"></span> <?php echo e(__('winvps_loc_amsterdam')); ?> <em><?php echo e(__('winvps_loc_amsterdam_latency')); ?></em></span>
+                                    <span class="vps-loc-pill"><span class="fi fi-gb"></span> <?php echo e(__('winvps_loc_london')); ?> <em><?php echo e(__('winvps_loc_london_latency')); ?></em></span>
+                                    <span class="vps-loc-pill"><span class="fi fi-fi"></span> <?php echo e(__('winvps_loc_helsinki')); ?> <em><?php echo e(__('winvps_loc_helsinki_latency')); ?></em></span>
+                                    <span class="vps-loc-pill"><span class="fi fi-us"></span> <?php echo e(__('winvps_loc_newyork')); ?> <em><?php echo e(__('winvps_loc_newyork_latency')); ?></em></span>
                                 </div>
                             </div>
                         </div>
@@ -287,37 +287,37 @@ require_once __DIR__ . '/includes/topbar.php';
                         <div class="vps-row-header">
                             <div class="vps-row-identity">
                                 <span class="vps-row-toggle"><i class="fas fa-chevron-down"></i></span>
-                                <span class="vps-row-name">Win VPS 4</span>
-                                <span class="vps-row-arch">x86</span>
+                                <span class="vps-row-name"><?php echo e(__('winvps_plan4_name')); ?></span>
+                                <span class="vps-row-arch"><?php echo e(__('winvps_plan_arch_x86')); ?></span>
                             </div>
                             <div class="vps-row-specs">
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">8 Cores</span><span class="vps-row-spec-label">CPU</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">32 GB</span><span class="vps-row-spec-label">RAM</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">400 GB</span><span class="vps-row-spec-label">NVMe</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">10 Gbit/s</span><span class="vps-row-spec-label">Network</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">50 TB</span><span class="vps-row-spec-label">Traffic</span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val"><?php echo e(__('winvps_plan4_cpu')); ?></span><span class="vps-row-spec-label"><?php echo e(__('winvps_spec_label_cpu')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val"><?php echo e(__('winvps_plan4_ram')); ?></span><span class="vps-row-spec-label"><?php echo e(__('winvps_spec_label_ram')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val"><?php echo e(__('winvps_plan4_nvme')); ?></span><span class="vps-row-spec-label"><?php echo e(__('winvps_spec_label_nvme')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val"><?php echo e(__('winvps_plan4_network')); ?></span><span class="vps-row-spec-label"><?php echo e(__('winvps_spec_label_network')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val"><?php echo e(__('winvps_plan4_traffic')); ?></span><span class="vps-row-spec-label"><?php echo e(__('winvps_spec_label_traffic')); ?></span></div>
                             </div>
                             <div class="vps-row-action">
-                                <div class="vps-row-price"><span class="vps-row-amount">€44.99</span><span class="vps-row-cycle">/mo</span></div>
-                                <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="vps-row-btn">Order Now</a>
+                                <div class="vps-row-price"><span class="vps-row-amount"><?php echo e(__('winvps_plan4_price')); ?></span><span class="vps-row-cycle"><?php echo e(__('winvps_plan_cycle')); ?></span></div>
+                                <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="vps-row-btn"><?php echo e(__('common_order_now')); ?></a>
                             </div>
                         </div>
                         <div class="vps-row-details">
                             <div class="vps-row-details-features">
-                                <span><i class="fas fa-check-circle"></i> <strong>FREE</strong> Anti-DDoS</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>99%</strong> Uptime SLA</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>Full</strong> Admin Access</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>RDP</strong> Included</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>24/7</strong> Support</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>Dedicated</strong> IP</span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('winvps_feat_free_antiddos'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('winvps_feat_uptime_sla'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('winvps_feat_full_admin'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('winvps_feat_rdp_included'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('winvps_feat_247_support'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('winvps_feat_dedicated_ip'); ?></span>
                             </div>
                             <div class="vps-row-details-locations">
                                 <div class="vps-loc-pills">
-                                    <span class="vps-loc-pill"><span class="fi fi-de"></span> Frankfurt <em>~8ms</em></span>
-                                    <span class="vps-loc-pill"><span class="fi fi-nl"></span> Amsterdam <em>~10ms</em></span>
-                                    <span class="vps-loc-pill"><span class="fi fi-gb"></span> London <em>~15ms</em></span>
-                                    <span class="vps-loc-pill"><span class="fi fi-fi"></span> Helsinki <em>~35ms</em></span>
-                                    <span class="vps-loc-pill"><span class="fi fi-us"></span> New York <em>~78ms</em></span>
+                                    <span class="vps-loc-pill"><span class="fi fi-de"></span> <?php echo e(__('winvps_loc_frankfurt')); ?> <em><?php echo e(__('winvps_loc_frankfurt_latency')); ?></em></span>
+                                    <span class="vps-loc-pill"><span class="fi fi-nl"></span> <?php echo e(__('winvps_loc_amsterdam')); ?> <em><?php echo e(__('winvps_loc_amsterdam_latency')); ?></em></span>
+                                    <span class="vps-loc-pill"><span class="fi fi-gb"></span> <?php echo e(__('winvps_loc_london')); ?> <em><?php echo e(__('winvps_loc_london_latency')); ?></em></span>
+                                    <span class="vps-loc-pill"><span class="fi fi-fi"></span> <?php echo e(__('winvps_loc_helsinki')); ?> <em><?php echo e(__('winvps_loc_helsinki_latency')); ?></em></span>
+                                    <span class="vps-loc-pill"><span class="fi fi-us"></span> <?php echo e(__('winvps_loc_newyork')); ?> <em><?php echo e(__('winvps_loc_newyork_latency')); ?></em></span>
                                 </div>
                             </div>
                         </div>
@@ -328,7 +328,7 @@ require_once __DIR__ . '/includes/topbar.php';
             <div class="article-callout">
                 <i class="fas fa-info-circle"></i>
                 <div>
-                    <strong>This is a Windows VPS — not a shared RDP.</strong> Each plan includes fully dedicated CPU, RAM, and NVMe storage with a dedicated IPv4 address. You get full administrator access — not a shared desktop session.
+                    <?php echo __('winvps_callout'); ?>
                 </div>
             </div>
         </div>
@@ -338,9 +338,9 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="win-os reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Operating Systems</div>
-                <h2>Supported Windows versions</h2>
-                <p>Choose your preferred Windows edition during server deployment. Reinstall any time at no extra cost.</p>
+                <div class="section-tag"><?php echo e(__('winvps_os_tag')); ?></div>
+                <h2><?php echo e(__('winvps_os_title')); ?></h2>
+                <p><?php echo e(__('winvps_os_desc')); ?></p>
             </div>
 
             <div class="os-ticker-wrap">
@@ -349,116 +349,116 @@ require_once __DIR__ . '/includes/topbar.php';
                         <div class="os-ticker-item">
                             <div class="os-ticker-icon"><i class="fab fa-windows"></i></div>
                             <div class="os-ticker-info">
-                                <span class="os-ticker-name">Windows Server 2019</span>
-                                <span class="os-ticker-ver">Standard / Datacenter</span>
+                                <span class="os-ticker-name"><?php echo e(__('winvps_os_server2019')); ?></span>
+                                <span class="os-ticker-ver"><?php echo e(__('winvps_os_edition_server')); ?></span>
                             </div>
                         </div>
                         <div class="os-ticker-item">
                             <div class="os-ticker-icon icon-green"><i class="fab fa-windows"></i></div>
                             <div class="os-ticker-info">
-                                <span class="os-ticker-name">Windows Server 2022</span>
-                                <span class="os-ticker-ver">Standard / Datacenter</span>
+                                <span class="os-ticker-name"><?php echo e(__('winvps_os_server2022')); ?></span>
+                                <span class="os-ticker-ver"><?php echo e(__('winvps_os_edition_server')); ?></span>
                             </div>
                         </div>
                         <div class="os-ticker-item">
                             <div class="os-ticker-icon icon-purple"><i class="fab fa-windows"></i></div>
                             <div class="os-ticker-info">
-                                <span class="os-ticker-name">Windows 10</span>
-                                <span class="os-ticker-ver">Pro / Enterprise</span>
+                                <span class="os-ticker-name"><?php echo e(__('winvps_os_win10')); ?></span>
+                                <span class="os-ticker-ver"><?php echo e(__('winvps_os_edition_desktop')); ?></span>
                             </div>
                         </div>
                         <div class="os-ticker-item">
                             <div class="os-ticker-icon icon-amber"><i class="fab fa-windows"></i></div>
                             <div class="os-ticker-info">
-                                <span class="os-ticker-name">Windows 11</span>
-                                <span class="os-ticker-ver">Pro / Enterprise</span>
+                                <span class="os-ticker-name"><?php echo e(__('winvps_os_win11')); ?></span>
+                                <span class="os-ticker-ver"><?php echo e(__('winvps_os_edition_desktop')); ?></span>
                             </div>
                         </div>
                         <!-- Duplicate set 1 for seamless loop -->
                         <div class="os-ticker-item">
                             <div class="os-ticker-icon"><i class="fab fa-windows"></i></div>
                             <div class="os-ticker-info">
-                                <span class="os-ticker-name">Windows Server 2019</span>
-                                <span class="os-ticker-ver">Standard / Datacenter</span>
+                                <span class="os-ticker-name"><?php echo e(__('winvps_os_server2019')); ?></span>
+                                <span class="os-ticker-ver"><?php echo e(__('winvps_os_edition_server')); ?></span>
                             </div>
                         </div>
                         <div class="os-ticker-item">
                             <div class="os-ticker-icon icon-green"><i class="fab fa-windows"></i></div>
                             <div class="os-ticker-info">
-                                <span class="os-ticker-name">Windows Server 2022</span>
-                                <span class="os-ticker-ver">Standard / Datacenter</span>
+                                <span class="os-ticker-name"><?php echo e(__('winvps_os_server2022')); ?></span>
+                                <span class="os-ticker-ver"><?php echo e(__('winvps_os_edition_server')); ?></span>
                             </div>
                         </div>
                         <div class="os-ticker-item">
                             <div class="os-ticker-icon icon-purple"><i class="fab fa-windows"></i></div>
                             <div class="os-ticker-info">
-                                <span class="os-ticker-name">Windows 10</span>
-                                <span class="os-ticker-ver">Pro / Enterprise</span>
+                                <span class="os-ticker-name"><?php echo e(__('winvps_os_win10')); ?></span>
+                                <span class="os-ticker-ver"><?php echo e(__('winvps_os_edition_desktop')); ?></span>
                             </div>
                         </div>
                         <div class="os-ticker-item">
                             <div class="os-ticker-icon icon-amber"><i class="fab fa-windows"></i></div>
                             <div class="os-ticker-info">
-                                <span class="os-ticker-name">Windows 11</span>
-                                <span class="os-ticker-ver">Pro / Enterprise</span>
+                                <span class="os-ticker-name"><?php echo e(__('winvps_os_win11')); ?></span>
+                                <span class="os-ticker-ver"><?php echo e(__('winvps_os_edition_desktop')); ?></span>
                             </div>
                         </div>
                         <!-- Duplicate set 2 -->
                         <div class="os-ticker-item">
                             <div class="os-ticker-icon"><i class="fab fa-windows"></i></div>
                             <div class="os-ticker-info">
-                                <span class="os-ticker-name">Windows Server 2019</span>
-                                <span class="os-ticker-ver">Standard / Datacenter</span>
+                                <span class="os-ticker-name"><?php echo e(__('winvps_os_server2019')); ?></span>
+                                <span class="os-ticker-ver"><?php echo e(__('winvps_os_edition_server')); ?></span>
                             </div>
                         </div>
                         <div class="os-ticker-item">
                             <div class="os-ticker-icon icon-green"><i class="fab fa-windows"></i></div>
                             <div class="os-ticker-info">
-                                <span class="os-ticker-name">Windows Server 2022</span>
-                                <span class="os-ticker-ver">Standard / Datacenter</span>
+                                <span class="os-ticker-name"><?php echo e(__('winvps_os_server2022')); ?></span>
+                                <span class="os-ticker-ver"><?php echo e(__('winvps_os_edition_server')); ?></span>
                             </div>
                         </div>
                         <div class="os-ticker-item">
                             <div class="os-ticker-icon icon-purple"><i class="fab fa-windows"></i></div>
                             <div class="os-ticker-info">
-                                <span class="os-ticker-name">Windows 10</span>
-                                <span class="os-ticker-ver">Pro / Enterprise</span>
+                                <span class="os-ticker-name"><?php echo e(__('winvps_os_win10')); ?></span>
+                                <span class="os-ticker-ver"><?php echo e(__('winvps_os_edition_desktop')); ?></span>
                             </div>
                         </div>
                         <div class="os-ticker-item">
                             <div class="os-ticker-icon icon-amber"><i class="fab fa-windows"></i></div>
                             <div class="os-ticker-info">
-                                <span class="os-ticker-name">Windows 11</span>
-                                <span class="os-ticker-ver">Pro / Enterprise</span>
+                                <span class="os-ticker-name"><?php echo e(__('winvps_os_win11')); ?></span>
+                                <span class="os-ticker-ver"><?php echo e(__('winvps_os_edition_desktop')); ?></span>
                             </div>
                         </div>
                         <!-- Duplicate set 3 -->
                         <div class="os-ticker-item">
                             <div class="os-ticker-icon"><i class="fab fa-windows"></i></div>
                             <div class="os-ticker-info">
-                                <span class="os-ticker-name">Windows Server 2019</span>
-                                <span class="os-ticker-ver">Standard / Datacenter</span>
+                                <span class="os-ticker-name"><?php echo e(__('winvps_os_server2019')); ?></span>
+                                <span class="os-ticker-ver"><?php echo e(__('winvps_os_edition_server')); ?></span>
                             </div>
                         </div>
                         <div class="os-ticker-item">
                             <div class="os-ticker-icon icon-green"><i class="fab fa-windows"></i></div>
                             <div class="os-ticker-info">
-                                <span class="os-ticker-name">Windows Server 2022</span>
-                                <span class="os-ticker-ver">Standard / Datacenter</span>
+                                <span class="os-ticker-name"><?php echo e(__('winvps_os_server2022')); ?></span>
+                                <span class="os-ticker-ver"><?php echo e(__('winvps_os_edition_server')); ?></span>
                             </div>
                         </div>
                         <div class="os-ticker-item">
                             <div class="os-ticker-icon icon-purple"><i class="fab fa-windows"></i></div>
                             <div class="os-ticker-info">
-                                <span class="os-ticker-name">Windows 10</span>
-                                <span class="os-ticker-ver">Pro / Enterprise</span>
+                                <span class="os-ticker-name"><?php echo e(__('winvps_os_win10')); ?></span>
+                                <span class="os-ticker-ver"><?php echo e(__('winvps_os_edition_desktop')); ?></span>
                             </div>
                         </div>
                         <div class="os-ticker-item">
                             <div class="os-ticker-icon icon-amber"><i class="fab fa-windows"></i></div>
                             <div class="os-ticker-info">
-                                <span class="os-ticker-name">Windows 11</span>
-                                <span class="os-ticker-ver">Pro / Enterprise</span>
+                                <span class="os-ticker-name"><?php echo e(__('winvps_os_win11')); ?></span>
+                                <span class="os-ticker-ver"><?php echo e(__('winvps_os_edition_desktop')); ?></span>
                             </div>
                         </div>
                     </div>
@@ -471,41 +471,41 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="win-usecases reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Use Cases</div>
-                <h2>What can you do with a Windows VPS?</h2>
-                <p>From remote desktops to automated trading — Windows VPS handles it all.</p>
+                <div class="section-tag"><?php echo e(__('winvps_usecases_tag')); ?></div>
+                <h2><?php echo e(__('winvps_usecases_title')); ?></h2>
+                <p><?php echo e(__('winvps_usecases_desc')); ?></p>
             </div>
 
             <div class="usecase-grid usecase-grid--3">
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-desktop"></i></div>
-                    <h4>RDP Hosting</h4>
-                    <p>Remote desktop access from anywhere. Run Windows applications, browse, and work as if you're on a local machine.</p>
+                    <h4><?php echo e(__('winvps_usecase_rdp_title')); ?></h4>
+                    <p><?php echo e(__('winvps_usecase_rdp_desc')); ?></p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon icon-green"><i class="fas fa-chart-line"></i></div>
-                    <h4>Trading Bots</h4>
-                    <p>Run MetaTrader, forex bots, and crypto trading algorithms 24/7 with low-latency connectivity and guaranteed uptime.</p>
+                    <h4><?php echo e(__('winvps_usecase_trading_title')); ?></h4>
+                    <p><?php echo e(__('winvps_usecase_trading_desc')); ?></p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon icon-purple"><i class="fas fa-gamepad"></i></div>
-                    <h4>Game Servers</h4>
-                    <p>Host Windows-based game servers with dedicated resources, NVMe storage, and high-bandwidth networking.</p>
+                    <h4><?php echo e(__('winvps_usecase_game_title')); ?></h4>
+                    <p><?php echo e(__('winvps_usecase_game_desc')); ?></p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon icon-amber"><i class="fas fa-building"></i></div>
-                    <h4>Enterprise Apps</h4>
-                    <p>Run .NET applications, SQL Server, Active Directory, IIS, and other Windows-native enterprise software.</p>
+                    <h4><?php echo e(__('winvps_usecase_enterprise_title')); ?></h4>
+                    <p><?php echo e(__('winvps_usecase_enterprise_desc')); ?></p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-cloud-upload-alt"></i></div>
-                    <h4>Web &amp; App Hosting</h4>
-                    <p>Host ASP.NET websites, WordPress on IIS, or any Windows-based web application with full server control.</p>
+                    <h4><?php echo e(__('winvps_usecase_webhost_title')); ?></h4>
+                    <p><?php echo e(__('winvps_usecase_webhost_desc')); ?></p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon icon-green"><i class="fas fa-robot"></i></div>
-                    <h4>Automation &amp; Bots</h4>
-                    <p>Run scrapers, social media bots, bulk email tools, and task automation scripts 24/7 on a stable Windows environment.</p>
+                    <h4><?php echo e(__('winvps_usecase_automation_title')); ?></h4>
+                    <p><?php echo e(__('winvps_usecase_automation_desc')); ?></p>
                 </div>
             </div>
         </div>
@@ -515,41 +515,41 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="locations-section reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Locations</div>
-                <h2>Global Windows VPS Locations</h2>
-                <p>Deploy your Windows VPS close to your users for the lowest possible latency.</p>
+                <div class="section-tag"><?php echo e(__('winvps_locations_tag')); ?></div>
+                <h2><?php echo e(__('winvps_locations_title')); ?></h2>
+                <p><?php echo e(__('winvps_locations_desc')); ?></p>
             </div>
 
             <div class="locations-tabs">
-                <button class="loc-tab active" data-loc-target="winvps-europe"><i class="fas fa-globe-europe"></i> Europe</button>
-                <button class="loc-tab" data-loc-target="winvps-north-america"><i class="fas fa-globe-americas"></i> North America</button>
-                <button class="loc-tab" data-loc-target="winvps-asia"><i class="fas fa-globe-asia"></i> Asia</button>
+                <button class="loc-tab active" data-loc-target="winvps-europe"><i class="fas fa-globe-europe"></i> <?php echo e(__('winvps_loc_europe')); ?></button>
+                <button class="loc-tab" data-loc-target="winvps-north-america"><i class="fas fa-globe-americas"></i> <?php echo e(__('winvps_loc_north_america')); ?></button>
+                <button class="loc-tab" data-loc-target="winvps-asia"><i class="fas fa-globe-asia"></i> <?php echo e(__('winvps_loc_asia')); ?></button>
             </div>
 
             <div class="locations-panels">
                 <div class="loc-panel active" id="winvps-europe">
                     <div class="loc-card-grid">
-                        <a class="location-card location-card--active"><span class="fi fi-de"></span> Germany</a>
-                        <a class="location-card"><span class="fi fi-nl"></span> Netherlands</a>
-                        <a class="location-card"><span class="fi fi-gb"></span> United Kingdom</a>
-                        <a class="location-card"><span class="fi fi-fi"></span> Finland</a>
-                        <a class="location-card"><span class="fi fi-fr"></span> France</a>
-                        <a class="location-card"><span class="fi fi-pl"></span> Poland</a>
-                        <a class="location-card"><span class="fi fi-ro"></span> Romania</a>
-                        <a class="location-card"><span class="fi fi-se"></span> Sweden</a>
+                        <a class="location-card location-card--active"><span class="fi fi-de"></span> <?php echo e(__('country_germany')); ?></a>
+                        <a class="location-card"><span class="fi fi-nl"></span> <?php echo e(__('country_netherlands')); ?></a>
+                        <a class="location-card"><span class="fi fi-gb"></span> <?php echo e(__('country_united_kingdom')); ?></a>
+                        <a class="location-card"><span class="fi fi-fi"></span> <?php echo e(__('country_finland')); ?></a>
+                        <a class="location-card"><span class="fi fi-fr"></span> <?php echo e(__('country_france')); ?></a>
+                        <a class="location-card"><span class="fi fi-pl"></span> <?php echo e(__('country_poland')); ?></a>
+                        <a class="location-card"><span class="fi fi-ro"></span> <?php echo e(__('country_romania')); ?></a>
+                        <a class="location-card"><span class="fi fi-se"></span> <?php echo e(__('country_sweden')); ?></a>
                     </div>
                 </div>
                 <div class="loc-panel" id="winvps-north-america">
                     <div class="loc-card-grid">
-                        <a class="location-card"><span class="fi fi-us"></span> USA</a>
-                        <a class="location-card"><span class="fi fi-ca"></span> Canada</a>
+                        <a class="location-card"><span class="fi fi-us"></span> <?php echo e(__('country_usa')); ?></a>
+                        <a class="location-card"><span class="fi fi-ca"></span> <?php echo e(__('country_canada')); ?></a>
                     </div>
                 </div>
                 <div class="loc-panel" id="winvps-asia">
                     <div class="loc-card-grid">
-                        <a class="location-card"><span class="fi fi-sg"></span> Singapore</a>
-                        <a class="location-card"><span class="fi fi-jp"></span> Japan</a>
-                        <a class="location-card"><span class="fi fi-in"></span> India</a>
+                        <a class="location-card"><span class="fi fi-sg"></span> <?php echo e(__('country_singapore')); ?></a>
+                        <a class="location-card"><span class="fi fi-jp"></span> <?php echo e(__('country_japan')); ?></a>
+                        <a class="location-card"><span class="fi fi-in"></span> <?php echo e(__('country_india')); ?></a>
                     </div>
                 </div>
             </div>
@@ -560,26 +560,26 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="faq-section reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">FAQ</div>
-                <h2>Windows VPS FAQ</h2>
-                <p>Can't find your answer? Open a support ticket — we respond in under 10 minutes.</p>
+                <div class="section-tag"><?php echo e(__('winvps_faq_tag')); ?></div>
+                <h2><?php echo e(__('winvps_faq_title')); ?></h2>
+                <p><?php echo e(__('winvps_faq_desc')); ?></p>
             </div>
 
             <div class="faq-layout faq-layout--full">
                 <div class="faq-panels">
                     <div class="faq-panel active" id="faq-winvps">
-                        <div class="faq-item"><button class="faq-question"><span>Is the Windows license included?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Yes, the Windows OS license is included in the VPS price. You can choose between Windows Server 2019, 2022, or Windows 10/11 during deployment.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>How do I connect to my Windows VPS?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Use the built-in Remote Desktop Connection (RDP) client on Windows, or Microsoft Remote Desktop on macOS/iOS/Android. We provide your IP, username, and password after deployment.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Can I install any software?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Yes, you have full administrator access and can install any software that doesn't violate our Acceptable Use Policy.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>How long does deployment take?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Windows VPS instances are typically deployed within 5–15 minutes after payment confirmation.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Can I upgrade my plan later?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Yes, you can upgrade your Windows VPS resources (CPU, RAM, storage) at any time through your client dashboard or by contacting support.</p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('winvps_faq_q1')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('winvps_faq_a1')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('winvps_faq_q2')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('winvps_faq_a2')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('winvps_faq_q3')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('winvps_faq_a3')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('winvps_faq_q4')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('winvps_faq_a4')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('winvps_faq_q5')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('winvps_faq_a5')); ?></p></div></div>
                     </div>
                 </div>
             </div>
 
             <div class="faq-actions">
-                <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-primary"><i class="fas fa-headset"></i> Open a Ticket</a>
-                <a href="<?php echo e(SITE_URL); ?>/faq" class="btn-secondary">Browse All FAQ <i class="fas fa-arrow-right"></i></a>
+                <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-primary"><i class="fas fa-headset"></i> <?php echo e(__('common_open_ticket')); ?></a>
+                <a href="<?php echo e(SITE_URL); ?>/faq" class="btn-secondary"><?php echo e(__('common_browse_faq')); ?> <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
@@ -590,9 +590,9 @@ require_once __DIR__ . '/includes/topbar.php';
             <div class="promo-cta-inner">
                 <div class="promo-cta-glow"></div>
                 <div class="promo-cta-icon"><i class="fab fa-windows"></i></div>
-                <h2>Ready to deploy your Windows VPS?</h2>
-                <p>Get started with a Windows VPS from €8.99/month. Full RDP access, NVMe SSD, 10 Gbit/s.</p>
-                <a href="#plans" class="btn-primary">View Plans <i class="fas fa-arrow-right"></i></a>
+                <h2><?php echo e(__('winvps_cta_title')); ?></h2>
+                <p><?php echo e(__('winvps_cta_desc')); ?></p>
+                <a href="#plans" class="btn-primary"><?php echo e(__('common_view_plans')); ?> <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>

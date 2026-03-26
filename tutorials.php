@@ -19,21 +19,21 @@ require_once __DIR__ . '/includes/topbar.php';
                     <i class="fas fa-chevron-right"></i>
                     <span><?php echo e(__('tutorials_breadcrumb')); ?></span>
                 </div>
-                <h1>Tutorials &amp; <span class="highlight">Knowledge Base</span></h1>
+                <h1><?php echo __('tutorials_title'); ?></h1>
                 <p class="page-hero-desc">
-                    Step-by-step guides, server management tips, and hosting best practices — written by the YottaSrc team.
+                    <?php echo e(__('tutorials_desc')); ?>
                 </p>
                 <div class="tut-search-wrap">
                     <i class="fas fa-search"></i>
-                    <input type="text" class="tut-search-input" id="tutorialSearch" placeholder="Search tutorials..." autocomplete="off">
+                    <input type="text" class="tut-search-input" id="tutorialSearch" placeholder="<?php echo e(__('tutorials_search_ph')); ?>" autocomplete="off">
                 </div>
                 <div class="tut-filter-bar">
-                    <button class="tut-filter-btn active" data-filter="all">All</button>
-                    <button class="tut-filter-btn" data-filter="hosting">Hosting</button>
-                    <button class="tut-filter-btn" data-filter="vps">VPS</button>
-                    <button class="tut-filter-btn" data-filter="cloud">Cloud</button>
-                    <button class="tut-filter-btn" data-filter="security">Security</button>
-                    <button class="tut-filter-btn" data-filter="reseller">Reseller</button>
+                    <button class="tut-filter-btn active" data-filter="all"><?php echo e(__('tutorials_filter_all')); ?></button>
+                    <button class="tut-filter-btn" data-filter="hosting"><?php echo e(__('tutorials_filter_hosting')); ?></button>
+                    <button class="tut-filter-btn" data-filter="vps"><?php echo e(__('tutorials_filter_vps')); ?></button>
+                    <button class="tut-filter-btn" data-filter="cloud"><?php echo e(__('tutorials_filter_cloud')); ?></button>
+                    <button class="tut-filter-btn" data-filter="security"><?php echo e(__('tutorials_filter_security')); ?></button>
+                    <button class="tut-filter-btn" data-filter="reseller"><?php echo e(__('tutorials_filter_reseller')); ?></button>
                 </div>
             </div>
         </div>
@@ -49,12 +49,12 @@ require_once __DIR__ . '/includes/topbar.php';
                         <a href="<?php echo e(SITE_URL); ?>/tutorials/deploy-nodejs-vps/" class="tut-card" data-category="vps">
                             <div class="tut-card-icon tut-icon-vps"><i class="fas fa-server"></i></div>
                             <div class="tut-card-body">
-                                <span class="tut-cat-badge badge-vps">VPS</span>
-                                <h4>How to Deploy a Node.js App on VPS</h4>
-                                <p>Complete guide to deploying Node.js with PM2 and Nginx reverse proxy on Ubuntu.</p>
+                                <span class="tut-cat-badge badge-vps"><?php echo e(__('tutorials_filter_vps')); ?></span>
+                                <h4><?php echo e(__('tut_card1_title')); ?></h4>
+                                <p><?php echo e(__('tut_card1_desc')); ?></p>
                                 <div class="tut-card-meta">
-                                    <span><i class="fas fa-calendar-alt"></i> Feb 28, 2026</span>
-                                    <span><i class="fas fa-eye"></i> 6,780 views</span>
+                                    <span><i class="fas fa-calendar-alt"></i> <?php echo e(__('tut_card1_date')); ?></span>
+                                    <span><i class="fas fa-eye"></i> <?php echo e(__('tut_card1_views')); ?></span>
                                 </div>
                             </div>
                         </a>
@@ -62,12 +62,12 @@ require_once __DIR__ . '/includes/topbar.php';
                         <a href="#" class="tut-card" data-category="security">
                             <div class="tut-card-icon tut-icon-security"><i class="fas fa-shield-alt"></i></div>
                             <div class="tut-card-body">
-                                <span class="tut-cat-badge badge-security">Security</span>
-                                <h4>Essential VPS Security Checklist for 2026</h4>
-                                <p>Firewall rules, SSH hardening, fail2ban, and more — secure your Linux VPS from day one.</p>
+                                <span class="tut-cat-badge badge-security"><?php echo e(__('tutorials_filter_security')); ?></span>
+                                <h4><?php echo e(__('tut_card2_title')); ?></h4>
+                                <p><?php echo e(__('tut_card2_desc')); ?></p>
                                 <div class="tut-card-meta">
-                                    <span><i class="fas fa-calendar-alt"></i> Feb 18, 2026</span>
-                                    <span><i class="fas fa-eye"></i> 3,900 views</span>
+                                    <span><i class="fas fa-calendar-alt"></i> <?php echo e(__('tut_card2_date')); ?></span>
+                                    <span><i class="fas fa-eye"></i> <?php echo e(__('tut_card2_views')); ?></span>
                                 </div>
                             </div>
                         </a>
@@ -75,12 +75,12 @@ require_once __DIR__ . '/includes/topbar.php';
                         <a href="#" class="tut-card" data-category="vps">
                             <div class="tut-card-icon tut-icon-vps"><i class="fab fa-docker"></i></div>
                             <div class="tut-card-body">
-                                <span class="tut-cat-badge badge-vps">VPS</span>
-                                <h4>Getting Started with Docker on Your VPS</h4>
-                                <p>A beginner-friendly guide to installing and running Docker containers on a Linux VPS.</p>
+                                <span class="tut-cat-badge badge-vps"><?php echo e(__('tutorials_filter_vps')); ?></span>
+                                <h4><?php echo e(__('tut_card3_title')); ?></h4>
+                                <p><?php echo e(__('tut_card3_desc')); ?></p>
                                 <div class="tut-card-meta">
-                                    <span><i class="fas fa-calendar-alt"></i> Feb 10, 2026</span>
-                                    <span><i class="fas fa-eye"></i> 5,100 views</span>
+                                    <span><i class="fas fa-calendar-alt"></i> <?php echo e(__('tut_card3_date')); ?></span>
+                                    <span><i class="fas fa-eye"></i> <?php echo e(__('tut_card3_views')); ?></span>
                                 </div>
                             </div>
                         </a>
@@ -88,12 +88,12 @@ require_once __DIR__ . '/includes/topbar.php';
                         <a href="#" class="tut-card" data-category="hosting">
                             <div class="tut-card-icon tut-icon-hosting"><i class="fas fa-database"></i></div>
                             <div class="tut-card-body">
-                                <span class="tut-cat-badge badge-hosting">Hosting</span>
-                                <h4>Optimizing MySQL Performance on Your VPS</h4>
-                                <p>Learn how to tune MySQL configuration for better query performance and lower memory usage.</p>
+                                <span class="tut-cat-badge badge-hosting"><?php echo e(__('tutorials_filter_hosting')); ?></span>
+                                <h4><?php echo e(__('tut_card4_title')); ?></h4>
+                                <p><?php echo e(__('tut_card4_desc')); ?></p>
                                 <div class="tut-card-meta">
-                                    <span><i class="fas fa-calendar-alt"></i> Feb 22, 2026</span>
-                                    <span><i class="fas fa-eye"></i> 4,500 views</span>
+                                    <span><i class="fas fa-calendar-alt"></i> <?php echo e(__('tut_card4_date')); ?></span>
+                                    <span><i class="fas fa-eye"></i> <?php echo e(__('tut_card4_views')); ?></span>
                                 </div>
                             </div>
                         </a>
@@ -101,12 +101,12 @@ require_once __DIR__ . '/includes/topbar.php';
                         <a href="#" class="tut-card" data-category="hosting">
                             <div class="tut-card-icon tut-icon-hosting"><i class="fab fa-wordpress"></i></div>
                             <div class="tut-card-body">
-                                <span class="tut-cat-badge badge-hosting">Hosting</span>
-                                <h4>Speed Up WordPress: The Definitive Guide</h4>
-                                <p>Caching, CDN, image optimization, and code minification — get your WordPress site loading in under 1 second.</p>
+                                <span class="tut-cat-badge badge-hosting"><?php echo e(__('tutorials_filter_hosting')); ?></span>
+                                <h4><?php echo e(__('tut_card5_title')); ?></h4>
+                                <p><?php echo e(__('tut_card5_desc')); ?></p>
                                 <div class="tut-card-meta">
-                                    <span><i class="fas fa-calendar-alt"></i> Jan 30, 2026</span>
-                                    <span><i class="fas fa-eye"></i> 8,200 views</span>
+                                    <span><i class="fas fa-calendar-alt"></i> <?php echo e(__('tut_card5_date')); ?></span>
+                                    <span><i class="fas fa-eye"></i> <?php echo e(__('tut_card5_views')); ?></span>
                                 </div>
                             </div>
                         </a>
@@ -114,12 +114,12 @@ require_once __DIR__ . '/includes/topbar.php';
                         <a href="#" class="tut-card" data-category="cloud">
                             <div class="tut-card-icon tut-icon-cloud"><i class="fas fa-cloud"></i></div>
                             <div class="tut-card-body">
-                                <span class="tut-cat-badge badge-cloud">Cloud</span>
-                                <h4>Automate Cloud Deployments with the YottaSrc API</h4>
-                                <p>Use our REST API to create, manage, and destroy cloud instances programmatically.</p>
+                                <span class="tut-cat-badge badge-cloud"><?php echo e(__('tutorials_filter_cloud')); ?></span>
+                                <h4><?php echo e(__('tut_card6_title')); ?></h4>
+                                <p><?php echo e(__('tut_card6_desc')); ?></p>
                                 <div class="tut-card-meta">
-                                    <span><i class="fas fa-calendar-alt"></i> Jan 15, 2026</span>
-                                    <span><i class="fas fa-eye"></i> 3,400 views</span>
+                                    <span><i class="fas fa-calendar-alt"></i> <?php echo e(__('tut_card6_date')); ?></span>
+                                    <span><i class="fas fa-eye"></i> <?php echo e(__('tut_card6_views')); ?></span>
                                 </div>
                             </div>
                         </a>
@@ -127,12 +127,12 @@ require_once __DIR__ . '/includes/topbar.php';
                         <a href="#" class="tut-card" data-category="reseller">
                             <div class="tut-card-icon tut-icon-reseller"><i class="fas fa-store"></i></div>
                             <div class="tut-card-body">
-                                <span class="tut-cat-badge badge-reseller">Reseller</span>
-                                <h4>How to Start a Web Hosting Business in 2026</h4>
-                                <p>From choosing a reseller plan to branding and billing — everything you need to launch your hosting company.</p>
+                                <span class="tut-cat-badge badge-reseller"><?php echo e(__('tutorials_filter_reseller')); ?></span>
+                                <h4><?php echo e(__('tut_card7_title')); ?></h4>
+                                <p><?php echo e(__('tut_card7_desc')); ?></p>
                                 <div class="tut-card-meta">
-                                    <span><i class="fas fa-calendar-alt"></i> Jan 8, 2026</span>
-                                    <span><i class="fas fa-eye"></i> 7,100 views</span>
+                                    <span><i class="fas fa-calendar-alt"></i> <?php echo e(__('tut_card7_date')); ?></span>
+                                    <span><i class="fas fa-eye"></i> <?php echo e(__('tut_card7_views')); ?></span>
                                 </div>
                             </div>
                         </a>
@@ -140,12 +140,12 @@ require_once __DIR__ . '/includes/topbar.php';
                         <a href="#" class="tut-card" data-category="security">
                             <div class="tut-card-icon tut-icon-security"><i class="fas fa-lock"></i></div>
                             <div class="tut-card-body">
-                                <span class="tut-cat-badge badge-security">Security</span>
-                                <h4>SSL Certificates Explained: Free vs. Paid</h4>
-                                <p>Understand the differences between Let's Encrypt, Comodo, and wildcard SSL — and when each makes sense.</p>
+                                <span class="tut-cat-badge badge-security"><?php echo e(__('tutorials_filter_security')); ?></span>
+                                <h4><?php echo e(__('tut_card8_title')); ?></h4>
+                                <p><?php echo e(__('tut_card8_desc')); ?></p>
                                 <div class="tut-card-meta">
-                                    <span><i class="fas fa-calendar-alt"></i> Dec 20, 2025</span>
-                                    <span><i class="fas fa-eye"></i> 5,600 views</span>
+                                    <span><i class="fas fa-calendar-alt"></i> <?php echo e(__('tut_card8_date')); ?></span>
+                                    <span><i class="fas fa-eye"></i> <?php echo e(__('tut_card8_views')); ?></span>
                                 </div>
                             </div>
                         </a>
@@ -153,12 +153,12 @@ require_once __DIR__ . '/includes/topbar.php';
                         <a href="#" class="tut-card" data-category="cloud">
                             <div class="tut-card-icon tut-icon-cloud"><i class="fas fa-balance-scale"></i></div>
                             <div class="tut-card-body">
-                                <span class="tut-cat-badge badge-cloud">Cloud</span>
-                                <h4>Setting Up Load Balancing on Cloud Instances</h4>
-                                <p>Distribute traffic across multiple cloud instances for high availability and zero downtime.</p>
+                                <span class="tut-cat-badge badge-cloud"><?php echo e(__('tutorials_filter_cloud')); ?></span>
+                                <h4><?php echo e(__('tut_card9_title')); ?></h4>
+                                <p><?php echo e(__('tut_card9_desc')); ?></p>
                                 <div class="tut-card-meta">
-                                    <span><i class="fas fa-calendar-alt"></i> Dec 12, 2025</span>
-                                    <span><i class="fas fa-eye"></i> 2,900 views</span>
+                                    <span><i class="fas fa-calendar-alt"></i> <?php echo e(__('tut_card9_date')); ?></span>
+                                    <span><i class="fas fa-eye"></i> <?php echo e(__('tut_card9_views')); ?></span>
                                 </div>
                             </div>
                         </a>
@@ -166,12 +166,12 @@ require_once __DIR__ . '/includes/topbar.php';
                         <a href="#" class="tut-card" data-category="hosting">
                             <div class="tut-card-icon tut-icon-hosting"><i class="fas fa-envelope"></i></div>
                             <div class="tut-card-body">
-                                <span class="tut-cat-badge badge-hosting">Hosting</span>
-                                <h4>Setting Up Professional Email with cPanel</h4>
-                                <p>Create email accounts, configure SPF/DKIM/DMARC, and ensure 100% inbox delivery.</p>
+                                <span class="tut-cat-badge badge-hosting"><?php echo e(__('tutorials_filter_hosting')); ?></span>
+                                <h4><?php echo e(__('tut_card10_title')); ?></h4>
+                                <p><?php echo e(__('tut_card10_desc')); ?></p>
                                 <div class="tut-card-meta">
-                                    <span><i class="fas fa-calendar-alt"></i> Dec 5, 2025</span>
-                                    <span><i class="fas fa-eye"></i> 4,100 views</span>
+                                    <span><i class="fas fa-calendar-alt"></i> <?php echo e(__('tut_card10_date')); ?></span>
+                                    <span><i class="fas fa-eye"></i> <?php echo e(__('tut_card10_views')); ?></span>
                                 </div>
                             </div>
                         </a>
@@ -181,18 +181,18 @@ require_once __DIR__ . '/includes/topbar.php';
                     <!-- No Results -->
                     <div class="blog-no-results" id="tutorialNoResults">
                         <i class="fas fa-search"></i>
-                        <p>No tutorials found matching your search.</p>
+                        <p><?php echo e(__('tutorials_no_results')); ?></p>
                     </div>
 
                     <!-- Pagination -->
                     <div class="blog-pagination">
-                        <a class="pagination-btn disabled"><i class="fas fa-arrow-left"></i> <span>Previous</span></a>
+                        <a class="pagination-btn disabled"><i class="fas fa-arrow-left"></i> <span><?php echo e(__('tutorials_pagination_prev')); ?></span></a>
                         <div class="pagination-pages">
                             <a class="pagination-num active">1</a>
                             <a class="pagination-num">2</a>
                             <a class="pagination-num">3</a>
                         </div>
-                        <a class="pagination-btn"><span>Next</span> <i class="fas fa-arrow-right"></i></a>
+                        <a class="pagination-btn"><span><?php echo e(__('tutorials_pagination_next')); ?></span> <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
 
@@ -200,34 +200,34 @@ require_once __DIR__ . '/includes/topbar.php';
                 <aside class="blog-sidebar">
                     <!-- Popular Tutorials -->
                     <div class="blog-sidebar-card">
-                        <h5 class="sidebar-card-title"><i class="fas fa-fire"></i> Popular Tutorials</h5>
+                        <h5 class="sidebar-card-title"><i class="fas fa-fire"></i> <?php echo e(__('tutorials_sidebar_popular')); ?></h5>
                         <ul class="sidebar-posts">
                             <li><a href="#">
                                 <span class="sidebar-post-num">01</span>
                                 <div>
-                                    <strong>Speed Up WordPress: The Definitive Guide</strong>
-                                    <span class="sidebar-post-meta">8,200 views</span>
+                                    <strong><?php echo e(__('tutorials_sidebar_popular1')); ?></strong>
+                                    <span class="sidebar-post-meta"><?php echo e(__('tutorials_sidebar_popular1_meta')); ?></span>
                                 </div>
                             </a></li>
                             <li><a href="#">
                                 <span class="sidebar-post-num">02</span>
                                 <div>
-                                    <strong>How to Start a Web Hosting Business</strong>
-                                    <span class="sidebar-post-meta">7,100 views</span>
+                                    <strong><?php echo e(__('tutorials_sidebar_popular2')); ?></strong>
+                                    <span class="sidebar-post-meta"><?php echo e(__('tutorials_sidebar_popular2_meta')); ?></span>
                                 </div>
                             </a></li>
                             <li><a href="<?php echo e(SITE_URL); ?>/tutorials/deploy-nodejs-vps/">
                                 <span class="sidebar-post-num">03</span>
                                 <div>
-                                    <strong>Deploy a Node.js App on VPS</strong>
-                                    <span class="sidebar-post-meta">6,780 views</span>
+                                    <strong><?php echo e(__('tutorials_sidebar_popular3')); ?></strong>
+                                    <span class="sidebar-post-meta"><?php echo e(__('tutorials_sidebar_popular3_meta')); ?></span>
                                 </div>
                             </a></li>
                             <li><a href="#">
                                 <span class="sidebar-post-num">04</span>
                                 <div>
-                                    <strong>SSL Certificates: Free vs. Paid</strong>
-                                    <span class="sidebar-post-meta">5,600 views</span>
+                                    <strong><?php echo e(__('tutorials_sidebar_popular4')); ?></strong>
+                                    <span class="sidebar-post-meta"><?php echo e(__('tutorials_sidebar_popular4_meta')); ?></span>
                                 </div>
                             </a></li>
                         </ul>
@@ -235,24 +235,24 @@ require_once __DIR__ . '/includes/topbar.php';
 
                     <!-- Categories -->
                     <div class="blog-sidebar-card">
-                        <h5 class="sidebar-card-title"><i class="fas fa-folder"></i> Categories</h5>
+                        <h5 class="sidebar-card-title"><i class="fas fa-folder"></i> <?php echo e(__('tutorials_sidebar_categories')); ?></h5>
                         <ul class="sidebar-categories">
-                            <li><a href="#"><span>Hosting</span> <span class="sidebar-cat-count">3</span></a></li>
-                            <li><a href="#"><span>VPS</span> <span class="sidebar-cat-count">2</span></a></li>
-                            <li><a href="#"><span>Cloud</span> <span class="sidebar-cat-count">2</span></a></li>
-                            <li><a href="#"><span>Security</span> <span class="sidebar-cat-count">2</span></a></li>
-                            <li><a href="#"><span>Reseller</span> <span class="sidebar-cat-count">1</span></a></li>
+                            <li><a href="#"><span><?php echo e(__('tutorials_filter_hosting')); ?></span> <span class="sidebar-cat-count">3</span></a></li>
+                            <li><a href="#"><span><?php echo e(__('tutorials_filter_vps')); ?></span> <span class="sidebar-cat-count">2</span></a></li>
+                            <li><a href="#"><span><?php echo e(__('tutorials_filter_cloud')); ?></span> <span class="sidebar-cat-count">2</span></a></li>
+                            <li><a href="#"><span><?php echo e(__('tutorials_filter_security')); ?></span> <span class="sidebar-cat-count">2</span></a></li>
+                            <li><a href="#"><span><?php echo e(__('tutorials_filter_reseller')); ?></span> <span class="sidebar-cat-count">1</span></a></li>
                         </ul>
                     </div>
 
                     <!-- Newsletter -->
                     <div class="blog-sidebar-card blog-newsletter">
                         <div class="newsletter-icon"><i class="fas fa-envelope"></i></div>
-                        <h5 class="sidebar-card-title">Stay Updated</h5>
-                        <p>Get new tutorials and hosting tips delivered to your inbox.</p>
+                        <h5 class="sidebar-card-title"><?php echo e(__('tutorials_sidebar_newsletter_title')); ?></h5>
+                        <p><?php echo e(__('tutorials_sidebar_newsletter_desc')); ?></p>
                         <form class="newsletter-form" onsubmit="return false;">
-                            <input type="email" class="newsletter-input" placeholder="your@email.com">
-                            <button class="btn-primary newsletter-btn">Subscribe <i class="fas fa-arrow-right"></i></button>
+                            <input type="email" class="newsletter-input" placeholder="<?php echo e(__('tutorials_sidebar_newsletter_ph')); ?>">
+                            <button class="btn-primary newsletter-btn"><?php echo e(__('tutorials_sidebar_newsletter_btn')); ?> <i class="fas fa-arrow-right"></i></button>
                         </form>
                     </div>
                 </aside>
@@ -266,9 +266,9 @@ require_once __DIR__ . '/includes/topbar.php';
             <div class="promo-cta-inner">
                 <div class="promo-cta-glow"></div>
                 <div class="promo-cta-icon"><i class="fas fa-rocket"></i></div>
-                <h2>Ready to get started?</h2>
-                <p>Deploy your hosting, VPS, or cloud infrastructure in minutes. Same price on renewal, no hidden fees.</p>
-                <a href="<?php echo e(SITE_URL); ?>/vps/" class="btn-primary">View Plans <i class="fas fa-arrow-right"></i></a>
+                <h2><?php echo e(__('tutorials_cta_title')); ?></h2>
+                <p><?php echo e(__('tutorials_cta_desc')); ?></p>
+                <a href="<?php echo e(SITE_URL); ?>/vps/" class="btn-primary"><?php echo e(__('tutorials_cta_btn')); ?> <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>

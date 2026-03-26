@@ -221,26 +221,26 @@ require_once __DIR__ . '/includes/topbar.php';
         <div class="container">
             <div class="intro-layout">
                 <div class="intro-text">
-                    <div class="section-tag">Who We Are</div>
-                    <h2>Powering websites worldwide since 2018</h2>
-                    <p>YottaSrc offers a wide range of hosting solutions, including cPanel hosting, VPS Linux hosting, reseller hosting, and domain registration services. Our cutting-edge technology ensures optimized solutions and smooth system operation.</p>
-                    <p>At YottaSrc, we offer affordable pricing without compromising quality. Our 24/7 expert support and modern monitoring systems ensure any issues are resolved quickly, guaranteeing the success of your hosting experience.</p>
+                    <div class="section-tag"><?php echo e(__('about_intro_tag')); ?></div>
+                    <h2><?php echo e(__('about_intro_title')); ?></h2>
+                    <p><?php echo e(__('about_intro_desc1')); ?></p>
+                    <p><?php echo e(__('about_intro_desc2')); ?></p>
                     <div class="intro-highlights">
                         <div class="intro-highlight">
                             <i class="fas fa-check-circle"></i>
-                            <span>Own datacenter in Romania</span>
+                            <span><?php echo e(__('about_intro_highlight1')); ?></span>
                         </div>
                         <div class="intro-highlight">
                             <i class="fas fa-check-circle"></i>
-                            <span>6+ partner data centers globally</span>
+                            <span><?php echo e(__('about_intro_highlight2')); ?></span>
                         </div>
                         <div class="intro-highlight">
                             <i class="fas fa-check-circle"></i>
-                            <span>24/7 expert support — 10 min avg. response</span>
+                            <span><?php echo e(__('about_intro_highlight3')); ?></span>
                         </div>
                         <div class="intro-highlight">
                             <i class="fas fa-check-circle"></i>
-                            <span>Same price on renewal — no surprises</span>
+                            <span><?php echo e(__('about_intro_highlight4')); ?></span>
                         </div>
                     </div>
                 </div>
@@ -248,23 +248,23 @@ require_once __DIR__ . '/includes/topbar.php';
                     <div class="intro-cards-grid">
                         <div class="intro-card">
                             <div class="ic-icon"><i class="fas fa-server"></i></div>
-                            <div class="ic-label">cPanel Hosting</div>
-                            <div class="ic-val">from €0.83/mo</div>
+                            <div class="ic-label"><?php echo e(__('about_intro_card1_label')); ?></div>
+                            <div class="ic-val"><?php echo e(__('about_intro_card1_val')); ?></div>
                         </div>
                         <div class="intro-card">
                             <div class="ic-icon ic-icon-green"><i class="fas fa-cloud"></i></div>
-                            <div class="ic-label">Cloud Servers</div>
-                            <div class="ic-val">Hourly billing</div>
+                            <div class="ic-label"><?php echo e(__('about_intro_card2_label')); ?></div>
+                            <div class="ic-val"><?php echo e(__('about_intro_card2_val')); ?></div>
                         </div>
                         <div class="intro-card">
                             <div class="ic-icon ic-icon-purple"><i class="fab fa-linux"></i></div>
-                            <div class="ic-label">Linux VPS</div>
-                            <div class="ic-val">from €2.75/mo</div>
+                            <div class="ic-label"><?php echo e(__('about_intro_card3_label')); ?></div>
+                            <div class="ic-val"><?php echo e(__('about_intro_card3_val')); ?></div>
                         </div>
                         <div class="intro-card">
                             <div class="ic-icon ic-icon-amber"><i class="fas fa-globe"></i></div>
-                            <div class="ic-label">Domain Names</div>
-                            <div class="ic-val">from €1.99/yr</div>
+                            <div class="ic-label"><?php echo e(__('about_intro_card4_label')); ?></div>
+                            <div class="ic-val"><?php echo e(__('about_intro_card4_val')); ?></div>
                         </div>
                     </div>
                 </div>
@@ -276,9 +276,9 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="timeline-section reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Our Journey</div>
-                <h2>Our History</h2>
-                <p>From a small idea to serving 90,000+ clients worldwide.</p>
+                <div class="section-tag"><?php echo e(__('about_timeline_tag')); ?></div>
+                <h2><?php echo e(__('about_timeline_title')); ?></h2>
+                <p><?php echo e(__('about_timeline_desc')); ?></p>
             </div>
 
             <div class="swiper timeline-swiper" id="timelineSwiper">
@@ -287,64 +287,64 @@ require_once __DIR__ . '/includes/topbar.php';
                         <div class="tl-card">
                             <div class="tl-year">2018</div>
                             <div class="tl-icon"><i class="fas fa-rocket"></i></div>
-                            <h4>Founded</h4>
-                            <p>YottaSrc was founded to provide reliable hosting services.</p>
+                            <h4><?php echo e(__('about_timeline_2018_title')); ?></h4>
+                            <p><?php echo e(__('about_timeline_2018_desc')); ?></p>
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="tl-card">
                             <div class="tl-year">2019</div>
                             <div class="tl-icon tl-icon-green"><i class="fas fa-flask"></i></div>
-                            <h4>Cloud Testing</h4>
-                            <p>Began testing cloud servers with a focus on performance.</p>
+                            <h4><?php echo e(__('about_timeline_2019_title')); ?></h4>
+                            <p><?php echo e(__('about_timeline_2019_desc')); ?></p>
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="tl-card">
                             <div class="tl-year">2020</div>
                             <div class="tl-icon tl-icon-purple"><i class="fas fa-bolt"></i></div>
-                            <h4>Official Launch</h4>
-                            <p>Officially launched with high-speed hosting solutions.</p>
+                            <h4><?php echo e(__('about_timeline_2020_title')); ?></h4>
+                            <p><?php echo e(__('about_timeline_2020_desc')); ?></p>
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="tl-card">
                             <div class="tl-year">2021</div>
                             <div class="tl-icon tl-icon-amber"><i class="fas fa-globe-americas"></i></div>
-                            <h4>Global Expansion</h4>
-                            <p>Expanded to include global server locations in 5+ regions.</p>
+                            <h4><?php echo e(__('about_timeline_2021_title')); ?></h4>
+                            <p><?php echo e(__('about_timeline_2021_desc')); ?></p>
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="tl-card">
                             <div class="tl-year">2022</div>
                             <div class="tl-icon"><i class="fas fa-server"></i></div>
-                            <h4>VPS &amp; Reseller</h4>
-                            <p>Introduced VPS Linux hosting and reseller hosting plans.</p>
+                            <h4><?php echo __('about_timeline_2022_title'); ?></h4>
+                            <p><?php echo e(__('about_timeline_2022_desc')); ?></p>
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="tl-card">
                             <div class="tl-year">2023</div>
                             <div class="tl-icon tl-icon-green"><i class="fas fa-tachometer-alt"></i></div>
-                            <h4>10 Gbit/s</h4>
-                            <p>Upgraded to 10 Gbit/s speed and launched hourly cloud servers.</p>
+                            <h4><?php echo e(__('about_timeline_2023_title')); ?></h4>
+                            <p><?php echo e(__('about_timeline_2023_desc')); ?></p>
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="tl-card">
                             <div class="tl-year">2024</div>
                             <div class="tl-icon tl-icon-purple"><i class="fas fa-users"></i></div>
-                            <h4>100K+ Clients</h4>
-                            <p>The number of clients surpassed 100K globally and keeps growing.</p>
+                            <h4><?php echo e(__('about_timeline_2024_title')); ?></h4>
+                            <p><?php echo e(__('about_timeline_2024_desc')); ?></p>
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="tl-card tl-card-active">
                             <div class="tl-year">2025</div>
                             <div class="tl-icon tl-icon-amber"><i class="fas fa-network-wired"></i></div>
-                            <h4>100+ Gbit/s</h4>
-                            <p>Exceeded 100+ Gbit/s network capacity with 20+ locations worldwide.</p>
+                            <h4><?php echo e(__('about_timeline_2025_title')); ?></h4>
+                            <p><?php echo e(__('about_timeline_2025_desc')); ?></p>
                         </div>
                     </div>
                 </div>
@@ -358,26 +358,26 @@ require_once __DIR__ . '/includes/topbar.php';
         <div class="container">
             <div class="global-layout">
                 <div class="global-content">
-                    <div class="section-tag">Infrastructure</div>
-                    <h2 class="global-title">Data Centers Worldwide</h2>
-                    <p class="global-desc">We are proud to have our own data center in Romania. Additionally, we partner with over 6 other data centers, offering our services and servers in more than 50 locations.</p>
-                    <p class="global-desc">Our infrastructure spans multiple continents through strategic data center partnerships.</p>
+                    <div class="section-tag"><?php echo e(__('about_dc_tag')); ?></div>
+                    <h2 class="global-title"><?php echo e(__('about_dc_title')); ?></h2>
+                    <p class="global-desc"><?php echo e(__('about_dc_desc1')); ?></p>
+                    <p class="global-desc"><?php echo e(__('about_dc_desc2')); ?></p>
                     <div class="global-stats">
                         <div class="global-stat">
                             <div class="stat-number">50+</div>
-                            <div class="stat-label">Server Locations</div>
+                            <div class="stat-label"><?php echo e(__('about_dc_stat_locations')); ?></div>
                         </div>
                         <div class="global-stat">
                             <div class="stat-number">100+</div>
-                            <div class="stat-label">Gbit/s Capacity</div>
+                            <div class="stat-label"><?php echo e(__('about_dc_stat_capacity')); ?></div>
                         </div>
                         <div class="global-stat">
                             <div class="stat-number">8</div>
-                            <div class="stat-label">DC Partners</div>
+                            <div class="stat-label"><?php echo e(__('about_dc_stat_partners')); ?></div>
                         </div>
                         <div class="global-stat">
                             <div class="stat-number">6</div>
-                            <div class="stat-label">Continents</div>
+                            <div class="stat-label"><?php echo e(__('about_dc_stat_continents')); ?></div>
                         </div>
                     </div>
                 </div>
@@ -497,9 +497,9 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="team-section reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Our People</div>
-                <h2>Meet the team</h2>
-                <p>Dedicated professionals ensuring seamless support and solutions for all your hosting needs.</p>
+                <div class="section-tag"><?php echo e(__('about_team_tag')); ?></div>
+                <h2><?php echo e(__('about_team_title')); ?></h2>
+                <p><?php echo e(__('about_team_desc')); ?></p>
             </div>
 
             <div class="swiper team-swiper" id="teamSwiper">
@@ -507,57 +507,57 @@ require_once __DIR__ . '/includes/topbar.php';
                     <div class="swiper-slide"><div class="team-card">
                         <div class="team-avatar"><img src="https://i.pravatar.cc/150?img=11" alt="Petru A." loading="lazy"></div>
                         <h4>Petru A.</h4>
-                        <span class="team-role">Head of Technical Support</span>
+                        <span class="team-role"><?php echo e(__('about_team_role_head_support')); ?></span>
                     </div></div>
                     <div class="swiper-slide"><div class="team-card">
                         <div class="team-avatar"><img src="https://i.pravatar.cc/150?img=12" alt="Daniel C." loading="lazy"></div>
                         <h4>Daniel C.</h4>
-                        <span class="team-role">Support Engineer</span>
+                        <span class="team-role"><?php echo e(__('about_team_role_support_engineer')); ?></span>
                     </div></div>
                     <div class="swiper-slide"><div class="team-card">
                         <div class="team-avatar"><img src="https://i.pravatar.cc/150?img=14" alt="Alper A." loading="lazy"></div>
                         <h4>Alper A.</h4>
-                        <span class="team-role">Support Engineer</span>
+                        <span class="team-role"><?php echo e(__('about_team_role_support_engineer')); ?></span>
                     </div></div>
                     <div class="swiper-slide"><div class="team-card">
                         <div class="team-avatar"><img src="https://i.pravatar.cc/150?img=32" alt="Maria A." loading="lazy"></div>
                         <h4>Maria A.</h4>
-                        <span class="team-role">Accountant</span>
+                        <span class="team-role"><?php echo e(__('about_team_role_accountant')); ?></span>
                     </div></div>
                     <div class="swiper-slide"><div class="team-card">
                         <div class="team-avatar"><img src="https://i.pravatar.cc/150?img=44" alt="Julie Y." loading="lazy"></div>
                         <h4>Julie Y.</h4>
-                        <span class="team-role">Marketer</span>
+                        <span class="team-role"><?php echo e(__('about_team_role_marketer')); ?></span>
                     </div></div>
                     <div class="swiper-slide"><div class="team-card">
                         <div class="team-avatar"><img src="https://i.pravatar.cc/150?img=59" alt="Aseel B." loading="lazy"></div>
                         <h4>Aseel B.</h4>
-                        <span class="team-role">Support Engineer</span>
+                        <span class="team-role"><?php echo e(__('about_team_role_support_engineer')); ?></span>
                     </div></div>
                     <div class="swiper-slide"><div class="team-card">
                         <div class="team-avatar"><img src="https://i.pravatar.cc/150?img=53" alt="Denis L." loading="lazy"></div>
                         <h4>Denis L.</h4>
-                        <span class="team-role">Support Engineer</span>
+                        <span class="team-role"><?php echo e(__('about_team_role_support_engineer')); ?></span>
                     </div></div>
                     <div class="swiper-slide"><div class="team-card">
                         <div class="team-avatar"><img src="https://i.pravatar.cc/150?img=60" alt="Andrei M." loading="lazy"></div>
                         <h4>Andrei M.</h4>
-                        <span class="team-role">Developer</span>
+                        <span class="team-role"><?php echo e(__('about_team_role_developer')); ?></span>
                     </div></div>
                     <div class="swiper-slide"><div class="team-card">
                         <div class="team-avatar"><img src="https://i.pravatar.cc/150?img=52" alt="AlMhyar M." loading="lazy"></div>
                         <h4>AlMhyar M.</h4>
-                        <span class="team-role">Support Engineer</span>
+                        <span class="team-role"><?php echo e(__('about_team_role_support_engineer')); ?></span>
                     </div></div>
                     <div class="swiper-slide"><div class="team-card">
                         <div class="team-avatar"><img src="https://i.pravatar.cc/150?img=57" alt="Gabriel B." loading="lazy"></div>
                         <h4>Gabriel B.</h4>
-                        <span class="team-role">Developer</span>
+                        <span class="team-role"><?php echo e(__('about_team_role_developer')); ?></span>
                     </div></div>
                     <div class="swiper-slide"><div class="team-card">
                         <div class="team-avatar"><img src="https://i.pravatar.cc/150?img=26" alt="Mirella E." loading="lazy"></div>
                         <h4>Mirella E.</h4>
-                        <span class="team-role">Accountant Manager</span>
+                        <span class="team-role"><?php echo e(__('about_team_role_accountant_manager')); ?></span>
                     </div></div>
                 </div>
                 <div class="swiper-pagination"></div>
@@ -569,25 +569,25 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="about-trust reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Reliability</div>
-                <h2>Trusted by thousands worldwide</h2>
+                <div class="section-tag"><?php echo e(__('about_trust_tag')); ?></div>
+                <h2><?php echo e(__('about_trust_title')); ?></h2>
             </div>
 
             <div class="about-trust-grid">
                 <div class="cp-security-card">
                     <div class="cp-security-icon"><i class="fas fa-server"></i></div>
-                    <h4>99.9% Uptime Infrastructure</h4>
-                    <p>Enterprise-grade hardware and redundant systems ensure your services stay online around the clock.</p>
+                    <h4><?php echo e(__('about_trust_card1_title')); ?></h4>
+                    <p><?php echo e(__('about_trust_card1_desc')); ?></p>
                 </div>
                 <div class="cp-security-card">
                     <div class="cp-security-icon icon-green"><i class="fas fa-globe"></i></div>
-                    <h4>Global Server Locations</h4>
-                    <p>50+ locations across 6 continents with strategic data center partnerships worldwide.</p>
+                    <h4><?php echo e(__('about_trust_card2_title')); ?></h4>
+                    <p><?php echo e(__('about_trust_card2_desc')); ?></p>
                 </div>
                 <div class="cp-security-card">
                     <div class="cp-security-icon icon-purple"><i class="fas fa-microchip"></i></div>
-                    <h4>Enterprise-Grade Hardware</h4>
-                    <p>NVMe SSDs, DDR4 ECC RAM, and 10 Gbit/s networking for maximum performance and reliability.</p>
+                    <h4><?php echo e(__('about_trust_card3_title')); ?></h4>
+                    <p><?php echo e(__('about_trust_card3_desc')); ?></p>
                 </div>
             </div>
         </div>
@@ -598,43 +598,43 @@ require_once __DIR__ . '/includes/topbar.php';
         <div class="container">
             <div class="why-us-layout">
                 <div class="why-us-intro">
-                    <div class="section-tag">Advantages</div>
-                    <h2 class="why-us-title">Why Choose Us?</h2>
-                    <p class="why-us-desc">Discover the advantages of our hosting services and why we're the preferred choice for many.</p>
+                    <div class="section-tag"><?php echo e(__('about_why_tag')); ?></div>
+                    <h2 class="why-us-title"><?php echo e(__('about_why_title')); ?></h2>
+                    <p class="why-us-desc"><?php echo e(__('about_why_desc')); ?></p>
                     <a href="<?php echo e(SITE_URL); ?>/best-cpanel-hosting/" class="btn-primary">
-                        Get Started <i class="fas fa-arrow-right"></i>
+                        <?php echo e(__('about_why_cta')); ?> <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
                 <div class="why-us-grid">
                     <div class="why-us-card">
                         <div class="why-us-card-icon"><i class="fas fa-headset"></i></div>
-                        <h4>24/7 Expert Support</h4>
-                        <p>Our dedicated team is available around the clock to assist you with any issues.</p>
+                        <h4><?php echo e(__('about_why_card1_title')); ?></h4>
+                        <p><?php echo e(__('about_why_card1_desc')); ?></p>
                     </div>
                     <div class="why-us-card">
                         <div class="why-us-card-icon icon-green"><i class="fas fa-tachometer-alt"></i></div>
-                        <h4>High-Speed Performance</h4>
-                        <p>Benefit from fast load times and reliable performance for your website.</p>
+                        <h4><?php echo e(__('about_why_card2_title')); ?></h4>
+                        <p><?php echo e(__('about_why_card2_desc')); ?></p>
                     </div>
                     <div class="why-us-card">
                         <div class="why-us-card-icon icon-purple"><i class="fas fa-shield-alt"></i></div>
-                        <h4>Secure &amp; Reliable</h4>
-                        <p>Top-notch security measures and a 99.9% uptime guarantee.</p>
+                        <h4><?php echo __('about_why_card3_title'); ?></h4>
+                        <p><?php echo e(__('about_why_card3_desc')); ?></p>
                     </div>
                     <div class="why-us-card">
                         <div class="why-us-card-icon icon-amber"><i class="fas fa-globe"></i></div>
-                        <h4>Global Data Centers</h4>
-                        <p>Own and partner with six top-tier data centers for unmatched reliability.</p>
+                        <h4><?php echo e(__('about_why_card4_title')); ?></h4>
+                        <p><?php echo e(__('about_why_card4_desc')); ?></p>
                     </div>
                     <div class="why-us-card">
                         <div class="why-us-card-icon icon-green"><i class="fas fa-tags"></i></div>
-                        <h4>Pricing &amp; Quality</h4>
-                        <p>Enjoy the best value with our affordable plans without compromising on quality.</p>
+                        <h4><?php echo __('about_why_card5_title'); ?></h4>
+                        <p><?php echo e(__('about_why_card5_desc')); ?></p>
                     </div>
                     <div class="why-us-card">
                         <div class="why-us-card-icon icon-purple"><i class="fas fa-th-large"></i></div>
-                        <h4>User-Friendly Dashboard</h4>
-                        <p>Manage all your hosting needs with our intuitive and easy-to-use control panel.</p>
+                        <h4><?php echo e(__('about_why_card6_title')); ?></h4>
+                        <p><?php echo e(__('about_why_card6_desc')); ?></p>
                     </div>
                 </div>
             </div>
@@ -647,10 +647,10 @@ require_once __DIR__ . '/includes/topbar.php';
             <div class="promo-cta-inner">
                 <div class="promo-cta-glow"></div>
                 <div class="promo-cta-icon"><i class="fas fa-gift"></i></div>
-                <h2>Get Exclusive Offers &amp; Promotions</h2>
-                <p>Stay updated with the latest deals, discounts, and special promotions.</p>
+                <h2><?php echo __('about_cta_title'); ?></h2>
+                <p><?php echo e(__('about_cta_desc')); ?></p>
                 <a href="<?php echo e(SITE_URL); ?>/promotions" class="btn-primary">
-                    Check Promotions <i class="fas fa-arrow-right"></i>
+                    <?php echo e(__('about_cta_button')); ?> <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
         </div>

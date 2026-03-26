@@ -949,7 +949,7 @@ require_once __DIR__ . '/includes/header.php';
             <div class="trustpilot-link">
                 <a href="https://www.trustpilot.com/review/yottasrc.com" class="trustpilot-badge" target="_blank" rel="noopener noreferrer">
                     <i class="fas fa-star"></i>
-                    Rated Excellent on Trustpilot — Read all 144+ reviews
+                    <?php echo e(__('home_trustpilot_badge')); ?>
                     <i class="fas fa-external-link-alt trustpilot-external-icon"></i>
                 </a>
             </div>
@@ -960,18 +960,18 @@ require_once __DIR__ . '/includes/header.php';
     <section class="tutorials reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Resources</div>
-                <h2>Learn &amp; grow with YottaSrc</h2>
-                <p>Step-by-step tutorials, video guides, and expert blog posts to help you manage your hosting.</p>
+                <div class="section-tag"><?php echo e(__('home_tutorials_tag')); ?></div>
+                <h2><?php echo e(__('home_tutorials_title')); ?></h2>
+                <p><?php echo e(__('home_tutorials_desc')); ?></p>
             </div>
 
             <div class="swiper tutorials-swiper" id="tutorialsSwiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <a href="https://wiki.yottasrc.com/how-to-install-wordpress-on-cpanel/" class="tutorial-card" target="_blank" rel="noopener noreferrer">
-                            <div class="tutorial-badge">WordPress</div>
-                            <h4>How to Install WordPress on cPanel</h4>
-                            <p>Step-by-step guide to install WordPress on your cPanel hosting in minutes.</p>
+                            <div class="tutorial-badge"><?php echo e(__('home_tutorials_card1_badge')); ?></div>
+                            <h4><?php echo e(__('home_tutorials_card1_title')); ?></h4>
+                            <p><?php echo e(__('home_tutorials_card1_desc')); ?></p>
                             <div class="tutorial-meta">
                                 <span class="tutorial-views"><i class="fas fa-eye"></i> 8.1K+ views</span>
                                 <span class="tutorial-arrow">Read More <i class="fas fa-arrow-right"></i></span>
@@ -980,9 +980,9 @@ require_once __DIR__ . '/includes/header.php';
                     </div>
                     <div class="swiper-slide">
                         <a href="https://wiki.yottasrc.com/how-to-fix-500-internal-server-error-in-cpanel/" class="tutorial-card" target="_blank" rel="noopener noreferrer">
-                            <div class="tutorial-badge badge-green">WHM/cPanel</div>
-                            <h4>How to Fix 500 Internal Server Error</h4>
-                            <p>Troubleshoot and resolve the most common server error in cPanel hosting.</p>
+                            <div class="tutorial-badge badge-green"><?php echo e(__('home_tutorials_card2_badge')); ?></div>
+                            <h4><?php echo e(__('home_tutorials_card2_title')); ?></h4>
+                            <p><?php echo e(__('home_tutorials_card2_desc')); ?></p>
                             <div class="tutorial-meta">
                                 <span class="tutorial-views"><i class="fas fa-eye"></i> 53.7K+ views</span>
                                 <span class="tutorial-arrow">Read More <i class="fas fa-arrow-right"></i></span>
@@ -991,9 +991,9 @@ require_once __DIR__ . '/includes/header.php';
                     </div>
                     <div class="swiper-slide">
                         <a href="https://wiki.yottasrc.com/how-to-optimize-and-repair-the-databases-via-phpmyadmin-in-cpanel/" class="tutorial-card" target="_blank" rel="noopener noreferrer">
-                            <div class="tutorial-badge badge-purple">Databases</div>
-                            <h4>Optimize &amp; Repair Databases via phpMyAdmin</h4>
-                            <p>Learn to optimize and repair your MySQL databases for better performance.</p>
+                            <div class="tutorial-badge badge-purple"><?php echo e(__('home_tutorials_card3_badge')); ?></div>
+                            <h4><?php echo e(__('home_tutorials_card3_title')); ?></h4>
+                            <p><?php echo e(__('home_tutorials_card3_desc')); ?></p>
                             <div class="tutorial-meta">
                                 <span class="tutorial-views"><i class="fas fa-eye"></i> 6.2K+ views</span>
                                 <span class="tutorial-arrow">Read More <i class="fas fa-arrow-right"></i></span>
@@ -1007,7 +1007,7 @@ require_once __DIR__ . '/includes/header.php';
             <div class="tutorials-browse">
                 <a href="https://wiki.yottasrc.com/" class="trustpilot-badge" target="_blank" rel="noopener noreferrer">
                     <i class="fas fa-book"></i>
-                    Browse all tutorials &amp; guides
+                    <?php echo e(__('home_tutorials_browse')); ?>
                     <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i>
                 </a>
             </div>
@@ -1018,43 +1018,43 @@ require_once __DIR__ . '/includes/header.php';
     <section class="onboarding reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Get Started</div>
-                <h2>Live in 5 minutes</h2>
-                <p>Whether you're starting fresh or migrating — we make it effortless.</p>
+                <div class="section-tag"><?php echo e(__('onboarding_tag')); ?></div>
+                <h2><?php echo e(__('onboarding_title')); ?></h2>
+                <p><?php echo e(__('onboarding_desc')); ?></p>
             </div>
 
             <div class="onboarding-tracks">
                 <div class="track">
                     <div class="track-icon"><i class="fas fa-rocket"></i></div>
-                    <h3>New Website</h3>
-                    <p>Launch your site in minutes</p>
+                    <h3><?php echo e(__('onboarding_track1_title')); ?></h3>
+                    <p><?php echo e(__('onboarding_track1_desc')); ?></p>
                     <div class="track-steps">
                         <div class="track-step">
                             <div class="step-num">1</div>
                             <div class="step-content">
-                                <h4>Create Account</h4>
-                                <p>Sign up in 30 seconds — no credit card required for cloud</p>
+                                <h4><?php echo e(__('onboarding_track1_step1_title')); ?></h4>
+                                <p><?php echo e(__('onboarding_track1_step1_desc')); ?></p>
                             </div>
                         </div>
                         <div class="track-step">
                             <div class="step-num">2</div>
                             <div class="step-content">
-                                <h4>Select Plan &amp; Location</h4>
-                                <p>Choose your plan and pick from 50+ server locations</p>
+                                <h4><?php echo e(__('onboarding_track1_step2_title')); ?></h4>
+                                <p><?php echo e(__('onboarding_track1_step2_desc')); ?></p>
                             </div>
                         </div>
                         <div class="track-step">
                             <div class="step-num">3</div>
                             <div class="step-content">
-                                <h4>Complete Payment</h4>
-                                <p>Pay with card, PayPal, crypto, or 10+ other methods</p>
+                                <h4><?php echo e(__('onboarding_track1_step3_title')); ?></h4>
+                                <p><?php echo e(__('onboarding_track1_step3_desc')); ?></p>
                             </div>
                         </div>
                         <div class="track-step">
                             <div class="step-num">4</div>
                             <div class="step-content">
-                                <h4>Go Live</h4>
-                                <p>Your site is active within 2–20 minutes</p>
+                                <h4><?php echo e(__('onboarding_track1_step4_title')); ?></h4>
+                                <p><?php echo e(__('onboarding_track1_step4_desc')); ?></p>
                             </div>
                         </div>
                     </div>
@@ -1062,35 +1062,35 @@ require_once __DIR__ . '/includes/header.php';
 
                 <div class="track">
                     <div class="track-icon"><i class="fas fa-truck"></i></div>
-                    <h3>Free Migration</h3>
-                    <p>We handle everything — zero downtime</p>
+                    <h3><?php echo e(__('onboarding_track2_title')); ?></h3>
+                    <p><?php echo e(__('onboarding_track2_desc')); ?></p>
                     <div class="track-steps">
                         <div class="track-step">
                             <div class="step-num">1</div>
                             <div class="step-content">
-                                <h4>Buy Your Plan</h4>
-                                <p>Choose and purchase any hosting package</p>
+                                <h4><?php echo e(__('onboarding_track2_step1_title')); ?></h4>
+                                <p><?php echo e(__('onboarding_track2_step1_desc')); ?></p>
                             </div>
                         </div>
                         <div class="track-step">
                             <div class="step-num">2</div>
                             <div class="step-content">
-                                <h4>Open a Ticket</h4>
-                                <p>Submit a migration request to our support team</p>
+                                <h4><?php echo e(__('onboarding_track2_step2_title')); ?></h4>
+                                <p><?php echo e(__('onboarding_track2_step2_desc')); ?></p>
                             </div>
                         </div>
                         <div class="track-step">
                             <div class="step-num">3</div>
                             <div class="step-content">
-                                <h4>We Migrate Everything</h4>
-                                <p>Our engineers transfer files, databases, emails &amp; DNS</p>
+                                <h4><?php echo e(__('onboarding_track2_step3_title')); ?></h4>
+                                <p><?php echo e(__('onboarding_track2_step3_desc')); ?></p>
                             </div>
                         </div>
                         <div class="track-step">
                             <div class="step-num">4</div>
                             <div class="step-content">
-                                <h4>Verify &amp; Done</h4>
-                                <p>Review your migrated site and you're all set</p>
+                                <h4><?php echo e(__('onboarding_track2_step4_title')); ?></h4>
+                                <p><?php echo e(__('onboarding_track2_step4_desc')); ?></p>
                             </div>
                         </div>
                     </div>
@@ -1103,99 +1103,99 @@ require_once __DIR__ . '/includes/header.php';
     <section class="faq-section reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">FAQ</div>
-                <h2>Frequently asked questions</h2>
-                <p>Can't find your answer? Open a support ticket — we respond in under 10 minutes.</p>
+                <div class="section-tag"><?php echo e(__('home_faq_tag')); ?></div>
+                <h2><?php echo e(__('home_faq_title')); ?></h2>
+                <p><?php echo e(__('home_faq_desc')); ?></p>
             </div>
 
             <div class="faq-layout">
                 <div class="faq-tabs">
-                    <button class="faq-tab active" data-faq-target="faq-hosting"><i class="fas fa-server"></i> Hosting</button>
-                    <button class="faq-tab" data-faq-target="faq-vps"><i class="fas fa-microchip"></i> VPS / VDS</button>
+                    <button class="faq-tab active" data-faq-target="faq-hosting"><i class="fas fa-server"></i> <?php echo e(__('home_faq_tab_hosting')); ?></button>
+                    <button class="faq-tab" data-faq-target="faq-vps"><i class="fas fa-microchip"></i> <?php echo e(__('home_faq_tab_vps')); ?></button>
                 </div>
 
                 <div class="faq-panels">
                     <div class="faq-panel active" id="faq-hosting">
                         <div class="faq-item">
                             <button class="faq-question">
-                                <span>How long does it take to activate my order?</span>
+                                <span><?php echo e(__('home_faq_hosting_q1')); ?></span>
                                 <i class="fas fa-chevron-down"></i>
                             </button>
-                            <div class="faq-answer"><p>Orders are typically activated within 2 to 20 minutes. If your service is not activated within this time, please open a ticket.</p></div>
+                            <div class="faq-answer"><p><?php echo e(__('home_faq_hosting_a1')); ?></p></div>
                         </div>
                         <div class="faq-item">
                             <button class="faq-question">
-                                <span>Does hosting include a control panel?</span>
+                                <span><?php echo e(__('home_faq_hosting_q2')); ?></span>
                                 <i class="fas fa-chevron-down"></i>
                             </button>
-                            <div class="faq-answer"><p>Yes, all our hosting plans include the latest version of cPanel, allowing you to manage your website, databases, emails, and more.</p></div>
+                            <div class="faq-answer"><p><?php echo e(__('home_faq_hosting_a2')); ?></p></div>
                         </div>
                         <div class="faq-item">
                             <button class="faq-question">
-                                <span>Do you offer a website builder tool?</span>
+                                <span><?php echo e(__('home_faq_hosting_q3')); ?></span>
                                 <i class="fas fa-chevron-down"></i>
                             </button>
-                            <div class="faq-answer"><p>Yes, we provide SitePad and SiteJet — easy-to-use drag-and-drop website builders included in all hosting plans.</p></div>
+                            <div class="faq-answer"><p><?php echo e(__('home_faq_hosting_a3')); ?></p></div>
                         </div>
                         <div class="faq-item">
                             <button class="faq-question">
-                                <span>What are the requirements for hosting a WordPress website?</span>
+                                <span><?php echo e(__('home_faq_hosting_q4')); ?></span>
                                 <i class="fas fa-chevron-down"></i>
                             </button>
-                            <div class="faq-answer"><p>PHP version 7.4 or greater, MySQL version 5.6 or greater or MariaDB version 10.1 or greater, and HTTPS support. All included with our plans.</p></div>
+                            <div class="faq-answer"><p><?php echo e(__('home_faq_hosting_a4')); ?></p></div>
                         </div>
                         <div class="faq-item">
                             <button class="faq-question">
-                                <span>Can I get a refund for unused services?</span>
+                                <span><?php echo e(__('home_faq_hosting_q5')); ?></span>
                                 <i class="fas fa-chevron-down"></i>
                             </button>
-                            <div class="faq-answer"><p>Refunds are available under specific conditions outlined in our Refund Policy. We offer a 30-day money-back guarantee on hosting plans.</p></div>
+                            <div class="faq-answer"><p><?php echo e(__('home_faq_hosting_a5')); ?></p></div>
                         </div>
                     </div>
 
                     <div class="faq-panel" id="faq-vps">
                         <div class="faq-item">
                             <button class="faq-question">
-                                <span>What virtualization technology is used?</span>
+                                <span><?php echo e(__('home_faq_vps_q1')); ?></span>
                                 <i class="fas fa-chevron-down"></i>
                             </button>
-                            <div class="faq-answer"><p>We use KVM (Kernel-based Virtual Machine) for high performance and stability.</p></div>
+                            <div class="faq-answer"><p><?php echo e(__('home_faq_vps_a1')); ?></p></div>
                         </div>
                         <div class="faq-item">
                             <button class="faq-question">
-                                <span>Do I get full root access?</span>
+                                <span><?php echo e(__('home_faq_vps_q2')); ?></span>
                                 <i class="fas fa-chevron-down"></i>
                             </button>
-                            <div class="faq-answer"><p>Yes, all VPS plans come with full root/admin SSH access. All ports are open except port 25.</p></div>
+                            <div class="faq-answer"><p><?php echo e(__('home_faq_vps_a2')); ?></p></div>
                         </div>
                         <div class="faq-item">
                             <button class="faq-question">
-                                <span>Do VPS plans include DDoS protection?</span>
+                                <span><?php echo e(__('home_faq_vps_q3')); ?></span>
                                 <i class="fas fa-chevron-down"></i>
                             </button>
-                            <div class="faq-answer"><p>Yes, all VPS plans include basic DDoS protection, with advanced protection available as an add-on.</p></div>
+                            <div class="faq-answer"><p><?php echo e(__('home_faq_vps_a3')); ?></p></div>
                         </div>
                         <div class="faq-item">
                             <button class="faq-question">
-                                <span>Do you support automatic payments?</span>
+                                <span><?php echo e(__('home_faq_vps_q4')); ?></span>
                                 <i class="fas fa-chevron-down"></i>
                             </button>
-                            <div class="faq-answer"><p>Yes, for automatic payments we recommend adding a credit card to your account.</p></div>
+                            <div class="faq-answer"><p><?php echo e(__('home_faq_vps_a4')); ?></p></div>
                         </div>
                         <div class="faq-item">
                             <button class="faq-question">
-                                <span>Can I get a postponement of payment?</span>
+                                <span><?php echo e(__('home_faq_vps_q5')); ?></span>
                                 <i class="fas fa-chevron-down"></i>
                             </button>
-                            <div class="faq-answer"><p>Yes, you can request a payment extension by contacting Sales support before your due date.</p></div>
+                            <div class="faq-answer"><p><?php echo e(__('home_faq_vps_a5')); ?></p></div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="faq-actions">
-                <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-primary"><i class="fas fa-headset"></i> Open a Ticket</a>
-                <a href="<?php echo e(SITE_URL); ?>/faq" class="btn-secondary">Browse All FAQ <i class="fas fa-arrow-right"></i></a>
+                <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-primary"><i class="fas fa-headset"></i> <?php echo e(__('home_faq_cta_ticket')); ?></a>
+                <a href="<?php echo e(SITE_URL); ?>/faq" class="btn-secondary"><?php echo e(__('home_faq_cta_browse')); ?> <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
@@ -1206,10 +1206,10 @@ require_once __DIR__ . '/includes/header.php';
             <div class="promo-cta-inner">
                 <div class="promo-cta-glow"></div>
                 <div class="promo-cta-icon"><i class="fas fa-gift"></i></div>
-                <h2>Get Exclusive Offers &amp; Promotions</h2>
-                <p>Stay updated with the latest deals, discounts, and special promotions.</p>
+                <h2><?php echo e(__('home_promo_cta_title')); ?></h2>
+                <p><?php echo e(__('home_promo_cta_desc')); ?></p>
                 <a href="<?php echo e(SITE_URL); ?>/promotions" class="btn-primary">
-                    Check Promotions <i class="fas fa-arrow-right"></i>
+                    <?php echo e(__('home_promo_cta_button')); ?> <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
         </div>

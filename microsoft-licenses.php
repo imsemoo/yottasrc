@@ -18,23 +18,23 @@ require_once __DIR__ . '/includes/topbar.php';
                     <div class="page-breadcrumb">
                         <a href="<?php echo e(SITE_URL); ?>/"><?php echo e(__('breadcrumb_home')); ?></a>
                         <i class="fas fa-chevron-right"></i>
-                        <a href="<?php echo e(SITE_URL); ?>/microsoft-products/">Microsoft</a>
+                        <a href="<?php echo e(SITE_URL); ?>/microsoft-products/"><?php echo e(__('mslicenses_breadcrumb_ms')); ?></a>
                         <i class="fas fa-chevron-right"></i>
                         <span><?php echo e(__('mslicenses_breadcrumb')); ?></span>
                     </div>
-                    <h1>Microsoft Licenses — <span class="highlight">Genuine &amp; Affordable</span></h1>
+                    <h1><?php echo __('mslicenses_hero_title'); ?></h1>
                     <p class="page-hero-desc">
-                        Browse our full catalog of genuine Microsoft licenses — Windows, Office, Server, Visual Studio, Project, and Visio. Instant digital delivery, official activation, and the lowest prices guaranteed.
+                        <?php echo e(__('mslicenses_hero_desc')); ?>
                     </p>
                     <div class="page-hero-ctas">
-                        <a href="#catalog" class="btn-primary">Browse Catalog <i class="fas fa-arrow-down"></i></a>
-                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-secondary"><i class="fas fa-headset"></i> Talk to Sales</a>
+                        <a href="#catalog" class="btn-primary"><?php echo e(__('mslicenses_hero_cta_primary')); ?> <i class="fas fa-arrow-down"></i></a>
+                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-secondary"><i class="fas fa-headset"></i> <?php echo e(__('mslicenses_hero_cta_secondary')); ?></a>
                     </div>
                     <div class="page-hero-badges">
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> Genuine Microsoft Keys</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> Instant Digital Delivery</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> Official Activation</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> Free Replacements</div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('mslicenses_hero_badge1')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('mslicenses_hero_badge2')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('mslicenses_hero_badge3')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('mslicenses_hero_badge4')); ?></div>
                     </div>
                 </div>
                 <div class="page-hero-visual">
@@ -127,7 +127,7 @@ require_once __DIR__ . '/includes/topbar.php';
     <!-- ═══════════════ PARTNERS STRIP ═══════════════ -->
     <section class="partners">
         <div class="container">
-            <span class="partners-label">Products Include</span>
+            <span class="partners-label"><?php echo e(__('mslicenses_partners_label')); ?></span>
             <div class="partners-logos">
                 <span class="partner-logo"><i class="fab fa-windows"></i> Windows 11</span>
                 <span class="partner-logo"><i class="fab fa-windows"></i> Windows 10</span>
@@ -145,15 +145,15 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="ms-cat-nav reveal" id="catalog">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Catalog</div>
-                <h2>Microsoft product catalog</h2>
-                <p>Browse our complete catalog of genuine Microsoft licenses. All keys activate through official Microsoft servers.</p>
+                <div class="section-tag"><?php echo e(__('mslicenses_catalog_tag')); ?></div>
+                <h2><?php echo e(__('mslicenses_catalog_title')); ?></h2>
+                <p><?php echo e(__('mslicenses_catalog_desc')); ?></p>
             </div>
 
             <!-- Search Bar -->
             <div class="ms-search-wrap">
                 <i class="fas fa-search ms-search-icon"></i>
-                <input type="text" id="msProductSearch" class="ms-search-input" placeholder="Search products — e.g. Windows 11, Office 365, Visual Studio…" autocomplete="off">
+                <input type="text" id="msProductSearch" class="ms-search-input" placeholder="<?php echo e(__('mslicenses_search_ph')); ?>" autocomplete="off">
                 <span class="ms-search-clear" id="msSearchClear" title="Clear search">&times;</span>
             </div>
 
@@ -162,7 +162,7 @@ require_once __DIR__ . '/includes/topbar.php';
                 <a href="#cat-windows" class="ms-cat-card">
                     <div class="ms-cat-card-icon"><i class="fab fa-windows"></i></div>
                     <div class="ms-cat-card-body">
-                        <h3>Windows</h3>
+                        <h3><?php echo e(__('mslicenses_cat_windows')); ?></h3>
                         <span class="ms-cat-count">7 Products</span>
                         <span class="ms-cat-price">From €3.50</span>
                     </div>
@@ -171,7 +171,7 @@ require_once __DIR__ . '/includes/topbar.php';
                 <a href="#cat-office" class="ms-cat-card">
                     <div class="ms-cat-card-icon icon-amber"><i class="fab fa-microsoft"></i></div>
                     <div class="ms-cat-card-body">
-                        <h3>Office</h3>
+                        <h3><?php echo e(__('mslicenses_cat_office')); ?></h3>
                         <span class="ms-cat-count">7 Products</span>
                         <span class="ms-cat-price">From €1.50</span>
                     </div>
@@ -180,7 +180,7 @@ require_once __DIR__ . '/includes/topbar.php';
                 <a href="#cat-server" class="ms-cat-card">
                     <div class="ms-cat-card-icon icon-purple"><i class="fas fa-server"></i></div>
                     <div class="ms-cat-card-body">
-                        <h3>Windows Server</h3>
+                        <h3><?php echo e(__('mslicenses_cat_server')); ?></h3>
                         <span class="ms-cat-count">5 Products</span>
                         <span class="ms-cat-price">From €8.00</span>
                     </div>
@@ -189,7 +189,7 @@ require_once __DIR__ . '/includes/topbar.php';
                 <a href="#cat-devtools" class="ms-cat-card">
                     <div class="ms-cat-card-icon icon-green"><i class="fas fa-tools"></i></div>
                     <div class="ms-cat-card-body">
-                        <h3>Developer &amp; Business</h3>
+                        <h3><?php echo __('mslicenses_cat_devtools'); ?></h3>
                         <span class="ms-cat-count">6 Products</span>
                         <span class="ms-cat-price">From €3.50</span>
                     </div>
@@ -200,7 +200,7 @@ require_once __DIR__ . '/includes/topbar.php';
             <!-- No results message -->
             <div class="ms-search-empty" id="msSearchEmpty" hidden>
                 <i class="fas fa-search"></i>
-                <p>No products match your search.</p>
+                <p><?php echo e(__('mslicenses_search_empty')); ?></p>
             </div>
         </div>
     </section>
@@ -214,8 +214,8 @@ require_once __DIR__ . '/includes/topbar.php';
                 <div class="ms-category-header">
                     <div class="ms-category-icon"><i class="fab fa-windows"></i></div>
                     <div class="ms-category-info">
-                        <h3>Windows Licenses</h3>
-                        <p>Windows 11, 10, and legacy versions — Home, Pro, and Enterprise editions.</p>
+                        <h3><?php echo e(__('mslicenses_windows_title')); ?></h3>
+                        <p><?php echo e(__('mslicenses_windows_desc')); ?></p>
                     </div>
                 </div>
                 <div class="ms-product-grid">
@@ -225,7 +225,7 @@ require_once __DIR__ . '/includes/topbar.php';
                         <p class="ms-product-desc">Full retail key — instant online activation via Microsoft servers.</p>
                         <div class="ms-product-price">€6.50</div>
                         <p class="ms-reseller-note">Reseller price from €5.00 (10+ keys)</p>
-                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
+                        <button type="button" class="ms-order-btn"><?php echo e(__('mslicenses_order_btn')); ?> <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
                         <img src="<?php echo BASE_PATH; ?>/static/images/products/windows-11.svg" alt="Windows 11 Pro" class="ms-product-img">
@@ -233,7 +233,7 @@ require_once __DIR__ . '/includes/topbar.php';
                         <p class="ms-product-desc">Genuine key — activated via Microsoft's free automated phone line.</p>
                         <div class="ms-product-price">€3.50</div>
                         <p class="ms-reseller-note">Reseller price from €2.50 (10+ keys)</p>
-                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
+                        <button type="button" class="ms-order-btn"><?php echo e(__('mslicenses_order_btn')); ?> <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
                         <img src="<?php echo BASE_PATH; ?>/static/images/products/windows-11.svg" alt="Windows 11 Home" class="ms-product-img">
@@ -241,7 +241,7 @@ require_once __DIR__ . '/includes/topbar.php';
                         <p class="ms-product-desc">Home edition retail key with instant online activation.</p>
                         <div class="ms-product-price">€5.50</div>
                         <p class="ms-reseller-note">Reseller price from €4.00 (10+ keys)</p>
-                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
+                        <button type="button" class="ms-order-btn"><?php echo e(__('mslicenses_order_btn')); ?> <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
                         <img src="<?php echo BASE_PATH; ?>/static/images/products/windows-10.svg" alt="Windows 10 Pro" class="ms-product-img">
@@ -249,7 +249,7 @@ require_once __DIR__ . '/includes/topbar.php';
                         <p class="ms-product-desc">Full retail key for Windows 10 Professional — online activation.</p>
                         <div class="ms-product-price">€5.00</div>
                         <p class="ms-reseller-note">Reseller price from €3.50 (10+ keys)</p>
-                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
+                        <button type="button" class="ms-order-btn"><?php echo e(__('mslicenses_order_btn')); ?> <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
                         <img src="<?php echo BASE_PATH; ?>/static/images/products/windows-10.svg" alt="Windows 10 Pro" class="ms-product-img">
@@ -257,7 +257,7 @@ require_once __DIR__ . '/includes/topbar.php';
                         <p class="ms-product-desc">Genuine key activated via Microsoft's free automated phone system.</p>
                         <div class="ms-product-price">€3.50</div>
                         <p class="ms-reseller-note">Reseller price from €2.50 (10+ keys)</p>
-                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
+                        <button type="button" class="ms-order-btn"><?php echo e(__('mslicenses_order_btn')); ?> <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
                         <img src="<?php echo BASE_PATH; ?>/static/images/products/windows-10.svg" alt="Windows 10 Home" class="ms-product-img">
@@ -265,7 +265,7 @@ require_once __DIR__ . '/includes/topbar.php';
                         <p class="ms-product-desc">Home edition retail key with instant online activation.</p>
                         <div class="ms-product-price">€4.50</div>
                         <p class="ms-reseller-note">Reseller price from €3.00 (10+ keys)</p>
-                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
+                        <button type="button" class="ms-order-btn"><?php echo e(__('mslicenses_order_btn')); ?> <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
                         <img src="<?php echo BASE_PATH; ?>/static/images/products/windows-10.svg" alt="Windows 10 Enterprise" class="ms-product-img">
@@ -273,7 +273,7 @@ require_once __DIR__ . '/includes/topbar.php';
                         <p class="ms-product-desc">Long-Term Servicing Channel — ideal for enterprise and kiosk deployments.</p>
                         <div class="ms-product-price">€8.00</div>
                         <p class="ms-reseller-note">Reseller price from €6.00 (10+ keys)</p>
-                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
+                        <button type="button" class="ms-order-btn"><?php echo e(__('mslicenses_order_btn')); ?> <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
             </div>
@@ -283,8 +283,8 @@ require_once __DIR__ . '/includes/topbar.php';
                 <div class="ms-category-header">
                     <div class="ms-category-icon icon-amber"><i class="fab fa-microsoft"></i></div>
                     <div class="ms-category-info">
-                        <h3>Office Licenses</h3>
-                        <p>Office 365, 2021, 2019, and 2016 — subscriptions and lifetime licenses.</p>
+                        <h3><?php echo e(__('mslicenses_office_title')); ?></h3>
+                        <p><?php echo e(__('mslicenses_office_desc')); ?></p>
                     </div>
                 </div>
                 <div class="ms-product-grid">
@@ -294,7 +294,7 @@ require_once __DIR__ . '/includes/topbar.php';
                         <p class="ms-product-desc">1 user subscription with Word, Excel, PowerPoint, Outlook, and 1TB OneDrive.</p>
                         <div class="ms-product-price">€1.50</div>
                         <p class="ms-reseller-note">Reseller price from €1.00 (10+ keys)</p>
-                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
+                        <button type="button" class="ms-order-btn"><?php echo e(__('mslicenses_order_btn')); ?> <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
                         <img src="<?php echo BASE_PATH; ?>/static/images/products/office-365.svg" alt="Office 365 Family" class="ms-product-img">
@@ -302,7 +302,7 @@ require_once __DIR__ . '/includes/topbar.php';
                         <p class="ms-product-desc">Up to 6 users — includes all Office apps, 6TB OneDrive total.</p>
                         <div class="ms-product-price">€3.00</div>
                         <p class="ms-reseller-note">Reseller price from €2.00 (10+ keys)</p>
-                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
+                        <button type="button" class="ms-order-btn"><?php echo e(__('mslicenses_order_btn')); ?> <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
                         <img src="<?php echo BASE_PATH; ?>/static/images/products/office-2021.svg" alt="Office 2021 Pro Plus" class="ms-product-img">
@@ -310,7 +310,7 @@ require_once __DIR__ . '/includes/topbar.php';
                         <p class="ms-product-desc">One-time purchase — Word, Excel, PowerPoint, Outlook, Access, Publisher.</p>
                         <div class="ms-product-price">€3.50</div>
                         <p class="ms-reseller-note">Reseller price from €2.50 (10+ keys)</p>
-                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
+                        <button type="button" class="ms-order-btn"><?php echo e(__('mslicenses_order_btn')); ?> <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
                         <img src="<?php echo BASE_PATH; ?>/static/images/products/office-2021.svg" alt="Office 2021 Pro Plus" class="ms-product-img">
@@ -318,7 +318,7 @@ require_once __DIR__ . '/includes/topbar.php';
                         <p class="ms-product-desc">Same Office suite — activated via Microsoft's free phone system.</p>
                         <div class="ms-product-price">€2.00</div>
                         <p class="ms-reseller-note">Reseller price from €1.50 (10+ keys)</p>
-                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
+                        <button type="button" class="ms-order-btn"><?php echo e(__('mslicenses_order_btn')); ?> <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
                         <img src="<?php echo BASE_PATH; ?>/static/images/products/office-2019.svg" alt="Office 2019 Pro Plus" class="ms-product-img">
@@ -326,7 +326,7 @@ require_once __DIR__ . '/includes/topbar.php';
                         <p class="ms-product-desc">Legacy version — reliable and lightweight for older hardware.</p>
                         <div class="ms-product-price">€2.50</div>
                         <p class="ms-reseller-note">Reseller price from €1.50 (10+ keys)</p>
-                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
+                        <button type="button" class="ms-order-btn"><?php echo e(__('mslicenses_order_btn')); ?> <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
                         <img src="<?php echo BASE_PATH; ?>/static/images/products/office-2016.svg" alt="Office 2016 Pro Plus" class="ms-product-img">
@@ -334,7 +334,7 @@ require_once __DIR__ . '/includes/topbar.php';
                         <p class="ms-product-desc">Budget-friendly option with phone activation. Full Office suite.</p>
                         <div class="ms-product-price">€1.50</div>
                         <p class="ms-reseller-note">Reseller price from €1.00 (10+ keys)</p>
-                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
+                        <button type="button" class="ms-order-btn"><?php echo e(__('mslicenses_order_btn')); ?> <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
                         <img src="<?php echo BASE_PATH; ?>/static/images/products/outlook.svg" alt="Outlook 2021" class="ms-product-img">
@@ -342,7 +342,7 @@ require_once __DIR__ . '/includes/topbar.php';
                         <p class="ms-product-desc">Standalone Outlook email client — one-time purchase, no subscription.</p>
                         <div class="ms-product-price">€2.00</div>
                         <p class="ms-reseller-note">Reseller price from €1.50 (10+ keys)</p>
-                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
+                        <button type="button" class="ms-order-btn"><?php echo e(__('mslicenses_order_btn')); ?> <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
             </div>
@@ -352,8 +352,8 @@ require_once __DIR__ . '/includes/topbar.php';
                 <div class="ms-category-header">
                     <div class="ms-category-icon icon-purple"><i class="fas fa-server"></i></div>
                     <div class="ms-category-info">
-                        <h3>Windows Server</h3>
-                        <p>Windows Server 2022 and 2019 — Standard and Datacenter editions.</p>
+                        <h3><?php echo e(__('mslicenses_server_title')); ?></h3>
+                        <p><?php echo e(__('mslicenses_server_desc')); ?></p>
                     </div>
                 </div>
                 <div class="ms-product-grid">
@@ -363,7 +363,7 @@ require_once __DIR__ . '/includes/topbar.php';
                         <p class="ms-product-desc">Latest server OS — Hyper-V, containers, Azure hybrid support.</p>
                         <div class="ms-product-price">€12.00</div>
                         <p class="ms-reseller-note">Reseller price from €9.00 (10+ keys)</p>
-                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
+                        <button type="button" class="ms-order-btn"><?php echo e(__('mslicenses_order_btn')); ?> <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
                         <img src="<?php echo BASE_PATH; ?>/static/images/products/windows-server.svg" alt="Windows Server 2022" class="ms-product-img">
@@ -371,7 +371,7 @@ require_once __DIR__ . '/includes/topbar.php';
                         <p class="ms-product-desc">Unlimited VMs, shielded VMs, Storage Spaces Direct, and full Hyper-V.</p>
                         <div class="ms-product-price">€18.00</div>
                         <p class="ms-reseller-note">Reseller price from €14.00 (10+ keys)</p>
-                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
+                        <button type="button" class="ms-order-btn"><?php echo e(__('mslicenses_order_btn')); ?> <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
                         <img src="<?php echo BASE_PATH; ?>/static/images/products/windows-server.svg" alt="Windows Server 2019" class="ms-product-img">
@@ -379,7 +379,7 @@ require_once __DIR__ . '/includes/topbar.php';
                         <p class="ms-product-desc">Proven server OS — Active Directory, IIS, DNS, and Hyper-V.</p>
                         <div class="ms-product-price">€10.00</div>
                         <p class="ms-reseller-note">Reseller price from €7.50 (10+ keys)</p>
-                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
+                        <button type="button" class="ms-order-btn"><?php echo e(__('mslicenses_order_btn')); ?> <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
                         <img src="<?php echo BASE_PATH; ?>/static/images/products/windows-server.svg" alt="Windows Server 2019" class="ms-product-img">
@@ -387,7 +387,7 @@ require_once __DIR__ . '/includes/topbar.php';
                         <p class="ms-product-desc">Full datacenter features with unlimited containers and VMs.</p>
                         <div class="ms-product-price">€15.00</div>
                         <p class="ms-reseller-note">Reseller price from €11.00 (10+ keys)</p>
-                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
+                        <button type="button" class="ms-order-btn"><?php echo e(__('mslicenses_order_btn')); ?> <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
                         <img src="<?php echo BASE_PATH; ?>/static/images/products/sql-server.svg" alt="SQL Server 2019" class="ms-product-img">
@@ -395,7 +395,7 @@ require_once __DIR__ . '/includes/topbar.php';
                         <p class="ms-product-desc">Enterprise database engine — full T-SQL, reporting, and analytics.</p>
                         <div class="ms-product-price">€8.00</div>
                         <p class="ms-reseller-note">Reseller price from €6.00 (10+ keys)</p>
-                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
+                        <button type="button" class="ms-order-btn"><?php echo e(__('mslicenses_order_btn')); ?> <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
             </div>
@@ -405,8 +405,8 @@ require_once __DIR__ . '/includes/topbar.php';
                 <div class="ms-category-header">
                     <div class="ms-category-icon icon-green"><i class="fas fa-tools"></i></div>
                     <div class="ms-category-info">
-                        <h3>Developer &amp; Business Tools</h3>
-                        <p>Visual Studio, Project, and Visio licenses for developers and businesses.</p>
+                        <h3><?php echo __('mslicenses_devtools_title'); ?></h3>
+                        <p><?php echo e(__('mslicenses_devtools_desc')); ?></p>
                     </div>
                 </div>
                 <div class="ms-product-grid">
@@ -416,7 +416,7 @@ require_once __DIR__ . '/includes/topbar.php';
                         <p class="ms-product-desc">Full IDE for .NET, C++, Python, and web development.</p>
                         <div class="ms-product-price">€12.00</div>
                         <p class="ms-reseller-note">Reseller price from €9.00 (10+ keys)</p>
-                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
+                        <button type="button" class="ms-order-btn"><?php echo e(__('mslicenses_order_btn')); ?> <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
                         <img src="<?php echo BASE_PATH; ?>/static/images/products/visual-studio.svg" alt="Visual Studio 2022" class="ms-product-img">
@@ -424,7 +424,7 @@ require_once __DIR__ . '/includes/topbar.php';
                         <p class="ms-product-desc">Enterprise IDE — IntelliTest, Live Unit Testing, Architecture tools.</p>
                         <div class="ms-product-price">€18.00</div>
                         <p class="ms-reseller-note">Reseller price from €14.00 (10+ keys)</p>
-                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
+                        <button type="button" class="ms-order-btn"><?php echo e(__('mslicenses_order_btn')); ?> <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
                         <img src="<?php echo BASE_PATH; ?>/static/images/products/project.svg" alt="Project 2021" class="ms-product-img">
@@ -432,7 +432,7 @@ require_once __DIR__ . '/includes/topbar.php';
                         <p class="ms-product-desc">Project management with Gantt charts, timelines, and resource tracking.</p>
                         <div class="ms-product-price">€4.00</div>
                         <p class="ms-reseller-note">Reseller price from €3.00 (10+ keys)</p>
-                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
+                        <button type="button" class="ms-order-btn"><?php echo e(__('mslicenses_order_btn')); ?> <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
                         <img src="<?php echo BASE_PATH; ?>/static/images/products/project.svg" alt="Project 2019" class="ms-product-img">
@@ -440,7 +440,7 @@ require_once __DIR__ . '/includes/topbar.php';
                         <p class="ms-product-desc">Legacy version — full project management features at a lower price.</p>
                         <div class="ms-product-price">€3.50</div>
                         <p class="ms-reseller-note">Reseller price from €2.50 (10+ keys)</p>
-                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
+                        <button type="button" class="ms-order-btn"><?php echo e(__('mslicenses_order_btn')); ?> <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
                         <img src="<?php echo BASE_PATH; ?>/static/images/products/visio.svg" alt="Visio 2021" class="ms-product-img">
@@ -448,7 +448,7 @@ require_once __DIR__ . '/includes/topbar.php';
                         <p class="ms-product-desc">Diagrams, flowcharts, and network topology visualization.</p>
                         <div class="ms-product-price">€4.50</div>
                         <p class="ms-reseller-note">Reseller price from €3.50 (10+ keys)</p>
-                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
+                        <button type="button" class="ms-order-btn"><?php echo e(__('mslicenses_order_btn')); ?> <i class="fas fa-arrow-right"></i></button>
                     </div>
                     <div class="ms-product-card">
                         <img src="<?php echo BASE_PATH; ?>/static/images/products/visio.svg" alt="Visio 2019" class="ms-product-img">
@@ -456,7 +456,7 @@ require_once __DIR__ . '/includes/topbar.php';
                         <p class="ms-product-desc">Legacy version with full diagramming and visualization tools.</p>
                         <div class="ms-product-price">€3.50</div>
                         <p class="ms-reseller-note">Reseller price from €2.50 (10+ keys)</p>
-                        <button type="button" class="ms-order-btn">Order <i class="fas fa-arrow-right"></i></button>
+                        <button type="button" class="ms-order-btn"><?php echo e(__('mslicenses_order_btn')); ?> <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
             </div>
@@ -467,31 +467,31 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="cp-benefits ms-whybuy reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Guarantees</div>
-                <h2>Why buy from YottaSrc?</h2>
-                <p>Every license we sell is genuine, activates through Microsoft, and comes with a replacement guarantee.</p>
+                <div class="section-tag"><?php echo e(__('mslicenses_why_tag')); ?></div>
+                <h2><?php echo e(__('mslicenses_why_title')); ?></h2>
+                <p><?php echo e(__('mslicenses_why_desc')); ?></p>
             </div>
 
             <div class="cp-benefits-grid">
                 <div class="cp-security-card">
                     <div class="cp-security-icon"><i class="fas fa-shield-alt"></i></div>
-                    <h4>Genuine Activation</h4>
-                    <p>All keys activate directly through official Microsoft activation servers. No workarounds, no risk.</p>
+                    <h4><?php echo e(__('mslicenses_why_genuine_title')); ?></h4>
+                    <p><?php echo e(__('mslicenses_why_genuine_desc')); ?></p>
                 </div>
                 <div class="cp-security-card">
                     <div class="cp-security-icon icon-green"><i class="fas fa-bolt"></i></div>
-                    <h4>Instant Delivery</h4>
-                    <p>Keys are delivered digitally within seconds of payment confirmation. No waiting or shipping.</p>
+                    <h4><?php echo e(__('mslicenses_why_delivery_title')); ?></h4>
+                    <p><?php echo e(__('mslicenses_why_delivery_desc')); ?></p>
                 </div>
                 <div class="cp-security-card">
                     <div class="cp-security-icon icon-purple"><i class="fas fa-sync-alt"></i></div>
-                    <h4>Free Replacements</h4>
-                    <p>If a key fails to activate, we replace it instantly — no questions asked.</p>
+                    <h4><?php echo e(__('mslicenses_why_replace_title')); ?></h4>
+                    <p><?php echo e(__('mslicenses_why_replace_desc')); ?></p>
                 </div>
                 <div class="cp-security-card">
                     <div class="cp-security-icon icon-amber"><i class="fas fa-tags"></i></div>
-                    <h4>Lowest Prices</h4>
-                    <p>Wholesale pricing from €1.50 per key. Volume discounts available for bulk orders.</p>
+                    <h4><?php echo e(__('mslicenses_why_price_title')); ?></h4>
+                    <p><?php echo e(__('mslicenses_why_price_desc')); ?></p>
                 </div>
             </div>
         </div>
@@ -501,35 +501,35 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="ms-steps reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">How It Works</div>
-                <h2>How to order</h2>
-                <p>Get your Microsoft license in four simple steps.</p>
+                <div class="section-tag"><?php echo e(__('mslicenses_steps_tag')); ?></div>
+                <h2><?php echo e(__('mslicenses_steps_title')); ?></h2>
+                <p><?php echo e(__('mslicenses_steps_desc')); ?></p>
             </div>
 
             <div class="vps-steps-grid">
                 <div class="vps-step-card">
                     <span class="vps-step-num">1</span>
                     <div class="vps-step-icon"><i class="fas fa-mouse-pointer"></i></div>
-                    <h4>Choose Your Product</h4>
-                    <p>Browse the catalog above and click "Order" on the product you need.</p>
+                    <h4><?php echo e(__('mslicenses_step1_title')); ?></h4>
+                    <p><?php echo e(__('mslicenses_step1_desc')); ?></p>
                 </div>
                 <div class="vps-step-card">
                     <span class="vps-step-num">2</span>
                     <div class="vps-step-icon icon-green"><i class="fas fa-credit-card"></i></div>
-                    <h4>Complete Payment</h4>
-                    <p>Pay via credit card, PayPal, cryptocurrency, or 10+ other payment methods.</p>
+                    <h4><?php echo e(__('mslicenses_step2_title')); ?></h4>
+                    <p><?php echo e(__('mslicenses_step2_desc')); ?></p>
                 </div>
                 <div class="vps-step-card">
                     <span class="vps-step-num">3</span>
                     <div class="vps-step-icon icon-purple"><i class="fas fa-key"></i></div>
-                    <h4>Receive Your Key</h4>
-                    <p>Your license key is delivered instantly via email and your client dashboard.</p>
+                    <h4><?php echo e(__('mslicenses_step3_title')); ?></h4>
+                    <p><?php echo e(__('mslicenses_step3_desc')); ?></p>
                 </div>
                 <div class="vps-step-card">
                     <span class="vps-step-num">4</span>
                     <div class="vps-step-icon icon-amber"><i class="fas fa-check-circle"></i></div>
-                    <h4>Activate &amp; Use</h4>
-                    <p>Enter the key into your Microsoft product settings and activate. You're all set.</p>
+                    <h4><?php echo __('mslicenses_step4_title'); ?></h4>
+                    <p><?php echo e(__('mslicenses_step4_desc')); ?></p>
                 </div>
             </div>
         </div>
@@ -539,29 +539,29 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="ms-discount reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Bulk Orders</div>
-                <h2>Volume discount structure</h2>
-                <p>Ordering in bulk? Get better pricing the more you order.</p>
+                <div class="section-tag"><?php echo e(__('mslicenses_volume_tag')); ?></div>
+                <h2><?php echo e(__('mslicenses_volume_title')); ?></h2>
+                <p><?php echo e(__('mslicenses_volume_desc')); ?></p>
             </div>
 
             <div class="ms-discount-table-wrap">
                 <table class="ms-discount-table">
                     <thead>
                         <tr>
-                            <th>Order Quantity</th>
-                            <th>Discount</th>
+                            <th><?php echo e(__('mslicenses_volume_th_qty')); ?></th>
+                            <th><?php echo e(__('mslicenses_volume_th_discount')); ?></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr><td>10+ keys</td><td>5%</td></tr>
                         <tr><td>25+ keys</td><td>10%</td></tr>
                         <tr><td>50+ keys</td><td>15%</td></tr>
-                        <tr class="ms-discount-highlight"><td>100+ keys</td><td>Custom pricing</td></tr>
+                        <tr class="ms-discount-highlight"><td>100+ keys</td><td><?php echo e(__('mslicenses_volume_custom')); ?></td></tr>
                     </tbody>
                 </table>
             </div>
 
-            <p class="ms-discount-note">Volume discounts are applied per order. <a href="<?php echo e(SITE_URL); ?>/contact-us/">Contact support</a> for custom bulk pricing.</p>
+            <p class="ms-discount-note"><?php echo __('mslicenses_volume_note', ['url' => e(SITE_URL) . '/contact-us/']); ?></p>
         </div>
     </section>
 
@@ -569,44 +569,44 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="faq-section reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">FAQ</div>
-                <h2>Frequently asked questions</h2>
-                <p>Can't find your answer? Open a support ticket — we respond in under 10 minutes.</p>
+                <div class="section-tag"><?php echo e(__('mslicenses_faq_tag')); ?></div>
+                <h2><?php echo e(__('mslicenses_faq_title')); ?></h2>
+                <p><?php echo e(__('mslicenses_faq_desc')); ?></p>
             </div>
 
             <div class="faq-layout">
                 <div class="faq-tabs">
-                    <button class="faq-tab active" data-faq-target="faq-general"><i class="fas fa-key"></i> General</button>
-                    <button class="faq-tab" data-faq-target="faq-technical"><i class="fas fa-cogs"></i> Technical</button>
-                    <button class="faq-tab" data-faq-target="faq-billing"><i class="fas fa-credit-card"></i> Billing</button>
+                    <button class="faq-tab active" data-faq-target="faq-general"><i class="fas fa-key"></i> <?php echo e(__('mslicenses_faq_tab_general')); ?></button>
+                    <button class="faq-tab" data-faq-target="faq-technical"><i class="fas fa-cogs"></i> <?php echo e(__('mslicenses_faq_tab_technical')); ?></button>
+                    <button class="faq-tab" data-faq-target="faq-billing"><i class="fas fa-credit-card"></i> <?php echo e(__('mslicenses_faq_tab_billing')); ?></button>
                 </div>
 
                 <div class="faq-panels">
                     <div class="faq-panel active" id="faq-general">
-                        <div class="faq-item"><button class="faq-question"><span>Are these genuine Microsoft licenses?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Yes, all licenses are genuine Microsoft keys that activate through official Microsoft activation servers.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>What is the difference between Retail and Phone Activation?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Retail keys activate online automatically — just enter the key and it activates instantly. Phone activation keys require a quick call to Microsoft's free automated line (takes about 5 minutes). Phone activation keys are cheaper.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Can I transfer my license to another computer?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Retail keys can typically be transferred. Phone activation and bind keys are generally tied to the hardware they're first activated on.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Are these lifetime licenses?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>One-time purchase licenses (Office 2021, Windows 11, etc.) are lifetime — no subscription or recurring fees. Office 365 is a 1-year subscription.</p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('mslicenses_faq_gen_q1')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('mslicenses_faq_gen_a1')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('mslicenses_faq_gen_q2')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('mslicenses_faq_gen_a2')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('mslicenses_faq_gen_q3')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('mslicenses_faq_gen_a3')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('mslicenses_faq_gen_q4')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('mslicenses_faq_gen_a4')); ?></p></div></div>
                     </div>
 
                     <div class="faq-panel" id="faq-technical">
-                        <div class="faq-item"><button class="faq-question"><span>How are keys delivered?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Keys are delivered digitally via email and your client dashboard immediately after payment confirmation.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>What if my key doesn't activate?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>If a key fails to activate through no fault of yours, we replace it free of charge. Our replacement rate is less than 0.1%.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Do you provide installation files?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>We provide the license key. You can download the official installer directly from Microsoft's website using your key.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Can I use these keys on a Mac?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Office licenses work on macOS. Windows licenses require a Windows installation (via Boot Camp or virtualization like Parallels).</p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('mslicenses_faq_tech_q1')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('mslicenses_faq_tech_a1')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('mslicenses_faq_tech_q2')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('mslicenses_faq_tech_a2')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('mslicenses_faq_tech_q3')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('mslicenses_faq_tech_a3')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('mslicenses_faq_tech_q4')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('mslicenses_faq_tech_a4')); ?></p></div></div>
                     </div>
 
                     <div class="faq-panel" id="faq-billing">
-                        <div class="faq-item"><button class="faq-question"><span>What payment methods do you accept?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Credit/debit cards, PayPal, cryptocurrency (Bitcoin, USDT, etc.), and 10+ other payment methods.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Can I get a refund?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Unused keys can be refunded within 24 hours. Once activated, keys cannot be refunded — but defective keys are always replaced.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Do you offer volume discounts?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Yes — 5% off 10+ keys, 10% off 25+, 15% off 50+, and custom pricing for 100+ key orders.</p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('mslicenses_faq_bill_q1')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('mslicenses_faq_bill_a1')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('mslicenses_faq_bill_q2')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('mslicenses_faq_bill_a2')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('mslicenses_faq_bill_q3')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('mslicenses_faq_bill_a3')); ?></p></div></div>
                     </div>
                 </div>
             </div>
 
             <div class="faq-actions">
-                <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-primary"><i class="fas fa-headset"></i> Open a Ticket</a>
-                <a href="<?php echo e(SITE_URL); ?>/faq" class="btn-secondary">Browse All FAQ <i class="fas fa-arrow-right"></i></a>
+                <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-primary"><i class="fas fa-headset"></i> <?php echo e(__('mslicenses_faq_cta_ticket')); ?></a>
+                <a href="<?php echo e(SITE_URL); ?>/faq" class="btn-secondary"><?php echo e(__('mslicenses_faq_cta_browse')); ?> <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
@@ -616,31 +616,31 @@ require_once __DIR__ . '/includes/topbar.php';
         <div class="container">
             <div class="why-us-layout">
                 <div class="why-us-intro">
-                    <div class="section-tag">Advantages</div>
-                    <h2 class="why-us-title">Why Choose Us?</h2>
-                    <p class="why-us-desc">Thousands of clients trust YottaSrc for genuine Microsoft licenses at wholesale prices.</p>
-                    <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-primary">Contact Sales <i class="fas fa-arrow-right"></i></a>
+                    <div class="section-tag"><?php echo e(__('mslicenses_whyus_tag')); ?></div>
+                    <h2 class="why-us-title"><?php echo e(__('mslicenses_whyus_title')); ?></h2>
+                    <p class="why-us-desc"><?php echo e(__('mslicenses_whyus_desc')); ?></p>
+                    <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-primary"><?php echo e(__('mslicenses_whyus_cta')); ?> <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="why-us-grid">
                     <div class="why-us-card">
                         <div class="why-us-card-icon"><i class="fas fa-certificate"></i></div>
-                        <h4>100% Genuine</h4>
-                        <p>All keys activate directly through Microsoft's activation servers.</p>
+                        <h4><?php echo e(__('mslicenses_whyus_card1_title')); ?></h4>
+                        <p><?php echo e(__('mslicenses_whyus_card1_desc')); ?></p>
                     </div>
                     <div class="why-us-card">
                         <div class="why-us-card-icon icon-green"><i class="fas fa-bolt"></i></div>
-                        <h4>Instant Delivery</h4>
-                        <p>Digital keys delivered within seconds of payment confirmation.</p>
+                        <h4><?php echo e(__('mslicenses_whyus_card2_title')); ?></h4>
+                        <p><?php echo e(__('mslicenses_whyus_card2_desc')); ?></p>
                     </div>
                     <div class="why-us-card">
                         <div class="why-us-card-icon icon-purple"><i class="fas fa-sync-alt"></i></div>
-                        <h4>Free Replacements</h4>
-                        <p>Any key that fails is replaced instantly, no questions asked.</p>
+                        <h4><?php echo e(__('mslicenses_whyus_card3_title')); ?></h4>
+                        <p><?php echo e(__('mslicenses_whyus_card3_desc')); ?></p>
                     </div>
                     <div class="why-us-card">
                         <div class="why-us-card-icon icon-amber"><i class="fas fa-headset"></i></div>
-                        <h4>24/7 Support</h4>
-                        <p>Fast support with under 10 minute response times, around the clock.</p>
+                        <h4><?php echo e(__('mslicenses_whyus_card4_title')); ?></h4>
+                        <p><?php echo e(__('mslicenses_whyus_card4_desc')); ?></p>
                     </div>
                 </div>
             </div>
@@ -653,9 +653,9 @@ require_once __DIR__ . '/includes/topbar.php';
             <div class="promo-cta-inner">
                 <div class="promo-cta-glow"></div>
                 <div class="promo-cta-icon"><i class="fab fa-microsoft"></i></div>
-                <h2>Need a Microsoft license?</h2>
-                <p>Browse 50+ genuine Microsoft products. Instant delivery, official activation, and wholesale pricing.</p>
-                <a href="#catalog" class="btn-primary">Browse Catalog <i class="fas fa-arrow-up"></i></a>
+                <h2><?php echo e(__('mslicenses_cta_title')); ?></h2>
+                <p><?php echo e(__('mslicenses_cta_desc')); ?></p>
+                <a href="#catalog" class="btn-primary"><?php echo e(__('mslicenses_cta_button')); ?> <i class="fas fa-arrow-up"></i></a>
             </div>
         </div>
     </section>

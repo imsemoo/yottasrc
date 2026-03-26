@@ -125,148 +125,148 @@ require_once __DIR__ . '/includes/topbar.php';
 
                     <a href="#" class="blog-card" data-category="hosting">
                         <div class="blog-card-thumb">
-                            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=340&fit=crop" alt="cPanel vs DirectAdmin" loading="lazy">
-                            <span class="blog-cat-badge badge-hosting">Hosting</span>
+                            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=340&fit=crop" alt="<?php echo e(__('blog_card1_title')); ?>" loading="lazy">
+                            <span class="blog-cat-badge badge-hosting"><?php echo e(__('blog_cat_hosting')); ?></span>
                         </div>
                         <div class="blog-card-body">
-                            <h4>cPanel vs DirectAdmin: Which Control Panel Is Best?</h4>
-                            <p>An in-depth comparison of two popular control panels for shared and reseller hosting.</p>
+                            <h4><?php echo e(__('blog_card1_title')); ?></h4>
+                            <p><?php echo e(__('blog_card1_desc')); ?></p>
                             <div class="blog-card-meta">
-                                <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> Mar 5, 2026</span>
-                                <span class="blog-meta-item"><i class="fas fa-eye"></i> 2,341 views</span>
+                                <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> <?php echo e(__('blog_card1_date')); ?></span>
+                                <span class="blog-meta-item"><i class="fas fa-eye"></i> <?php echo e(__('blog_card1_views')); ?></span>
                             </div>
                         </div>
                     </a>
 
                     <a href="#" class="blog-card" data-category="cloud">
                         <div class="blog-card-thumb">
-                            <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&h=340&fit=crop" alt="Cloud Servers Guide" loading="lazy">
-                            <span class="blog-cat-badge badge-cloud">Cloud</span>
+                            <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&h=340&fit=crop" alt="<?php echo e(__('blog_card2_title')); ?>" loading="lazy">
+                            <span class="blog-cat-badge badge-cloud"><?php echo e(__('blog_cat_cloud')); ?></span>
                         </div>
                         <div class="blog-card-body">
-                            <h4>Getting Started with Cloud Servers: A Beginner's Guide</h4>
-                            <p>Everything you need to know to deploy your first cloud instance in under 5 minutes.</p>
+                            <h4><?php echo e(__('blog_card2_title')); ?></h4>
+                            <p><?php echo e(__('blog_card2_desc')); ?></p>
                             <div class="blog-card-meta">
-                                <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> Mar 2, 2026</span>
-                                <span class="blog-meta-item"><i class="fas fa-eye"></i> 1,876 views</span>
+                                <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> <?php echo e(__('blog_card2_date')); ?></span>
+                                <span class="blog-meta-item"><i class="fas fa-eye"></i> <?php echo e(__('blog_card2_views')); ?></span>
                             </div>
                         </div>
                     </a>
             <a href="#" class="blog-card" data-category="cloud">
                         <div class="blog-card-thumb">
-                            <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&h=340&fit=crop" alt="Cloud Servers Guide" loading="lazy">
-                            <span class="blog-cat-badge badge-cloud">Cloud</span>
+                            <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&h=340&fit=crop" alt="<?php echo e(__('blog_card2_title')); ?>" loading="lazy">
+                            <span class="blog-cat-badge badge-cloud"><?php echo e(__('blog_cat_cloud')); ?></span>
                         </div>
                         <div class="blog-card-body">
-                            <h4>Getting Started with Cloud Servers: A Beginner's Guide</h4>
-                            <p>Everything you need to know to deploy your first cloud instance in under 5 minutes.</p>
+                            <h4><?php echo e(__('blog_card2_title')); ?></h4>
+                            <p><?php echo e(__('blog_card2_desc')); ?></p>
                             <div class="blog-card-meta">
-                                <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> Mar 2, 2026</span>
-                                <span class="blog-meta-item"><i class="fas fa-eye"></i> 1,876 views</span>
+                                <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> <?php echo e(__('blog_card2_date')); ?></span>
+                                <span class="blog-meta-item"><i class="fas fa-eye"></i> <?php echo e(__('blog_card2_views')); ?></span>
                             </div>
                         </div>
                     </a>
                     <a href="#" class="blog-card" data-category="security">
                         <div class="blog-card-thumb">
-                            <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=600&h=340&fit=crop" alt="Server Security Practices" loading="lazy">
-                            <span class="blog-cat-badge badge-security">Security</span>
+                            <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=600&h=340&fit=crop" alt="<?php echo e(__('blog_card3_title')); ?>" loading="lazy">
+                            <span class="blog-cat-badge badge-security"><?php echo e(__('blog_cat_security')); ?></span>
                         </div>
                         <div class="blog-card-body">
-                            <h4>Top 10 Server Security Practices Every Admin Should Know</h4>
-                            <p>Protect your infrastructure with firewalls, SSH hardening, fail2ban, and more.</p>
+                            <h4><?php echo e(__('blog_card3_title')); ?></h4>
+                            <p><?php echo e(__('blog_card3_desc')); ?></p>
                             <div class="blog-card-meta">
-                                <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> Feb 28, 2026</span>
-                                <span class="blog-meta-item"><i class="fas fa-eye"></i> 3,512 views</span>
+                                <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> <?php echo e(__('blog_card3_date')); ?></span>
+                                <span class="blog-meta-item"><i class="fas fa-eye"></i> <?php echo e(__('blog_card3_views')); ?></span>
                             </div>
                         </div>
                     </a>
 
                     <a href="#" class="blog-card" data-category="tutorials">
                         <div class="blog-card-thumb">
-                            <img src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=600&h=340&fit=crop" alt="Deploy Node.js on VPS" loading="lazy">
-                            <span class="blog-cat-badge badge-tutorials">Tutorial</span>
+                            <img src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=600&h=340&fit=crop" alt="<?php echo e(__('blog_card4_title')); ?>" loading="lazy">
+                            <span class="blog-cat-badge badge-tutorials"><?php echo e(__('blog_card_badge_tutorial')); ?></span>
                         </div>
                         <div class="blog-card-body">
-                            <h4>How to Deploy a Node.js App on a Linux VPS</h4>
-                            <p>Step-by-step: Nginx reverse proxy, PM2 process manager, and SSL with Let's Encrypt.</p>
+                            <h4><?php echo e(__('blog_card4_title')); ?></h4>
+                            <p><?php echo e(__('blog_card4_desc')); ?></p>
                             <div class="blog-card-meta">
-                                <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> Feb 24, 2026</span>
-                                <span class="blog-meta-item"><i class="fas fa-eye"></i> 4,107 views</span>
+                                <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> <?php echo e(__('blog_card4_date')); ?></span>
+                                <span class="blog-meta-item"><i class="fas fa-eye"></i> <?php echo e(__('blog_card4_views')); ?></span>
                             </div>
                         </div>
                     </a>
 
                     <a href="#" class="blog-card" data-category="reseller">
                         <div class="blog-card-thumb">
-                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=340&fit=crop" alt="Reseller Hosting Guide" loading="lazy">
-                            <span class="blog-cat-badge badge-reseller">Reseller</span>
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=340&fit=crop" alt="<?php echo e(__('blog_card5_title')); ?>" loading="lazy">
+                            <span class="blog-cat-badge badge-reseller"><?php echo e(__('blog_cat_reseller')); ?></span>
                         </div>
                         <div class="blog-card-body">
-                            <h4>Start Your Own Hosting Business: Reseller Hosting Guide</h4>
-                            <p>Learn how to build a hosting brand with white-label reseller plans and WHM.</p>
+                            <h4><?php echo e(__('blog_card5_title')); ?></h4>
+                            <p><?php echo e(__('blog_card5_desc')); ?></p>
                             <div class="blog-card-meta">
-                                <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> Feb 20, 2026</span>
-                                <span class="blog-meta-item"><i class="fas fa-eye"></i> 1,953 views</span>
+                                <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> <?php echo e(__('blog_card5_date')); ?></span>
+                                <span class="blog-meta-item"><i class="fas fa-eye"></i> <?php echo e(__('blog_card5_views')); ?></span>
                             </div>
                         </div>
                     </a>
 
                     <a href="#" class="blog-card" data-category="vps">
                         <div class="blog-card-thumb">
-                            <img src="https://images.unsplash.com/photo-1597852074816-d933c7d2b988?w=600&h=340&fit=crop" alt="KVM vs OpenVZ" loading="lazy">
-                            <span class="blog-cat-badge badge-vps">VPS</span>
+                            <img src="https://images.unsplash.com/photo-1597852074816-d933c7d2b988?w=600&h=340&fit=crop" alt="<?php echo e(__('blog_card6_title')); ?>" loading="lazy">
+                            <span class="blog-cat-badge badge-vps"><?php echo e(__('blog_cat_vps')); ?></span>
                         </div>
                         <div class="blog-card-body">
-                            <h4>KVM vs OpenVZ: Understanding VPS Virtualization</h4>
-                            <p>Kernel-level isolation, dedicated resources, and why KVM is the industry standard.</p>
+                            <h4><?php echo e(__('blog_card6_title')); ?></h4>
+                            <p><?php echo e(__('blog_card6_desc')); ?></p>
                             <div class="blog-card-meta">
-                                <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> Feb 16, 2026</span>
-                                <span class="blog-meta-item"><i class="fas fa-eye"></i> 2,684 views</span>
+                                <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> <?php echo e(__('blog_card6_date')); ?></span>
+                                <span class="blog-meta-item"><i class="fas fa-eye"></i> <?php echo e(__('blog_card6_views')); ?></span>
                             </div>
                         </div>
                     </a>
 
                     <a href="#" class="blog-card" data-category="hosting">
                         <div class="blog-card-thumb">
-                            <img src="https://images.unsplash.com/photo-1484417894907-623942c8ee29?w=600&h=340&fit=crop" alt="LiteSpeed vs Apache vs Nginx" loading="lazy">
-                            <span class="blog-cat-badge badge-hosting">Hosting</span>
+                            <img src="https://images.unsplash.com/photo-1484417894907-623942c8ee29?w=600&h=340&fit=crop" alt="<?php echo e(__('blog_card7_title')); ?>" loading="lazy">
+                            <span class="blog-cat-badge badge-hosting"><?php echo e(__('blog_cat_hosting')); ?></span>
                         </div>
                         <div class="blog-card-body">
-                            <h4>LiteSpeed vs Apache vs Nginx: Web Server Showdown</h4>
-                            <p>Which web server delivers the best performance for WordPress and PHP workloads?</p>
+                            <h4><?php echo e(__('blog_card7_title')); ?></h4>
+                            <p><?php echo e(__('blog_card7_desc')); ?></p>
                             <div class="blog-card-meta">
-                                <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> Feb 12, 2026</span>
-                                <span class="blog-meta-item"><i class="fas fa-eye"></i> 3,219 views</span>
+                                <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> <?php echo e(__('blog_card7_date')); ?></span>
+                                <span class="blog-meta-item"><i class="fas fa-eye"></i> <?php echo e(__('blog_card7_views')); ?></span>
                             </div>
                         </div>
                     </a>
 
                     <a href="#" class="blog-card" data-category="news">
                         <div class="blog-card-thumb">
-                            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=340&fit=crop" alt="New Data Center Locations" loading="lazy">
-                            <span class="blog-cat-badge badge-news">News</span>
+                            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=340&fit=crop" alt="<?php echo e(__('blog_card8_title')); ?>" loading="lazy">
+                            <span class="blog-cat-badge badge-news"><?php echo e(__('blog_card_badge_news')); ?></span>
                         </div>
                         <div class="blog-card-body">
-                            <h4>YottaSrc Expands to 5 New Data Center Locations</h4>
-                            <p>New infrastructure in São Paulo, Mumbai, Tokyo, Sydney, and Johannesburg.</p>
+                            <h4><?php echo e(__('blog_card8_title')); ?></h4>
+                            <p><?php echo e(__('blog_card8_desc')); ?></p>
                             <div class="blog-card-meta">
-                                <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> Feb 8, 2026</span>
-                                <span class="blog-meta-item"><i class="fas fa-eye"></i> 1,547 views</span>
+                                <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> <?php echo e(__('blog_card8_date')); ?></span>
+                                <span class="blog-meta-item"><i class="fas fa-eye"></i> <?php echo e(__('blog_card8_views')); ?></span>
                             </div>
                         </div>
                     </a>
 
                     <a href="#" class="blog-card" data-category="tutorials">
                         <div class="blog-card-thumb">
-                            <img src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=600&h=340&fit=crop" alt="MySQL Performance Tuning" loading="lazy">
-                            <span class="blog-cat-badge badge-tutorials">Tutorial</span>
+                            <img src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=600&h=340&fit=crop" alt="<?php echo e(__('blog_card9_title')); ?>" loading="lazy">
+                            <span class="blog-cat-badge badge-tutorials"><?php echo e(__('blog_card_badge_tutorial')); ?></span>
                         </div>
                         <div class="blog-card-body">
-                            <h4>MySQL Performance Tuning for High-Traffic Websites</h4>
-                            <p>Optimize queries, indexing, and buffer pools to handle millions of requests.</p>
+                            <h4><?php echo e(__('blog_card9_title')); ?></h4>
+                            <p><?php echo e(__('blog_card9_desc')); ?></p>
                             <div class="blog-card-meta">
-                                <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> Feb 4, 2026</span>
-                                <span class="blog-meta-item"><i class="fas fa-eye"></i> 2,890 views</span>
+                                <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> <?php echo e(__('blog_card9_date')); ?></span>
+                                <span class="blog-meta-item"><i class="fas fa-eye"></i> <?php echo e(__('blog_card9_views')); ?></span>
                             </div>
                         </div>
                     </a>
@@ -293,36 +293,36 @@ require_once __DIR__ . '/includes/topbar.php';
                             <li><a href="#">
                                 <span class="sidebar-post-num">01</span>
                                 <div>
-                                    <strong>How to Choose the Right VPS for Your Project</strong>
-                                    <span class="sidebar-post-meta">5,230 views</span>
+                                    <strong><?php echo e(__('blog_sidebar_popular1')); ?></strong>
+                                    <span class="sidebar-post-meta"><?php echo e(__('blog_sidebar_popular1_meta')); ?></span>
                                 </div>
                             </a></li>
                             <li><a href="#">
                                 <span class="sidebar-post-num">02</span>
                                 <div>
-                                    <strong>Top 10 Server Security Practices</strong>
-                                    <span class="sidebar-post-meta">3,512 views</span>
+                                    <strong><?php echo e(__('blog_sidebar_popular2')); ?></strong>
+                                    <span class="sidebar-post-meta"><?php echo e(__('blog_sidebar_popular2_meta')); ?></span>
                                 </div>
                             </a></li>
                             <li><a href="#">
                                 <span class="sidebar-post-num">03</span>
                                 <div>
-                                    <strong>LiteSpeed vs Apache vs Nginx</strong>
-                                    <span class="sidebar-post-meta">3,219 views</span>
+                                    <strong><?php echo e(__('blog_sidebar_popular3')); ?></strong>
+                                    <span class="sidebar-post-meta"><?php echo e(__('blog_sidebar_popular3_meta')); ?></span>
                                 </div>
                             </a></li>
                             <li><a href="#">
                                 <span class="sidebar-post-num">04</span>
                                 <div>
-                                    <strong>Deploy a Node.js App on Linux VPS</strong>
-                                    <span class="sidebar-post-meta">4,107 views</span>
+                                    <strong><?php echo e(__('blog_sidebar_popular4')); ?></strong>
+                                    <span class="sidebar-post-meta"><?php echo e(__('blog_sidebar_popular4_meta')); ?></span>
                                 </div>
                             </a></li>
                             <li><a href="#">
                                 <span class="sidebar-post-num">05</span>
                                 <div>
-                                    <strong>Getting Started with Cloud Servers</strong>
-                                    <span class="sidebar-post-meta">1,876 views</span>
+                                    <strong><?php echo e(__('blog_sidebar_popular5')); ?></strong>
+                                    <span class="sidebar-post-meta"><?php echo e(__('blog_sidebar_popular5_meta')); ?></span>
                                 </div>
                             </a></li>
                         </ul>
@@ -332,12 +332,12 @@ require_once __DIR__ . '/includes/topbar.php';
                     <div class="blog-sidebar-card">
                         <h5 class="sidebar-card-title"><i class="fas fa-folder"></i> <?php echo e(__('blog_categories')); ?></h5>
                         <ul class="sidebar-categories">
-                            <li><a href="#"><span>Hosting</span><span class="sidebar-cat-count">12</span></a></li>
-                            <li><a href="#"><span>VPS</span><span class="sidebar-cat-count">9</span></a></li>
-                            <li><a href="#"><span>Cloud</span><span class="sidebar-cat-count">7</span></a></li>
-                            <li><a href="#"><span>Reseller</span><span class="sidebar-cat-count">5</span></a></li>
-                            <li><a href="#"><span>Security</span><span class="sidebar-cat-count">8</span></a></li>
-                            <li><a href="#"><span>Tutorials</span><span class="sidebar-cat-count">15</span></a></li>
+                            <li><a href="#"><span><?php echo e(__('blog_cat_hosting')); ?></span><span class="sidebar-cat-count">12</span></a></li>
+                            <li><a href="#"><span><?php echo e(__('blog_cat_vps')); ?></span><span class="sidebar-cat-count">9</span></a></li>
+                            <li><a href="#"><span><?php echo e(__('blog_cat_cloud')); ?></span><span class="sidebar-cat-count">7</span></a></li>
+                            <li><a href="#"><span><?php echo e(__('blog_cat_reseller')); ?></span><span class="sidebar-cat-count">5</span></a></li>
+                            <li><a href="#"><span><?php echo e(__('blog_cat_security')); ?></span><span class="sidebar-cat-count">8</span></a></li>
+                            <li><a href="#"><span><?php echo e(__('blog_cat_tutorials')); ?></span><span class="sidebar-cat-count">15</span></a></li>
                         </ul>
                     </div>
 
@@ -369,12 +369,12 @@ require_once __DIR__ . '/includes/topbar.php';
         <div class="container">
             <div class="promo-cta-inner">
                 <div class="promo-cta-content">
-                    <div class="section-tag">Get Started</div>
-                    <h2>Ready to build something great?</h2>
-                    <p>Explore our hosting, VPS, and cloud solutions — starting at €0.83/month.</p>
+                    <div class="section-tag"><?php echo e(__('blog_cta_tag')); ?></div>
+                    <h2><?php echo e(__('blog_cta_title')); ?></h2>
+                    <p><?php echo e(__('blog_cta_desc')); ?></p>
                     <div class="promo-cta-btns">
-                        <a href="<?php echo e(SITE_URL); ?>/best-cpanel-hosting/" class="btn-primary"><i class="fas fa-rocket"></i> View Plans</a>
-                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-secondary"><i class="fas fa-headset"></i> Talk to Sales</a>
+                        <a href="<?php echo e(SITE_URL); ?>/best-cpanel-hosting/" class="btn-primary"><i class="fas fa-rocket"></i> <?php echo e(__('blog_cta_btn_plans')); ?></a>
+                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-secondary"><i class="fas fa-headset"></i> <?php echo e(__('blog_cta_btn_sales')); ?></a>
                     </div>
                 </div>
             </div>

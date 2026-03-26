@@ -15,17 +15,17 @@ require_once __DIR__ . '/includes/topbar.php';
             <div class="page-breadcrumb">
                 <a href="<?php echo e(SITE_URL); ?>/"><?php echo e(__('breadcrumb_home')); ?></a>
                 <i class="fas fa-chevron-right"></i>
-                <a href="<?php echo e(SITE_URL); ?>/faq">FAQ</a>
+                <a href="<?php echo e(SITE_URL); ?>/faq"><?php echo e(__('faqsingle_breadcrumb_faq')); ?></a>
                 <i class="fas fa-chevron-right"></i>
-                <span>How Do I Migrate My Website to YottaSrc?</span>
+                <span><?php echo e(__('faqsingle_breadcrumb_title')); ?></span>
             </div>
             <div class="article-hero-inner">
-                <div class="article-category-badge">FAQ</div>
-                <h1>How Do I Migrate My Website to YottaSrc?</h1>
+                <div class="article-category-badge"><?php echo e(__('faqsingle_category')); ?></div>
+                <h1><?php echo e(__('faqsingle_title')); ?></h1>
                 <div class="article-meta">
-                    <span class="article-meta-item"><i class="fas fa-calendar-alt"></i> March 1, 2026</span>
-                    <span class="article-meta-item"><i class="fas fa-eye"></i> 8,450 views</span>
-                    <span class="article-meta-item"><i class="fas fa-user"></i> YottaSrc Team</span>
+                    <span class="article-meta-item"><i class="fas fa-calendar-alt"></i> <?php echo e(__('faqsingle_date')); ?></span>
+                    <span class="article-meta-item"><i class="fas fa-eye"></i> <?php echo e(__('faqsingle_views')); ?></span>
+                    <span class="article-meta-item"><i class="fas fa-user"></i> <?php echo e(__('faqsingle_author')); ?></span>
                 </div>
             </div>
         </div>
@@ -94,19 +94,19 @@ require_once __DIR__ . '/includes/topbar.php';
 
                 <aside class="article-sidebar">
                     <div class="sidebar-card">
-                        <h5>In This Article</h5>
+                        <h5><?php echo e(__('faqsingle_sidebar_toc_title')); ?></h5>
                         <ul class="sidebar-toc">
-                            <li><a href="#overview">Overview</a></li>
-                            <li><a href="#managed">Free Managed Migration</a></li>
-                            <li><a href="#self">Self-Migration via cPanel</a></li>
-                            <li><a href="#wordpress">WordPress Plugin</a></li>
-                            <li><a href="#after">After Migration</a></li>
+                            <li><a href="#overview"><?php echo e(__('faqsingle_sidebar_toc1')); ?></a></li>
+                            <li><a href="#managed"><?php echo e(__('faqsingle_sidebar_toc2')); ?></a></li>
+                            <li><a href="#self"><?php echo e(__('faqsingle_sidebar_toc3')); ?></a></li>
+                            <li><a href="#wordpress"><?php echo e(__('faqsingle_sidebar_toc4')); ?></a></li>
+                            <li><a href="#after"><?php echo e(__('faqsingle_sidebar_toc5')); ?></a></li>
                         </ul>
                     </div>
                     <div class="sidebar-card sidebar-cta">
-                        <h5>Start migrating now</h5>
-                        <p>Open a ticket and our team will handle everything for free.</p>
-                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-primary btn-sm">Open a Ticket</a>
+                        <h5><?php echo e(__('faqsingle_sidebar_cta_title')); ?></h5>
+                        <p><?php echo e(__('faqsingle_sidebar_cta_desc')); ?></p>
+                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-primary btn-sm"><?php echo e(__('faqsingle_sidebar_cta_btn')); ?></a>
                     </div>
                 </aside>
             </div>
@@ -117,49 +117,49 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="related-articles reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Related</div>
-                <h2>Related Questions</h2>
+                <div class="section-tag"><?php echo e(__('faqsingle_related_tag')); ?></div>
+                <h2><?php echo e(__('faqsingle_related_title')); ?></h2>
             </div>
             <div class="related-grid">
                 <a href="#" class="blog-card">
                     <div class="blog-card-thumb">
-                        <span class="blog-cat-badge badge-hosting">FAQ</span>
-                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=240&fit=crop" alt="Hosting plans" loading="lazy">
+                        <span class="blog-cat-badge badge-hosting"><?php echo e(__('faqsingle_category')); ?></span>
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=240&fit=crop" alt="<?php echo e(__('faqsingle_related1_title')); ?>" loading="lazy">
                     </div>
                     <div class="blog-card-body">
-                        <h4>Which Hosting Plan Should I Choose?</h4>
-                        <p>A guide to selecting the right cPanel hosting plan based on your website needs and traffic.</p>
+                        <h4><?php echo e(__('faqsingle_related1_title')); ?></h4>
+                        <p><?php echo e(__('faqsingle_related1_desc')); ?></p>
                         <div class="blog-card-meta">
-                            <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> Feb 25, 2026</span>
-                            <span class="blog-meta-item"><i class="fas fa-eye"></i> 6,200 views</span>
+                            <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> <?php echo e(__('faqsingle_related1_date')); ?></span>
+                            <span class="blog-meta-item"><i class="fas fa-eye"></i> <?php echo e(__('faqsingle_related1_views')); ?></span>
                         </div>
                     </div>
                 </a>
                 <a href="#" class="blog-card">
                     <div class="blog-card-thumb">
-                        <span class="blog-cat-badge badge-hosting">FAQ</span>
-                        <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=400&h=240&fit=crop" alt="DNS setup" loading="lazy">
+                        <span class="blog-cat-badge badge-hosting"><?php echo e(__('faqsingle_category')); ?></span>
+                        <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=400&h=240&fit=crop" alt="<?php echo e(__('faqsingle_related2_title')); ?>" loading="lazy">
                     </div>
                     <div class="blog-card-body">
-                        <h4>How to Point Your Domain to YottaSrc</h4>
-                        <p>Step-by-step guide to updating your nameservers and DNS records for your hosting account.</p>
+                        <h4><?php echo e(__('faqsingle_related2_title')); ?></h4>
+                        <p><?php echo e(__('faqsingle_related2_desc')); ?></p>
                         <div class="blog-card-meta">
-                            <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> Feb 20, 2026</span>
-                            <span class="blog-meta-item"><i class="fas fa-eye"></i> 5,800 views</span>
+                            <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> <?php echo e(__('faqsingle_related2_date')); ?></span>
+                            <span class="blog-meta-item"><i class="fas fa-eye"></i> <?php echo e(__('faqsingle_related2_views')); ?></span>
                         </div>
                     </div>
                 </a>
                 <a href="#" class="blog-card">
                     <div class="blog-card-thumb">
-                        <span class="blog-cat-badge badge-hosting">FAQ</span>
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=240&fit=crop" alt="Payment methods" loading="lazy">
+                        <span class="blog-cat-badge badge-hosting"><?php echo e(__('faqsingle_category')); ?></span>
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=240&fit=crop" alt="<?php echo e(__('faqsingle_related3_title')); ?>" loading="lazy">
                     </div>
                     <div class="blog-card-body">
-                        <h4>What Payment Methods Does YottaSrc Accept?</h4>
-                        <p>We support credit cards, PayPal, cryptocurrency, and 10+ other payment options.</p>
+                        <h4><?php echo e(__('faqsingle_related3_title')); ?></h4>
+                        <p><?php echo e(__('faqsingle_related3_desc')); ?></p>
                         <div class="blog-card-meta">
-                            <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> Feb 15, 2026</span>
-                            <span class="blog-meta-item"><i class="fas fa-eye"></i> 4,100 views</span>
+                            <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> <?php echo e(__('faqsingle_related3_date')); ?></span>
+                            <span class="blog-meta-item"><i class="fas fa-eye"></i> <?php echo e(__('faqsingle_related3_views')); ?></span>
                         </div>
                     </div>
                 </a>
@@ -173,9 +173,9 @@ require_once __DIR__ . '/includes/topbar.php';
             <div class="promo-cta-inner">
                 <div class="promo-cta-glow"></div>
                 <div class="promo-cta-icon"><i class="fas fa-life-ring"></i></div>
-                <h2>Still have questions?</h2>
-                <p>Our support team responds in under 10 minutes, 24/7. We're here to help.</p>
-                <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-primary">Open a Ticket <i class="fas fa-arrow-right"></i></a>
+                <h2><?php echo e(__('faqsingle_cta_title')); ?></h2>
+                <p><?php echo e(__('faqsingle_cta_desc')); ?></p>
+                <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-primary"><?php echo e(__('faqsingle_cta_btn')); ?> <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>

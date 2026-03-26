@@ -15,17 +15,17 @@ require_once __DIR__ . '/includes/topbar.php';
             <div class="page-breadcrumb">
                 <a href="<?php echo e(SITE_URL); ?>/"><?php echo e(__('breadcrumb_home')); ?></a>
                 <i class="fas fa-chevron-right"></i>
-                <a href="<?php echo e(SITE_URL); ?>/blog">Blog</a>
+                <a href="<?php echo e(SITE_URL); ?>/blog"><?php echo e(__('blogsingle_breadcrumb_blog')); ?></a>
                 <i class="fas fa-chevron-right"></i>
-                <span>How to Optimize Your cPanel Hosting for Speed</span>
+                <span><?php echo e(__('blogsingle_breadcrumb_title')); ?></span>
             </div>
             <div class="article-hero-inner">
-                <div class="article-category-badge">Hosting</div>
-                <h1>How to Optimize Your cPanel Hosting for Speed</h1>
+                <div class="article-category-badge"><?php echo e(__('blogsingle_category')); ?></div>
+                <h1><?php echo e(__('blogsingle_title')); ?></h1>
                 <div class="article-meta">
-                    <span class="article-meta-item"><i class="fas fa-calendar-alt"></i> March 5, 2026</span>
-                    <span class="article-meta-item"><i class="fas fa-eye"></i> 4,320 views</span>
-                    <span class="article-meta-item"><i class="fas fa-user"></i> YottaSrc Team</span>
+                    <span class="article-meta-item"><i class="fas fa-calendar-alt"></i> <?php echo e(__('blogsingle_date')); ?></span>
+                    <span class="article-meta-item"><i class="fas fa-eye"></i> <?php echo e(__('blogsingle_views')); ?></span>
+                    <span class="article-meta-item"><i class="fas fa-user"></i> <?php echo e(__('blogsingle_author')); ?></span>
                 </div>
             </div>
         </div>
@@ -94,18 +94,18 @@ OPTIMIZE TABLE wp_options;</code></pre>
 
                 <aside class="article-sidebar">
                     <div class="sidebar-card">
-                        <h5><i class="fas fa-concierge-bell"></i> Related Services</h5>
+                        <h5><i class="fas fa-concierge-bell"></i> <?php echo e(__('blogsingle_sidebar_services')); ?></h5>
                         <ul class="sidebar-services">
-                            <li><a href="<?php echo e(SITE_URL); ?>/cpanel-hosting/"><i class="fas fa-server"></i> cPanel Hosting</a></li>
-                            <li><a href="<?php echo e(SITE_URL); ?>/vps/"><i class="fas fa-cloud"></i> VPS Servers</a></li>
-                            <li><a href="<?php echo e(SITE_URL); ?>/cloud-hosting/"><i class="fas fa-bolt"></i> Cloud Hosting</a></li>
-                            <li><a href="<?php echo e(SITE_URL); ?>/dedicated/"><i class="fas fa-hdd"></i> Dedicated Servers</a></li>
+                            <li><a href="<?php echo e(SITE_URL); ?>/cpanel-hosting/"><i class="fas fa-server"></i> <?php echo e(__('blogsingle_service_cpanel')); ?></a></li>
+                            <li><a href="<?php echo e(SITE_URL); ?>/vps/"><i class="fas fa-cloud"></i> <?php echo e(__('blogsingle_service_vps')); ?></a></li>
+                            <li><a href="<?php echo e(SITE_URL); ?>/cloud-hosting/"><i class="fas fa-bolt"></i> <?php echo e(__('blogsingle_service_cloud')); ?></a></li>
+                            <li><a href="<?php echo e(SITE_URL); ?>/dedicated/"><i class="fas fa-hdd"></i> <?php echo e(__('blogsingle_service_dedicated')); ?></a></li>
                         </ul>
                     </div>
                     <div class="sidebar-card sidebar-cta">
-                        <h5>Need faster hosting?</h5>
-                        <p>LiteSpeed + NVMe SSDs in 20+ locations starting at €0.83/mo.</p>
-                        <a href="<?php echo e(SITE_URL); ?>/cpanel-hosting/" class="btn-primary btn-sm">View Plans</a>
+                        <h5><?php echo e(__('blogsingle_sidebar_cta_title')); ?></h5>
+                        <p><?php echo e(__('blogsingle_sidebar_cta_desc')); ?></p>
+                        <a href="<?php echo e(SITE_URL); ?>/cpanel-hosting/" class="btn-primary btn-sm"><?php echo e(__('blogsingle_sidebar_cta_btn')); ?></a>
                     </div>
                 </aside>
             </div>
@@ -116,49 +116,49 @@ OPTIMIZE TABLE wp_options;</code></pre>
     <section class="related-articles reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Keep Reading</div>
-                <h2>Related Articles</h2>
+                <div class="section-tag"><?php echo e(__('blogsingle_related_tag')); ?></div>
+                <h2><?php echo e(__('blogsingle_related_title')); ?></h2>
             </div>
             <div class="related-grid">
                 <a href="#" class="blog-card">
                     <div class="blog-card-thumb">
-                        <span class="blog-cat-badge badge-hosting">Hosting</span>
-                        <img src="https://images.unsplash.com/photo-1484417894907-623942c8ee29?w=400&h=240&fit=crop" alt="LiteSpeed vs Apache" loading="lazy">
+                        <span class="blog-cat-badge badge-hosting"><?php echo e(__('blog_cat_hosting')); ?></span>
+                        <img src="https://images.unsplash.com/photo-1484417894907-623942c8ee29?w=400&h=240&fit=crop" alt="<?php echo e(__('blogsingle_related1_title')); ?>" loading="lazy">
                     </div>
                     <div class="blog-card-body">
-                        <h4>LiteSpeed vs Apache: Which Web Server Should You Choose?</h4>
-                        <p>A side-by-side comparison of LiteSpeed and Apache covering performance, caching, and resource usage.</p>
+                        <h4><?php echo e(__('blogsingle_related1_title')); ?></h4>
+                        <p><?php echo e(__('blogsingle_related1_desc')); ?></p>
                         <div class="blog-card-meta">
-                            <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> Feb 28, 2026</span>
-                            <span class="blog-meta-item"><i class="fas fa-eye"></i> 3,100 views</span>
+                            <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> <?php echo e(__('blogsingle_related1_date')); ?></span>
+                            <span class="blog-meta-item"><i class="fas fa-eye"></i> <?php echo e(__('blogsingle_related1_views')); ?></span>
                         </div>
                     </div>
                 </a>
                 <a href="#" class="blog-card">
                     <div class="blog-card-thumb">
-                        <span class="blog-cat-badge badge-security">Security</span>
-                        <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=400&h=240&fit=crop" alt="SSL security" loading="lazy">
+                        <span class="blog-cat-badge badge-security"><?php echo e(__('blog_cat_security')); ?></span>
+                        <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=400&h=240&fit=crop" alt="<?php echo e(__('blogsingle_related2_title')); ?>" loading="lazy">
                     </div>
                     <div class="blog-card-body">
-                        <h4>Free SSL Certificates: Everything You Need to Know</h4>
-                        <p>Learn how AutoSSL works on cPanel and why HTTPS matters for your website.</p>
+                        <h4><?php echo e(__('blogsingle_related2_title')); ?></h4>
+                        <p><?php echo e(__('blogsingle_related2_desc')); ?></p>
                         <div class="blog-card-meta">
-                            <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> Feb 20, 2026</span>
-                            <span class="blog-meta-item"><i class="fas fa-eye"></i> 2,850 views</span>
+                            <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> <?php echo e(__('blogsingle_related2_date')); ?></span>
+                            <span class="blog-meta-item"><i class="fas fa-eye"></i> <?php echo e(__('blogsingle_related2_views')); ?></span>
                         </div>
                     </div>
                 </a>
                 <a href="#" class="blog-card">
                     <div class="blog-card-thumb">
-                        <span class="blog-cat-badge badge-tutorials">Tutorials</span>
-                        <img src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=400&h=240&fit=crop" alt="WordPress tutorial" loading="lazy">
+                        <span class="blog-cat-badge badge-tutorials"><?php echo e(__('blog_cat_tutorials')); ?></span>
+                        <img src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=400&h=240&fit=crop" alt="<?php echo e(__('blogsingle_related3_title')); ?>" loading="lazy">
                     </div>
                     <div class="blog-card-body">
-                        <h4>How to Install WordPress on cPanel in 5 Minutes</h4>
-                        <p>Step-by-step guide to deploying WordPress using Softaculous on your cPanel hosting plan.</p>
+                        <h4><?php echo e(__('blogsingle_related3_title')); ?></h4>
+                        <p><?php echo e(__('blogsingle_related3_desc')); ?></p>
                         <div class="blog-card-meta">
-                            <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> Feb 15, 2026</span>
-                            <span class="blog-meta-item"><i class="fas fa-eye"></i> 5,200 views</span>
+                            <span class="blog-meta-item"><i class="fas fa-calendar-alt"></i> <?php echo e(__('blogsingle_related3_date')); ?></span>
+                            <span class="blog-meta-item"><i class="fas fa-eye"></i> <?php echo e(__('blogsingle_related3_views')); ?></span>
                         </div>
                     </div>
                 </a>
@@ -172,9 +172,9 @@ OPTIMIZE TABLE wp_options;</code></pre>
             <div class="promo-cta-inner">
                 <div class="promo-cta-glow"></div>
                 <div class="promo-cta-icon"><i class="fas fa-rocket"></i></div>
-                <h2>Ready to launch your website?</h2>
-                <p>Get started with cPanel hosting from €0.83/month. Free domain, free SSL, free migration.</p>
-                <a href="<?php echo e(SITE_URL); ?>/cpanel-hosting/#plans" class="btn-primary">View Plans <i class="fas fa-arrow-right"></i></a>
+                <h2><?php echo e(__('blogsingle_cta_title')); ?></h2>
+                <p><?php echo e(__('blogsingle_cta_desc')); ?></p>
+                <a href="<?php echo e(SITE_URL); ?>/cpanel-hosting/#plans" class="btn-primary"><?php echo e(__('blogsingle_cta_btn')); ?> <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>

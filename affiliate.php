@@ -19,19 +19,19 @@ require_once __DIR__ . '/includes/topbar.php';
                         <i class="fas fa-chevron-right"></i>
                         <span><?php echo e(__('affiliate_breadcrumb')); ?></span>
                     </div>
-                    <h1>Earn <span class="highlight">20% Commission</span> on Every Referral</h1>
+                    <h1><?php echo __('affiliate_hero_title'); ?></h1>
                     <p class="page-hero-desc">
-                        Share your unique referral link and earn 20% of every purchase your referrals make — on any product, forever. No cap, no limits. Start earning from cPanel hosting, VPS, cloud servers, and more.
+                        <?php echo e(__('affiliate_hero_desc')); ?>
                     </p>
                     <div class="page-hero-ctas">
-                        <a href="<?php echo e(CP_URL); ?>/affiliates.php" class="btn-primary">Join Now — It's Free <i class="fas fa-arrow-right"></i></a>
-                        <a href="#how-it-works" class="btn-secondary"><i class="fas fa-info-circle"></i> How It Works</a>
+                        <a href="<?php echo e(CP_URL); ?>/affiliates.php" class="btn-primary"><?php echo e(__('affiliate_hero_cta_join')); ?> <i class="fas fa-arrow-right"></i></a>
+                        <a href="#how-it-works" class="btn-secondary"><i class="fas fa-info-circle"></i> <?php echo e(__('affiliate_hero_cta_how')); ?></a>
                     </div>
                     <div class="page-hero-badges">
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> 20% Commission</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> No Earning Cap</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> All Products Eligible</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> Real-Time Dashboard</div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('affiliate_hero_badge_commission')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('affiliate_hero_badge_no_cap')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('affiliate_hero_badge_all_products')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('affiliate_hero_badge_dashboard')); ?></div>
                     </div>
                 </div>
                 <div class="page-hero-visual">
@@ -131,35 +131,35 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="aff-steps reveal" id="how-it-works">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">How It Works</div>
-                <h2>Three steps to start earning</h2>
-                <p>No technical skills required. Sign up, share your link, and earn commissions on every sale.</p>
+                <div class="section-tag"><?php echo e(__('affiliate_steps_tag')); ?></div>
+                <h2><?php echo e(__('affiliate_steps_title')); ?></h2>
+                <p><?php echo e(__('affiliate_steps_desc')); ?></p>
             </div>
 
             <div class="vps-steps-grid">
                 <div class="vps-step-card">
                     <span class="vps-step-num">1</span>
                     <div class="vps-step-icon"><i class="fas fa-user-plus"></i></div>
-                    <h4>Create Your Account</h4>
-                    <p>Register for free on our client panel. Your affiliate dashboard and unique referral link are generated instantly.</p>
+                    <h4><?php echo e(__('affiliate_step1_title')); ?></h4>
+                    <p><?php echo e(__('affiliate_step1_desc')); ?></p>
                 </div>
                 <div class="vps-step-card">
                     <span class="vps-step-num">2</span>
                     <div class="vps-step-icon icon-green"><i class="fas fa-share-alt"></i></div>
-                    <h4>Share Your Link</h4>
-                    <p>Share your referral link on your website, social media, blog, or anywhere. When someone clicks, they're tracked as your referral.</p>
+                    <h4><?php echo e(__('affiliate_step2_title')); ?></h4>
+                    <p><?php echo e(__('affiliate_step2_desc')); ?></p>
                 </div>
                 <div class="vps-step-card">
                     <span class="vps-step-num">3</span>
                     <div class="vps-step-icon icon-purple"><i class="fas fa-shopping-cart"></i></div>
-                    <h4>Referral Purchases</h4>
-                    <p>When your referral buys any product — hosting, VPS, cloud, dedicated — the purchase is linked to your account automatically.</p>
+                    <h4><?php echo e(__('affiliate_step3_title')); ?></h4>
+                    <p><?php echo e(__('affiliate_step3_desc')); ?></p>
                 </div>
                 <div class="vps-step-card">
                     <span class="vps-step-num">4</span>
                     <div class="vps-step-icon icon-amber"><i class="fas fa-coins"></i></div>
-                    <h4>Earn 20% Commission</h4>
-                    <p>You earn 20% of every payment your referrals make. No cap, no limits. Withdraw once you hit the €25 minimum.</p>
+                    <h4><?php echo e(__('affiliate_step4_title')); ?></h4>
+                    <p><?php echo e(__('affiliate_step4_desc')); ?></p>
                 </div>
             </div>
         </div>
@@ -169,79 +169,79 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="aff-commission reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Commission</div>
-                <h2>Commission structure</h2>
-                <p>Earn 20% on every product. Here's what that looks like in practice.</p>
+                <div class="section-tag"><?php echo e(__('affiliate_commission_tag')); ?></div>
+                <h2><?php echo e(__('affiliate_commission_title')); ?></h2>
+                <p><?php echo e(__('affiliate_commission_desc')); ?></p>
             </div>
 
             <div class="aff-commission-grid">
                 <!-- Shared / cPanel Hosting -->
                 <div class="aff-commission-card">
                     <div class="aff-commission-icon"><i class="fas fa-globe"></i></div>
-                    <h4>cPanel &amp; WordPress Hosting</h4>
+                    <h4><?php echo __('affiliate_commission_cpanel_title'); ?></h4>
                     <div class="aff-commission-example">
                         <div class="aff-example-row">
-                            <span class="aff-example-label">Customer pays</span>
-                            <span class="aff-example-value">€3.39/mo</span>
+                            <span class="aff-example-label"><?php echo e(__('affiliate_commission_customer_pays')); ?></span>
+                            <span class="aff-example-value"><?php echo e(__('affiliate_commission_cpanel_pays')); ?></span>
                         </div>
                         <div class="aff-example-row aff-example-highlight">
-                            <span class="aff-example-label">You earn (20%)</span>
-                            <span class="aff-example-value aff-example-earn">€0.68/mo</span>
+                            <span class="aff-example-label"><?php echo e(__('affiliate_commission_you_earn')); ?></span>
+                            <span class="aff-example-value aff-example-earn"><?php echo e(__('affiliate_commission_cpanel_earn')); ?></span>
                         </div>
                         <div class="aff-example-row">
-                            <span class="aff-example-label">Per year</span>
-                            <span class="aff-example-value">€8.14</span>
+                            <span class="aff-example-label"><?php echo e(__('affiliate_commission_per_year')); ?></span>
+                            <span class="aff-example-value"><?php echo e(__('affiliate_commission_cpanel_yearly')); ?></span>
                         </div>
                     </div>
-                    <p class="aff-commission-note">Per referral on the Premium plan</p>
+                    <p class="aff-commission-note"><?php echo e(__('affiliate_commission_cpanel_note')); ?></p>
                 </div>
 
                 <!-- VPS -->
                 <div class="aff-commission-card aff-commission-featured">
-                    <span class="aff-commission-badge">Highest Earnings</span>
+                    <span class="aff-commission-badge"><?php echo e(__('affiliate_commission_vps_badge')); ?></span>
                     <div class="aff-commission-icon icon-green"><i class="fas fa-server"></i></div>
-                    <h4>VPS &amp; Windows VPS</h4>
+                    <h4><?php echo __('affiliate_commission_vps_title'); ?></h4>
                     <div class="aff-commission-example">
                         <div class="aff-example-row">
-                            <span class="aff-example-label">Customer pays</span>
-                            <span class="aff-example-value">€14.99/mo</span>
+                            <span class="aff-example-label"><?php echo e(__('affiliate_commission_customer_pays')); ?></span>
+                            <span class="aff-example-value"><?php echo e(__('affiliate_commission_vps_pays')); ?></span>
                         </div>
                         <div class="aff-example-row aff-example-highlight">
-                            <span class="aff-example-label">You earn (20%)</span>
-                            <span class="aff-example-value aff-example-earn">€3.00/mo</span>
+                            <span class="aff-example-label"><?php echo e(__('affiliate_commission_you_earn')); ?></span>
+                            <span class="aff-example-value aff-example-earn"><?php echo e(__('affiliate_commission_vps_earn')); ?></span>
                         </div>
                         <div class="aff-example-row">
-                            <span class="aff-example-label">Per year</span>
-                            <span class="aff-example-value">€35.98</span>
+                            <span class="aff-example-label"><?php echo e(__('affiliate_commission_per_year')); ?></span>
+                            <span class="aff-example-value"><?php echo e(__('affiliate_commission_vps_yearly')); ?></span>
                         </div>
                     </div>
-                    <p class="aff-commission-note">Per referral on VPS 2 plan</p>
+                    <p class="aff-commission-note"><?php echo e(__('affiliate_commission_vps_note')); ?></p>
                 </div>
 
                 <!-- Cloud -->
                 <div class="aff-commission-card">
                     <div class="aff-commission-icon icon-purple"><i class="fas fa-cloud"></i></div>
-                    <h4>Cloud Servers</h4>
+                    <h4><?php echo e(__('affiliate_commission_cloud_title')); ?></h4>
                     <div class="aff-commission-example">
                         <div class="aff-example-row">
-                            <span class="aff-example-label">Customer pays</span>
-                            <span class="aff-example-value">€29.99/mo</span>
+                            <span class="aff-example-label"><?php echo e(__('affiliate_commission_customer_pays')); ?></span>
+                            <span class="aff-example-value"><?php echo e(__('affiliate_commission_cloud_pays')); ?></span>
                         </div>
                         <div class="aff-example-row aff-example-highlight">
-                            <span class="aff-example-label">You earn (20%)</span>
-                            <span class="aff-example-value aff-example-earn">€6.00/mo</span>
+                            <span class="aff-example-label"><?php echo e(__('affiliate_commission_you_earn')); ?></span>
+                            <span class="aff-example-value aff-example-earn"><?php echo e(__('affiliate_commission_cloud_earn')); ?></span>
                         </div>
                         <div class="aff-example-row">
-                            <span class="aff-example-label">Per year</span>
-                            <span class="aff-example-value">€71.98</span>
+                            <span class="aff-example-label"><?php echo e(__('affiliate_commission_per_year')); ?></span>
+                            <span class="aff-example-value"><?php echo e(__('affiliate_commission_cloud_yearly')); ?></span>
                         </div>
                     </div>
-                    <p class="aff-commission-note">Per referral on Cloud M plan</p>
+                    <p class="aff-commission-note"><?php echo e(__('affiliate_commission_cloud_note')); ?></p>
                 </div>
             </div>
 
             <div class="aff-commission-footer">
-                <p><i class="fas fa-info-circle"></i> 20% applies to <strong>all products</strong> — cPanel Hosting, WordPress Hosting, VPS, Cloud, Dedicated Servers, Reseller, and Microsoft Keys. The minimum withdrawal is <strong>€25</strong>.</p>
+                <p><i class="fas fa-info-circle"></i> <?php echo __('affiliate_commission_footer'); ?></p>
             </div>
         </div>
     </section>
@@ -251,17 +251,17 @@ require_once __DIR__ . '/includes/topbar.php';
         <div class="container">
             <div class="global-layout">
                 <div class="global-content">
-                    <div class="section-tag">Dashboard</div>
-                    <h2 class="global-title">Track earnings in real time</h2>
-                    <p class="global-desc">Your affiliate dashboard gives you full visibility into referrals, clicks, conversions, and earnings — all updated in real time.</p>
+                    <div class="section-tag"><?php echo e(__('affiliate_dashboard_tag')); ?></div>
+                    <h2 class="global-title"><?php echo e(__('affiliate_dashboard_title')); ?></h2>
+                    <p class="global-desc"><?php echo e(__('affiliate_dashboard_desc')); ?></p>
                     <div class="aff-preview-features">
-                        <div class="aff-preview-item"><i class="fas fa-check-circle"></i> Real-time click &amp; conversion tracking</div>
-                        <div class="aff-preview-item"><i class="fas fa-check-circle"></i> Unique referral link with copy &amp; share</div>
-                        <div class="aff-preview-item"><i class="fas fa-check-circle"></i> Monthly &amp; lifetime earnings breakdown</div>
-                        <div class="aff-preview-item"><i class="fas fa-check-circle"></i> Easy withdrawal to account balance</div>
-                        <div class="aff-preview-item"><i class="fas fa-check-circle"></i> Referral history with purchase details</div>
+                        <div class="aff-preview-item"><i class="fas fa-check-circle"></i> <?php echo __('affiliate_dashboard_feat1'); ?></div>
+                        <div class="aff-preview-item"><i class="fas fa-check-circle"></i> <?php echo __('affiliate_dashboard_feat2'); ?></div>
+                        <div class="aff-preview-item"><i class="fas fa-check-circle"></i> <?php echo __('affiliate_dashboard_feat3'); ?></div>
+                        <div class="aff-preview-item"><i class="fas fa-check-circle"></i> <?php echo __('affiliate_dashboard_feat4'); ?></div>
+                        <div class="aff-preview-item"><i class="fas fa-check-circle"></i> <?php echo __('affiliate_dashboard_feat5'); ?></div>
                     </div>
-                    <a href="<?php echo e(CP_URL); ?>/affiliates.php" class="btn-primary" style="margin-top: 20px;">Open Dashboard <i class="fas fa-arrow-right"></i></a>
+                    <a href="<?php echo e(CP_URL); ?>/affiliates.php" class="btn-primary" style="margin-top: 20px;"><?php echo e(__('affiliate_dashboard_cta')); ?> <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="global-visual">
                     <svg viewBox="0 0 500 360" fill="none" xmlns="http://www.w3.org/2000/svg" class="aff-dash-illustration" aria-label="Affiliate dashboard preview">
@@ -351,41 +351,41 @@ require_once __DIR__ . '/includes/topbar.php';
         <div class="container">
             <div class="why-us-layout">
                 <div class="why-us-intro">
-                    <div class="section-tag">Why Promote Us</div>
-                    <h2 class="why-us-title">Why promote YottaSrc?</h2>
-                    <p class="why-us-desc">Promote a brand your referrals will love — and earn generous commissions while doing it.</p>
-                    <a href="<?php echo e(CP_URL); ?>/affiliates.php" class="btn-primary">Start Earning <i class="fas fa-arrow-right"></i></a>
+                    <div class="section-tag"><?php echo e(__('affiliate_why_tag')); ?></div>
+                    <h2 class="why-us-title"><?php echo e(__('affiliate_why_title')); ?></h2>
+                    <p class="why-us-desc"><?php echo e(__('affiliate_why_desc')); ?></p>
+                    <a href="<?php echo e(CP_URL); ?>/affiliates.php" class="btn-primary"><?php echo e(__('affiliate_why_cta')); ?> <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="why-us-grid">
                     <div class="why-us-card">
                         <div class="why-us-card-icon"><i class="fas fa-percentage"></i></div>
-                        <h4>20% Per Sale</h4>
-                        <p>Earn 20% of every purchase, no exceptions. Applies to all products and plans.</p>
+                        <h4><?php echo e(__('affiliate_why_card1_title')); ?></h4>
+                        <p><?php echo e(__('affiliate_why_card1_desc')); ?></p>
                     </div>
                     <div class="why-us-card">
                         <div class="why-us-card-icon icon-green"><i class="fas fa-infinity"></i></div>
-                        <h4>No Earning Cap</h4>
-                        <p>There's no limit to how much you can earn. More referrals means more money.</p>
+                        <h4><?php echo e(__('affiliate_why_card2_title')); ?></h4>
+                        <p><?php echo e(__('affiliate_why_card2_desc')); ?></p>
                     </div>
                     <div class="why-us-card">
                         <div class="why-us-card-icon icon-purple"><i class="fas fa-boxes-stacked"></i></div>
-                        <h4>All Products Eligible</h4>
-                        <p>Hosting, VPS, Cloud, Dedicated, Reseller, and Microsoft Keys — every product counts.</p>
+                        <h4><?php echo e(__('affiliate_why_card3_title')); ?></h4>
+                        <p><?php echo e(__('affiliate_why_card3_desc')); ?></p>
                     </div>
                     <div class="why-us-card">
                         <div class="why-us-card-icon icon-amber"><i class="fas fa-chart-pie"></i></div>
-                        <h4>Real-Time Dashboard</h4>
-                        <p>Track clicks, signups, conversions, and earnings from your affiliate panel.</p>
+                        <h4><?php echo e(__('affiliate_why_card4_title')); ?></h4>
+                        <p><?php echo e(__('affiliate_why_card4_desc')); ?></p>
                     </div>
                     <div class="why-us-card">
                         <div class="why-us-card-icon icon-green"><i class="fas fa-star"></i></div>
-                        <h4>Trusted Brand</h4>
-                        <p>90,000+ clients, 20+ locations, rated on Trustpilot — referrals convert easily.</p>
+                        <h4><?php echo e(__('affiliate_why_card5_title')); ?></h4>
+                        <p><?php echo e(__('affiliate_why_card5_desc')); ?></p>
                     </div>
                     <div class="why-us-card">
                         <div class="why-us-card-icon icon-purple"><i class="fas fa-wallet"></i></div>
-                        <h4>Easy Withdrawals</h4>
-                        <p>Withdraw your earnings to your account balance once you reach the €25 minimum.</p>
+                        <h4><?php echo e(__('affiliate_why_card6_title')); ?></h4>
+                        <p><?php echo e(__('affiliate_why_card6_desc')); ?></p>
                     </div>
                 </div>
             </div>
@@ -396,27 +396,27 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="faq-section reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">FAQ</div>
-                <h2>Affiliate FAQ</h2>
-                <p>Can't find your answer? Open a support ticket — we respond in under 10 minutes.</p>
+                <div class="section-tag"><?php echo e(__('affiliate_faq_tag')); ?></div>
+                <h2><?php echo e(__('affiliate_faq_title')); ?></h2>
+                <p><?php echo e(__('affiliate_faq_desc')); ?></p>
             </div>
 
             <div class="faq-layout faq-layout--full">
                 <div class="faq-panels">
                     <div class="faq-panel active" id="faq-affiliate">
-                        <div class="faq-item"><button class="faq-question"><span>How does the affiliate program work?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>You share your unique referral link with others. When someone registers and makes a purchase using your link, you earn 20% of their payment. The earnings are added to your account balance.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Is there a minimum amount I can withdraw?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Yes, the minimum withdrawal amount is €25. Once your earnings reach that threshold, you can withdraw to your account balance.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>How do I get started?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Simply register on our client panel. Your affiliate dashboard and unique referral link are created automatically. Start sharing your link right away.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Can I earn more by referring more people?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Absolutely. There is no cap on your earnings. The more people you refer, the more you earn — 20% on every single purchase they make.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>When will I receive my earnings?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Earnings are credited to your affiliate balance in real time as soon as your referral completes a purchase.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>What products are eligible for the referral program?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>All products are eligible — cPanel Hosting, WordPress Hosting, Linux VPS, Windows VPS, Cloud Servers, Dedicated Servers, Reseller Hosting, and Microsoft License Keys.</p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('affiliate_faq_q1')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('affiliate_faq_a1')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('affiliate_faq_q2')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('affiliate_faq_a2')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('affiliate_faq_q3')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('affiliate_faq_a3')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('affiliate_faq_q4')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('affiliate_faq_a4')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('affiliate_faq_q5')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('affiliate_faq_a5')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('affiliate_faq_q6')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('affiliate_faq_a6')); ?></p></div></div>
                     </div>
                 </div>
             </div>
 
             <div class="faq-actions">
-                <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-primary"><i class="fas fa-headset"></i> Open a Ticket</a>
-                <a href="<?php echo e(SITE_URL); ?>/faq" class="btn-secondary">Browse All FAQ <i class="fas fa-arrow-right"></i></a>
+                <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-primary"><i class="fas fa-headset"></i> <?php echo e(__('affiliate_faq_cta_ticket')); ?></a>
+                <a href="<?php echo e(SITE_URL); ?>/faq" class="btn-secondary"><?php echo e(__('affiliate_faq_cta_browse')); ?> <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
@@ -427,9 +427,9 @@ require_once __DIR__ . '/includes/topbar.php';
             <div class="promo-cta-inner">
                 <div class="promo-cta-glow"></div>
                 <div class="promo-cta-icon"><i class="fas fa-hand-holding-usd"></i></div>
-                <h2>Join the affiliate program</h2>
-                <p>Start earning 20% on every referral — no cap, no limits. Free to join, easy to earn.</p>
-                <a href="<?php echo e(CP_URL); ?>/affiliates.php" class="btn-primary">Join Now — It's Free <i class="fas fa-arrow-right"></i></a>
+                <h2><?php echo e(__('affiliate_cta_title')); ?></h2>
+                <p><?php echo e(__('affiliate_cta_desc')); ?></p>
+                <a href="<?php echo e(CP_URL); ?>/affiliates.php" class="btn-primary"><?php echo e(__('affiliate_cta_button')); ?> <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>

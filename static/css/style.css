@@ -793,6 +793,31 @@ img {
     transform: translateX(-2px);
 }
 
+/* ─── Profile Circle (Logged-in state) ─── */
+.nav-profile-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--brand-primary);
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all var(--duration-fast) ease;
+}
+.nav-profile-circle:hover {
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+.nav-auth {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .nav-mobile-toggle {
     display: none;
     width: 40px;

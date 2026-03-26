@@ -17,23 +17,23 @@ require_once __DIR__ . '/includes/topbar.php';
                     <div class="page-breadcrumb">
                         <a href="<?php echo e(SITE_URL); ?>/"><?php echo e(__('breadcrumb_home')); ?></a>
                         <i class="fas fa-chevron-right"></i>
-                        <a href="<?php echo e(SITE_URL); ?>/cpanel-reseller/">Reseller</a>
+                        <a href="<?php echo e(SITE_URL); ?>/cpanel-reseller/"><?php echo e(__('reseller_breadcrumb')); ?></a>
                         <i class="fas fa-chevron-right"></i>
                         <span><?php echo e(__('reseller_alpha_breadcrumb')); ?></span>
                     </div>
-                    <h1>Alpha Reseller — <span class="highlight">Enterprise Hosting Hierarchy</span></h1>
+                    <h1><?php echo __('reseller_alpha_title'); ?></h1>
                     <p class="page-hero-desc">
-                        The highest reseller tier available. Command a full three-tier hierarchy — create Master Resellers, Resellers, and cPanel accounts from a single dashboard. Built for enterprise hosting companies that need unlimited scale.
+                        <?php echo e(__('reseller_alpha_desc')); ?>
                     </p>
                     <div class="page-hero-ctas">
-                        <a href="#plans" class="btn-primary">View Plans <i class="fas fa-arrow-down"></i></a>
-                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-secondary"><i class="fas fa-headset"></i> Talk to Sales</a>
+                        <a href="#plans" class="btn-primary"><?php echo e(__('common_view_plans')); ?> <i class="fas fa-arrow-down"></i></a>
+                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-secondary"><i class="fas fa-headset"></i> <?php echo e(__('common_talk_to_sales')); ?></a>
                     </div>
                     <div class="page-hero-badges">
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> Full Reseller Hierarchy</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> Unlimited Reseller Tiers</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> Enterprise White-Label</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> 20+ Locations</div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('ralpha_badge_hierarchy')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('ralpha_badge_tiers')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('ralpha_badge_wl')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('ralpha_badge_locations')); ?></div>
                     </div>
                 </div>
                 <div class="page-hero-visual">
@@ -161,7 +161,7 @@ require_once __DIR__ . '/includes/topbar.php';
     <!-- ═══════════════ POWERED BY STRIP ═══════════════ -->
     <section class="partners">
         <div class="container">
-            <span class="partners-label">Powered By</span>
+            <span class="partners-label"><?php echo e(__('reseller_powered_by')); ?></span>
             <div class="partners-logos">
                 <span class="partner-logo"><i class="fas fa-bolt"></i> LiteSpeed</span>
                 <span class="partner-logo"><i class="fas fa-shield-alt"></i> CloudLinux</span>
@@ -177,9 +177,9 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="plans reveal" id="plans">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Pricing</div>
-                <h2>Alpha Reseller plans</h2>
-                <p>Three-tier hosting management starting from €16.99 EUR / mo. Same price on renewal.</p>
+                <div class="section-tag"><?php echo e(__('rcpanel_plans_tag')); ?></div>
+                <h2><?php echo e(__('ralpha_plans_title')); ?></h2>
+                <p><?php echo e(__('ralpha_plans_desc')); ?></p>
             </div>
 
             <div class="plans-panel active" data-tab="alpha-reseller">
@@ -191,28 +191,28 @@ require_once __DIR__ . '/includes/topbar.php';
                                 <div class="plan-name">Alpha Starter</div>
                                 <span class="plan-save">Save 40%</span>
                             </div>
-                            <div class="plan-target">For hosting startups</div>
+                            <div class="plan-target"><?php echo e(__('ralpha_target_starter')); ?></div>
                             <div class="plan-price">
                                 <span class="old-price">€28.32</span>
                                 <span class="current-price"><span class="currency">€</span><span class="amount">16.99</span><span class="period">EUR / mo</span></span>
                             </div>
-                            <div class="plan-renewal"><i class="fas fa-check"></i> Same price on renewal</div>
-                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/order/alpha-reseller-cpanel/alpha-starter">Choose Plan</button>
+                            <div class="plan-renewal"><i class="fas fa-check"></i> <?php echo e(__('reseller_same_renewal')); ?></div>
+                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/order/alpha-reseller-cpanel/alpha-starter"><?php echo e(__('common_choose_plan')); ?></button>
                             <div class="plan-resources">
-                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">50 GB</span><span class="res-label">NVMe SSD</span></div>
-                                <div class="plan-res"><i class="fas fa-wifi"></i><span class="res-val">2 TB</span><span class="res-label">Bandwidth</span></div>
-                                <div class="plan-res"><i class="fas fa-project-diagram"></i><span class="res-val">Unlimited</span><span class="res-label">Master + Reseller</span></div>
-                                <div class="plan-res"><i class="fas fa-database"></i><span class="res-val">50 GB</span><span class="res-label">MySQL Disk</span></div>
+                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">50 GB</span><span class="res-label"><?php echo e(__('ralpha_res_nvme')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-wifi"></i><span class="res-val">2 TB</span><span class="res-label"><?php echo e(__('ralpha_res_bw')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-project-diagram"></i><span class="res-val">Unlimited</span><span class="res-label"><?php echo e(__('ralpha_res_master')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-database"></i><span class="res-val">50 GB</span><span class="res-label"><?php echo e(__('ralpha_res_mysql')); ?></span></div>
                             </div>
-                            <div class="plan-divider"><span>Included</span></div>
+                            <div class="plan-divider"><span><?php echo e(__('reseller_included')); ?></span></div>
                             <ul class="plan-features">
-                                <li><i class="fas fa-gem"></i> Create Master Resellers</li>
-                                <li><i class="fas fa-sitemap"></i> Create Reseller Accounts</li>
-                                <li><i class="fas fa-user"></i> Create cPanel Accounts</li>
-                                <li><i class="fas fa-lock"></i> Free SSL &amp; Daily Backups</li>
-                                <li><i class="fas fa-palette"></i> White-Label at All Tiers</li>
-                                <li><i class="fas fa-bolt"></i> LiteSpeed + CloudLinux</li>
-                                <li><i class="fas fa-map-marker-alt"></i> 20+ Global Locations</li>
+                                <li><i class="fas fa-gem"></i> <?php echo e(__('ralpha_feat_master')); ?></li>
+                                <li><i class="fas fa-sitemap"></i> <?php echo e(__('ralpha_feat_reseller')); ?></li>
+                                <li><i class="fas fa-user"></i> <?php echo e(__('ralpha_feat_cpanel')); ?></li>
+                                <li><i class="fas fa-lock"></i> <?php echo e(__('ralpha_feat_ssl')); ?></li>
+                                <li><i class="fas fa-palette"></i> <?php echo e(__('ralpha_feat_wl')); ?></li>
+                                <li><i class="fas fa-bolt"></i> <?php echo e(__('ralpha_feat_ls')); ?></li>
+                                <li><i class="fas fa-map-marker-alt"></i> <?php echo e(__('ralpha_feat_locations')); ?></li>
                             </ul>
                         </div></div>
 
@@ -222,60 +222,60 @@ require_once __DIR__ . '/includes/topbar.php';
                                 <div class="plan-name">Alpha Essential</div>
                                 <span class="plan-save">Save 35%</span>
                             </div>
-                            <div class="plan-target">For small agencies</div>
+                            <div class="plan-target"><?php echo e(__('ralpha_target_essential')); ?></div>
                             <div class="plan-price">
                                 <span class="old-price">€33.83</span>
                                 <span class="current-price"><span class="currency">€</span><span class="amount">21.99</span><span class="period">EUR / mo</span></span>
                             </div>
-                            <div class="plan-renewal"><i class="fas fa-check"></i> Same price on renewal</div>
-                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/order/alpha-reseller-cpanel/alpha-essential">Choose Plan</button>
+                            <div class="plan-renewal"><i class="fas fa-check"></i> <?php echo e(__('reseller_same_renewal')); ?></div>
+                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/order/alpha-reseller-cpanel/alpha-essential"><?php echo e(__('common_choose_plan')); ?></button>
                             <div class="plan-resources">
-                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">80 GB</span><span class="res-label">NVMe SSD</span></div>
-                                <div class="plan-res"><i class="fas fa-wifi"></i><span class="res-val">3 TB</span><span class="res-label">Bandwidth</span></div>
-                                <div class="plan-res"><i class="fas fa-project-diagram"></i><span class="res-val">Unlimited</span><span class="res-label">Master + Reseller</span></div>
-                                <div class="plan-res"><i class="fas fa-database"></i><span class="res-val">80 GB</span><span class="res-label">MySQL Disk</span></div>
+                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">80 GB</span><span class="res-label"><?php echo e(__('ralpha_res_nvme')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-wifi"></i><span class="res-val">3 TB</span><span class="res-label"><?php echo e(__('ralpha_res_bw')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-project-diagram"></i><span class="res-val">Unlimited</span><span class="res-label"><?php echo e(__('ralpha_res_master')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-database"></i><span class="res-val">80 GB</span><span class="res-label"><?php echo e(__('ralpha_res_mysql')); ?></span></div>
                             </div>
-                            <div class="plan-divider"><span>Included</span></div>
+                            <div class="plan-divider"><span><?php echo e(__('reseller_included')); ?></span></div>
                             <ul class="plan-features">
-                                <li><i class="fas fa-gem"></i> Create Master Resellers</li>
-                                <li><i class="fas fa-sitemap"></i> Create Reseller Accounts</li>
-                                <li><i class="fas fa-user"></i> Create cPanel Accounts</li>
-                                <li><i class="fas fa-lock"></i> Free SSL &amp; Daily Backups</li>
-                                <li><i class="fas fa-palette"></i> White-Label at All Tiers</li>
-                                <li><i class="fas fa-bolt"></i> LiteSpeed + CloudLinux</li>
-                                <li><i class="fas fa-map-marker-alt"></i> 20+ Global Locations</li>
+                                <li><i class="fas fa-gem"></i> <?php echo e(__('ralpha_feat_master')); ?></li>
+                                <li><i class="fas fa-sitemap"></i> <?php echo e(__('ralpha_feat_reseller')); ?></li>
+                                <li><i class="fas fa-user"></i> <?php echo e(__('ralpha_feat_cpanel')); ?></li>
+                                <li><i class="fas fa-lock"></i> <?php echo e(__('ralpha_feat_ssl')); ?></li>
+                                <li><i class="fas fa-palette"></i> <?php echo e(__('ralpha_feat_wl')); ?></li>
+                                <li><i class="fas fa-bolt"></i> <?php echo e(__('ralpha_feat_ls')); ?></li>
+                                <li><i class="fas fa-map-marker-alt"></i> <?php echo e(__('ralpha_feat_locations')); ?></li>
                             </ul>
                         </div></div>
 
                         <!-- Alpha Pro (Popular) -->
                         <div class="swiper-slide"><div class="plan-card popular">
-                            <div class="plan-badge">Most Popular</div>
+                            <div class="plan-badge"><?php echo e(__('reseller_most_popular')); ?></div>
                             <div class="plan-head">
                                 <div class="plan-name">Alpha Pro</div>
                                 <span class="plan-save">Save 35%</span>
                             </div>
-                            <div class="plan-target">For growing hosting networks</div>
+                            <div class="plan-target"><?php echo e(__('ralpha_target_pro')); ?></div>
                             <div class="plan-price">
                                 <span class="old-price">€39.98</span>
                                 <span class="current-price"><span class="currency">€</span><span class="amount">25.99</span><span class="period">EUR / mo</span></span>
                             </div>
-                            <div class="plan-renewal"><i class="fas fa-check"></i> Same price on renewal</div>
-                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/order/alpha-reseller-cpanel/alpha-pro">Choose Plan</button>
+                            <div class="plan-renewal"><i class="fas fa-check"></i> <?php echo e(__('reseller_same_renewal')); ?></div>
+                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/order/alpha-reseller-cpanel/alpha-pro"><?php echo e(__('common_choose_plan')); ?></button>
                             <div class="plan-resources">
-                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">120 GB</span><span class="res-label">NVMe SSD</span></div>
-                                <div class="plan-res"><i class="fas fa-wifi"></i><span class="res-val">4 TB</span><span class="res-label">Bandwidth</span></div>
-                                <div class="plan-res"><i class="fas fa-project-diagram"></i><span class="res-val">Unlimited</span><span class="res-label">Master + Reseller</span></div>
-                                <div class="plan-res"><i class="fas fa-database"></i><span class="res-val">120 GB</span><span class="res-label">MySQL Disk</span></div>
+                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">120 GB</span><span class="res-label"><?php echo e(__('ralpha_res_nvme')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-wifi"></i><span class="res-val">4 TB</span><span class="res-label"><?php echo e(__('ralpha_res_bw')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-project-diagram"></i><span class="res-val">Unlimited</span><span class="res-label"><?php echo e(__('ralpha_res_master')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-database"></i><span class="res-val">120 GB</span><span class="res-label"><?php echo e(__('ralpha_res_mysql')); ?></span></div>
                             </div>
-                            <div class="plan-divider"><span>Included</span></div>
+                            <div class="plan-divider"><span><?php echo e(__('reseller_included')); ?></span></div>
                             <ul class="plan-features">
-                                <li><i class="fas fa-gem"></i> Create Master Resellers</li>
-                                <li><i class="fas fa-sitemap"></i> Create Reseller Accounts</li>
-                                <li><i class="fas fa-user"></i> Create cPanel Accounts</li>
-                                <li><i class="fas fa-lock"></i> Free SSL &amp; Daily Backups</li>
-                                <li><i class="fas fa-palette"></i> White-Label at All Tiers</li>
-                                <li><i class="fas fa-bolt"></i> LiteSpeed + CloudLinux</li>
-                                <li><i class="fas fa-map-marker-alt"></i> 20+ Global Locations</li>
+                                <li><i class="fas fa-gem"></i> <?php echo e(__('ralpha_feat_master')); ?></li>
+                                <li><i class="fas fa-sitemap"></i> <?php echo e(__('ralpha_feat_reseller')); ?></li>
+                                <li><i class="fas fa-user"></i> <?php echo e(__('ralpha_feat_cpanel')); ?></li>
+                                <li><i class="fas fa-lock"></i> <?php echo e(__('ralpha_feat_ssl')); ?></li>
+                                <li><i class="fas fa-palette"></i> <?php echo e(__('ralpha_feat_wl')); ?></li>
+                                <li><i class="fas fa-bolt"></i> <?php echo e(__('ralpha_feat_ls')); ?></li>
+                                <li><i class="fas fa-map-marker-alt"></i> <?php echo e(__('ralpha_feat_locations')); ?></li>
                             </ul>
                         </div></div>
 
@@ -285,28 +285,28 @@ require_once __DIR__ . '/includes/topbar.php';
                                 <div class="plan-name">Alpha Advanced</div>
                                 <span class="plan-save">Save 30%</span>
                             </div>
-                            <div class="plan-target">For enterprise hosting companies</div>
+                            <div class="plan-target"><?php echo e(__('ralpha_target_advanced')); ?></div>
                             <div class="plan-price">
                                 <span class="old-price">€68.56</span>
                                 <span class="current-price"><span class="currency">€</span><span class="amount">47.99</span><span class="period">EUR / mo</span></span>
                             </div>
-                            <div class="plan-renewal"><i class="fas fa-check"></i> Same price on renewal</div>
-                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/order/alpha-reseller-cpanel/alpha-advanced">Choose Plan</button>
+                            <div class="plan-renewal"><i class="fas fa-check"></i> <?php echo e(__('reseller_same_renewal')); ?></div>
+                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/order/alpha-reseller-cpanel/alpha-advanced"><?php echo e(__('common_choose_plan')); ?></button>
                             <div class="plan-resources">
-                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">250 GB</span><span class="res-label">NVMe SSD</span></div>
-                                <div class="plan-res"><i class="fas fa-wifi"></i><span class="res-val">Unlimited</span><span class="res-label">Bandwidth</span></div>
-                                <div class="plan-res"><i class="fas fa-project-diagram"></i><span class="res-val">Unlimited</span><span class="res-label">Master + Reseller</span></div>
-                                <div class="plan-res"><i class="fas fa-database"></i><span class="res-val">250 GB</span><span class="res-label">MySQL Disk</span></div>
+                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">250 GB</span><span class="res-label"><?php echo e(__('ralpha_res_nvme')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-wifi"></i><span class="res-val">Unlimited</span><span class="res-label"><?php echo e(__('ralpha_res_bw')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-project-diagram"></i><span class="res-val">Unlimited</span><span class="res-label"><?php echo e(__('ralpha_res_master')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-database"></i><span class="res-val">250 GB</span><span class="res-label"><?php echo e(__('ralpha_res_mysql')); ?></span></div>
                             </div>
-                            <div class="plan-divider"><span>Included</span></div>
+                            <div class="plan-divider"><span><?php echo e(__('reseller_included')); ?></span></div>
                             <ul class="plan-features">
-                                <li><i class="fas fa-gem"></i> Create Master Resellers</li>
-                                <li><i class="fas fa-sitemap"></i> Create Reseller Accounts</li>
-                                <li><i class="fas fa-user"></i> Create cPanel Accounts</li>
-                                <li><i class="fas fa-lock"></i> Free SSL &amp; Daily Backups</li>
-                                <li><i class="fas fa-palette"></i> White-Label at All Tiers</li>
-                                <li><i class="fas fa-bolt"></i> LiteSpeed + CloudLinux</li>
-                                <li><i class="fas fa-map-marker-alt"></i> 20+ Global Locations</li>
+                                <li><i class="fas fa-gem"></i> <?php echo e(__('ralpha_feat_master')); ?></li>
+                                <li><i class="fas fa-sitemap"></i> <?php echo e(__('ralpha_feat_reseller')); ?></li>
+                                <li><i class="fas fa-user"></i> <?php echo e(__('ralpha_feat_cpanel')); ?></li>
+                                <li><i class="fas fa-lock"></i> <?php echo e(__('ralpha_feat_ssl')); ?></li>
+                                <li><i class="fas fa-palette"></i> <?php echo e(__('ralpha_feat_wl')); ?></li>
+                                <li><i class="fas fa-bolt"></i> <?php echo e(__('ralpha_feat_ls')); ?></li>
+                                <li><i class="fas fa-map-marker-alt"></i> <?php echo e(__('ralpha_feat_locations')); ?></li>
                             </ul>
                         </div></div>
                     </div>
@@ -315,7 +315,7 @@ require_once __DIR__ . '/includes/topbar.php';
             </div>
 
             <div class="pricing-custom">
-                <p>Need a custom setup? <a href="<?php echo e(SITE_URL); ?>/contact-us/">Contact our sales team</a> for tailored enterprise solutions. Extra disk at €0.15/GB.</p>
+                <p><?php echo __('ralpha_pricing_custom', ['contact_url' => e(SITE_URL) . '/contact-us/']); ?></p>
             </div>
 
             <!-- Each cPanel includes strip -->
@@ -327,12 +327,12 @@ require_once __DIR__ . '/includes/topbar.php';
                             <text x="24" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-weight="800" font-size="18" fill="#FF6C2C">cP</text>
                         </svg>
                         <div class="cpanel-includes-text">
-                            <strong>All packages include, unlimited of:</strong>
+                            <strong><?php echo e(__('reseller_cpanel_includes')); ?></strong>
                             <span><i class="fas fa-envelope"></i> Emails &nbsp; <i class="fas fa-sign-out-alt"></i> FTP Accounts &nbsp; <i class="fas fa-database"></i> Databases &nbsp; <i class="fas fa-link"></i> Subdomains</span>
                         </div>
                     </div>
                     <div class="cpanel-includes-badges">
-                        <span class="cpanel-badge cpanel-badge-label">Each cPanel has:</span>
+                        <span class="cpanel-badge cpanel-badge-label"><?php echo e(__('reseller_cpanel_has')); ?></span>
                         <span class="cpanel-badge">1.5 Core CPU</span>
                         <span class="cpanel-badge">2GB RAM</span>
                         <span class="cpanel-badge">100 MB/s I/O</span>
@@ -347,31 +347,31 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="cp-benefits reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Why Alpha</div>
-                <h2>The highest tier of reseller hosting</h2>
-                <p>Alpha Reseller gives you three-tier management — create Masters, Resellers, and cPanel accounts from a single dashboard.</p>
+                <div class="section-tag"><?php echo e(__('ralpha_why_tag')); ?></div>
+                <h2><?php echo e(__('ralpha_why_title')); ?></h2>
+                <p><?php echo e(__('ralpha_why_desc')); ?></p>
             </div>
 
             <div class="cp-benefits-grid">
                 <div class="cp-security-card">
                     <div class="cp-security-icon"><i class="fas fa-gem"></i></div>
-                    <h4>Three-Tier Hierarchy</h4>
-                    <p>Create Master Resellers who create Resellers who create cPanel accounts. Ultimate scalability for hosting businesses.</p>
+                    <h4><?php echo e(__('ralpha_adv_hierarchy_title')); ?></h4>
+                    <p><?php echo e(__('ralpha_adv_hierarchy_desc')); ?></p>
                 </div>
                 <div class="cp-security-card">
                     <div class="cp-security-icon icon-green"><i class="fas fa-building"></i></div>
-                    <h4>Enterprise Scale</h4>
-                    <p>Designed for established hosting companies that need to manage partners, affiliates, and sub-resellers.</p>
+                    <h4><?php echo e(__('ralpha_adv_scale_title')); ?></h4>
+                    <p><?php echo e(__('ralpha_adv_scale_desc')); ?></p>
                 </div>
                 <div class="cp-security-card">
                     <div class="cp-security-icon icon-purple"><i class="fas fa-eye"></i></div>
-                    <h4>Total Visibility</h4>
-                    <p>See resources, accounts, and usage across every tier from your Alpha dashboard. Full oversight at every level.</p>
+                    <h4><?php echo e(__('ralpha_adv_visibility_title')); ?></h4>
+                    <p><?php echo e(__('ralpha_adv_visibility_desc')); ?></p>
                 </div>
                 <div class="cp-security-card">
                     <div class="cp-security-icon icon-amber"><i class="fas fa-expand-arrows-alt"></i></div>
-                    <h4>Unlimited Growth</h4>
-                    <p>No caps on Masters or Resellers. Scale your hosting network without ever hitting a tier ceiling.</p>
+                    <h4><?php echo e(__('ralpha_adv_growth_title')); ?></h4>
+                    <p><?php echo e(__('ralpha_adv_growth_desc')); ?></p>
                 </div>
             </div>
         </div>
@@ -381,55 +381,55 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="bento-features reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Features</div>
-                <h2>Enterprise-grade tools</h2>
-                <p>Everything from the lower tiers, plus advanced multi-tier management and oversight.</p>
+                <div class="section-tag"><?php echo e(__('ralpha_feat_tag')); ?></div>
+                <h2><?php echo e(__('ralpha_feat_title')); ?></h2>
+                <p><?php echo e(__('ralpha_feat_desc')); ?></p>
             </div>
 
             <div class="bento-grid">
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon"><i class="fas fa-project-diagram"></i></div>
-                    <h4>Three-Tier Management</h4>
-                    <p>Create Master Reseller packages with sub-reseller limits. You oversee Masters, Resellers, and cPanel accounts from one dashboard.</p>
+                    <h4><?php echo e(__('ralpha_feat_3tier_title')); ?></h4>
+                    <p><?php echo e(__('ralpha_feat_3tier_desc')); ?></p>
                 </div>
 
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-green"><i class="fas fa-chart-bar"></i></div>
-                    <h4>Full Resource Oversight</h4>
-                    <p>Monitor disk, bandwidth, and account usage across all tiers simultaneously. Reallocate resources on the fly.</p>
+                    <h4><?php echo e(__('ralpha_feat_oversight_title')); ?></h4>
+                    <p><?php echo e(__('ralpha_feat_oversight_desc')); ?></p>
                 </div>
 
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-purple"><i class="fas fa-lock"></i></div>
-                    <h4>Free SSL Across All</h4>
-                    <p>AutoSSL for every domain at every tier.</p>
+                    <h4><?php echo e(__('ralpha_feat_ssl_title')); ?></h4>
+                    <p><?php echo e(__('ralpha_feat_ssl_desc')); ?></p>
                 </div>
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-amber"><i class="fas fa-cloud-download-alt"></i></div>
-                    <h4>JetBackup Included</h4>
-                    <p>Automated daily backups for all tiers.</p>
+                    <h4><?php echo e(__('ralpha_feat_backup_title')); ?></h4>
+                    <p><?php echo e(__('ralpha_feat_backup_desc')); ?></p>
                 </div>
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon"><i class="fas fa-bolt"></i></div>
-                    <h4>LiteSpeed Enterprise</h4>
-                    <p>Top-tier web server for every account.</p>
+                    <h4><?php echo e(__('ralpha_feat_ls_title')); ?></h4>
+                    <p><?php echo e(__('ralpha_feat_ls_desc')); ?></p>
                 </div>
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-green"><i class="fas fa-robot"></i></div>
-                    <h4>Imunify360</h4>
-                    <p>AI-powered security for the entire tree.</p>
+                    <h4><?php echo e(__('ralpha_feat_imunify_title')); ?></h4>
+                    <p><?php echo e(__('ralpha_feat_imunify_desc')); ?></p>
                 </div>
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-amber"><i class="fas fa-plug"></i></div>
-                    <h4>WHMReseller Plugin</h4>
-                    <p>Create and manage reseller accounts directly from WHM.</p>
+                    <h4><?php echo e(__('ralpha_feat_plugin_title')); ?></h4>
+                    <p><?php echo e(__('ralpha_feat_plugin_desc')); ?></p>
                 </div>
             </div>
 
             <div class="article-callout" style="margin-top: 24px;">
                 <i class="fas fa-info-circle"></i>
                 <div>
-                    <strong>Important:</strong> Alpha Reseller plans do not include root or SSH access. All management is handled through WHM and cPanel's built-in multi-tier reseller tools.
+                    <?php echo __('ralpha_feat_callout'); ?>
                 </div>
             </div>
         </div>
@@ -439,46 +439,46 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="rs-hierarchy reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Reseller Tiers</div>
-                <h2>You're at the top</h2>
-                <p>Alpha Reseller is the highest management tier — giving you control over the entire hierarchy.</p>
+                <div class="section-tag"><?php echo e(__('reseller_tiers_tag')); ?></div>
+                <h2><?php echo e(__('ralpha_tiers_title')); ?></h2>
+                <p><?php echo e(__('ralpha_tiers_desc')); ?></p>
             </div>
 
             <div class="rs-tiers-grid">
                 <div class="rs-tier-card">
                     <div class="rs-tier-icon"><i class="fas fa-user-tie"></i></div>
-                    <span class="rs-tier-level">Level 1</span>
-                    <h4>cPanel Reseller</h4>
-                    <p>Create &amp; manage cPanel accounts for your clients. The entry-level tier for freelancers.</p>
+                    <span class="rs-tier-level"><?php echo e(__('ralpha_tier_cpanel_level')); ?></span>
+                    <h4><?php echo e(__('reseller_cpanel_breadcrumb')); ?></h4>
+                    <p><?php echo e(__('ralpha_tier_cpanel_desc')); ?></p>
                     <ul class="rs-tier-perks">
-                        <li><i class="fas fa-check"></i> WHM Access</li>
-                        <li><i class="fas fa-check"></i> Create cPanel Accounts</li>
-                        <li><i class="fas fa-check"></i> White-Label Branding</li>
+                        <li><i class="fas fa-check"></i> <?php echo e(__('rcpanel_tier_cpanel_p1')); ?></li>
+                        <li><i class="fas fa-check"></i> <?php echo e(__('rcpanel_tier_cpanel_p2')); ?></li>
+                        <li><i class="fas fa-check"></i> <?php echo e(__('rcpanel_tier_cpanel_p3')); ?></li>
                     </ul>
-                    <a href="<?php echo e(SITE_URL); ?>/cpanel-reseller/" class="rs-tier-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="<?php echo e(SITE_URL); ?>/cpanel-reseller/" class="rs-tier-link"><?php echo e(__('common_learn_more')); ?> <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="rs-tier-card">
                     <div class="rs-tier-icon icon-green"><i class="fas fa-crown"></i></div>
-                    <span class="rs-tier-level">Level 2</span>
-                    <h4>Master Reseller</h4>
-                    <p>Create Reseller accounts with their own WHM. Two-tier management for agencies.</p>
+                    <span class="rs-tier-level"><?php echo e(__('ralpha_tier_master_level')); ?></span>
+                    <h4><?php echo e(__('reseller_master_breadcrumb')); ?></h4>
+                    <p><?php echo e(__('ralpha_tier_master_desc')); ?></p>
                     <ul class="rs-tier-perks">
-                        <li><i class="fas fa-check"></i> Everything in Reseller</li>
-                        <li><i class="fas fa-check"></i> Create Reseller Accounts</li>
-                        <li><i class="fas fa-check"></i> Two-Tier Management</li>
+                        <li><i class="fas fa-check"></i> <?php echo e(__('ralpha_tier_master_p1')); ?></li>
+                        <li><i class="fas fa-check"></i> <?php echo e(__('ralpha_tier_master_p2')); ?></li>
+                        <li><i class="fas fa-check"></i> <?php echo e(__('ralpha_tier_master_p3')); ?></li>
                     </ul>
-                    <a href="<?php echo e(SITE_URL); ?>/master-reseller/" class="rs-tier-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="<?php echo e(SITE_URL); ?>/master-reseller/" class="rs-tier-link"><?php echo e(__('common_learn_more')); ?> <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="rs-tier-card rs-tier-active">
-                    <div class="rs-tier-badge">You are here</div>
+                    <div class="rs-tier-badge"><?php echo e(__('reseller_you_are_here')); ?></div>
                     <div class="rs-tier-icon icon-purple"><i class="fas fa-gem"></i></div>
-                    <span class="rs-tier-level">Level 3 — Maximum</span>
-                    <h4>Alpha Reseller</h4>
-                    <p>Create Masters, Resellers, and cPanel accounts. Three-tier hierarchy — supreme control.</p>
+                    <span class="rs-tier-level"><?php echo e(__('ralpha_tier_alpha_level')); ?></span>
+                    <h4><?php echo e(__('reseller_alpha_breadcrumb')); ?></h4>
+                    <p><?php echo e(__('ralpha_tier_alpha_desc')); ?></p>
                     <ul class="rs-tier-perks">
-                        <li><i class="fas fa-check"></i> Everything in Master</li>
-                        <li><i class="fas fa-check"></i> Create Master Accounts</li>
-                        <li><i class="fas fa-check"></i> Three-Tier Hierarchy</li>
+                        <li><i class="fas fa-check"></i> <?php echo e(__('ralpha_tier_alpha_p1')); ?></li>
+                        <li><i class="fas fa-check"></i> <?php echo e(__('ralpha_tier_alpha_p2')); ?></li>
+                        <li><i class="fas fa-check"></i> <?php echo e(__('ralpha_tier_alpha_p3')); ?></li>
                     </ul>
                 </div>
             </div>
@@ -487,8 +487,8 @@ require_once __DIR__ . '/includes/topbar.php';
 
     <!-- ═══════════════ GLOBAL INFRASTRUCTURE (compact) ═══════════════ -->
 <?php
-$dc_heading = 'Enterprise-grade infrastructure worldwide';
-$dc_desc = 'All tiers in your hierarchy share the same enterprise hardware and global network.';
+$dc_heading = __('ralpha_dc_heading');
+$dc_desc = __('ralpha_dc_desc');
 $dc_link_prefix = '/cheap-cpanel';
 include __DIR__ . '/includes/section-dc-showcase.php';
 ?>
@@ -497,45 +497,45 @@ include __DIR__ . '/includes/section-dc-showcase.php';
     <section class="faq-section reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">FAQ</div>
-                <h2>Frequently asked questions</h2>
-                <p>Can't find your answer? Open a support ticket — we respond in under 10 minutes.</p>
+                <div class="section-tag"><?php echo e(__('reseller_faq_tag')); ?></div>
+                <h2><?php echo e(__('reseller_faq_title')); ?></h2>
+                <p><?php echo e(__('reseller_faq_desc')); ?></p>
             </div>
 
             <div class="faq-layout">
                 <div class="faq-tabs">
-                    <button class="faq-tab active" data-faq-target="faq-general"><i class="fas fa-server"></i> General</button>
-                    <button class="faq-tab" data-faq-target="faq-technical"><i class="fas fa-cogs"></i> Technical</button>
-                    <button class="faq-tab" data-faq-target="faq-billing"><i class="fas fa-credit-card"></i> Billing</button>
+                    <button class="faq-tab active" data-faq-target="faq-general"><i class="fas fa-server"></i> <?php echo e(__('reseller_faq_tab_general')); ?></button>
+                    <button class="faq-tab" data-faq-target="faq-technical"><i class="fas fa-cogs"></i> <?php echo e(__('reseller_faq_tab_technical')); ?></button>
+                    <button class="faq-tab" data-faq-target="faq-billing"><i class="fas fa-credit-card"></i> <?php echo e(__('reseller_faq_tab_billing')); ?></button>
                 </div>
 
                 <div class="faq-panels">
                     <div class="faq-panel active" id="faq-general">
-                        <div class="faq-item"><button class="faq-question"><span>What is Alpha Reseller hosting?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Alpha Reseller is the highest reseller tier. You can create Master Reseller accounts, regular Reseller accounts, and cPanel accounts — forming a three-tier management hierarchy. It's built for established hosting companies and large agencies.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>How does the three-tier hierarchy work?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>You (Alpha) create Master Reseller accounts. Each Master creates Reseller accounts. Each Reseller creates cPanel accounts for their end-users. Every tier gets its own WHM and white-label branding.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Who is Alpha Reseller for?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Alpha Reseller is ideal for hosting companies that want to offer reseller programs, large agencies managing partner networks, or businesses that need multi-tier white-label hosting under their brand.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Can I also create cPanel accounts directly?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Yes. As an Alpha Reseller you can create accounts at any tier — Master, Reseller, or cPanel — directly from your dashboard.</p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('ralpha_faq_g1_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('ralpha_faq_g1_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('ralpha_faq_g2_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('ralpha_faq_g2_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('ralpha_faq_g3_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('ralpha_faq_g3_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('ralpha_faq_g4_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('ralpha_faq_g4_a')); ?></p></div></div>
                     </div>
 
                     <div class="faq-panel" id="faq-technical">
-                        <div class="faq-item"><button class="faq-question"><span>Does each tier get its own WHM?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Yes. You, your Masters, and your Resellers each get their own WHM interface to manage accounts at their level. End-users get cPanel.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Can I set resource limits per Master Reseller?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Absolutely. You define disk, bandwidth, and account limits for each Master package. Masters then distribute resources to their Resellers, who distribute to cPanel accounts.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Is the tech stack the same as lower tiers?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Yes — LiteSpeed, CloudLinux, Imunify360, NVMe SSDs, and 10 Gbit/s networking. The only difference is the management hierarchy and resource allocation.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Can I migrate from another provider?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Yes, we offer free migrations. Our team will transfer your entire hierarchy — Master, Reseller, and cPanel accounts — to our infrastructure.</p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('ralpha_faq_t1_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('ralpha_faq_t1_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('ralpha_faq_t2_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('ralpha_faq_t2_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('ralpha_faq_t3_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('ralpha_faq_t3_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('ralpha_faq_t4_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('ralpha_faq_t4_a')); ?></p></div></div>
                     </div>
 
                     <div class="faq-panel" id="faq-billing">
-                        <div class="faq-item"><button class="faq-question"><span>Does the price increase on renewal?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>No — same price on every renewal. No hidden fees or surprise increases.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Can I add more disk space?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Yes, additional disk is available at €0.15/GB. Add it during checkout or anytime from your client area.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Is Alpha Reseller the highest tier?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Yes, Alpha Reseller is the maximum tier. For even more resources or custom configurations, contact our sales team for a tailored enterprise solution.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>What payment methods do you accept?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>We accept credit/debit cards, PayPal, cryptocurrency (Bitcoin, USDT, etc.), and 10+ other payment methods.</p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('ralpha_faq_b1_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('ralpha_faq_b1_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('ralpha_faq_b2_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('ralpha_faq_b2_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('ralpha_faq_b3_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('ralpha_faq_b3_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('ralpha_faq_b4_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('ralpha_faq_b4_a')); ?></p></div></div>
                     </div>
                 </div>
             </div>
 
             <div class="faq-actions">
-                <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-primary"><i class="fas fa-headset"></i> Open a Ticket</a>
-                <a href="<?php echo e(SITE_URL); ?>/faq" class="btn-secondary">Browse All FAQ <i class="fas fa-arrow-right"></i></a>
+                <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-primary"><i class="fas fa-headset"></i> <?php echo e(__('common_open_ticket')); ?></a>
+                <a href="<?php echo e(SITE_URL); ?>/faq" class="btn-secondary"><?php echo e(__('common_browse_faq')); ?> <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
@@ -545,41 +545,41 @@ include __DIR__ . '/includes/section-dc-showcase.php';
         <div class="container">
             <div class="why-us-layout">
                 <div class="why-us-intro">
-                    <div class="section-tag">Advantages</div>
-                    <h2 class="why-us-title">Why Choose Us?</h2>
-                    <p class="why-us-desc">Enterprise hosting companies choose YottaSrc Alpha Reseller for unmatched control and reliability.</p>
-                    <a href="#plans" class="btn-primary">Get Started <i class="fas fa-arrow-right"></i></a>
+                    <div class="section-tag"><?php echo e(__('reseller_why_tag')); ?></div>
+                    <h2 class="why-us-title"><?php echo e(__('reseller_why_title')); ?></h2>
+                    <p class="why-us-desc"><?php echo e(__('ralpha_why_desc')); ?></p>
+                    <a href="#plans" class="btn-primary"><?php echo e(__('common_get_started')); ?> <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="why-us-grid">
                     <div class="why-us-card">
                         <div class="why-us-card-icon"><i class="fas fa-headset"></i></div>
-                        <h4>24/7 Priority Support</h4>
-                        <p>Priority support for Alpha accounts — our fastest response channel.</p>
+                        <h4><?php echo e(__('ralpha_why_support_title')); ?></h4>
+                        <p><?php echo e(__('ralpha_why_support_desc')); ?></p>
                     </div>
                     <div class="why-us-card">
                         <div class="why-us-card-icon icon-green"><i class="fas fa-tachometer-alt"></i></div>
-                        <h4>Enterprise Performance</h4>
-                        <p>LiteSpeed + NVMe SSDs deliver blazing speed across your entire hierarchy.</p>
+                        <h4><?php echo e(__('ralpha_why_perf_title')); ?></h4>
+                        <p><?php echo e(__('ralpha_why_perf_desc')); ?></p>
                     </div>
                     <div class="why-us-card">
                         <div class="why-us-card-icon icon-purple"><i class="fas fa-shield-alt"></i></div>
-                        <h4>Security at Every Tier</h4>
-                        <p>Imunify360 + daily backups across Masters, Resellers, and cPanel accounts.</p>
+                        <h4><?php echo e(__('ralpha_why_secure_title')); ?></h4>
+                        <p><?php echo e(__('ralpha_why_secure_desc')); ?></p>
                     </div>
                     <div class="why-us-card">
                         <div class="why-us-card-icon icon-amber"><i class="fas fa-globe"></i></div>
-                        <h4>Global Data Centers</h4>
-                        <p>20+ locations across 4 continents for worldwide low-latency performance.</p>
+                        <h4><?php echo e(__('ralpha_why_dc_title')); ?></h4>
+                        <p><?php echo e(__('ralpha_why_dc_desc')); ?></p>
                     </div>
                     <div class="why-us-card">
                         <div class="why-us-card-icon icon-green"><i class="fas fa-tags"></i></div>
-                        <h4>Maximum Margins</h4>
-                        <p>Three tiers of markup opportunity with same-price renewal.</p>
+                        <h4><?php echo e(__('ralpha_why_margin_title')); ?></h4>
+                        <p><?php echo e(__('ralpha_why_margin_desc')); ?></p>
                     </div>
                     <div class="why-us-card">
                         <div class="why-us-card-icon icon-purple"><i class="fas fa-project-diagram"></i></div>
-                        <h4>Full Hierarchy Control</h4>
-                        <p>Manage your entire hosting empire from a single Alpha dashboard.</p>
+                        <h4><?php echo e(__('ralpha_why_hierarchy_title')); ?></h4>
+                        <p><?php echo e(__('ralpha_why_hierarchy_desc')); ?></p>
                     </div>
                 </div>
             </div>
@@ -601,9 +601,9 @@ include __DIR__ . '/includes/section-dc-showcase.php';
             <div class="promo-cta-inner">
                 <div class="promo-cta-glow"></div>
                 <div class="promo-cta-icon"><i class="fas fa-gem"></i></div>
-                <h2>Ready for the ultimate reseller tier?</h2>
-                <p>Launch your Alpha Reseller empire from €16.99 EUR / mo. Three-tier management, unlimited growth potential.</p>
-                <a href="#plans" class="btn-primary">View Plans <i class="fas fa-arrow-right"></i></a>
+                <h2><?php echo e(__('ralpha_cta_title')); ?></h2>
+                <p><?php echo e(__('ralpha_cta_desc')); ?></p>
+                <a href="#plans" class="btn-primary"><?php echo e(__('common_view_plans')); ?> <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>

@@ -16,13 +16,13 @@ require_once __DIR__ . '/includes/topbar.php';
                 <div class="page-breadcrumb" >
                     <a href="<?php echo e(SITE_URL); ?>/"><?php echo e(__('breadcrumb_home')); ?></a>
                     <i class="fas fa-chevron-right"></i>
-                    <a href="<?php echo e(SITE_URL); ?>/legal/">Legal</a>
+                    <a href="<?php echo e(SITE_URL); ?>/legal/"><?php echo e(__('abuse_breadcrumb_legal')); ?></a>
                     <i class="fas fa-chevron-right"></i>
                     <span><?php echo e(__('abuse_breadcrumb')); ?></span>
                 </div>
-                <h1>Report <span class="highlight">Abuse</span></h1>
+                <h1><?php echo __('abuse_title'); ?></h1>
                 <p class="page-hero-desc">
-                    We take abuse reports seriously. If you've identified content or activity on our network that violates our Acceptable Use Policy, please let us know using the form below.
+                    <?php echo e(__('abuse_desc')); ?>
                 </p>
             </div>
         </div>
@@ -34,26 +34,26 @@ require_once __DIR__ . '/includes/topbar.php';
             <div class="abuse-info-grid">
                 <div class="abuse-info-card">
                     <div class="bento-card-icon"><i class="fas fa-exclamation-triangle"></i></div>
-                    <h3>What qualifies as abuse?</h3>
+                    <h3><?php echo e(__('abuse_info_what_title')); ?></h3>
                     <ul>
-                        <li>Spam or unsolicited bulk emails</li>
-                        <li>Phishing or fraud attempts</li>
-                        <li>Malware or botnet hosting</li>
-                        <li>Copyright or trademark infringement</li>
-                        <li>DDoS attacks originating from our network</li>
-                        <li>Illegal content of any kind</li>
+                        <li><?php echo e(__('abuse_info_what_li1')); ?></li>
+                        <li><?php echo e(__('abuse_info_what_li2')); ?></li>
+                        <li><?php echo e(__('abuse_info_what_li3')); ?></li>
+                        <li><?php echo e(__('abuse_info_what_li4')); ?></li>
+                        <li><?php echo e(__('abuse_info_what_li5')); ?></li>
+                        <li><?php echo e(__('abuse_info_what_li6')); ?></li>
                     </ul>
                 </div>
                 <div class="abuse-info-card">
                     <div class="bento-card-icon icon-green"><i class="fas fa-clipboard-check"></i></div>
-                    <h3>What happens next?</h3>
+                    <h3><?php echo e(__('abuse_info_next_title')); ?></h3>
                     <ul>
-                        <li>Your report is reviewed by our abuse team within 24 hours</li>
-                        <li>We investigate the claim and gather evidence</li>
-                        <li>Violating services are suspended or terminated</li>
-                        <li>You receive a confirmation once action is taken</li>
-                        <li>Repeat offenders are permanently banned</li>
-                        <li>We cooperate with law enforcement when required</li>
+                        <li><?php echo e(__('abuse_info_next_li1')); ?></li>
+                        <li><?php echo e(__('abuse_info_next_li2')); ?></li>
+                        <li><?php echo e(__('abuse_info_next_li3')); ?></li>
+                        <li><?php echo e(__('abuse_info_next_li4')); ?></li>
+                        <li><?php echo e(__('abuse_info_next_li5')); ?></li>
+                        <li><?php echo e(__('abuse_info_next_li6')); ?></li>
                     </ul>
                 </div>
             </div>
@@ -65,54 +65,54 @@ require_once __DIR__ . '/includes/topbar.php';
         <div class="container">
             <div class="abuse-form-wrap">
                 <div class="section-header">
-                    <h2>Submit an abuse report</h2>
-                    <p>Provide as much detail as possible so we can investigate promptly.</p>
+                    <h2><?php echo e(__('abuse_form_title')); ?></h2>
+                    <p><?php echo e(__('abuse_form_desc')); ?></p>
                 </div>
 
                 <form class="abuse-form" action="#" method="post" id="abuseForm">
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="abuse-name">Your Name <span class="required">*</span></label>
-                            <input type="text" id="abuse-name" name="name" placeholder="John Doe" required>
+                            <label for="abuse-name"><?php echo e(__('abuse_form_name')); ?> <span class="required"><?php echo e(__('common_required')); ?></span></label>
+                            <input type="text" id="abuse-name" name="name" placeholder="<?php echo e(__('abuse_form_name_ph')); ?>" required>
                         </div>
                         <div class="form-group">
-                            <label for="abuse-email">Your Email <span class="required">*</span></label>
-                            <input type="email" id="abuse-email" name="email" placeholder="john@example.com" required>
+                            <label for="abuse-email"><?php echo e(__('abuse_form_email')); ?> <span class="required"><?php echo e(__('common_required')); ?></span></label>
+                            <input type="email" id="abuse-email" name="email" placeholder="<?php echo e(__('abuse_form_email_ph')); ?>" required>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="abuse-type">Abuse Type <span class="required">*</span></label>
+                            <label for="abuse-type"><?php echo e(__('abuse_form_type')); ?> <span class="required"><?php echo e(__('common_required')); ?></span></label>
                             <select id="abuse-type" name="type" required>
-                                <option value="" disabled selected>Select abuse type</option>
-                                <option value="spam">Spam / Unsolicited Email</option>
-                                <option value="phishing">Phishing / Fraud</option>
-                                <option value="malware">Malware / Botnet</option>
-                                <option value="copyright">Copyright Infringement</option>
-                                <option value="ddos">DDoS Attack</option>
-                                <option value="illegal">Illegal Content</option>
-                                <option value="other">Other</option>
+                                <option value="" disabled selected><?php echo e(__('abuse_form_type_ph')); ?></option>
+                                <option value="spam"><?php echo e(__('abuse_form_type_spam')); ?></option>
+                                <option value="phishing"><?php echo e(__('abuse_form_type_phishing')); ?></option>
+                                <option value="malware"><?php echo e(__('abuse_form_type_malware')); ?></option>
+                                <option value="copyright"><?php echo e(__('abuse_form_type_copyright')); ?></option>
+                                <option value="ddos"><?php echo e(__('abuse_form_type_ddos')); ?></option>
+                                <option value="illegal"><?php echo e(__('abuse_form_type_illegal')); ?></option>
+                                <option value="other"><?php echo e(__('abuse_form_type_other')); ?></option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="abuse-target">Domain / IP Address <span class="required">*</span></label>
-                            <input type="text" id="abuse-target" name="target" placeholder="example.com or 192.168.1.1" required>
+                            <label for="abuse-target"><?php echo e(__('abuse_form_target')); ?> <span class="required"><?php echo e(__('common_required')); ?></span></label>
+                            <input type="text" id="abuse-target" name="target" placeholder="<?php echo e(__('abuse_form_target_ph')); ?>" required>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="abuse-description">Description <span class="required">*</span></label>
-                        <textarea id="abuse-description" name="description" rows="6" placeholder="Describe the abuse in detail, including dates, times, and any relevant context..." required></textarea>
+                        <label for="abuse-description"><?php echo e(__('abuse_form_description')); ?> <span class="required"><?php echo e(__('common_required')); ?></span></label>
+                        <textarea id="abuse-description" name="description" rows="6" placeholder="<?php echo e(__('abuse_form_description_ph')); ?>" required></textarea>
                     </div>
 
                     <div class="form-group">
-                        <label for="abuse-evidence">Evidence URL</label>
-                        <input type="url" id="abuse-evidence" name="evidence" placeholder="https://pastebin.com/... or link to screenshots">
-                        <span class="form-hint">Paste a link to screenshots, logs, email headers, or any supporting evidence.</span>
+                        <label for="abuse-evidence"><?php echo e(__('abuse_form_evidence')); ?></label>
+                        <input type="url" id="abuse-evidence" name="evidence" placeholder="<?php echo e(__('abuse_form_evidence_ph')); ?>">
+                        <span class="form-hint"><?php echo e(__('abuse_form_evidence_hint')); ?></span>
                     </div>
 
-                    <button type="submit" class="btn-primary"><i class="fas fa-paper-plane"></i> Submit Report</button>
+                    <button type="submit" class="btn-primary"><i class="fas fa-paper-plane"></i> <?php echo e(__('abuse_form_submit')); ?></button>
                 </form>
             </div>
         </div>
@@ -124,9 +124,9 @@ require_once __DIR__ . '/includes/topbar.php';
             <div class="promo-cta-inner">
                 <div class="promo-cta-glow"></div>
                 <div class="promo-cta-icon"><i class="fas fa-headset"></i></div>
-                <h2>Need urgent help?</h2>
-                <p>For time-sensitive abuse cases, contact our abuse team directly at <strong>abuse@yottasrc.com</strong>.</p>
-                <a href="<?php echo e(SITE_URL); ?>/contact/" class="btn-primary">Contact Support <i class="fas fa-arrow-right"></i></a>
+                <h2><?php echo e(__('abuse_cta_title')); ?></h2>
+                <p><?php echo __('abuse_cta_desc'); ?></p>
+                <a href="<?php echo e(SITE_URL); ?>/contact/" class="btn-primary"><?php echo e(__('abuse_cta_btn')); ?> <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>

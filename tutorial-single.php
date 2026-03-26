@@ -15,17 +15,17 @@ require_once __DIR__ . '/includes/topbar.php';
             <div class="page-breadcrumb">
                 <a href="<?php echo e(SITE_URL); ?>/"><?php echo e(__('breadcrumb_home')); ?></a>
                 <i class="fas fa-chevron-right"></i>
-                <a href="<?php echo e(SITE_URL); ?>/tutorials/">Tutorials</a>
+                <a href="<?php echo e(SITE_URL); ?>/tutorials/"><?php echo e(__('tutsingle_breadcrumb_tutorials')); ?></a>
                 <i class="fas fa-chevron-right"></i>
-                <span>How to Deploy a Node.js App on VPS</span>
+                <span><?php echo e(__('tutsingle_breadcrumb_title')); ?></span>
             </div>
             <div class="article-hero-inner">
-                <div class="article-category-badge">Tutorials</div>
-                <h1>How to Deploy a Node.js App on VPS</h1>
+                <div class="article-category-badge"><?php echo e(__('tutsingle_category')); ?></div>
+                <h1><?php echo e(__('tutsingle_title')); ?></h1>
                 <div class="article-meta">
-                    <span class="article-meta-item"><i class="fas fa-calendar-alt"></i> February 28, 2026</span>
-                    <span class="article-meta-item"><i class="fas fa-eye"></i> 6,780 views</span>
-                    <span class="article-meta-item"><i class="fas fa-user"></i> YottaSrc Team</span>
+                    <span class="article-meta-item"><i class="fas fa-calendar-alt"></i> <?php echo e(__('tutsingle_date')); ?></span>
+                    <span class="article-meta-item"><i class="fas fa-eye"></i> <?php echo e(__('tutsingle_views')); ?></span>
+                    <span class="article-meta-item"><i class="fas fa-user"></i> <?php echo e(__('tutsingle_author')); ?></span>
                 </div>
             </div>
         </div>
@@ -134,19 +134,19 @@ sudo tail -f /var/log/nginx/error.log</code></pre>
 
                 <aside class="article-sidebar">
                     <div class="sidebar-card">
-                        <h5><i class="fas fa-folder"></i> Tutorial Categories</h5>
+                        <h5><i class="fas fa-folder"></i> <?php echo e(__('tutsingle_sidebar_categories')); ?></h5>
                         <ul class="sidebar-categories">
-                            <li><a href="<?php echo e(SITE_URL); ?>/tutorials/?cat=hosting"><span>Hosting</span> <span class="sidebar-cat-count">3</span></a></li>
-                            <li><a href="<?php echo e(SITE_URL); ?>/tutorials/?cat=vps"><span>VPS</span> <span class="sidebar-cat-count">4</span></a></li>
-                            <li><a href="<?php echo e(SITE_URL); ?>/tutorials/?cat=cloud"><span>Cloud</span> <span class="sidebar-cat-count">2</span></a></li>
-                            <li><a href="<?php echo e(SITE_URL); ?>/tutorials/?cat=security"><span>Security</span> <span class="sidebar-cat-count">2</span></a></li>
-                            <li><a href="<?php echo e(SITE_URL); ?>/tutorials/?cat=reseller"><span>Reseller</span> <span class="sidebar-cat-count">1</span></a></li>
+                            <li><a href="<?php echo e(SITE_URL); ?>/tutorials/?cat=hosting"><span><?php echo e(__('tutorials_filter_hosting')); ?></span> <span class="sidebar-cat-count">3</span></a></li>
+                            <li><a href="<?php echo e(SITE_URL); ?>/tutorials/?cat=vps"><span><?php echo e(__('tutorials_filter_vps')); ?></span> <span class="sidebar-cat-count">4</span></a></li>
+                            <li><a href="<?php echo e(SITE_URL); ?>/tutorials/?cat=cloud"><span><?php echo e(__('tutorials_filter_cloud')); ?></span> <span class="sidebar-cat-count">2</span></a></li>
+                            <li><a href="<?php echo e(SITE_URL); ?>/tutorials/?cat=security"><span><?php echo e(__('tutorials_filter_security')); ?></span> <span class="sidebar-cat-count">2</span></a></li>
+                            <li><a href="<?php echo e(SITE_URL); ?>/tutorials/?cat=reseller"><span><?php echo e(__('tutorials_filter_reseller')); ?></span> <span class="sidebar-cat-count">1</span></a></li>
                         </ul>
                     </div>
                     <div class="sidebar-card sidebar-cta">
-                        <h5>Need a VPS?</h5>
-                        <p>Deploy your server in minutes with NVMe SSD and 10 Gbit/s network.</p>
-                        <a href="<?php echo e(SITE_URL); ?>/vps/" class="btn-primary btn-sm">View VPS Plans</a>
+                        <h5><?php echo e(__('tutsingle_sidebar_cta_title')); ?></h5>
+                        <p><?php echo e(__('tutsingle_sidebar_cta_desc')); ?></p>
+                        <a href="<?php echo e(SITE_URL); ?>/vps/" class="btn-primary btn-sm"><?php echo e(__('tutsingle_sidebar_cta_btn')); ?></a>
                     </div>
                 </aside>
             </div>
@@ -157,44 +157,44 @@ sudo tail -f /var/log/nginx/error.log</code></pre>
     <section class="related-articles reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Keep Reading</div>
-                <h2>Related Tutorials</h2>
+                <div class="section-tag"><?php echo e(__('tutsingle_related_tag')); ?></div>
+                <h2><?php echo e(__('tutsingle_related_title')); ?></h2>
             </div>
             <div class="related-grid">
                 <a href="#" class="related-card">
                     <div class="related-card-header">
-                        <span class="related-cat-badge badge-hosting">Hosting</span>
+                        <span class="related-cat-badge badge-hosting"><?php echo e(__('tutorials_filter_hosting')); ?></span>
                         <i class="fas fa-arrow-right related-card-arrow"></i>
                     </div>
-                    <h4>Optimizing MySQL Performance on Your VPS</h4>
-                    <p>Learn how to tune MySQL configuration for better query performance and lower memory usage.</p>
+                    <h4><?php echo e(__('tutsingle_related1_title')); ?></h4>
+                    <p><?php echo e(__('tutsingle_related1_desc')); ?></p>
                     <div class="related-card-footer">
-                        <span><i class="fas fa-calendar-alt"></i> Feb 22, 2026</span>
-                        <span><i class="fas fa-eye"></i> 4,500 views</span>
+                        <span><i class="fas fa-calendar-alt"></i> <?php echo e(__('tutsingle_related1_date')); ?></span>
+                        <span><i class="fas fa-eye"></i> <?php echo e(__('tutsingle_related1_views')); ?></span>
                     </div>
                 </a>
                 <a href="#" class="related-card">
                     <div class="related-card-header">
-                        <span class="related-cat-badge badge-security">Security</span>
+                        <span class="related-cat-badge badge-security"><?php echo e(__('tutorials_filter_security')); ?></span>
                         <i class="fas fa-arrow-right related-card-arrow"></i>
                     </div>
-                    <h4>Essential VPS Security Checklist for 2026</h4>
-                    <p>Firewall rules, SSH hardening, fail2ban, and more — secure your Linux VPS from day one.</p>
+                    <h4><?php echo e(__('tutsingle_related2_title')); ?></h4>
+                    <p><?php echo e(__('tutsingle_related2_desc')); ?></p>
                     <div class="related-card-footer">
-                        <span><i class="fas fa-calendar-alt"></i> Feb 18, 2026</span>
-                        <span><i class="fas fa-eye"></i> 3,900 views</span>
+                        <span><i class="fas fa-calendar-alt"></i> <?php echo e(__('tutsingle_related2_date')); ?></span>
+                        <span><i class="fas fa-eye"></i> <?php echo e(__('tutsingle_related2_views')); ?></span>
                     </div>
                 </a>
                 <a href="#" class="related-card">
                     <div class="related-card-header">
-                        <span class="related-cat-badge badge-vps">VPS</span>
+                        <span class="related-cat-badge badge-vps"><?php echo e(__('tutorials_filter_vps')); ?></span>
                         <i class="fas fa-arrow-right related-card-arrow"></i>
                     </div>
-                    <h4>Getting Started with Docker on Your VPS</h4>
-                    <p>A beginner-friendly guide to installing and running Docker containers on a Linux VPS.</p>
+                    <h4><?php echo e(__('tutsingle_related3_title')); ?></h4>
+                    <p><?php echo e(__('tutsingle_related3_desc')); ?></p>
                     <div class="related-card-footer">
-                        <span><i class="fas fa-calendar-alt"></i> Feb 10, 2026</span>
-                        <span><i class="fas fa-eye"></i> 5,100 views</span>
+                        <span><i class="fas fa-calendar-alt"></i> <?php echo e(__('tutsingle_related3_date')); ?></span>
+                        <span><i class="fas fa-eye"></i> <?php echo e(__('tutsingle_related3_views')); ?></span>
                     </div>
                 </a>
             </div>
@@ -207,9 +207,9 @@ sudo tail -f /var/log/nginx/error.log</code></pre>
             <div class="promo-cta-inner">
                 <div class="promo-cta-glow"></div>
                 <div class="promo-cta-icon"><i class="fas fa-rocket"></i></div>
-                <h2>Ready to deploy your server?</h2>
-                <p>Get started with a high-performance VPS from €2.99/month. Full root access, NVMe SSD, 10 Gbit/s.</p>
-                <a href="<?php echo e(SITE_URL); ?>/vps/#plans" class="btn-primary">View VPS Plans <i class="fas fa-arrow-right"></i></a>
+                <h2><?php echo e(__('tutsingle_cta_title')); ?></h2>
+                <p><?php echo e(__('tutsingle_cta_desc')); ?></p>
+                <a href="<?php echo e(SITE_URL); ?>/vps/#plans" class="btn-primary"><?php echo e(__('tutsingle_cta_btn')); ?> <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>

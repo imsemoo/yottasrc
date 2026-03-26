@@ -147,42 +147,42 @@ require_once __DIR__ . '/includes/topbar.php';
                 <div class="contact-info">
                     <div class="contact-card">
                         <div class="contact-card-icon"><i class="fas fa-ticket-alt"></i></div>
-                        <h4>Open a Ticket</h4>
-                        <p>Fastest way to reach us. For technical issues or service-related matters, log in to your dashboard and open a ticket.</p>
-                        <a href="<?php echo e(CONSOLE_URL); ?>/login" class="btn-secondary btn-sm">Login &amp; Open Ticket <i class="fas fa-arrow-right"></i></a>
+                        <h4><?php echo e(__('contact_ticket_title')); ?></h4>
+                        <p><?php echo e(__('contact_ticket_desc')); ?></p>
+                        <a href="<?php echo e(CONSOLE_URL); ?>/login" class="btn-secondary btn-sm"><?php echo e(__('contact_ticket_btn')); ?> <i class="fas fa-arrow-right"></i></a>
                     </div>
                     <div class="contact-card">
                         <div class="contact-card-icon icon-green"><i class="fas fa-envelope"></i></div>
-                        <h4>Email Us</h4>
-                        <p>For general inquiries, partnerships, and business proposals.</p>
-                        <span class="contact-detail">support@yottasrc.com</span>
+                        <h4><?php echo e(__('contact_email_title')); ?></h4>
+                        <p><?php echo e(__('contact_email_desc')); ?></p>
+                        <span class="contact-detail"><?php echo e(__('contact_email_address')); ?></span>
                     </div>
                     <div class="contact-card">
                         <div class="contact-card-icon icon-purple"><i class="fas fa-map-marker-alt"></i></div>
-                        <h4>Office Address</h4>
-                        <p>39951 Hafar Al Batin, Saudi Arabia</p>
-                        <span class="contact-detail">Working Hours: 9:00 AM — 11:00 PM GMT+2</span>
+                        <h4><?php echo e(__('contact_office_title')); ?></h4>
+                        <p><?php echo e(__('contact_office_address')); ?></p>
+                        <span class="contact-detail"><?php echo e(__('contact_office_hours')); ?></span>
                     </div>
                     <div class="contact-card">
                         <div class="contact-card-icon icon-amber"><i class="fas fa-book"></i></div>
-                        <h4>Self-Help Resources</h4>
-                        <p>Before contacting us, check these resources — they cover many common questions.</p>
+                        <h4><?php echo e(__('contact_resources_title')); ?></h4>
+                        <p><?php echo e(__('contact_resources_desc')); ?></p>
                         <div class="contact-links">
                             <a href="https://docs.yottasrc.com/" class="contact-link-card">
                                 <i class="fas fa-file-code"></i>
-                                <div><strong>Documentation</strong><span>Guides &amp; references</span></div>
+                                <div><strong><?php echo e(__('contact_link_docs')); ?></strong><span><?php echo e(__('contact_link_docs_sub')); ?></span></div>
                             </a>
                             <a href="https://wiki.yottasrc.com/" class="contact-link-card">
                                 <i class="fas fa-book-open"></i>
-                                <div><strong>Tutorials</strong><span>Step-by-step walkthroughs</span></div>
+                                <div><strong><?php echo e(__('contact_link_tutorials')); ?></strong><span><?php echo e(__('contact_link_tutorials_sub')); ?></span></div>
                             </a>
                             <a href="<?php echo e(SITE_URL); ?>/faq" class="contact-link-card">
                                 <i class="fas fa-question-circle"></i>
-                                <div><strong>FAQ</strong><span>Common questions</span></div>
+                                <div><strong><?php echo e(__('contact_link_faq')); ?></strong><span><?php echo e(__('contact_link_faq_sub')); ?></span></div>
                             </a>
                             <a href="https://blog.yottasrc.com/" class="contact-link-card">
                                 <i class="fas fa-rss"></i>
-                                <div><strong>Blog</strong><span>News &amp; updates</span></div>
+                                <div><strong><?php echo e(__('contact_link_blog')); ?></strong><span><?php echo e(__('contact_link_blog_sub')); ?></span></div>
                             </a>
                         </div>
                     </div>
@@ -191,46 +191,46 @@ require_once __DIR__ . '/includes/topbar.php';
                 <!-- Right: Contact Form -->
                 <div class="contact-form-wrap">
                     <div class="contact-form-card">
-                        <h3>Send us a message</h3>
-                        <p class="form-note">For faster help on existing services, please <a href="<?php echo e(CONSOLE_URL); ?>/login">log in and open a ticket</a> instead.</p>
+                        <h3><?php echo e(__('contact_form_title')); ?></h3>
+                        <p class="form-note"><?php echo __('contact_form_note', ['url' => e(CONSOLE_URL) . '/login']); ?></p>
                         <form class="contact-form" id="contactForm" method="post">
                             <div class="form-group form-group-icon">
-                                <label for="contactName">Name <span class="required">*</span></label>
+                                <label for="contactName"><?php echo e(__('contact_form_name')); ?> <span class="required">*</span></label>
                                 <div class="input-icon-wrap">
                                     <i class="fas fa-user"></i>
-                                    <input type="text" id="contactName" name="name" placeholder="e.g. John Doe" required>
+                                    <input type="text" id="contactName" name="name" placeholder="<?php echo e(__('contact_form_name_ph')); ?>" required>
                                 </div>
                             </div>
                             <div class="form-group form-group-icon">
-                                <label for="contactEmail">Email <span class="required">*</span></label>
+                                <label for="contactEmail"><?php echo e(__('contact_form_email')); ?> <span class="required">*</span></label>
                                 <div class="input-icon-wrap">
                                     <i class="fas fa-envelope"></i>
-                                    <input type="email" id="contactEmail" name="email" placeholder="e.g. john@company.com" required>
+                                    <input type="email" id="contactEmail" name="email" placeholder="<?php echo e(__('contact_form_email_ph')); ?>" required>
                                 </div>
                             </div>
                             <div class="form-group form-group-icon">
-                                <label for="contactSubject">Subject</label>
+                                <label for="contactSubject"><?php echo e(__('contact_form_subject')); ?></label>
                                 <div class="input-icon-wrap">
                                     <i class="fas fa-tag"></i>
                                     <select id="contactSubject" name="subject">
-                                        <option value="sales">Sales / Pre-Sales</option>
-                                        <option value="partnership">Partnership</option>
-                                        <option value="billing">Billing Inquiry</option>
-                                        <option value="other">Other</option>
+                                        <option value="sales"><?php echo e(__('contact_form_subject_sales')); ?></option>
+                                        <option value="partnership"><?php echo e(__('contact_form_subject_partner')); ?></option>
+                                        <option value="billing"><?php echo e(__('contact_form_subject_billing')); ?></option>
+                                        <option value="other"><?php echo e(__('contact_form_subject_other')); ?></option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group form-group-icon">
-                                <label for="contactMessage">Message <span class="required">*</span></label>
+                                <label for="contactMessage"><?php echo e(__('contact_form_message')); ?> <span class="required">*</span></label>
                                 <div class="input-icon-wrap is-textarea">
                                     <i class="fas fa-comment-alt"></i>
-                                    <textarea id="contactMessage" name="message" rows="5" placeholder="Describe your question or request in detail..." required></textarea>
+                                    <textarea id="contactMessage" name="message" rows="5" placeholder="<?php echo e(__('contact_form_message_ph')); ?>" required></textarea>
                                 </div>
                             </div>
                             <button type="submit" class="btn-primary btn-full">
-                                <i class="fas fa-paper-plane"></i> Send Message
+                                <i class="fas fa-paper-plane"></i> <?php echo e(__('contact_form_submit')); ?>
                             </button>
-                            <p class="contact-form-trust"><i class="fas fa-shield-alt"></i> Our support team typically responds within 10–15 minutes.</p>
+                            <p class="contact-form-trust"><i class="fas fa-shield-alt"></i> <?php echo e(__('contact_form_trust')); ?></p>
                         </form>
                     </div>
                 </div>
@@ -243,17 +243,17 @@ require_once __DIR__ . '/includes/topbar.php';
         <div class="container">
             <div class="why-us-layout">
                 <div class="why-us-intro">
-                    <div class="section-tag">Advantages</div>
-                    <h2 class="why-us-title">Why Choose Us?</h2>
-                    <p class="why-us-desc">Discover the advantages of our hosting services and why we're the preferred choice for many.</p>
+                    <div class="section-tag"><?php echo e(__('contact_whyus_tag')); ?></div>
+                    <h2 class="why-us-title"><?php echo e(__('contact_whyus_title')); ?></h2>
+                    <p class="why-us-desc"><?php echo e(__('contact_whyus_desc')); ?></p>
                 </div>
                 <div class="why-us-grid">
-                    <div class="why-us-card"><div class="why-us-card-icon"><i class="fas fa-headset"></i></div><h4>24/7 Expert Support</h4><p>Dedicated team available around the clock. Average response time: 10 minutes.</p></div>
-                    <div class="why-us-card"><div class="why-us-card-icon icon-green"><i class="fas fa-tachometer-alt"></i></div><h4>High-Speed Performance</h4><p>LiteSpeed servers with NVMe SSD storage and up to 10 Gbit/s connectivity.</p></div>
-                    <div class="why-us-card"><div class="why-us-card-icon icon-purple"><i class="fas fa-shield-alt"></i></div><h4>Secure &amp; Reliable</h4><p>Imunify360 AI security, CloudLinux isolation, and 99.9% uptime guarantee.</p></div>
-                    <div class="why-us-card"><div class="why-us-card-icon icon-amber"><i class="fas fa-globe"></i></div><h4>Global Data Centers</h4><p>Own datacenter in Romania + 6 partner facilities across 50+ locations worldwide.</p></div>
-                    <div class="why-us-card"><div class="why-us-card-icon icon-green"><i class="fas fa-tags"></i></div><h4>Best Price-Quality Ratio</h4><p>Affordable plans with no compromise. Same price on renewal — no surprises.</p></div>
-                    <div class="why-us-card"><div class="why-us-card-icon icon-purple"><i class="fas fa-th-large"></i></div><h4>User-Friendly Dashboard</h4><p>Intuitive cPanel control panel included with all hosting plans.</p></div>
+                    <div class="why-us-card"><div class="why-us-card-icon"><i class="fas fa-headset"></i></div><h4><?php echo e(__('contact_whyus_support_title')); ?></h4><p><?php echo e(__('contact_whyus_support_desc')); ?></p></div>
+                    <div class="why-us-card"><div class="why-us-card-icon icon-green"><i class="fas fa-tachometer-alt"></i></div><h4><?php echo e(__('contact_whyus_speed_title')); ?></h4><p><?php echo e(__('contact_whyus_speed_desc')); ?></p></div>
+                    <div class="why-us-card"><div class="why-us-card-icon icon-purple"><i class="fas fa-shield-alt"></i></div><h4><?php echo e(__('contact_whyus_secure_title')); ?></h4><p><?php echo e(__('contact_whyus_secure_desc')); ?></p></div>
+                    <div class="why-us-card"><div class="why-us-card-icon icon-amber"><i class="fas fa-globe"></i></div><h4><?php echo e(__('contact_whyus_global_title')); ?></h4><p><?php echo e(__('contact_whyus_global_desc')); ?></p></div>
+                    <div class="why-us-card"><div class="why-us-card-icon icon-green"><i class="fas fa-tags"></i></div><h4><?php echo e(__('contact_whyus_price_title')); ?></h4><p><?php echo e(__('contact_whyus_price_desc')); ?></p></div>
+                    <div class="why-us-card"><div class="why-us-card-icon icon-purple"><i class="fas fa-th-large"></i></div><h4><?php echo e(__('contact_whyus_dash_title')); ?></h4><p><?php echo e(__('contact_whyus_dash_desc')); ?></p></div>
                 </div>
             </div>
         </div>
@@ -265,9 +265,9 @@ require_once __DIR__ . '/includes/topbar.php';
             <div class="promo-cta-inner">
                 <div class="promo-cta-glow"></div>
                 <div class="promo-cta-icon"><i class="fas fa-gift"></i></div>
-                <h2>Get Exclusive Offers &amp; Promotions</h2>
-                <p>Stay updated with the latest deals, discounts, and special promotions.</p>
-                <a href="<?php echo e(SITE_URL); ?>/promotions" class="btn-primary">Check Promotions <i class="fas fa-arrow-right"></i></a>
+                <h2><?php echo __('contact_promo_cta_title'); ?></h2>
+                <p><?php echo e(__('contact_promo_cta_desc')); ?></p>
+                <a href="<?php echo e(SITE_URL); ?>/promotions" class="btn-primary"><?php echo e(__('contact_promo_cta_btn')); ?> <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>

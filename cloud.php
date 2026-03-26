@@ -95,12 +95,12 @@ require_once __DIR__ . '/includes/topbar.php';
                 <table class="cloud-table">
                     <thead>
                         <tr>
-                            <th>Instance</th>
-                            <th>vCPU</th>
-                            <th>RAM</th>
-                            <th>NVMe</th>
-                            <th>Network</th>
-                            <th>Hourly / Monthly</th>
+                            <th><?php echo e(__('cloud_table_instance')); ?></th>
+                            <th><?php echo e(__('cloud_table_vcpu')); ?></th>
+                            <th><?php echo e(__('cloud_table_ram')); ?></th>
+                            <th><?php echo e(__('cloud_table_nvme')); ?></th>
+                            <th><?php echo e(__('cloud_table_network')); ?></th>
+                            <th><?php echo e(__('cloud_table_price')); ?></th>
                             <th></th>
                         </tr>
                     </thead>
@@ -112,7 +112,7 @@ require_once __DIR__ . '/includes/topbar.php';
                             <td>25 GB</td>
                             <td>1 Gbit/s · 25TB</td>
                             <td><span class="cloud-price-hr">€0.0034/h</span><span class="cloud-price-mo">€1.99/mo</span></td>
-                            <td><a href="<?php echo e(CONSOLE_URL); ?>/cloud/" class="cloud-buy" target="_blank" rel="noopener noreferrer">Deploy</a></td>
+                            <td><a href="<?php echo e(CONSOLE_URL); ?>/cloud/" class="cloud-buy" target="_blank" rel="noopener noreferrer"><?php echo e(__('cloud_deploy')); ?></a></td>
                         </tr>
                         <tr>
                             <td><strong>CLR1 x86</strong></td>
@@ -121,7 +121,7 @@ require_once __DIR__ . '/includes/topbar.php';
                             <td>20 GB</td>
                             <td>2 Gbit/s · 15TB</td>
                             <td><span class="cloud-price-hr">€0.0091/h</span><span class="cloud-price-mo">€4.55/mo</span></td>
-                            <td><a href="<?php echo e(CONSOLE_URL); ?>/cloud/" class="cloud-buy" target="_blank" rel="noopener noreferrer">Deploy</a></td>
+                            <td><a href="<?php echo e(CONSOLE_URL); ?>/cloud/" class="cloud-buy" target="_blank" rel="noopener noreferrer"><?php echo e(__('cloud_deploy')); ?></a></td>
                         </tr>
                         <tr>
                             <td><strong>CLH1 Arm64</strong></td>
@@ -130,7 +130,7 @@ require_once __DIR__ . '/includes/topbar.php';
                             <td>40 GB</td>
                             <td>10 Gbit/s · 30TB</td>
                             <td><span class="cloud-price-hr">€0.0097/h</span><span class="cloud-price-mo">€4.99/mo</span></td>
-                            <td><a href="<?php echo e(CONSOLE_URL); ?>/cloud/" class="cloud-buy" target="_blank" rel="noopener noreferrer">Deploy</a></td>
+                            <td><a href="<?php echo e(CONSOLE_URL); ?>/cloud/" class="cloud-buy" target="_blank" rel="noopener noreferrer"><?php echo e(__('cloud_deploy')); ?></a></td>
                         </tr>
                         <tr>
                             <td><strong>CLH5 x86</strong></td>
@@ -139,16 +139,16 @@ require_once __DIR__ . '/includes/topbar.php';
                             <td>40 GB</td>
                             <td>10 Gbit/s · 30TB</td>
                             <td><span class="cloud-price-hr">€0.0097/h</span><span class="cloud-price-mo">€4.99/mo</span></td>
-                            <td><a href="<?php echo e(CONSOLE_URL); ?>/cloud/" class="cloud-buy" target="_blank" rel="noopener noreferrer">Deploy</a></td>
+                            <td><a href="<?php echo e(CONSOLE_URL); ?>/cloud/" class="cloud-buy" target="_blank" rel="noopener noreferrer"><?php echo e(__('cloud_deploy')); ?></a></td>
                         </tr>
                         <tr class="cloud-row-highlight">
-                            <td><strong>CLY2 x86</strong> <span class="cloud-popular">Popular</span></td>
+                            <td><strong>CLY2 x86</strong> <span class="cloud-popular"><?php echo e(__('cloud_table_popular')); ?></span></td>
                             <td>2 Cores</td>
                             <td>4 GB</td>
                             <td>50 GB</td>
                             <td>10 Gbit/s · 25TB</td>
                             <td><span class="cloud-price-hr">€0.0086/h</span><span class="cloud-price-mo">€4.99/mo</span></td>
-                            <td><a href="<?php echo e(CONSOLE_URL); ?>/cloud/" class="cloud-buy" target="_blank" rel="noopener noreferrer">Deploy</a></td>
+                            <td><a href="<?php echo e(CONSOLE_URL); ?>/cloud/" class="cloud-buy" target="_blank" rel="noopener noreferrer"><?php echo e(__('cloud_deploy')); ?></a></td>
                         </tr>
                         <tr>
                             <td><strong>CLK1 x86</strong></td>
@@ -157,7 +157,7 @@ require_once __DIR__ . '/includes/topbar.php';
                             <td>20 GB</td>
                             <td>10 Gbit/s · 15TB</td>
                             <td><span class="cloud-price-hr">€0.01/h</span><span class="cloud-price-mo">€5.20/mo</span></td>
-                            <td><a href="<?php echo e(CONSOLE_URL); ?>/cloud/" class="cloud-buy" target="_blank" rel="noopener noreferrer">Deploy</a></td>
+                            <td><a href="<?php echo e(CONSOLE_URL); ?>/cloud/" class="cloud-buy" target="_blank" rel="noopener noreferrer"><?php echo e(__('cloud_deploy')); ?></a></td>
                         </tr>
                         <tr>
                             <td><strong>CLR2 x86</strong></td>
@@ -166,7 +166,7 @@ require_once __DIR__ . '/includes/topbar.php';
                             <td>20 GB</td>
                             <td>2 Gbit/s · 15TB</td>
                             <td><span class="cloud-price-hr">€0.0109/h</span><span class="cloud-price-mo">€5.85/mo</span></td>
-                            <td><a href="<?php echo e(CONSOLE_URL); ?>/cloud/" class="cloud-buy" target="_blank" rel="noopener noreferrer">Deploy</a></td>
+                            <td><a href="<?php echo e(CONSOLE_URL); ?>/cloud/" class="cloud-buy" target="_blank" rel="noopener noreferrer"><?php echo e(__('cloud_deploy')); ?></a></td>
                         </tr>
                         <tr>
                             <td><strong>CLH6 x86</strong></td>
@@ -175,7 +175,7 @@ require_once __DIR__ . '/includes/topbar.php';
                             <td>40 GB</td>
                             <td>10 Gbit/s · 30TB</td>
                             <td><span class="cloud-price-hr">€0.0111/h</span><span class="cloud-price-mo">€5.99/mo</span></td>
-                            <td><a href="<?php echo e(CONSOLE_URL); ?>/cloud/" class="cloud-buy" target="_blank" rel="noopener noreferrer">Deploy</a></td>
+                            <td><a href="<?php echo e(CONSOLE_URL); ?>/cloud/" class="cloud-buy" target="_blank" rel="noopener noreferrer"><?php echo e(__('cloud_deploy')); ?></a></td>
                         </tr>
                         <tr>
                             <td><strong>CLR3 x86</strong></td>
@@ -184,7 +184,7 @@ require_once __DIR__ . '/includes/topbar.php';
                             <td>25 GB</td>
                             <td>2 Gbit/s · 15TB</td>
                             <td><span class="cloud-price-hr">€0.0118/h</span><span class="cloud-price-mo">€6.50/mo</span></td>
-                            <td><a href="<?php echo e(CONSOLE_URL); ?>/cloud/" class="cloud-buy" target="_blank" rel="noopener noreferrer">Deploy</a></td>
+                            <td><a href="<?php echo e(CONSOLE_URL); ?>/cloud/" class="cloud-buy" target="_blank" rel="noopener noreferrer"><?php echo e(__('cloud_deploy')); ?></a></td>
                         </tr>
                         <tr>
                             <td><strong>CLR4 x86</strong></td>
@@ -193,7 +193,7 @@ require_once __DIR__ . '/includes/topbar.php';
                             <td>40 GB</td>
                             <td>2 Gbit/s · 15TB</td>
                             <td><span class="cloud-price-hr">€0.0127/h</span><span class="cloud-price-mo">€7.15/mo</span></td>
-                            <td><a href="<?php echo e(CONSOLE_URL); ?>/cloud/" class="cloud-buy" target="_blank" rel="noopener noreferrer">Deploy</a></td>
+                            <td><a href="<?php echo e(CONSOLE_URL); ?>/cloud/" class="cloud-buy" target="_blank" rel="noopener noreferrer"><?php echo e(__('cloud_deploy')); ?></a></td>
                         </tr>
                         <tr>
                             <td><strong>CLK2 x86</strong></td>
@@ -202,7 +202,7 @@ require_once __DIR__ . '/includes/topbar.php';
                             <td>20 GB</td>
                             <td>10 Gbit/s · 15TB</td>
                             <td><span class="cloud-price-hr">€0.0136/h</span><span class="cloud-price-mo">€7.80/mo</span></td>
-                            <td><a href="<?php echo e(CONSOLE_URL); ?>/cloud/" class="cloud-buy" target="_blank" rel="noopener noreferrer">Deploy</a></td>
+                            <td><a href="<?php echo e(CONSOLE_URL); ?>/cloud/" class="cloud-buy" target="_blank" rel="noopener noreferrer"><?php echo e(__('cloud_deploy')); ?></a></td>
                         </tr>
                         <tr>
                             <td><strong>CLR5 x86</strong></td>
@@ -211,14 +211,14 @@ require_once __DIR__ . '/includes/topbar.php';
                             <td>40 GB</td>
                             <td>2 Gbit/s · 15TB</td>
                             <td><span class="cloud-price-hr">€0.0145/h</span><span class="cloud-price-mo">€8.45/mo</span></td>
-                            <td><a href="<?php echo e(CONSOLE_URL); ?>/cloud/" class="cloud-buy" target="_blank" rel="noopener noreferrer">Deploy</a></td>
+                            <td><a href="<?php echo e(CONSOLE_URL); ?>/cloud/" class="cloud-buy" target="_blank" rel="noopener noreferrer"><?php echo e(__('cloud_deploy')); ?></a></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
             <div class="cloud-note">
-                <p><i class="fas fa-info-circle"></i> Showing a selection of 50+ instance types available. Browse all configurations in the <a href="<?php echo e(CONSOLE_URL); ?>/cloud/">cloud console</a>.</p>
+                <p><i class="fas fa-info-circle"></i> <?php echo __('cloud_table_note', ['url' => e(CONSOLE_URL) . '/cloud/']); ?></p>
             </div>
         </div>
     </section>
@@ -227,18 +227,18 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="locations-section reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Regions</div>
-                <h2>Global Cloud Infrastructure</h2>
-                <p>Deploy instances across 50+ regions on 6 continents. Minimize latency by placing workloads close to your users.</p>
+                <div class="section-tag"><?php echo e(__('cloud_locations_tag')); ?></div>
+                <h2><?php echo e(__('cloud_locations_title')); ?></h2>
+                <p><?php echo e(__('cloud_locations_desc')); ?></p>
             </div>
 
             <div class="locations-tabs">
-                <button class="loc-tab active" data-loc-target="cloud-europe"><i class="fas fa-globe-europe"></i> Europe</button>
-                <button class="loc-tab" data-loc-target="cloud-asia"><i class="fas fa-globe-asia"></i> Asia</button>
-                <button class="loc-tab" data-loc-target="cloud-africa"><i class="fas fa-globe-africa"></i> Africa</button>
-                <button class="loc-tab" data-loc-target="cloud-south-america"><i class="fas fa-globe-americas"></i> South America</button>
-                <button class="loc-tab" data-loc-target="cloud-north-america"><i class="fas fa-globe-americas"></i> North America</button>
-                <button class="loc-tab" data-loc-target="cloud-oceania"><i class="fas fa-globe"></i> Oceania</button>
+                <button class="loc-tab active" data-loc-target="cloud-europe"><i class="fas fa-globe-europe"></i> <?php echo e(__('cloud_loc_europe')); ?></button>
+                <button class="loc-tab" data-loc-target="cloud-asia"><i class="fas fa-globe-asia"></i> <?php echo e(__('cloud_loc_asia')); ?></button>
+                <button class="loc-tab" data-loc-target="cloud-africa"><i class="fas fa-globe-africa"></i> <?php echo e(__('cloud_loc_africa')); ?></button>
+                <button class="loc-tab" data-loc-target="cloud-south-america"><i class="fas fa-globe-americas"></i> <?php echo e(__('cloud_loc_south_america')); ?></button>
+                <button class="loc-tab" data-loc-target="cloud-north-america"><i class="fas fa-globe-americas"></i> <?php echo e(__('cloud_loc_north_america')); ?></button>
+                <button class="loc-tab" data-loc-target="cloud-oceania"><i class="fas fa-globe"></i> <?php echo e(__('cloud_loc_oceania')); ?></button>
             </div>
 
             <div class="locations-panels">
@@ -322,7 +322,7 @@ require_once __DIR__ . '/includes/topbar.php';
     <!-- ═══════════════ PARTNERS ═══════════════ -->
     <section class="partners">
         <div class="container">
-            <span class="partners-label">Our partners, the world's best</span>
+            <span class="partners-label"><?php echo e(__('cloud_partners_label')); ?></span>
             <div class="partners-logos">
                 <span class="partner-logo">Equinix</span>
                 <span class="partner-logo">Hetzner</span>
@@ -340,9 +340,9 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="cloud-panel-preview reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Control Panel</div>
-                <h2>Manage Everything from One Dashboard</h2>
-                <p>A clean, powerful interface to deploy, monitor, and scale your cloud instances — no CLI required.</p>
+                <div class="section-tag"><?php echo e(__('cloud_panel_tag')); ?></div>
+                <h2><?php echo e(__('cloud_panel_title')); ?></h2>
+                <p><?php echo e(__('cloud_panel_desc')); ?></p>
             </div>
 
             <div class="panel-mockup">
@@ -353,14 +353,14 @@ require_once __DIR__ . '/includes/topbar.php';
                         <span class="panel-logo-text">YottaSrc</span>
                     </div>
                     <nav class="panel-nav">
-                        <a class="panel-nav-item active"><i class="fas fa-th-large"></i> Dashboard</a>
-                        <a class="panel-nav-item"><i class="fas fa-server"></i> Instances</a>
-                        <a class="panel-nav-item"><i class="fas fa-network-wired"></i> Networking</a>
-                        <a class="panel-nav-item"><i class="fas fa-database"></i> Volumes</a>
-                        <a class="panel-nav-item"><i class="fas fa-shield-alt"></i> Firewalls</a>
-                        <a class="panel-nav-item"><i class="fas fa-key"></i> SSH Keys</a>
-                        <a class="panel-nav-item"><i class="fas fa-chart-line"></i> Monitoring</a>
-                        <a class="panel-nav-item"><i class="fas fa-file-invoice-dollar"></i> Billing</a>
+                        <a class="panel-nav-item active"><i class="fas fa-th-large"></i> <?php echo e(__('cloud_panel_nav_dashboard')); ?></a>
+                        <a class="panel-nav-item"><i class="fas fa-server"></i> <?php echo e(__('cloud_panel_nav_instances')); ?></a>
+                        <a class="panel-nav-item"><i class="fas fa-network-wired"></i> <?php echo e(__('cloud_panel_nav_networking')); ?></a>
+                        <a class="panel-nav-item"><i class="fas fa-database"></i> <?php echo e(__('cloud_panel_nav_volumes')); ?></a>
+                        <a class="panel-nav-item"><i class="fas fa-shield-alt"></i> <?php echo e(__('cloud_panel_nav_firewalls')); ?></a>
+                        <a class="panel-nav-item"><i class="fas fa-key"></i> <?php echo e(__('cloud_panel_nav_sshkeys')); ?></a>
+                        <a class="panel-nav-item"><i class="fas fa-chart-line"></i> <?php echo e(__('cloud_panel_nav_monitoring')); ?></a>
+                        <a class="panel-nav-item"><i class="fas fa-file-invoice-dollar"></i> <?php echo e(__('cloud_panel_nav_billing')); ?></a>
                     </nav>
                 </div>
 
@@ -370,7 +370,7 @@ require_once __DIR__ . '/includes/topbar.php';
                     <div class="panel-topbar">
                         <div class="panel-search">
                             <i class="fas fa-search"></i>
-                            <span>Search instances, IPs, volumes…</span>
+                            <span><?php echo e(__('cloud_panel_search')); ?></span>
                         </div>
                         <div class="panel-topbar-actions">
                             <span class="panel-notif"><i class="fas fa-bell"></i></span>
@@ -382,56 +382,56 @@ require_once __DIR__ . '/includes/topbar.php';
                     <div class="panel-stats">
                         <div class="panel-stat">
                             <span class="panel-stat-val">12</span>
-                            <span class="panel-stat-label">Instances</span>
+                            <span class="panel-stat-label"><?php echo e(__('cloud_panel_stat_instances')); ?></span>
                             <span class="panel-stat-badge up"><i class="fas fa-arrow-up"></i> 3</span>
                         </div>
                         <div class="panel-stat">
                             <span class="panel-stat-val">48</span>
-                            <span class="panel-stat-label">vCPU Total</span>
+                            <span class="panel-stat-label"><?php echo e(__('cloud_panel_stat_vcpu')); ?></span>
                         </div>
                         <div class="panel-stat">
                             <span class="panel-stat-val">128 GB</span>
-                            <span class="panel-stat-label">RAM Allocated</span>
+                            <span class="panel-stat-label"><?php echo e(__('cloud_panel_stat_ram')); ?></span>
                         </div>
                         <div class="panel-stat">
                             <span class="panel-stat-val">€43.20</span>
-                            <span class="panel-stat-label">Month to Date</span>
+                            <span class="panel-stat-label"><?php echo e(__('cloud_panel_stat_mtd')); ?></span>
                         </div>
                     </div>
 
                     <!-- Instance list -->
                     <div class="panel-instances">
                         <div class="panel-instances-head">
-                            <span class="panel-instances-title">Active Instances</span>
-                            <span class="panel-deploy-btn"><i class="fas fa-plus"></i> Deploy New</span>
+                            <span class="panel-instances-title"><?php echo e(__('cloud_panel_active')); ?></span>
+                            <span class="panel-deploy-btn"><i class="fas fa-plus"></i> <?php echo e(__('cloud_panel_deploy_new')); ?></span>
                         </div>
                         <div class="panel-instance-row">
                             <span class="panel-inst-status running"></span>
                             <span class="panel-inst-name">web-prod-01</span>
                             <span class="panel-inst-spec">4 vCPU · 16 GB · Frankfurt</span>
                             <span class="panel-inst-ip">185.212.xxx.xxx</span>
-                            <span class="panel-inst-badge">Running</span>
+                            <span class="panel-inst-badge"><?php echo e(__('cloud_panel_running')); ?></span>
                         </div>
                         <div class="panel-instance-row">
                             <span class="panel-inst-status running"></span>
                             <span class="panel-inst-name">api-gateway</span>
                             <span class="panel-inst-spec">2 vCPU · 8 GB · Amsterdam</span>
                             <span class="panel-inst-ip">91.184.xxx.xxx</span>
-                            <span class="panel-inst-badge">Running</span>
+                            <span class="panel-inst-badge"><?php echo e(__('cloud_panel_running')); ?></span>
                         </div>
                         <div class="panel-instance-row">
                             <span class="panel-inst-status stopped"></span>
                             <span class="panel-inst-name">staging-db</span>
                             <span class="panel-inst-spec">8 vCPU · 32 GB · Ashburn</span>
                             <span class="panel-inst-ip">104.238.xxx.xxx</span>
-                            <span class="panel-inst-badge off">Stopped</span>
+                            <span class="panel-inst-badge off"><?php echo e(__('cloud_panel_stopped')); ?></span>
                         </div>
                     </div>
 
                     <!-- Chart placeholder -->
                     <div class="panel-chart">
                         <div class="panel-chart-head">
-                            <span class="panel-chart-title">CPU Usage — Last 24h</span>
+                            <span class="panel-chart-title"><?php echo e(__('cloud_panel_chart_title')); ?></span>
                             <span class="panel-chart-legend"><span class="panel-dot primary"></span> web-prod-01 <span class="panel-dot green"></span> api-gateway</span>
                         </div>
                         <div class="panel-chart-area">
@@ -462,9 +462,9 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="cloud-scale reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Elastic Resources</div>
-                <h2>Scale Every Dimension on Demand</h2>
-                <p>Add CPU, RAM, storage, or regions instantly — no migrations, no downtime. Resources adjust to your workload.</p>
+                <div class="section-tag"><?php echo e(__('cloud_scale_tag')); ?></div>
+                <h2><?php echo e(__('cloud_scale_title')); ?></h2>
+                <p><?php echo e(__('cloud_scale_desc')); ?></p>
             </div>
             <div class="cloud-scale-grid">
                 <div class="cloud-scale-card">
@@ -472,36 +472,36 @@ require_once __DIR__ . '/includes/topbar.php';
                     <div class="cloud-scale-meter">
                         <div class="cloud-scale-bar" style="--bar-fill: 75%; --bar-color: var(--brand-primary);"></div>
                     </div>
-                    <h4>Elastic vCPU</h4>
-                    <p>Scale from 1 to 32 dedicated cores per instance. Burst when you need it, scale back when you don't.</p>
-                    <span class="cloud-scale-range">1 – 32 Cores</span>
+                    <h4><?php echo e(__('cloud_scale_vcpu')); ?></h4>
+                    <p><?php echo e(__('cloud_scale_vcpu_desc')); ?></p>
+                    <span class="cloud-scale-range"><?php echo e(__('cloud_scale_vcpu_range')); ?></span>
                 </div>
                 <div class="cloud-scale-card">
                     <div class="cloud-scale-icon icon-green"><i class="fas fa-memory"></i></div>
                     <div class="cloud-scale-meter">
                         <div class="cloud-scale-bar" style="--bar-fill: 60%; --bar-color: var(--brand-secondary);"></div>
                     </div>
-                    <h4>Flexible RAM</h4>
-                    <p>Allocate 1 GB to 128 GB of memory. Optimize for data-intensive workloads or lightweight services.</p>
-                    <span class="cloud-scale-range">1 – 128 GB</span>
+                    <h4><?php echo e(__('cloud_scale_ram')); ?></h4>
+                    <p><?php echo e(__('cloud_scale_ram_desc')); ?></p>
+                    <span class="cloud-scale-range"><?php echo e(__('cloud_scale_ram_range')); ?></span>
                 </div>
                 <div class="cloud-scale-card">
                     <div class="cloud-scale-icon icon-purple"><i class="fas fa-hdd"></i></div>
                     <div class="cloud-scale-meter">
                         <div class="cloud-scale-bar" style="--bar-fill: 50%; --bar-color: var(--brand-accent);"></div>
                     </div>
-                    <h4>NVMe Storage</h4>
-                    <p>High-performance NVMe SSDs from 20 GB to 2 TB. Ultra-low latency for databases and applications.</p>
-                    <span class="cloud-scale-range">20 GB – 2 TB</span>
+                    <h4><?php echo e(__('cloud_scale_nvme')); ?></h4>
+                    <p><?php echo e(__('cloud_scale_nvme_desc')); ?></p>
+                    <span class="cloud-scale-range"><?php echo e(__('cloud_scale_nvme_range')); ?></span>
                 </div>
                 <div class="cloud-scale-card">
                     <div class="cloud-scale-icon icon-amber"><i class="fas fa-network-wired"></i></div>
                     <div class="cloud-scale-meter">
                         <div class="cloud-scale-bar" style="--bar-fill: 85%; --bar-color: var(--brand-warning);"></div>
                     </div>
-                    <h4>Network Bandwidth</h4>
-                    <p>Up to 10 Gbit/s connections with generous transfer. Deploy multi-region for global low-latency coverage.</p>
-                    <span class="cloud-scale-range">1 – 10 Gbit/s</span>
+                    <h4><?php echo e(__('cloud_scale_network')); ?></h4>
+                    <p><?php echo e(__('cloud_scale_network_desc')); ?></p>
+                    <span class="cloud-scale-range"><?php echo e(__('cloud_scale_network_range')); ?></span>
                 </div>
             </div>
         </div>
@@ -511,33 +511,33 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="cloud-billing reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Pay-As-You-Go</div>
-                <h2>Only Pay for Compute Time Used</h2>
-                <p>Hourly billing means you never overpay. Spin up for minutes or run for months — no contracts, no commitments.</p>
+                <div class="section-tag"><?php echo e(__('cloud_billing_tag')); ?></div>
+                <h2><?php echo e(__('cloud_billing_title')); ?></h2>
+                <p><?php echo e(__('cloud_billing_desc')); ?></p>
             </div>
             <div class="cloud-billing-compare">
                 <div class="cloud-billing-card cloud-billing-old">
-                    <div class="cloud-billing-label">Traditional Hosting</div>
+                    <div class="cloud-billing-label"><?php echo e(__('cloud_billing_old_label')); ?></div>
                     <ul>
-                        <li><i class="fas fa-times"></i> Fixed monthly plans</li>
-                        <li><i class="fas fa-times"></i> Pay for idle resources</li>
-                        <li><i class="fas fa-times"></i> Long-term contracts</li>
-                        <li><i class="fas fa-times"></i> Manual scaling requests</li>
-                        <li><i class="fas fa-times"></i> Overpay during low traffic</li>
+                        <li><i class="fas fa-times"></i> <?php echo e(__('cloud_billing_old_1')); ?></li>
+                        <li><i class="fas fa-times"></i> <?php echo e(__('cloud_billing_old_2')); ?></li>
+                        <li><i class="fas fa-times"></i> <?php echo e(__('cloud_billing_old_3')); ?></li>
+                        <li><i class="fas fa-times"></i> <?php echo e(__('cloud_billing_old_4')); ?></li>
+                        <li><i class="fas fa-times"></i> <?php echo e(__('cloud_billing_old_5')); ?></li>
                     </ul>
                 </div>
                 <div class="cloud-billing-vs">vs</div>
                 <div class="cloud-billing-card cloud-billing-new">
-                    <div class="cloud-billing-label">YottaSrc Cloud</div>
+                    <div class="cloud-billing-label"><?php echo e(__('cloud_billing_new_label')); ?></div>
                     <ul>
-                        <li><i class="fas fa-check"></i> Billed per hour of usage</li>
-                        <li><i class="fas fa-check"></i> Pay only for what you use</li>
-                        <li><i class="fas fa-check"></i> No minimum commitment</li>
-                        <li><i class="fas fa-check"></i> Instant resource scaling</li>
-                        <li><i class="fas fa-check"></i> Costs match your workload</li>
+                        <li><i class="fas fa-check"></i> <?php echo e(__('cloud_billing_new_1')); ?></li>
+                        <li><i class="fas fa-check"></i> <?php echo e(__('cloud_billing_new_2')); ?></li>
+                        <li><i class="fas fa-check"></i> <?php echo e(__('cloud_billing_new_3')); ?></li>
+                        <li><i class="fas fa-check"></i> <?php echo e(__('cloud_billing_new_4')); ?></li>
+                        <li><i class="fas fa-check"></i> <?php echo e(__('cloud_billing_new_5')); ?></li>
                     </ul>
                     <div class="cloud-billing-highlight">
-                        <span class="cloud-billing-from">Starting from</span>
+                        <span class="cloud-billing-from"><?php echo e(__('cloud_billing_from')); ?></span>
                         <span class="cloud-billing-price">€0.003<small>/hr</small></span>
                     </div>
                 </div>
@@ -549,30 +549,30 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="cloud-deploy reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Deploy</div>
-                <h2>From Zero to Running in 3 Steps</h2>
-                <p>No complex setups or lengthy verifications — just sign up, configure, and launch.</p>
+                <div class="section-tag"><?php echo e(__('cloud_deploy_tag')); ?></div>
+                <h2><?php echo e(__('cloud_deploy_title')); ?></h2>
+                <p><?php echo e(__('cloud_deploy_desc')); ?></p>
             </div>
             <div class="cloud-deploy-flow">
                 <div class="cloud-deploy-step">
                     <div class="cloud-deploy-num">1</div>
                     <div class="cloud-deploy-icon"><i class="fas fa-user-plus"></i></div>
-                    <h4>Create &amp; Fund</h4>
-                    <p>Sign up with email — no ID verification. Add funds starting from €5 via crypto, PayPal, or card.</p>
+                    <h4><?php echo __('cloud_deploy_step1_title'); ?></h4>
+                    <p><?php echo e(__('cloud_deploy_step1_desc')); ?></p>
                 </div>
                 <div class="cloud-deploy-connector"><i class="fas fa-chevron-right"></i></div>
                 <div class="cloud-deploy-step">
                     <div class="cloud-deploy-num">2</div>
                     <div class="cloud-deploy-icon icon-green"><i class="fas fa-sliders-h"></i></div>
-                    <h4>Configure Instance</h4>
-                    <p>Choose your region, OS, CPU, RAM, and storage. Or use the API to provision programmatically.</p>
+                    <h4><?php echo e(__('cloud_deploy_step2_title')); ?></h4>
+                    <p><?php echo e(__('cloud_deploy_step2_desc')); ?></p>
                 </div>
                 <div class="cloud-deploy-connector"><i class="fas fa-chevron-right"></i></div>
                 <div class="cloud-deploy-step">
                     <div class="cloud-deploy-num">3</div>
                     <div class="cloud-deploy-icon icon-purple"><i class="fas fa-rocket"></i></div>
-                    <h4>Launch &amp; Scale</h4>
-                    <p>Instance deploys in seconds. Hourly billing starts — scale up, down, or terminate anytime.</p>
+                    <h4><?php echo __('cloud_deploy_step3_title'); ?></h4>
+                    <p><?php echo e(__('cloud_deploy_step3_desc')); ?></p>
                 </div>
             </div>
         </div>
@@ -583,16 +583,16 @@ require_once __DIR__ . '/includes/topbar.php';
         <div class="container">
             <div class="api-layout">
                 <div class="api-text">
-                    <div class="section-tag">Automation</div>
-                    <h2>Programmatic Infrastructure</h2>
-                    <p>Manage your entire cloud fleet through our REST API. Create, resize, snapshot, and destroy instances without touching the console. Built for CI/CD pipelines, auto-scaling, and reseller platforms.</p>
+                    <div class="section-tag"><?php echo e(__('cloud_api_tag')); ?></div>
+                    <h2><?php echo e(__('cloud_api_title')); ?></h2>
+                    <p><?php echo e(__('cloud_api_desc')); ?></p>
                     <div class="api-highlights">
-                        <div class="api-highlight"><i class="fas fa-check-circle"></i> RESTful API with JSON responses</div>
-                        <div class="api-highlight"><i class="fas fa-check-circle"></i> Manage instances, IPs &amp; snapshots</div>
-                        <div class="api-highlight"><i class="fas fa-check-circle"></i> Webhook notifications</div>
-                        <div class="api-highlight"><i class="fas fa-check-circle"></i> Reseller-ready with volume discounts</div>
+                        <div class="api-highlight"><i class="fas fa-check-circle"></i> <?php echo __('cloud_api_highlight_1'); ?></div>
+                        <div class="api-highlight"><i class="fas fa-check-circle"></i> <?php echo __('cloud_api_highlight_2'); ?></div>
+                        <div class="api-highlight"><i class="fas fa-check-circle"></i> <?php echo __('cloud_api_highlight_3'); ?></div>
+                        <div class="api-highlight"><i class="fas fa-check-circle"></i> <?php echo __('cloud_api_highlight_4'); ?></div>
                     </div>
-                    <a href="https://docs.yottasrc.com/" class="btn-primary" target="_blank" rel="noopener noreferrer">API Documentation <i class="fas fa-arrow-right"></i></a>
+                    <a href="https://docs.yottasrc.com/" class="btn-primary" target="_blank" rel="noopener noreferrer"><?php echo e(__('cloud_api_docs_btn')); ?> <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="api-visual">
                     <div class="hero-terminal">
@@ -623,71 +623,71 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="cloud-usecases reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Use Cases</div>
-                <h2>Built for Modern Workloads</h2>
-                <p>From SaaS platforms to machine learning — YottaSrc Cloud adapts to every application pattern.</p>
+                <div class="section-tag"><?php echo e(__('cloud_usecases_tag')); ?></div>
+                <h2><?php echo e(__('cloud_usecases_title')); ?></h2>
+                <p><?php echo e(__('cloud_usecases_desc')); ?></p>
             </div>
 
             <div class="swiper cloud-usecases-swiper" id="cloudUsecasesSwiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide"><div class="cloud-usecase-card">
                         <div class="cloud-usecase-icon"><i class="fas fa-layer-group"></i></div>
-                        <h4>SaaS Platforms</h4>
-                        <p>Multi-tenant applications with elastic compute. Scale instances per customer, isolate workloads per region.</p>
+                        <h4><?php echo e(__('cloud_uc_saas')); ?></h4>
+                        <p><?php echo e(__('cloud_uc_saas_desc')); ?></p>
                         <ul class="cloud-usecase-list">
-                            <li>Auto-scale with API</li>
-                            <li>Per-tenant isolation</li>
-                            <li>Multi-region deploy</li>
+                            <li><?php echo e(__('cloud_uc_saas_1')); ?></li>
+                            <li><?php echo e(__('cloud_uc_saas_2')); ?></li>
+                            <li><?php echo e(__('cloud_uc_saas_3')); ?></li>
                         </ul>
                     </div></div>
                     <div class="swiper-slide"><div class="cloud-usecase-card">
                         <div class="cloud-usecase-icon icon-green"><i class="fas fa-cubes"></i></div>
-                        <h4>Microservices</h4>
-                        <p>Deploy containerized services across lightweight instances. Ideal for Kubernetes, Docker Swarm, or custom orchestration.</p>
+                        <h4><?php echo e(__('cloud_uc_micro')); ?></h4>
+                        <p><?php echo e(__('cloud_uc_micro_desc')); ?></p>
                         <ul class="cloud-usecase-list">
-                            <li>Lightweight instances</li>
-                            <li>Container-ready</li>
-                            <li>Service mesh support</li>
+                            <li><?php echo e(__('cloud_uc_micro_1')); ?></li>
+                            <li><?php echo e(__('cloud_uc_micro_2')); ?></li>
+                            <li><?php echo e(__('cloud_uc_micro_3')); ?></li>
                         </ul>
                     </div></div>
                     <div class="swiper-slide"><div class="cloud-usecase-card">
                         <div class="cloud-usecase-icon icon-purple"><i class="fas fa-brain"></i></div>
-                        <h4>AI &amp; ML Workloads</h4>
-                        <p>High-memory instances for training and inference. Spin up GPU-ready cloud nodes and pay only for compute time.</p>
+                        <h4><?php echo __('cloud_uc_ai'); ?></h4>
+                        <p><?php echo e(__('cloud_uc_ai_desc')); ?></p>
                         <ul class="cloud-usecase-list">
-                            <li>High RAM instances</li>
-                            <li>Burst compute</li>
-                            <li>Hourly billing saves costs</li>
+                            <li><?php echo e(__('cloud_uc_ai_1')); ?></li>
+                            <li><?php echo e(__('cloud_uc_ai_2')); ?></li>
+                            <li><?php echo e(__('cloud_uc_ai_3')); ?></li>
                         </ul>
                     </div></div>
                     <div class="swiper-slide"><div class="cloud-usecase-card">
                         <div class="cloud-usecase-icon icon-amber"><i class="fas fa-code-branch"></i></div>
-                        <h4>CI/CD Pipelines</h4>
-                        <p>Ephemeral build runners that spin up on commit and terminate after tests pass. API-driven for full automation.</p>
+                        <h4><?php echo e(__('cloud_uc_cicd')); ?></h4>
+                        <p><?php echo e(__('cloud_uc_cicd_desc')); ?></p>
                         <ul class="cloud-usecase-list">
-                            <li>API provisioning</li>
-                            <li>Ephemeral instances</li>
-                            <li>Zero idle costs</li>
+                            <li><?php echo e(__('cloud_uc_cicd_1')); ?></li>
+                            <li><?php echo e(__('cloud_uc_cicd_2')); ?></li>
+                            <li><?php echo e(__('cloud_uc_cicd_3')); ?></li>
                         </ul>
                     </div></div>
                     <div class="swiper-slide"><div class="cloud-usecase-card">
                         <div class="cloud-usecase-icon"><i class="fas fa-laptop-code"></i></div>
-                        <h4>Dev Environments</h4>
-                        <p>Isolated cloud workspaces for every developer. Consistent environments — create and destroy in seconds.</p>
+                        <h4><?php echo e(__('cloud_uc_dev')); ?></h4>
+                        <p><?php echo e(__('cloud_uc_dev_desc')); ?></p>
                         <ul class="cloud-usecase-list">
-                            <li>Per-developer instances</li>
-                            <li>Snapshot &amp; restore</li>
-                            <li>Cost-effective dev/test</li>
+                            <li><?php echo e(__('cloud_uc_dev_1')); ?></li>
+                            <li><?php echo __('cloud_uc_dev_2'); ?></li>
+                            <li><?php echo e(__('cloud_uc_dev_3')); ?></li>
                         </ul>
                     </div></div>
                     <div class="swiper-slide"><div class="cloud-usecase-card">
                         <div class="cloud-usecase-icon icon-green"><i class="fas fa-database"></i></div>
-                        <h4>Databases &amp; Caching</h4>
-                        <p>NVMe-backed instances for high-IOPS databases. Deploy Redis, PostgreSQL, or MongoDB with predictable performance.</p>
+                        <h4><?php echo __('cloud_uc_db'); ?></h4>
+                        <p><?php echo e(__('cloud_uc_db_desc')); ?></p>
                         <ul class="cloud-usecase-list">
-                            <li>NVMe storage</li>
-                            <li>Low-latency I/O</li>
-                            <li>Persistent volumes</li>
+                            <li><?php echo e(__('cloud_uc_db_1')); ?></li>
+                            <li><?php echo e(__('cloud_uc_db_2')); ?></li>
+                            <li><?php echo e(__('cloud_uc_db_3')); ?></li>
                         </ul>
                     </div></div>
                 </div>
@@ -700,24 +700,24 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="faq-section reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">FAQ</div>
-                <h2>Cloud Questions</h2>
-                <p>Common questions about YottaSrc Cloud.</p>
+                <div class="section-tag"><?php echo e(__('cloud_faq_tag')); ?></div>
+                <h2><?php echo e(__('cloud_faq_title')); ?></h2>
+                <p><?php echo e(__('cloud_faq_desc')); ?></p>
             </div>
             <div class="faq-layout faq-layout--full">
                 <div class="faq-panels">
                     <div class="faq-panel active" id="faq-cloud">
-                        <div class="faq-item"><button class="faq-question"><span>What is YottaSrc Cloud?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>YottaSrc Cloud is a scalable cloud platform that unifies 10+ datacenter providers into a single console and API. Deploy instances across 50+ global regions with hourly billing and no commitments.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Do I need ID verification?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>No. Sign up with email and add a minimum €5 deposit to start deploying instances immediately.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>How does hourly billing work?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>You are charged per hour while your instance is running. Stop or destroy instances anytime — billing stops immediately. Running a full month caps at the monthly price shown.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Can I scale resources after deployment?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Yes. You can resize CPU, RAM, and storage via the console or API. Changes take effect without data loss.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Is there an API for automation?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Yes. Our RESTful API lets you create, manage, snapshot, and destroy instances programmatically. Visit <a href="https://docs.yottasrc.com/">docs.yottasrc.com</a> for full documentation.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>What payment methods do you accept?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>We accept credit cards, PayPal, cryptocurrency (Bitcoin, USDT, Tron), Perfect Money, Payeer, Alipay, Coinbase, and more.</p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('cloud_faq_q1')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('cloud_faq_a1')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('cloud_faq_q2')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('cloud_faq_a2')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('cloud_faq_q3')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('cloud_faq_a3')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('cloud_faq_q4')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('cloud_faq_a4')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('cloud_faq_q5')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo __('cloud_faq_a5'); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('cloud_faq_q6')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('cloud_faq_a6')); ?></p></div></div>
                     </div>
                 </div>
             </div>
             <div class="faq-actions">
-                <a href="<?php echo e(SITE_URL); ?>/cloud-faq/" class="btn-secondary">View All Cloud FAQ <i class="fas fa-arrow-right"></i></a>
+                <a href="<?php echo e(SITE_URL); ?>/cloud-faq/" class="btn-secondary"><?php echo e(__('cloud_faq_all_btn')); ?> <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
@@ -731,9 +731,9 @@ require_once __DIR__ . '/includes/topbar.php';
             <div class="promo-cta-inner">
                 <div class="promo-cta-glow"></div>
                 <div class="promo-cta-icon"><i class="fas fa-cloud"></i></div>
-                <h2>Launch Your First Cloud Instance</h2>
-                <p>Start with €5 — deploy in seconds, scale on demand, pay by the hour.</p>
-                <a href="<?php echo e(CONSOLE_URL); ?>/cloud/" class="btn-primary">Get Started <i class="fas fa-arrow-right"></i></a>
+                <h2><?php echo e(__('cloud_cta_title')); ?></h2>
+                <p><?php echo e(__('cloud_cta_desc')); ?></p>
+                <a href="<?php echo e(CONSOLE_URL); ?>/cloud/" class="btn-primary"><?php echo e(__('cloud_cta_btn')); ?> <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>

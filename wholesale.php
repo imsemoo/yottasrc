@@ -19,19 +19,19 @@ require_once __DIR__ . '/includes/topbar.php';
                         <i class="fas fa-chevron-right"></i>
                         <span><?php echo e(__('wholesale_breadcrumb')); ?></span>
                     </div>
-                    <h1>Wholesale Reselling — <span class="highlight">Maximum Margins</span></h1>
+                    <h1><?php echo __('wholesale_title'); ?></h1>
                     <p class="page-hero-desc">
-                        Buy YottaSrc services at deeply discounted wholesale rates and resell them under your own brand. Designed for agencies, MSPs, and large-scale resellers who need volume pricing with full white-label flexibility.
+                        <?php echo e(__('wholesale_desc')); ?>
                     </p>
                     <div class="page-hero-ctas">
-                        <a href="<?php echo e(SITE_URL); ?>/contact/" class="btn-primary">Request Wholesale Access <i class="fas fa-arrow-right"></i></a>
-                        <a href="#services" class="btn-secondary"><i class="fas fa-arrow-down"></i> Learn More</a>
+                        <a href="<?php echo e(SITE_URL); ?>/contact/" class="btn-primary"><?php echo e(__('wholesale_cta_access')); ?> <i class="fas fa-arrow-right"></i></a>
+                        <a href="#services" class="btn-secondary"><i class="fas fa-arrow-down"></i> <?php echo e(__('wholesale_cta_learn')); ?></a>
                     </div>
                     <div class="page-hero-badges">
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> Up to 13% Discount</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> Full White-Label</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> Priority Support</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> WHMCS &amp; API Ready</div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('wholesale_badge_discount')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('wholesale_badge_wl')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('wholesale_badge_support')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('wholesale_badge_api')); ?></div>
                     </div>
                 </div>
                 <div class="page-hero-visual">
@@ -119,36 +119,36 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="bento-features reveal" id="services">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Wholesale Program</div>
-                <h2>What is wholesale reselling?</h2>
-                <p>Wholesale is our highest-tier partnership — buy at cost-plus pricing and keep the largest margins in the industry.</p>
+                <div class="section-tag"><?php echo e(__('wholesale_what_tag')); ?></div>
+                <h2><?php echo e(__('wholesale_what_title')); ?></h2>
+                <p><?php echo e(__('wholesale_what_desc')); ?></p>
             </div>
 
             <div class="bento-grid">
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon"><i class="fas fa-warehouse"></i></div>
-                    <h4>Bulk Volume Pricing</h4>
-                    <p>Purchase individual services at deeply discounted unit prices. The more you sell, the lower your per-unit cost.</p>
+                    <h4><?php echo e(__('wholesale_what_bulk_title')); ?></h4>
+                    <p><?php echo e(__('wholesale_what_bulk_desc')); ?></p>
                 </div>
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-green"><i class="fas fa-user-secret"></i></div>
-                    <h3>100% White-Label</h3>
-                    <p>Your clients never see YottaSrc. Use your own brand, nameservers, control panel theme, and support portal.</p>
+                    <h3><?php echo e(__('wholesale_what_wl_title')); ?></h3>
+                    <p><?php echo e(__('wholesale_what_wl_desc')); ?></p>
                 </div>
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-blue"><i class="fas fa-cogs"></i></div>
-                    <h3>WHMCS &amp; API</h3>
-                    <p>Automate provisioning with our WHMCS module or REST API. Full lifecycle management for every product type.</p>
+                    <h3><?php echo e(__('wholesale_what_api_title')); ?></h3>
+                    <p><?php echo e(__('wholesale_what_api_desc')); ?></p>
                 </div>
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-purple"><i class="fas fa-headset"></i></div>
-                    <h3>Priority Support</h3>
-                    <p>Wholesale partners get a dedicated account manager and priority ticket queue with guaranteed response times.</p>
+                    <h3><?php echo e(__('wholesale_what_support_title')); ?></h3>
+                    <p><?php echo e(__('wholesale_what_support_desc')); ?></p>
                 </div>
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-amber"><i class="fas fa-chart-line"></i></div>
-                    <h3>Partner Dashboard</h3>
-                    <p>Track revenue, client count, service usage, and billing in a single wholesale partner dashboard.</p>
+                    <h3><?php echo e(__('wholesale_what_dash_title')); ?></h3>
+                    <p><?php echo e(__('wholesale_what_dash_desc')); ?></p>
                 </div>
             </div>
         </div>
@@ -158,87 +158,87 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="ws-tiers reveal" id="plans">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Pricing</div>
-                <h2>Simple pricing, no hidden fees</h2>
-                <p>Choose the wholesale tier that fits your business. Upgrade anytime as you scale.</p>
+                <div class="section-tag"><?php echo e(__('wholesale_pricing_tag')); ?></div>
+                <h2><?php echo e(__('wholesale_pricing_title')); ?></h2>
+                <p><?php echo e(__('wholesale_pricing_desc')); ?></p>
             </div>
 
             <div class="ws-tiers-stack">
                 <div class="ws-tier">
                     <div class="ws-tier-discount" style="--tier-pct: 30%">
                         <span class="ws-tier-pct">4%</span>
-                        <span class="ws-tier-pct-label">Discount</span>
+                        <span class="ws-tier-pct-label"><?php echo e(__('wholesale_discount')); ?></span>
                     </div>
                     <div class="ws-tier-info">
-                        <div class="ws-tier-name">Starter</div>
-                        <div class="ws-tier-target">For Startups</div>
+                        <div class="ws-tier-name"><?php echo e(__('wholesale_tier_starter')); ?></div>
+                        <div class="ws-tier-target"><?php echo e(__('wholesale_target_starter')); ?></div>
                     </div>
                     <div class="ws-tier-meta">
-                        <span class="ws-tier-chip"><i class="fas fa-hdd"></i> VPS/VDS Only</span>
-                        <span class="ws-tier-chip"><i class="fas fa-headset"></i> 24/7</span>
+                        <span class="ws-tier-chip"><i class="fas fa-hdd"></i> <?php echo e(__('wholesale_chip_vps')); ?></span>
+                        <span class="ws-tier-chip"><i class="fas fa-headset"></i> <?php echo e(__('wholesale_chip_support')); ?></span>
                     </div>
                     <div class="ws-tier-price">
                         <span class="ws-tier-currency">€</span><span class="ws-tier-amount">9.9</span><span class="ws-tier-period">/mo</span>
                     </div>
-                    <a href="<?php echo e(SITE_URL); ?>/contact/" class="ws-tier-cta">Get Started <i class="fas fa-arrow-right"></i></a>
+                    <a href="<?php echo e(SITE_URL); ?>/contact/" class="ws-tier-cta"><?php echo e(__('common_get_started')); ?> <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <div class="ws-tier">
                     <div class="ws-tier-discount" style="--tier-pct: 53%">
                         <span class="ws-tier-pct">7%</span>
-                        <span class="ws-tier-pct-label">Discount</span>
+                        <span class="ws-tier-pct-label"><?php echo e(__('wholesale_discount')); ?></span>
                     </div>
                     <div class="ws-tier-info">
-                        <div class="ws-tier-name">Platinum</div>
-                        <div class="ws-tier-target">For Growing Business</div>
+                        <div class="ws-tier-name"><?php echo e(__('wholesale_tier_platinum')); ?></div>
+                        <div class="ws-tier-target"><?php echo e(__('wholesale_target_platinum')); ?></div>
                     </div>
                     <div class="ws-tier-meta">
-                        <span class="ws-tier-chip"><i class="fas fa-layer-group"></i> All Services</span>
-                        <span class="ws-tier-chip"><i class="fas fa-headset"></i> 24/7</span>
+                        <span class="ws-tier-chip"><i class="fas fa-layer-group"></i> <?php echo e(__('wholesale_chip_all')); ?></span>
+                        <span class="ws-tier-chip"><i class="fas fa-headset"></i> <?php echo e(__('wholesale_chip_support')); ?></span>
                     </div>
                     <div class="ws-tier-price">
                         <span class="ws-tier-currency">€</span><span class="ws-tier-amount">14.99</span><span class="ws-tier-period">/mo</span>
                     </div>
-                    <a href="<?php echo e(SITE_URL); ?>/contact/" class="ws-tier-cta">Get Started <i class="fas fa-arrow-right"></i></a>
+                    <a href="<?php echo e(SITE_URL); ?>/contact/" class="ws-tier-cta"><?php echo e(__('common_get_started')); ?> <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <div class="ws-tier ws-tier--popular">
-                    <div class="ws-tier-badge">Most Popular</div>
+                    <div class="ws-tier-badge"><?php echo e(__('reseller_most_popular')); ?></div>
                     <div class="ws-tier-discount" style="--tier-pct: 76%">
                         <span class="ws-tier-pct">10%</span>
-                        <span class="ws-tier-pct-label">Discount</span>
+                        <span class="ws-tier-pct-label"><?php echo e(__('wholesale_discount')); ?></span>
                     </div>
                     <div class="ws-tier-info">
-                        <div class="ws-tier-name">Business</div>
-                        <div class="ws-tier-target">Professional Plan</div>
+                        <div class="ws-tier-name"><?php echo e(__('wholesale_tier_business')); ?></div>
+                        <div class="ws-tier-target"><?php echo e(__('wholesale_target_business')); ?></div>
                     </div>
                     <div class="ws-tier-meta">
-                        <span class="ws-tier-chip"><i class="fas fa-layer-group"></i> All Services</span>
-                        <span class="ws-tier-chip"><i class="fas fa-headset"></i> 24/7</span>
+                        <span class="ws-tier-chip"><i class="fas fa-layer-group"></i> <?php echo e(__('wholesale_chip_all')); ?></span>
+                        <span class="ws-tier-chip"><i class="fas fa-headset"></i> <?php echo e(__('wholesale_chip_support')); ?></span>
                     </div>
                     <div class="ws-tier-price">
                         <span class="ws-tier-currency">€</span><span class="ws-tier-amount">19.99</span><span class="ws-tier-period">/mo</span>
                     </div>
-                    <a href="<?php echo e(SITE_URL); ?>/contact/" class="ws-tier-cta ws-tier-cta--primary">Get Started <i class="fas fa-arrow-right"></i></a>
+                    <a href="<?php echo e(SITE_URL); ?>/contact/" class="ws-tier-cta ws-tier-cta--primary"><?php echo e(__('common_get_started')); ?> <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <div class="ws-tier">
                     <div class="ws-tier-discount" style="--tier-pct: 100%">
                         <span class="ws-tier-pct">13%</span>
-                        <span class="ws-tier-pct-label">Discount</span>
+                        <span class="ws-tier-pct-label"><?php echo e(__('wholesale_discount')); ?></span>
                     </div>
                     <div class="ws-tier-info">
-                        <div class="ws-tier-name">Enterprise</div>
-                        <div class="ws-tier-target">Enterprise Businesses</div>
+                        <div class="ws-tier-name"><?php echo e(__('wholesale_tier_enterprise')); ?></div>
+                        <div class="ws-tier-target"><?php echo e(__('wholesale_target_enterprise')); ?></div>
                     </div>
                     <div class="ws-tier-meta">
-                        <span class="ws-tier-chip"><i class="fas fa-layer-group"></i> All Services</span>
-                        <span class="ws-tier-chip"><i class="fas fa-headset"></i> 24/7</span>
+                        <span class="ws-tier-chip"><i class="fas fa-layer-group"></i> <?php echo e(__('wholesale_chip_all')); ?></span>
+                        <span class="ws-tier-chip"><i class="fas fa-headset"></i> <?php echo e(__('wholesale_chip_support')); ?></span>
                     </div>
                     <div class="ws-tier-price">
                         <span class="ws-tier-currency">€</span><span class="ws-tier-amount">24.49</span><span class="ws-tier-period">/mo</span>
                     </div>
-                    <a href="<?php echo e(SITE_URL); ?>/contact/" class="ws-tier-cta">Get Started <i class="fas fa-arrow-right"></i></a>
+                    <a href="<?php echo e(SITE_URL); ?>/contact/" class="ws-tier-cta"><?php echo e(__('common_get_started')); ?> <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -249,56 +249,56 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="wholesale-services reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Services</div>
-                <h2>What can you resell?</h2>
-                <p>Every YottaSrc product is available at wholesale pricing.</p>
+                <div class="section-tag"><?php echo e(__('wholesale_services_tag')); ?></div>
+                <h2><?php echo e(__('wholesale_services_title')); ?></h2>
+                <p><?php echo e(__('wholesale_services_desc')); ?></p>
             </div>
 
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-server"></i></div>
-                    <h4>cPanel Hosting</h4>
-                    <p>Shared hosting with LiteSpeed, NVMe, and cPanel — all plans from Mini to Enterprise.</p>
+                    <h4><?php echo e(__('wholesale_svc_cpanel_title')); ?></h4>
+                    <p><?php echo e(__('wholesale_svc_cpanel_desc')); ?></p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon icon-green"><i class="fab fa-wordpress"></i></div>
-                    <h4>WordPress Hosting</h4>
-                    <p>Optimized WordPress hosting with staging, auto-updates, and LiteSpeed Cache built in.</p>
+                    <h4><?php echo e(__('wholesale_svc_wp_title')); ?></h4>
+                    <p><?php echo e(__('wholesale_svc_wp_desc')); ?></p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon icon-blue"><i class="fas fa-cloud"></i></div>
-                    <h4>Cloud Servers</h4>
-                    <p>Scalable cloud instances across 50+ regions with hourly billing and full root access.</p>
+                    <h4><?php echo e(__('wholesale_svc_cloud_title')); ?></h4>
+                    <p><?php echo e(__('wholesale_svc_cloud_desc')); ?></p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon icon-purple"><i class="fas fa-hdd"></i></div>
-                    <h4>VPS / VDS</h4>
-                    <p>Linux and Windows VPS with dedicated resources, SSD storage, and instant deployment.</p>
+                    <h4><?php echo e(__('wholesale_svc_vps_title')); ?></h4>
+                    <p><?php echo e(__('wholesale_svc_vps_desc')); ?></p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon icon-amber"><i class="fas fa-network-wired"></i></div>
-                    <h4>Dedicated Servers</h4>
-                    <p>Bare-metal dedicated servers with full hardware isolation and custom configurations.</p>
+                    <h4><?php echo e(__('wholesale_svc_dedi_title')); ?></h4>
+                    <p><?php echo e(__('wholesale_svc_dedi_desc')); ?></p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon icon-rose"><i class="fas fa-globe"></i></div>
-                    <h4>Domain Names</h4>
-                    <p>Register and manage domains across 500+ TLDs at wholesale registrar pricing.</p>
+                    <h4><?php echo e(__('wholesale_svc_domain_title')); ?></h4>
+                    <p><?php echo e(__('wholesale_svc_domain_desc')); ?></p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-certificate"></i></div>
-                    <h4>SSL Certificates</h4>
-                    <p>DV, OV, and EV SSL certificates from trusted CAs at partner-exclusive rates.</p>
+                    <h4><?php echo e(__('wholesale_svc_ssl_title')); ?></h4>
+                    <p><?php echo e(__('wholesale_svc_ssl_desc')); ?></p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon icon-green"><i class="fab fa-microsoft"></i></div>
-                    <h4>Microsoft Licenses</h4>
-                    <p>Windows, Office, RDS CALs, and other Microsoft products at volume pricing.</p>
+                    <h4><?php echo e(__('wholesale_svc_ms_title')); ?></h4>
+                    <p><?php echo e(__('wholesale_svc_ms_desc')); ?></p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon icon-blue"><i class="fas fa-envelope"></i></div>
-                    <h4>Email Hosting</h4>
-                    <p>Professional email solutions with custom domains, webmail, and IMAP/POP3 support.</p>
+                    <h4><?php echo e(__('wholesale_svc_email_title')); ?></h4>
+                    <p><?php echo e(__('wholesale_svc_email_desc')); ?></p>
                 </div>
             </div>
         </div>
@@ -308,36 +308,36 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="bento-features reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Why Wholesale</div>
-                <h2>Benefits of the wholesale program</h2>
-                <p>Everything you need to run a profitable hosting business at scale.</p>
+                <div class="section-tag"><?php echo e(__('wholesale_benefits_tag')); ?></div>
+                <h2><?php echo e(__('wholesale_benefits_title')); ?></h2>
+                <p><?php echo e(__('wholesale_benefits_desc')); ?></p>
             </div>
 
             <div class="bento-grid">
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon"><i class="fas fa-percentage"></i></div>
-                    <h3>Up to 13% Discount</h3>
-                    <p>Tiered wholesale pricing from 4% to 13% off — set your own retail prices and keep the margin.</p>
+                    <h3><?php echo e(__('wholesale_ben_discount_title')); ?></h3>
+                    <p><?php echo e(__('wholesale_ben_discount_desc')); ?></p>
                 </div>
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-green"><i class="fas fa-infinity"></i></div>
-                    <h3>No Minimums</h3>
-                    <p>No minimum order quantities or monthly commitments. Start small and scale as your client base grows.</p>
+                    <h3><?php echo e(__('wholesale_ben_nomin_title')); ?></h3>
+                    <p><?php echo e(__('wholesale_ben_nomin_desc')); ?></p>
                 </div>
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-blue"><i class="fas fa-file-invoice-dollar"></i></div>
-                    <h3>Consolidated Billing</h3>
-                    <p>One invoice for all services. Simplify your accounting with monthly consolidated billing.</p>
+                    <h3><?php echo e(__('wholesale_ben_billing_title')); ?></h3>
+                    <p><?php echo e(__('wholesale_ben_billing_desc')); ?></p>
                 </div>
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-purple"><i class="fas fa-handshake"></i></div>
-                    <h3>Dedicated Account Manager</h3>
-                    <p>Get a personal account manager who understands your business and helps you grow.</p>
+                    <h3><?php echo e(__('wholesale_ben_manager_title')); ?></h3>
+                    <p><?php echo e(__('wholesale_ben_manager_desc')); ?></p>
                 </div>
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-amber"><i class="fas fa-rocket"></i></div>
-                    <h4>Instant Provisioning</h4>
-                    <p>All services provisioned instantly. Clients get their services within seconds of payment — fully automated lifecycle.</p>
+                    <h4><?php echo e(__('wholesale_ben_instant_title')); ?></h4>
+                    <p><?php echo e(__('wholesale_ben_instant_desc')); ?></p>
                 </div>
             </div>
         </div>
@@ -347,65 +347,65 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="wholesale-compare reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Comparison</div>
-                <h2>Wholesale vs. Standard Reseller</h2>
-                <p>See how wholesale stacks up against our standard reseller plans.</p>
+                <div class="section-tag"><?php echo e(__('wholesale_compare_tag')); ?></div>
+                <h2><?php echo e(__('wholesale_compare_title')); ?></h2>
+                <p><?php echo e(__('wholesale_compare_desc')); ?></p>
             </div>
 
             <div class="compare-table-wrap">
                 <table class="compare-table">
                     <thead>
                         <tr>
-                            <th>Feature</th>
-                            <th>Standard Reseller</th>
-                            <th class="compare-highlight">Wholesale Partner</th>
+                            <th><?php echo e(__('wholesale_cmp_feature')); ?></th>
+                            <th><?php echo e(__('wholesale_cmp_standard')); ?></th>
+                            <th class="compare-highlight"><?php echo e(__('wholesale_cmp_wholesale')); ?></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Pricing Model</td>
-                            <td>Fixed resource pool</td>
-                            <td class="compare-highlight">Per-unit cost-plus</td>
+                            <td><?php echo e(__('wholesale_cmp_pricing')); ?></td>
+                            <td><?php echo e(__('wholesale_cmp_pricing_std')); ?></td>
+                            <td class="compare-highlight"><?php echo e(__('wholesale_cmp_pricing_ws')); ?></td>
                         </tr>
                         <tr>
-                            <td>Discount Level</td>
-                            <td>Up to 13% off</td>
-                            <td class="compare-highlight">Up to 13% off (tiered)</td>
+                            <td><?php echo e(__('wholesale_cmp_discount')); ?></td>
+                            <td><?php echo e(__('wholesale_cmp_discount_std')); ?></td>
+                            <td class="compare-highlight"><?php echo e(__('wholesale_cmp_discount_ws')); ?></td>
                         </tr>
                         <tr>
-                            <td>Product Range</td>
-                            <td>Hosting only</td>
-                            <td class="compare-highlight">All products (Hosting, VPS, Cloud, Domains, SSL)</td>
+                            <td><?php echo e(__('wholesale_cmp_products')); ?></td>
+                            <td><?php echo e(__('wholesale_cmp_products_std')); ?></td>
+                            <td class="compare-highlight"><?php echo e(__('wholesale_cmp_products_ws')); ?></td>
                         </tr>
                         <tr>
-                            <td>White-Label</td>
-                            <td><i class="fas fa-check text-green"></i> Partial</td>
-                            <td class="compare-highlight"><i class="fas fa-check text-green"></i> Full</td>
+                            <td><?php echo e(__('wholesale_cmp_wl')); ?></td>
+                            <td><i class="fas fa-check text-green"></i> <?php echo e(__('wholesale_cmp_wl_std')); ?></td>
+                            <td class="compare-highlight"><i class="fas fa-check text-green"></i> <?php echo e(__('wholesale_cmp_wl_ws')); ?></td>
                         </tr>
                         <tr>
-                            <td>API Access</td>
-                            <td><i class="fas fa-times text-red"></i> Limited</td>
-                            <td class="compare-highlight"><i class="fas fa-check text-green"></i> Full REST API</td>
+                            <td><?php echo e(__('wholesale_cmp_api')); ?></td>
+                            <td><i class="fas fa-times text-red"></i> <?php echo e(__('wholesale_cmp_api_std')); ?></td>
+                            <td class="compare-highlight"><i class="fas fa-check text-green"></i> <?php echo e(__('wholesale_cmp_api_ws')); ?></td>
                         </tr>
                         <tr>
-                            <td>WHMCS Module</td>
-                            <td><i class="fas fa-check text-green"></i> Basic</td>
-                            <td class="compare-highlight"><i class="fas fa-check text-green"></i> Advanced</td>
+                            <td><?php echo e(__('wholesale_cmp_whmcs')); ?></td>
+                            <td><i class="fas fa-check text-green"></i> <?php echo e(__('wholesale_cmp_whmcs_std')); ?></td>
+                            <td class="compare-highlight"><i class="fas fa-check text-green"></i> <?php echo e(__('wholesale_cmp_whmcs_ws')); ?></td>
                         </tr>
                         <tr>
-                            <td>Account Manager</td>
-                            <td><i class="fas fa-times text-red"></i> No</td>
-                            <td class="compare-highlight"><i class="fas fa-check text-green"></i> Dedicated</td>
+                            <td><?php echo e(__('wholesale_cmp_manager')); ?></td>
+                            <td><i class="fas fa-times text-red"></i> <?php echo e(__('wholesale_cmp_manager_std')); ?></td>
+                            <td class="compare-highlight"><i class="fas fa-check text-green"></i> <?php echo e(__('wholesale_cmp_manager_ws')); ?></td>
                         </tr>
                         <tr>
-                            <td>Support Priority</td>
-                            <td>Standard</td>
-                            <td class="compare-highlight">Priority queue</td>
+                            <td><?php echo e(__('wholesale_cmp_support')); ?></td>
+                            <td><?php echo e(__('wholesale_cmp_support_std')); ?></td>
+                            <td class="compare-highlight"><?php echo e(__('wholesale_cmp_support_ws')); ?></td>
                         </tr>
                         <tr>
-                            <td>Billing</td>
-                            <td>Per-plan invoicing</td>
-                            <td class="compare-highlight">Consolidated monthly</td>
+                            <td><?php echo e(__('wholesale_cmp_billing')); ?></td>
+                            <td><?php echo e(__('wholesale_cmp_billing_std')); ?></td>
+                            <td class="compare-highlight"><?php echo e(__('wholesale_cmp_billing_ws')); ?></td>
                         </tr>
                     </tbody>
                 </table>
@@ -417,35 +417,35 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="onboarding reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Get Started</div>
-                <h2>How to become a wholesale partner</h2>
-                <p>Join our wholesale program in a few simple steps.</p>
+                <div class="section-tag"><?php echo e(__('wholesale_join_tag')); ?></div>
+                <h2><?php echo e(__('wholesale_join_title')); ?></h2>
+                <p><?php echo e(__('wholesale_join_desc')); ?></p>
             </div>
 
             <div class="vps-steps-grid">
                 <div class="vps-step-card">
                     <div class="vps-step-num">1</div>
                     <div class="vps-step-icon"><i class="fas fa-paper-plane"></i></div>
-                    <h4>Apply</h4>
-                    <p>Contact our sales team with details about your business, expected volume, and target markets.</p>
+                    <h4><?php echo e(__('wholesale_join_s1_title')); ?></h4>
+                    <p><?php echo e(__('wholesale_join_s1_desc')); ?></p>
                 </div>
                 <div class="vps-step-card">
                     <div class="vps-step-num">2</div>
                     <div class="vps-step-icon icon-green"><i class="fas fa-user-check"></i></div>
-                    <h4>Get Approved</h4>
-                    <p>Our team reviews your application and sets up your wholesale account with custom pricing tiers.</p>
+                    <h4><?php echo e(__('wholesale_join_s2_title')); ?></h4>
+                    <p><?php echo e(__('wholesale_join_s2_desc')); ?></p>
                 </div>
                 <div class="vps-step-card">
                     <div class="vps-step-num">3</div>
                     <div class="vps-step-icon icon-purple"><i class="fas fa-plug"></i></div>
-                    <h4>Integrate</h4>
-                    <p>Connect via our WHMCS module or API. We help you set up automation and branding.</p>
+                    <h4><?php echo e(__('wholesale_join_s3_title')); ?></h4>
+                    <p><?php echo e(__('wholesale_join_s3_desc')); ?></p>
                 </div>
                 <div class="vps-step-card">
                     <div class="vps-step-num">4</div>
                     <div class="vps-step-icon icon-amber"><i class="fas fa-rocket"></i></div>
-                    <h4>Start Selling</h4>
-                    <p>List services on your storefront, set your own prices, and start earning from day one.</p>
+                    <h4><?php echo e(__('wholesale_join_s4_title')); ?></h4>
+                    <p><?php echo e(__('wholesale_join_s4_desc')); ?></p>
                 </div>
             </div>
         </div>
@@ -455,25 +455,25 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="faq-section reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">FAQ</div>
-                <h2>Frequently asked questions</h2>
+                <div class="section-tag"><?php echo e(__('wholesale_faq_tag')); ?></div>
+                <h2><?php echo e(__('wholesale_faq_title')); ?></h2>
             </div>
 
             <div class="faq-layout faq-layout--full">
                 <div class="faq-panels">
                     <div class="faq-panel active" id="faq-wholesale">
-                        <div class="faq-item"><button class="faq-question"><span>What is the difference between wholesale and reseller?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Standard reseller plans give you a fixed resource pool to divide among clients. Wholesale gives you per-unit pricing on every YottaSrc product — hosting, VPS, cloud, domains, and SSL — with deeper discounts and full automation.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Is there a minimum order or commitment?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>No, there are no minimum order quantities or monthly commitments. You pay only for what you sell.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Can I set my own pricing?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Absolutely. You buy at wholesale cost and set whatever retail prices you want. The margin is entirely yours.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Do my clients contact YottaSrc for support?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>No — your clients contact you. You handle first-line support and can escalate to our priority queue when needed. Your clients never interact with YottaSrc directly.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>How do I get started?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Contact our sales team via the button above or email <a href="mailto:sales@yottasrc.com">sales@yottasrc.com</a>. We'll review your application and set up your wholesale account within 24–48 hours.</p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('wholesale_faq_q1')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('wholesale_faq_a1')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('wholesale_faq_q2')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('wholesale_faq_a2')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('wholesale_faq_q3')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('wholesale_faq_a3')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('wholesale_faq_q4')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('wholesale_faq_a4')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('wholesale_faq_q5')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo __('wholesale_faq_a5'); ?></p></div></div>
                     </div>
                 </div>
             </div>
 
             <div class="faq-actions">
-                <a href="<?php echo e(SITE_URL); ?>/contact/" class="btn-primary"><i class="fas fa-headset"></i> Contact Sales</a>
-                <a href="<?php echo e(SITE_URL); ?>/faq/" class="btn-secondary">Browse All FAQ <i class="fas fa-arrow-right"></i></a>
+                <a href="<?php echo e(SITE_URL); ?>/contact/" class="btn-primary"><i class="fas fa-headset"></i> <?php echo e(__('common_contact_sales')); ?></a>
+                <a href="<?php echo e(SITE_URL); ?>/faq/" class="btn-secondary"><?php echo e(__('common_browse_faq')); ?> <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
@@ -484,9 +484,9 @@ require_once __DIR__ . '/includes/topbar.php';
             <div class="promo-cta-inner">
                 <div class="promo-cta-glow"></div>
                 <div class="promo-cta-icon"><i class="fas fa-handshake"></i></div>
-                <h2>Ready to scale your hosting business?</h2>
-                <p>Join the YottaSrc wholesale program and get the best margins in the industry.</p>
-                <a href="<?php echo e(SITE_URL); ?>/contact/" class="btn-primary">Apply for Wholesale <i class="fas fa-arrow-right"></i></a>
+                <h2><?php echo e(__('wholesale_cta_title')); ?></h2>
+                <p><?php echo e(__('wholesale_cta_desc')); ?></p>
+                <a href="<?php echo e(SITE_URL); ?>/contact/" class="btn-primary"><?php echo e(__('wholesale_cta_apply')); ?> <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>

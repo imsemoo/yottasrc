@@ -161,15 +161,15 @@ require_once __DIR__ . '/includes/topbar.php';
     <!-- ═══════════════ POWERED BY STRIP ═══════════════ -->
     <section class="partners">
         <div class="container">
-            <span class="partners-label">Powered By</span>
+            <span class="partners-label"><?php echo e(__('cp_partners_label')); ?></span>
             <div class="partners-logos">
-                <span class="partner-logo"><i class="fas fa-bolt"></i> LiteSpeed</span>
-                <span class="partner-logo"><i class="fas fa-shield-alt"></i> CloudLinux</span>
-                <span class="partner-logo"><i class="fas fa-server"></i> cPanel</span>
-                <span class="partner-logo"><i class="fas fa-hdd"></i> NVMe SSD</span>
-                <span class="partner-logo"><i class="fas fa-robot"></i> Imunify360</span>
-                <span class="partner-logo"><i class="fas fa-cloud-download-alt"></i> JetBackup</span>
-                <span class="partner-logo"><i class="fas fa-th"></i> Softaculous</span>
+                <span class="partner-logo"><i class="fas fa-bolt"></i> <?php echo e(__('cp_partner_litespeed')); ?></span>
+                <span class="partner-logo"><i class="fas fa-shield-alt"></i> <?php echo e(__('cp_partner_cloudlinux')); ?></span>
+                <span class="partner-logo"><i class="fas fa-server"></i> <?php echo e(__('cp_partner_cpanel')); ?></span>
+                <span class="partner-logo"><i class="fas fa-hdd"></i> <?php echo e(__('cp_partner_nvme')); ?></span>
+                <span class="partner-logo"><i class="fas fa-robot"></i> <?php echo e(__('cp_partner_imunify')); ?></span>
+                <span class="partner-logo"><i class="fas fa-cloud-download-alt"></i> <?php echo e(__('cp_partner_jetbackup')); ?></span>
+                <span class="partner-logo"><i class="fas fa-th"></i> <?php echo e(__('cp_partner_softaculous')); ?></span>
             </div>
         </div>
     </section>
@@ -178,9 +178,9 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="plans reveal" id="plans">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Pricing</div>
-                <h2>Simple, transparent pricing</h2>
-                <p>Same price on renewal. No surprise increases. 30-day money-back guarantee on all plans.</p>
+                <div class="section-tag"><?php echo e(__('plans_tag')); ?></div>
+                <h2><?php echo e(__('plans_title')); ?></h2>
+                <p><?php echo e(__('plans_desc')); ?></p>
             </div>
 
             <div class="plans-panel active" data-tab="cpanel-hosting">
@@ -188,198 +188,198 @@ require_once __DIR__ . '/includes/topbar.php';
                     <div class="swiper-wrapper">
                         <!-- Gift -->
                         <div class="swiper-slide"><div class="plan-card">
-                            <div class="plan-head"><div class="plan-name">Gift</div><span class="plan-save">Save 44%</span></div>
-                            <div class="plan-target">For beginners</div>
+                            <div class="plan-head"><div class="plan-name"><?php echo e(__('cp_plan_gift')); ?></div><span class="plan-save"><?php echo e(__('cp_plan_gift_save')); ?></span></div>
+                            <div class="plan-target"><?php echo e(__('cp_plan_gift_target')); ?></div>
                             <div class="plan-price">
-                                <span class="old-price">€1.49</span>
-                                <span class="current-price"><span class="currency">€</span><span class="amount">0.83</span><span class="period">EUR / mo</span></span>
+                                <span class="old-price"><?php echo e(__('cp_plan_gift_old_price')); ?></span>
+                                <span class="current-price"><span class="currency">€</span><span class="amount"><?php echo e(__('cp_plan_gift_price')); ?></span><span class="period"><?php echo e(__('cp_plan_gift_period')); ?></span></span>
                             </div>
-                            <div class="plan-renewal"><i class="fas fa-check"></i> Same price on renewal</div>
-                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/cart.php?a=add&pid=1">Choose Plan</button>
+                            <div class="plan-renewal"><i class="fas fa-check"></i> <?php echo e(__('plans_same_renewal')); ?></div>
+                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/cart.php?a=add&pid=1"><?php echo e(__('cp_plan_choose')); ?></button>
                             <div class="plan-resources">
-                                <div class="plan-res"><i class="fas fa-microchip"></i><span class="res-val">1</span><span class="res-label">CPU Core</span></div>
-                                <div class="plan-res"><i class="fas fa-memory"></i><span class="res-val">1.5 GB</span><span class="res-label">RAM</span></div>
-                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">5 GB</span><span class="res-label">NVMe Storage</span></div>
-                                <div class="plan-res"><i class="fas fa-tachometer-alt"></i><span class="res-val">25 MB/s</span><span class="res-label">I/O Speed</span></div>
+                                <div class="plan-res"><i class="fas fa-microchip"></i><span class="res-val">1</span><span class="res-label"><?php echo e(__('cp_res_cpu_core')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-memory"></i><span class="res-val">1.5 GB</span><span class="res-label"><?php echo e(__('cp_res_ram')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">5 GB</span><span class="res-label"><?php echo e(__('cp_res_nvme')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-tachometer-alt"></i><span class="res-val">25 MB/s</span><span class="res-label"><?php echo e(__('cp_res_io')); ?></span></div>
                             </div>
-                            <div class="plan-divider"><span>Included</span></div>
+                            <div class="plan-divider"><span><?php echo e(__('cp_plan_included')); ?></span></div>
                             <ul class="plan-features">
-                                <li><i class="fas fa-globe"></i> Free Domain &amp; SSL</li>
-                                <li><i class="fas fa-sitemap"></i> 3 Addon Domains</li>
-                                <li><i class="fas fa-database"></i> 3 DB / 3 Emails</li>
-                                <li><i class="fas fa-wifi"></i> Unlimited Bandwidth</li>
-                                <li><i class="fab fa-php"></i> PHP 5.2–8.4 &amp; Node.js</li>
-                                <li><i class="fas fa-terminal"></i> Terminal Access</li>
-                                <li><i class="fas fa-map-marker-alt"></i> 20+ Locations</li>
+                                <li><i class="fas fa-globe"></i> <?php echo e(__('cp_feat_domain_ssl')); ?></li>
+                                <li><i class="fas fa-sitemap"></i> <?php echo e(__('cp_feat_addon_3')); ?></li>
+                                <li><i class="fas fa-database"></i> <?php echo e(__('cp_feat_db_3')); ?></li>
+                                <li><i class="fas fa-wifi"></i> <?php echo e(__('cp_feat_unlimited_bw')); ?></li>
+                                <li><i class="fab fa-php"></i> <?php echo e(__('cp_feat_php_node')); ?></li>
+                                <li><i class="fas fa-terminal"></i> <?php echo e(__('cp_feat_terminal')); ?></li>
+                                <li><i class="fas fa-map-marker-alt"></i> <?php echo e(__('cp_feat_locations')); ?></li>
                             </ul>
                         </div></div>
 
                         <!-- Mini Starter -->
                         <div class="swiper-slide"><div class="plan-card">
-                            <div class="plan-head"><div class="plan-name">Mini Starter</div><span class="plan-save">Save 44%</span></div>
-                            <div class="plan-target">For personal projects</div>
+                            <div class="plan-head"><div class="plan-name"><?php echo e(__('cp_plan_mini')); ?></div><span class="plan-save"><?php echo e(__('cp_plan_mini_save')); ?></span></div>
+                            <div class="plan-target"><?php echo e(__('cp_plan_mini_target')); ?></div>
                             <div class="plan-price">
-                                <span class="old-price">€2.99</span>
-                                <span class="current-price"><span class="currency">€</span><span class="amount">1.67</span><span class="period">EUR / mo</span></span>
+                                <span class="old-price"><?php echo e(__('cp_plan_mini_old_price')); ?></span>
+                                <span class="current-price"><span class="currency">€</span><span class="amount"><?php echo e(__('cp_plan_mini_price')); ?></span><span class="period"><?php echo e(__('cp_plan_gift_period')); ?></span></span>
                             </div>
-                            <div class="plan-renewal"><i class="fas fa-check"></i> Same price on renewal</div>
-                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/cart.php?a=add&pid=2">Choose Plan</button>
+                            <div class="plan-renewal"><i class="fas fa-check"></i> <?php echo e(__('plans_same_renewal')); ?></div>
+                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/cart.php?a=add&pid=2"><?php echo e(__('cp_plan_choose')); ?></button>
                             <div class="plan-resources">
-                                <div class="plan-res"><i class="fas fa-microchip"></i><span class="res-val">2</span><span class="res-label">CPU Cores</span></div>
-                                <div class="plan-res"><i class="fas fa-memory"></i><span class="res-val">2 GB</span><span class="res-label">RAM</span></div>
-                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">10 GB</span><span class="res-label">NVMe Storage</span></div>
-                                <div class="plan-res"><i class="fas fa-tachometer-alt"></i><span class="res-val">100 MB/s</span><span class="res-label">I/O Speed</span></div>
+                                <div class="plan-res"><i class="fas fa-microchip"></i><span class="res-val">2</span><span class="res-label"><?php echo e(__('cp_res_cpu_cores')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-memory"></i><span class="res-val">2 GB</span><span class="res-label"><?php echo e(__('cp_res_ram')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">10 GB</span><span class="res-label"><?php echo e(__('cp_res_nvme')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-tachometer-alt"></i><span class="res-val">100 MB/s</span><span class="res-label"><?php echo e(__('cp_res_io')); ?></span></div>
                             </div>
-                            <div class="plan-divider"><span>Included</span></div>
+                            <div class="plan-divider"><span><?php echo e(__('cp_plan_included')); ?></span></div>
                             <ul class="plan-features">
-                                <li><i class="fas fa-globe"></i> Free Domain &amp; SSL</li>
-                                <li><i class="fas fa-sitemap"></i> 10 Addon Domains</li>
-                                <li><i class="fas fa-database"></i> 10 DB / 10 Emails</li>
-                                <li><i class="fas fa-wifi"></i> Unlimited Bandwidth</li>
-                                <li><i class="fab fa-php"></i> PHP 5.2–8.4 &amp; Node.js</li>
-                                <li><i class="fas fa-terminal"></i> Terminal Access</li>
-                                <li><i class="fas fa-map-marker-alt"></i> 20+ Locations</li>
+                                <li><i class="fas fa-globe"></i> <?php echo e(__('cp_feat_domain_ssl')); ?></li>
+                                <li><i class="fas fa-sitemap"></i> <?php echo e(__('cp_feat_addon_10')); ?></li>
+                                <li><i class="fas fa-database"></i> <?php echo e(__('cp_feat_db_10')); ?></li>
+                                <li><i class="fas fa-wifi"></i> <?php echo e(__('cp_feat_unlimited_bw')); ?></li>
+                                <li><i class="fab fa-php"></i> <?php echo e(__('cp_feat_php_node')); ?></li>
+                                <li><i class="fas fa-terminal"></i> <?php echo e(__('cp_feat_terminal')); ?></li>
+                                <li><i class="fas fa-map-marker-alt"></i> <?php echo e(__('cp_feat_locations')); ?></li>
                             </ul>
                         </div></div>
 
                         <!-- Starter -->
                         <div class="swiper-slide"><div class="plan-card">
-                            <div class="plan-head"><div class="plan-name">Starter</div><span class="plan-save">Save 42%</span></div>
-                            <div class="plan-target">For startups</div>
+                            <div class="plan-head"><div class="plan-name"><?php echo e(__('cp_plan_starter')); ?></div><span class="plan-save"><?php echo e(__('cp_plan_starter_save')); ?></span></div>
+                            <div class="plan-target"><?php echo e(__('cp_plan_starter_target')); ?></div>
                             <div class="plan-price">
-                                <span class="old-price">€3.99</span>
-                                <span class="current-price"><span class="currency">€</span><span class="amount">2.33</span><span class="period">EUR / mo</span></span>
+                                <span class="old-price"><?php echo e(__('cp_plan_starter_old_price')); ?></span>
+                                <span class="current-price"><span class="currency">€</span><span class="amount"><?php echo e(__('cp_plan_starter_price')); ?></span><span class="period"><?php echo e(__('cp_plan_gift_period')); ?></span></span>
                             </div>
-                            <div class="plan-renewal"><i class="fas fa-check"></i> Same price on renewal</div>
-                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/cart.php?a=add&pid=3">Choose Plan</button>
+                            <div class="plan-renewal"><i class="fas fa-check"></i> <?php echo e(__('plans_same_renewal')); ?></div>
+                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/cart.php?a=add&pid=3"><?php echo e(__('cp_plan_choose')); ?></button>
                             <div class="plan-resources">
-                                <div class="plan-res"><i class="fas fa-microchip"></i><span class="res-val">2.5</span><span class="res-label">CPU Cores</span></div>
-                                <div class="plan-res"><i class="fas fa-memory"></i><span class="res-val">2.5 GB</span><span class="res-label">RAM</span></div>
-                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">15 GB</span><span class="res-label">NVMe Storage</span></div>
-                                <div class="plan-res"><i class="fas fa-tachometer-alt"></i><span class="res-val">200 MB/s</span><span class="res-label">I/O Speed</span></div>
+                                <div class="plan-res"><i class="fas fa-microchip"></i><span class="res-val">2.5</span><span class="res-label"><?php echo e(__('cp_res_cpu_cores')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-memory"></i><span class="res-val">2.5 GB</span><span class="res-label"><?php echo e(__('cp_res_ram')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">15 GB</span><span class="res-label"><?php echo e(__('cp_res_nvme')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-tachometer-alt"></i><span class="res-val">200 MB/s</span><span class="res-label"><?php echo e(__('cp_res_io')); ?></span></div>
                             </div>
-                            <div class="plan-divider"><span>Included</span></div>
+                            <div class="plan-divider"><span><?php echo e(__('cp_plan_included')); ?></span></div>
                             <ul class="plan-features">
-                                <li><i class="fas fa-globe"></i> Free Domain &amp; SSL</li>
-                                <li><i class="fas fa-sitemap"></i> 15 Addon Domains</li>
-                                <li><i class="fas fa-database"></i> 15 DB / 15 Emails</li>
-                                <li><i class="fas fa-wifi"></i> Unlimited Bandwidth</li>
-                                <li><i class="fab fa-php"></i> PHP 5.2–8.4 &amp; Node.js</li>
-                                <li><i class="fas fa-terminal"></i> Terminal Access</li>
-                                <li><i class="fas fa-map-marker-alt"></i> 20+ Locations</li>
+                                <li><i class="fas fa-globe"></i> <?php echo e(__('cp_feat_domain_ssl')); ?></li>
+                                <li><i class="fas fa-sitemap"></i> <?php echo e(__('cp_feat_addon_15')); ?></li>
+                                <li><i class="fas fa-database"></i> <?php echo e(__('cp_feat_db_15')); ?></li>
+                                <li><i class="fas fa-wifi"></i> <?php echo e(__('cp_feat_unlimited_bw')); ?></li>
+                                <li><i class="fab fa-php"></i> <?php echo e(__('cp_feat_php_node')); ?></li>
+                                <li><i class="fas fa-terminal"></i> <?php echo e(__('cp_feat_terminal')); ?></li>
+                                <li><i class="fas fa-map-marker-alt"></i> <?php echo e(__('cp_feat_locations')); ?></li>
                             </ul>
                         </div></div>
 
                         <!-- Premium (Popular) -->
                         <div class="swiper-slide"><div class="plan-card popular">
-                            <div class="plan-badge">Most Popular</div>
-                            <div class="plan-head"><div class="plan-name">Premium</div><span class="plan-save">Save 43%</span></div>
-                            <div class="plan-target">For growing businesses</div>
+                            <div class="plan-badge"><?php echo e(__('cp_plan_premium_badge')); ?></div>
+                            <div class="plan-head"><div class="plan-name"><?php echo e(__('cp_plan_premium')); ?></div><span class="plan-save"><?php echo e(__('cp_plan_premium_save')); ?></span></div>
+                            <div class="plan-target"><?php echo e(__('cp_plan_premium_target')); ?></div>
                             <div class="plan-price">
-                                <span class="old-price">€5.99</span>
-                                <span class="current-price"><span class="currency">€</span><span class="amount">3.39</span><span class="period">EUR / mo</span></span>
+                                <span class="old-price"><?php echo e(__('cp_plan_premium_old_price')); ?></span>
+                                <span class="current-price"><span class="currency">€</span><span class="amount"><?php echo e(__('cp_plan_premium_price')); ?></span><span class="period"><?php echo e(__('cp_plan_gift_period')); ?></span></span>
                             </div>
-                            <div class="plan-renewal"><i class="fas fa-check"></i> Same price on renewal</div>
-                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/cart.php?a=add&pid=4">Choose Plan</button>
+                            <div class="plan-renewal"><i class="fas fa-check"></i> <?php echo e(__('plans_same_renewal')); ?></div>
+                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/cart.php?a=add&pid=4"><?php echo e(__('cp_plan_choose')); ?></button>
                             <div class="plan-resources">
-                                <div class="plan-res"><i class="fas fa-microchip"></i><span class="res-val">3</span><span class="res-label">CPU Cores</span></div>
-                                <div class="plan-res"><i class="fas fa-memory"></i><span class="res-val">3 GB</span><span class="res-label">RAM</span></div>
-                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">25 GB</span><span class="res-label">NVMe Storage</span></div>
-                                <div class="plan-res"><i class="fas fa-tachometer-alt"></i><span class="res-val">300 MB/s</span><span class="res-label">I/O Speed</span></div>
+                                <div class="plan-res"><i class="fas fa-microchip"></i><span class="res-val">3</span><span class="res-label"><?php echo e(__('cp_res_cpu_cores')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-memory"></i><span class="res-val">3 GB</span><span class="res-label"><?php echo e(__('cp_res_ram')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">25 GB</span><span class="res-label"><?php echo e(__('cp_res_nvme')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-tachometer-alt"></i><span class="res-val">300 MB/s</span><span class="res-label"><?php echo e(__('cp_res_io')); ?></span></div>
                             </div>
-                            <div class="plan-divider"><span>Included</span></div>
+                            <div class="plan-divider"><span><?php echo e(__('cp_plan_included')); ?></span></div>
                             <ul class="plan-features">
-                                <li><i class="fas fa-globe"></i> Free .com / .org / .net</li>
-                                <li><i class="fas fa-sitemap"></i> 25 Addon Domains</li>
-                                <li><i class="fas fa-database"></i> 25 DB / 25 Emails</li>
-                                <li><i class="fas fa-wifi"></i> Unlimited BW &amp; SSL</li>
-                                <li><i class="fab fa-php"></i> PHP 5.2–8.4 &amp; Node.js</li>
-                                <li><i class="fas fa-terminal"></i> Terminal Access</li>
-                                <li><i class="fas fa-map-marker-alt"></i> 20+ Locations</li>
+                                <li><i class="fas fa-globe"></i> <?php echo e(__('cp_feat_free_domains')); ?></li>
+                                <li><i class="fas fa-sitemap"></i> <?php echo e(__('cp_feat_addon_25')); ?></li>
+                                <li><i class="fas fa-database"></i> <?php echo e(__('cp_feat_db_25')); ?></li>
+                                <li><i class="fas fa-wifi"></i> <?php echo e(__('cp_feat_unlimited_bw_ssl')); ?></li>
+                                <li><i class="fab fa-php"></i> <?php echo e(__('cp_feat_php_node')); ?></li>
+                                <li><i class="fas fa-terminal"></i> <?php echo e(__('cp_feat_terminal')); ?></li>
+                                <li><i class="fas fa-map-marker-alt"></i> <?php echo e(__('cp_feat_locations')); ?></li>
                             </ul>
                         </div></div>
 
                         <!-- Platinum -->
                         <div class="swiper-slide"><div class="plan-card">
-                            <div class="plan-head"><div class="plan-name">Platinum</div><span class="plan-save">Save 44%</span></div>
-                            <div class="plan-target">For high-demand sites</div>
+                            <div class="plan-head"><div class="plan-name"><?php echo e(__('cp_plan_platinum')); ?></div><span class="plan-save"><?php echo e(__('cp_plan_platinum_save')); ?></span></div>
+                            <div class="plan-target"><?php echo e(__('cp_plan_platinum_target')); ?></div>
                             <div class="plan-price">
-                                <span class="old-price">€7.49</span>
-                                <span class="current-price"><span class="currency">€</span><span class="amount">4.22</span><span class="period">EUR / mo</span></span>
+                                <span class="old-price"><?php echo e(__('cp_plan_platinum_old_price')); ?></span>
+                                <span class="current-price"><span class="currency">€</span><span class="amount"><?php echo e(__('cp_plan_platinum_price')); ?></span><span class="period"><?php echo e(__('cp_plan_gift_period')); ?></span></span>
                             </div>
-                            <div class="plan-renewal"><i class="fas fa-check"></i> Same price on renewal</div>
-                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/cart.php?a=add&pid=5">Choose Plan</button>
+                            <div class="plan-renewal"><i class="fas fa-check"></i> <?php echo e(__('plans_same_renewal')); ?></div>
+                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/cart.php?a=add&pid=5"><?php echo e(__('cp_plan_choose')); ?></button>
                             <div class="plan-resources">
-                                <div class="plan-res"><i class="fas fa-microchip"></i><span class="res-val">3.5</span><span class="res-label">CPU Cores</span></div>
-                                <div class="plan-res"><i class="fas fa-memory"></i><span class="res-val">3.5 GB</span><span class="res-label">RAM</span></div>
-                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">50 GB</span><span class="res-label">NVMe Storage</span></div>
-                                <div class="plan-res"><i class="fas fa-tachometer-alt"></i><span class="res-val">500 MB/s</span><span class="res-label">I/O Speed</span></div>
+                                <div class="plan-res"><i class="fas fa-microchip"></i><span class="res-val">3.5</span><span class="res-label"><?php echo e(__('cp_res_cpu_cores')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-memory"></i><span class="res-val">3.5 GB</span><span class="res-label"><?php echo e(__('cp_res_ram')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">50 GB</span><span class="res-label"><?php echo e(__('cp_res_nvme')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-tachometer-alt"></i><span class="res-val">500 MB/s</span><span class="res-label"><?php echo e(__('cp_res_io')); ?></span></div>
                             </div>
-                            <div class="plan-divider"><span>Included</span></div>
+                            <div class="plan-divider"><span><?php echo e(__('cp_plan_included')); ?></span></div>
                             <ul class="plan-features">
-                                <li><i class="fas fa-globe"></i> Free .com / .org / .net</li>
-                                <li><i class="fas fa-sitemap"></i> 50 Addon Domains</li>
-                                <li><i class="fas fa-database"></i> 50 DB / 50 Emails</li>
-                                <li><i class="fas fa-wifi"></i> Unlimited BW &amp; SSL</li>
-                                <li><i class="fab fa-php"></i> PHP 5.2–8.4 &amp; Node.js</li>
-                                <li><i class="fas fa-terminal"></i> Terminal Access</li>
-                                <li><i class="fas fa-map-marker-alt"></i> 20+ Locations</li>
+                                <li><i class="fas fa-globe"></i> <?php echo e(__('cp_feat_free_domains')); ?></li>
+                                <li><i class="fas fa-sitemap"></i> <?php echo e(__('cp_feat_addon_50')); ?></li>
+                                <li><i class="fas fa-database"></i> <?php echo e(__('cp_feat_db_50')); ?></li>
+                                <li><i class="fas fa-wifi"></i> <?php echo e(__('cp_feat_unlimited_bw_ssl')); ?></li>
+                                <li><i class="fab fa-php"></i> <?php echo e(__('cp_feat_php_node')); ?></li>
+                                <li><i class="fas fa-terminal"></i> <?php echo e(__('cp_feat_terminal')); ?></li>
+                                <li><i class="fas fa-map-marker-alt"></i> <?php echo e(__('cp_feat_locations')); ?></li>
                             </ul>
                         </div></div>
 
                         <!-- Business -->
                         <div class="swiper-slide"><div class="plan-card">
-                            <div class="plan-head"><div class="plan-name">Business</div><span class="plan-save">Save 43%</span></div>
-                            <div class="plan-target">For businesses</div>
+                            <div class="plan-head"><div class="plan-name"><?php echo e(__('cp_plan_business')); ?></div><span class="plan-save"><?php echo e(__('cp_plan_business_save')); ?></span></div>
+                            <div class="plan-target"><?php echo e(__('cp_plan_business_target')); ?></div>
                             <div class="plan-price">
-                                <span class="old-price">€12.99</span>
-                                <span class="current-price"><span class="currency">€</span><span class="amount">7.42</span><span class="period">EUR / mo</span></span>
+                                <span class="old-price"><?php echo e(__('cp_plan_business_old_price')); ?></span>
+                                <span class="current-price"><span class="currency">€</span><span class="amount"><?php echo e(__('cp_plan_business_price')); ?></span><span class="period"><?php echo e(__('cp_plan_gift_period')); ?></span></span>
                             </div>
-                            <div class="plan-renewal"><i class="fas fa-check"></i> Same price on renewal</div>
-                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/cart.php?a=add&pid=6">Choose Plan</button>
+                            <div class="plan-renewal"><i class="fas fa-check"></i> <?php echo e(__('plans_same_renewal')); ?></div>
+                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/cart.php?a=add&pid=6"><?php echo e(__('cp_plan_choose')); ?></button>
                             <div class="plan-resources">
-                                <div class="plan-res"><i class="fas fa-microchip"></i><span class="res-val">4</span><span class="res-label">CPU Cores</span></div>
-                                <div class="plan-res"><i class="fas fa-memory"></i><span class="res-val">4 GB</span><span class="res-label">RAM</span></div>
-                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">75 GB</span><span class="res-label">NVMe Storage</span></div>
-                                <div class="plan-res"><i class="fas fa-tachometer-alt"></i><span class="res-val">900 MB/s</span><span class="res-label">I/O Speed</span></div>
+                                <div class="plan-res"><i class="fas fa-microchip"></i><span class="res-val">4</span><span class="res-label"><?php echo e(__('cp_res_cpu_cores')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-memory"></i><span class="res-val">4 GB</span><span class="res-label"><?php echo e(__('cp_res_ram')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">75 GB</span><span class="res-label"><?php echo e(__('cp_res_nvme')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-tachometer-alt"></i><span class="res-val">900 MB/s</span><span class="res-label"><?php echo e(__('cp_res_io')); ?></span></div>
                             </div>
-                            <div class="plan-divider"><span>Included</span></div>
+                            <div class="plan-divider"><span><?php echo e(__('cp_plan_included')); ?></span></div>
                             <ul class="plan-features">
-                                <li><i class="fas fa-globe"></i> Free .com / .org / .net</li>
-                                <li><i class="fas fa-sitemap"></i> 100 Addon Domains</li>
-                                <li><i class="fas fa-database"></i> 100 DB / 100 Emails</li>
-                                <li><i class="fas fa-wifi"></i> Unlimited BW &amp; SSL</li>
-                                <li><i class="fab fa-php"></i> PHP 5.2–8.4 &amp; Node.js</li>
-                                <li><i class="fas fa-terminal"></i> Terminal Access</li>
-                                <li><i class="fas fa-map-marker-alt"></i> 20+ Locations</li>
+                                <li><i class="fas fa-globe"></i> <?php echo e(__('cp_feat_free_domains')); ?></li>
+                                <li><i class="fas fa-sitemap"></i> <?php echo e(__('cp_feat_addon_100')); ?></li>
+                                <li><i class="fas fa-database"></i> <?php echo e(__('cp_feat_db_100')); ?></li>
+                                <li><i class="fas fa-wifi"></i> <?php echo e(__('cp_feat_unlimited_bw_ssl')); ?></li>
+                                <li><i class="fab fa-php"></i> <?php echo e(__('cp_feat_php_node')); ?></li>
+                                <li><i class="fas fa-terminal"></i> <?php echo e(__('cp_feat_terminal')); ?></li>
+                                <li><i class="fas fa-map-marker-alt"></i> <?php echo e(__('cp_feat_locations')); ?></li>
                             </ul>
                         </div></div>
 
                         <!-- Enterprise -->
                         <div class="swiper-slide"><div class="plan-card">
-                            <div class="plan-head"><div class="plan-name">Enterprise</div><span class="plan-save">Save 42%</span></div>
-                            <div class="plan-target">For enterprises</div>
+                            <div class="plan-head"><div class="plan-name"><?php echo e(__('cp_plan_enterprise')); ?></div><span class="plan-save"><?php echo e(__('cp_plan_enterprise_save')); ?></span></div>
+                            <div class="plan-target"><?php echo e(__('cp_plan_enterprise_target')); ?></div>
                             <div class="plan-price">
-                                <span class="old-price">€21.99</span>
-                                <span class="current-price"><span class="currency">€</span><span class="amount">12.72</span><span class="period">EUR / mo</span></span>
+                                <span class="old-price"><?php echo e(__('cp_plan_enterprise_old_price')); ?></span>
+                                <span class="current-price"><span class="currency">€</span><span class="amount"><?php echo e(__('cp_plan_enterprise_price')); ?></span><span class="period"><?php echo e(__('cp_plan_gift_period')); ?></span></span>
                             </div>
-                            <div class="plan-renewal"><i class="fas fa-check"></i> Same price on renewal</div>
-                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/cart.php?a=add&pid=7">Choose Plan</button>
+                            <div class="plan-renewal"><i class="fas fa-check"></i> <?php echo e(__('plans_same_renewal')); ?></div>
+                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/cart.php?a=add&pid=7"><?php echo e(__('cp_plan_choose')); ?></button>
                             <div class="plan-resources">
-                                <div class="plan-res"><i class="fas fa-microchip"></i><span class="res-val">5</span><span class="res-label">CPU Cores</span></div>
-                                <div class="plan-res"><i class="fas fa-memory"></i><span class="res-val">5 GB</span><span class="res-label">RAM</span></div>
-                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">125 GB</span><span class="res-label">NVMe Storage</span></div>
-                                <div class="plan-res"><i class="fas fa-tachometer-alt"></i><span class="res-val">1.5 GB/s</span><span class="res-label">I/O Speed</span></div>
+                                <div class="plan-res"><i class="fas fa-microchip"></i><span class="res-val">5</span><span class="res-label"><?php echo e(__('cp_res_cpu_cores')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-memory"></i><span class="res-val">5 GB</span><span class="res-label"><?php echo e(__('cp_res_ram')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">125 GB</span><span class="res-label"><?php echo e(__('cp_res_nvme')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-tachometer-alt"></i><span class="res-val">1.5 GB/s</span><span class="res-label"><?php echo e(__('cp_res_io')); ?></span></div>
                             </div>
-                            <div class="plan-divider"><span>Included</span></div>
+                            <div class="plan-divider"><span><?php echo e(__('cp_plan_included')); ?></span></div>
                             <ul class="plan-features">
-                                <li><i class="fas fa-globe"></i> Free .com / .org / .net</li>
-                                <li><i class="fas fa-sitemap"></i> Unlimited Domains</li>
-                                <li><i class="fas fa-database"></i> Unlimited DB / Emails / FTP</li>
-                                <li><i class="fas fa-wifi"></i> Unlimited BW &amp; SSL</li>
-                                <li><i class="fab fa-php"></i> PHP 5.2–8.4 &amp; Node.js</li>
-                                <li><i class="fas fa-terminal"></i> Terminal Access</li>
-                                <li><i class="fas fa-map-marker-alt"></i> 20+ Locations</li>
+                                <li><i class="fas fa-globe"></i> <?php echo e(__('cp_feat_free_domains')); ?></li>
+                                <li><i class="fas fa-sitemap"></i> <?php echo e(__('cp_feat_unlimited_domains')); ?></li>
+                                <li><i class="fas fa-database"></i> <?php echo e(__('cp_feat_unlimited_all')); ?></li>
+                                <li><i class="fas fa-wifi"></i> <?php echo e(__('cp_feat_unlimited_bw_ssl')); ?></li>
+                                <li><i class="fab fa-php"></i> <?php echo e(__('cp_feat_php_node')); ?></li>
+                                <li><i class="fas fa-terminal"></i> <?php echo e(__('cp_feat_terminal')); ?></li>
+                                <li><i class="fas fa-map-marker-alt"></i> <?php echo e(__('cp_feat_locations')); ?></li>
                             </ul>
                         </div></div>
                     </div>
@@ -388,14 +388,14 @@ require_once __DIR__ . '/includes/topbar.php';
             </div>
 
             <div class="pricing-custom">
-                <p>Didn't find what you need? <a href="<?php echo e(SITE_URL); ?>/contact-us/">Contact us</a> to build a custom hosting solution.</p>
+                <p><?php echo __('cp_pricing_custom', ['url' => e(SITE_URL) . '/contact-us/']); ?></p>
             </div>
         </div>
     </section>
 
     <!-- ═══════════════ GLOBAL LOCATIONS ═══════════════ -->
 <?php
-$dc_heading = 'Deploy closer to your audience';
+$dc_heading = __('cp_dc_heading');
 $dc_link_prefix = '/cheap-cpanel';
 include __DIR__ . '/includes/section-dc-showcase.php';
 ?>
@@ -404,31 +404,31 @@ include __DIR__ . '/includes/section-dc-showcase.php';
     <section class="cp-benefits reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Why cPanel</div>
-                <h2>The control panel trusted by millions</h2>
-                <p>cPanel is the industry standard for web hosting management — and every YottaSrc plan includes it.</p>
+                <div class="section-tag"><?php echo e(__('cp_why_tag')); ?></div>
+                <h2><?php echo e(__('cp_why_title')); ?></h2>
+                <p><?php echo e(__('cp_why_desc')); ?></p>
             </div>
 
             <div class="cp-benefits-grid">
                 <div class="cp-security-card">
                     <div class="cp-security-icon"><i class="fas fa-th-large"></i></div>
-                    <h4>Industry-Standard Panel</h4>
-                    <p>cPanel is used by more hosting providers than any other control panel. A familiar, proven interface trusted worldwide.</p>
+                    <h4><?php echo e(__('cp_why_panel_title')); ?></h4>
+                    <p><?php echo e(__('cp_why_panel_desc')); ?></p>
                 </div>
                 <div class="cp-security-card">
                     <div class="cp-security-icon icon-green"><i class="fas fa-mouse-pointer"></i></div>
-                    <h4>Simple Site Management</h4>
-                    <p>Manage files, emails, domains, DNS, and databases from a single visual dashboard — no command line required.</p>
+                    <h4><?php echo e(__('cp_why_simple_title')); ?></h4>
+                    <p><?php echo e(__('cp_why_simple_desc')); ?></p>
                 </div>
                 <div class="cp-security-card">
                     <div class="cp-security-icon icon-purple"><i class="fas fa-th"></i></div>
-                    <h4>1-Click App Installers</h4>
-                    <p>Install WordPress, Joomla, Laravel, and 400+ more applications in seconds with Softaculous auto-installer.</p>
+                    <h4><?php echo e(__('cp_why_apps_title')); ?></h4>
+                    <p><?php echo e(__('cp_why_apps_desc')); ?></p>
                 </div>
                 <div class="cp-security-card">
                     <div class="cp-security-icon icon-amber"><i class="fas fa-shield-alt"></i></div>
-                    <h4>Built-In Security Tools</h4>
-                    <p>SSL management, IP blocking, password-protected directories, Imunify360 firewall, and ModSecurity — all built right in.</p>
+                    <h4><?php echo e(__('cp_why_security_title')); ?></h4>
+                    <p><?php echo e(__('cp_why_security_desc')); ?></p>
                 </div>
             </div>
         </div>
@@ -438,57 +438,57 @@ include __DIR__ . '/includes/section-dc-showcase.php';
     <section class="bento-features reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Why cPanel Hosting</div>
-                <h2>Everything you need to build, launch &amp; grow</h2>
-                <p>Enterprise-grade tools included in every plan — from performance to security.</p>
+                <div class="section-tag"><?php echo e(__('cp_bento_tag')); ?></div>
+                <h2><?php echo e(__('cp_bento_title')); ?></h2>
+                <p><?php echo e(__('cp_bento_desc')); ?></p>
             </div>
 
             <div class="bento-grid">
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon"><i class="fas fa-bolt"></i></div>
-                    <h4>LiteSpeed Web Server</h4>
-                    <p>Up to 12x faster than Apache. Built-in LSCache for WordPress, Joomla, and more — sub-200ms response times.</p>
+                    <h4><?php echo e(__('cp_bento_litespeed_title')); ?></h4>
+                    <p><?php echo e(__('cp_bento_litespeed_desc')); ?></p>
                 </div>
 
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-green"><i class="fas fa-shield-alt"></i></div>
-                    <h4>Multi-Layer Security</h4>
-                    <p>CloudLinux isolation, Imunify360 AI threat detection, free SSL, and ModSecurity firewall — all active by default.</p>
+                    <h4><?php echo e(__('cp_bento_security_title')); ?></h4>
+                    <p><?php echo e(__('cp_bento_security_desc')); ?></p>
                 </div>
 
                 <!-- Small card: NVMe -->
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-purple"><i class="fas fa-hdd"></i></div>
-                    <h4>NVMe SSD Storage</h4>
-                    <p>Ultra-fast I/O for databases and file access.</p>
+                    <h4><?php echo e(__('cp_bento_nvme_title')); ?></h4>
+                    <p><?php echo e(__('cp_bento_nvme_desc')); ?></p>
                 </div>
 
                 <!-- Small card: Dedicated Resources -->
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-amber"><i class="fas fa-microchip"></i></div>
-                    <h4>Dedicated Resources</h4>
-                    <p>Guaranteed CPU cores and RAM per account.</p>
+                    <h4><?php echo e(__('cp_bento_resources_title')); ?></h4>
+                    <p><?php echo e(__('cp_bento_resources_desc')); ?></p>
                 </div>
 
                 <!-- Small card: Backups -->
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon"><i class="fas fa-cloud-download-alt"></i></div>
-                    <h4>JetBackup 5</h4>
-                    <p>Automated daily backups with 1-click restore.</p>
+                    <h4><?php echo e(__('cp_bento_backup_title')); ?></h4>
+                    <p><?php echo e(__('cp_bento_backup_desc')); ?></p>
                 </div>
 
                 <!-- Small card: Free SSL -->
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-green"><i class="fas fa-lock"></i></div>
-                    <h4>Free SSL Certificates</h4>
-                    <p>Auto-provisioned for every domain you add.</p>
+                    <h4><?php echo e(__('cp_bento_ssl_title')); ?></h4>
+                    <p><?php echo e(__('cp_bento_ssl_desc')); ?></p>
                 </div>
 
                 <!-- Small card: CloudLinux -->
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-blue"><i class="fas fa-users-cog"></i></div>
-                    <h4>CloudLinux Isolation</h4>
-                    <p>Each account runs in its own isolated environment with guaranteed resources.</p>
+                    <h4><?php echo e(__('cp_bento_cloudlinux_title')); ?></h4>
+                    <p><?php echo e(__('cp_bento_cloudlinux_desc')); ?></p>
                 </div>
             </div>
         </div>
@@ -498,9 +498,9 @@ include __DIR__ . '/includes/section-dc-showcase.php';
     <section class="cp-dashboard-preview reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">cPanel Dashboard</div>
-                <h2>Manage your entire website from one screen</h2>
-                <p>Files, emails, domains, databases, SSL certificates, and backups — every tool you need is organized inside your cPanel dashboard, ready in one click.</p>
+                <div class="section-tag"><?php echo e(__('cp_dash_tag')); ?></div>
+                <h2><?php echo e(__('cp_dash_title')); ?></h2>
+                <p><?php echo e(__('cp_dash_desc')); ?></p>
             </div>
 
             <div class="cp-dash-layout">
@@ -590,29 +590,29 @@ include __DIR__ . '/includes/section-dc-showcase.php';
                     <div class="cp-dash-feature">
                         <div class="cp-dash-feature-icon"><i class="fas fa-folder-open"></i></div>
                         <div>
-                            <h4>File Manager &amp; FTP</h4>
-                            <p>Upload, edit, and organize website files directly in your browser or via SFTP.</p>
+                            <h4><?php echo e(__('cp_dash_files_title')); ?></h4>
+                            <p><?php echo e(__('cp_dash_files_desc')); ?></p>
                         </div>
                     </div>
                     <div class="cp-dash-feature">
                         <div class="cp-dash-feature-icon icon-green"><i class="fas fa-envelope"></i></div>
                         <div>
-                            <h4>Email &amp; Domain Management</h4>
-                            <p>Create email accounts, manage DNS zones, and add domains — all in one place.</p>
+                            <h4><?php echo e(__('cp_dash_email_title')); ?></h4>
+                            <p><?php echo e(__('cp_dash_email_desc')); ?></p>
                         </div>
                     </div>
                     <div class="cp-dash-feature">
                         <div class="cp-dash-feature-icon icon-purple"><i class="fas fa-database"></i></div>
                         <div>
-                            <h4>Databases &amp; Backups</h4>
-                            <p>Create MySQL databases, access phpMyAdmin, and restore backups with JetBackup.</p>
+                            <h4><?php echo e(__('cp_dash_db_title')); ?></h4>
+                            <p><?php echo e(__('cp_dash_db_desc')); ?></p>
                         </div>
                     </div>
                     <div class="cp-dash-feature">
                         <div class="cp-dash-feature-icon icon-amber"><i class="fas fa-lock"></i></div>
                         <div>
-                            <h4>SSL &amp; Security Tools</h4>
-                            <p>AutoSSL certificates, IP blocking, password directories, and Imunify360 — built in.</p>
+                            <h4><?php echo e(__('cp_dash_ssl_title')); ?></h4>
+                            <p><?php echo e(__('cp_dash_ssl_desc')); ?></p>
                         </div>
                     </div>
                 </div>
@@ -624,70 +624,70 @@ include __DIR__ . '/includes/section-dc-showcase.php';
     <section class="cp-tasks reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">What You Can Do</div>
-                <h2>Everything from one place</h2>
-                <p>cPanel puts every hosting tool at your fingertips — manage files, email, domains, databases, and more with just a few clicks.</p>
+                <div class="section-tag"><?php echo e(__('cp_tasks_tag')); ?></div>
+                <h2><?php echo e(__('cp_tasks_title')); ?></h2>
+                <p><?php echo e(__('cp_tasks_desc')); ?></p>
             </div>
 
             <div class="cp-tasks-grid">
                 <div class="cp-task-card">
                     <div class="cp-task-icon"><i class="fas fa-folder-open"></i></div>
-                    <h4>Manage Files</h4>
-                    <p>Upload, edit, and organize files with the built-in File Manager or connect via FTP/SFTP.</p>
+                    <h4><?php echo e(__('cp_task_files_title')); ?></h4>
+                    <p><?php echo e(__('cp_task_files_desc')); ?></p>
                     <ul class="cp-task-list">
-                        <li>Drag &amp; drop uploads</li>
-                        <li>Code editor built-in</li>
-                        <li>Extract ZIP/TAR archives</li>
+                        <li><?php echo e(__('cp_task_files_1')); ?></li>
+                        <li><?php echo e(__('cp_task_files_2')); ?></li>
+                        <li><?php echo e(__('cp_task_files_3')); ?></li>
                     </ul>
                 </div>
                 <div class="cp-task-card">
                     <div class="cp-task-icon icon-green"><i class="fas fa-envelope"></i></div>
-                    <h4>Create Email Accounts</h4>
-                    <p>Set up professional email addresses on your domain with webmail, forwarding, and autoresponders.</p>
+                    <h4><?php echo e(__('cp_task_email_title')); ?></h4>
+                    <p><?php echo e(__('cp_task_email_desc')); ?></p>
                     <ul class="cp-task-list">
-                        <li>Unlimited email addresses</li>
-                        <li>Webmail (Roundcube)</li>
-                        <li>Spam filters &amp; DKIM</li>
+                        <li><?php echo e(__('cp_task_email_1')); ?></li>
+                        <li><?php echo e(__('cp_task_email_2')); ?></li>
+                        <li><?php echo e(__('cp_task_email_3')); ?></li>
                     </ul>
                 </div>
                 <div class="cp-task-card">
                     <div class="cp-task-icon icon-purple"><i class="fas fa-globe"></i></div>
-                    <h4>Add Domains &amp; Subdomains</h4>
-                    <p>Point multiple domains to your hosting, create subdomains, and manage DNS records.</p>
+                    <h4><?php echo e(__('cp_task_domains_title')); ?></h4>
+                    <p><?php echo e(__('cp_task_domains_desc')); ?></p>
                     <ul class="cp-task-list">
-                        <li>Addon &amp; parked domains</li>
-                        <li>DNS Zone Editor</li>
-                        <li>Redirect manager</li>
+                        <li><?php echo e(__('cp_task_domains_1')); ?></li>
+                        <li><?php echo e(__('cp_task_domains_2')); ?></li>
+                        <li><?php echo e(__('cp_task_domains_3')); ?></li>
                     </ul>
                 </div>
                 <div class="cp-task-card">
                     <div class="cp-task-icon icon-amber"><i class="fas fa-database"></i></div>
-                    <h4>MySQL Databases</h4>
-                    <p>Create and manage MySQL/MariaDB databases with phpMyAdmin for visual administration.</p>
+                    <h4><?php echo e(__('cp_task_mysql_title')); ?></h4>
+                    <p><?php echo e(__('cp_task_mysql_desc')); ?></p>
                     <ul class="cp-task-list">
-                        <li>Create databases &amp; users</li>
-                        <li>Import / Export SQL</li>
-                        <li>phpMyAdmin included</li>
+                        <li><?php echo e(__('cp_task_mysql_1')); ?></li>
+                        <li><?php echo e(__('cp_task_mysql_2')); ?></li>
+                        <li><?php echo e(__('cp_task_mysql_3')); ?></li>
                     </ul>
                 </div>
                 <div class="cp-task-card">
                     <div class="cp-task-icon"><i class="fas fa-cloud-download-alt"></i></div>
-                    <h4>Backup &amp; Restore</h4>
-                    <p>JetBackup runs automated daily backups. Restore files, databases, or email with one click.</p>
+                    <h4><?php echo e(__('cp_task_backup_title')); ?></h4>
+                    <p><?php echo e(__('cp_task_backup_desc')); ?></p>
                     <ul class="cp-task-list">
-                        <li>Daily automated backups</li>
-                        <li>Granular file restore</li>
-                        <li>Download full backups</li>
+                        <li><?php echo e(__('cp_task_backup_1')); ?></li>
+                        <li><?php echo e(__('cp_task_backup_2')); ?></li>
+                        <li><?php echo e(__('cp_task_backup_3')); ?></li>
                     </ul>
                 </div>
                 <div class="cp-task-card">
                     <div class="cp-task-icon icon-green"><i class="fas fa-th-large"></i></div>
-                    <h4>Install 400+ Apps</h4>
-                    <p>Use Softaculous to install WordPress, Joomla, Laravel, Magento, and 400+ more in one click.</p>
+                    <h4><?php echo e(__('cp_task_apps_title')); ?></h4>
+                    <p><?php echo e(__('cp_task_apps_desc')); ?></p>
                     <ul class="cp-task-list">
-                        <li>WordPress in 60 seconds</li>
-                        <li>Auto-updates available</li>
-                        <li>Staging environments</li>
+                        <li><?php echo e(__('cp_task_apps_1')); ?></li>
+                        <li><?php echo e(__('cp_task_apps_2')); ?></li>
+                        <li><?php echo e(__('cp_task_apps_3')); ?></li>
                     </ul>
                 </div>
             </div>
@@ -698,39 +698,39 @@ include __DIR__ . '/includes/section-dc-showcase.php';
     <section class="cp-installer reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">1-Click Installer</div>
-                <h2>Launch any app in seconds</h2>
-                <p>Softaculous auto-installer with 400+ scripts. Install, update, and manage popular apps without touching code.</p>
+                <div class="section-tag"><?php echo e(__('cp_installer_tag')); ?></div>
+                <h2><?php echo e(__('cp_installer_title')); ?></h2>
+                <p><?php echo e(__('cp_installer_desc')); ?></p>
             </div>
 
             <div class="cp-installer-grid">
                 <div class="cp-installer-card">
                     <div class="cp-installer-logo"><i class="fab fa-wordpress"></i></div>
-                    <h4>WordPress</h4>
-                    <p>The world's most popular CMS. Build blogs, stores, portfolios — anything.</p>
-                    <div class="cp-installer-meta"><span>60s install</span><span>Auto-updates</span></div>
+                    <h4><?php echo e(__('cp_installer_wp_title')); ?></h4>
+                    <p><?php echo e(__('cp_installer_wp_desc')); ?></p>
+                    <div class="cp-installer-meta"><span><?php echo e(__('cp_installer_wp_meta1')); ?></span><span><?php echo e(__('cp_installer_wp_meta2')); ?></span></div>
                 </div>
                 <div class="cp-installer-card">
                     <div class="cp-installer-logo icon-green"><i class="fab fa-joomla"></i></div>
-                    <h4>Joomla</h4>
-                    <p>Flexible CMS for building advanced websites and online applications.</p>
-                    <div class="cp-installer-meta"><span>60s install</span><span>Multilingual</span></div>
+                    <h4><?php echo e(__('cp_installer_joomla_title')); ?></h4>
+                    <p><?php echo e(__('cp_installer_joomla_desc')); ?></p>
+                    <div class="cp-installer-meta"><span><?php echo e(__('cp_installer_joomla_meta1')); ?></span><span><?php echo e(__('cp_installer_joomla_meta2')); ?></span></div>
                 </div>
                 <div class="cp-installer-card">
                     <div class="cp-installer-logo icon-amber"><i class="fab fa-magento"></i></div>
-                    <h4>Magento</h4>
-                    <p>Enterprise-level e-commerce platform for scalable online stores.</p>
-                    <div class="cp-installer-meta"><span>90s install</span><span>E-Commerce</span></div>
+                    <h4><?php echo e(__('cp_installer_magento_title')); ?></h4>
+                    <p><?php echo e(__('cp_installer_magento_desc')); ?></p>
+                    <div class="cp-installer-meta"><span><?php echo e(__('cp_installer_magento_meta1')); ?></span><span><?php echo e(__('cp_installer_magento_meta2')); ?></span></div>
                 </div>
                 <div class="cp-installer-card">
                     <div class="cp-installer-logo icon-purple"><i class="fab fa-laravel"></i></div>
-                    <h4>Laravel</h4>
-                    <p>Modern PHP framework for building custom web applications fast.</p>
-                    <div class="cp-installer-meta"><span>60s install</span><span>PHP Framework</span></div>
+                    <h4><?php echo e(__('cp_installer_laravel_title')); ?></h4>
+                    <p><?php echo e(__('cp_installer_laravel_desc')); ?></p>
+                    <div class="cp-installer-meta"><span><?php echo e(__('cp_installer_laravel_meta1')); ?></span><span><?php echo e(__('cp_installer_laravel_meta2')); ?></span></div>
                 </div>
             </div>
 
-            <p class="cp-installer-footnote"><i class="fas fa-plus-circle"></i> Plus 400+ more apps including PrestaShop, Drupal, phpBB, Moodle, NextCloud, and more.</p>
+            <p class="cp-installer-footnote"><i class="fas fa-plus-circle"></i> <?php echo e(__('cp_installer_footnote')); ?></p>
         </div>
     </section>
 
@@ -738,72 +738,72 @@ include __DIR__ . '/includes/section-dc-showcase.php';
     <section class="features-grid-section reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">All-Inclusive</div>
-                <h2>Premium tools, zero extra cost</h2>
-                <p>Every plan comes fully loaded with the tools you need to succeed.</p>
+                <div class="section-tag"><?php echo e(__('cp_features_tag')); ?></div>
+                <h2><?php echo e(__('cp_features_title')); ?></h2>
+                <p><?php echo e(__('cp_features_desc')); ?></p>
             </div>
 
             <div class="swiper features-swiper" id="featuresSwiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide"><div class="feature-card">
                         <div class="feature-icon"><i class="fas fa-microchip"></i></div>
-                        <h4>Dedicated Resources</h4>
-                        <p>Guaranteed CPU, RAM, and storage for optimal performance.</p>
+                        <h4><?php echo e(__('cp_feat_dedicated_title')); ?></h4>
+                        <p><?php echo e(__('cp_feat_dedicated_desc')); ?></p>
                     </div></div>
                     <div class="swiper-slide"><div class="feature-card">
                         <div class="feature-icon icon-green"><i class="fas fa-shield-alt"></i></div>
-                        <h4>CloudLinux</h4>
-                        <p>Account isolation for server stability, security, and performance.</p>
+                        <h4><?php echo e(__('cp_feat_cloudlinux_title')); ?></h4>
+                        <p><?php echo e(__('cp_feat_cloudlinux_desc')); ?></p>
                     </div></div>
                     <div class="swiper-slide"><div class="feature-card">
                         <div class="feature-icon icon-purple"><i class="fas fa-tachometer-alt"></i></div>
-                        <h4>LiteSpeed</h4>
-                        <p>Cutting-edge caching for blazing-fast page loads.</p>
+                        <h4><?php echo e(__('cp_feat_litespeed_title')); ?></h4>
+                        <p><?php echo e(__('cp_feat_litespeed_desc')); ?></p>
                     </div></div>
                     <div class="swiper-slide"><div class="feature-card">
                         <div class="feature-icon icon-amber"><i class="fas fa-robot"></i></div>
-                        <h4>Imunify360</h4>
-                        <p>AI-powered malware detection, firewall, and threat prevention.</p>
+                        <h4><?php echo e(__('cp_feat_imunify_title')); ?></h4>
+                        <p><?php echo e(__('cp_feat_imunify_desc')); ?></p>
                     </div></div>
                     <div class="swiper-slide"><div class="feature-card">
                         <div class="feature-icon"><i class="fas fa-cloud-download-alt"></i></div>
-                        <h4>JetBackup 5</h4>
-                        <p>Automated daily backups with easy one-click restoration.</p>
+                        <h4><?php echo e(__('cp_feat_jetbackup_title')); ?></h4>
+                        <p><?php echo e(__('cp_feat_jetbackup_desc')); ?></p>
                     </div></div>
                     <div class="swiper-slide"><div class="feature-card">
                         <div class="feature-icon icon-green"><i class="fas fa-lock"></i></div>
-                        <h4>Free SSL</h4>
-                        <p>Unlimited SSL certificates for all your domains at no cost.</p>
+                        <h4><?php echo e(__('cp_feat_freessl_title')); ?></h4>
+                        <p><?php echo e(__('cp_feat_freessl_desc')); ?></p>
                     </div></div>
                     <div class="swiper-slide"><div class="feature-card">
                         <div class="feature-icon icon-purple"><i class="fas fa-th"></i></div>
-                        <h4>Softaculous</h4>
-                        <p>One-click installer for 400+ apps, including WordPress.</p>
+                        <h4><?php echo e(__('cp_feat_softaculous_title')); ?></h4>
+                        <p><?php echo e(__('cp_feat_softaculous_desc')); ?></p>
                     </div></div>
                     <div class="swiper-slide"><div class="feature-card">
                         <div class="feature-icon icon-amber"><i class="fas fa-paint-brush"></i></div>
-                        <h4>SitePad &amp; SiteJet</h4>
-                        <p>Drag-and-drop website builders for easy site creation.</p>
+                        <h4><?php echo e(__('cp_feat_sitepad_title')); ?></h4>
+                        <p><?php echo e(__('cp_feat_sitepad_desc')); ?></p>
                     </div></div>
                     <div class="swiper-slide"><div class="feature-card">
                         <div class="feature-icon"><i class="fas fa-code"></i></div>
-                        <h4>PHP 5.2 — 8.4</h4>
-                        <p>Full version support with easy switching per domain.</p>
+                        <h4><?php echo e(__('cp_feat_php_title')); ?></h4>
+                        <p><?php echo e(__('cp_feat_php_desc')); ?></p>
                     </div></div>
                     <div class="swiper-slide"><div class="feature-card">
                         <div class="feature-icon icon-green"><i class="fas fa-database"></i></div>
-                        <h4>MySQL 8 / MariaDB</h4>
-                        <p>Powerful optimized database engines for all workloads.</p>
+                        <h4><?php echo e(__('cp_feat_mysql_title')); ?></h4>
+                        <p><?php echo e(__('cp_feat_mysql_desc')); ?></p>
                     </div></div>
                     <div class="swiper-slide"><div class="feature-card">
                         <div class="feature-icon icon-purple"><i class="fas fa-globe"></i></div>
-                        <h4>Free Domain</h4>
-                        <p>Get a free domain with select hosting plans.</p>
+                        <h4><?php echo e(__('cp_feat_freedomain_title')); ?></h4>
+                        <p><?php echo e(__('cp_feat_freedomain_desc')); ?></p>
                     </div></div>
                     <div class="swiper-slide"><div class="feature-card">
                         <div class="feature-icon icon-amber"><i class="fas fa-undo"></i></div>
-                        <h4>30-Day Money Back</h4>
-                        <p>Risk-free hosting with a full refund policy for 30 days.</p>
+                        <h4><?php echo e(__('cp_feat_moneyback_title')); ?></h4>
+                        <p><?php echo e(__('cp_feat_moneyback_desc')); ?></p>
                     </div></div>
                 </div>
                 <div class="swiper-pagination"></div>
@@ -815,41 +815,41 @@ include __DIR__ . '/includes/section-dc-showcase.php';
     <section class="cp-security reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Security &amp; Reliability</div>
-                <h2>Protected around the clock</h2>
-                <p>Every hosting account is secured by multiple defense layers — active 24/7, zero extra cost.</p>
+                <div class="section-tag"><?php echo e(__('cp_sec_tag')); ?></div>
+                <h2><?php echo e(__('cp_sec_title')); ?></h2>
+                <p><?php echo e(__('cp_sec_desc')); ?></p>
             </div>
 
             <div class="cp-security-grid">
                 <div class="cp-security-card">
                     <div class="cp-security-icon"><i class="fas fa-robot"></i></div>
-                    <h4>Imunify360</h4>
-                    <p>AI-powered malware scanning, proactive threat detection, and automatic cleanup — running continuously on every server.</p>
+                    <h4><?php echo e(__('cp_sec_imunify_title')); ?></h4>
+                    <p><?php echo e(__('cp_sec_imunify_desc')); ?></p>
                 </div>
                 <div class="cp-security-card">
                     <div class="cp-security-icon icon-green"><i class="fas fa-user-shield"></i></div>
-                    <h4>CloudLinux Isolation</h4>
-                    <p>Each account runs in its own isolated CageFS environment. Other users on the server can never affect your site.</p>
+                    <h4><?php echo e(__('cp_sec_cloudlinux_title')); ?></h4>
+                    <p><?php echo e(__('cp_sec_cloudlinux_desc')); ?></p>
                 </div>
                 <div class="cp-security-card">
                     <div class="cp-security-icon icon-purple"><i class="fas fa-lock"></i></div>
-                    <h4>Free SSL / TLS</h4>
-                    <p>AutoSSL provisions free certificates for every domain automatically. HTTPS everywhere — no configuration needed.</p>
+                    <h4><?php echo e(__('cp_sec_ssl_title')); ?></h4>
+                    <p><?php echo e(__('cp_sec_ssl_desc')); ?></p>
                 </div>
                 <div class="cp-security-card">
                     <div class="cp-security-icon icon-amber"><i class="fas fa-fire-alt"></i></div>
-                    <h4>ModSecurity WAF</h4>
-                    <p>Web Application Firewall with curated rulesets blocks SQL injection, XSS, and common attack vectors in real time.</p>
+                    <h4><?php echo e(__('cp_sec_waf_title')); ?></h4>
+                    <p><?php echo e(__('cp_sec_waf_desc')); ?></p>
                 </div>
                 <div class="cp-security-card">
                     <div class="cp-security-icon"><i class="fas fa-cloud-download-alt"></i></div>
-                    <h4>Daily JetBackup</h4>
-                    <p>Automated daily backups with granular restoration. Recover individual files, databases, or the full account anytime.</p>
+                    <h4><?php echo e(__('cp_sec_backup_title')); ?></h4>
+                    <p><?php echo e(__('cp_sec_backup_desc')); ?></p>
                 </div>
                 <div class="cp-security-card">
                     <div class="cp-security-icon icon-green"><i class="fas fa-signal"></i></div>
-                    <h4>99.9% Uptime SLA</h4>
-                    <p>Redundant infrastructure with proactive monitoring and automatic failover ensures your site stays online.</p>
+                    <h4><?php echo e(__('cp_sec_uptime_title')); ?></h4>
+                    <p><?php echo e(__('cp_sec_uptime_desc')); ?></p>
                 </div>
             </div>
         </div>
@@ -859,32 +859,32 @@ include __DIR__ . '/includes/section-dc-showcase.php';
     <section class="onboarding reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Get Started</div>
-                <h2>Live in minutes, not hours</h2>
-                <p>Launch a new site or migrate your existing one — our team handles the hard parts.</p>
+                <div class="section-tag"><?php echo e(__('cp_onboard_tag')); ?></div>
+                <h2><?php echo e(__('cp_onboard_title')); ?></h2>
+                <p><?php echo e(__('cp_onboard_desc')); ?></p>
             </div>
 
             <div class="onboarding-tracks">
                 <div class="track">
                     <div class="track-icon"><i class="fas fa-rocket"></i></div>
-                    <h3>New Website</h3>
-                    <p>From sign-up to live in under 20 minutes</p>
+                    <h3><?php echo e(__('cp_onboard_new_title')); ?></h3>
+                    <p><?php echo e(__('cp_onboard_new_desc')); ?></p>
                     <div class="track-steps">
-                        <div class="track-step"><div class="step-num">1</div><div class="step-content"><h4>Create Account</h4><p>Sign up in 30 seconds — no credit card required</p></div></div>
-                        <div class="track-step"><div class="step-num">2</div><div class="step-content"><h4>Choose Plan &amp; Location</h4><p>Pick from 20+ locations across 4 continents</p></div></div>
-                        <div class="track-step"><div class="step-num">3</div><div class="step-content"><h4>Pay Your Way</h4><p>Card, PayPal, crypto, or 10+ payment methods</p></div></div>
-                        <div class="track-step"><div class="step-num">4</div><div class="step-content"><h4>Install &amp; Go Live</h4><p>Use Softaculous to install WordPress in 60 seconds</p></div></div>
+                        <div class="track-step"><div class="step-num">1</div><div class="step-content"><h4><?php echo e(__('cp_onboard_new_step1_title')); ?></h4><p><?php echo e(__('cp_onboard_new_step1_desc')); ?></p></div></div>
+                        <div class="track-step"><div class="step-num">2</div><div class="step-content"><h4><?php echo e(__('cp_onboard_new_step2_title')); ?></h4><p><?php echo e(__('cp_onboard_new_step2_desc')); ?></p></div></div>
+                        <div class="track-step"><div class="step-num">3</div><div class="step-content"><h4><?php echo e(__('cp_onboard_new_step3_title')); ?></h4><p><?php echo e(__('cp_onboard_new_step3_desc')); ?></p></div></div>
+                        <div class="track-step"><div class="step-num">4</div><div class="step-content"><h4><?php echo e(__('cp_onboard_new_step4_title')); ?></h4><p><?php echo e(__('cp_onboard_new_step4_desc')); ?></p></div></div>
                     </div>
                 </div>
                 <div class="track">
                     <div class="track-icon"><i class="fas fa-truck"></i></div>
-                    <h3>Free Migration</h3>
-                    <p>We move everything — files, databases, emails, DNS</p>
+                    <h3><?php echo e(__('cp_onboard_migrate_title')); ?></h3>
+                    <p><?php echo e(__('cp_onboard_migrate_desc')); ?></p>
                     <div class="track-steps">
-                        <div class="track-step"><div class="step-num">1</div><div class="step-content"><h4>Buy Any Plan</h4><p>Choose the plan that fits your site</p></div></div>
-                        <div class="track-step"><div class="step-num">2</div><div class="step-content"><h4>Open a Ticket</h4><p>Share your old host login details securely</p></div></div>
-                        <div class="track-step"><div class="step-num">3</div><div class="step-content"><h4>We Handle It All</h4><p>Full migration with zero downtime guarantee</p></div></div>
-                        <div class="track-step"><div class="step-num">4</div><div class="step-content"><h4>Verify &amp; Go Live</h4><p>Review your site — update DNS when ready</p></div></div>
+                        <div class="track-step"><div class="step-num">1</div><div class="step-content"><h4><?php echo e(__('cp_onboard_migrate_step1_title')); ?></h4><p><?php echo e(__('cp_onboard_migrate_step1_desc')); ?></p></div></div>
+                        <div class="track-step"><div class="step-num">2</div><div class="step-content"><h4><?php echo e(__('cp_onboard_migrate_step2_title')); ?></h4><p><?php echo e(__('cp_onboard_migrate_step2_desc')); ?></p></div></div>
+                        <div class="track-step"><div class="step-num">3</div><div class="step-content"><h4><?php echo e(__('cp_onboard_migrate_step3_title')); ?></h4><p><?php echo e(__('cp_onboard_migrate_step3_desc')); ?></p></div></div>
+                        <div class="track-step"><div class="step-num">4</div><div class="step-content"><h4><?php echo e(__('cp_onboard_migrate_step4_title')); ?></h4><p><?php echo e(__('cp_onboard_migrate_step4_desc')); ?></p></div></div>
                     </div>
                 </div>
             </div>
@@ -895,27 +895,27 @@ include __DIR__ . '/includes/section-dc-showcase.php';
     <section class="social-proof reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Trusted Worldwide</div>
-                <h2>Loved by 90,000+ clients</h2>
-                <p>From solo developers to agencies — hear what our customers have to say.</p>
+                <div class="section-tag"><?php echo e(__('cp_proof_tag')); ?></div>
+                <h2><?php echo e(__('cp_proof_title')); ?></h2>
+                <p><?php echo e(__('cp_proof_desc')); ?></p>
             </div>
 
             <div class="proof-stats">
                 <div class="proof-stat">
-                    <div class="stat-num">90K<span class="stat-suffix">+</span></div>
-                    <div class="stat-text">Active Clients</div>
+                    <div class="stat-num"><?php echo e(__('cp_proof_stat1_num')); ?></div>
+                    <div class="stat-text"><?php echo e(__('cp_proof_stat1_text')); ?></div>
                 </div>
                 <div class="proof-stat">
-                    <div class="stat-num">250K<span class="stat-suffix">+</span></div>
-                    <div class="stat-text">Tickets Resolved</div>
+                    <div class="stat-num"><?php echo e(__('cp_proof_stat2_num')); ?></div>
+                    <div class="stat-text"><?php echo e(__('cp_proof_stat2_text')); ?></div>
                 </div>
                 <div class="proof-stat">
-                    <div class="stat-num">2018</div>
-                    <div class="stat-text">Founded</div>
+                    <div class="stat-num"><?php echo e(__('cp_proof_stat3_num')); ?></div>
+                    <div class="stat-text"><?php echo e(__('cp_proof_stat3_text')); ?></div>
                 </div>
                 <div class="proof-stat">
-                    <div class="stat-num">30<span class="stat-suffix">+</span></div>
-                    <div class="stat-text">Team Members</div>
+                    <div class="stat-num"><?php echo e(__('cp_proof_stat4_num')); ?></div>
+                    <div class="stat-text"><?php echo e(__('cp_proof_stat4_text')); ?></div>
                 </div>
             </div>
 
@@ -924,14 +924,12 @@ include __DIR__ . '/includes/section-dc-showcase.php';
                     <div class="swiper-slide">
                         <div class="testimonial-card">
                             <div class="testimonial-stars">&starf;&starf;&starf;&starf;&starf;</div>
-                            <p class="testimonial-text">"I started with a bill of around $1.9, and now my bills exceed $600
-                                per year, and I'm incredibly satisfied. Every issue gets resolved promptly, thanks to the
-                                excellent customer support."</p>
+                            <p class="testimonial-text">"<?php echo e(__('cp_testimonial1_text')); ?>"</p>
                             <div class="testimonial-author">
                                 <div class="testimonial-avatar">A</div>
                                 <div>
-                                    <div class="testimonial-name">Adel</div>
-                                    <div class="testimonial-origin">Saudi Arabia</div>
+                                    <div class="testimonial-name"><?php echo e(__('cp_testimonial1_name')); ?></div>
+                                    <div class="testimonial-origin"><?php echo e(__('cp_testimonial1_origin')); ?></div>
                                 </div>
                             </div>
                         </div>
@@ -940,14 +938,12 @@ include __DIR__ . '/includes/section-dc-showcase.php';
                     <div class="swiper-slide">
                         <div class="testimonial-card">
                             <div class="testimonial-stars">&starf;&starf;&starf;&starf;&starf;</div>
-                            <p class="testimonial-text">"They just have the best support that I've ever seen. You never
-                                expect to get a response instantly and that's just impressive! You can get servers anywhere
-                                but you cannot find such good support."</p>
+                            <p class="testimonial-text">"<?php echo e(__('cp_testimonial2_text')); ?>"</p>
                             <div class="testimonial-author">
                                 <div class="testimonial-avatar">M</div>
                                 <div>
-                                    <div class="testimonial-name">Mehrbod</div>
-                                    <div class="testimonial-origin">Iran</div>
+                                    <div class="testimonial-name"><?php echo e(__('cp_testimonial2_name')); ?></div>
+                                    <div class="testimonial-origin"><?php echo e(__('cp_testimonial2_origin')); ?></div>
                                 </div>
                             </div>
                         </div>
@@ -956,14 +952,12 @@ include __DIR__ . '/includes/section-dc-showcase.php';
                     <div class="swiper-slide">
                         <div class="testimonial-card">
                             <div class="testimonial-stars">&starf;&starf;&starf;&starf;&starf;</div>
-                            <p class="testimonial-text">"The service that Yotta has provided is incredible and the support
-                                they have given me migrating my websites from other hosting providers has been amazing, in
-                                just a few minutes!"</p>
+                            <p class="testimonial-text">"<?php echo e(__('cp_testimonial3_text')); ?>"</p>
                             <div class="testimonial-author">
                                 <div class="testimonial-avatar">J</div>
                                 <div>
-                                    <div class="testimonial-name">Juan Carlos</div>
-                                    <div class="testimonial-origin">United Kingdom</div>
+                                    <div class="testimonial-name"><?php echo e(__('cp_testimonial3_name')); ?></div>
+                                    <div class="testimonial-origin"><?php echo e(__('cp_testimonial3_origin')); ?></div>
                                 </div>
                             </div>
                         </div>
@@ -972,14 +966,12 @@ include __DIR__ . '/includes/section-dc-showcase.php';
                     <div class="swiper-slide">
                         <div class="testimonial-card">
                             <div class="testimonial-stars">&starf;&starf;&starf;&starf;&starf;</div>
-                            <p class="testimonial-text">"I've been using YottaSrc for 3 years now. The uptime is flawless
-                                and the speed is unmatched compared to my previous host. Migrating was painless —
-                                their team handled everything."</p>
+                            <p class="testimonial-text">"<?php echo e(__('cp_testimonial4_text')); ?>"</p>
                             <div class="testimonial-author">
                                 <div class="testimonial-avatar">D</div>
                                 <div>
-                                    <div class="testimonial-name">Dmitry</div>
-                                    <div class="testimonial-origin">Germany</div>
+                                    <div class="testimonial-name"><?php echo e(__('cp_testimonial4_name')); ?></div>
+                                    <div class="testimonial-origin"><?php echo e(__('cp_testimonial4_origin')); ?></div>
                                 </div>
                             </div>
                         </div>
@@ -988,14 +980,12 @@ include __DIR__ . '/includes/section-dc-showcase.php';
                     <div class="swiper-slide">
                         <div class="testimonial-card">
                             <div class="testimonial-stars">&starf;&starf;&starf;&starf;&starf;</div>
-                            <p class="testimonial-text">"As a reseller, I need reliable infrastructure. YottaSrc delivers
-                                consistently. My clients are happy with the performance and I love the competitive
-                                pricing on renewal — no surprises."</p>
+                            <p class="testimonial-text">"<?php echo e(__('cp_testimonial5_text')); ?>"</p>
                             <div class="testimonial-author">
                                 <div class="testimonial-avatar">F</div>
                                 <div>
-                                    <div class="testimonial-name">Fatima</div>
-                                    <div class="testimonial-origin">UAE</div>
+                                    <div class="testimonial-name"><?php echo e(__('cp_testimonial5_name')); ?></div>
+                                    <div class="testimonial-origin"><?php echo e(__('cp_testimonial5_origin')); ?></div>
                                 </div>
                             </div>
                         </div>
@@ -1004,14 +994,12 @@ include __DIR__ . '/includes/section-dc-showcase.php';
                     <div class="swiper-slide">
                         <div class="testimonial-card">
                             <div class="testimonial-stars">&starf;&starf;&starf;&starf;&starf;</div>
-                            <p class="testimonial-text">"Moved 12 WordPress sites to YottaSrc last year. Zero downtime
-                                during migration and the LiteSpeed caching makes everything blazing fast. Their support
-                                team is genuinely knowledgeable."</p>
+                            <p class="testimonial-text">"<?php echo e(__('cp_testimonial6_text')); ?>"</p>
                             <div class="testimonial-author">
                                 <div class="testimonial-avatar">R</div>
                                 <div>
-                                    <div class="testimonial-name">Ricardo</div>
-                                    <div class="testimonial-origin">Brazil</div>
+                                    <div class="testimonial-name"><?php echo e(__('cp_testimonial6_name')); ?></div>
+                                    <div class="testimonial-origin"><?php echo e(__('cp_testimonial6_origin')); ?></div>
                                 </div>
                             </div>
                         </div>
@@ -1020,14 +1008,12 @@ include __DIR__ . '/includes/section-dc-showcase.php';
                     <div class="swiper-slide">
                         <div class="testimonial-card">
                             <div class="testimonial-stars">&starf;&starf;&starf;&starf;&starf;</div>
-                            <p class="testimonial-text">"The cPanel hosting is top notch. SSL, backups, email — everything
-                                just works. I used to spend hours on server issues with other providers. With Yotta,
-                                I focus on building my business."</p>
+                            <p class="testimonial-text">"<?php echo e(__('cp_testimonial7_text')); ?>"</p>
                             <div class="testimonial-author">
                                 <div class="testimonial-avatar">S</div>
                                 <div>
-                                    <div class="testimonial-name">Sarah</div>
-                                    <div class="testimonial-origin">Egypt</div>
+                                    <div class="testimonial-name"><?php echo e(__('cp_testimonial7_name')); ?></div>
+                                    <div class="testimonial-origin"><?php echo e(__('cp_testimonial7_origin')); ?></div>
                                 </div>
                             </div>
                         </div>
@@ -1036,14 +1022,12 @@ include __DIR__ . '/includes/section-dc-showcase.php';
                     <div class="swiper-slide">
                         <div class="testimonial-card">
                             <div class="testimonial-stars">&starf;&starf;&starf;&starf;&starf;</div>
-                            <p class="testimonial-text">"Best VPS provider I've used. The setup was instant, and the
-                                performance is rock solid. I run a Telegram bot and a Node.js app on the same VPS
-                                with zero issues for over a year."</p>
+                            <p class="testimonial-text">"<?php echo e(__('cp_testimonial8_text')); ?>"</p>
                             <div class="testimonial-author">
                                 <div class="testimonial-avatar">O</div>
                                 <div>
-                                    <div class="testimonial-name">Omar</div>
-                                    <div class="testimonial-origin">Jordan</div>
+                                    <div class="testimonial-name"><?php echo e(__('cp_testimonial8_name')); ?></div>
+                                    <div class="testimonial-origin"><?php echo e(__('cp_testimonial8_origin')); ?></div>
                                 </div>
                             </div>
                         </div>
@@ -1055,7 +1039,7 @@ include __DIR__ . '/includes/section-dc-showcase.php';
             <div class="trustpilot-link">
                 <a href="https://www.trustpilot.com/review/yottasrc.com" class="trustpilot-badge" target="_blank" rel="noopener noreferrer">
                     <i class="fas fa-star"></i>
-                    Rated Excellent on Trustpilot — Read all 144+ reviews
+                    <?php echo e(__('cp_trustpilot')); ?>
                     <i class="fas fa-external-link-alt trustpilot-external-icon"></i>
                 </a>
             </div>
@@ -1066,45 +1050,45 @@ include __DIR__ . '/includes/section-dc-showcase.php';
     <section class="faq-section reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">FAQ</div>
-                <h2>Frequently asked questions</h2>
-                <p>Can't find your answer? Open a support ticket — we respond in under 10 minutes.</p>
+                <div class="section-tag"><?php echo e(__('cp_faq_tag')); ?></div>
+                <h2><?php echo e(__('cp_faq_title')); ?></h2>
+                <p><?php echo e(__('cp_faq_desc')); ?></p>
             </div>
 
             <div class="faq-layout">
                 <div class="faq-tabs">
-                    <button class="faq-tab active" data-faq-target="faq-general"><i class="fas fa-server"></i> General</button>
-                    <button class="faq-tab" data-faq-target="faq-technical"><i class="fas fa-cogs"></i> Technical</button>
-                    <button class="faq-tab" data-faq-target="faq-billing"><i class="fas fa-credit-card"></i> Billing</button>
+                    <button class="faq-tab active" data-faq-target="faq-general"><i class="fas fa-server"></i> <?php echo e(__('cp_faq_tab_general')); ?></button>
+                    <button class="faq-tab" data-faq-target="faq-technical"><i class="fas fa-cogs"></i> <?php echo e(__('cp_faq_tab_technical')); ?></button>
+                    <button class="faq-tab" data-faq-target="faq-billing"><i class="fas fa-credit-card"></i> <?php echo e(__('cp_faq_tab_billing')); ?></button>
                 </div>
 
                 <div class="faq-panels">
                     <div class="faq-panel active" id="faq-general">
-                        <div class="faq-item"><button class="faq-question"><span>How long does it take to activate my order?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Orders are typically activated within 2 to 20 minutes. If your service is not activated within this time, please open a ticket.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Does hosting include a control panel?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Yes, all our hosting plans include the latest version of cPanel, allowing you to manage your website, databases, emails, and more.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Do you offer a website builder tool?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Yes, we provide SitePad and SiteJet — easy-to-use drag-and-drop website builders included in all hosting plans.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Do you allow adult/porn content?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>No, adult content is strictly prohibited on our hosting platform as outlined in our Terms of Service.</p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('cp_faq_g1_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('cp_faq_g1_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('cp_faq_g2_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('cp_faq_g2_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('cp_faq_g3_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('cp_faq_g3_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('cp_faq_g4_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('cp_faq_g4_a')); ?></p></div></div>
                     </div>
 
                     <div class="faq-panel" id="faq-technical">
-                        <div class="faq-item"><button class="faq-question"><span>What are the requirements for hosting a WordPress website?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>PHP version 7.4 or greater, MySQL version 5.6 or greater or MariaDB version 10.1 or greater, and HTTPS support. All included with our plans.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Which PHP versions are supported?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>We support PHP versions from 5.2 to 8.4 with easy per-domain switching via cPanel. Node.js is also available.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Can I upgrade my hosting plan?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Yes, you can upgrade or downgrade your plan anytime from your client dashboard, or contact our sales team for assistance.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Do you offer free website migration?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Yes, we offer free migration for all hosting plans. Simply open a ticket after purchase and our team will handle everything — files, databases, emails, and DNS.</p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('cp_faq_t1_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('cp_faq_t1_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('cp_faq_t2_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('cp_faq_t2_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('cp_faq_t3_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('cp_faq_t3_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('cp_faq_t4_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('cp_faq_t4_a')); ?></p></div></div>
                     </div>
 
                     <div class="faq-panel" id="faq-billing">
-                        <div class="faq-item"><button class="faq-question"><span>Can I get a refund for unused services?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Refunds are available under specific conditions outlined in our Refund Policy. We offer a 30-day money-back guarantee on hosting plans.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>What payment methods do you accept?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>We accept credit/debit cards, PayPal, cryptocurrency, and 10+ other payment methods for your convenience.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Does the price increase on renewal?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>No — you pay the same price on renewal. No surprises, no hidden fees, ever.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Can I get a postponement of payment?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Yes, you can request a payment extension by contacting Sales support before your due date.</p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('cp_faq_b1_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('cp_faq_b1_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('cp_faq_b2_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('cp_faq_b2_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('cp_faq_b3_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('cp_faq_b3_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('cp_faq_b4_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('cp_faq_b4_a')); ?></p></div></div>
                     </div>
                 </div>
             </div>
 
             <div class="faq-actions">
-                <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-primary"><i class="fas fa-headset"></i> Open a Ticket</a>
-                <a href="<?php echo e(SITE_URL); ?>/faq" class="btn-secondary">Browse All FAQ <i class="fas fa-arrow-right"></i></a>
+                <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-primary"><i class="fas fa-headset"></i> <?php echo e(__('cp_faq_open_ticket')); ?></a>
+                <a href="<?php echo e(SITE_URL); ?>/faq" class="btn-secondary"><?php echo e(__('cp_faq_browse_all')); ?> <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
@@ -1124,9 +1108,9 @@ include __DIR__ . '/includes/section-dc-showcase.php';
             <div class="promo-cta-inner">
                 <div class="promo-cta-glow"></div>
                 <div class="promo-cta-icon"><i class="fas fa-rocket"></i></div>
-                <h2>Ready to launch your website?</h2>
-                <p>Get started with cPanel hosting from €0.83/month. Free domain, free SSL, free migration.</p>
-                <a href="#plans" class="btn-primary">View Plans <i class="fas fa-arrow-right"></i></a>
+                <h2><?php echo e(__('cp_cta_title')); ?></h2>
+                <p><?php echo e(__('cp_cta_desc')); ?></p>
+                <a href="#plans" class="btn-primary"><?php echo e(__('cp_cta_btn')); ?> <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>

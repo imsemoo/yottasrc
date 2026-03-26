@@ -17,23 +17,23 @@ require_once __DIR__ . '/includes/topbar.php';
                     <div class="page-breadcrumb">
                         <a href="<?php echo e(SITE_URL); ?>/"><?php echo e(__('breadcrumb_home')); ?></a>
                         <i class="fas fa-chevron-right"></i>
-                        <a href="<?php echo e(SITE_URL); ?>/cpanel-reseller/">Reseller</a>
+                        <a href="<?php echo e(SITE_URL); ?>/cpanel-reseller/"><?php echo e(__('reseller_breadcrumb')); ?></a>
                         <i class="fas fa-chevron-right"></i>
                         <span><?php echo e(__('reseller_vps_breadcrumb')); ?></span>
                     </div>
-                    <h1>VPS Reseller — <span class="highlight">Sell Cloud Infrastructure</span></h1>
+                    <h1><?php echo __('reseller_vps_title'); ?></h1>
                     <p class="page-hero-desc">
-                        Resell VPS instances under your own brand. Provision KVM-powered virtual servers for your clients via API or dashboard — with full white-label control and competitive margins.
+                        <?php echo e(__('reseller_vps_desc')); ?>
                     </p>
                     <div class="page-hero-ctas">
-                        <a href="#plans" class="btn-primary">View Plans <i class="fas fa-arrow-down"></i></a>
-                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-secondary"><i class="fas fa-headset"></i> Talk to Sales</a>
+                        <a href="#plans" class="btn-primary"><?php echo e(__('common_view_plans')); ?> <i class="fas fa-arrow-down"></i></a>
+                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-secondary"><i class="fas fa-headset"></i> <?php echo e(__('common_talk_to_sales')); ?></a>
                     </div>
                     <div class="page-hero-badges">
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> KVM Virtualization</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> API Provisioning</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> White-Label Dashboard</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> 20+ Locations</div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('rvps_badge_kvm')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('rvps_badge_api')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('rvps_badge_wl')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('rvps_badge_locations')); ?></div>
                     </div>
                 </div>
                 <div class="page-hero-visual">
@@ -143,14 +143,14 @@ require_once __DIR__ . '/includes/topbar.php';
     <!-- ═══════════════ POWERED BY STRIP ═══════════════ -->
     <section class="partners">
         <div class="container">
-            <span class="partners-label">Powered By</span>
+            <span class="partners-label"><?php echo e(__('reseller_powered_by')); ?></span>
             <div class="partners-logos">
-                <span class="partner-logo"><i class="fas fa-microchip"></i> KVM</span>
-                <span class="partner-logo"><i class="fas fa-hdd"></i> NVMe SSD</span>
-                <span class="partner-logo"><i class="fas fa-network-wired"></i> 10 Gbit/s</span>
-                <span class="partner-logo"><i class="fas fa-shield-alt"></i> DDoS Protection</span>
-                <span class="partner-logo"><i class="fas fa-code"></i> REST API</span>
-                <span class="partner-logo"><i class="fas fa-globe"></i> 20+ Locations</span>
+                <span class="partner-logo"><i class="fas fa-microchip"></i> <?php echo e(__('rvps_powered_kvm')); ?></span>
+                <span class="partner-logo"><i class="fas fa-hdd"></i> <?php echo e(__('rvps_powered_nvme')); ?></span>
+                <span class="partner-logo"><i class="fas fa-network-wired"></i> <?php echo e(__('rvps_powered_network')); ?></span>
+                <span class="partner-logo"><i class="fas fa-shield-alt"></i> <?php echo e(__('rvps_powered_ddos')); ?></span>
+                <span class="partner-logo"><i class="fas fa-code"></i> <?php echo e(__('rvps_powered_api')); ?></span>
+                <span class="partner-logo"><i class="fas fa-globe"></i> <?php echo e(__('rvps_powered_locations')); ?></span>
             </div>
         </div>
     </section>
@@ -159,9 +159,9 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="plans reveal" id="plans">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Pricing</div>
-                <h2>VPS Reseller plans</h2>
-                <p>Wholesale VPS pricing with volume tiers. The more you sell, the better your margins.</p>
+                <div class="section-tag"><?php echo e(__('rcpanel_plans_tag')); ?></div>
+                <h2><?php echo e(__('rvps_plans_title')); ?></h2>
+                <p><?php echo e(__('rvps_plans_desc')); ?></p>
             </div>
 
             <div class="plans-panel active" data-tab="vps-reseller">
@@ -170,113 +170,113 @@ require_once __DIR__ . '/includes/topbar.php';
                         <!-- Starter Pool -->
                         <div class="swiper-slide"><div class="plan-card">
                             <div class="plan-head"><div class="plan-name">Starter Pool</div><span class="plan-save">Save 25%</span></div>
-                            <div class="plan-target">Up to 10 VPS instances</div>
+                            <div class="plan-target"><?php echo e(__('rvps_target_starter')); ?></div>
                             <div class="plan-price">
                                 <span class="old-price">€39.99</span>
                                 <span class="current-price"><span class="currency">€</span><span class="amount">29.99</span><span class="period">EUR / mo</span></span>
                             </div>
-                            <div class="plan-renewal"><i class="fas fa-check"></i> Same price on renewal</div>
-                            <button class="plan-cta" data-type="vps" data-href="<?php echo e(CP_URL); ?>/order/vps-reseller/starter-pool">Choose Plan</button>
+                            <div class="plan-renewal"><i class="fas fa-check"></i> <?php echo e(__('reseller_same_renewal')); ?></div>
+                            <button class="plan-cta" data-type="vps" data-href="<?php echo e(CP_URL); ?>/order/vps-reseller/starter-pool"><?php echo e(__('common_choose_plan')); ?></button>
                             <div class="plan-resources">
-                                <div class="plan-res"><i class="fas fa-microchip"></i><span class="res-val">16 vCPU</span><span class="res-label">Total CPU Pool</span></div>
-                                <div class="plan-res"><i class="fas fa-memory"></i><span class="res-val">32 GB</span><span class="res-label">RAM Pool</span></div>
-                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">500 GB</span><span class="res-label">NVMe Storage</span></div>
-                                <div class="plan-res"><i class="fas fa-wifi"></i><span class="res-val">10 TB</span><span class="res-label">Bandwidth</span></div>
+                                <div class="plan-res"><i class="fas fa-microchip"></i><span class="res-val">16 vCPU</span><span class="res-label"><?php echo e(__('rvps_res_cpu')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-memory"></i><span class="res-val">32 GB</span><span class="res-label"><?php echo e(__('rvps_res_ram')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">500 GB</span><span class="res-label"><?php echo e(__('rvps_res_nvme')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-wifi"></i><span class="res-val">10 TB</span><span class="res-label"><?php echo e(__('rvps_res_bw')); ?></span></div>
                             </div>
-                            <div class="plan-divider"><span>Included</span></div>
+                            <div class="plan-divider"><span><?php echo e(__('reseller_included')); ?></span></div>
                             <ul class="plan-features">
-                                <li><i class="fas fa-server"></i> KVM Virtualization</li>
-                                <li><i class="fas fa-code"></i> REST API Access</li>
-                                <li><i class="fas fa-palette"></i> White-Label Dashboard</li>
-                                <li><i class="fas fa-shield-alt"></i> DDoS Protection</li>
-                                <li><i class="fas fa-camera"></i> VPS Snapshots</li>
-                                <li><i class="fas fa-map-marker-alt"></i> 20+ Locations</li>
-                                <li><i class="fas fa-cogs"></i> WHMCS Module</li>
+                                <li><i class="fas fa-server"></i> <?php echo e(__('rvps_feat_kvm')); ?></li>
+                                <li><i class="fas fa-code"></i> <?php echo e(__('rvps_feat_api')); ?></li>
+                                <li><i class="fas fa-palette"></i> <?php echo e(__('rvps_feat_wl')); ?></li>
+                                <li><i class="fas fa-shield-alt"></i> <?php echo e(__('rvps_feat_ddos')); ?></li>
+                                <li><i class="fas fa-camera"></i> <?php echo e(__('rvps_feat_snap')); ?></li>
+                                <li><i class="fas fa-map-marker-alt"></i> <?php echo e(__('rvps_feat_locations')); ?></li>
+                                <li><i class="fas fa-cogs"></i> <?php echo e(__('rvps_feat_whmcs')); ?></li>
                             </ul>
                         </div></div>
 
                         <!-- Growth Pool (Popular) -->
                         <div class="swiper-slide"><div class="plan-card popular">
-                            <div class="plan-badge">Most Popular</div>
+                            <div class="plan-badge"><?php echo e(__('reseller_most_popular')); ?></div>
                             <div class="plan-head"><div class="plan-name">Growth Pool</div><span class="plan-save">Save 30%</span></div>
-                            <div class="plan-target">Up to 25 VPS instances</div>
+                            <div class="plan-target"><?php echo e(__('rvps_target_growth')); ?></div>
                             <div class="plan-price">
                                 <span class="old-price">€99.99</span>
                                 <span class="current-price"><span class="currency">€</span><span class="amount">69.99</span><span class="period">EUR / mo</span></span>
                             </div>
-                            <div class="plan-renewal"><i class="fas fa-check"></i> Same price on renewal</div>
-                            <button class="plan-cta" data-type="vps" data-href="<?php echo e(CP_URL); ?>/order/vps-reseller/growth-pool">Choose Plan</button>
+                            <div class="plan-renewal"><i class="fas fa-check"></i> <?php echo e(__('reseller_same_renewal')); ?></div>
+                            <button class="plan-cta" data-type="vps" data-href="<?php echo e(CP_URL); ?>/order/vps-reseller/growth-pool"><?php echo e(__('common_choose_plan')); ?></button>
                             <div class="plan-resources">
-                                <div class="plan-res"><i class="fas fa-microchip"></i><span class="res-val">48 vCPU</span><span class="res-label">Total CPU Pool</span></div>
-                                <div class="plan-res"><i class="fas fa-memory"></i><span class="res-val">96 GB</span><span class="res-label">RAM Pool</span></div>
-                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">1.5 TB</span><span class="res-label">NVMe Storage</span></div>
-                                <div class="plan-res"><i class="fas fa-wifi"></i><span class="res-val">30 TB</span><span class="res-label">Bandwidth</span></div>
+                                <div class="plan-res"><i class="fas fa-microchip"></i><span class="res-val">48 vCPU</span><span class="res-label"><?php echo e(__('rvps_res_cpu')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-memory"></i><span class="res-val">96 GB</span><span class="res-label"><?php echo e(__('rvps_res_ram')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">1.5 TB</span><span class="res-label"><?php echo e(__('rvps_res_nvme')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-wifi"></i><span class="res-val">30 TB</span><span class="res-label"><?php echo e(__('rvps_res_bw')); ?></span></div>
                             </div>
-                            <div class="plan-divider"><span>Included</span></div>
+                            <div class="plan-divider"><span><?php echo e(__('reseller_included')); ?></span></div>
                             <ul class="plan-features">
-                                <li><i class="fas fa-server"></i> KVM Virtualization</li>
-                                <li><i class="fas fa-code"></i> REST API Access</li>
-                                <li><i class="fas fa-palette"></i> White-Label Dashboard</li>
-                                <li><i class="fas fa-shield-alt"></i> DDoS Protection</li>
-                                <li><i class="fas fa-camera"></i> VPS Snapshots</li>
-                                <li><i class="fas fa-map-marker-alt"></i> 20+ Locations</li>
-                                <li><i class="fas fa-cogs"></i> WHMCS + Blesta Module</li>
+                                <li><i class="fas fa-server"></i> <?php echo e(__('rvps_feat_kvm')); ?></li>
+                                <li><i class="fas fa-code"></i> <?php echo e(__('rvps_feat_api')); ?></li>
+                                <li><i class="fas fa-palette"></i> <?php echo e(__('rvps_feat_wl')); ?></li>
+                                <li><i class="fas fa-shield-alt"></i> <?php echo e(__('rvps_feat_ddos')); ?></li>
+                                <li><i class="fas fa-camera"></i> <?php echo e(__('rvps_feat_snap')); ?></li>
+                                <li><i class="fas fa-map-marker-alt"></i> <?php echo e(__('rvps_feat_locations')); ?></li>
+                                <li><i class="fas fa-cogs"></i> <?php echo e(__('rvps_feat_blesta')); ?></li>
                             </ul>
                         </div></div>
 
                         <!-- Scale Pool -->
                         <div class="swiper-slide"><div class="plan-card">
                             <div class="plan-head"><div class="plan-name">Scale Pool</div><span class="plan-save">Save 25%</span></div>
-                            <div class="plan-target">Up to 50 VPS instances</div>
+                            <div class="plan-target"><?php echo e(__('rvps_target_scale')); ?></div>
                             <div class="plan-price">
                                 <span class="old-price">€159.99</span>
                                 <span class="current-price"><span class="currency">€</span><span class="amount">119.99</span><span class="period">EUR / mo</span></span>
                             </div>
-                            <div class="plan-renewal"><i class="fas fa-check"></i> Same price on renewal</div>
-                            <button class="plan-cta" data-type="vps" data-href="<?php echo e(CP_URL); ?>/order/vps-reseller/scale-pool">Choose Plan</button>
+                            <div class="plan-renewal"><i class="fas fa-check"></i> <?php echo e(__('reseller_same_renewal')); ?></div>
+                            <button class="plan-cta" data-type="vps" data-href="<?php echo e(CP_URL); ?>/order/vps-reseller/scale-pool"><?php echo e(__('common_choose_plan')); ?></button>
                             <div class="plan-resources">
-                                <div class="plan-res"><i class="fas fa-microchip"></i><span class="res-val">80 vCPU</span><span class="res-label">Total CPU Pool</span></div>
-                                <div class="plan-res"><i class="fas fa-memory"></i><span class="res-val">160 GB</span><span class="res-label">RAM Pool</span></div>
-                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">2.5 TB</span><span class="res-label">NVMe Storage</span></div>
-                                <div class="plan-res"><i class="fas fa-wifi"></i><span class="res-val">50 TB</span><span class="res-label">Bandwidth</span></div>
+                                <div class="plan-res"><i class="fas fa-microchip"></i><span class="res-val">80 vCPU</span><span class="res-label"><?php echo e(__('rvps_res_cpu')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-memory"></i><span class="res-val">160 GB</span><span class="res-label"><?php echo e(__('rvps_res_ram')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">2.5 TB</span><span class="res-label"><?php echo e(__('rvps_res_nvme')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-wifi"></i><span class="res-val">50 TB</span><span class="res-label"><?php echo e(__('rvps_res_bw')); ?></span></div>
                             </div>
-                            <div class="plan-divider"><span>Included</span></div>
+                            <div class="plan-divider"><span><?php echo e(__('reseller_included')); ?></span></div>
                             <ul class="plan-features">
-                                <li><i class="fas fa-server"></i> KVM Virtualization</li>
-                                <li><i class="fas fa-code"></i> REST API + Webhooks</li>
-                                <li><i class="fas fa-palette"></i> White-Label Dashboard</li>
-                                <li><i class="fas fa-shield-alt"></i> Advanced DDoS Mitigation</li>
-                                <li><i class="fas fa-camera"></i> VPS Snapshots + Backups</li>
-                                <li><i class="fas fa-map-marker-alt"></i> 20+ Locations</li>
-                                <li><i class="fas fa-cogs"></i> WHMCS + Blesta Module</li>
+                                <li><i class="fas fa-server"></i> <?php echo e(__('rvps_feat_kvm')); ?></li>
+                                <li><i class="fas fa-code"></i> <?php echo e(__('rvps_feat_api_webhooks')); ?></li>
+                                <li><i class="fas fa-palette"></i> <?php echo e(__('rvps_feat_wl')); ?></li>
+                                <li><i class="fas fa-shield-alt"></i> <?php echo e(__('rvps_feat_ddos_adv')); ?></li>
+                                <li><i class="fas fa-camera"></i> <?php echo e(__('rvps_feat_snap_backup')); ?></li>
+                                <li><i class="fas fa-map-marker-alt"></i> <?php echo e(__('rvps_feat_locations')); ?></li>
+                                <li><i class="fas fa-cogs"></i> <?php echo e(__('rvps_feat_blesta')); ?></li>
                             </ul>
                         </div></div>
 
                         <!-- Enterprise Pool -->
                         <div class="swiper-slide"><div class="plan-card">
                             <div class="plan-head"><div class="plan-name">Enterprise Pool</div><span class="plan-save">Save 35%</span></div>
-                            <div class="plan-target">Unlimited VPS instances</div>
+                            <div class="plan-target"><?php echo e(__('rvps_target_enterprise')); ?></div>
                             <div class="plan-price">
                                 <span class="old-price">€229.99</span>
                                 <span class="current-price"><span class="currency">€</span><span class="amount">149.99</span><span class="period">EUR / mo</span></span>
                             </div>
-                            <div class="plan-renewal"><i class="fas fa-check"></i> Same price on renewal</div>
-                            <button class="plan-cta" data-type="vps" data-href="<?php echo e(CP_URL); ?>/order/vps-reseller/enterprise-pool">Choose Plan</button>
+                            <div class="plan-renewal"><i class="fas fa-check"></i> <?php echo e(__('reseller_same_renewal')); ?></div>
+                            <button class="plan-cta" data-type="vps" data-href="<?php echo e(CP_URL); ?>/order/vps-reseller/enterprise-pool"><?php echo e(__('common_choose_plan')); ?></button>
                             <div class="plan-resources">
-                                <div class="plan-res"><i class="fas fa-microchip"></i><span class="res-val">128 vCPU</span><span class="res-label">Total CPU Pool</span></div>
-                                <div class="plan-res"><i class="fas fa-memory"></i><span class="res-val">256 GB</span><span class="res-label">RAM Pool</span></div>
-                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">4 TB</span><span class="res-label">NVMe Storage</span></div>
-                                <div class="plan-res"><i class="fas fa-wifi"></i><span class="res-val">Unlimited</span><span class="res-label">Bandwidth</span></div>
+                                <div class="plan-res"><i class="fas fa-microchip"></i><span class="res-val">128 vCPU</span><span class="res-label"><?php echo e(__('rvps_res_cpu')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-memory"></i><span class="res-val">256 GB</span><span class="res-label"><?php echo e(__('rvps_res_ram')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">4 TB</span><span class="res-label"><?php echo e(__('rvps_res_nvme')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-wifi"></i><span class="res-val">Unlimited</span><span class="res-label"><?php echo e(__('rvps_res_bw')); ?></span></div>
                             </div>
-                            <div class="plan-divider"><span>Included</span></div>
+                            <div class="plan-divider"><span><?php echo e(__('reseller_included')); ?></span></div>
                             <ul class="plan-features">
-                                <li><i class="fas fa-server"></i> KVM Virtualization</li>
-                                <li><i class="fas fa-code"></i> REST API + Webhooks</li>
-                                <li><i class="fas fa-palette"></i> White-Label Dashboard</li>
-                                <li><i class="fas fa-shield-alt"></i> Advanced DDoS Mitigation</li>
-                                <li><i class="fas fa-camera"></i> VPS Snapshots + Backups</li>
-                                <li><i class="fas fa-map-marker-alt"></i> 20+ Locations</li>
-                                <li><i class="fas fa-headset"></i> Priority Support</li>
+                                <li><i class="fas fa-server"></i> <?php echo e(__('rvps_feat_kvm')); ?></li>
+                                <li><i class="fas fa-code"></i> <?php echo e(__('rvps_feat_api_webhooks')); ?></li>
+                                <li><i class="fas fa-palette"></i> <?php echo e(__('rvps_feat_wl')); ?></li>
+                                <li><i class="fas fa-shield-alt"></i> <?php echo e(__('rvps_feat_ddos_adv')); ?></li>
+                                <li><i class="fas fa-camera"></i> <?php echo e(__('rvps_feat_snap_backup')); ?></li>
+                                <li><i class="fas fa-map-marker-alt"></i> <?php echo e(__('rvps_feat_locations')); ?></li>
+                                <li><i class="fas fa-headset"></i> <?php echo e(__('rvps_feat_priority')); ?></li>
                             </ul>
                         </div></div>
                     </div>
@@ -285,7 +285,7 @@ require_once __DIR__ . '/includes/topbar.php';
             </div>
 
             <div class="pricing-custom">
-                <p>Need a custom resource pool? <a href="<?php echo e(SITE_URL); ?>/contact-us/">Contact our sales team</a> for tailored enterprise configurations.</p>
+                <p><?php echo __('rvps_pricing_custom', ['contact_url' => e(SITE_URL) . '/contact-us/']); ?></p>
             </div>
         </div>
     </section>
@@ -294,31 +294,31 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="cp-benefits reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Why Resell VPS</div>
-                <h2>Profit from cloud infrastructure</h2>
-                <p>Offer dedicated cloud resources under your brand — zero hardware investment, maximum margins.</p>
+                <div class="section-tag"><?php echo e(__('rvps_why_tag')); ?></div>
+                <h2><?php echo e(__('rvps_why_title')); ?></h2>
+                <p><?php echo e(__('rvps_why_desc')); ?></p>
             </div>
 
             <div class="cp-benefits-grid">
                 <div class="cp-security-card">
                     <div class="cp-security-icon"><i class="fas fa-code"></i></div>
-                    <h4>API Automation</h4>
-                    <p>Deploy and manage VPS instances via REST API. Automate provisioning through WHMCS, Blesta, or custom integrations.</p>
+                    <h4><?php echo e(__('rvps_adv_api_title')); ?></h4>
+                    <p><?php echo e(__('rvps_adv_api_desc')); ?></p>
                 </div>
                 <div class="cp-security-card">
                     <div class="cp-security-icon icon-green"><i class="fas fa-palette"></i></div>
-                    <h4>White-Label Dashboard</h4>
-                    <p>Clients manage servers through your branded dashboard — your logo, your domain, your identity. Zero trace of YottaSrc.</p>
+                    <h4><?php echo e(__('rvps_adv_wl_title')); ?></h4>
+                    <p><?php echo e(__('rvps_adv_wl_desc')); ?></p>
                 </div>
                 <div class="cp-security-card">
                     <div class="cp-security-icon icon-purple"><i class="fas fa-cubes"></i></div>
-                    <h4>Scalable VPS Pools</h4>
-                    <p>Start with a small resource pool and scale on demand. Add CPU, RAM, and storage to your pool as your client base grows.</p>
+                    <h4><?php echo e(__('rvps_adv_scale_title')); ?></h4>
+                    <p><?php echo e(__('rvps_adv_scale_desc')); ?></p>
                 </div>
                 <div class="cp-security-card">
                     <div class="cp-security-icon icon-amber"><i class="fas fa-hand-holding-usd"></i></div>
-                    <h4>Competitive Margins</h4>
-                    <p>Wholesale pricing with volume discounts. Set your own prices and keep 100% of the profit from every client.</p>
+                    <h4><?php echo e(__('rvps_adv_margin_title')); ?></h4>
+                    <p><?php echo e(__('rvps_adv_margin_desc')); ?></p>
                 </div>
             </div>
         </div>
@@ -328,48 +328,48 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="bento-features reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Features</div>
-                <h2>Everything you need to resell VPS</h2>
-                <p>Provision, manage, and scale VPS instances for your clients with powerful tools.</p>
+                <div class="section-tag"><?php echo e(__('rvps_feat2_tag')); ?></div>
+                <h2><?php echo e(__('rvps_feat2_title')); ?></h2>
+                <p><?php echo e(__('rvps_feat2_desc')); ?></p>
             </div>
 
             <div class="bento-grid">
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon"><i class="fas fa-terminal"></i></div>
-                    <h4>REST API &amp; Automation</h4>
-                    <p>Full API access for provisioning, scaling, and managing VPS instances. Integrates with WHMCS and Blesta.</p>
+                    <h4><?php echo e(__('rvps_feat2_api_title')); ?></h4>
+                    <p><?php echo e(__('rvps_feat2_api_desc')); ?></p>
                 </div>
 
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-green"><i class="fas fa-expand-arrows-alt"></i></div>
-                    <h4>Instant Scaling</h4>
-                    <p>Scale CPU, RAM, and storage up or down instantly — no downtime required for most upgrades.</p>
+                    <h4><?php echo e(__('rvps_feat2_scale_title')); ?></h4>
+                    <p><?php echo e(__('rvps_feat2_scale_desc')); ?></p>
                 </div>
 
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-purple"><i class="fas fa-camera"></i></div>
-                    <h4>VPS Snapshots</h4>
-                    <p>On-demand snapshots for backup and cloning.</p>
+                    <h4><?php echo e(__('rvps_feat2_snap_title')); ?></h4>
+                    <p><?php echo e(__('rvps_feat2_snap_desc')); ?></p>
                 </div>
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-amber"><i class="fas fa-shield-alt"></i></div>
-                    <h4>DDoS Protection</h4>
-                    <p>Enterprise DDoS mitigation at every location.</p>
+                    <h4><?php echo e(__('rvps_feat2_ddos_title')); ?></h4>
+                    <p><?php echo e(__('rvps_feat2_ddos_desc')); ?></p>
                 </div>
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon"><i class="fas fa-network-wired"></i></div>
-                    <h4>Private Networking</h4>
-                    <p>VLAN and private IPs between VPS instances.</p>
+                    <h4><?php echo e(__('rvps_feat2_network_title')); ?></h4>
+                    <p><?php echo e(__('rvps_feat2_network_desc')); ?></p>
                 </div>
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-green"><i class="fas fa-compact-disc"></i></div>
-                    <h4>OS Templates</h4>
-                    <p>Ubuntu, Debian, CentOS, Windows, and more.</p>
+                    <h4><?php echo e(__('rvps_feat2_os_title')); ?></h4>
+                    <p><?php echo e(__('rvps_feat2_os_desc')); ?></p>
                 </div>
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-blue"><i class="fas fa-cloud-download-alt"></i></div>
-                    <h4>Automated Backups</h4>
-                    <p>Scheduled snapshots and off-site backup storage.</p>
+                    <h4><?php echo e(__('rvps_feat2_backup_title')); ?></h4>
+                    <p><?php echo e(__('rvps_feat2_backup_desc')); ?></p>
                 </div>
             </div>
         </div>
@@ -379,9 +379,9 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="vps-automation reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Developer Tools</div>
-                <h2>Automation &amp; Integration</h2>
-                <p>Automate every aspect of VPS provisioning through our API, modules, and webhooks.</p>
+                <div class="section-tag"><?php echo e(__('rvps_auto_tag')); ?></div>
+                <h2><?php echo __('rvps_auto_title'); ?></h2>
+                <p><?php echo e(__('rvps_auto_desc')); ?></p>
             </div>
 
             <div class="vps-auto-grid">
@@ -389,36 +389,36 @@ require_once __DIR__ . '/includes/topbar.php';
                     <div class="vps-auto-item">
                         <div class="vps-auto-icon"><i class="fas fa-cogs"></i></div>
                         <div class="vps-auto-text">
-                            <h4>WHMCS Module</h4>
-                            <p>Native WHMCS module for automated provisioning, suspension, and resource management. Zero manual intervention.</p>
+                            <h4><?php echo e(__('rvps_auto_whmcs_title')); ?></h4>
+                            <p><?php echo e(__('rvps_auto_whmcs_desc')); ?></p>
                         </div>
                     </div>
                     <div class="vps-auto-item">
                         <div class="vps-auto-icon icon-green"><i class="fas fa-code"></i></div>
                         <div class="vps-auto-text">
-                            <h4>REST API Provisioning</h4>
-                            <p>Create, destroy, resize, and snapshot VPS instances programmatically. Full CRUD operations with token-based auth.</p>
+                            <h4><?php echo e(__('rvps_auto_api_title')); ?></h4>
+                            <p><?php echo e(__('rvps_auto_api_desc')); ?></p>
                         </div>
                     </div>
                     <div class="vps-auto-item">
                         <div class="vps-auto-icon icon-purple"><i class="fas fa-bell"></i></div>
                         <div class="vps-auto-text">
-                            <h4>Webhook Events</h4>
-                            <p>Real-time HTTP callbacks for creation, deletion, scaling, status changes, and failure events.</p>
+                            <h4><?php echo e(__('rvps_auto_webhook_title')); ?></h4>
+                            <p><?php echo e(__('rvps_auto_webhook_desc')); ?></p>
                         </div>
                     </div>
                     <div class="vps-auto-item">
                         <div class="vps-auto-icon icon-amber"><i class="fas fa-rocket"></i></div>
                         <div class="vps-auto-text">
-                            <h4>Automated Deployment</h4>
-                            <p>Pre-configured OS templates, cloud-init scripts, and SSH key injection for instant server provisioning.</p>
+                            <h4><?php echo e(__('rvps_auto_deploy_title')); ?></h4>
+                            <p><?php echo e(__('rvps_auto_deploy_desc')); ?></p>
                         </div>
                     </div>
                     <div class="vps-auto-item">
                         <div class="vps-auto-icon"><i class="fas fa-expand-arrows-alt"></i></div>
                         <div class="vps-auto-text">
-                            <h4>Instant Scaling</h4>
-                            <p>Scale CPU, RAM, and disk via a single API call. Most upgrades apply without reboot or downtime.</p>
+                            <h4><?php echo e(__('rvps_auto_scale_title')); ?></h4>
+                            <p><?php echo e(__('rvps_auto_scale_desc')); ?></p>
                         </div>
                     </div>
                 </div>
@@ -457,16 +457,16 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="dc-showcase dc-showcase-compact reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Global Infrastructure</div>
-                <h2>Deploy VPS worldwide</h2>
-                <p>Your clients choose from premium locations with enterprise hardware and low-latency networking.</p>
+                <div class="section-tag"><?php echo e(__('rvps_dc_tag')); ?></div>
+                <h2><?php echo e(__('rvps_dc_title')); ?></h2>
+                <p><?php echo e(__('rvps_dc_desc')); ?></p>
             </div>
 
             <div class="dc-strip-stats">
-                <div class="dc-strip-stat"><i class="fas fa-server"></i> <strong>6</strong> Locations</div>
-                <div class="dc-strip-stat"><i class="fas fa-network-wired"></i> <strong>10 Gbit/s</strong> Network</div>
-                <div class="dc-strip-stat"><i class="fas fa-shield-alt"></i> <strong>Anti-DDoS</strong> Included</div>
-                <div class="dc-strip-stat"><i class="fas fa-tachometer-alt"></i> <strong>&lt;30ms</strong> Latency</div>
+                <div class="dc-strip-stat"><i class="fas fa-server"></i> <strong>6</strong> <?php echo e(__('rvps_dc_stat_locations')); ?></div>
+                <div class="dc-strip-stat"><i class="fas fa-network-wired"></i> <strong>10 Gbit/s</strong> <?php echo e(__('rvps_dc_stat_network')); ?></div>
+                <div class="dc-strip-stat"><i class="fas fa-shield-alt"></i> <strong><?php echo e(__('rvps_dc_stat_ddos')); ?></strong> <?php echo e(__('reseller_included')); ?></div>
+                <div class="dc-strip-stat"><i class="fas fa-tachometer-alt"></i> <strong>&lt;30ms</strong> <?php echo e(__('rvps_dc_stat_latency')); ?></div>
             </div>
 
             <div class="loc-card-grid">
@@ -484,35 +484,35 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="onboarding reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Get Started</div>
-                <h2>Launch your VPS business</h2>
-                <p>Go from sign-up to provisioning client VPS instances in four simple steps.</p>
+                <div class="section-tag"><?php echo e(__('rvps_steps_tag')); ?></div>
+                <h2><?php echo e(__('rvps_steps_title')); ?></h2>
+                <p><?php echo e(__('rvps_steps_desc')); ?></p>
             </div>
 
             <div class="vps-steps-grid">
                 <div class="vps-step-card">
                     <div class="vps-step-num">1</div>
                     <div class="vps-step-icon"><i class="fas fa-user-plus"></i></div>
-                    <h4>Create Account</h4>
-                    <p>Sign up for a VPS Reseller account and pick your resource pool tier.</p>
+                    <h4><?php echo e(__('rvps_step1_title')); ?></h4>
+                    <p><?php echo e(__('rvps_step1_desc')); ?></p>
                 </div>
                 <div class="vps-step-card">
                     <div class="vps-step-num">2</div>
                     <div class="vps-step-icon icon-green"><i class="fas fa-sliders-h"></i></div>
-                    <h4>Configure VPS Pools</h4>
-                    <p>Define VPS templates, OS options, and resource allocations for your clients.</p>
+                    <h4><?php echo e(__('rvps_step2_title')); ?></h4>
+                    <p><?php echo e(__('rvps_step2_desc')); ?></p>
                 </div>
                 <div class="vps-step-card">
                     <div class="vps-step-num">3</div>
                     <div class="vps-step-icon icon-purple"><i class="fas fa-tags"></i></div>
-                    <h4>Set Pricing</h4>
-                    <p>Set your own retail prices via WHMCS, Blesta, or your custom frontend.</p>
+                    <h4><?php echo e(__('rvps_step3_title')); ?></h4>
+                    <p><?php echo e(__('rvps_step3_desc')); ?></p>
                 </div>
                 <div class="vps-step-card">
                     <div class="vps-step-num">4</div>
                     <div class="vps-step-icon icon-amber"><i class="fas fa-rocket"></i></div>
-                    <h4>Start Selling</h4>
-                    <p>Clients order VPS through your branded storefront — provisioned automatically.</p>
+                    <h4><?php echo e(__('rvps_step4_title')); ?></h4>
+                    <p><?php echo e(__('rvps_step4_desc')); ?></p>
                 </div>
             </div>
         </div>
@@ -522,45 +522,45 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="faq-section reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">FAQ</div>
-                <h2>Frequently asked questions</h2>
-                <p>Can't find your answer? Open a support ticket — we respond in under 10 minutes.</p>
+                <div class="section-tag"><?php echo e(__('reseller_faq_tag')); ?></div>
+                <h2><?php echo e(__('reseller_faq_title')); ?></h2>
+                <p><?php echo e(__('reseller_faq_desc')); ?></p>
             </div>
 
             <div class="faq-layout">
                 <div class="faq-tabs">
-                    <button class="faq-tab active" data-faq-target="faq-general"><i class="fas fa-server"></i> General</button>
-                    <button class="faq-tab" data-faq-target="faq-technical"><i class="fas fa-cogs"></i> Technical</button>
-                    <button class="faq-tab" data-faq-target="faq-billing"><i class="fas fa-credit-card"></i> Billing</button>
+                    <button class="faq-tab active" data-faq-target="faq-general"><i class="fas fa-server"></i> <?php echo e(__('reseller_faq_tab_general')); ?></button>
+                    <button class="faq-tab" data-faq-target="faq-technical"><i class="fas fa-cogs"></i> <?php echo e(__('reseller_faq_tab_technical')); ?></button>
+                    <button class="faq-tab" data-faq-target="faq-billing"><i class="fas fa-credit-card"></i> <?php echo e(__('reseller_faq_tab_billing')); ?></button>
                 </div>
 
                 <div class="faq-panels">
                     <div class="faq-panel active" id="faq-general">
-                        <div class="faq-item"><button class="faq-question"><span>What is VPS Reseller?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>VPS Reseller lets you purchase a pool of cloud resources (CPU, RAM, storage) and resell them as individual VPS instances to your own clients, under your own brand.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Do I need technical expertise?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>You'll need basic familiarity with API integration or billing platform configuration (WHMCS/Blesta). The VPS provisioning itself is fully automated — your clients manage their own servers.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Can my clients install any OS?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Yes. Clients can choose from Ubuntu, Debian, CentOS, AlmaLinux, Rocky Linux, Windows Server, and custom ISO uploads.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Is the dashboard white-labeled?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Yes, fully. You set your logo, brand colors, and custom domain. Your clients see only your brand when managing their VPS instances.</p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('rvps_faq_g1_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('rvps_faq_g1_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('rvps_faq_g2_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('rvps_faq_g2_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('rvps_faq_g3_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('rvps_faq_g3_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('rvps_faq_g4_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('rvps_faq_g4_a')); ?></p></div></div>
                     </div>
 
                     <div class="faq-panel" id="faq-technical">
-                        <div class="faq-item"><button class="faq-question"><span>What virtualization technology is used?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>All VPS instances use KVM (Kernel-based Virtual Machine) virtualization with dedicated resources — no overselling of CPU or RAM.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Can clients scale their VPS?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Yes, clients can scale CPU, RAM, and storage from their dashboard (or you can manage it via API). Most upgrades require no downtime.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Is DDoS protection included?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Yes, enterprise-grade DDoS mitigation is included at every location. No additional cost for standard protection levels.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Do you offer an SLA?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Yes, we guarantee 99.9% uptime SLA across all locations. Credit is issued for any downtime exceeding the SLA threshold.</p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('rvps_faq_t1_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('rvps_faq_t1_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('rvps_faq_t2_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('rvps_faq_t2_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('rvps_faq_t3_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('rvps_faq_t3_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('rvps_faq_t4_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('rvps_faq_t4_a')); ?></p></div></div>
                     </div>
 
                     <div class="faq-panel" id="faq-billing">
-                        <div class="faq-item"><button class="faq-question"><span>How does pool pricing work?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>You purchase a resource pool (CPU, RAM, Storage) at a fixed monthly rate. You divide this pool into individual VPS instances for your clients and set your own pricing.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Can I add more resources?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Yes, you can add additional CPU, RAM, or storage to your pool anytime. You can also upgrade to a larger pool tier.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Does the price increase on renewal?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>No — same price on every renewal. No lock-in contracts and no surprise increases.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>What payment methods do you accept?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Credit/debit cards, PayPal, cryptocurrency (Bitcoin, USDT, etc.), and 10+ other methods.</p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('rvps_faq_b1_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('rvps_faq_b1_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('rvps_faq_b2_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('rvps_faq_b2_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('rvps_faq_b3_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('rvps_faq_b3_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('rvps_faq_b4_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('rvps_faq_b4_a')); ?></p></div></div>
                     </div>
                 </div>
             </div>
 
             <div class="faq-actions">
-                <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-primary"><i class="fas fa-headset"></i> Open a Ticket</a>
-                <a href="<?php echo e(SITE_URL); ?>/faq" class="btn-secondary">Browse All FAQ <i class="fas fa-arrow-right"></i></a>
+                <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-primary"><i class="fas fa-headset"></i> <?php echo e(__('common_open_ticket')); ?></a>
+                <a href="<?php echo e(SITE_URL); ?>/faq" class="btn-secondary"><?php echo e(__('common_browse_faq')); ?> <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
@@ -570,41 +570,41 @@ require_once __DIR__ . '/includes/topbar.php';
         <div class="container">
             <div class="why-us-layout">
                 <div class="why-us-intro">
-                    <div class="section-tag">Advantages</div>
-                    <h2 class="why-us-title">Why Choose Us?</h2>
-                    <p class="why-us-desc">VPS resellers worldwide trust YottaSrc for reliable infrastructure and powerful APIs.</p>
-                    <a href="#plans" class="btn-primary">Get Started <i class="fas fa-arrow-right"></i></a>
+                    <div class="section-tag"><?php echo e(__('reseller_why_tag')); ?></div>
+                    <h2 class="why-us-title"><?php echo e(__('reseller_why_title')); ?></h2>
+                    <p class="why-us-desc"><?php echo e(__('rvps_why_desc')); ?></p>
+                    <a href="#plans" class="btn-primary"><?php echo e(__('common_get_started')); ?> <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="why-us-grid">
                     <div class="why-us-card">
                         <div class="why-us-card-icon"><i class="fas fa-headset"></i></div>
-                        <h4>24/7 Priority Support</h4>
-                        <p>Dedicated infrastructure support team available around the clock.</p>
+                        <h4><?php echo e(__('rvps_why_support_title')); ?></h4>
+                        <p><?php echo e(__('rvps_why_support_desc')); ?></p>
                     </div>
                     <div class="why-us-card">
                         <div class="why-us-card-icon icon-green"><i class="fas fa-microchip"></i></div>
-                        <h4>Enterprise Hardware</h4>
-                        <p>AMD EPYC &amp; Intel Xeon with NVMe SSDs and 10 Gbit/s networking.</p>
+                        <h4><?php echo e(__('rvps_why_hw_title')); ?></h4>
+                        <p><?php echo e(__('rvps_why_hw_desc')); ?></p>
                     </div>
                     <div class="why-us-card">
                         <div class="why-us-card-icon icon-purple"><i class="fas fa-shield-alt"></i></div>
-                        <h4>DDoS Protected</h4>
-                        <p>Enterprise DDoS mitigation at all locations, included at no extra cost.</p>
+                        <h4><?php echo e(__('rvps_why_ddos_title')); ?></h4>
+                        <p><?php echo e(__('rvps_why_ddos_desc')); ?></p>
                     </div>
                     <div class="why-us-card">
                         <div class="why-us-card-icon icon-amber"><i class="fas fa-globe"></i></div>
-                        <h4>20+ Global Locations</h4>
-                        <p>Deploy VPS instances across 4 continents for worldwide coverage.</p>
+                        <h4><?php echo e(__('rvps_why_dc_title')); ?></h4>
+                        <p><?php echo e(__('rvps_why_dc_desc')); ?></p>
                     </div>
                     <div class="why-us-card">
                         <div class="why-us-card-icon icon-green"><i class="fas fa-code"></i></div>
-                        <h4>Full API Access</h4>
-                        <p>REST API v2 with webhooks for complete automation and integration.</p>
+                        <h4><?php echo e(__('rvps_why_api_title')); ?></h4>
+                        <p><?php echo e(__('rvps_why_api_desc')); ?></p>
                     </div>
                     <div class="why-us-card">
                         <div class="why-us-card-icon icon-purple"><i class="fas fa-chart-line"></i></div>
-                        <h4>Scalable Resources</h4>
-                        <p>Start small and scale your resource pool as your client base grows.</p>
+                        <h4><?php echo e(__('rvps_why_scale_title')); ?></h4>
+                        <p><?php echo e(__('rvps_why_scale_desc')); ?></p>
                     </div>
                 </div>
             </div>
@@ -617,9 +617,9 @@ require_once __DIR__ . '/includes/topbar.php';
             <div class="promo-cta-inner">
                 <div class="promo-cta-glow"></div>
                 <div class="promo-cta-icon"><i class="fas fa-server"></i></div>
-                <h2>Ready to resell cloud infrastructure?</h2>
-                <p>Start with a resource pool from <strong>€29.99 EUR / mo</strong>. KVM-powered, API-provisioned, fully white-labeled.</p>
-                <a href="#plans" class="btn-primary">View Plans <i class="fas fa-arrow-right"></i></a>
+                <h2><?php echo e(__('rvps_cta_title')); ?></h2>
+                <p><?php echo __('rvps_cta_desc'); ?></p>
+                <a href="#plans" class="btn-primary"><?php echo e(__('common_view_plans')); ?> <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>

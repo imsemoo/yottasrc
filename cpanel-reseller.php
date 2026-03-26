@@ -17,23 +17,23 @@ require_once __DIR__ . '/includes/topbar.php';
                     <div class="page-breadcrumb">
                         <a href="<?php echo e(SITE_URL); ?>/"><?php echo e(__('breadcrumb_home')); ?></a>
                         <i class="fas fa-chevron-right"></i>
-                        <a href="<?php echo e(SITE_URL); ?>/cpanel-reseller/">Reseller</a>
+                        <a href="<?php echo e(SITE_URL); ?>/cpanel-reseller/"><?php echo e(__('reseller_breadcrumb')); ?></a>
                         <i class="fas fa-chevron-right"></i>
                         <span><?php echo e(__('reseller_cpanel_breadcrumb')); ?></span>
                     </div>
-                    <h1>cPanel Reseller — <span class="highlight">Launch Your Hosting Brand</span></h1>
+                    <h1><?php echo __('reseller_cpanel_title'); ?></h1>
                     <p class="page-hero-desc">
-                        Start your own hosting company today. Create and manage client accounts under your own brand with WHM &amp; cPanel — custom plans, custom nameservers, and zero trace of YottaSrc. Powered by enterprise infrastructure across 20+ global locations.
+                        <?php echo e(__('reseller_cpanel_desc')); ?>
                     </p>
                     <div class="page-hero-ctas">
-                        <a href="#plans" class="btn-primary">View Plans <i class="fas fa-arrow-down"></i></a>
-                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-secondary"><i class="fas fa-headset"></i> Talk to Sales</a>
+                        <a href="#plans" class="btn-primary"><?php echo e(__('common_view_plans')); ?> <i class="fas fa-arrow-down"></i></a>
+                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-secondary"><i class="fas fa-headset"></i> <?php echo e(__('common_talk_to_sales')); ?></a>
                     </div>
                     <div class="page-hero-badges">
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> Your Brand, Your Clients</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> WHM Control Panel</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> White-Label Hosting</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> 20+ Locations</div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('rcpanel_badge_brand')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('rcpanel_badge_whm')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('rcpanel_badge_whitelabel')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('rcpanel_badge_locations')); ?></div>
                     </div>
                 </div>
                 <div class="page-hero-visual">
@@ -150,7 +150,7 @@ require_once __DIR__ . '/includes/topbar.php';
     <!-- ═══════════════ POWERED BY STRIP ═══════════════ -->
     <section class="partners">
         <div class="container">
-            <span class="partners-label">Powered By</span>
+            <span class="partners-label"><?php echo e(__('reseller_powered_by')); ?></span>
             <div class="partners-logos">
                 <span class="partner-logo"><i class="fas fa-bolt"></i> LiteSpeed</span>
                 <span class="partner-logo"><i class="fas fa-shield-alt"></i> CloudLinux</span>
@@ -166,9 +166,9 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="plans reveal" id="plans">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Pricing</div>
-                <h2>cPanel Reseller plans</h2>
-                <p>Start your hosting business with affordable reseller plans. Same price on renewal — no surprises.</p>
+                <div class="section-tag"><?php echo e(__('rcpanel_plans_tag')); ?></div>
+                <h2><?php echo e(__('rcpanel_plans_title')); ?></h2>
+                <p><?php echo e(__('rcpanel_plans_desc')); ?></p>
             </div>
 
             <div class="plans-panel active" data-tab="cpanel-reseller">
@@ -177,113 +177,113 @@ require_once __DIR__ . '/includes/topbar.php';
                         <!-- Starter -->
                         <div class="swiper-slide"><div class="plan-card">
                             <div class="plan-head"><div class="plan-name">Starter</div><span class="plan-save">Save 75%</span></div>
-                            <div class="plan-target">Your first step in hosting</div>
+                            <div class="plan-target"><?php echo e(__('rcpanel_target_starter')); ?></div>
                             <div class="plan-price">
                                 <span class="old-price">€13.99</span>
                                 <span class="current-price"><span class="currency">€</span><span class="amount">3.49</span><span class="period">EUR / mo</span></span>
                             </div>
-                            <div class="plan-renewal"><i class="fas fa-check"></i> Same price on renewal</div>
-                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/order/reseller-hosting/starter">Choose Plan</button>
+                            <div class="plan-renewal"><i class="fas fa-check"></i> <?php echo e(__('reseller_same_renewal')); ?></div>
+                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/order/reseller-hosting/starter"><?php echo e(__('common_choose_plan')); ?></button>
                             <div class="plan-resources">
-                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">15 GB</span><span class="res-label">NVMe SSD</span></div>
-                                <div class="plan-res"><i class="fas fa-wifi"></i><span class="res-val">Unlimited</span><span class="res-label">Bandwidth</span></div>
-                                <div class="plan-res"><i class="fas fa-users"></i><span class="res-val">15</span><span class="res-label">cPanel Accounts</span></div>
-                                <div class="plan-res"><i class="fas fa-database"></i><span class="res-val">15 GB</span><span class="res-label">MySQL Disk</span></div>
+                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">15 GB</span><span class="res-label"><?php echo e(__('rcpanel_res_nvme')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-wifi"></i><span class="res-val">Unlimited</span><span class="res-label"><?php echo e(__('rcpanel_res_bw')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-users"></i><span class="res-val">15</span><span class="res-label"><?php echo e(__('rcpanel_res_accounts')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-database"></i><span class="res-val">15 GB</span><span class="res-label"><?php echo e(__('rcpanel_res_mysql')); ?></span></div>
                             </div>
-                            <div class="plan-divider"><span>Included</span></div>
+                            <div class="plan-divider"><span><?php echo e(__('reseller_included')); ?></span></div>
                             <ul class="plan-features">
-                                <li><i class="fas fa-users-cog"></i> Free WHM Control Panel</li>
-                                <li><i class="fas fa-lock"></i> Free SSL &amp; Daily Backups</li>
-                                <li><i class="fas fa-server"></i> Private Nameservers</li>
-                                <li><i class="fas fa-palette"></i> White-Label Branding</li>
-                                <li><i class="fas fa-bolt"></i> LiteSpeed + CloudLinux</li>
-                                <li><i class="fas fa-shield-alt"></i> Imunify360 Security</li>
-                                <li><i class="fas fa-map-marker-alt"></i> 15+ Global Locations</li>
+                                <li><i class="fas fa-users-cog"></i> <?php echo e(__('rcpanel_feat_whm')); ?></li>
+                                <li><i class="fas fa-lock"></i> <?php echo e(__('rcpanel_feat_ssl')); ?></li>
+                                <li><i class="fas fa-server"></i> <?php echo e(__('rcpanel_feat_ns')); ?></li>
+                                <li><i class="fas fa-palette"></i> <?php echo e(__('rcpanel_feat_wl')); ?></li>
+                                <li><i class="fas fa-bolt"></i> <?php echo e(__('rcpanel_feat_ls')); ?></li>
+                                <li><i class="fas fa-shield-alt"></i> <?php echo e(__('rcpanel_feat_imunify')); ?></li>
+                                <li><i class="fas fa-map-marker-alt"></i> <?php echo e(__('rcpanel_feat_locations')); ?></li>
                             </ul>
                         </div></div>
 
                         <!-- Essential (Popular) -->
                         <div class="swiper-slide"><div class="plan-card popular">
-                            <div class="plan-badge">Most Popular</div>
+                            <div class="plan-badge"><?php echo e(__('reseller_most_popular')); ?></div>
                             <div class="plan-head"><div class="plan-name">Essential</div><span class="plan-save">Save 40%</span></div>
-                            <div class="plan-target">Entry-level reseller</div>
+                            <div class="plan-target"><?php echo e(__('rcpanel_target_essential')); ?></div>
                             <div class="plan-price">
                                 <span class="old-price">€10.82</span>
                                 <span class="current-price"><span class="currency">€</span><span class="amount">6.49</span><span class="period">EUR / mo</span></span>
                             </div>
-                            <div class="plan-renewal"><i class="fas fa-check"></i> Same price on renewal</div>
-                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/order/reseller-hosting/essential">Choose Plan</button>
+                            <div class="plan-renewal"><i class="fas fa-check"></i> <?php echo e(__('reseller_same_renewal')); ?></div>
+                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/order/reseller-hosting/essential"><?php echo e(__('common_choose_plan')); ?></button>
                             <div class="plan-resources">
-                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">40 GB</span><span class="res-label">NVMe SSD</span></div>
-                                <div class="plan-res"><i class="fas fa-wifi"></i><span class="res-val">Unlimited</span><span class="res-label">Bandwidth</span></div>
-                                <div class="plan-res"><i class="fas fa-users"></i><span class="res-val">Unlimited</span><span class="res-label">cPanel Accounts</span></div>
-                                <div class="plan-res"><i class="fas fa-database"></i><span class="res-val">40 GB</span><span class="res-label">MySQL Disk</span></div>
+                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">40 GB</span><span class="res-label"><?php echo e(__('rcpanel_res_nvme')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-wifi"></i><span class="res-val">Unlimited</span><span class="res-label"><?php echo e(__('rcpanel_res_bw')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-users"></i><span class="res-val">Unlimited</span><span class="res-label"><?php echo e(__('rcpanel_res_accounts')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-database"></i><span class="res-val">40 GB</span><span class="res-label"><?php echo e(__('rcpanel_res_mysql')); ?></span></div>
                             </div>
-                            <div class="plan-divider"><span>Included</span></div>
+                            <div class="plan-divider"><span><?php echo e(__('reseller_included')); ?></span></div>
                             <ul class="plan-features">
-                                <li><i class="fas fa-users-cog"></i> Free WHM Control Panel</li>
-                                <li><i class="fas fa-lock"></i> Free SSL &amp; Daily Backups</li>
-                                <li><i class="fas fa-server"></i> Private Nameservers</li>
-                                <li><i class="fas fa-palette"></i> White-Label Branding</li>
-                                <li><i class="fas fa-bolt"></i> LiteSpeed + CloudLinux</li>
-                                <li><i class="fas fa-shield-alt"></i> Imunify360 Security</li>
-                                <li><i class="fas fa-map-marker-alt"></i> 15+ Global Locations</li>
+                                <li><i class="fas fa-users-cog"></i> <?php echo e(__('rcpanel_feat_whm')); ?></li>
+                                <li><i class="fas fa-lock"></i> <?php echo e(__('rcpanel_feat_ssl')); ?></li>
+                                <li><i class="fas fa-server"></i> <?php echo e(__('rcpanel_feat_ns')); ?></li>
+                                <li><i class="fas fa-palette"></i> <?php echo e(__('rcpanel_feat_wl')); ?></li>
+                                <li><i class="fas fa-bolt"></i> <?php echo e(__('rcpanel_feat_ls')); ?></li>
+                                <li><i class="fas fa-shield-alt"></i> <?php echo e(__('rcpanel_feat_imunify')); ?></li>
+                                <li><i class="fas fa-map-marker-alt"></i> <?php echo e(__('rcpanel_feat_locations')); ?></li>
                             </ul>
                         </div></div>
 
                         <!-- Advance -->
                         <div class="swiper-slide"><div class="plan-card">
                             <div class="plan-head"><div class="plan-name">Advance</div><span class="plan-save">Save 15%</span></div>
-                            <div class="plan-target">Scalable performance</div>
+                            <div class="plan-target"><?php echo e(__('rcpanel_target_advance')); ?></div>
                             <div class="plan-price">
                                 <span class="old-price">€15.28</span>
                                 <span class="current-price"><span class="currency">€</span><span class="amount">12.99</span><span class="period">EUR / mo</span></span>
                             </div>
-                            <div class="plan-renewal"><i class="fas fa-check"></i> Same price on renewal</div>
-                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/order/reseller-hosting/advance">Choose Plan</button>
+                            <div class="plan-renewal"><i class="fas fa-check"></i> <?php echo e(__('reseller_same_renewal')); ?></div>
+                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/order/reseller-hosting/advance"><?php echo e(__('common_choose_plan')); ?></button>
                             <div class="plan-resources">
-                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">80 GB</span><span class="res-label">NVMe SSD</span></div>
-                                <div class="plan-res"><i class="fas fa-wifi"></i><span class="res-val">Unlimited</span><span class="res-label">Bandwidth</span></div>
-                                <div class="plan-res"><i class="fas fa-users"></i><span class="res-val">Unlimited</span><span class="res-label">cPanel Accounts</span></div>
-                                <div class="plan-res"><i class="fas fa-database"></i><span class="res-val">80 GB</span><span class="res-label">MySQL Disk</span></div>
+                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">80 GB</span><span class="res-label"><?php echo e(__('rcpanel_res_nvme')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-wifi"></i><span class="res-val">Unlimited</span><span class="res-label"><?php echo e(__('rcpanel_res_bw')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-users"></i><span class="res-val">Unlimited</span><span class="res-label"><?php echo e(__('rcpanel_res_accounts')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-database"></i><span class="res-val">80 GB</span><span class="res-label"><?php echo e(__('rcpanel_res_mysql')); ?></span></div>
                             </div>
-                            <div class="plan-divider"><span>Included</span></div>
+                            <div class="plan-divider"><span><?php echo e(__('reseller_included')); ?></span></div>
                             <ul class="plan-features">
-                                <li><i class="fas fa-users-cog"></i> Free WHM Control Panel</li>
-                                <li><i class="fas fa-lock"></i> Free SSL &amp; Daily Backups</li>
-                                <li><i class="fas fa-server"></i> Private Nameservers</li>
-                                <li><i class="fas fa-palette"></i> White-Label Branding</li>
-                                <li><i class="fas fa-bolt"></i> LiteSpeed + CloudLinux</li>
-                                <li><i class="fas fa-shield-alt"></i> Imunify360 Security</li>
-                                <li><i class="fas fa-map-marker-alt"></i> 15+ Global Locations</li>
+                                <li><i class="fas fa-users-cog"></i> <?php echo e(__('rcpanel_feat_whm')); ?></li>
+                                <li><i class="fas fa-lock"></i> <?php echo e(__('rcpanel_feat_ssl')); ?></li>
+                                <li><i class="fas fa-server"></i> <?php echo e(__('rcpanel_feat_ns')); ?></li>
+                                <li><i class="fas fa-palette"></i> <?php echo e(__('rcpanel_feat_wl')); ?></li>
+                                <li><i class="fas fa-bolt"></i> <?php echo e(__('rcpanel_feat_ls')); ?></li>
+                                <li><i class="fas fa-shield-alt"></i> <?php echo e(__('rcpanel_feat_imunify')); ?></li>
+                                <li><i class="fas fa-map-marker-alt"></i> <?php echo e(__('rcpanel_feat_locations')); ?></li>
                             </ul>
                         </div></div>
 
                         <!-- Pro -->
                         <div class="swiper-slide"><div class="plan-card">
                             <div class="plan-head"><div class="plan-name">Pro</div><span class="plan-save">Save 45%</span></div>
-                            <div class="plan-target">High-performance hosting</div>
+                            <div class="plan-target"><?php echo e(__('rcpanel_target_pro')); ?></div>
                             <div class="plan-price">
                                 <span class="old-price">€43.62</span>
                                 <span class="current-price"><span class="currency">€</span><span class="amount">23.99</span><span class="period">EUR / mo</span></span>
                             </div>
-                            <div class="plan-renewal"><i class="fas fa-check"></i> Same price on renewal</div>
-                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/order/reseller-hosting/pro">Choose Plan</button>
+                            <div class="plan-renewal"><i class="fas fa-check"></i> <?php echo e(__('reseller_same_renewal')); ?></div>
+                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/order/reseller-hosting/pro"><?php echo e(__('common_choose_plan')); ?></button>
                             <div class="plan-resources">
-                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">120 GB</span><span class="res-label">NVMe SSD</span></div>
-                                <div class="plan-res"><i class="fas fa-wifi"></i><span class="res-val">Unlimited</span><span class="res-label">Bandwidth</span></div>
-                                <div class="plan-res"><i class="fas fa-users"></i><span class="res-val">Unlimited</span><span class="res-label">cPanel Accounts</span></div>
-                                <div class="plan-res"><i class="fas fa-database"></i><span class="res-val">120 GB</span><span class="res-label">MySQL Disk</span></div>
+                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">120 GB</span><span class="res-label"><?php echo e(__('rcpanel_res_nvme')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-wifi"></i><span class="res-val">Unlimited</span><span class="res-label"><?php echo e(__('rcpanel_res_bw')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-users"></i><span class="res-val">Unlimited</span><span class="res-label"><?php echo e(__('rcpanel_res_accounts')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-database"></i><span class="res-val">120 GB</span><span class="res-label"><?php echo e(__('rcpanel_res_mysql')); ?></span></div>
                             </div>
-                            <div class="plan-divider"><span>Included</span></div>
+                            <div class="plan-divider"><span><?php echo e(__('reseller_included')); ?></span></div>
                             <ul class="plan-features">
-                                <li><i class="fas fa-users-cog"></i> Free WHM Control Panel</li>
-                                <li><i class="fas fa-lock"></i> Free SSL &amp; Daily Backups</li>
-                                <li><i class="fas fa-server"></i> Private Nameservers</li>
-                                <li><i class="fas fa-palette"></i> White-Label Branding</li>
-                                <li><i class="fas fa-bolt"></i> LiteSpeed + CloudLinux</li>
-                                <li><i class="fas fa-shield-alt"></i> Imunify360 Security</li>
-                                <li><i class="fas fa-map-marker-alt"></i> 15+ Global Locations</li>
+                                <li><i class="fas fa-users-cog"></i> <?php echo e(__('rcpanel_feat_whm')); ?></li>
+                                <li><i class="fas fa-lock"></i> <?php echo e(__('rcpanel_feat_ssl')); ?></li>
+                                <li><i class="fas fa-server"></i> <?php echo e(__('rcpanel_feat_ns')); ?></li>
+                                <li><i class="fas fa-palette"></i> <?php echo e(__('rcpanel_feat_wl')); ?></li>
+                                <li><i class="fas fa-bolt"></i> <?php echo e(__('rcpanel_feat_ls')); ?></li>
+                                <li><i class="fas fa-shield-alt"></i> <?php echo e(__('rcpanel_feat_imunify')); ?></li>
+                                <li><i class="fas fa-map-marker-alt"></i> <?php echo e(__('rcpanel_feat_locations')); ?></li>
                             </ul>
                         </div></div>
                     </div>
@@ -292,7 +292,7 @@ require_once __DIR__ . '/includes/topbar.php';
             </div>
 
             <div class="pricing-custom">
-                <p>Need more resources? Explore <a href="<?php echo e(SITE_URL); ?>/master-reseller/">Master Reseller</a> or <a href="<?php echo e(SITE_URL); ?>/alpha-reseller/">Alpha Reseller</a> for higher tiers. Extra disk at €0.15/GB.</p>
+                <p><?php echo __('rcpanel_pricing_custom', ['master_url' => e(SITE_URL) . '/master-reseller/', 'alpha_url' => e(SITE_URL) . '/alpha-reseller/']); ?></p>
             </div>
 
             <!-- Each cPanel includes strip -->
@@ -304,12 +304,12 @@ require_once __DIR__ . '/includes/topbar.php';
                             <text x="24" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-weight="800" font-size="18" fill="#FF6C2C">cP</text>
                         </svg>
                         <div class="cpanel-includes-text">
-                            <strong>All packages include, unlimited of:</strong>
+                            <strong><?php echo e(__('reseller_cpanel_includes')); ?></strong>
                             <span><i class="fas fa-envelope"></i> Emails &nbsp; <i class="fas fa-sign-out-alt"></i> FTP Accounts &nbsp; <i class="fas fa-database"></i> Databases &nbsp; <i class="fas fa-link"></i> Subdomains</span>
                         </div>
                     </div>
                     <div class="cpanel-includes-badges">
-                        <span class="cpanel-badge cpanel-badge-label">Each cPanel has:</span>
+                        <span class="cpanel-badge cpanel-badge-label"><?php echo e(__('reseller_cpanel_has')); ?></span>
                         <span class="cpanel-badge">1.5 Core CPU</span>
                         <span class="cpanel-badge">2GB RAM</span>
                         <span class="cpanel-badge">100 MB/s I/O</span>
@@ -324,31 +324,31 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="cp-benefits reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Why Resell</div>
-                <h2>Build your own hosting brand</h2>
-                <p>Reseller hosting gives you everything you need to launch a hosting business — with zero server management.</p>
+                <div class="section-tag"><?php echo e(__('rcpanel_why_resell_tag')); ?></div>
+                <h2><?php echo e(__('rcpanel_why_resell_title')); ?></h2>
+                <p><?php echo e(__('rcpanel_why_resell_desc')); ?></p>
             </div>
 
             <div class="cp-benefits-grid">
                 <div class="cp-security-card">
                     <div class="cp-security-icon"><i class="fas fa-hand-holding-usd"></i></div>
-                    <h4>Set Your Own Pricing</h4>
-                    <p>Define your own hosting packages and pricing. Keep 100% of the profit from every client you onboard.</p>
+                    <h4><?php echo e(__('rcpanel_adv_pricing_title')); ?></h4>
+                    <p><?php echo e(__('rcpanel_adv_pricing_desc')); ?></p>
                 </div>
                 <div class="cp-security-card">
                     <div class="cp-security-icon icon-green"><i class="fas fa-users-cog"></i></div>
-                    <h4>WHM Control Panel</h4>
-                    <p>Manage all client accounts from a single WHM dashboard. Create, suspend, and allocate resources in seconds.</p>
+                    <h4><?php echo e(__('rcpanel_adv_whm_title')); ?></h4>
+                    <p><?php echo e(__('rcpanel_adv_whm_desc')); ?></p>
                 </div>
                 <div class="cp-security-card">
                     <div class="cp-security-icon icon-purple"><i class="fas fa-chart-line"></i></div>
-                    <h4>Scalable Business</h4>
-                    <p>Start small and grow. Upgrade to Master or Alpha Reseller anytime as your client base expands.</p>
+                    <h4><?php echo e(__('rcpanel_adv_scale_title')); ?></h4>
+                    <p><?php echo e(__('rcpanel_adv_scale_desc')); ?></p>
                 </div>
                 <div class="cp-security-card">
                     <div class="cp-security-icon icon-amber"><i class="fas fa-headset"></i></div>
-                    <h4>We Handle the Backend</h4>
-                    <p>Server maintenance, security updates, and hardware — all managed by us. You focus on growing your business.</p>
+                    <h4><?php echo e(__('rcpanel_adv_backend_title')); ?></h4>
+                    <p><?php echo e(__('rcpanel_adv_backend_desc')); ?></p>
                 </div>
             </div>
         </div>
@@ -358,55 +358,55 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="bento-features reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">White-Label</div>
-                <h2>Your brand, your business</h2>
-                <p>Everything your clients see is 100% your brand. YottaSrc operates completely behind the scenes.</p>
+                <div class="section-tag"><?php echo e(__('rcpanel_wl_tag')); ?></div>
+                <h2><?php echo e(__('rcpanel_wl_title')); ?></h2>
+                <p><?php echo e(__('rcpanel_wl_desc')); ?></p>
             </div>
 
             <div class="bento-grid">
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon"><i class="fas fa-palette"></i></div>
-                    <h4>Complete White-Labeling</h4>
-                    <p>Private nameservers, custom cPanel branding, and your own support URLs. Clients see only your brand.</p>
+                    <h4><?php echo e(__('rcpanel_wl_complete_title')); ?></h4>
+                    <p><?php echo e(__('rcpanel_wl_complete_desc')); ?></p>
                 </div>
 
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-green"><i class="fas fa-users-cog"></i></div>
-                    <h4>Account Management</h4>
-                    <p>Create, modify, suspend, and terminate cPanel accounts with individual resource limits per client.</p>
+                    <h4><?php echo e(__('rcpanel_wl_mgmt_title')); ?></h4>
+                    <p><?php echo e(__('rcpanel_wl_mgmt_desc')); ?></p>
                 </div>
 
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-purple"><i class="fas fa-hdd"></i></div>
-                    <h4>NVMe SSD Storage</h4>
-                    <p>Ultra-fast I/O for all client accounts.</p>
+                    <h4><?php echo e(__('rcpanel_wl_nvme_title')); ?></h4>
+                    <p><?php echo e(__('rcpanel_wl_nvme_desc')); ?></p>
                 </div>
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-amber"><i class="fas fa-shield-alt"></i></div>
-                    <h4>Imunify360 Security</h4>
-                    <p>AI-powered protection for every account.</p>
+                    <h4><?php echo e(__('rcpanel_wl_imunify_title')); ?></h4>
+                    <p><?php echo e(__('rcpanel_wl_imunify_desc')); ?></p>
                 </div>
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon"><i class="fas fa-cloud-download-alt"></i></div>
-                    <h4>JetBackup Daily</h4>
-                    <p>Automated backups with granular restore.</p>
+                    <h4><?php echo e(__('rcpanel_wl_backup_title')); ?></h4>
+                    <p><?php echo e(__('rcpanel_wl_backup_desc')); ?></p>
                 </div>
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-green"><i class="fas fa-lock"></i></div>
-                    <h4>Free SSL for All</h4>
-                    <p>AutoSSL for every client domain you add.</p>
+                    <h4><?php echo e(__('rcpanel_wl_ssl_title')); ?></h4>
+                    <p><?php echo e(__('rcpanel_wl_ssl_desc')); ?></p>
                 </div>
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-blue"><i class="fas fa-th"></i></div>
-                    <h4>Softaculous Installer</h4>
-                    <p>400+ one-click apps for every client account.</p>
+                    <h4><?php echo e(__('rcpanel_wl_softac_title')); ?></h4>
+                    <p><?php echo e(__('rcpanel_wl_softac_desc')); ?></p>
                 </div>
             </div>
 
             <div class="article-callout" style="margin-top: 24px;">
                 <i class="fas fa-info-circle"></i>
                 <div>
-                    <strong>Important:</strong> Reseller plans do not include root or SSH access. All server management is handled through WHM and cPanel's built-in reseller tools.
+                    <?php echo __('rcpanel_wl_callout'); ?>
                 </div>
             </div>
         </div>
@@ -416,44 +416,44 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="rs-hierarchy reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Reseller Tiers</div>
-                <h2>Choose your level</h2>
-                <p>YottaSrc offers three reseller tiers. cPanel Reseller is perfect for getting started — upgrade anytime as you grow.</p>
+                <div class="section-tag"><?php echo e(__('reseller_tiers_tag')); ?></div>
+                <h2><?php echo e(__('rcpanel_tiers_title')); ?></h2>
+                <p><?php echo e(__('rcpanel_tiers_desc')); ?></p>
             </div>
 
             <div class="rs-tiers-grid">
                 <div class="rs-tier-card rs-tier-active">
-                    <div class="rs-tier-badge">You are here</div>
+                    <div class="rs-tier-badge"><?php echo e(__('reseller_you_are_here')); ?></div>
                     <div class="rs-tier-icon"><i class="fas fa-user-tie"></i></div>
-                    <h4>cPanel Reseller</h4>
-                    <p>Create &amp; manage cPanel accounts for your clients. Ideal for freelancers and small agencies.</p>
+                    <h4><?php echo e(__('reseller_cpanel_breadcrumb')); ?></h4>
+                    <p><?php echo e(__('rcpanel_tier_cpanel_desc')); ?></p>
                     <ul class="rs-tier-perks">
-                        <li><i class="fas fa-check"></i> WHM Access</li>
-                        <li><i class="fas fa-check"></i> Create cPanel Accounts</li>
-                        <li><i class="fas fa-check"></i> White-Label Branding</li>
+                        <li><i class="fas fa-check"></i> <?php echo e(__('rcpanel_tier_cpanel_p1')); ?></li>
+                        <li><i class="fas fa-check"></i> <?php echo e(__('rcpanel_tier_cpanel_p2')); ?></li>
+                        <li><i class="fas fa-check"></i> <?php echo e(__('rcpanel_tier_cpanel_p3')); ?></li>
                     </ul>
                 </div>
                 <div class="rs-tier-card">
                     <div class="rs-tier-icon icon-green"><i class="fas fa-crown"></i></div>
-                    <h4>Master Reseller</h4>
-                    <p>Create reseller accounts that can in turn create their own cPanel accounts.</p>
+                    <h4><?php echo e(__('reseller_master_breadcrumb')); ?></h4>
+                    <p><?php echo e(__('rcpanel_tier_master_desc')); ?></p>
                     <ul class="rs-tier-perks">
-                        <li><i class="fas fa-check"></i> Everything in Reseller</li>
-                        <li><i class="fas fa-check"></i> Create Reseller Accounts</li>
-                        <li><i class="fas fa-check"></i> Multi-Tier Management</li>
+                        <li><i class="fas fa-check"></i> <?php echo e(__('rcpanel_tier_master_p1')); ?></li>
+                        <li><i class="fas fa-check"></i> <?php echo e(__('rcpanel_tier_master_p2')); ?></li>
+                        <li><i class="fas fa-check"></i> <?php echo e(__('rcpanel_tier_master_p3')); ?></li>
                     </ul>
-                    <a href="<?php echo e(SITE_URL); ?>/master-reseller/" class="rs-tier-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="<?php echo e(SITE_URL); ?>/master-reseller/" class="rs-tier-link"><?php echo e(__('common_learn_more')); ?> <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="rs-tier-card">
                     <div class="rs-tier-icon icon-purple"><i class="fas fa-gem"></i></div>
-                    <h4>Alpha Reseller</h4>
-                    <p>The highest tier — create Master, Reseller, and cPanel accounts. Full enterprise control.</p>
+                    <h4><?php echo e(__('reseller_alpha_breadcrumb')); ?></h4>
+                    <p><?php echo e(__('rcpanel_tier_alpha_desc')); ?></p>
                     <ul class="rs-tier-perks">
-                        <li><i class="fas fa-check"></i> Everything in Master</li>
-                        <li><i class="fas fa-check"></i> Create Master Accounts</li>
-                        <li><i class="fas fa-check"></i> Enterprise Scale</li>
+                        <li><i class="fas fa-check"></i> <?php echo e(__('rcpanel_tier_alpha_p1')); ?></li>
+                        <li><i class="fas fa-check"></i> <?php echo e(__('rcpanel_tier_alpha_p2')); ?></li>
+                        <li><i class="fas fa-check"></i> <?php echo e(__('rcpanel_tier_alpha_p3')); ?></li>
                     </ul>
-                    <a href="<?php echo e(SITE_URL); ?>/alpha-reseller/" class="rs-tier-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="<?php echo e(SITE_URL); ?>/alpha-reseller/" class="rs-tier-link"><?php echo e(__('common_learn_more')); ?> <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -461,7 +461,7 @@ require_once __DIR__ . '/includes/topbar.php';
 
     <!-- ═══════════════ GLOBAL INFRASTRUCTURE (compact) ═══════════════ -->
 <?php
-$dc_heading = 'Deploy closer to your clients';
+$dc_heading = __('rcpanel_dc_heading');
 $dc_link_prefix = '/cheap-cpanel';
 include __DIR__ . '/includes/section-dc-showcase.php';
 ?>
@@ -470,32 +470,32 @@ include __DIR__ . '/includes/section-dc-showcase.php';
     <section class="onboarding reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Get Started</div>
-                <h2>Launch in 4 simple steps</h2>
-                <p>Go from sign-up to running your own hosting brand in under 30 minutes.</p>
+                <div class="section-tag"><?php echo e(__('rcpanel_steps_tag')); ?></div>
+                <h2><?php echo e(__('rcpanel_steps_title')); ?></h2>
+                <p><?php echo e(__('rcpanel_steps_desc')); ?></p>
             </div>
 
             <div class="onboarding-tracks">
                 <div class="track">
                     <div class="track-icon"><i class="fas fa-rocket"></i></div>
-                    <h3>Start Your Business</h3>
-                    <p>From zero to hosting provider in minutes</p>
+                    <h3><?php echo e(__('rcpanel_track1_title')); ?></h3>
+                    <p><?php echo e(__('rcpanel_track1_desc')); ?></p>
                     <div class="track-steps">
-                        <div class="track-step"><div class="step-num">1</div><div class="step-content"><h4>Pick a Plan</h4><p>Choose Essential, Advance, or Pro based on your needs</p></div></div>
-                        <div class="track-step"><div class="step-num">2</div><div class="step-content"><h4>Choose Location</h4><p>Select from 15+ global server locations</p></div></div>
-                        <div class="track-step"><div class="step-num">3</div><div class="step-content"><h4>Set Up WHM</h4><p>Log into WHM, configure nameservers and branding</p></div></div>
-                        <div class="track-step"><div class="step-num">4</div><div class="step-content"><h4>Onboard Clients</h4><p>Create cPanel accounts and start selling!</p></div></div>
+                        <div class="track-step"><div class="step-num">1</div><div class="step-content"><h4><?php echo e(__('rcpanel_track1_s1_title')); ?></h4><p><?php echo e(__('rcpanel_track1_s1_desc')); ?></p></div></div>
+                        <div class="track-step"><div class="step-num">2</div><div class="step-content"><h4><?php echo e(__('rcpanel_track1_s2_title')); ?></h4><p><?php echo e(__('rcpanel_track1_s2_desc')); ?></p></div></div>
+                        <div class="track-step"><div class="step-num">3</div><div class="step-content"><h4><?php echo e(__('rcpanel_track1_s3_title')); ?></h4><p><?php echo e(__('rcpanel_track1_s3_desc')); ?></p></div></div>
+                        <div class="track-step"><div class="step-num">4</div><div class="step-content"><h4><?php echo e(__('rcpanel_track1_s4_title')); ?></h4><p><?php echo e(__('rcpanel_track1_s4_desc')); ?></p></div></div>
                     </div>
                 </div>
                 <div class="track">
                     <div class="track-icon"><i class="fas fa-life-ring"></i></div>
-                    <h3>We Support You</h3>
-                    <p>24/7 technical support for your reseller account</p>
+                    <h3><?php echo e(__('rcpanel_track2_title')); ?></h3>
+                    <p><?php echo e(__('rcpanel_track2_desc')); ?></p>
                     <div class="track-steps">
-                        <div class="track-step"><div class="step-num">1</div><div class="step-content"><h4>Server Management</h4><p>Hardware, OS updates, and security patches — all on us</p></div></div>
-                        <div class="track-step"><div class="step-num">2</div><div class="step-content"><h4>Free Migrations</h4><p>Moving from another reseller? We transfer everything free</p></div></div>
-                        <div class="track-step"><div class="step-num">3</div><div class="step-content"><h4>Knowledge Base</h4><p>Docs, tutorials, and guides to help you grow</p></div></div>
-                        <div class="track-step"><div class="step-num">4</div><div class="step-content"><h4>Scale Anytime</h4><p>Upgrade to Master or Alpha Reseller as your business grows</p></div></div>
+                        <div class="track-step"><div class="step-num">1</div><div class="step-content"><h4><?php echo e(__('rcpanel_track2_s1_title')); ?></h4><p><?php echo e(__('rcpanel_track2_s1_desc')); ?></p></div></div>
+                        <div class="track-step"><div class="step-num">2</div><div class="step-content"><h4><?php echo e(__('rcpanel_track2_s2_title')); ?></h4><p><?php echo e(__('rcpanel_track2_s2_desc')); ?></p></div></div>
+                        <div class="track-step"><div class="step-num">3</div><div class="step-content"><h4><?php echo e(__('rcpanel_track2_s3_title')); ?></h4><p><?php echo e(__('rcpanel_track2_s3_desc')); ?></p></div></div>
+                        <div class="track-step"><div class="step-num">4</div><div class="step-content"><h4><?php echo e(__('rcpanel_track2_s4_title')); ?></h4><p><?php echo e(__('rcpanel_track2_s4_desc')); ?></p></div></div>
                     </div>
                 </div>
             </div>
@@ -506,45 +506,45 @@ include __DIR__ . '/includes/section-dc-showcase.php';
     <section class="faq-section reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">FAQ</div>
-                <h2>Frequently asked questions</h2>
-                <p>Can't find your answer? Open a support ticket — we respond in under 10 minutes.</p>
+                <div class="section-tag"><?php echo e(__('reseller_faq_tag')); ?></div>
+                <h2><?php echo e(__('reseller_faq_title')); ?></h2>
+                <p><?php echo e(__('reseller_faq_desc')); ?></p>
             </div>
 
             <div class="faq-layout">
                 <div class="faq-tabs">
-                    <button class="faq-tab active" data-faq-target="faq-general"><i class="fas fa-server"></i> General</button>
-                    <button class="faq-tab" data-faq-target="faq-technical"><i class="fas fa-cogs"></i> Technical</button>
-                    <button class="faq-tab" data-faq-target="faq-billing"><i class="fas fa-credit-card"></i> Billing</button>
+                    <button class="faq-tab active" data-faq-target="faq-general"><i class="fas fa-server"></i> <?php echo e(__('reseller_faq_tab_general')); ?></button>
+                    <button class="faq-tab" data-faq-target="faq-technical"><i class="fas fa-cogs"></i> <?php echo e(__('reseller_faq_tab_technical')); ?></button>
+                    <button class="faq-tab" data-faq-target="faq-billing"><i class="fas fa-credit-card"></i> <?php echo e(__('reseller_faq_tab_billing')); ?></button>
                 </div>
 
                 <div class="faq-panels">
                     <div class="faq-panel active" id="faq-general">
-                        <div class="faq-item"><button class="faq-question"><span>What is reseller hosting?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Reseller hosting allows you to purchase hosting resources (disk, bandwidth) and resell them to your own clients under your brand. You manage client accounts via WHM while we handle the server infrastructure.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>What is the difference between Reseller, Master, and Alpha?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>A Reseller can create cPanel accounts. A Master Reseller can create Reseller accounts (who create cPanel accounts). An Alpha Reseller can create Master, Reseller, and cPanel accounts — forming a full multi-tier hierarchy.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Will my clients know I'm using YottaSrc?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>No. With white-label branding, private nameservers, and custom cPanel themes, your clients will see only your brand. YottaSrc operates completely behind the scenes.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>How quickly is my reseller account activated?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Reseller accounts are activated within 2 to 20 minutes after payment confirmation. You'll receive WHM login details via email.</p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('rcpanel_faq_g1_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('rcpanel_faq_g1_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('rcpanel_faq_g2_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('rcpanel_faq_g2_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('rcpanel_faq_g3_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('rcpanel_faq_g3_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('rcpanel_faq_g4_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('rcpanel_faq_g4_a')); ?></p></div></div>
                     </div>
 
                     <div class="faq-panel" id="faq-technical">
-                        <div class="faq-item"><button class="faq-question"><span>Do I get WHM access?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Yes, all reseller plans include full WHM (Web Host Manager) access. You can create and manage cPanel accounts, configure packages, set nameservers, and more.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Can I set custom hosting packages for my clients?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Absolutely. In WHM you can create unlimited package templates with custom disk, bandwidth, email, and database limits. Each client account can have different resources.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Which PHP versions are supported?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>We support PHP 5.2 to 8.4 with per-domain switching. Node.js is also available for your clients.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Can I oversell resources?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Yes, WHM supports overselling. You can allocate more total resources across clients than your plan limit, though actual usage is still bound by your plan.</p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('rcpanel_faq_t1_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('rcpanel_faq_t1_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('rcpanel_faq_t2_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('rcpanel_faq_t2_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('rcpanel_faq_t3_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('rcpanel_faq_t3_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('rcpanel_faq_t4_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('rcpanel_faq_t4_a')); ?></p></div></div>
                     </div>
 
                     <div class="faq-panel" id="faq-billing">
-                        <div class="faq-item"><button class="faq-question"><span>Does the price increase on renewal?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>No — you pay the same price on renewal. No surprises, no hidden fees.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Can I add more disk space?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Yes, additional disk space is available at €0.15/GB. You can add it during checkout or anytime from your client dashboard.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>What payment methods do you accept?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>We accept credit/debit cards, PayPal, cryptocurrency (Bitcoin, USDT, etc.), and 10+ other payment methods.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Can I upgrade to Master or Alpha Reseller later?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Yes, you can upgrade your reseller tier anytime from your client dashboard or by contacting our sales team.</p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('rcpanel_faq_b1_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('rcpanel_faq_b1_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('rcpanel_faq_b2_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('rcpanel_faq_b2_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('rcpanel_faq_b3_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('rcpanel_faq_b3_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('rcpanel_faq_b4_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('rcpanel_faq_b4_a')); ?></p></div></div>
                     </div>
                 </div>
             </div>
 
             <div class="faq-actions">
-                <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-primary"><i class="fas fa-headset"></i> Open a Ticket</a>
-                <a href="<?php echo e(SITE_URL); ?>/faq" class="btn-secondary">Browse All FAQ <i class="fas fa-arrow-right"></i></a>
+                <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-primary"><i class="fas fa-headset"></i> <?php echo e(__('common_open_ticket')); ?></a>
+                <a href="<?php echo e(SITE_URL); ?>/faq" class="btn-secondary"><?php echo e(__('common_browse_faq')); ?> <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
@@ -554,41 +554,41 @@ include __DIR__ . '/includes/section-dc-showcase.php';
         <div class="container">
             <div class="why-us-layout">
                 <div class="why-us-intro">
-                    <div class="section-tag">Advantages</div>
-                    <h2 class="why-us-title">Why Choose Us?</h2>
-                    <p class="why-us-desc">Thousands of resellers trust YottaSrc to power their hosting businesses worldwide.</p>
-                    <a href="#plans" class="btn-primary">Get Started <i class="fas fa-arrow-right"></i></a>
+                    <div class="section-tag"><?php echo e(__('reseller_why_tag')); ?></div>
+                    <h2 class="why-us-title"><?php echo e(__('reseller_why_title')); ?></h2>
+                    <p class="why-us-desc"><?php echo e(__('rcpanel_why_desc')); ?></p>
+                    <a href="#plans" class="btn-primary"><?php echo e(__('common_get_started')); ?> <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="why-us-grid">
                     <div class="why-us-card">
                         <div class="why-us-card-icon"><i class="fas fa-headset"></i></div>
-                        <h4>24/7 Expert Support</h4>
-                        <p>Our dedicated team is available around the clock to assist you with any issues.</p>
+                        <h4><?php echo e(__('rcpanel_why_support_title')); ?></h4>
+                        <p><?php echo e(__('rcpanel_why_support_desc')); ?></p>
                     </div>
                     <div class="why-us-card">
                         <div class="why-us-card-icon icon-green"><i class="fas fa-tachometer-alt"></i></div>
-                        <h4>High-Speed Performance</h4>
-                        <p>LiteSpeed + NVMe SSDs deliver blazing-fast hosting for all your clients.</p>
+                        <h4><?php echo e(__('rcpanel_why_perf_title')); ?></h4>
+                        <p><?php echo e(__('rcpanel_why_perf_desc')); ?></p>
                     </div>
                     <div class="why-us-card">
                         <div class="why-us-card-icon icon-purple"><i class="fas fa-shield-alt"></i></div>
-                        <h4>Secure &amp; Reliable</h4>
-                        <p>Multi-layer security with Imunify360 and 99.9% uptime SLA.</p>
+                        <h4><?php echo e(__('rcpanel_why_secure_title')); ?></h4>
+                        <p><?php echo e(__('rcpanel_why_secure_desc')); ?></p>
                     </div>
                     <div class="why-us-card">
                         <div class="why-us-card-icon icon-amber"><i class="fas fa-globe"></i></div>
-                        <h4>Global Data Centers</h4>
-                        <p>15+ locations across 4 continents for low-latency hosting.</p>
+                        <h4><?php echo e(__('rcpanel_why_dc_title')); ?></h4>
+                        <p><?php echo e(__('rcpanel_why_dc_desc')); ?></p>
                     </div>
                     <div class="why-us-card">
                         <div class="why-us-card-icon icon-green"><i class="fas fa-tags"></i></div>
-                        <h4>Competitive Pricing</h4>
-                        <p>Affordable plans with same-price renewal — maximize your profit margins.</p>
+                        <h4><?php echo e(__('rcpanel_why_price_title')); ?></h4>
+                        <p><?php echo e(__('rcpanel_why_price_desc')); ?></p>
                     </div>
                     <div class="why-us-card">
                         <div class="why-us-card-icon icon-purple"><i class="fas fa-level-up-alt"></i></div>
-                        <h4>Seamless Upgrades</h4>
-                        <p>Upgrade to Master or Alpha Reseller anytime as your business scales.</p>
+                        <h4><?php echo e(__('rcpanel_why_upgrade_title')); ?></h4>
+                        <p><?php echo e(__('rcpanel_why_upgrade_desc')); ?></p>
                     </div>
                 </div>
             </div>
@@ -610,9 +610,9 @@ include __DIR__ . '/includes/section-dc-showcase.php';
             <div class="promo-cta-inner">
                 <div class="promo-cta-glow"></div>
                 <div class="promo-cta-icon"><i class="fas fa-rocket"></i></div>
-                <h2>Ready to start your hosting business?</h2>
-                <p>Launch your brand with cPanel Reseller hosting from €3.49 EUR / mo. WHM included, white-label ready.</p>
-                <a href="#plans" class="btn-primary">View Plans <i class="fas fa-arrow-right"></i></a>
+                <h2><?php echo e(__('rcpanel_cta_title')); ?></h2>
+                <p><?php echo e(__('rcpanel_cta_desc')); ?></p>
+                <a href="#plans" class="btn-primary"><?php echo e(__('common_view_plans')); ?> <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>

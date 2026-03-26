@@ -18,37 +18,37 @@ require_once __DIR__ . '/includes/topbar.php';
                     <i class="fas fa-chevron-right"></i>
                     <span><?php echo e(__('datacenter_breadcrumb')); ?></span>
                 </div>
-                <h1>Enterprise-Grade <span class="highlight">Infrastructure</span></h1>
+                <h1><?php echo __('datacenter_title'); ?></h1>
                 <p class="page-hero-desc">
-                    Our global network spans 50+ locations across 6 continents — powered by Tier III+ datacenters, redundant networking, and enterprise hardware built for maximum uptime and performance.
+                    <?php echo e(__('datacenter_desc')); ?>
                 </p>
                 <div class="dc-hero-stats">
                     <div class="dc-hero-stat">
                         <div class="dc-hero-stat-icon"><i class="fas fa-map-marker-alt"></i></div>
                         <div class="dc-hero-stat-body">
                             <div class="dc-hero-stat-value"><span class="hero-stat-num" data-count="50">0</span><span class="dc-hero-stat-suffix">+</span></div>
-                            <div class="dc-hero-stat-label">Locations</div>
+                            <div class="dc-hero-stat-label"><?php echo e(__('dc_hero_stat_locations')); ?></div>
                         </div>
                     </div>
                     <div class="dc-hero-stat">
                         <div class="dc-hero-stat-icon"><i class="fas fa-globe-americas"></i></div>
                         <div class="dc-hero-stat-body">
                             <div class="dc-hero-stat-value"><span class="hero-stat-num" data-count="6">0</span></div>
-                            <div class="dc-hero-stat-label">Continents</div>
+                            <div class="dc-hero-stat-label"><?php echo e(__('dc_hero_stat_continents')); ?></div>
                         </div>
                     </div>
                     <div class="dc-hero-stat">
                         <div class="dc-hero-stat-icon"><i class="fas fa-shield-alt"></i></div>
                         <div class="dc-hero-stat-body">
                             <div class="dc-hero-stat-value"><span class="hero-stat-num" data-count="99">0</span><span class="dc-hero-stat-suffix">.9%</span></div>
-                            <div class="dc-hero-stat-label">Uptime SLA</div>
+                            <div class="dc-hero-stat-label"><?php echo e(__('dc_hero_stat_uptime')); ?></div>
                         </div>
                     </div>
                     <div class="dc-hero-stat">
                         <div class="dc-hero-stat-icon"><i class="fas fa-network-wired"></i></div>
                         <div class="dc-hero-stat-body">
                             <div class="dc-hero-stat-value"><span class="hero-stat-num" data-count="10">0</span><span class="dc-hero-stat-suffix"> Gbit/s</span></div>
-                            <div class="dc-hero-stat-label">Network</div>
+                            <div class="dc-hero-stat-label"><?php echo e(__('dc_hero_stat_network')); ?></div>
                         </div>
                     </div>
                 </div>
@@ -60,41 +60,41 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="bento-features reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Infrastructure</div>
-                <h2>Built for reliability at scale</h2>
-                <p>Every component of our infrastructure is designed with redundancy, performance, and security in mind.</p>
+                <div class="section-tag"><?php echo e(__('dc_infra_tag')); ?></div>
+                <h2><?php echo e(__('dc_infra_heading')); ?></h2>
+                <p><?php echo e(__('dc_infra_desc')); ?></p>
             </div>
 
             <div class="bento-grid">
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon"><i class="fas fa-building"></i></div>
-                    <h4>Tier III+ Datacenters</h4>
-                    <p>Tier III/IV certified facilities with N+1 redundancy, 99.982%+ guaranteed uptime, and dual utility feeds.</p>
+                    <h4><?php echo e(__('dc_infra_tier_title')); ?></h4>
+                    <p><?php echo e(__('dc_infra_tier_desc')); ?></p>
                 </div>
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-green"><i class="fas fa-bolt"></i></div>
-                    <h3>Redundant Power</h3>
-                    <p>Dual utility feeds, N+1 UPS systems, and on-site diesel generators ensure zero-downtime power delivery.</p>
+                    <h3><?php echo e(__('dc_infra_power_title')); ?></h3>
+                    <p><?php echo e(__('dc_infra_power_desc')); ?></p>
                 </div>
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-blue"><i class="fas fa-snowflake"></i></div>
-                    <h3>Advanced Cooling</h3>
-                    <p>Hot/cold aisle containment with precision CRAC units maintaining optimal temperature and humidity.</p>
+                    <h3><?php echo e(__('dc_infra_cooling_title')); ?></h3>
+                    <p><?php echo e(__('dc_infra_cooling_desc')); ?></p>
                 </div>
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-purple"><i class="fas fa-shield-alt"></i></div>
-                    <h3>Physical Security</h3>
-                    <p>24/7 on-site security, biometric access, CCTV monitoring, and mantrap entry at all facilities.</p>
+                    <h3><?php echo e(__('dc_infra_security_title')); ?></h3>
+                    <p><?php echo e(__('dc_infra_security_desc')); ?></p>
                 </div>
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-amber"><i class="fas fa-fire-extinguisher"></i></div>
-                    <h3>Fire Suppression</h3>
-                    <p>VESDA early-warning smoke detection and FM-200 gas-based fire suppression systems.</p>
+                    <h3><?php echo e(__('dc_infra_fire_title')); ?></h3>
+                    <p><?php echo e(__('dc_infra_fire_desc')); ?></p>
                 </div>
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-rose"><i class="fas fa-plug"></i></div>
-                    <h3>Redundant Connectivity</h3>
-                    <p>Diverse fiber paths from multiple carriers with automatic failover — no single point of network failure.</p>
+                    <h3><?php echo e(__('dc_infra_connect_title')); ?></h3>
+                    <p><?php echo e(__('dc_infra_connect_desc')); ?></p>
                 </div>
             </div>
         </div>
@@ -102,8 +102,8 @@ require_once __DIR__ . '/includes/topbar.php';
 
     <!-- ═══════════════ DATACENTER LOCATIONS MAP ═══════════════ -->
 <?php
-$dc_heading = 'Our global datacenter network';
-$dc_desc = 'Deploy across 20+ locations worldwide. Each facility meets our strict requirements for power, connectivity, and security.';
+$dc_heading = __('dc_map_heading');
+$dc_desc = __('dc_map_desc');
 include __DIR__ . '/includes/section-dc-showcase.php';
 ?>
 
@@ -111,33 +111,33 @@ include __DIR__ . '/includes/section-dc-showcase.php';
     <section class="dc-locations reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Locations</div>
-                <h2>Datacenter details by location</h2>
-                <p>Click any location to view its datacenter operator, specifications, and capabilities.</p>
+                <div class="section-tag"><?php echo e(__('dc_loc_tag')); ?></div>
+                <h2><?php echo e(__('dc_loc_heading')); ?></h2>
+                <p><?php echo e(__('dc_loc_desc')); ?></p>
             </div>
 
             <div class="dc-locations-inner">
             <!-- ── Europe ── -->
             <div class="dc-region">
-                <div class="dc-region-label"><i class="fas fa-globe-europe"></i> Europe</div>
+                <div class="dc-region-label"><i class="fas fa-globe-europe"></i> <?php echo e(__('dc_region_europe')); ?></div>
 
                 <div class="dc-loc-card open" data-dc-expand>
                     <button class="dc-loc-header">
                         <span class="dc-loc-flag"><span class="fi fi-ro"></span></span>
-                        <span class="dc-loc-name">Bucharest, Romania <span class="dc-hq-pill">HQ</span></span>
-                        <span class="dc-loc-operator">M247 / Voxility</span>
+                        <span class="dc-loc-name"><?php echo e(__('dc_loc_bucharest')); ?> <span class="dc-hq-pill"><?php echo e(__('dc_loc_hq')); ?></span></span>
+                        <span class="dc-loc-operator"><?php echo e(__('dc_loc_bucharest_op')); ?></span>
                         <span class="dc-loc-tier">Tier III</span>
                         <i class="fas fa-chevron-down dc-loc-arrow"></i>
                     </button>
                     <div class="dc-loc-body">
                         <div class="dc-loc-details">
-                            <div class="dc-loc-detail"><i class="fas fa-building"></i><strong>Operator:</strong> M247 (formerly Voxility) — Bucharest DC1</div>
-                            <div class="dc-loc-detail"><i class="fas fa-bolt"></i><strong>Power:</strong> 2N redundant UPS, on-site diesel generators, dual utility feeds</div>
-                            <div class="dc-loc-detail"><i class="fas fa-snowflake"></i><strong>Cooling:</strong> N+1 precision CRAC units, hot/cold aisle containment</div>
-                            <div class="dc-loc-detail"><i class="fas fa-network-wired"></i><strong>Network:</strong> 10 Gbit/s uplinks, Cogent, NTT, GTT, DE-CIX peering</div>
-                            <div class="dc-loc-detail"><i class="fas fa-shield-alt"></i><strong>Security:</strong> 24/7 on-site guards, biometric access, CCTV, mantrap</div>
-                            <div class="dc-loc-detail"><i class="fas fa-certificate"></i><strong>Certifications:</strong> ISO 27001, SOC 2, PCI DSS</div>
-                            <div class="dc-loc-detail"><i class="fas fa-tachometer-alt"></i><strong>DDoS Protection:</strong> Up to 1 Tbps mitigation capacity</div>
+                            <div class="dc-loc-detail"><i class="fas fa-building"></i><strong><?php echo e(__('dc_loc_label_operator')); ?></strong> <?php echo e(__('dc_loc_bucharest_op')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-bolt"></i><strong><?php echo e(__('dc_loc_label_power')); ?></strong> <?php echo e(__('dc_loc_bucharest_power')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-snowflake"></i><strong><?php echo e(__('dc_loc_label_cooling')); ?></strong> <?php echo e(__('dc_loc_bucharest_cooling')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-network-wired"></i><strong><?php echo e(__('dc_loc_label_network')); ?></strong> <?php echo e(__('dc_loc_bucharest_network')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-shield-alt"></i><strong><?php echo e(__('dc_loc_label_security')); ?></strong> <?php echo e(__('dc_loc_bucharest_security')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-certificate"></i><strong><?php echo e(__('dc_loc_label_certs')); ?></strong> <?php echo e(__('dc_loc_bucharest_certs')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-tachometer-alt"></i><strong><?php echo e(__('dc_loc_label_ddos')); ?></strong> <?php echo e(__('dc_loc_bucharest_ddos')); ?></div>
                         </div>
                     </div>
                 </div>
@@ -145,20 +145,20 @@ include __DIR__ . '/includes/section-dc-showcase.php';
                 <div class="dc-loc-card" data-dc-expand>
                     <button class="dc-loc-header">
                         <span class="dc-loc-flag"><span class="fi fi-de"></span></span>
-                        <span class="dc-loc-name">Frankfurt, Germany</span>
+                        <span class="dc-loc-name"><?php echo e(__('dc_loc_frankfurt')); ?></span>
                         <span class="dc-loc-operator">Hetzner</span>
                         <span class="dc-loc-tier">Tier III+</span>
                         <i class="fas fa-chevron-down dc-loc-arrow"></i>
                     </button>
                     <div class="dc-loc-body">
                         <div class="dc-loc-details">
-                            <div class="dc-loc-detail"><i class="fas fa-building"></i><strong>Operator:</strong> Hetzner Online — Falkenstein / Frankfurt DC</div>
-                            <div class="dc-loc-detail"><i class="fas fa-bolt"></i><strong>Power:</strong> 2N UPS systems, diesel generators with 48h fuel reserve</div>
-                            <div class="dc-loc-detail"><i class="fas fa-snowflake"></i><strong>Cooling:</strong> Free-cooling with CRAC backup, PUE 1.2</div>
-                            <div class="dc-loc-detail"><i class="fas fa-network-wired"></i><strong>Network:</strong> 10 Gbit/s, DE-CIX Frankfurt peering, Tier-1 transit</div>
-                            <div class="dc-loc-detail"><i class="fas fa-shield-alt"></i><strong>Security:</strong> 24/7 surveillance, electronic access control, CCTV</div>
-                            <div class="dc-loc-detail"><i class="fas fa-certificate"></i><strong>Certifications:</strong> ISO 27001, TÜV certified, EN 50600</div>
-                            <div class="dc-loc-detail"><i class="fas fa-tachometer-alt"></i><strong>DDoS Protection:</strong> Integrated volumetric DDoS mitigation</div>
+                            <div class="dc-loc-detail"><i class="fas fa-building"></i><strong><?php echo e(__('dc_loc_label_operator')); ?></strong> <?php echo e(__('dc_loc_frankfurt_op')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-bolt"></i><strong><?php echo e(__('dc_loc_label_power')); ?></strong> <?php echo e(__('dc_loc_frankfurt_power')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-snowflake"></i><strong><?php echo e(__('dc_loc_label_cooling')); ?></strong> <?php echo e(__('dc_loc_frankfurt_cooling')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-network-wired"></i><strong><?php echo e(__('dc_loc_label_network')); ?></strong> <?php echo e(__('dc_loc_frankfurt_network')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-shield-alt"></i><strong><?php echo e(__('dc_loc_label_security')); ?></strong> <?php echo e(__('dc_loc_frankfurt_security')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-certificate"></i><strong><?php echo e(__('dc_loc_label_certs')); ?></strong> <?php echo e(__('dc_loc_frankfurt_certs')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-tachometer-alt"></i><strong><?php echo e(__('dc_loc_label_ddos')); ?></strong> <?php echo e(__('dc_loc_frankfurt_ddos')); ?></div>
                         </div>
                     </div>
                 </div>
@@ -166,20 +166,20 @@ include __DIR__ . '/includes/section-dc-showcase.php';
                 <div class="dc-loc-card" data-dc-expand>
                     <button class="dc-loc-header">
                         <span class="dc-loc-flag"><span class="fi fi-fi"></span></span>
-                        <span class="dc-loc-name">Helsinki, Finland</span>
+                        <span class="dc-loc-name"><?php echo e(__('dc_loc_helsinki')); ?></span>
                         <span class="dc-loc-operator">Hetzner</span>
                         <span class="dc-loc-tier">Tier III</span>
                         <i class="fas fa-chevron-down dc-loc-arrow"></i>
                     </button>
                     <div class="dc-loc-body">
                         <div class="dc-loc-details">
-                            <div class="dc-loc-detail"><i class="fas fa-building"></i><strong>Operator:</strong> Hetzner Online — Helsinki DC Park</div>
-                            <div class="dc-loc-detail"><i class="fas fa-bolt"></i><strong>Power:</strong> 2N UPS, diesel generators, renewable energy grid</div>
-                            <div class="dc-loc-detail"><i class="fas fa-snowflake"></i><strong>Cooling:</strong> Natural cold air cooling (Nordic climate advantage), PUE 1.15</div>
-                            <div class="dc-loc-detail"><i class="fas fa-network-wired"></i><strong>Network:</strong> 10 Gbit/s, FICIX Helsinki peering, low-latency to Nordics &amp; Russia</div>
-                            <div class="dc-loc-detail"><i class="fas fa-shield-alt"></i><strong>Security:</strong> 24/7 monitoring, biometric/card access, fenced perimeter</div>
-                            <div class="dc-loc-detail"><i class="fas fa-certificate"></i><strong>Certifications:</strong> ISO 27001, EN 50600</div>
-                            <div class="dc-loc-detail"><i class="fas fa-tachometer-alt"></i><strong>DDoS Protection:</strong> Upstream filtering with Hetzner DDoS shield</div>
+                            <div class="dc-loc-detail"><i class="fas fa-building"></i><strong><?php echo e(__('dc_loc_label_operator')); ?></strong> <?php echo e(__('dc_loc_helsinki_op')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-bolt"></i><strong><?php echo e(__('dc_loc_label_power')); ?></strong> <?php echo e(__('dc_loc_helsinki_power')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-snowflake"></i><strong><?php echo e(__('dc_loc_label_cooling')); ?></strong> <?php echo e(__('dc_loc_helsinki_cooling')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-network-wired"></i><strong><?php echo e(__('dc_loc_label_network')); ?></strong> <?php echo e(__('dc_loc_helsinki_network')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-shield-alt"></i><strong><?php echo e(__('dc_loc_label_security')); ?></strong> <?php echo e(__('dc_loc_helsinki_security')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-certificate"></i><strong><?php echo e(__('dc_loc_label_certs')); ?></strong> <?php echo e(__('dc_loc_helsinki_certs')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-tachometer-alt"></i><strong><?php echo e(__('dc_loc_label_ddos')); ?></strong> <?php echo e(__('dc_loc_helsinki_ddos')); ?></div>
                         </div>
                     </div>
                 </div>
@@ -187,20 +187,20 @@ include __DIR__ . '/includes/section-dc-showcase.php';
                 <div class="dc-loc-card" data-dc-expand>
                     <button class="dc-loc-header">
                         <span class="dc-loc-flag"><span class="fi fi-fr"></span></span>
-                        <span class="dc-loc-name">Paris, France</span>
+                        <span class="dc-loc-name"><?php echo e(__('dc_loc_paris')); ?></span>
                         <span class="dc-loc-operator">OVHcloud</span>
                         <span class="dc-loc-tier">Tier III+</span>
                         <i class="fas fa-chevron-down dc-loc-arrow"></i>
                     </button>
                     <div class="dc-loc-body">
                         <div class="dc-loc-details">
-                            <div class="dc-loc-detail"><i class="fas fa-building"></i><strong>Operator:</strong> OVHcloud — Gravelines / Roubaix DC</div>
-                            <div class="dc-loc-detail"><i class="fas fa-bolt"></i><strong>Power:</strong> 2N UPS, on-site generators, dual grid feeds</div>
-                            <div class="dc-loc-detail"><i class="fas fa-snowflake"></i><strong>Cooling:</strong> OVH water-cooling technology, energy-efficient design</div>
-                            <div class="dc-loc-detail"><i class="fas fa-network-wired"></i><strong>Network:</strong> 10 Gbit/s, France-IX peering, OVH global backbone</div>
-                            <div class="dc-loc-detail"><i class="fas fa-shield-alt"></i><strong>Security:</strong> 24/7 guards, badge access, CCTV, anti-intrusion</div>
-                            <div class="dc-loc-detail"><i class="fas fa-certificate"></i><strong>Certifications:</strong> ISO 27001, SOC 1/2, HDS (health data hosting)</div>
-                            <div class="dc-loc-detail"><i class="fas fa-tachometer-alt"></i><strong>DDoS Protection:</strong> OVH VAC anti-DDoS (up to 1.3 Tbps)</div>
+                            <div class="dc-loc-detail"><i class="fas fa-building"></i><strong><?php echo e(__('dc_loc_label_operator')); ?></strong> <?php echo e(__('dc_loc_paris_op')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-bolt"></i><strong><?php echo e(__('dc_loc_label_power')); ?></strong> <?php echo e(__('dc_loc_paris_power')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-snowflake"></i><strong><?php echo e(__('dc_loc_label_cooling')); ?></strong> <?php echo e(__('dc_loc_paris_cooling')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-network-wired"></i><strong><?php echo e(__('dc_loc_label_network')); ?></strong> <?php echo e(__('dc_loc_paris_network')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-shield-alt"></i><strong><?php echo e(__('dc_loc_label_security')); ?></strong> <?php echo e(__('dc_loc_paris_security')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-certificate"></i><strong><?php echo e(__('dc_loc_label_certs')); ?></strong> <?php echo e(__('dc_loc_paris_certs')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-tachometer-alt"></i><strong><?php echo e(__('dc_loc_label_ddos')); ?></strong> <?php echo e(__('dc_loc_paris_ddos')); ?></div>
                         </div>
                     </div>
                 </div>
@@ -208,20 +208,20 @@ include __DIR__ . '/includes/section-dc-showcase.php';
                 <div class="dc-loc-card" data-dc-expand>
                     <button class="dc-loc-header">
                         <span class="dc-loc-flag"><span class="fi fi-gb"></span></span>
-                        <span class="dc-loc-name">London, UK</span>
+                        <span class="dc-loc-name"><?php echo e(__('dc_loc_london')); ?></span>
                         <span class="dc-loc-operator">Equinix</span>
                         <span class="dc-loc-tier">Tier III+</span>
                         <i class="fas fa-chevron-down dc-loc-arrow"></i>
                     </button>
                     <div class="dc-loc-body">
                         <div class="dc-loc-details">
-                            <div class="dc-loc-detail"><i class="fas fa-building"></i><strong>Operator:</strong> Equinix — LD5 Slough Campus</div>
-                            <div class="dc-loc-detail"><i class="fas fa-bolt"></i><strong>Power:</strong> 2N UPS, dual A+B feeds, diesel rotary UPS</div>
-                            <div class="dc-loc-detail"><i class="fas fa-snowflake"></i><strong>Cooling:</strong> Chilled water system with N+1 redundancy</div>
-                            <div class="dc-loc-detail"><i class="fas fa-network-wired"></i><strong>Network:</strong> 10 Gbit/s, LINX peering, Tier-1 transit (Lumen, Cogent)</div>
-                            <div class="dc-loc-detail"><i class="fas fa-shield-alt"></i><strong>Security:</strong> Mantrap, biometric + card, 24/7 NOC, CCTV</div>
-                            <div class="dc-loc-detail"><i class="fas fa-certificate"></i><strong>Certifications:</strong> ISO 27001, SOC 2, PCI DSS, HIPAA</div>
-                            <div class="dc-loc-detail"><i class="fas fa-tachometer-alt"></i><strong>DDoS Protection:</strong> Multi-layer upstream + on-prem mitigation</div>
+                            <div class="dc-loc-detail"><i class="fas fa-building"></i><strong><?php echo e(__('dc_loc_label_operator')); ?></strong> <?php echo e(__('dc_loc_london_op')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-bolt"></i><strong><?php echo e(__('dc_loc_label_power')); ?></strong> <?php echo e(__('dc_loc_london_power')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-snowflake"></i><strong><?php echo e(__('dc_loc_label_cooling')); ?></strong> <?php echo e(__('dc_loc_london_cooling')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-network-wired"></i><strong><?php echo e(__('dc_loc_label_network')); ?></strong> <?php echo e(__('dc_loc_london_network')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-shield-alt"></i><strong><?php echo e(__('dc_loc_label_security')); ?></strong> <?php echo e(__('dc_loc_london_security')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-certificate"></i><strong><?php echo e(__('dc_loc_label_certs')); ?></strong> <?php echo e(__('dc_loc_london_certs')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-tachometer-alt"></i><strong><?php echo e(__('dc_loc_label_ddos')); ?></strong> <?php echo e(__('dc_loc_london_ddos')); ?></div>
                         </div>
                     </div>
                 </div>
@@ -229,20 +229,20 @@ include __DIR__ . '/includes/section-dc-showcase.php';
                 <div class="dc-loc-card" data-dc-expand>
                     <button class="dc-loc-header">
                         <span class="dc-loc-flag"><span class="fi fi-nl"></span></span>
-                        <span class="dc-loc-name">Amsterdam, Netherlands</span>
+                        <span class="dc-loc-name"><?php echo e(__('dc_loc_amsterdam')); ?></span>
                         <span class="dc-loc-operator">Iron Mountain</span>
                         <span class="dc-loc-tier">Tier III</span>
                         <i class="fas fa-chevron-down dc-loc-arrow"></i>
                     </button>
                     <div class="dc-loc-body">
                         <div class="dc-loc-details">
-                            <div class="dc-loc-detail"><i class="fas fa-building"></i><strong>Operator:</strong> Iron Mountain (AMS-1) — Science Park Amsterdam</div>
-                            <div class="dc-loc-detail"><i class="fas fa-bolt"></i><strong>Power:</strong> 2N UPS, diesel generators, dual utility feeds</div>
-                            <div class="dc-loc-detail"><i class="fas fa-snowflake"></i><strong>Cooling:</strong> Precision air cooling with hot/cold aisle containment</div>
-                            <div class="dc-loc-detail"><i class="fas fa-network-wired"></i><strong>Network:</strong> 10 Gbit/s, AMS-IX peering, NL-IX, direct carrier access</div>
-                            <div class="dc-loc-detail"><i class="fas fa-shield-alt"></i><strong>Security:</strong> 24/7 NOC, biometric, mantrap, perimeter fencing</div>
-                            <div class="dc-loc-detail"><i class="fas fa-certificate"></i><strong>Certifications:</strong> ISO 27001, SOC 2, PCI DSS</div>
-                            <div class="dc-loc-detail"><i class="fas fa-tachometer-alt"></i><strong>DDoS Protection:</strong> Upstream scrubbing + local mitigation</div>
+                            <div class="dc-loc-detail"><i class="fas fa-building"></i><strong><?php echo e(__('dc_loc_label_operator')); ?></strong> <?php echo e(__('dc_loc_amsterdam_op')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-bolt"></i><strong><?php echo e(__('dc_loc_label_power')); ?></strong> <?php echo e(__('dc_loc_amsterdam_power')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-snowflake"></i><strong><?php echo e(__('dc_loc_label_cooling')); ?></strong> <?php echo e(__('dc_loc_amsterdam_cooling')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-network-wired"></i><strong><?php echo e(__('dc_loc_label_network')); ?></strong> <?php echo e(__('dc_loc_amsterdam_network')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-shield-alt"></i><strong><?php echo e(__('dc_loc_label_security')); ?></strong> <?php echo e(__('dc_loc_amsterdam_security')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-certificate"></i><strong><?php echo e(__('dc_loc_label_certs')); ?></strong> <?php echo e(__('dc_loc_amsterdam_certs')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-tachometer-alt"></i><strong><?php echo e(__('dc_loc_label_ddos')); ?></strong> <?php echo e(__('dc_loc_amsterdam_ddos')); ?></div>
                         </div>
                     </div>
                 </div>
@@ -250,20 +250,20 @@ include __DIR__ . '/includes/section-dc-showcase.php';
                 <div class="dc-loc-card" data-dc-expand>
                     <button class="dc-loc-header">
                         <span class="dc-loc-flag"><span class="fi fi-tr"></span></span>
-                        <span class="dc-loc-name">Istanbul, Turkey</span>
+                        <span class="dc-loc-name"><?php echo e(__('dc_loc_istanbul')); ?></span>
                         <span class="dc-loc-operator">Turkcell</span>
                         <span class="dc-loc-tier">Tier III</span>
                         <i class="fas fa-chevron-down dc-loc-arrow"></i>
                     </button>
                     <div class="dc-loc-body">
                         <div class="dc-loc-details">
-                            <div class="dc-loc-detail"><i class="fas fa-building"></i><strong>Operator:</strong> Turkcell Data Center — Esenyurt Campus</div>
-                            <div class="dc-loc-detail"><i class="fas fa-bolt"></i><strong>Power:</strong> 2N UPS, on-site generators, dual utility grid</div>
-                            <div class="dc-loc-detail"><i class="fas fa-snowflake"></i><strong>Cooling:</strong> N+1 precision CRAC, hot/cold aisle</div>
-                            <div class="dc-loc-detail"><i class="fas fa-network-wired"></i><strong>Network:</strong> 10 Gbit/s, Turkish IX peering, transit to EU &amp; MENA</div>
-                            <div class="dc-loc-detail"><i class="fas fa-shield-alt"></i><strong>Security:</strong> 24/7 security, biometric, CCTV, access logging</div>
-                            <div class="dc-loc-detail"><i class="fas fa-certificate"></i><strong>Certifications:</strong> ISO 27001, Uptime Institute Tier III</div>
-                            <div class="dc-loc-detail"><i class="fas fa-tachometer-alt"></i><strong>DDoS Protection:</strong> Volumetric DDoS filtering at edge</div>
+                            <div class="dc-loc-detail"><i class="fas fa-building"></i><strong><?php echo e(__('dc_loc_label_operator')); ?></strong> <?php echo e(__('dc_loc_istanbul_op')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-bolt"></i><strong><?php echo e(__('dc_loc_label_power')); ?></strong> <?php echo e(__('dc_loc_istanbul_power')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-snowflake"></i><strong><?php echo e(__('dc_loc_label_cooling')); ?></strong> <?php echo e(__('dc_loc_istanbul_cooling')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-network-wired"></i><strong><?php echo e(__('dc_loc_label_network')); ?></strong> <?php echo e(__('dc_loc_istanbul_network')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-shield-alt"></i><strong><?php echo e(__('dc_loc_label_security')); ?></strong> <?php echo e(__('dc_loc_istanbul_security')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-certificate"></i><strong><?php echo e(__('dc_loc_label_certs')); ?></strong> <?php echo e(__('dc_loc_istanbul_certs')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-tachometer-alt"></i><strong><?php echo e(__('dc_loc_label_ddos')); ?></strong> <?php echo e(__('dc_loc_istanbul_ddos')); ?></div>
                         </div>
                     </div>
                 </div>
@@ -271,20 +271,20 @@ include __DIR__ . '/includes/section-dc-showcase.php';
                 <div class="dc-loc-card" data-dc-expand>
                     <button class="dc-loc-header">
                         <span class="dc-loc-flag"><span class="fi fi-pl"></span></span>
-                        <span class="dc-loc-name">Warsaw, Poland</span>
+                        <span class="dc-loc-name"><?php echo e(__('dc_loc_warsaw')); ?></span>
                         <span class="dc-loc-operator">Beyond.pl</span>
                         <span class="dc-loc-tier">Tier III+</span>
                         <i class="fas fa-chevron-down dc-loc-arrow"></i>
                     </button>
                     <div class="dc-loc-body">
                         <div class="dc-loc-details">
-                            <div class="dc-loc-detail"><i class="fas fa-building"></i><strong>Operator:</strong> Beyond.pl — Data Center 2 Poznań</div>
-                            <div class="dc-loc-detail"><i class="fas fa-bolt"></i><strong>Power:</strong> 2N+1 UPS, DRUPS, diesel generators, dual A+B feeds</div>
-                            <div class="dc-loc-detail"><i class="fas fa-snowflake"></i><strong>Cooling:</strong> Free-cooling with N+1 CRAC backup</div>
-                            <div class="dc-loc-detail"><i class="fas fa-network-wired"></i><strong>Network:</strong> 10 Gbit/s, PLIX peering, DE-CIX, Tier-1 transit</div>
-                            <div class="dc-loc-detail"><i class="fas fa-shield-alt"></i><strong>Security:</strong> 24/7 NOC, multi-layer access control, CCTV</div>
-                            <div class="dc-loc-detail"><i class="fas fa-certificate"></i><strong>Certifications:</strong> ISO 27001, EN 50600, Uptime Tier III Design</div>
-                            <div class="dc-loc-detail"><i class="fas fa-tachometer-alt"></i><strong>DDoS Protection:</strong> Multi-vector DDoS mitigation at edge</div>
+                            <div class="dc-loc-detail"><i class="fas fa-building"></i><strong><?php echo e(__('dc_loc_label_operator')); ?></strong> <?php echo e(__('dc_loc_warsaw_op')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-bolt"></i><strong><?php echo e(__('dc_loc_label_power')); ?></strong> <?php echo e(__('dc_loc_warsaw_power')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-snowflake"></i><strong><?php echo e(__('dc_loc_label_cooling')); ?></strong> <?php echo e(__('dc_loc_warsaw_cooling')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-network-wired"></i><strong><?php echo e(__('dc_loc_label_network')); ?></strong> <?php echo e(__('dc_loc_warsaw_network')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-shield-alt"></i><strong><?php echo e(__('dc_loc_label_security')); ?></strong> <?php echo e(__('dc_loc_warsaw_security')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-certificate"></i><strong><?php echo e(__('dc_loc_label_certs')); ?></strong> <?php echo e(__('dc_loc_warsaw_certs')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-tachometer-alt"></i><strong><?php echo e(__('dc_loc_label_ddos')); ?></strong> <?php echo e(__('dc_loc_warsaw_ddos')); ?></div>
                         </div>
                     </div>
                 </div>
@@ -292,20 +292,20 @@ include __DIR__ . '/includes/section-dc-showcase.php';
                 <div class="dc-loc-card" data-dc-expand>
                     <button class="dc-loc-header">
                         <span class="dc-loc-flag"><span class="fi fi-at"></span></span>
-                        <span class="dc-loc-name">Vienna, Austria</span>
+                        <span class="dc-loc-name"><?php echo e(__('dc_loc_vienna')); ?></span>
                         <span class="dc-loc-operator">Interxion</span>
                         <span class="dc-loc-tier">Tier III</span>
                         <i class="fas fa-chevron-down dc-loc-arrow"></i>
                     </button>
                     <div class="dc-loc-body">
                         <div class="dc-loc-details">
-                            <div class="dc-loc-detail"><i class="fas fa-building"></i><strong>Operator:</strong> Interxion (Digital Realty) — VIE1/VIE2</div>
-                            <div class="dc-loc-detail"><i class="fas fa-bolt"></i><strong>Power:</strong> 2N UPS, diesel generators, renewable energy sourced</div>
-                            <div class="dc-loc-detail"><i class="fas fa-snowflake"></i><strong>Cooling:</strong> N+1 chilled water, free-cooling capable</div>
-                            <div class="dc-loc-detail"><i class="fas fa-network-wired"></i><strong>Network:</strong> 10 Gbit/s, VIX peering, direct connection to CEE networks</div>
-                            <div class="dc-loc-detail"><i class="fas fa-shield-alt"></i><strong>Security:</strong> 24/7 NOC, biometric + card, CCTV, mantrap</div>
-                            <div class="dc-loc-detail"><i class="fas fa-certificate"></i><strong>Certifications:</strong> ISO 27001, SOC 2, EN 50600</div>
-                            <div class="dc-loc-detail"><i class="fas fa-tachometer-alt"></i><strong>DDoS Protection:</strong> Upstream scrubbing + local mitigation</div>
+                            <div class="dc-loc-detail"><i class="fas fa-building"></i><strong><?php echo e(__('dc_loc_label_operator')); ?></strong> <?php echo e(__('dc_loc_vienna_op')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-bolt"></i><strong><?php echo e(__('dc_loc_label_power')); ?></strong> <?php echo e(__('dc_loc_vienna_power')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-snowflake"></i><strong><?php echo e(__('dc_loc_label_cooling')); ?></strong> <?php echo e(__('dc_loc_vienna_cooling')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-network-wired"></i><strong><?php echo e(__('dc_loc_label_network')); ?></strong> <?php echo e(__('dc_loc_vienna_network')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-shield-alt"></i><strong><?php echo e(__('dc_loc_label_security')); ?></strong> <?php echo e(__('dc_loc_vienna_security')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-certificate"></i><strong><?php echo e(__('dc_loc_label_certs')); ?></strong> <?php echo e(__('dc_loc_vienna_certs')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-tachometer-alt"></i><strong><?php echo e(__('dc_loc_label_ddos')); ?></strong> <?php echo e(__('dc_loc_vienna_ddos')); ?></div>
                         </div>
                     </div>
                 </div>
@@ -313,25 +313,25 @@ include __DIR__ . '/includes/section-dc-showcase.php';
 
             <!-- ── Americas ── -->
             <div class="dc-region">
-                <div class="dc-region-label"><i class="fas fa-globe-americas"></i> Americas</div>
+                <div class="dc-region-label"><i class="fas fa-globe-americas"></i> <?php echo e(__('dc_region_americas')); ?></div>
 
                 <div class="dc-loc-card" data-dc-expand>
                     <button class="dc-loc-header">
                         <span class="dc-loc-flag"><span class="fi fi-us"></span></span>
-                        <span class="dc-loc-name">New York / Dallas, USA</span>
+                        <span class="dc-loc-name"><?php echo e(__('dc_loc_usa')); ?></span>
                         <span class="dc-loc-operator">Equinix / CoreSite</span>
                         <span class="dc-loc-tier">Tier III+</span>
                         <i class="fas fa-chevron-down dc-loc-arrow"></i>
                     </button>
                     <div class="dc-loc-body">
                         <div class="dc-loc-details">
-                            <div class="dc-loc-detail"><i class="fas fa-building"></i><strong>Operator:</strong> Equinix NY5 / CoreSite DA1 — Carrier-neutral facilities</div>
-                            <div class="dc-loc-detail"><i class="fas fa-bolt"></i><strong>Power:</strong> 2N UPS, diesel generators, dual A+B feeds, 99.999% uptime SLA</div>
-                            <div class="dc-loc-detail"><i class="fas fa-snowflake"></i><strong>Cooling:</strong> Chilled water with N+1 redundancy, hot/cold aisle containment</div>
-                            <div class="dc-loc-detail"><i class="fas fa-network-wired"></i><strong>Network:</strong> 10 Gbit/s, Equinix IX / CoreSite Open Cloud Exchange, Tier-1 transit</div>
-                            <div class="dc-loc-detail"><i class="fas fa-shield-alt"></i><strong>Security:</strong> Mantrap, biometric + badge, 24/7 NOC/SOC, CCTV, vehicle barriers</div>
-                            <div class="dc-loc-detail"><i class="fas fa-certificate"></i><strong>Certifications:</strong> SOC 2 Type II, ISO 27001, PCI DSS, HIPAA</div>
-                            <div class="dc-loc-detail"><i class="fas fa-tachometer-alt"></i><strong>DDoS Protection:</strong> Multi-Tbps scrubbing via upstream + Arbor/Cloudflare</div>
+                            <div class="dc-loc-detail"><i class="fas fa-building"></i><strong><?php echo e(__('dc_loc_label_operator')); ?></strong> <?php echo e(__('dc_loc_usa_op')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-bolt"></i><strong><?php echo e(__('dc_loc_label_power')); ?></strong> <?php echo e(__('dc_loc_usa_power')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-snowflake"></i><strong><?php echo e(__('dc_loc_label_cooling')); ?></strong> <?php echo e(__('dc_loc_usa_cooling')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-network-wired"></i><strong><?php echo e(__('dc_loc_label_network')); ?></strong> <?php echo e(__('dc_loc_usa_network')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-shield-alt"></i><strong><?php echo e(__('dc_loc_label_security')); ?></strong> <?php echo e(__('dc_loc_usa_security')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-certificate"></i><strong><?php echo e(__('dc_loc_label_certs')); ?></strong> <?php echo e(__('dc_loc_usa_certs')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-tachometer-alt"></i><strong><?php echo e(__('dc_loc_label_ddos')); ?></strong> <?php echo e(__('dc_loc_usa_ddos')); ?></div>
                         </div>
                     </div>
                 </div>
@@ -339,20 +339,20 @@ include __DIR__ . '/includes/section-dc-showcase.php';
                 <div class="dc-loc-card" data-dc-expand>
                     <button class="dc-loc-header">
                         <span class="dc-loc-flag"><span class="fi fi-ca"></span></span>
-                        <span class="dc-loc-name">Toronto, Canada</span>
+                        <span class="dc-loc-name"><?php echo e(__('dc_loc_toronto')); ?></span>
                         <span class="dc-loc-operator">OVHcloud</span>
                         <span class="dc-loc-tier">Tier III</span>
                         <i class="fas fa-chevron-down dc-loc-arrow"></i>
                     </button>
                     <div class="dc-loc-body">
                         <div class="dc-loc-details">
-                            <div class="dc-loc-detail"><i class="fas fa-building"></i><strong>Operator:</strong> OVHcloud — BHS (Beauharnois) Data Center</div>
-                            <div class="dc-loc-detail"><i class="fas fa-bolt"></i><strong>Power:</strong> 2N UPS, diesel generators, hydroelectric grid (Quebec)</div>
-                            <div class="dc-loc-detail"><i class="fas fa-snowflake"></i><strong>Cooling:</strong> OVH water-cooling + Canadian climate-assisted free-cooling</div>
-                            <div class="dc-loc-detail"><i class="fas fa-network-wired"></i><strong>Network:</strong> 10 Gbit/s, TorIX peering, OVH backbone to US/EU</div>
-                            <div class="dc-loc-detail"><i class="fas fa-shield-alt"></i><strong>Security:</strong> On-site guards, badge access, CCTV, fenced perimeter</div>
-                            <div class="dc-loc-detail"><i class="fas fa-certificate"></i><strong>Certifications:</strong> SOC 1/2, ISO 27001, PIPEDA compliant</div>
-                            <div class="dc-loc-detail"><i class="fas fa-tachometer-alt"></i><strong>DDoS Protection:</strong> OVH VAC anti-DDoS infrastructure</div>
+                            <div class="dc-loc-detail"><i class="fas fa-building"></i><strong><?php echo e(__('dc_loc_label_operator')); ?></strong> <?php echo e(__('dc_loc_toronto_op')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-bolt"></i><strong><?php echo e(__('dc_loc_label_power')); ?></strong> <?php echo e(__('dc_loc_toronto_power')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-snowflake"></i><strong><?php echo e(__('dc_loc_label_cooling')); ?></strong> <?php echo e(__('dc_loc_toronto_cooling')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-network-wired"></i><strong><?php echo e(__('dc_loc_label_network')); ?></strong> <?php echo e(__('dc_loc_toronto_network')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-shield-alt"></i><strong><?php echo e(__('dc_loc_label_security')); ?></strong> <?php echo e(__('dc_loc_toronto_security')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-certificate"></i><strong><?php echo e(__('dc_loc_label_certs')); ?></strong> <?php echo e(__('dc_loc_toronto_certs')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-tachometer-alt"></i><strong><?php echo e(__('dc_loc_label_ddos')); ?></strong> <?php echo e(__('dc_loc_toronto_ddos')); ?></div>
                         </div>
                     </div>
                 </div>
@@ -360,25 +360,25 @@ include __DIR__ . '/includes/section-dc-showcase.php';
 
             <!-- ── Asia ── -->
             <div class="dc-region">
-                <div class="dc-region-label"><i class="fas fa-globe-asia"></i> Asia</div>
+                <div class="dc-region-label"><i class="fas fa-globe-asia"></i> <?php echo e(__('dc_region_asia')); ?></div>
 
                 <div class="dc-loc-card" data-dc-expand>
                     <button class="dc-loc-header">
                         <span class="dc-loc-flag"><span class="fi fi-in"></span></span>
-                        <span class="dc-loc-name">Mumbai, India</span>
+                        <span class="dc-loc-name"><?php echo e(__('dc_loc_mumbai')); ?></span>
                         <span class="dc-loc-operator">Yotta Infrastructure</span>
                         <span class="dc-loc-tier">Tier IV</span>
                         <i class="fas fa-chevron-down dc-loc-arrow"></i>
                     </button>
                     <div class="dc-loc-body">
                         <div class="dc-loc-details">
-                            <div class="dc-loc-detail"><i class="fas fa-building"></i><strong>Operator:</strong> Yotta Infrastructure — NM1 Navi Mumbai</div>
-                            <div class="dc-loc-detail"><i class="fas fa-bolt"></i><strong>Power:</strong> 2(N+1) UPS, diesel generators, dual HT feeds, Tier IV power</div>
-                            <div class="dc-loc-detail"><i class="fas fa-snowflake"></i><strong>Cooling:</strong> N+1 precision PAC units, chilled water, hot/cold aisle</div>
-                            <div class="dc-loc-detail"><i class="fas fa-network-wired"></i><strong>Network:</strong> 10 Gbit/s, NIXI/DECIX Mumbai peering, Tier-1 transit to APAC</div>
-                            <div class="dc-loc-detail"><i class="fas fa-shield-alt"></i><strong>Security:</strong> 5-layer physical security, biometric, CCTV, armed guards</div>
-                            <div class="dc-loc-detail"><i class="fas fa-certificate"></i><strong>Certifications:</strong> Uptime Tier IV, ISO 27001, SOC 2, PCI DSS</div>
-                            <div class="dc-loc-detail"><i class="fas fa-tachometer-alt"></i><strong>DDoS Protection:</strong> On-prem + upstream multi-Tbps scrubbing</div>
+                            <div class="dc-loc-detail"><i class="fas fa-building"></i><strong><?php echo e(__('dc_loc_label_operator')); ?></strong> <?php echo e(__('dc_loc_mumbai_op')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-bolt"></i><strong><?php echo e(__('dc_loc_label_power')); ?></strong> <?php echo e(__('dc_loc_mumbai_power')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-snowflake"></i><strong><?php echo e(__('dc_loc_label_cooling')); ?></strong> <?php echo e(__('dc_loc_mumbai_cooling')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-network-wired"></i><strong><?php echo e(__('dc_loc_label_network')); ?></strong> <?php echo e(__('dc_loc_mumbai_network')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-shield-alt"></i><strong><?php echo e(__('dc_loc_label_security')); ?></strong> <?php echo e(__('dc_loc_mumbai_security')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-certificate"></i><strong><?php echo e(__('dc_loc_label_certs')); ?></strong> <?php echo e(__('dc_loc_mumbai_certs')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-tachometer-alt"></i><strong><?php echo e(__('dc_loc_label_ddos')); ?></strong> <?php echo e(__('dc_loc_mumbai_ddos')); ?></div>
                         </div>
                     </div>
                 </div>
@@ -386,20 +386,20 @@ include __DIR__ . '/includes/section-dc-showcase.php';
                 <div class="dc-loc-card" data-dc-expand>
                     <button class="dc-loc-header">
                         <span class="dc-loc-flag"><span class="fi fi-sg"></span></span>
-                        <span class="dc-loc-name">Singapore</span>
+                        <span class="dc-loc-name"><?php echo e(__('dc_loc_singapore')); ?></span>
                         <span class="dc-loc-operator">Equinix</span>
                         <span class="dc-loc-tier">Tier III+</span>
                         <i class="fas fa-chevron-down dc-loc-arrow"></i>
                     </button>
                     <div class="dc-loc-body">
                         <div class="dc-loc-details">
-                            <div class="dc-loc-detail"><i class="fas fa-building"></i><strong>Operator:</strong> Equinix — SG1/SG3 Singapore Campus</div>
-                            <div class="dc-loc-detail"><i class="fas fa-bolt"></i><strong>Power:</strong> 2N UPS, diesel generators, dual utility feeds</div>
-                            <div class="dc-loc-detail"><i class="fas fa-snowflake"></i><strong>Cooling:</strong> Chilled water with N+1 CRAC, tropical-optimized</div>
-                            <div class="dc-loc-detail"><i class="fas fa-network-wired"></i><strong>Network:</strong> 10 Gbit/s, SGIX peering, submarine cable hub for APAC</div>
-                            <div class="dc-loc-detail"><i class="fas fa-shield-alt"></i><strong>Security:</strong> Mantrap, biometric, 24/7 NOC, CCTV, vehicle barriers</div>
-                            <div class="dc-loc-detail"><i class="fas fa-certificate"></i><strong>Certifications:</strong> ISO 27001, SOC 2, MTCS (Singapore), PCI DSS</div>
-                            <div class="dc-loc-detail"><i class="fas fa-tachometer-alt"></i><strong>DDoS Protection:</strong> On-prem Arbor + upstream transit scrubbing</div>
+                            <div class="dc-loc-detail"><i class="fas fa-building"></i><strong><?php echo e(__('dc_loc_label_operator')); ?></strong> <?php echo e(__('dc_loc_singapore_op')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-bolt"></i><strong><?php echo e(__('dc_loc_label_power')); ?></strong> <?php echo e(__('dc_loc_singapore_power')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-snowflake"></i><strong><?php echo e(__('dc_loc_label_cooling')); ?></strong> <?php echo e(__('dc_loc_singapore_cooling')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-network-wired"></i><strong><?php echo e(__('dc_loc_label_network')); ?></strong> <?php echo e(__('dc_loc_singapore_network')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-shield-alt"></i><strong><?php echo e(__('dc_loc_label_security')); ?></strong> <?php echo e(__('dc_loc_singapore_security')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-certificate"></i><strong><?php echo e(__('dc_loc_label_certs')); ?></strong> <?php echo e(__('dc_loc_singapore_certs')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-tachometer-alt"></i><strong><?php echo e(__('dc_loc_label_ddos')); ?></strong> <?php echo e(__('dc_loc_singapore_ddos')); ?></div>
                         </div>
                     </div>
                 </div>
@@ -407,20 +407,20 @@ include __DIR__ . '/includes/section-dc-showcase.php';
                 <div class="dc-loc-card" data-dc-expand>
                     <button class="dc-loc-header">
                         <span class="dc-loc-flag"><span class="fi fi-jp"></span></span>
-                        <span class="dc-loc-name">Tokyo, Japan</span>
+                        <span class="dc-loc-name"><?php echo e(__('dc_loc_tokyo')); ?></span>
                         <span class="dc-loc-operator">Equinix</span>
                         <span class="dc-loc-tier">Tier III+</span>
                         <i class="fas fa-chevron-down dc-loc-arrow"></i>
                     </button>
                     <div class="dc-loc-body">
                         <div class="dc-loc-details">
-                            <div class="dc-loc-detail"><i class="fas fa-building"></i><strong>Operator:</strong> Equinix — TY2/TY5 Tokyo Campus</div>
-                            <div class="dc-loc-detail"><i class="fas fa-bolt"></i><strong>Power:</strong> 2N UPS, seismic-rated generators, dual grid feeds</div>
-                            <div class="dc-loc-detail"><i class="fas fa-snowflake"></i><strong>Cooling:</strong> Chilled water with N+1, earthquake-resistant HVAC</div>
-                            <div class="dc-loc-detail"><i class="fas fa-network-wired"></i><strong>Network:</strong> 10 Gbit/s, JPNAP/JPIX peering, NTT/KDDI transit</div>
-                            <div class="dc-loc-detail"><i class="fas fa-shield-alt"></i><strong>Security:</strong> Mantrap, biometric, 24/7 NOC, seismic isolation</div>
-                            <div class="dc-loc-detail"><i class="fas fa-certificate"></i><strong>Certifications:</strong> ISO 27001, SOC 2, FISC (Japan financial)</div>
-                            <div class="dc-loc-detail"><i class="fas fa-tachometer-alt"></i><strong>DDoS Protection:</strong> Multi-layer DDoS mitigation with Arbor</div>
+                            <div class="dc-loc-detail"><i class="fas fa-building"></i><strong><?php echo e(__('dc_loc_label_operator')); ?></strong> <?php echo e(__('dc_loc_tokyo_op')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-bolt"></i><strong><?php echo e(__('dc_loc_label_power')); ?></strong> <?php echo e(__('dc_loc_tokyo_power')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-snowflake"></i><strong><?php echo e(__('dc_loc_label_cooling')); ?></strong> <?php echo e(__('dc_loc_tokyo_cooling')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-network-wired"></i><strong><?php echo e(__('dc_loc_label_network')); ?></strong> <?php echo e(__('dc_loc_tokyo_network')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-shield-alt"></i><strong><?php echo e(__('dc_loc_label_security')); ?></strong> <?php echo e(__('dc_loc_tokyo_security')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-certificate"></i><strong><?php echo e(__('dc_loc_label_certs')); ?></strong> <?php echo e(__('dc_loc_tokyo_certs')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-tachometer-alt"></i><strong><?php echo e(__('dc_loc_label_ddos')); ?></strong> <?php echo e(__('dc_loc_tokyo_ddos')); ?></div>
                         </div>
                     </div>
                 </div>
@@ -428,20 +428,20 @@ include __DIR__ . '/includes/section-dc-showcase.php';
                 <div class="dc-loc-card" data-dc-expand>
                     <button class="dc-loc-header">
                         <span class="dc-loc-flag"><span class="fi fi-hk"></span></span>
-                        <span class="dc-loc-name">Hong Kong</span>
+                        <span class="dc-loc-name"><?php echo e(__('dc_loc_hongkong')); ?></span>
                         <span class="dc-loc-operator">Equinix</span>
                         <span class="dc-loc-tier">Tier III+</span>
                         <i class="fas fa-chevron-down dc-loc-arrow"></i>
                     </button>
                     <div class="dc-loc-body">
                         <div class="dc-loc-details">
-                            <div class="dc-loc-detail"><i class="fas fa-building"></i><strong>Operator:</strong> Equinix — HK1/HK5 Kwai Chung</div>
-                            <div class="dc-loc-detail"><i class="fas fa-bolt"></i><strong>Power:</strong> 2N UPS, diesel generators, dual feeds from CLP Power</div>
-                            <div class="dc-loc-detail"><i class="fas fa-snowflake"></i><strong>Cooling:</strong> N+1 chilled water, hot/cold aisle containment</div>
-                            <div class="dc-loc-detail"><i class="fas fa-network-wired"></i><strong>Network:</strong> 10 Gbit/s, HKIX peering, submarine cable hub for Asia</div>
-                            <div class="dc-loc-detail"><i class="fas fa-shield-alt"></i><strong>Security:</strong> Mantrap, biometric, 24/7 NOC, CCTV, vehicle barriers</div>
-                            <div class="dc-loc-detail"><i class="fas fa-certificate"></i><strong>Certifications:</strong> ISO 27001, SOC 2, PCI DSS</div>
-                            <div class="dc-loc-detail"><i class="fas fa-tachometer-alt"></i><strong>DDoS Protection:</strong> Upstream + on-prem DDoS scrubbing</div>
+                            <div class="dc-loc-detail"><i class="fas fa-building"></i><strong><?php echo e(__('dc_loc_label_operator')); ?></strong> <?php echo e(__('dc_loc_hongkong_op')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-bolt"></i><strong><?php echo e(__('dc_loc_label_power')); ?></strong> <?php echo e(__('dc_loc_hongkong_power')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-snowflake"></i><strong><?php echo e(__('dc_loc_label_cooling')); ?></strong> <?php echo e(__('dc_loc_hongkong_cooling')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-network-wired"></i><strong><?php echo e(__('dc_loc_label_network')); ?></strong> <?php echo e(__('dc_loc_hongkong_network')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-shield-alt"></i><strong><?php echo e(__('dc_loc_label_security')); ?></strong> <?php echo e(__('dc_loc_hongkong_security')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-certificate"></i><strong><?php echo e(__('dc_loc_label_certs')); ?></strong> <?php echo e(__('dc_loc_hongkong_certs')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-tachometer-alt"></i><strong><?php echo e(__('dc_loc_label_ddos')); ?></strong> <?php echo e(__('dc_loc_hongkong_ddos')); ?></div>
                         </div>
                     </div>
                 </div>
@@ -449,20 +449,20 @@ include __DIR__ . '/includes/section-dc-showcase.php';
                 <div class="dc-loc-card" data-dc-expand>
                     <button class="dc-loc-header">
                         <span class="dc-loc-flag"><span class="fi fi-th"></span></span>
-                        <span class="dc-loc-name">Bangkok, Thailand</span>
+                        <span class="dc-loc-name"><?php echo e(__('dc_loc_bangkok')); ?></span>
                         <span class="dc-loc-operator">SUPERNAP</span>
                         <span class="dc-loc-tier">Tier IV</span>
                         <i class="fas fa-chevron-down dc-loc-arrow"></i>
                     </button>
                     <div class="dc-loc-body">
                         <div class="dc-loc-details">
-                            <div class="dc-loc-detail"><i class="fas fa-building"></i><strong>Operator:</strong> SUPERNAP (Thailand) — STT GDC</div>
-                            <div class="dc-loc-detail"><i class="fas fa-bolt"></i><strong>Power:</strong> 2(N+1) UPS, diesel generators, dual grid, Tier IV design</div>
-                            <div class="dc-loc-detail"><i class="fas fa-snowflake"></i><strong>Cooling:</strong> N+1 chilled water, hot/cold aisle, tropical-designed HVAC</div>
-                            <div class="dc-loc-detail"><i class="fas fa-network-wired"></i><strong>Network:</strong> 10 Gbit/s, BKNIX peering, transit to ASEAN/APAC</div>
-                            <div class="dc-loc-detail"><i class="fas fa-shield-alt"></i><strong>Security:</strong> 6-layer security, biometric, 24/7 guards, CCTV</div>
-                            <div class="dc-loc-detail"><i class="fas fa-certificate"></i><strong>Certifications:</strong> Uptime Tier IV, ISO 27001, PCI DSS</div>
-                            <div class="dc-loc-detail"><i class="fas fa-tachometer-alt"></i><strong>DDoS Protection:</strong> On-prem + upstream DDoS mitigation</div>
+                            <div class="dc-loc-detail"><i class="fas fa-building"></i><strong><?php echo e(__('dc_loc_label_operator')); ?></strong> <?php echo e(__('dc_loc_bangkok_op')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-bolt"></i><strong><?php echo e(__('dc_loc_label_power')); ?></strong> <?php echo e(__('dc_loc_bangkok_power')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-snowflake"></i><strong><?php echo e(__('dc_loc_label_cooling')); ?></strong> <?php echo e(__('dc_loc_bangkok_cooling')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-network-wired"></i><strong><?php echo e(__('dc_loc_label_network')); ?></strong> <?php echo e(__('dc_loc_bangkok_network')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-shield-alt"></i><strong><?php echo e(__('dc_loc_label_security')); ?></strong> <?php echo e(__('dc_loc_bangkok_security')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-certificate"></i><strong><?php echo e(__('dc_loc_label_certs')); ?></strong> <?php echo e(__('dc_loc_bangkok_certs')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-tachometer-alt"></i><strong><?php echo e(__('dc_loc_label_ddos')); ?></strong> <?php echo e(__('dc_loc_bangkok_ddos')); ?></div>
                         </div>
                     </div>
                 </div>
@@ -470,25 +470,25 @@ include __DIR__ . '/includes/section-dc-showcase.php';
 
             <!-- ── Oceania ── -->
             <div class="dc-region">
-                <div class="dc-region-label"><i class="fas fa-globe"></i> Oceania</div>
+                <div class="dc-region-label"><i class="fas fa-globe"></i> <?php echo e(__('dc_region_oceania')); ?></div>
 
                 <div class="dc-loc-card" data-dc-expand>
                     <button class="dc-loc-header">
                         <span class="dc-loc-flag"><span class="fi fi-au"></span></span>
-                        <span class="dc-loc-name">Sydney, Australia</span>
+                        <span class="dc-loc-name"><?php echo e(__('dc_loc_sydney')); ?></span>
                         <span class="dc-loc-operator">Equinix</span>
                         <span class="dc-loc-tier">Tier III+</span>
                         <i class="fas fa-chevron-down dc-loc-arrow"></i>
                     </button>
                     <div class="dc-loc-body">
                         <div class="dc-loc-details">
-                            <div class="dc-loc-detail"><i class="fas fa-building"></i><strong>Operator:</strong> Equinix — SY4/SY5 Sydney Campus</div>
-                            <div class="dc-loc-detail"><i class="fas fa-bolt"></i><strong>Power:</strong> 2N UPS, diesel generators, dual utility feeds</div>
-                            <div class="dc-loc-detail"><i class="fas fa-snowflake"></i><strong>Cooling:</strong> N+1 chilled water, hot/cold aisle containment</div>
-                            <div class="dc-loc-detail"><i class="fas fa-network-wired"></i><strong>Network:</strong> 10 Gbit/s, IX Australia peering, submarine cable hub for APAC</div>
-                            <div class="dc-loc-detail"><i class="fas fa-shield-alt"></i><strong>Security:</strong> Mantrap, biometric, 24/7 NOC, CCTV, vehicle barriers</div>
-                            <div class="dc-loc-detail"><i class="fas fa-certificate"></i><strong>Certifications:</strong> ISO 27001, SOC 2, IRAP (Australian Gov), PCI DSS</div>
-                            <div class="dc-loc-detail"><i class="fas fa-tachometer-alt"></i><strong>DDoS Protection:</strong> Multi-Tbps edge scrubbing</div>
+                            <div class="dc-loc-detail"><i class="fas fa-building"></i><strong><?php echo e(__('dc_loc_label_operator')); ?></strong> <?php echo e(__('dc_loc_sydney_op')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-bolt"></i><strong><?php echo e(__('dc_loc_label_power')); ?></strong> <?php echo e(__('dc_loc_sydney_power')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-snowflake"></i><strong><?php echo e(__('dc_loc_label_cooling')); ?></strong> <?php echo e(__('dc_loc_sydney_cooling')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-network-wired"></i><strong><?php echo e(__('dc_loc_label_network')); ?></strong> <?php echo e(__('dc_loc_sydney_network')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-shield-alt"></i><strong><?php echo e(__('dc_loc_label_security')); ?></strong> <?php echo e(__('dc_loc_sydney_security')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-certificate"></i><strong><?php echo e(__('dc_loc_label_certs')); ?></strong> <?php echo e(__('dc_loc_sydney_certs')); ?></div>
+                            <div class="dc-loc-detail"><i class="fas fa-tachometer-alt"></i><strong><?php echo e(__('dc_loc_label_ddos')); ?></strong> <?php echo e(__('dc_loc_sydney_ddos')); ?></div>
                         </div>
                     </div>
                 </div>
@@ -501,50 +501,50 @@ include __DIR__ . '/includes/section-dc-showcase.php';
     <section class="dc-specs reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Hardware</div>
-                <h2>Enterprise server specifications</h2>
-                <p>We deploy only enterprise-grade hardware from trusted manufacturers.</p>
+                <div class="section-tag"><?php echo e(__('dc_specs_tag')); ?></div>
+                <h2><?php echo e(__('dc_specs_heading')); ?></h2>
+                <p><?php echo e(__('dc_specs_desc')); ?></p>
             </div>
 
             <div class="dc-specs-grid">
                 <div class="dc-spec-card">
                     <div class="dc-spec-icon"><i class="fas fa-microchip"></i></div>
-                    <h3>Processors</h3>
+                    <h3><?php echo e(__('dc_specs_cpu_title')); ?></h3>
                     <ul>
-                        <li>AMD EPYC 7003/9004 Series</li>
-                        <li>Intel Xeon Scalable (4th/5th Gen)</li>
-                        <li>Up to 128 cores per node</li>
-                        <li>Hardware-level virtualization (AMD-V / VT-x)</li>
+                        <li><?php echo e(__('dc_specs_cpu_1')); ?></li>
+                        <li><?php echo e(__('dc_specs_cpu_2')); ?></li>
+                        <li><?php echo e(__('dc_specs_cpu_3')); ?></li>
+                        <li><?php echo e(__('dc_specs_cpu_4')); ?></li>
                     </ul>
                 </div>
                 <div class="dc-spec-card">
                     <div class="dc-spec-icon icon-green"><i class="fas fa-memory"></i></div>
-                    <h3>Memory</h3>
+                    <h3><?php echo e(__('dc_specs_mem_title')); ?></h3>
                     <ul>
-                        <li>DDR5 ECC Registered RAM</li>
-                        <li>Up to 2 TB per node</li>
-                        <li>Multi-channel configuration</li>
-                        <li>Error-correcting for data integrity</li>
+                        <li><?php echo e(__('dc_specs_mem_1')); ?></li>
+                        <li><?php echo e(__('dc_specs_mem_2')); ?></li>
+                        <li><?php echo e(__('dc_specs_mem_3')); ?></li>
+                        <li><?php echo e(__('dc_specs_mem_4')); ?></li>
                     </ul>
                 </div>
                 <div class="dc-spec-card">
                     <div class="dc-spec-icon icon-blue"><i class="fas fa-hdd"></i></div>
-                    <h3>Storage</h3>
+                    <h3><?php echo e(__('dc_specs_stor_title')); ?></h3>
                     <ul>
-                        <li>NVMe Gen4 SSDs (Samsung, Intel)</li>
-                        <li>RAID-10 arrays for redundancy</li>
-                        <li>Up to 7 GB/s sequential read</li>
-                        <li>Hot-swappable drive bays</li>
+                        <li><?php echo e(__('dc_specs_stor_1')); ?></li>
+                        <li><?php echo e(__('dc_specs_stor_2')); ?></li>
+                        <li><?php echo e(__('dc_specs_stor_3')); ?></li>
+                        <li><?php echo e(__('dc_specs_stor_4')); ?></li>
                     </ul>
                 </div>
                 <div class="dc-spec-card">
                     <div class="dc-spec-icon icon-purple"><i class="fas fa-network-wired"></i></div>
-                    <h3>Networking</h3>
+                    <h3><?php echo e(__('dc_specs_net_title')); ?></h3>
                     <ul>
-                        <li>10 Gbit/s uplinks per node</li>
-                        <li>Redundant top-of-rack switches</li>
-                        <li>BGP peering with Tier-1 carriers</li>
-                        <li>Private VLAN isolation</li>
+                        <li><?php echo e(__('dc_specs_net_1')); ?></li>
+                        <li><?php echo e(__('dc_specs_net_2')); ?></li>
+                        <li><?php echo e(__('dc_specs_net_3')); ?></li>
+                        <li><?php echo e(__('dc_specs_net_4')); ?></li>
                     </ul>
                 </div>
             </div>
@@ -555,41 +555,41 @@ include __DIR__ . '/includes/section-dc-showcase.php';
     <section class="bento-features reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Network</div>
-                <h2>Premium global network</h2>
-                <p>Multi-homed connectivity with direct peering to major ISPs and content delivery networks.</p>
+                <div class="section-tag"><?php echo e(__('dc_net_tag')); ?></div>
+                <h2><?php echo e(__('dc_net_heading')); ?></h2>
+                <p><?php echo e(__('dc_net_desc')); ?></p>
             </div>
 
             <div class="bento-grid">
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon"><i class="fas fa-tachometer-alt"></i></div>
-                    <h3>10 Gbit/s Ports</h3>
-                    <p>Every server connects via 10 Gbit/s network ports for maximum throughput and minimal latency.</p>
+                    <h3><?php echo e(__('dc_net_ports_title')); ?></h3>
+                    <p><?php echo e(__('dc_net_ports_desc')); ?></p>
                 </div>
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-green"><i class="fas fa-project-diagram"></i></div>
-                    <h3>BGP Multi-Homing</h3>
-                    <p>Multi-homed BGP connectivity with automatic failover ensures packets always find the optimal path.</p>
+                    <h3><?php echo e(__('dc_net_bgp_title')); ?></h3>
+                    <p><?php echo e(__('dc_net_bgp_desc')); ?></p>
                 </div>
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-blue"><i class="fas fa-globe"></i></div>
-                    <h3>Tier-1 Transit</h3>
-                    <p>Direct peering with Cogent, Lumen, NTT, GTT, and other Tier-1 transit providers worldwide.</p>
+                    <h3><?php echo e(__('dc_net_transit_title')); ?></h3>
+                    <p><?php echo e(__('dc_net_transit_desc')); ?></p>
                 </div>
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-purple"><i class="fas fa-shield-alt"></i></div>
-                    <h3>DDoS Protection</h3>
-                    <p>Enterprise anti-DDoS mitigation with up to 1 Tbps scrubbing capacity at every PoP.</p>
+                    <h3><?php echo e(__('dc_net_ddos_title')); ?></h3>
+                    <p><?php echo e(__('dc_net_ddos_desc')); ?></p>
                 </div>
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-amber"><i class="fas fa-clock"></i></div>
-                    <h3>Sub-30ms Latency</h3>
-                    <p>50+ strategically placed locations with intelligent routing, anycast DNS, and direct peering agreements.</p>
+                    <h3><?php echo e(__('dc_net_latency_title')); ?></h3>
+                    <p><?php echo e(__('dc_net_latency_desc')); ?></p>
                 </div>
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-rose"><i class="fas fa-chart-area"></i></div>
-                    <h3>Real-Time Monitoring</h3>
-                    <p>Per-port traffic graphs, bandwidth utilization, and latency metrics available 24/7 from your control panel.</p>
+                    <h3><?php echo e(__('dc_net_monitor_title')); ?></h3>
+                    <p><?php echo e(__('dc_net_monitor_desc')); ?></p>
                 </div>
             </div>
         </div>
@@ -599,41 +599,41 @@ include __DIR__ . '/includes/section-dc-showcase.php';
     <section class="features-section reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Security</div>
-                <h2>Multi-layer security architecture</h2>
-                <p>From physical access to data encryption, security is embedded at every layer.</p>
+                <div class="section-tag"><?php echo e(__('dc_sec_tag')); ?></div>
+                <h2><?php echo e(__('dc_sec_heading')); ?></h2>
+                <p><?php echo e(__('dc_sec_desc')); ?></p>
             </div>
 
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-fingerprint"></i></div>
-                    <h4>Biometric Access</h4>
-                    <p>Multi-factor authentication including biometric scanners and key cards at all datacenter entry points.</p>
+                    <h4><?php echo e(__('dc_sec_bio_title')); ?></h4>
+                    <p><?php echo e(__('dc_sec_bio_desc')); ?></p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon icon-green"><i class="fas fa-video"></i></div>
-                    <h4>24/7 CCTV</h4>
-                    <p>High-resolution camera surveillance with 90-day retention covering all facility areas.</p>
+                    <h4><?php echo e(__('dc_sec_cctv_title')); ?></h4>
+                    <p><?php echo e(__('dc_sec_cctv_desc')); ?></p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon icon-blue"><i class="fas fa-user-shield"></i></div>
-                    <h4>On-Site Guards</h4>
-                    <p>Professional security personnel on-site 24/7/365 at every datacenter facility.</p>
+                    <h4><?php echo e(__('dc_sec_guards_title')); ?></h4>
+                    <p><?php echo e(__('dc_sec_guards_desc')); ?></p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon icon-purple"><i class="fas fa-lock"></i></div>
-                    <h4>Data Encryption</h4>
-                    <p>AES-256 encryption at rest and TLS 1.3 in transit for all customer data.</p>
+                    <h4><?php echo e(__('dc_sec_encrypt_title')); ?></h4>
+                    <p><?php echo e(__('dc_sec_encrypt_desc')); ?></p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon icon-amber"><i class="fas fa-clipboard-check"></i></div>
-                    <h4>Compliance</h4>
-                    <p>SOC 2 Type II, ISO 27001, PCI DSS compliant facilities for regulated workloads.</p>
+                    <h4><?php echo e(__('dc_sec_comply_title')); ?></h4>
+                    <p><?php echo e(__('dc_sec_comply_desc')); ?></p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon icon-rose"><i class="fas fa-bug"></i></div>
-                    <h4>Vulnerability Scanning</h4>
-                    <p>Regular penetration testing and vulnerability assessments across all infrastructure.</p>
+                    <h4><?php echo e(__('dc_sec_vuln_title')); ?></h4>
+                    <p><?php echo e(__('dc_sec_vuln_desc')); ?></p>
                 </div>
             </div>
         </div>
@@ -643,36 +643,36 @@ include __DIR__ . '/includes/section-dc-showcase.php';
     <section class="dc-sla reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Reliability</div>
-                <h2>Uptime you can count on</h2>
-                <p>Backed by contractual guarantees and proactive monitoring — because every second of downtime matters.</p>
+                <div class="section-tag"><?php echo e(__('dc_sla_tag')); ?></div>
+                <h2><?php echo e(__('dc_sla_heading')); ?></h2>
+                <p><?php echo e(__('dc_sla_desc')); ?></p>
             </div>
 
             <div class="dc-sla-grid">
                 <div class="dc-sla-card dc-sla-main">
                     <div class="dc-sla-percent">99.9<span>%</span></div>
-                    <div class="dc-sla-label">Guaranteed Uptime SLA</div>
-                    <p>Our standard SLA guarantees 99.9% network and infrastructure uptime. If we fall short, you receive automatic service credits — no questions asked.</p>
+                    <div class="dc-sla-label"><?php echo e(__('dc_sla_label')); ?></div>
+                    <p><?php echo e(__('dc_sla_main_desc')); ?></p>
                 </div>
                 <div class="dc-sla-card">
                     <div class="dc-sla-icon"><i class="fas fa-heartbeat"></i></div>
-                    <h4>24/7 Monitoring</h4>
-                    <p>Real-time health checks every 30 seconds across all nodes, with instant alerting to our NOC team.</p>
+                    <h4><?php echo e(__('dc_sla_monitor_title')); ?></h4>
+                    <p><?php echo e(__('dc_sla_monitor_desc')); ?></p>
                 </div>
                 <div class="dc-sla-card">
                     <div class="dc-sla-icon icon-green"><i class="fas fa-sync-alt"></i></div>
-                    <h4>Automatic Failover</h4>
-                    <p>Redundant systems detect failures and reroute traffic instantly — often before you even notice.</p>
+                    <h4><?php echo e(__('dc_sla_failover_title')); ?></h4>
+                    <p><?php echo e(__('dc_sla_failover_desc')); ?></p>
                 </div>
                 <div class="dc-sla-card">
                     <div class="dc-sla-icon icon-blue"><i class="fas fa-headset"></i></div>
-                    <h4>Rapid Response</h4>
-                    <p>Critical incidents are acknowledged within 15 minutes and escalated to senior engineers immediately.</p>
+                    <h4><?php echo e(__('dc_sla_response_title')); ?></h4>
+                    <p><?php echo e(__('dc_sla_response_desc')); ?></p>
                 </div>
                 <div class="dc-sla-card">
                     <div class="dc-sla-icon icon-purple"><i class="fas fa-file-contract"></i></div>
-                    <h4>Service Credit Policy</h4>
-                    <p>Transparent credit policy with up to 100% refund for extended outages exceeding SLA commitments.</p>
+                    <h4><?php echo e(__('dc_sla_credit_title')); ?></h4>
+                    <p><?php echo e(__('dc_sla_credit_desc')); ?></p>
                 </div>
             </div>
         </div>
@@ -683,21 +683,21 @@ include __DIR__ . '/includes/section-dc-showcase.php';
         <div class="container">
             <div class="dc-green-wrap">
                 <div class="dc-green-content">
-                    <div class="section-tag">Sustainability</div>
-                    <h2>Committed to a greener future</h2>
-                    <p>We partner with datacenter operators who prioritize energy efficiency and environmental responsibility.</p>
+                    <div class="section-tag"><?php echo e(__('dc_green_tag')); ?></div>
+                    <h2><?php echo e(__('dc_green_heading')); ?></h2>
+                    <p><?php echo e(__('dc_green_desc')); ?></p>
                     <div class="dc-green-stats">
                         <div class="dc-green-stat">
                             <span class="dc-green-stat-num">1.2</span>
-                            <span class="dc-green-stat-label">Average PUE</span>
+                            <span class="dc-green-stat-label"><?php echo e(__('dc_green_pue_label')); ?></span>
                         </div>
                         <div class="dc-green-stat">
                             <span class="dc-green-stat-num">60%</span>
-                            <span class="dc-green-stat-label">Renewable Sources</span>
+                            <span class="dc-green-stat-label"><?php echo e(__('dc_green_renew_label')); ?></span>
                         </div>
                         <div class="dc-green-stat">
                             <span class="dc-green-stat-num">0</span>
-                            <span class="dc-green-stat-label">Target Net Carbon</span>
+                            <span class="dc-green-stat-label"><?php echo e(__('dc_green_carbon_label')); ?></span>
                         </div>
                     </div>
                 </div>
@@ -705,29 +705,29 @@ include __DIR__ . '/includes/section-dc-showcase.php';
                     <div class="dc-green-item">
                         <i class="fas fa-leaf"></i>
                         <div>
-                            <strong>Renewable Energy</strong>
-                            <p>Multiple locations powered by wind, solar, and hydroelectric grids — including Helsinki, Toronto, and Frankfurt.</p>
+                            <strong><?php echo e(__('dc_green_renew_title')); ?></strong>
+                            <p><?php echo e(__('dc_green_renew_desc')); ?></p>
                         </div>
                     </div>
                     <div class="dc-green-item">
                         <i class="fas fa-wind"></i>
                         <div>
-                            <strong>Free-Cooling Technology</strong>
-                            <p>Nordic and Canadian facilities leverage outside air for cooling, drastically reducing energy consumption.</p>
+                            <strong><?php echo e(__('dc_green_cool_title')); ?></strong>
+                            <p><?php echo e(__('dc_green_cool_desc')); ?></p>
                         </div>
                     </div>
                     <div class="dc-green-item">
                         <i class="fas fa-recycle"></i>
                         <div>
-                            <strong>Hardware Lifecycle</strong>
-                            <p>Responsible recycling and refurbishment programs for decommissioned hardware across all facilities.</p>
+                            <strong><?php echo e(__('dc_green_hw_title')); ?></strong>
+                            <p><?php echo e(__('dc_green_hw_desc')); ?></p>
                         </div>
                     </div>
                     <div class="dc-green-item">
                         <i class="fas fa-chart-line"></i>
                         <div>
-                            <strong>PUE Optimization</strong>
-                            <p>Continuous monitoring and optimization of Power Usage Effectiveness to minimize wasted energy.</p>
+                            <strong><?php echo e(__('dc_green_pue_title')); ?></strong>
+                            <p><?php echo e(__('dc_green_pue_desc')); ?></p>
                         </div>
                     </div>
                 </div>
@@ -739,63 +739,63 @@ include __DIR__ . '/includes/section-dc-showcase.php';
     <section class="dc-looking-glass reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Network Tools</div>
-                <h2>Test our network yourself</h2>
-                <p>Use our regional test endpoints to verify latency and download speeds from the location nearest to you.</p>
+                <div class="section-tag"><?php echo e(__('dc_lg_tag')); ?></div>
+                <h2><?php echo e(__('dc_lg_heading')); ?></h2>
+                <p><?php echo e(__('dc_lg_desc')); ?></p>
             </div>
 
             <div class="dc-lg-grid">
                 <div class="dc-lg-card">
                     <span class="dc-lg-flag"><span class="fi fi-de"></span></span>
                     <div class="dc-lg-info">
-                        <strong>Frankfurt, DE</strong>
+                        <strong><?php echo e(__('dc_lg_frankfurt')); ?></strong>
                         <span class="dc-lg-ip">de-lg.yottasrc.com</span>
                     </div>
-                    <span class="dc-lg-badge">Europe</span>
+                    <span class="dc-lg-badge"><?php echo e(__('dc_lg_badge_europe')); ?></span>
                 </div>
                 <div class="dc-lg-card">
                     <span class="dc-lg-flag"><span class="fi fi-us"></span></span>
                     <div class="dc-lg-info">
-                        <strong>New York, US</strong>
+                        <strong><?php echo e(__('dc_lg_newyork')); ?></strong>
                         <span class="dc-lg-ip">us-lg.yottasrc.com</span>
                     </div>
-                    <span class="dc-lg-badge">Americas</span>
+                    <span class="dc-lg-badge"><?php echo e(__('dc_lg_badge_americas')); ?></span>
                 </div>
                 <div class="dc-lg-card">
                     <span class="dc-lg-flag"><span class="fi fi-sg"></span></span>
                     <div class="dc-lg-info">
-                        <strong>Singapore</strong>
+                        <strong><?php echo e(__('dc_lg_singapore')); ?></strong>
                         <span class="dc-lg-ip">sg-lg.yottasrc.com</span>
                     </div>
-                    <span class="dc-lg-badge">Asia</span>
+                    <span class="dc-lg-badge"><?php echo e(__('dc_lg_badge_asia')); ?></span>
                 </div>
                 <div class="dc-lg-card">
                     <span class="dc-lg-flag"><span class="fi fi-au"></span></span>
                     <div class="dc-lg-info">
-                        <strong>Sydney, AU</strong>
+                        <strong><?php echo e(__('dc_lg_sydney')); ?></strong>
                         <span class="dc-lg-ip">au-lg.yottasrc.com</span>
                     </div>
-                    <span class="dc-lg-badge">Oceania</span>
+                    <span class="dc-lg-badge"><?php echo e(__('dc_lg_badge_oceania')); ?></span>
                 </div>
                 <div class="dc-lg-card">
                     <span class="dc-lg-flag"><span class="fi fi-ro"></span></span>
                     <div class="dc-lg-info">
-                        <strong>Bucharest, RO</strong>
+                        <strong><?php echo e(__('dc_lg_bucharest')); ?></strong>
                         <span class="dc-lg-ip">ro-lg.yottasrc.com</span>
                     </div>
-                    <span class="dc-lg-badge dc-lg-hq">HQ</span>
+                    <span class="dc-lg-badge dc-lg-hq"><?php echo e(__('dc_loc_hq')); ?></span>
                 </div>
                 <div class="dc-lg-card">
                     <span class="dc-lg-flag"><span class="fi fi-jp"></span></span>
                     <div class="dc-lg-info">
-                        <strong>Tokyo, JP</strong>
+                        <strong><?php echo e(__('dc_lg_tokyo')); ?></strong>
                         <span class="dc-lg-ip">jp-lg.yottasrc.com</span>
                     </div>
-                    <span class="dc-lg-badge">Asia</span>
+                    <span class="dc-lg-badge"><?php echo e(__('dc_lg_badge_asia')); ?></span>
                 </div>
             </div>
 
-            <p class="dc-lg-note"><i class="fas fa-info-circle"></i> These are representative test endpoints. Actual production IPs are assigned upon service provisioning.</p>
+            <p class="dc-lg-note"><i class="fas fa-info-circle"></i> <?php echo e(__('dc_lg_note')); ?></p>
         </div>
     </section>
 
@@ -805,9 +805,9 @@ include __DIR__ . '/includes/section-dc-showcase.php';
             <div class="promo-cta-inner">
                 <div class="promo-cta-glow"></div>
                 <div class="promo-cta-icon"><i class="fas fa-server"></i></div>
-                <h2>Deploy on enterprise infrastructure</h2>
-                <p>Launch your project on hardware and network you can trust — starting from €0.83/month.</p>
-                <a href="<?php echo e(SITE_URL); ?>/cpanel-hosting/" class="btn-primary">Get Started <i class="fas fa-arrow-right"></i></a>
+                <h2><?php echo e(__('dc_cta_heading')); ?></h2>
+                <p><?php echo e(__('dc_cta_desc')); ?></p>
+                <a href="<?php echo e(SITE_URL); ?>/cpanel-hosting/" class="btn-primary"><?php echo e(__('dc_cta_btn')); ?> <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>

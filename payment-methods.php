@@ -125,43 +125,43 @@ require_once __DIR__ . '/includes/topbar.php';
                     <div class="pay-partner-logo pay-partner-logo--crypto">
                         <i class="fas fa-coins"></i>
                     </div>
-                    <h4>Cryptomus</h4>
-                    <p>50+ cryptocurrencies including BTC, ETH &amp; USDT</p>
+                    <h4><?php echo e(__('payments_cryptomus_title')); ?></h4>
+                    <p><?php echo e(__('payments_cryptomus_desc')); ?></p>
                 </div>
                 <div class="pay-partner-card">
                     <div class="pay-partner-logo pay-partner-logo--binance">
                         <i class="fas fa-wallet"></i>
                     </div>
-                    <h4>Binance Pay</h4>
-                    <p>Direct crypto payments via Binance wallet</p>
+                    <h4><?php echo e(__('payments_binance_title')); ?></h4>
+                    <p><?php echo e(__('payments_binance_desc')); ?></p>
                 </div>
                 <div class="pay-partner-card">
                     <div class="pay-partner-logo pay-partner-logo--coinbase">
                         <i class="fab fa-bitcoin"></i>
                     </div>
-                    <h4>Coinbase</h4>
-                    <p>Cryptocurrency payments powered by Coinbase Commerce</p>
+                    <h4><?php echo e(__('payments_coinbase_title')); ?></h4>
+                    <p><?php echo e(__('payments_coinbase_desc')); ?></p>
                 </div>
                 <div class="pay-partner-card">
                     <div class="pay-partner-logo pay-partner-logo--plisio">
                         <i class="fas fa-link"></i>
                     </div>
-                    <h4>Plisio</h4>
-                    <p>Multi-crypto gateway with auto-conversion</p>
+                    <h4><?php echo e(__('payments_plisio_title')); ?></h4>
+                    <p><?php echo e(__('payments_plisio_desc')); ?></p>
                 </div>
                 <div class="pay-partner-card">
                     <div class="pay-partner-logo pay-partner-logo--alipay">
                         <i class="fab fa-alipay"></i>
                     </div>
-                    <h4>Alipay</h4>
-                    <p>Popular payment gateway across Asia</p>
+                    <h4><?php echo e(__('payments_alipay_title')); ?></h4>
+                    <p><?php echo e(__('payments_alipay_desc')); ?></p>
                 </div>
                 <div class="pay-partner-card">
                     <div class="pay-partner-logo pay-partner-logo--revolut">
                         <i class="fas fa-sync-alt"></i>
                     </div>
-                    <h4>Revolut Pay</h4>
-                    <p>Fast payments via Revolut account</p>
+                    <h4><?php echo e(__('payments_revolut_title')); ?></h4>
+                    <p><?php echo e(__('payments_revolut_desc')); ?></p>
                 </div>
             </div>
         </div>
@@ -171,36 +171,36 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="pay-security reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Security</div>
-                <h2>Your payments are safe with us</h2>
-                <p>We take payment security seriously. Every transaction is encrypted and handled by trusted processors.</p>
+                <div class="section-tag"><?php echo e(__('payments_security_tag')); ?></div>
+                <h2><?php echo e(__('payments_security_title')); ?></h2>
+                <p><?php echo e(__('payments_security_desc')); ?></p>
             </div>
 
             <div class="pay-sec-grid">
                 <div class="pay-sec-card">
                     <div class="pay-sec-icon"><i class="fas fa-shield-alt"></i></div>
-                    <h3>PCI DSS Compliant</h3>
-                    <p>Our payment infrastructure meets Payment Card Industry Data Security Standards. Your card data never touches our servers — it's processed directly by certified payment gateways.</p>
+                    <h3><?php echo e(__('payments_pci_title')); ?></h3>
+                    <p><?php echo e(__('payments_pci_desc')); ?></p>
                 </div>
                 <div class="pay-sec-card">
                     <div class="pay-sec-icon icon-green"><i class="fas fa-lock"></i></div>
-                    <h3>256-bit SSL Encryption</h3>
-                    <p>All payment pages are secured with TLS 1.3 encryption to protect your data in transit.</p>
+                    <h3><?php echo e(__('payments_ssl_title')); ?></h3>
+                    <p><?php echo e(__('payments_ssl_desc')); ?></p>
                 </div>
                 <div class="pay-sec-card">
                     <div class="pay-sec-icon icon-blue"><i class="fas fa-redo-alt"></i></div>
-                    <h3>Auto-Renewal</h3>
-                    <p>Enable automatic billing to keep your services running without interruption.</p>
+                    <h3><?php echo e(__('payments_autorenewal_title')); ?></h3>
+                    <p><?php echo e(__('payments_autorenewal_desc')); ?></p>
                 </div>
                 <div class="pay-sec-card">
                     <div class="pay-sec-icon icon-purple"><i class="fas fa-file-invoice"></i></div>
-                    <h3>Transparent Invoicing</h3>
-                    <p>Receive detailed invoices for every transaction, downloadable from your client area.</p>
+                    <h3><?php echo e(__('payments_invoicing_title')); ?></h3>
+                    <p><?php echo e(__('payments_invoicing_desc')); ?></p>
                 </div>
                 <div class="pay-sec-card">
                     <div class="pay-sec-icon icon-amber"><i class="fas fa-hand-holding-usd"></i></div>
-                    <h3>30-Day Money-Back</h3>
-                    <p>Not satisfied? Get a full refund within 30 days on eligible hosting plans.</p>
+                    <h3><?php echo e(__('payments_refund_title')); ?></h3>
+                    <p><?php echo e(__('payments_refund_desc')); ?></p>
                 </div>
             </div>
         </div>
@@ -212,9 +212,9 @@ require_once __DIR__ . '/includes/topbar.php';
             <div class="promo-cta-inner">
                 <div class="promo-cta-glow"></div>
                 <div class="promo-cta-icon"><i class="fas fa-rocket"></i></div>
-                <h2>Ready to get started?</h2>
-                <p>Choose a service, pick your preferred payment method, and launch in minutes.</p>
-                <a href="<?php echo e(SITE_URL); ?>/cpanel-hosting/" class="btn-primary">Browse Services <i class="fas fa-arrow-right"></i></a>
+                <h2><?php echo e(__('payments_cta_title')); ?></h2>
+                <p><?php echo e(__('payments_cta_desc')); ?></p>
+                <a href="<?php echo e(SITE_URL); ?>/cpanel-hosting/" class="btn-primary"><?php echo e(__('payments_cta_btn')); ?> <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>

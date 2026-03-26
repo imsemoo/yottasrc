@@ -19,19 +19,19 @@ require_once __DIR__ . '/includes/topbar.php';
                         <i class="fas fa-chevron-right"></i>
                         <span><?php echo e(__('wp_breadcrumb')); ?></span>
                     </div>
-                    <h1>Managed WordPress Hosting — <span class="highlight">Built for Speed</span></h1>
+                    <h1><?php echo __('wp_title'); ?></h1>
                     <p class="page-hero-desc">
-                        WordPress hosting optimized from the ground up. LiteSpeed with LSCache, NVMe SSD storage, automatic updates, malware protection, and daily backups — all managed for you across 20+ global locations.
+                        <?php echo e(__('wp_desc')); ?>
                     </p>
                     <div class="page-hero-ctas">
-                        <a href="#plans" class="btn-primary">View Plans <i class="fas fa-arrow-down"></i></a>
-                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-secondary"><i class="fas fa-headset"></i> Talk to Sales</a>
+                        <a href="#plans" class="btn-primary"><?php echo e(__('wp_hero_cta_plans')); ?> <i class="fas fa-arrow-down"></i></a>
+                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-secondary"><i class="fas fa-headset"></i> <?php echo e(__('wp_hero_cta_sales')); ?></a>
                     </div>
                     <div class="page-hero-badges">
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> LiteSpeed + LSCache</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> Auto Updates &amp; Backups</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> Malware Protection</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> 1-Click WordPress Install</div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('wp_badge_litespeed')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('wp_badge_updates')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('wp_badge_malware')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('wp_badge_install')); ?></div>
                     </div>
                 </div>
                 <div class="page-hero-visual">
@@ -133,15 +133,15 @@ require_once __DIR__ . '/includes/topbar.php';
     <!-- ═══════════════ POWERED BY STRIP ═══════════════ -->
     <section class="partners">
         <div class="container">
-            <span class="partners-label">Optimized With</span>
+            <span class="partners-label"><?php echo e(__('wp_optimized_with')); ?></span>
             <div class="partners-logos">
-                <span class="partner-logo"><i class="fab fa-wordpress"></i> WordPress</span>
-                <span class="partner-logo"><i class="fas fa-bolt"></i> LiteSpeed</span>
-                <span class="partner-logo"><i class="fas fa-shield-alt"></i> Imunify360</span>
-                <span class="partner-logo"><i class="fas fa-hdd"></i> NVMe SSD</span>
-                <span class="partner-logo"><i class="fas fa-cloud-download-alt"></i> JetBackup</span>
-                <span class="partner-logo"><i class="fas fa-server"></i> cPanel</span>
-                <span class="partner-logo"><i class="fas fa-th"></i> Softaculous</span>
+                <span class="partner-logo"><i class="fab fa-wordpress"></i> <?php echo e(__('wp_partner_wordpress')); ?></span>
+                <span class="partner-logo"><i class="fas fa-bolt"></i> <?php echo e(__('wp_partner_litespeed')); ?></span>
+                <span class="partner-logo"><i class="fas fa-shield-alt"></i> <?php echo e(__('wp_partner_imunify')); ?></span>
+                <span class="partner-logo"><i class="fas fa-hdd"></i> <?php echo e(__('wp_partner_nvme')); ?></span>
+                <span class="partner-logo"><i class="fas fa-cloud-download-alt"></i> <?php echo e(__('wp_partner_jetbackup')); ?></span>
+                <span class="partner-logo"><i class="fas fa-server"></i> <?php echo e(__('wp_partner_cpanel')); ?></span>
+                <span class="partner-logo"><i class="fas fa-th"></i> <?php echo e(__('wp_partner_softaculous')); ?></span>
             </div>
         </div>
     </section>
@@ -150,9 +150,9 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="plans reveal" id="plans">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Pricing</div>
-                <h2>WordPress Hosting Plans</h2>
-                <p>Optimized for WordPress. Same price on renewal. 30-day money-back guarantee.</p>
+                <div class="section-tag"><?php echo e(__('wp_plans_tag')); ?></div>
+                <h2><?php echo e(__('wp_plans_title')); ?></h2>
+                <p><?php echo e(__('wp_plans_desc')); ?></p>
             </div>
 
             <div class="plans-panel active" data-tab="wp-hosting">
@@ -160,114 +160,114 @@ require_once __DIR__ . '/includes/topbar.php';
                     <div class="swiper-wrapper">
                         <!-- WP Starter -->
                         <div class="swiper-slide"><div class="plan-card">
-                            <div class="plan-head"><div class="plan-name">WP Starter</div><span class="plan-save">Save 44%</span></div>
-                            <div class="plan-target">For personal blogs</div>
+                            <div class="plan-head"><div class="plan-name"><?php echo e(__('wp_plan_starter')); ?></div><span class="plan-save"><?php echo e(__('wp_plan_save_starter')); ?></span></div>
+                            <div class="plan-target"><?php echo e(__('wp_plan_target_personal')); ?></div>
                             <div class="plan-price">
                                 <span class="old-price">€2.99</span>
-                                <span class="current-price"><span class="currency">€</span><span class="amount">1.67</span><span class="period">EUR / mo</span></span>
+                                <span class="current-price"><span class="currency">€</span><span class="amount">1.67</span><span class="period"><?php echo e(__('wp_plan_period')); ?></span></span>
                             </div>
-                            <div class="plan-renewal"><i class="fas fa-check"></i> Same price on renewal</div>
-                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/cart.php?a=add&pid=2">Choose Plan</button>
+                            <div class="plan-renewal"><i class="fas fa-check"></i> <?php echo e(__('wp_plan_renewal')); ?></div>
+                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/cart.php?a=add&pid=2"><?php echo e(__('wp_plan_choose')); ?></button>
                             <div class="plan-resources">
-                                <div class="plan-res"><i class="fas fa-microchip"></i><span class="res-val">2</span><span class="res-label">CPU Cores</span></div>
-                                <div class="plan-res"><i class="fas fa-memory"></i><span class="res-val">2 GB</span><span class="res-label">RAM</span></div>
-                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">10 GB</span><span class="res-label">NVMe SSD</span></div>
-                                <div class="plan-res"><i class="fas fa-tachometer-alt"></i><span class="res-val">100 MB/s</span><span class="res-label">I/O Speed</span></div>
+                                <div class="plan-res"><i class="fas fa-microchip"></i><span class="res-val">2</span><span class="res-label"><?php echo e(__('wp_res_cpu')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-memory"></i><span class="res-val">2 GB</span><span class="res-label"><?php echo e(__('wp_res_ram')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">10 GB</span><span class="res-label"><?php echo e(__('wp_res_nvme')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-tachometer-alt"></i><span class="res-val">100 MB/s</span><span class="res-label"><?php echo e(__('wp_res_io')); ?></span></div>
                             </div>
-                            <div class="plan-divider"><span>WordPress Optimized</span></div>
+                            <div class="plan-divider"><span><?php echo e(__('wp_plan_divider')); ?></span></div>
                             <ul class="plan-features">
-                                <li><i class="fab fa-wordpress"></i> 1-Click WP Install</li>
-                                <li><i class="fas fa-bolt"></i> LiteSpeed + LSCache</li>
-                                <li><i class="fas fa-globe"></i> Free Domain &amp; SSL</li>
-                                <li><i class="fas fa-shield-alt"></i> Malware Protection</li>
-                                <li><i class="fas fa-cloud-download-alt"></i> Daily Backups</li>
-                                <li><i class="fas fa-sync-alt"></i> Auto Core Updates</li>
-                                <li><i class="fas fa-map-marker-alt"></i> 20+ Locations</li>
+                                <li><i class="fab fa-wordpress"></i> <?php echo e(__('wp_planfeat_install')); ?></li>
+                                <li><i class="fas fa-bolt"></i> <?php echo e(__('wp_planfeat_litespeed')); ?></li>
+                                <li><i class="fas fa-globe"></i> <?php echo __('wp_planfeat_domain_ssl'); ?></li>
+                                <li><i class="fas fa-shield-alt"></i> <?php echo e(__('wp_planfeat_malware')); ?></li>
+                                <li><i class="fas fa-cloud-download-alt"></i> <?php echo e(__('wp_planfeat_backups')); ?></li>
+                                <li><i class="fas fa-sync-alt"></i> <?php echo e(__('wp_planfeat_updates')); ?></li>
+                                <li><i class="fas fa-map-marker-alt"></i> <?php echo e(__('wp_planfeat_locations')); ?></li>
                             </ul>
                         </div></div>
 
                         <!-- WP Premium (Popular) -->
                         <div class="swiper-slide"><div class="plan-card popular">
-                            <div class="plan-badge">Most Popular</div>
-                            <div class="plan-head"><div class="plan-name">WP Premium</div><span class="plan-save">Save 43%</span></div>
-                            <div class="plan-target">For growing sites</div>
+                            <div class="plan-badge"><?php echo e(__('wp_plan_most_popular')); ?></div>
+                            <div class="plan-head"><div class="plan-name"><?php echo e(__('wp_plan_premium')); ?></div><span class="plan-save"><?php echo e(__('wp_plan_save_premium')); ?></span></div>
+                            <div class="plan-target"><?php echo e(__('wp_plan_target_growing')); ?></div>
                             <div class="plan-price">
                                 <span class="old-price">€5.99</span>
-                                <span class="current-price"><span class="currency">€</span><span class="amount">3.39</span><span class="period">EUR / mo</span></span>
+                                <span class="current-price"><span class="currency">€</span><span class="amount">3.39</span><span class="period"><?php echo e(__('wp_plan_period')); ?></span></span>
                             </div>
-                            <div class="plan-renewal"><i class="fas fa-check"></i> Same price on renewal</div>
-                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/cart.php?a=add&pid=4">Choose Plan</button>
+                            <div class="plan-renewal"><i class="fas fa-check"></i> <?php echo e(__('wp_plan_renewal')); ?></div>
+                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/cart.php?a=add&pid=4"><?php echo e(__('wp_plan_choose')); ?></button>
                             <div class="plan-resources">
-                                <div class="plan-res"><i class="fas fa-microchip"></i><span class="res-val">3</span><span class="res-label">CPU Cores</span></div>
-                                <div class="plan-res"><i class="fas fa-memory"></i><span class="res-val">3 GB</span><span class="res-label">RAM</span></div>
-                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">25 GB</span><span class="res-label">NVMe SSD</span></div>
-                                <div class="plan-res"><i class="fas fa-tachometer-alt"></i><span class="res-val">300 MB/s</span><span class="res-label">I/O Speed</span></div>
+                                <div class="plan-res"><i class="fas fa-microchip"></i><span class="res-val">3</span><span class="res-label"><?php echo e(__('wp_res_cpu')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-memory"></i><span class="res-val">3 GB</span><span class="res-label"><?php echo e(__('wp_res_ram')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">25 GB</span><span class="res-label"><?php echo e(__('wp_res_nvme')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-tachometer-alt"></i><span class="res-val">300 MB/s</span><span class="res-label"><?php echo e(__('wp_res_io')); ?></span></div>
                             </div>
-                            <div class="plan-divider"><span>WordPress Optimized</span></div>
+                            <div class="plan-divider"><span><?php echo e(__('wp_plan_divider')); ?></span></div>
                             <ul class="plan-features">
-                                <li><i class="fab fa-wordpress"></i> 1-Click WP Install</li>
-                                <li><i class="fas fa-bolt"></i> LiteSpeed + LSCache</li>
-                                <li><i class="fas fa-globe"></i> Free .com / .org / .net</li>
-                                <li><i class="fas fa-shield-alt"></i> Malware Protection</li>
-                                <li><i class="fas fa-cloud-download-alt"></i> Daily Backups</li>
-                                <li><i class="fas fa-sync-alt"></i> Auto Core Updates</li>
-                                <li><i class="fas fa-map-marker-alt"></i> 20+ Locations</li>
+                                <li><i class="fab fa-wordpress"></i> <?php echo e(__('wp_planfeat_install')); ?></li>
+                                <li><i class="fas fa-bolt"></i> <?php echo e(__('wp_planfeat_litespeed')); ?></li>
+                                <li><i class="fas fa-globe"></i> <?php echo e(__('wp_planfeat_domain_ext')); ?></li>
+                                <li><i class="fas fa-shield-alt"></i> <?php echo e(__('wp_planfeat_malware')); ?></li>
+                                <li><i class="fas fa-cloud-download-alt"></i> <?php echo e(__('wp_planfeat_backups')); ?></li>
+                                <li><i class="fas fa-sync-alt"></i> <?php echo e(__('wp_planfeat_updates')); ?></li>
+                                <li><i class="fas fa-map-marker-alt"></i> <?php echo e(__('wp_planfeat_locations')); ?></li>
                             </ul>
                         </div></div>
 
                         <!-- WP Business -->
                         <div class="swiper-slide"><div class="plan-card">
-                            <div class="plan-head"><div class="plan-name">WP Business</div><span class="plan-save">Save 43%</span></div>
-                            <div class="plan-target">For businesses</div>
+                            <div class="plan-head"><div class="plan-name"><?php echo e(__('wp_plan_business')); ?></div><span class="plan-save"><?php echo e(__('wp_plan_save_business')); ?></span></div>
+                            <div class="plan-target"><?php echo e(__('wp_plan_target_business')); ?></div>
                             <div class="plan-price">
                                 <span class="old-price">€12.99</span>
-                                <span class="current-price"><span class="currency">€</span><span class="amount">7.42</span><span class="period">EUR / mo</span></span>
+                                <span class="current-price"><span class="currency">€</span><span class="amount">7.42</span><span class="period"><?php echo e(__('wp_plan_period')); ?></span></span>
                             </div>
-                            <div class="plan-renewal"><i class="fas fa-check"></i> Same price on renewal</div>
-                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/cart.php?a=add&pid=6">Choose Plan</button>
+                            <div class="plan-renewal"><i class="fas fa-check"></i> <?php echo e(__('wp_plan_renewal')); ?></div>
+                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/cart.php?a=add&pid=6"><?php echo e(__('wp_plan_choose')); ?></button>
                             <div class="plan-resources">
-                                <div class="plan-res"><i class="fas fa-microchip"></i><span class="res-val">4</span><span class="res-label">CPU Cores</span></div>
-                                <div class="plan-res"><i class="fas fa-memory"></i><span class="res-val">4 GB</span><span class="res-label">RAM</span></div>
-                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">75 GB</span><span class="res-label">NVMe SSD</span></div>
-                                <div class="plan-res"><i class="fas fa-tachometer-alt"></i><span class="res-val">900 MB/s</span><span class="res-label">I/O Speed</span></div>
+                                <div class="plan-res"><i class="fas fa-microchip"></i><span class="res-val">4</span><span class="res-label"><?php echo e(__('wp_res_cpu')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-memory"></i><span class="res-val">4 GB</span><span class="res-label"><?php echo e(__('wp_res_ram')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">75 GB</span><span class="res-label"><?php echo e(__('wp_res_nvme')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-tachometer-alt"></i><span class="res-val">900 MB/s</span><span class="res-label"><?php echo e(__('wp_res_io')); ?></span></div>
                             </div>
-                            <div class="plan-divider"><span>WordPress Optimized</span></div>
+                            <div class="plan-divider"><span><?php echo e(__('wp_plan_divider')); ?></span></div>
                             <ul class="plan-features">
-                                <li><i class="fab fa-wordpress"></i> 1-Click WP Install</li>
-                                <li><i class="fas fa-bolt"></i> LiteSpeed + LSCache</li>
-                                <li><i class="fas fa-globe"></i> Free .com / .org / .net</li>
-                                <li><i class="fas fa-shield-alt"></i> Malware Protection</li>
-                                <li><i class="fas fa-cloud-download-alt"></i> Daily Backups</li>
-                                <li><i class="fas fa-sync-alt"></i> Auto Core Updates</li>
-                                <li><i class="fas fa-map-marker-alt"></i> 20+ Locations</li>
+                                <li><i class="fab fa-wordpress"></i> <?php echo e(__('wp_planfeat_install')); ?></li>
+                                <li><i class="fas fa-bolt"></i> <?php echo e(__('wp_planfeat_litespeed')); ?></li>
+                                <li><i class="fas fa-globe"></i> <?php echo e(__('wp_planfeat_domain_ext')); ?></li>
+                                <li><i class="fas fa-shield-alt"></i> <?php echo e(__('wp_planfeat_malware')); ?></li>
+                                <li><i class="fas fa-cloud-download-alt"></i> <?php echo e(__('wp_planfeat_backups')); ?></li>
+                                <li><i class="fas fa-sync-alt"></i> <?php echo e(__('wp_planfeat_updates')); ?></li>
+                                <li><i class="fas fa-map-marker-alt"></i> <?php echo e(__('wp_planfeat_locations')); ?></li>
                             </ul>
                         </div></div>
 
                         <!-- WP Enterprise -->
                         <div class="swiper-slide"><div class="plan-card">
-                            <div class="plan-head"><div class="plan-name">WP Enterprise</div><span class="plan-save">Save 42%</span></div>
-                            <div class="plan-target">For high-traffic sites</div>
+                            <div class="plan-head"><div class="plan-name"><?php echo e(__('wp_plan_enterprise')); ?></div><span class="plan-save"><?php echo e(__('wp_plan_save_enterprise')); ?></span></div>
+                            <div class="plan-target"><?php echo e(__('wp_plan_target_traffic')); ?></div>
                             <div class="plan-price">
                                 <span class="old-price">€21.99</span>
-                                <span class="current-price"><span class="currency">€</span><span class="amount">12.72</span><span class="period">EUR / mo</span></span>
+                                <span class="current-price"><span class="currency">€</span><span class="amount">12.72</span><span class="period"><?php echo e(__('wp_plan_period')); ?></span></span>
                             </div>
-                            <div class="plan-renewal"><i class="fas fa-check"></i> Same price on renewal</div>
-                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/cart.php?a=add&pid=7">Choose Plan</button>
+                            <div class="plan-renewal"><i class="fas fa-check"></i> <?php echo e(__('wp_plan_renewal')); ?></div>
+                            <button class="plan-cta" data-href="<?php echo e(CP_URL); ?>/cart.php?a=add&pid=7"><?php echo e(__('wp_plan_choose')); ?></button>
                             <div class="plan-resources">
-                                <div class="plan-res"><i class="fas fa-microchip"></i><span class="res-val">5</span><span class="res-label">CPU Cores</span></div>
-                                <div class="plan-res"><i class="fas fa-memory"></i><span class="res-val">5 GB</span><span class="res-label">RAM</span></div>
-                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">125 GB</span><span class="res-label">NVMe SSD</span></div>
-                                <div class="plan-res"><i class="fas fa-tachometer-alt"></i><span class="res-val">1.5 GB/s</span><span class="res-label">I/O Speed</span></div>
+                                <div class="plan-res"><i class="fas fa-microchip"></i><span class="res-val">5</span><span class="res-label"><?php echo e(__('wp_res_cpu')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-memory"></i><span class="res-val">5 GB</span><span class="res-label"><?php echo e(__('wp_res_ram')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-hdd"></i><span class="res-val">125 GB</span><span class="res-label"><?php echo e(__('wp_res_nvme')); ?></span></div>
+                                <div class="plan-res"><i class="fas fa-tachometer-alt"></i><span class="res-val">1.5 GB/s</span><span class="res-label"><?php echo e(__('wp_res_io')); ?></span></div>
                             </div>
-                            <div class="plan-divider"><span>WordPress Optimized</span></div>
+                            <div class="plan-divider"><span><?php echo e(__('wp_plan_divider')); ?></span></div>
                             <ul class="plan-features">
-                                <li><i class="fab fa-wordpress"></i> 1-Click WP Install</li>
-                                <li><i class="fas fa-bolt"></i> LiteSpeed + LSCache</li>
-                                <li><i class="fas fa-globe"></i> Free .com / .org / .net</li>
-                                <li><i class="fas fa-shield-alt"></i> Malware Protection</li>
-                                <li><i class="fas fa-cloud-download-alt"></i> Daily Backups</li>
-                                <li><i class="fas fa-sync-alt"></i> Auto Core Updates</li>
-                                <li><i class="fas fa-map-marker-alt"></i> 20+ Locations</li>
+                                <li><i class="fab fa-wordpress"></i> <?php echo e(__('wp_planfeat_install')); ?></li>
+                                <li><i class="fas fa-bolt"></i> <?php echo e(__('wp_planfeat_litespeed')); ?></li>
+                                <li><i class="fas fa-globe"></i> <?php echo e(__('wp_planfeat_domain_ext')); ?></li>
+                                <li><i class="fas fa-shield-alt"></i> <?php echo e(__('wp_planfeat_malware')); ?></li>
+                                <li><i class="fas fa-cloud-download-alt"></i> <?php echo e(__('wp_planfeat_backups')); ?></li>
+                                <li><i class="fas fa-sync-alt"></i> <?php echo e(__('wp_planfeat_updates')); ?></li>
+                                <li><i class="fas fa-map-marker-alt"></i> <?php echo e(__('wp_planfeat_locations')); ?></li>
                             </ul>
                         </div></div>
                     </div>
@@ -281,58 +281,58 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="wp-features reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">WordPress Optimized</div>
-                <h2>Built for WordPress performance</h2>
-                <p>Every layer of our stack is tuned specifically for WordPress — from server to cache to security.</p>
+                <div class="section-tag"><?php echo e(__('wp_features_tag')); ?></div>
+                <h2><?php echo e(__('wp_features_title')); ?></h2>
+                <p><?php echo e(__('wp_features_desc')); ?></p>
             </div>
 
             <div class="bento-grid">
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon"><i class="fas fa-bolt"></i></div>
-                    <h4>LiteSpeed + LSCache</h4>
-                    <p>Server-level caching for WordPress. Pages served from cache without touching PHP — sub-200ms response times.</p>
+                    <h4><?php echo e(__('wp_feat_litespeed_title')); ?></h4>
+                    <p><?php echo e(__('wp_feat_litespeed_desc')); ?></p>
                 </div>
 
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-green"><i class="fas fa-sync-alt"></i></div>
-                    <h4>Automatic Updates</h4>
-                    <p>WordPress core updates applied automatically. Always run the latest stable version without lifting a finger.</p>
+                    <h4><?php echo e(__('wp_feat_updates_title')); ?></h4>
+                    <p><?php echo e(__('wp_feat_updates_desc')); ?></p>
                 </div>
 
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-purple"><i class="fas fa-shield-alt"></i></div>
-                    <h4>Malware Protection</h4>
-                    <p>Imunify360 AI-powered scanning blocks threats before they reach your WordPress install.</p>
+                    <h4><?php echo e(__('wp_feat_malware_title')); ?></h4>
+                    <p><?php echo e(__('wp_feat_malware_desc')); ?></p>
                 </div>
 
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-amber"><i class="fas fa-cloud-download-alt"></i></div>
-                    <h4>Daily Backups</h4>
-                    <p>Automatic daily backups via JetBackup with one-click restore from cPanel.</p>
+                    <h4><?php echo e(__('wp_feat_backup_title')); ?></h4>
+                    <p><?php echo e(__('wp_feat_backup_desc')); ?></p>
                 </div>
 
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon"><i class="fas fa-hdd"></i></div>
-                    <h4>NVMe SSD Storage</h4>
-                    <p>Ultra-fast storage for your WordPress database and media files.</p>
+                    <h4><?php echo e(__('wp_feat_nvme_title')); ?></h4>
+                    <p><?php echo e(__('wp_feat_nvme_desc')); ?></p>
                 </div>
 
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-green"><i class="fas fa-th"></i></div>
-                    <h4>1-Click Install</h4>
-                    <p>Deploy WordPress in seconds via Softaculous — themes and plugins included.</p>
+                    <h4><?php echo e(__('wp_feat_install_title')); ?></h4>
+                    <p><?php echo e(__('wp_feat_install_desc')); ?></p>
                 </div>
 
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-blue"><i class="fas fa-globe"></i></div>
-                    <h4>Free CDN</h4>
-                    <p>Integrated content delivery network for faster global page loads.</p>
+                    <h4><?php echo e(__('wp_feat_cdn_title')); ?></h4>
+                    <p><?php echo e(__('wp_feat_cdn_desc')); ?></p>
                 </div>
 
                 <div class="bento-card bento-sm">
                     <div class="bento-card-icon icon-rose"><i class="fas fa-database"></i></div>
-                    <h4>Optimized MySQL</h4>
-                    <p>Tuned MariaDB with query caching and InnoDB optimization for faster WordPress database queries.</p>
+                    <h4><?php echo e(__('wp_feat_mysql_title')); ?></h4>
+                    <p><?php echo e(__('wp_feat_mysql_desc')); ?></p>
                 </div>
             </div>
         </div>
@@ -343,16 +343,16 @@ require_once __DIR__ . '/includes/topbar.php';
         <div class="container">
             <div class="global-layout">
                 <div class="global-content">
-                    <div class="section-tag">Dashboard</div>
-                    <h2 class="global-title">Manage everything from cPanel</h2>
-                    <p class="global-desc">Your WordPress hosting comes with the full cPanel dashboard — manage files, databases, emails, domains, SSL certificates, and backups from one intuitive interface. No command line required.</p>
+                    <div class="section-tag"><?php echo e(__('wp_dashboard_tag')); ?></div>
+                    <h2 class="global-title"><?php echo e(__('wp_dashboard_title')); ?></h2>
+                    <p class="global-desc"><?php echo e(__('wp_dashboard_desc')); ?></p>
                     <div class="wp-preview-features">
-                        <div class="wp-preview-item"><i class="fas fa-check-circle"></i> WordPress Manager (Softaculous)</div>
-                        <div class="wp-preview-item"><i class="fas fa-check-circle"></i> File Manager &amp; FTP</div>
-                        <div class="wp-preview-item"><i class="fas fa-check-circle"></i> phpMyAdmin Database Access</div>
-                        <div class="wp-preview-item"><i class="fas fa-check-circle"></i> Email Account Management</div>
-                        <div class="wp-preview-item"><i class="fas fa-check-circle"></i> SSL / TLS Configuration</div>
-                        <div class="wp-preview-item"><i class="fas fa-check-circle"></i> JetBackup Restore</div>
+                        <div class="wp-preview-item"><i class="fas fa-check-circle"></i> <?php echo e(__('wp_dashboard_feat1')); ?></div>
+                        <div class="wp-preview-item"><i class="fas fa-check-circle"></i> <?php echo e(__('wp_dashboard_feat2')); ?></div>
+                        <div class="wp-preview-item"><i class="fas fa-check-circle"></i> <?php echo e(__('wp_dashboard_feat3')); ?></div>
+                        <div class="wp-preview-item"><i class="fas fa-check-circle"></i> <?php echo e(__('wp_dashboard_feat4')); ?></div>
+                        <div class="wp-preview-item"><i class="fas fa-check-circle"></i> <?php echo e(__('wp_dashboard_feat5')); ?></div>
+                        <div class="wp-preview-item"><i class="fas fa-check-circle"></i> <?php echo e(__('wp_dashboard_feat6')); ?></div>
                     </div>
                 </div>
                 <div class="global-visual">
@@ -397,7 +397,7 @@ require_once __DIR__ . '/includes/topbar.php';
 
     <!-- ═══════════════ GLOBAL LOCATIONS ═══════════════ -->
 <?php
-$dc_heading = 'Deploy closer to your audience';
+$dc_heading = __('wp_dc_heading');
 include __DIR__ . '/includes/section-dc-showcase.php';
 ?>
 
@@ -414,42 +414,42 @@ include __DIR__ . '/includes/section-dc-showcase.php';
     <section class="faq-section reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">FAQ</div>
-                <h2>WordPress Hosting FAQ</h2>
-                <p>Can't find your answer? Open a support ticket — we respond in under 10 minutes.</p>
+                <div class="section-tag"><?php echo e(__('wp_faq_tag')); ?></div>
+                <h2><?php echo e(__('wp_faq_title')); ?></h2>
+                <p><?php echo e(__('wp_faq_desc')); ?></p>
             </div>
 
             <div class="faq-layout">
                 <div class="faq-tabs">
-                    <button class="faq-tab active" data-faq-target="faq-wp-general"><i class="fas fa-server"></i> General</button>
-                    <button class="faq-tab" data-faq-target="faq-wp-technical"><i class="fas fa-cogs"></i> Technical</button>
-                    <button class="faq-tab" data-faq-target="faq-wp-billing"><i class="fas fa-credit-card"></i> Billing</button>
+                    <button class="faq-tab active" data-faq-target="faq-wp-general"><i class="fas fa-server"></i> <?php echo e(__('wp_faq_tab_general')); ?></button>
+                    <button class="faq-tab" data-faq-target="faq-wp-technical"><i class="fas fa-cogs"></i> <?php echo e(__('wp_faq_tab_technical')); ?></button>
+                    <button class="faq-tab" data-faq-target="faq-wp-billing"><i class="fas fa-credit-card"></i> <?php echo e(__('wp_faq_tab_billing')); ?></button>
                 </div>
 
                 <div class="faq-panels">
                     <div class="faq-panel active" id="faq-wp-general">
-                        <div class="faq-item"><button class="faq-question"><span>Is WordPress pre-installed?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>WordPress can be installed with a single click via Softaculous after activating your hosting plan. The process takes about 30 seconds.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Can I migrate my existing WordPress site?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Yes, we offer free managed migration for all WordPress hosting plans. Simply open a ticket and our team will handle everything — files, database, and configuration.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Do you manage WordPress updates?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>WordPress core auto-updates are enabled by default. Plugin and theme updates can be managed from your WordPress dashboard or configured for auto-updates.</p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('wp_faq_gen_q1')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('wp_faq_gen_a1')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('wp_faq_gen_q2')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('wp_faq_gen_a2')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('wp_faq_gen_q3')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('wp_faq_gen_a3')); ?></p></div></div>
                     </div>
 
                     <div class="faq-panel" id="faq-wp-technical">
-                        <div class="faq-item"><button class="faq-question"><span>Which PHP versions are supported?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>We support PHP 7.4 through 8.4 with easy per-domain switching via cPanel. WordPress recommends PHP 8.0 or higher.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Is LiteSpeed Cache included?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Yes, LiteSpeed Web Server is included on all plans. Install the free LiteSpeed Cache plugin from WordPress to enable server-level caching, image optimization, and CDN integration.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>How do backups work?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Daily automated backups are created via JetBackup. You can restore files, databases, or emails individually from cPanel at any time.</p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('wp_faq_tech_q1')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('wp_faq_tech_a1')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('wp_faq_tech_q2')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('wp_faq_tech_a2')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('wp_faq_tech_q3')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('wp_faq_tech_a3')); ?></p></div></div>
                     </div>
 
                     <div class="faq-panel" id="faq-wp-billing">
-                        <div class="faq-item"><button class="faq-question"><span>Does the price increase on renewal?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>No — you pay the same price on renewal. No surprises, no hidden fees, ever.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Is there a money-back guarantee?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Yes, we offer a 30-day money-back guarantee on all WordPress hosting plans.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>What payment methods do you accept?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>We accept credit/debit cards, PayPal, cryptocurrency, and 10+ other payment methods.</p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('wp_faq_bill_q1')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('wp_faq_bill_a1')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('wp_faq_bill_q2')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('wp_faq_bill_a2')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('wp_faq_bill_q3')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('wp_faq_bill_a3')); ?></p></div></div>
                     </div>
                 </div>
             </div>
 
             <div class="faq-actions">
-                <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-primary"><i class="fas fa-headset"></i> Open a Ticket</a>
-                <a href="<?php echo e(SITE_URL); ?>/faq" class="btn-secondary">Browse All FAQ <i class="fas fa-arrow-right"></i></a>
+                <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-primary"><i class="fas fa-headset"></i> <?php echo e(__('wp_faq_cta_ticket')); ?></a>
+                <a href="<?php echo e(SITE_URL); ?>/faq" class="btn-secondary"><?php echo e(__('wp_faq_cta_browse')); ?> <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
@@ -460,9 +460,9 @@ include __DIR__ . '/includes/section-dc-showcase.php';
             <div class="promo-cta-inner">
                 <div class="promo-cta-glow"></div>
                 <div class="promo-cta-icon"><i class="fab fa-wordpress"></i></div>
-                <h2>Ready to launch your WordPress site?</h2>
-                <p>Get started with managed WordPress hosting from €1.67/month. LiteSpeed, NVMe SSD, free migration.</p>
-                <a href="#plans" class="btn-primary">View Plans <i class="fas fa-arrow-right"></i></a>
+                <h2><?php echo e(__('wp_cta_title')); ?></h2>
+                <p><?php echo e(__('wp_cta_desc')); ?></p>
+                <a href="#plans" class="btn-primary"><?php echo e(__('wp_cta_view_plans')); ?> <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>

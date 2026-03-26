@@ -102,7 +102,7 @@ require_once __DIR__ . '/includes/topbar.php';
     <!-- ═══════════════ PARTNERS ═══════════════ -->
     <section class="partners">
         <div class="container">
-            <span class="partners-label">Our partners, the world's best</span>
+            <span class="partners-label"><?php echo e(__('vps_partners_label')); ?></span>
             <div class="partners-logos">
                 <span class="partner-logo">Equinix</span>
                 <span class="partner-logo">Hetzner</span>
@@ -120,25 +120,25 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="vps-pricing reveal" id="plans">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Pricing</div>
-                <h2>VPS Linux Plans</h2>
-                <p>Dedicated resources, transparent pricing, same price on renewal. Pick a tier that matches your workload.</p>
+                <div class="section-tag"><?php echo e(__('plans_tag')); ?></div>
+                <h2><?php echo e(__('vps_plans_title')); ?></h2>
+                <p><?php echo e(__('vps_plans_desc')); ?></p>
             </div>
 
             <div class="plans-tabs">
-                <button class="plan-tab active" data-target="vps-yta">YTA (Budget)</button>
-                <button class="plan-tab" data-target="vps-ha">HA (10Gbit/s)</button>
-                <button class="plan-tab" data-target="vps-de">DE (Arm64)</button>
-                <button class="plan-tab" data-target="vps-ml">ML</button>
+                <button class="plan-tab active" data-target="vps-yta"><?php echo e(__('vps_tab_yta')); ?></button>
+                <button class="plan-tab" data-target="vps-ha"><?php echo e(__('vps_tab_ha')); ?></button>
+                <button class="plan-tab" data-target="vps-de"><?php echo e(__('vps_tab_de')); ?></button>
+                <button class="plan-tab" data-target="vps-ml"><?php echo e(__('vps_tab_ml')); ?></button>
             </div>
 
             <!-- YTA Plans -->
             <div class="plans-panel active" data-tab="vps-yta">
                 <div class="vps-rows-header">
-                    <span><i class="fas fa-check-circle"></i> Full Root SSH &amp; KVM Isolation</span>
-                    <span><i class="fas fa-check-circle"></i> IPv4 &amp; IPv6</span>
-                    <span><i class="fas fa-map-marker-alt"></i> Germany +5 locations</span>
-                    <span><i class="fas fa-sync-alt"></i> Same price on renewal</span>
+                    <span><i class="fas fa-check-circle"></i> <?php echo __('vps_yta_h1'); ?></span>
+                    <span><i class="fas fa-check-circle"></i> <?php echo __('vps_yta_h2'); ?></span>
+                    <span><i class="fas fa-map-marker-alt"></i> <?php echo e(__('vps_yta_h3')); ?></span>
+                    <span><i class="fas fa-sync-alt"></i> <?php echo e(__('plans_same_renewal')); ?></span>
                 </div>
                 <div class="vps-rows">
                     <div class="vps-row">
@@ -149,25 +149,25 @@ require_once __DIR__ . '/includes/topbar.php';
                                 <span class="vps-row-arch">x86</span>
                             </div>
                             <div class="vps-row-specs">
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">1 Core</span><span class="vps-row-spec-label">CPU</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">2 GB</span><span class="vps-row-spec-label">RAM</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">25 GB</span><span class="vps-row-spec-label">NVMe</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">1 Gbit/s</span><span class="vps-row-spec-label">Network</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">25 TB</span><span class="vps-row-spec-label">Traffic</span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val">1 Core</span><span class="vps-row-spec-label"><?php echo e(__('vps_spec_cpu')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val">2 GB</span><span class="vps-row-spec-label"><?php echo e(__('vps_spec_ram')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val">25 GB</span><span class="vps-row-spec-label"><?php echo e(__('vps_spec_nvme')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val">1 Gbit/s</span><span class="vps-row-spec-label"><?php echo e(__('vps_spec_network')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val">25 TB</span><span class="vps-row-spec-label"><?php echo e(__('vps_spec_traffic')); ?></span></div>
                             </div>
                             <div class="vps-row-action">
-                                <div class="vps-row-price"><span class="vps-row-amount">€2.75</span><span class="vps-row-cycle">/mo</span></div>
-                                <a href="<?php echo e(SITE_URL); ?>/vps/" class="vps-row-btn">Order Now</a>
+                                <div class="vps-row-price"><span class="vps-row-amount">€2.75</span><span class="vps-row-cycle"><?php echo e(__('vps_per_mo')); ?></span></div>
+                                <a href="<?php echo e(SITE_URL); ?>/vps/" class="vps-row-btn"><?php echo e(__('common_order_now')); ?></a>
                             </div>
                         </div>
                         <div class="vps-row-details">
                             <div class="vps-row-details-features">
-                                <span><i class="fas fa-check-circle"></i> <strong>FREE</strong> Anti-DDoS</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>99%</strong> Uptime Guarantee</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>Fair Usage</strong> Traffic</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>1</strong> Backup Point</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>24/7</strong> Expert Support</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>Dedicated</strong> IP Address</span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_antiddos'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_uptime_99'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_fair_traffic'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_backup_1'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_support'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_dedicated_ip'); ?></span>
                             </div>
                             <div class="vps-row-details-locations">
                                 <div class="vps-loc-pills">
@@ -183,7 +183,7 @@ require_once __DIR__ . '/includes/topbar.php';
                     </div>
 
                     <div class="vps-row popular expanded">
-                        <span class="vps-row-badge">Best Value</span>
+                        <span class="vps-row-badge"><?php echo e(__('vps_badge_best_value')); ?></span>
                         <div class="vps-row-header">
                             <div class="vps-row-identity">
                                 <span class="vps-row-toggle"><i class="fas fa-chevron-down"></i></span>
@@ -191,25 +191,25 @@ require_once __DIR__ . '/includes/topbar.php';
                                 <span class="vps-row-arch">x86</span>
                             </div>
                             <div class="vps-row-specs">
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">2 Cores</span><span class="vps-row-spec-label">CPU</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">4 GB</span><span class="vps-row-spec-label">RAM</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">50 GB</span><span class="vps-row-spec-label">NVMe</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">10 Gbit/s</span><span class="vps-row-spec-label">Network</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">25 TB</span><span class="vps-row-spec-label">Traffic</span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val">2 Cores</span><span class="vps-row-spec-label"><?php echo e(__('vps_spec_cpu')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val">4 GB</span><span class="vps-row-spec-label"><?php echo e(__('vps_spec_ram')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val">50 GB</span><span class="vps-row-spec-label"><?php echo e(__('vps_spec_nvme')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val">10 Gbit/s</span><span class="vps-row-spec-label"><?php echo e(__('vps_spec_network')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val">25 TB</span><span class="vps-row-spec-label"><?php echo e(__('vps_spec_traffic')); ?></span></div>
                             </div>
                             <div class="vps-row-action">
-                                <div class="vps-row-price"><span class="vps-row-amount">€5.15</span><span class="vps-row-cycle">/mo</span></div>
-                                <a href="<?php echo e(SITE_URL); ?>/vps/" class="vps-row-btn">Order Now</a>
+                                <div class="vps-row-price"><span class="vps-row-amount">€5.15</span><span class="vps-row-cycle"><?php echo e(__('vps_per_mo')); ?></span></div>
+                                <a href="<?php echo e(SITE_URL); ?>/vps/" class="vps-row-btn"><?php echo e(__('common_order_now')); ?></a>
                             </div>
                         </div>
                         <div class="vps-row-details">
                             <div class="vps-row-details-features">
-                                <span><i class="fas fa-check-circle"></i> <strong>FREE</strong> Anti-DDoS</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>99%</strong> Uptime Guarantee</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>Fair Usage</strong> Traffic</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>2</strong> Backup Points</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>24/7</strong> Expert Support</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>Dedicated</strong> IP Address</span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_antiddos'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_uptime_99'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_fair_traffic'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_backup_2'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_support'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_dedicated_ip'); ?></span>
                             </div>
                             <div class="vps-row-details-locations">
                                 <div class="vps-loc-pills">
@@ -232,25 +232,25 @@ require_once __DIR__ . '/includes/topbar.php';
                                 <span class="vps-row-arch">x86</span>
                             </div>
                             <div class="vps-row-specs">
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">4 Cores</span><span class="vps-row-spec-label">CPU</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">8 GB</span><span class="vps-row-spec-label">RAM</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">100 GB</span><span class="vps-row-spec-label">NVMe</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">10 Gbit/s</span><span class="vps-row-spec-label">Network</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">30 TB</span><span class="vps-row-spec-label">Traffic</span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val">4 Cores</span><span class="vps-row-spec-label"><?php echo e(__('vps_spec_cpu')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val">8 GB</span><span class="vps-row-spec-label"><?php echo e(__('vps_spec_ram')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val">100 GB</span><span class="vps-row-spec-label"><?php echo e(__('vps_spec_nvme')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val">10 Gbit/s</span><span class="vps-row-spec-label"><?php echo e(__('vps_spec_network')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val">30 TB</span><span class="vps-row-spec-label"><?php echo e(__('vps_spec_traffic')); ?></span></div>
                             </div>
                             <div class="vps-row-action">
-                                <div class="vps-row-price"><span class="vps-row-amount">€7.97</span><span class="vps-row-cycle">/mo</span></div>
-                                <a href="<?php echo e(SITE_URL); ?>/vps/" class="vps-row-btn">Order Now</a>
+                                <div class="vps-row-price"><span class="vps-row-amount">€7.97</span><span class="vps-row-cycle"><?php echo e(__('vps_per_mo')); ?></span></div>
+                                <a href="<?php echo e(SITE_URL); ?>/vps/" class="vps-row-btn"><?php echo e(__('common_order_now')); ?></a>
                             </div>
                         </div>
                         <div class="vps-row-details">
                             <div class="vps-row-details-features">
-                                <span><i class="fas fa-check-circle"></i> <strong>FREE</strong> Anti-DDoS</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>99%</strong> Uptime Guarantee</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>Fair Usage</strong> Traffic</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>2</strong> Backup Points</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>24/7</strong> Expert Support</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>Dedicated</strong> IP Address</span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_antiddos'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_uptime_99'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_fair_traffic'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_backup_2'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_support'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_dedicated_ip'); ?></span>
                             </div>
                             <div class="vps-row-details-locations">
                                 <div class="vps-loc-pills">
@@ -270,10 +270,10 @@ require_once __DIR__ . '/includes/topbar.php';
             <!-- HA Plans -->
             <div class="plans-panel" data-tab="vps-ha">
                 <div class="vps-rows-header">
-                    <span><i class="fas fa-check-circle"></i> Full Root SSH &amp; KVM Isolation</span>
-                    <span><i class="fas fa-check-circle"></i> IPv4</span>
-                    <span><i class="fas fa-map-marker-alt"></i> Germany +12 locations</span>
-                    <span><i class="fas fa-sync-alt"></i> Same price on renewal</span>
+                    <span><i class="fas fa-check-circle"></i> <?php echo __('vps_ha_h1'); ?></span>
+                    <span><i class="fas fa-check-circle"></i> <?php echo __('vps_ha_h2'); ?></span>
+                    <span><i class="fas fa-map-marker-alt"></i> <?php echo e(__('vps_ha_h3')); ?></span>
+                    <span><i class="fas fa-sync-alt"></i> <?php echo e(__('plans_same_renewal')); ?></span>
                 </div>
                 <div class="vps-rows">
                     <div class="vps-row">
@@ -284,25 +284,25 @@ require_once __DIR__ . '/includes/topbar.php';
                                 <span class="vps-row-arch">x86</span>
                             </div>
                             <div class="vps-row-specs">
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">1 Core</span><span class="vps-row-spec-label">CPU</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">1 GB</span><span class="vps-row-spec-label">RAM</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">20 GB</span><span class="vps-row-spec-label">NVMe</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">10 Gbit/s</span><span class="vps-row-spec-label">Network</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">15 TB</span><span class="vps-row-spec-label">Traffic</span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val">1 Core</span><span class="vps-row-spec-label"><?php echo e(__('vps_spec_cpu')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val">1 GB</span><span class="vps-row-spec-label"><?php echo e(__('vps_spec_ram')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val">20 GB</span><span class="vps-row-spec-label"><?php echo e(__('vps_spec_nvme')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val">10 Gbit/s</span><span class="vps-row-spec-label"><?php echo e(__('vps_spec_network')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val">15 TB</span><span class="vps-row-spec-label"><?php echo e(__('vps_spec_traffic')); ?></span></div>
                             </div>
                             <div class="vps-row-action">
-                                <div class="vps-row-price"><span class="vps-row-amount">€4.72</span><span class="vps-row-cycle">/mo</span></div>
-                                <a href="<?php echo e(SITE_URL); ?>/vps/" class="vps-row-btn">Order Now</a>
+                                <div class="vps-row-price"><span class="vps-row-amount">€4.72</span><span class="vps-row-cycle"><?php echo e(__('vps_per_mo')); ?></span></div>
+                                <a href="<?php echo e(SITE_URL); ?>/vps/" class="vps-row-btn"><?php echo e(__('common_order_now')); ?></a>
                             </div>
                         </div>
                         <div class="vps-row-details">
                             <div class="vps-row-details-features">
-                                <span><i class="fas fa-check-circle"></i> <strong>FREE</strong> Anti-DDoS</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>99%</strong> Uptime Guarantee</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>Fair Usage</strong> Traffic</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>1</strong> Backup Point</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>24/7</strong> Expert Support</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>Dedicated</strong> IP Address</span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_antiddos'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_uptime_99'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_fair_traffic'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_backup_1'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_support'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_dedicated_ip'); ?></span>
                             </div>
                             <div class="vps-row-details-locations">
                                 <div class="vps-loc-pills">
@@ -320,7 +320,7 @@ require_once __DIR__ . '/includes/topbar.php';
                     </div>
 
                     <div class="vps-row popular expanded">
-                        <span class="vps-row-badge">Popular</span>
+                        <span class="vps-row-badge"><?php echo e(__('vps_badge_popular')); ?></span>
                         <div class="vps-row-header">
                             <div class="vps-row-identity">
                                 <span class="vps-row-toggle"><i class="fas fa-chevron-down"></i></span>
@@ -328,25 +328,25 @@ require_once __DIR__ . '/includes/topbar.php';
                                 <span class="vps-row-arch">x86</span>
                             </div>
                             <div class="vps-row-specs">
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">1 Core</span><span class="vps-row-spec-label">CPU</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">2 GB</span><span class="vps-row-spec-label">RAM</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">20 GB</span><span class="vps-row-spec-label">NVMe</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">10 Gbit/s</span><span class="vps-row-spec-label">Network</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">15 TB</span><span class="vps-row-spec-label">Traffic</span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val">1 Core</span><span class="vps-row-spec-label"><?php echo e(__('vps_spec_cpu')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val">2 GB</span><span class="vps-row-spec-label"><?php echo e(__('vps_spec_ram')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val">20 GB</span><span class="vps-row-spec-label"><?php echo e(__('vps_spec_nvme')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val">10 Gbit/s</span><span class="vps-row-spec-label"><?php echo e(__('vps_spec_network')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val">15 TB</span><span class="vps-row-spec-label"><?php echo e(__('vps_spec_traffic')); ?></span></div>
                             </div>
                             <div class="vps-row-action">
-                                <div class="vps-row-price"><span class="vps-row-amount">€7.50</span><span class="vps-row-cycle">/mo</span></div>
-                                <a href="<?php echo e(SITE_URL); ?>/vps/" class="vps-row-btn">Order Now</a>
+                                <div class="vps-row-price"><span class="vps-row-amount">€7.50</span><span class="vps-row-cycle"><?php echo e(__('vps_per_mo')); ?></span></div>
+                                <a href="<?php echo e(SITE_URL); ?>/vps/" class="vps-row-btn"><?php echo e(__('common_order_now')); ?></a>
                             </div>
                         </div>
                         <div class="vps-row-details">
                             <div class="vps-row-details-features">
-                                <span><i class="fas fa-check-circle"></i> <strong>FREE</strong> Anti-DDoS</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>99%</strong> Uptime Guarantee</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>Fair Usage</strong> Traffic</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>2</strong> Backup Points</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>24/7</strong> Expert Support</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>Dedicated</strong> IP Address</span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_antiddos'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_uptime_99'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_fair_traffic'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_backup_2'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_support'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_dedicated_ip'); ?></span>
                             </div>
                             <div class="vps-row-details-locations">
                                 <div class="vps-loc-pills">
@@ -368,14 +368,14 @@ require_once __DIR__ . '/includes/topbar.php';
             <!-- DE Plans (Arm64) -->
             <div class="plans-panel" data-tab="vps-de">
                 <div class="vps-rows-header">
-                    <span><i class="fas fa-check-circle"></i> Full Root SSH &amp; KVM · Arm64</span>
-                    <span><i class="fas fa-check-circle"></i> IPv4 &amp; IPv6</span>
-                    <span><i class="fas fa-map-marker-alt"></i> Germany +1 location</span>
-                    <span><i class="fas fa-sync-alt"></i> Same price on renewal</span>
+                    <span><i class="fas fa-check-circle"></i> <?php echo __('vps_de_h1'); ?></span>
+                    <span><i class="fas fa-check-circle"></i> <?php echo __('vps_de_h2'); ?></span>
+                    <span><i class="fas fa-map-marker-alt"></i> <?php echo e(__('vps_de_h3')); ?></span>
+                    <span><i class="fas fa-sync-alt"></i> <?php echo e(__('plans_same_renewal')); ?></span>
                 </div>
                 <div class="vps-rows">
                     <div class="vps-row popular expanded">
-                        <span class="vps-row-badge">Arm64</span>
+                        <span class="vps-row-badge"><?php echo e(__('vps_badge_arm64')); ?></span>
                         <div class="vps-row-header">
                             <div class="vps-row-identity">
                                 <span class="vps-row-toggle"><i class="fas fa-chevron-down"></i></span>
@@ -383,25 +383,25 @@ require_once __DIR__ . '/includes/topbar.php';
                                 <span class="vps-row-arch">Arm64</span>
                             </div>
                             <div class="vps-row-specs">
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">2 Cores</span><span class="vps-row-spec-label">CPU</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">4 GB</span><span class="vps-row-spec-label">RAM</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">40 GB</span><span class="vps-row-spec-label">NVMe</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">10 Gbit/s</span><span class="vps-row-spec-label">Network</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">30 TB</span><span class="vps-row-spec-label">Traffic</span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val">2 Cores</span><span class="vps-row-spec-label"><?php echo e(__('vps_spec_cpu')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val">4 GB</span><span class="vps-row-spec-label"><?php echo e(__('vps_spec_ram')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val">40 GB</span><span class="vps-row-spec-label"><?php echo e(__('vps_spec_nvme')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val">10 Gbit/s</span><span class="vps-row-spec-label"><?php echo e(__('vps_spec_network')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val">30 TB</span><span class="vps-row-spec-label"><?php echo e(__('vps_spec_traffic')); ?></span></div>
                             </div>
                             <div class="vps-row-action">
-                                <div class="vps-row-price"><span class="vps-row-amount">€5.49</span><span class="vps-row-cycle">/mo</span></div>
-                                <a href="<?php echo e(SITE_URL); ?>/vps/" class="vps-row-btn">Order Now</a>
+                                <div class="vps-row-price"><span class="vps-row-amount">€5.49</span><span class="vps-row-cycle"><?php echo e(__('vps_per_mo')); ?></span></div>
+                                <a href="<?php echo e(SITE_URL); ?>/vps/" class="vps-row-btn"><?php echo e(__('common_order_now')); ?></a>
                             </div>
                         </div>
                         <div class="vps-row-details">
                             <div class="vps-row-details-features">
-                                <span><i class="fas fa-check-circle"></i> <strong>FREE</strong> Anti-DDoS</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>99%</strong> Uptime Guarantee</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>Fair Usage</strong> Traffic</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>2</strong> Backup Points</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>24/7</strong> Expert Support</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>Dedicated</strong> IP Address</span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_antiddos'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_uptime_99'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_fair_traffic'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_backup_2'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_support'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_dedicated_ip'); ?></span>
                             </div>
                             <div class="vps-row-details-locations">
                                 <div class="vps-loc-pills">
@@ -417,14 +417,14 @@ require_once __DIR__ . '/includes/topbar.php';
             <!-- ML Plans -->
             <div class="plans-panel" data-tab="vps-ml">
                 <div class="vps-rows-header">
-                    <span><i class="fas fa-check-circle"></i> Full Root SSH &amp; KVM · x86</span>
-                    <span><i class="fas fa-check-circle"></i> IPv4 &amp; IPv6</span>
-                    <span><i class="fas fa-map-marker-alt"></i> Germany +1 location</span>
-                    <span><i class="fas fa-sync-alt"></i> Same price on renewal</span>
+                    <span><i class="fas fa-check-circle"></i> <?php echo __('vps_ml_h1'); ?></span>
+                    <span><i class="fas fa-check-circle"></i> <?php echo __('vps_ml_h2'); ?></span>
+                    <span><i class="fas fa-map-marker-alt"></i> <?php echo e(__('vps_ml_h3')); ?></span>
+                    <span><i class="fas fa-sync-alt"></i> <?php echo e(__('plans_same_renewal')); ?></span>
                 </div>
                 <div class="vps-rows">
                     <div class="vps-row popular expanded">
-                        <span class="vps-row-badge">ML</span>
+                        <span class="vps-row-badge"><?php echo e(__('vps_badge_ml')); ?></span>
                         <div class="vps-row-header">
                             <div class="vps-row-identity">
                                 <span class="vps-row-toggle"><i class="fas fa-chevron-down"></i></span>
@@ -432,25 +432,25 @@ require_once __DIR__ . '/includes/topbar.php';
                                 <span class="vps-row-arch">x86</span>
                             </div>
                             <div class="vps-row-specs">
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">2 Cores</span><span class="vps-row-spec-label">CPU</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">4 GB</span><span class="vps-row-spec-label">RAM</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">40 GB</span><span class="vps-row-spec-label">NVMe</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">10 Gbit/s</span><span class="vps-row-spec-label">Network</span></div>
-                                <div class="vps-row-spec"><span class="vps-row-spec-val">30 TB</span><span class="vps-row-spec-label">Traffic</span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val">2 Cores</span><span class="vps-row-spec-label"><?php echo e(__('vps_spec_cpu')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val">4 GB</span><span class="vps-row-spec-label"><?php echo e(__('vps_spec_ram')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val">40 GB</span><span class="vps-row-spec-label"><?php echo e(__('vps_spec_nvme')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val">10 Gbit/s</span><span class="vps-row-spec-label"><?php echo e(__('vps_spec_network')); ?></span></div>
+                                <div class="vps-row-spec"><span class="vps-row-spec-val">30 TB</span><span class="vps-row-spec-label"><?php echo e(__('vps_spec_traffic')); ?></span></div>
                             </div>
                             <div class="vps-row-action">
-                                <div class="vps-row-price"><span class="vps-row-amount">€5.49</span><span class="vps-row-cycle">/mo</span></div>
-                                <a href="<?php echo e(SITE_URL); ?>/vps/" class="vps-row-btn">Order Now</a>
+                                <div class="vps-row-price"><span class="vps-row-amount">€5.49</span><span class="vps-row-cycle"><?php echo e(__('vps_per_mo')); ?></span></div>
+                                <a href="<?php echo e(SITE_URL); ?>/vps/" class="vps-row-btn"><?php echo e(__('common_order_now')); ?></a>
                             </div>
                         </div>
                         <div class="vps-row-details">
                             <div class="vps-row-details-features">
-                                <span><i class="fas fa-check-circle"></i> <strong>FREE</strong> Anti-DDoS</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>99%</strong> Uptime Guarantee</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>Fair Usage</strong> Traffic</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>2</strong> Backup Points</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>24/7</strong> Expert Support</span>
-                                <span><i class="fas fa-check-circle"></i> <strong>Dedicated</strong> IP Address</span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_antiddos'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_uptime_99'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_fair_traffic'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_backup_2'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_support'); ?></span>
+                                <span><i class="fas fa-check-circle"></i> <?php echo __('vps_feat_dedicated_ip'); ?></span>
                             </div>
                             <div class="vps-row-details-locations">
                                 <div class="vps-loc-pills">
@@ -464,7 +464,7 @@ require_once __DIR__ . '/includes/topbar.php';
             </div>
 
             <div class="pricing-custom">
-                <p>Need more resources? <a href="<?php echo e(SITE_URL); ?>/contact-us/">Contact us</a> for custom VPS configurations.</p>
+                <p><?php echo __('vps_custom_config', ['url' => e(SITE_URL) . '/contact-us/']); ?></p>
             </div>
         </div>
     </section>
@@ -473,18 +473,18 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="locations-section reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Locations</div>
-                <h2>50+ Global Datacenter Locations</h2>
-                <p>Deploy your VPS infrastructure where it matters — close to your users, across 6 continents.</p>
+                <div class="section-tag"><?php echo e(__('vps_loc_tag')); ?></div>
+                <h2><?php echo e(__('vps_loc_title')); ?></h2>
+                <p><?php echo e(__('vps_loc_desc')); ?></p>
             </div>
 
             <div class="locations-tabs">
-                <button class="loc-tab active" data-loc-target="vps-europe"><i class="fas fa-globe-europe"></i> Europe</button>
-                <button class="loc-tab" data-loc-target="vps-asia"><i class="fas fa-globe-asia"></i> Asia</button>
-                <button class="loc-tab" data-loc-target="vps-africa"><i class="fas fa-globe-africa"></i> Africa</button>
-                <button class="loc-tab" data-loc-target="vps-south-america"><i class="fas fa-globe-americas"></i> South America</button>
-                <button class="loc-tab" data-loc-target="vps-north-america"><i class="fas fa-globe-americas"></i> North America</button>
-                <button class="loc-tab" data-loc-target="vps-oceania"><i class="fas fa-globe"></i> Oceania</button>
+                <button class="loc-tab active" data-loc-target="vps-europe"><i class="fas fa-globe-europe"></i> <?php echo e(__('vps_loc_europe')); ?></button>
+                <button class="loc-tab" data-loc-target="vps-asia"><i class="fas fa-globe-asia"></i> <?php echo e(__('vps_loc_asia')); ?></button>
+                <button class="loc-tab" data-loc-target="vps-africa"><i class="fas fa-globe-africa"></i> <?php echo e(__('vps_loc_africa')); ?></button>
+                <button class="loc-tab" data-loc-target="vps-south-america"><i class="fas fa-globe-americas"></i> <?php echo e(__('vps_loc_south_america')); ?></button>
+                <button class="loc-tab" data-loc-target="vps-north-america"><i class="fas fa-globe-americas"></i> <?php echo e(__('vps_loc_north_america')); ?></button>
+                <button class="loc-tab" data-loc-target="vps-oceania"><i class="fas fa-globe"></i> <?php echo e(__('vps_loc_oceania')); ?></button>
             </div>
 
             <div class="locations-panels">
@@ -569,9 +569,9 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="vps-os reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Deploy Ready</div>
-                <h2>Operating Systems, Apps &amp; Deployment Options</h2>
-                <p>Pre-configured images ready to deploy. Reinstall any time from the control panel at no extra cost.</p>
+                <div class="section-tag"><?php echo e(__('vps_os_tag')); ?></div>
+                <h2><?php echo __('vps_os_title'); ?></h2>
+                <p><?php echo e(__('vps_os_desc')); ?></p>
             </div>
 
             <!-- OS Ticker — auto-scrolling marquee -->
@@ -749,34 +749,34 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="vps-infra reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Infrastructure</div>
-                <h2>Enterprise-grade hardware, dedicated to you</h2>
-                <p>Every VPS runs on isolated KVM instances with dedicated CPU, RAM, and NVMe storage — no noisy neighbors, no throttling.</p>
+                <div class="section-tag"><?php echo e(__('vps_infra_tag')); ?></div>
+                <h2><?php echo e(__('vps_infra_title')); ?></h2>
+                <p><?php echo e(__('vps_infra_desc')); ?></p>
             </div>
             <div class="vps-infra-grid">
                 <div class="vps-infra-card">
                     <div class="vps-infra-icon"><i class="fas fa-microchip"></i></div>
-                    <div class="vps-infra-value">Up to 8</div>
-                    <div class="vps-infra-label">Dedicated vCPU Cores</div>
-                    <p>Intel/AMD x86 and Arm64 processors with guaranteed clock speeds and full isolation.</p>
+                    <div class="vps-infra-value"><?php echo e(__('vps_infra_cpu_val')); ?></div>
+                    <div class="vps-infra-label"><?php echo e(__('vps_infra_cpu_label')); ?></div>
+                    <p><?php echo e(__('vps_infra_cpu_desc')); ?></p>
                 </div>
                 <div class="vps-infra-card">
                     <div class="vps-infra-icon icon-green"><i class="fas fa-hdd"></i></div>
-                    <div class="vps-infra-value">NVMe SSD</div>
-                    <div class="vps-infra-label">Storage on All Plans</div>
-                    <p>Ultra-fast NVMe solid-state drives for I/O-intensive workloads — up to 400GB per server.</p>
+                    <div class="vps-infra-value"><?php echo e(__('vps_infra_storage_val')); ?></div>
+                    <div class="vps-infra-label"><?php echo e(__('vps_infra_storage_label')); ?></div>
+                    <p><?php echo e(__('vps_infra_storage_desc')); ?></p>
                 </div>
                 <div class="vps-infra-card">
                     <div class="vps-infra-icon icon-purple"><i class="fas fa-network-wired"></i></div>
-                    <div class="vps-infra-value">10 Gbit/s</div>
-                    <div class="vps-infra-label">Network Uplink</div>
-                    <p>High-throughput connectivity with up to 30TB bandwidth. Low latency across all regions.</p>
+                    <div class="vps-infra-value"><?php echo e(__('vps_infra_network_val')); ?></div>
+                    <div class="vps-infra-label"><?php echo e(__('vps_infra_network_label')); ?></div>
+                    <p><?php echo e(__('vps_infra_network_desc')); ?></p>
                 </div>
                 <div class="vps-infra-card">
                     <div class="vps-infra-icon icon-amber"><i class="fas fa-globe-americas"></i></div>
-                    <div class="vps-infra-value">50+</div>
-                    <div class="vps-infra-label">Global Locations</div>
-                    <p>Deploy your server close to your users — from Europe and North America to Asia and beyond.</p>
+                    <div class="vps-infra-value"><?php echo e(__('vps_infra_loc_val')); ?></div>
+                    <div class="vps-infra-label"><?php echo e(__('vps_infra_loc_label')); ?></div>
+                    <p><?php echo e(__('vps_infra_loc_desc')); ?></p>
                 </div>
             </div>
         </div>
@@ -786,69 +786,69 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="vps-usecases reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Use Cases</div>
-                <h2>What can you run on a VPS?</h2>
-                <p>From web applications to game servers — a VPS gives you dedicated resources and full control for any workload.</p>
+                <div class="section-tag"><?php echo e(__('vps_uc_tag')); ?></div>
+                <h2><?php echo e(__('vps_uc_title')); ?></h2>
+                <p><?php echo e(__('vps_uc_desc')); ?></p>
             </div>
             <div class="vps-usecases-grid">
                 <div class="vps-usecase-card">
                     <div class="vps-usecase-icon"><i class="fas fa-globe"></i></div>
-                    <h4>Web Applications</h4>
-                    <p>Host websites, APIs, and web apps with full stack control — Node.js, Python, PHP, Ruby, and more.</p>
+                    <h4><?php echo e(__('vps_uc_web_title')); ?></h4>
+                    <p><?php echo e(__('vps_uc_web_desc')); ?></p>
                     <ul class="vps-usecase-list">
-                        <li>WordPress &amp; WooCommerce</li>
-                        <li>Custom APIs &amp; backends</li>
-                        <li>SaaS applications</li>
+                        <li><?php echo __('vps_uc_web_li1'); ?></li>
+                        <li><?php echo __('vps_uc_web_li2'); ?></li>
+                        <li><?php echo e(__('vps_uc_web_li3')); ?></li>
                     </ul>
                 </div>
                 <div class="vps-usecase-card">
                     <div class="vps-usecase-icon icon-green"><i class="fas fa-gamepad"></i></div>
-                    <h4>Game Servers</h4>
-                    <p>Low-latency multiplayer servers with dedicated CPU and high-speed networking for smooth gameplay.</p>
+                    <h4><?php echo e(__('vps_uc_game_title')); ?></h4>
+                    <p><?php echo e(__('vps_uc_game_desc')); ?></p>
                     <ul class="vps-usecase-list">
-                        <li>Minecraft &amp; FiveM</li>
-                        <li>CS2 &amp; Valheim</li>
-                        <li>Custom game engines</li>
+                        <li><?php echo __('vps_uc_game_li1'); ?></li>
+                        <li><?php echo __('vps_uc_game_li2'); ?></li>
+                        <li><?php echo e(__('vps_uc_game_li3')); ?></li>
                     </ul>
                 </div>
                 <div class="vps-usecase-card">
                     <div class="vps-usecase-icon icon-purple"><i class="fas fa-chart-line"></i></div>
-                    <h4>Trading &amp; Bots</h4>
-                    <p>Run trading algorithms, forex bots, and crypto strategies on always-on servers with minimal latency.</p>
+                    <h4><?php echo __('vps_uc_trade_title'); ?></h4>
+                    <p><?php echo e(__('vps_uc_trade_desc')); ?></p>
                     <ul class="vps-usecase-list">
-                        <li>MetaTrader 4/5</li>
-                        <li>Crypto bots &amp; arbitrage</li>
-                        <li>24/7 uptime guaranteed</li>
+                        <li><?php echo e(__('vps_uc_trade_li1')); ?></li>
+                        <li><?php echo __('vps_uc_trade_li2'); ?></li>
+                        <li><?php echo e(__('vps_uc_trade_li3')); ?></li>
                     </ul>
                 </div>
                 <div class="vps-usecase-card">
                     <div class="vps-usecase-icon icon-amber"><i class="fas fa-brain"></i></div>
-                    <h4>AI &amp; ML Workloads</h4>
-                    <p>Train models, run inference pipelines, and deploy AI services with high-memory VPS configurations.</p>
+                    <h4><?php echo __('vps_uc_ai_title'); ?></h4>
+                    <p><?php echo e(__('vps_uc_ai_desc')); ?></p>
                     <ul class="vps-usecase-list">
-                        <li>Model training &amp; fine-tuning</li>
-                        <li>LLM inference endpoints</li>
-                        <li>Data processing pipelines</li>
+                        <li><?php echo __('vps_uc_ai_li1'); ?></li>
+                        <li><?php echo e(__('vps_uc_ai_li2')); ?></li>
+                        <li><?php echo e(__('vps_uc_ai_li3')); ?></li>
                     </ul>
                 </div>
                 <div class="vps-usecase-card">
                     <div class="vps-usecase-icon icon-green"><i class="fas fa-code-branch"></i></div>
-                    <h4>Dev &amp; CI/CD</h4>
-                    <p>Staging environments, build runners, and private dev servers with instant provisioning.</p>
+                    <h4><?php echo __('vps_uc_dev_title'); ?></h4>
+                    <p><?php echo e(__('vps_uc_dev_desc')); ?></p>
                     <ul class="vps-usecase-list">
-                        <li>GitHub Actions runners</li>
-                        <li>Docker &amp; Kubernetes</li>
-                        <li>Staging &amp; preview deploys</li>
+                        <li><?php echo e(__('vps_uc_dev_li1')); ?></li>
+                        <li><?php echo __('vps_uc_dev_li2'); ?></li>
+                        <li><?php echo __('vps_uc_dev_li3'); ?></li>
                     </ul>
                 </div>
                 <div class="vps-usecase-card">
                     <div class="vps-usecase-icon icon-purple"><i class="fas fa-database"></i></div>
-                    <h4>Databases &amp; Storage</h4>
-                    <p>Self-managed database servers with NVMe-backed performance and full configuration control.</p>
+                    <h4><?php echo __('vps_uc_db_title'); ?></h4>
+                    <p><?php echo e(__('vps_uc_db_desc')); ?></p>
                     <ul class="vps-usecase-list">
-                        <li>MySQL, PostgreSQL, MongoDB</li>
-                        <li>Redis &amp; Elasticsearch</li>
-                        <li>S3-compatible object storage</li>
+                        <li><?php echo e(__('vps_uc_db_li1')); ?></li>
+                        <li><?php echo __('vps_uc_db_li2'); ?></li>
+                        <li><?php echo e(__('vps_uc_db_li3')); ?></li>
                     </ul>
                 </div>
             </div>
@@ -859,27 +859,27 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="vps-deploy reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Get Started</div>
-                <h2>Deploy your server in 3 steps</h2>
-                <p>From sign-up to a running server — it takes less than 5 minutes.</p>
+                <div class="section-tag"><?php echo e(__('vps_deploy_tag')); ?></div>
+                <h2><?php echo e(__('vps_deploy_title')); ?></h2>
+                <p><?php echo e(__('vps_deploy_desc')); ?></p>
             </div>
             <div class="vps-deploy-steps">
                 <div class="vps-deploy-step">
                     <div class="vps-step-num">1</div>
-                    <h4>Choose a Location</h4>
-                    <p>Pick from 50+ global datacenter locations closest to your users for the lowest latency.</p>
+                    <h4><?php echo e(__('vps_deploy_step1_title')); ?></h4>
+                    <p><?php echo e(__('vps_deploy_step1_desc')); ?></p>
                 </div>
                 <div class="vps-deploy-connector"><i class="fas fa-arrow-right"></i></div>
                 <div class="vps-deploy-step">
                     <div class="vps-step-num">2</div>
-                    <h4>Select Your Config</h4>
-                    <p>Pick your CPU, RAM, storage, and OS. Choose from YTA, HA, DE, or ML plan tiers.</p>
+                    <h4><?php echo e(__('vps_deploy_step2_title')); ?></h4>
+                    <p><?php echo e(__('vps_deploy_step2_desc')); ?></p>
                 </div>
                 <div class="vps-deploy-connector"><i class="fas fa-arrow-right"></i></div>
                 <div class="vps-deploy-step">
                     <div class="vps-step-num">3</div>
-                    <h4>Deploy &amp; Connect</h4>
-                    <p>Your VPS is provisioned in minutes. SSH in with root access and start building.</p>
+                    <h4><?php echo __('vps_deploy_step3_title'); ?></h4>
+                    <p><?php echo e(__('vps_deploy_step3_desc')); ?></p>
                 </div>
             </div>
         </div>
@@ -889,40 +889,40 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="vps-security reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Security</div>
-                <h2>Built-in security &amp; reliability</h2>
-                <p>Every VPS comes with enterprise-level protections — from network-layer DDoS mitigation to automated backups.</p>
+                <div class="section-tag"><?php echo e(__('vps_sec_tag')); ?></div>
+                <h2><?php echo __('vps_sec_title'); ?></h2>
+                <p><?php echo e(__('vps_sec_desc')); ?></p>
             </div>
             <div class="vps-security-grid">
                 <div class="cp-security-card">
                     <div class="cp-security-icon"><i class="fas fa-shield-alt"></i></div>
-                    <h4>DDoS Protection</h4>
-                    <p>Network-level DDoS mitigation included on every plan. Advanced protection available as add-on.</p>
+                    <h4><?php echo e(__('vps_sec_ddos_title')); ?></h4>
+                    <p><?php echo e(__('vps_sec_ddos_desc')); ?></p>
                 </div>
                 <div class="cp-security-card">
                     <div class="cp-security-icon icon-green"><i class="fas fa-eye"></i></div>
-                    <h4>24/7 Monitoring</h4>
-                    <p>Continuous infrastructure monitoring with automated alerts for network, CPU, and disk anomalies.</p>
+                    <h4><?php echo e(__('vps_sec_monitor_title')); ?></h4>
+                    <p><?php echo e(__('vps_sec_monitor_desc')); ?></p>
                 </div>
                 <div class="cp-security-card">
                     <div class="cp-security-icon icon-purple"><i class="fas fa-database"></i></div>
-                    <h4>Automated Backups</h4>
-                    <p>Schedule regular backups through the control panel. Restore snapshots at any time with one click.</p>
+                    <h4><?php echo e(__('vps_sec_backup_title')); ?></h4>
+                    <p><?php echo e(__('vps_sec_backup_desc')); ?></p>
                 </div>
                 <div class="cp-security-card">
                     <div class="cp-security-icon icon-amber"><i class="fas fa-server"></i></div>
-                    <h4>KVM Isolation</h4>
-                    <p>Full hardware-level virtualization ensures complete isolation between all virtual machines on each host.</p>
+                    <h4><?php echo e(__('vps_sec_kvm_title')); ?></h4>
+                    <p><?php echo e(__('vps_sec_kvm_desc')); ?></p>
                 </div>
                 <div class="cp-security-card">
                     <div class="cp-security-icon icon-green"><i class="fas fa-lock"></i></div>
-                    <h4>SSH Key Auth</h4>
-                    <p>Deploy with SSH key authentication for secure, password-less access to your server.</p>
+                    <h4><?php echo e(__('vps_sec_ssh_title')); ?></h4>
+                    <p><?php echo e(__('vps_sec_ssh_desc')); ?></p>
                 </div>
                 <div class="cp-security-card">
                     <div class="cp-security-icon icon-purple"><i class="fas fa-network-wired"></i></div>
-                    <h4>99.9% Uptime SLA</h4>
-                    <p>Enterprise-grade network redundancy with Tier III+ datacenters and multiple upstream providers.</p>
+                    <h4><?php echo e(__('vps_sec_uptime_title')); ?></h4>
+                    <p><?php echo e(__('vps_sec_uptime_desc')); ?></p>
                 </div>
             </div>
         </div>
@@ -932,21 +932,21 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="features-grid-section reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Features</div>
-                <h2>Everything included with every plan</h2>
-                <p>No hidden extras — full root access, KVM isolation, NVMe storage, and more come standard.</p>
+                <div class="section-tag"><?php echo e(__('vps_features_tag')); ?></div>
+                <h2><?php echo e(__('vps_features_title')); ?></h2>
+                <p><?php echo e(__('vps_features_desc')); ?></p>
             </div>
 
             <div class="swiper features-swiper" id="featuresSwiper">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide"><div class="feature-card"><div class="feature-icon"><i class="fas fa-terminal"></i></div><h4>Full Root Access</h4><p>Complete SSH root access with all ports open (except 25).</p></div></div>
-                    <div class="swiper-slide"><div class="feature-card"><div class="feature-icon icon-green"><i class="fas fa-layer-group"></i></div><h4>KVM Virtualization</h4><p>Full virtualization for maximum performance and isolation.</p></div></div>
-                    <div class="swiper-slide"><div class="feature-card"><div class="feature-icon icon-purple"><i class="fas fa-hdd"></i></div><h4>NVMe SSD Storage</h4><p>Ultra-fast storage on all plans for optimal I/O performance.</p></div></div>
-                    <div class="swiper-slide"><div class="feature-card"><div class="feature-icon icon-amber"><i class="fas fa-network-wired"></i></div><h4>10 Gbit/s Network</h4><p>High-speed connectivity with up to 30TB bandwidth.</p></div></div>
-                    <div class="swiper-slide"><div class="feature-card"><div class="feature-icon"><i class="fas fa-shield-alt"></i></div><h4>DDoS Protection</h4><p>Advanced protection against distributed denial-of-service attacks.</p></div></div>
-                    <div class="swiper-slide"><div class="feature-card"><div class="feature-icon icon-green"><i class="fas fa-exchange-alt"></i></div><h4>IP Management</h4><p>Add, change, or delete IPs according to your requirements.</p></div></div>
-                    <div class="swiper-slide"><div class="feature-card"><div class="feature-icon icon-purple"><i class="fab fa-linux"></i></div><h4>Linux OS Options</h4><p>Ubuntu, AlmaLinux, Debian, CentOS, and more.</p></div></div>
-                    <div class="swiper-slide"><div class="feature-card"><div class="feature-icon icon-amber"><i class="fas fa-microchip"></i></div><h4>Intel/AMD &amp; Arm64</h4><p>Choose x86 or Arm64 architecture to match your workload.</p></div></div>
+                    <div class="swiper-slide"><div class="feature-card"><div class="feature-icon"><i class="fas fa-terminal"></i></div><h4><?php echo e(__('vps_feat_root_title')); ?></h4><p><?php echo e(__('vps_feat_root_desc')); ?></p></div></div>
+                    <div class="swiper-slide"><div class="feature-card"><div class="feature-icon icon-green"><i class="fas fa-layer-group"></i></div><h4><?php echo e(__('vps_feat_kvm_title')); ?></h4><p><?php echo e(__('vps_feat_kvm_desc')); ?></p></div></div>
+                    <div class="swiper-slide"><div class="feature-card"><div class="feature-icon icon-purple"><i class="fas fa-hdd"></i></div><h4><?php echo e(__('vps_feat_nvme_title')); ?></h4><p><?php echo e(__('vps_feat_nvme_desc')); ?></p></div></div>
+                    <div class="swiper-slide"><div class="feature-card"><div class="feature-icon icon-amber"><i class="fas fa-network-wired"></i></div><h4><?php echo e(__('vps_feat_net_title')); ?></h4><p><?php echo e(__('vps_feat_net_desc')); ?></p></div></div>
+                    <div class="swiper-slide"><div class="feature-card"><div class="feature-icon"><i class="fas fa-shield-alt"></i></div><h4><?php echo e(__('vps_feat_ddos_title')); ?></h4><p><?php echo e(__('vps_feat_ddos_desc')); ?></p></div></div>
+                    <div class="swiper-slide"><div class="feature-card"><div class="feature-icon icon-green"><i class="fas fa-exchange-alt"></i></div><h4><?php echo e(__('vps_feat_ip_title')); ?></h4><p><?php echo e(__('vps_feat_ip_desc')); ?></p></div></div>
+                    <div class="swiper-slide"><div class="feature-card"><div class="feature-icon icon-purple"><i class="fab fa-linux"></i></div><h4><?php echo e(__('vps_feat_os_title')); ?></h4><p><?php echo e(__('vps_feat_os_desc')); ?></p></div></div>
+                    <div class="swiper-slide"><div class="feature-card"><div class="feature-icon icon-amber"><i class="fas fa-microchip"></i></div><h4><?php echo __('vps_feat_arch_title'); ?></h4><p><?php echo e(__('vps_feat_arch_desc')); ?></p></div></div>
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
@@ -958,17 +958,17 @@ require_once __DIR__ . '/includes/topbar.php';
         <div class="container">
             <div class="why-us-layout">
                 <div class="why-us-intro">
-                    <div class="section-tag">Advantages</div>
-                    <h2 class="why-us-title">Why YottaSrc VPS?</h2>
-                    <p class="why-us-desc">Enterprise-grade infrastructure with responsive human support.</p>
+                    <div class="section-tag"><?php echo e(__('vps_why_tag')); ?></div>
+                    <h2 class="why-us-title"><?php echo e(__('vps_why_title')); ?></h2>
+                    <p class="why-us-desc"><?php echo e(__('vps_why_desc')); ?></p>
                 </div>
                 <div class="why-us-grid">
-                    <div class="why-us-card"><div class="why-us-card-icon"><i class="fas fa-headset"></i></div><h4>24/7 Expert Support</h4><p>Average response time: 10 minutes.</p></div>
-                    <div class="why-us-card"><div class="why-us-card-icon icon-green"><i class="fas fa-tachometer-alt"></i></div><h4>10 Gbit/s Network</h4><p>High-speed connectivity in 50+ global locations.</p></div>
-                    <div class="why-us-card"><div class="why-us-card-icon icon-purple"><i class="fas fa-shield-alt"></i></div><h4>DDoS Protection</h4><p>Advanced protection included with every plan.</p></div>
-                    <div class="why-us-card"><div class="why-us-card-icon icon-amber"><i class="fas fa-globe"></i></div><h4>50+ Locations</h4><p>Own DC in Romania + partner facilities worldwide.</p></div>
-                    <div class="why-us-card"><div class="why-us-card-icon icon-green"><i class="fas fa-tags"></i></div><h4>Same Price on Renewal</h4><p>No surprises. No hidden fees ever.</p></div>
-                    <div class="why-us-card"><div class="why-us-card-icon icon-purple"><i class="fas fa-terminal"></i></div><h4>Full Root Access</h4><p>Complete control over your server environment.</p></div>
+                    <div class="why-us-card"><div class="why-us-card-icon"><i class="fas fa-headset"></i></div><h4><?php echo e(__('vps_why_support_title')); ?></h4><p><?php echo e(__('vps_why_support_desc')); ?></p></div>
+                    <div class="why-us-card"><div class="why-us-card-icon icon-green"><i class="fas fa-tachometer-alt"></i></div><h4><?php echo e(__('vps_why_net_title')); ?></h4><p><?php echo e(__('vps_why_net_desc')); ?></p></div>
+                    <div class="why-us-card"><div class="why-us-card-icon icon-purple"><i class="fas fa-shield-alt"></i></div><h4><?php echo e(__('vps_why_ddos_title')); ?></h4><p><?php echo e(__('vps_why_ddos_desc')); ?></p></div>
+                    <div class="why-us-card"><div class="why-us-card-icon icon-amber"><i class="fas fa-globe"></i></div><h4><?php echo e(__('vps_why_loc_title')); ?></h4><p><?php echo e(__('vps_why_loc_desc')); ?></p></div>
+                    <div class="why-us-card"><div class="why-us-card-icon icon-green"><i class="fas fa-tags"></i></div><h4><?php echo e(__('vps_why_renewal_title')); ?></h4><p><?php echo e(__('vps_why_renewal_desc')); ?></p></div>
+                    <div class="why-us-card"><div class="why-us-card-icon icon-purple"><i class="fas fa-terminal"></i></div><h4><?php echo e(__('vps_why_root_title')); ?></h4><p><?php echo e(__('vps_why_root_desc')); ?></p></div>
                 </div>
             </div>
         </div>
@@ -978,40 +978,40 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="faq-section reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">FAQ</div>
-                <h2>Frequently asked questions</h2>
-                <p>Everything you need to know about our VPS/VDS services — from setup to billing.</p>
+                <div class="section-tag"><?php echo e(__('vps_faq_tag')); ?></div>
+                <h2><?php echo e(__('vps_faq_title')); ?></h2>
+                <p><?php echo e(__('vps_faq_desc')); ?></p>
             </div>
             <div class="faq-layout">
                 <div class="faq-tabs">
-                    <button class="faq-tab active" data-faq-target="faq-vps-general"><i class="fas fa-server"></i> General</button>
-                    <button class="faq-tab" data-faq-target="faq-vps-technical"><i class="fas fa-cogs"></i> Technical</button>
-                    <button class="faq-tab" data-faq-target="faq-vps-billing"><i class="fas fa-file-invoice-dollar"></i> Billing</button>
+                    <button class="faq-tab active" data-faq-target="faq-vps-general"><i class="fas fa-server"></i> <?php echo e(__('vps_faq_tab_general')); ?></button>
+                    <button class="faq-tab" data-faq-target="faq-vps-technical"><i class="fas fa-cogs"></i> <?php echo e(__('vps_faq_tab_technical')); ?></button>
+                    <button class="faq-tab" data-faq-target="faq-vps-billing"><i class="fas fa-file-invoice-dollar"></i> <?php echo e(__('vps_faq_tab_billing')); ?></button>
                 </div>
                 <div class="faq-panels">
                     <div class="faq-panel active" id="faq-vps-general">
-                        <div class="faq-item"><button class="faq-question"><span>What virtualization technology is used?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>We use KVM (Kernel-based Virtual Machine) which provides full hardware virtualization for maximum performance, stability, and isolation between virtual servers.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>How long does activation take?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>VPS servers are typically activated within 2 to 20 minutes after payment confirmation. You'll receive login credentials automatically via email.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>What operating systems are available?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>We offer Ubuntu, Debian, AlmaLinux, CentOS, and more. You can reinstall with a different OS any time from the control panel at no extra cost.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Can I change my server location?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>You can request a location change by contacting support. Data migration may be required depending on your current setup.</p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('vps_faq_g1_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('vps_faq_g1_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('vps_faq_g2_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('vps_faq_g2_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('vps_faq_g3_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('vps_faq_g3_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('vps_faq_g4_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('vps_faq_g4_a')); ?></p></div></div>
                     </div>
                     <div class="faq-panel" id="faq-vps-technical">
-                        <div class="faq-item"><button class="faq-question"><span>Do I get full root access?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Yes, all VPS plans come with full root/admin SSH access. All ports are open except port 25 (to prevent spam). You have complete control over your server environment.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Do VPS plans include DDoS protection?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Yes, all VPS plans include basic DDoS protection to keep your server safe. Advanced protection is available as an add-on for higher-risk deployments.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Can I upgrade my VPS later?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Absolutely. You can upgrade your CPU, RAM, and storage at any time through the control panel or by contacting support. Upgrades are applied with minimal downtime.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>What is the difference between YTA and HA plans?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>YTA plans are budget-friendly and great for starting out. HA plans offer high-availability infrastructure with 10Gbit/s networking and more locations for mission-critical workloads.</p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('vps_faq_t1_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('vps_faq_t1_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('vps_faq_t2_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('vps_faq_t2_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('vps_faq_t3_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('vps_faq_t3_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('vps_faq_t4_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('vps_faq_t4_a')); ?></p></div></div>
                     </div>
                     <div class="faq-panel" id="faq-vps-billing">
-                        <div class="faq-item"><button class="faq-question"><span>Is the renewal price the same?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Yes — what you see is what you pay. There are no hidden fees and your renewal price is always the same as the initial price. No surprises.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>What payment methods are accepted?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>We accept credit/debit cards, PayPal, bank transfers, and cryptocurrency payments. All transactions are secure and encrypted.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Can I get a refund?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>We offer a money-back guarantee within the first 7 days. If you're not satisfied with the service, contact our support team for a full refund.</p></div></div>
-                        <div class="faq-item"><button class="faq-question"><span>Do you offer longer billing cycles?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Yes, we offer monthly, quarterly, semi-annual, and annual billing cycles. Longer periods may include additional discounts.</p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('vps_faq_b1_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('vps_faq_b1_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('vps_faq_b2_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('vps_faq_b2_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('vps_faq_b3_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('vps_faq_b3_a')); ?></p></div></div>
+                        <div class="faq-item"><button class="faq-question"><span><?php echo e(__('vps_faq_b4_q')); ?></span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p><?php echo e(__('vps_faq_b4_a')); ?></p></div></div>
                     </div>
                 </div>
             </div>
             <div class="faq-actions">
-                <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-primary">Open a Ticket <i class="fas fa-headset"></i></a>
-                <a href="<?php echo e(SITE_URL); ?>/faq" class="btn-secondary">Browse All FAQ <i class="fas fa-arrow-right"></i></a>
+                <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-primary"><?php echo e(__('common_open_ticket')); ?> <i class="fas fa-headset"></i></a>
+                <a href="<?php echo e(SITE_URL); ?>/faq" class="btn-secondary"><?php echo e(__('common_browse_faq')); ?> <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
@@ -1020,70 +1020,70 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="section-compare reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Comparison</div>
-                <h2>Why YottaSrc VPS beats the competition</h2>
-                <p>See how our Linux VPS stacks up against other providers on performance, pricing, and flexibility.</p>
+                <div class="section-tag"><?php echo e(__('vps_cmp_tag')); ?></div>
+                <h2><?php echo e(__('vps_cmp_title')); ?></h2>
+                <p><?php echo e(__('vps_cmp_desc')); ?></p>
             </div>
 
             <div class="compare-table-wrap">
                 <table class="compare-table">
                     <thead>
                         <tr>
-                            <th>Feature</th>
-                            <th class="compare-highlight">YottaSrc VPS</th>
-                            <th>Other VPS Providers</th>
+                            <th><?php echo e(__('vps_cmp_th_feature')); ?></th>
+                            <th class="compare-highlight"><?php echo e(__('vps_cmp_th_yottasrc')); ?></th>
+                            <th><?php echo e(__('vps_cmp_th_others')); ?></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><i class="fas fa-coins"></i> Starting Price</td>
-                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> From €2.75/mo</td>
-                            <td><i class="fas fa-minus-circle"></i> From $5–6/mo</td>
+                            <td><i class="fas fa-coins"></i> <?php echo e(__('vps_cmp_price')); ?></td>
+                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> <?php echo e(__('vps_cmp_price_us')); ?></td>
+                            <td><i class="fas fa-minus-circle"></i> <?php echo e(__('vps_cmp_price_them')); ?></td>
                         </tr>
                         <tr>
-                            <td><i class="fas fa-microchip"></i> Virtualization</td>
-                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> Full KVM isolation</td>
-                            <td><i class="fas fa-minus-circle"></i> Often OpenVZ / shared</td>
+                            <td><i class="fas fa-microchip"></i> <?php echo e(__('vps_cmp_virt')); ?></td>
+                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> <?php echo e(__('vps_cmp_virt_us')); ?></td>
+                            <td><i class="fas fa-minus-circle"></i> <?php echo e(__('vps_cmp_virt_them')); ?></td>
                         </tr>
                         <tr>
-                            <td><i class="fas fa-hdd"></i> Storage</td>
-                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> NVMe SSD on all plans</td>
-                            <td><i class="fas fa-minus-circle"></i> SATA SSD or HDD common</td>
+                            <td><i class="fas fa-hdd"></i> <?php echo e(__('vps_cmp_storage')); ?></td>
+                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> <?php echo e(__('vps_cmp_storage_us')); ?></td>
+                            <td><i class="fas fa-minus-circle"></i> <?php echo e(__('vps_cmp_storage_them')); ?></td>
                         </tr>
                         <tr>
-                            <td><i class="fas fa-network-wired"></i> Network</td>
-                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> Up to 10 Gbit/s</td>
-                            <td><i class="fas fa-minus-circle"></i> 1 Gbit/s typical</td>
+                            <td><i class="fas fa-network-wired"></i> <?php echo e(__('vps_cmp_network')); ?></td>
+                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> <?php echo e(__('vps_cmp_network_us')); ?></td>
+                            <td><i class="fas fa-minus-circle"></i> <?php echo e(__('vps_cmp_network_them')); ?></td>
                         </tr>
                         <tr>
-                            <td><i class="fas fa-globe"></i> Locations</td>
-                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> 50+ regions, 6 continents</td>
-                            <td><i class="fas fa-minus-circle"></i> 5–15 regions</td>
+                            <td><i class="fas fa-globe"></i> <?php echo e(__('vps_cmp_locations')); ?></td>
+                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> <?php echo e(__('vps_cmp_locations_us')); ?></td>
+                            <td><i class="fas fa-minus-circle"></i> <?php echo e(__('vps_cmp_locations_them')); ?></td>
                         </tr>
                         <tr>
-                            <td><i class="fas fa-terminal"></i> Root Access</td>
-                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> Full root SSH on all plans</td>
-                            <td><i class="fas fa-check-circle"></i> Usually available</td>
+                            <td><i class="fas fa-terminal"></i> <?php echo e(__('vps_cmp_root')); ?></td>
+                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> <?php echo e(__('vps_cmp_root_us')); ?></td>
+                            <td><i class="fas fa-check-circle"></i> <?php echo e(__('vps_cmp_root_them')); ?></td>
                         </tr>
                         <tr>
-                            <td><i class="fas fa-shield-alt"></i> DDoS Protection</td>
-                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> Free on all plans</td>
-                            <td><i class="fas fa-times-circle"></i> Paid add-on or limited</td>
+                            <td><i class="fas fa-shield-alt"></i> <?php echo e(__('vps_cmp_ddos')); ?></td>
+                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> <?php echo e(__('vps_cmp_ddos_us')); ?></td>
+                            <td><i class="fas fa-times-circle"></i> <?php echo e(__('vps_cmp_ddos_them')); ?></td>
                         </tr>
                         <tr>
-                            <td><i class="fas fa-tag"></i> Renewal Price</td>
-                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> Same price on renewal</td>
-                            <td><i class="fas fa-times-circle"></i> 2–3× price increase</td>
+                            <td><i class="fas fa-tag"></i> <?php echo e(__('vps_cmp_renewal')); ?></td>
+                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> <?php echo e(__('vps_cmp_renewal_us')); ?></td>
+                            <td><i class="fas fa-times-circle"></i> <?php echo e(__('vps_cmp_renewal_them')); ?></td>
                         </tr>
                         <tr>
-                            <td><i class="fas fa-credit-card"></i> Crypto Payments</td>
-                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> BTC, USDT, TRX &amp; more</td>
-                            <td><i class="fas fa-times-circle"></i> Cards/PayPal only</td>
+                            <td><i class="fas fa-credit-card"></i> <?php echo e(__('vps_cmp_crypto')); ?></td>
+                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> <?php echo __('vps_cmp_crypto_us'); ?></td>
+                            <td><i class="fas fa-times-circle"></i> <?php echo e(__('vps_cmp_crypto_them')); ?></td>
                         </tr>
                         <tr>
-                            <td><i class="fas fa-headset"></i> Support</td>
-                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> &lt;10 min response, 24/7</td>
-                            <td><i class="fas fa-minus-circle"></i> Ticket-based, hours to days</td>
+                            <td><i class="fas fa-headset"></i> <?php echo e(__('vps_cmp_support')); ?></td>
+                            <td class="compare-highlight"><i class="fas fa-check-circle"></i> <?php echo __('vps_cmp_support_us'); ?></td>
+                            <td><i class="fas fa-minus-circle"></i> <?php echo e(__('vps_cmp_support_them')); ?></td>
                         </tr>
                     </tbody>
                 </table>
@@ -1097,9 +1097,9 @@ require_once __DIR__ . '/includes/topbar.php';
             <div class="promo-cta-inner">
                 <div class="promo-cta-glow"></div>
                 <div class="promo-cta-icon"><i class="fas fa-rocket"></i></div>
-                <h2>Ready to deploy your server?</h2>
-                <p>Get started with a high-performance VPS in minutes. No hidden fees, same price on renewal.</p>
-                <a href="#plans" class="btn-primary">View Plans <i class="fas fa-arrow-right"></i></a>
+                <h2><?php echo e(__('vps_cta_title')); ?></h2>
+                <p><?php echo e(__('vps_cta_desc')); ?></p>
+                <a href="#plans" class="btn-primary"><?php echo e(__('common_view_plans')); ?> <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>

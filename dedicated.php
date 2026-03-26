@@ -20,20 +20,20 @@ require_once __DIR__ . '/includes/topbar.php';
                         <i class="fas fa-chevron-right"></i>
                         <span><?php echo e(__('dedicated_breadcrumb')); ?></span>
                     </div>
-                    <h1>Bare-Metal <span class="highlight">Dedicated Servers</span> for Enterprise Workloads</h1>
+                    <h1><?php echo __('dedicated_title'); ?></h1>
                     <p class="page-hero-desc">
-                        Full hardware isolation, up to 100 Gbit/s connectivity, 900 TB bandwidth, and custom configurations — premium single-tenant servers deployed in Tier III+ datacenters worldwide.
+                        <?php echo e(__('dedicated_desc')); ?>
                     </p>
                     <div class="page-hero-ctas">
-                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-primary"><i class="fas fa-headset"></i> Contact Sales</a>
-                        <a href="#offers" class="btn-secondary">View Offers <i class="fas fa-arrow-down"></i></a>
+                        <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-primary"><i class="fas fa-headset"></i> <?php echo e(__('dedicated_hero_cta_sales')); ?></a>
+                        <a href="#offers" class="btn-secondary"><?php echo e(__('dedicated_hero_cta_offers')); ?> <i class="fas fa-arrow-down"></i></a>
                     </div>
                     <div class="page-hero-badges">
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> Bare-Metal Performance</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> Up to 100 Gbit/s</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> 900 TB Bandwidth</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> Custom Configurations</div>
-                        <div class="hero-badge-item"><i class="fas fa-check"></i> BGP / ASN Support</div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('dedicated_badge_baremetal')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('dedicated_badge_100g')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('dedicated_badge_900tb')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('dedicated_badge_custom')); ?></div>
+                        <div class="hero-badge-item"><i class="fas fa-check"></i> <?php echo e(__('dedicated_badge_bgp')); ?></div>
                     </div>
                 </div>
                 <div class="page-hero-visual">
@@ -114,7 +114,7 @@ require_once __DIR__ . '/includes/topbar.php';
     <!-- ═══════════════ PARTNERS ═══════════════ -->
     <section class="partners">
         <div class="container">
-            <span class="partners-label">Our partners, the world's best</span>
+            <span class="partners-label"><?php echo e(__('dedicated_partners_label')); ?></span>
             <div class="partners-logos">
                 <span class="partner-logo">Equinix</span>
                 <span class="partner-logo">Hetzner</span>
@@ -132,34 +132,34 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="ds-hardware reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Hardware</div>
-                <h2>Enterprise-Grade Bare-Metal Hardware</h2>
-                <p>Every dedicated server runs on single-tenant hardware — no virtualization overhead, no shared resources, no noisy neighbors.</p>
+                <div class="section-tag"><?php echo e(__('dedicated_hardware_tag')); ?></div>
+                <h2><?php echo e(__('dedicated_hardware_title')); ?></h2>
+                <p><?php echo e(__('dedicated_hardware_desc')); ?></p>
             </div>
             <div class="ds-hardware-grid">
                 <div class="ds-hardware-card">
                     <div class="ds-hardware-icon"><i class="fas fa-microchip"></i></div>
-                    <div class="ds-hardware-value">Up to 128</div>
-                    <div class="ds-hardware-label">CPU Cores</div>
-                    <p>Intel Xeon &amp; AMD EPYC processors — single or dual socket configurations with high clock speeds and enterprise-grade reliability.</p>
+                    <div class="ds-hardware-value"><?php echo e(__('dedicated_hw_cpu_value')); ?></div>
+                    <div class="ds-hardware-label"><?php echo e(__('dedicated_hw_cpu_label')); ?></div>
+                    <p><?php echo e(__('dedicated_hw_cpu_desc')); ?></p>
                 </div>
                 <div class="ds-hardware-card">
                     <div class="ds-hardware-icon icon-green"><i class="fas fa-memory"></i></div>
-                    <div class="ds-hardware-value">Up to 512 GB</div>
-                    <div class="ds-hardware-label">DDR4 ECC RAM</div>
-                    <p>Error-correcting memory for data integrity in mission-critical workloads. Scale to 512GB with dual-socket configurations.</p>
+                    <div class="ds-hardware-value"><?php echo e(__('dedicated_hw_ram_value')); ?></div>
+                    <div class="ds-hardware-label"><?php echo e(__('dedicated_hw_ram_label')); ?></div>
+                    <p><?php echo e(__('dedicated_hw_ram_desc')); ?></p>
                 </div>
                 <div class="ds-hardware-card">
                     <div class="ds-hardware-icon icon-purple"><i class="fas fa-hdd"></i></div>
-                    <div class="ds-hardware-value">NVMe SSD</div>
-                    <div class="ds-hardware-label">High-IOPS Storage</div>
-                    <p>Enterprise NVMe solid-state drives with hardware RAID options. Up to 8TB per server for I/O-intensive applications.</p>
+                    <div class="ds-hardware-value"><?php echo e(__('dedicated_hw_storage_value')); ?></div>
+                    <div class="ds-hardware-label"><?php echo e(__('dedicated_hw_storage_label')); ?></div>
+                    <p><?php echo e(__('dedicated_hw_storage_desc')); ?></p>
                 </div>
                 <div class="ds-hardware-card">
                     <div class="ds-hardware-icon icon-amber"><i class="fas fa-network-wired"></i></div>
-                    <div class="ds-hardware-value">100 Gbit/s</div>
-                    <div class="ds-hardware-label">Network Uplink</div>
-                    <p>Premium bandwidth with 1G, 10G, 40G, and 100G port options. Up to 900TB monthly transfer with BGP and ASN support.</p>
+                    <div class="ds-hardware-value"><?php echo e(__('dedicated_hw_network_value')); ?></div>
+                    <div class="ds-hardware-label"><?php echo e(__('dedicated_hw_network_label')); ?></div>
+                    <p><?php echo e(__('dedicated_hw_network_desc')); ?></p>
                 </div>
             </div>
         </div>
@@ -169,51 +169,51 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="ds-config reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Customizable</div>
-                <h2>Build Your Server, Your Way</h2>
-                <p>Every dedicated server is configured to your exact specifications. Choose your hardware, pick your location, and we&rsquo;ll build it.</p>
+                <div class="section-tag"><?php echo e(__('dedicated_config_tag')); ?></div>
+                <h2><?php echo e(__('dedicated_config_title')); ?></h2>
+                <p><?php echo e(__('dedicated_config_desc')); ?></p>
             </div>
             <div class="ds-config-grid">
                 <div class="ds-config-item">
                     <div class="ds-config-num">01</div>
                     <div class="ds-config-icon"><i class="fas fa-microchip"></i></div>
-                    <h4>CPU</h4>
-                    <p>Intel Xeon, AMD EPYC, or Ryzen — from 4 cores to 128-core dual-socket beasts.</p>
+                    <h4><?php echo e(__('dedicated_config_cpu_title')); ?></h4>
+                    <p><?php echo e(__('dedicated_config_cpu_desc')); ?></p>
                 </div>
                 <div class="ds-config-item">
                     <div class="ds-config-num">02</div>
                     <div class="ds-config-icon icon-green"><i class="fas fa-memory"></i></div>
-                    <h4>RAM</h4>
-                    <p>From 32GB to 512GB DDR4 ECC. Choose the memory configuration that fits your workload.</p>
+                    <h4><?php echo e(__('dedicated_config_ram_title')); ?></h4>
+                    <p><?php echo e(__('dedicated_config_ram_desc')); ?></p>
                 </div>
                 <div class="ds-config-item">
                     <div class="ds-config-num">03</div>
                     <div class="ds-config-icon icon-purple"><i class="fas fa-hdd"></i></div>
-                    <h4>Storage</h4>
-                    <p>NVMe SSD, SATA SSD, or HDD. Single drives, RAID arrays, or mixed configurations.</p>
+                    <h4><?php echo e(__('dedicated_config_storage_title')); ?></h4>
+                    <p><?php echo e(__('dedicated_config_storage_desc')); ?></p>
                 </div>
                 <div class="ds-config-item">
                     <div class="ds-config-num">04</div>
                     <div class="ds-config-icon icon-amber"><i class="fas fa-tachometer-alt"></i></div>
-                    <h4>Bandwidth</h4>
-                    <p>1G to 100G port speeds with 150TB to 900TB monthly transfer. Unmetered options available.</p>
+                    <h4><?php echo e(__('dedicated_config_bw_title')); ?></h4>
+                    <p><?php echo e(__('dedicated_config_bw_desc')); ?></p>
                 </div>
                 <div class="ds-config-item">
                     <div class="ds-config-num">05</div>
                     <div class="ds-config-icon"><i class="fas fa-globe-europe"></i></div>
-                    <h4>Location</h4>
-                    <p>France, Netherlands, Germany, UK, Turkey, USA — Tier III+ datacenters worldwide.</p>
+                    <h4><?php echo e(__('dedicated_config_loc_title')); ?></h4>
+                    <p><?php echo e(__('dedicated_config_loc_desc')); ?></p>
                 </div>
                 <div class="ds-config-item">
                     <div class="ds-config-num">06</div>
                     <div class="ds-config-icon icon-green"><i class="fas fa-shield-alt"></i></div>
-                    <h4>Add-ons</h4>
-                    <p>DDoS protection, BGP sessions, additional IPs, IPMI access, managed services, and more.</p>
+                    <h4><?php echo e(__('dedicated_config_addon_title')); ?></h4>
+                    <p><?php echo e(__('dedicated_config_addon_desc')); ?></p>
                 </div>
             </div>
             <div class="ds-config-cta">
-                <p>Need a custom configuration? Our team will build a server tailored to your requirements.</p>
-                <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-primary"><i class="fas fa-tools"></i> Request Custom Build</a>
+                <p><?php echo e(__('dedicated_config_cta_text')); ?></p>
+                <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-primary"><i class="fas fa-tools"></i> <?php echo e(__('dedicated_config_cta_btn')); ?></a>
             </div>
         </div>
     </section>
@@ -222,81 +222,81 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="ds-usecases reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Use Cases</div>
-                <h2>Built for the Most Demanding Workloads</h2>
-                <p>Dedicated servers deliver the raw power, isolation, and control needed for enterprise-scale applications.</p>
+                <div class="section-tag"><?php echo e(__('dedicated_usecases_tag')); ?></div>
+                <h2><?php echo e(__('dedicated_usecases_title')); ?></h2>
+                <p><?php echo e(__('dedicated_usecases_desc')); ?></p>
             </div>
             <div class="swiper ds-usecases-swiper" id="dsUsecasesSwiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <div class="ds-usecase-card">
                             <div class="ds-usecase-icon"><i class="fas fa-cloud"></i></div>
-                            <h4>Large SaaS Platforms</h4>
-                            <p>Run multi-tenant SaaS applications with predictable performance, full hardware isolation, and the bandwidth to handle millions of users.</p>
+                            <h4><?php echo e(__('dedicated_uc_saas_title')); ?></h4>
+                            <p><?php echo e(__('dedicated_uc_saas_desc')); ?></p>
                             <ul class="ds-usecase-list">
-                                <li>High-concurrency web apps</li>
-                                <li>Multi-tenant architectures</li>
-                                <li>Real-time collaboration tools</li>
+                                <li><?php echo e(__('dedicated_uc_saas_li1')); ?></li>
+                                <li><?php echo e(__('dedicated_uc_saas_li2')); ?></li>
+                                <li><?php echo e(__('dedicated_uc_saas_li3')); ?></li>
                             </ul>
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="ds-usecase-card">
                             <div class="ds-usecase-icon icon-green"><i class="fas fa-database"></i></div>
-                            <h4>Big Databases</h4>
-                            <p>High-memory, NVMe-backed servers for large-scale databases that demand consistent low-latency reads and writes.</p>
+                            <h4><?php echo e(__('dedicated_uc_db_title')); ?></h4>
+                            <p><?php echo e(__('dedicated_uc_db_desc')); ?></p>
                             <ul class="ds-usecase-list">
-                                <li>MySQL &amp; PostgreSQL clusters</li>
-                                <li>MongoDB &amp; Elasticsearch</li>
-                                <li>Data warehousing &amp; analytics</li>
+                                <li><?php echo e(__('dedicated_uc_db_li1')); ?></li>
+                                <li><?php echo e(__('dedicated_uc_db_li2')); ?></li>
+                                <li><?php echo e(__('dedicated_uc_db_li3')); ?></li>
                             </ul>
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="ds-usecase-card">
                             <div class="ds-usecase-icon icon-purple"><i class="fas fa-video"></i></div>
-                            <h4>Streaming &amp; Media</h4>
-                            <p>Deliver video on demand, live streams, and media platforms with massive bandwidth and uninterrupted throughput.</p>
+                            <h4><?php echo e(__('dedicated_uc_media_title')); ?></h4>
+                            <p><?php echo e(__('dedicated_uc_media_desc')); ?></p>
                             <ul class="ds-usecase-list">
-                                <li>IPTV &amp; OTT platforms</li>
-                                <li>Video transcoding farms</li>
-                                <li>CDN origin servers</li>
+                                <li><?php echo e(__('dedicated_uc_media_li1')); ?></li>
+                                <li><?php echo e(__('dedicated_uc_media_li2')); ?></li>
+                                <li><?php echo e(__('dedicated_uc_media_li3')); ?></li>
                             </ul>
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="ds-usecase-card">
                             <div class="ds-usecase-icon icon-amber"><i class="fas fa-gamepad"></i></div>
-                            <h4>Game Servers</h4>
-                            <p>Low-latency, high-tick-rate game servers with dedicated CPU cores and premium network routes for competitive gameplay.</p>
+                            <h4><?php echo e(__('dedicated_uc_game_title')); ?></h4>
+                            <p><?php echo e(__('dedicated_uc_game_desc')); ?></p>
                             <ul class="ds-usecase-list">
-                                <li>Multiplayer game hosting</li>
-                                <li>FiveM &amp; custom engines</li>
-                                <li>Global player base support</li>
+                                <li><?php echo e(__('dedicated_uc_game_li1')); ?></li>
+                                <li><?php echo e(__('dedicated_uc_game_li2')); ?></li>
+                                <li><?php echo e(__('dedicated_uc_game_li3')); ?></li>
                             </ul>
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="ds-usecase-card">
                             <div class="ds-usecase-icon icon-purple"><i class="fas fa-brain"></i></div>
-                            <h4>AI &amp; Machine Learning</h4>
-                            <p>Train large models, run inference at scale, and process massive datasets on high-core-count servers with up to 512GB RAM.</p>
+                            <h4><?php echo e(__('dedicated_uc_ai_title')); ?></h4>
+                            <p><?php echo e(__('dedicated_uc_ai_desc')); ?></p>
                             <ul class="ds-usecase-list">
-                                <li>Model training &amp; fine-tuning</li>
-                                <li>LLM inference endpoints</li>
-                                <li>Data processing pipelines</li>
+                                <li><?php echo e(__('dedicated_uc_ai_li1')); ?></li>
+                                <li><?php echo e(__('dedicated_uc_ai_li2')); ?></li>
+                                <li><?php echo e(__('dedicated_uc_ai_li3')); ?></li>
                             </ul>
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="ds-usecase-card">
                             <div class="ds-usecase-icon icon-green"><i class="fas fa-server"></i></div>
-                            <h4>Virtualization &amp; Private Cloud</h4>
-                            <p>Build your own private cloud with Proxmox, VMware, or KVM — full control over hypervisor and networking layer.</p>
+                            <h4><?php echo e(__('dedicated_uc_virt_title')); ?></h4>
+                            <p><?php echo e(__('dedicated_uc_virt_desc')); ?></p>
                             <ul class="ds-usecase-list">
-                                <li>Proxmox &amp; VMware clusters</li>
-                                <li>Custom VPS reselling</li>
-                                <li>Multi-VM orchestration</li>
+                                <li><?php echo e(__('dedicated_uc_virt_li1')); ?></li>
+                                <li><?php echo e(__('dedicated_uc_virt_li2')); ?></li>
+                                <li><?php echo e(__('dedicated_uc_virt_li3')); ?></li>
                             </ul>
                         </div>
                     </div>
@@ -310,66 +310,66 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="cloud-pricing reveal" id="offers">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Offers</div>
-                <h2>Dedicated Server Offers</h2>
-                <p>Pre-configured bare-metal servers ready for deployment. Need something different? Contact us for custom builds.</p>
+                <div class="section-tag"><?php echo e(__('dedicated_offers_tag')); ?></div>
+                <h2><?php echo e(__('dedicated_offers_title')); ?></h2>
+                <p><?php echo e(__('dedicated_offers_desc')); ?></p>
             </div>
 
             <div class="cloud-table-wrap">
                 <table class="cloud-table">
                     <thead>
                         <tr>
-                            <th>Server</th>
-                            <th>CPU</th>
-                            <th>RAM</th>
-                            <th>Storage</th>
-                            <th>Port</th>
-                            <th>Bandwidth</th>
-                            <th>Location</th>
-                            <th>Price</th>
+                            <th><?php echo e(__('dedicated_table_server')); ?></th>
+                            <th><?php echo e(__('dedicated_table_cpu')); ?></th>
+                            <th><?php echo e(__('dedicated_table_ram')); ?></th>
+                            <th><?php echo e(__('dedicated_table_storage')); ?></th>
+                            <th><?php echo e(__('dedicated_table_port')); ?></th>
+                            <th><?php echo e(__('dedicated_table_bandwidth')); ?></th>
+                            <th><?php echo e(__('dedicated_table_location')); ?></th>
+                            <th><?php echo e(__('dedicated_table_price')); ?></th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><strong>DS-1</strong></td>
-                            <td><strong>AMD Ryzen 9 3900X</strong></td>
-                            <td>64 GB DDR4</td>
-                            <td>1 × 960 GB NVMe</td>
-                            <td>1 Gbit/s</td>
-                            <td>150 TB</td>
-                            <td><span class="fi fi-fr"></span> France</td>
-                            <td><span class="cloud-price-mo">€70<small>/mo</small></span></td>
-                            <td><a href="<?php echo e(SITE_URL); ?>/contact-us/" class="cloud-buy">Order</a></td>
+                            <td><strong><?php echo e(__('dedicated_offer_ds1_name')); ?></strong></td>
+                            <td><strong><?php echo e(__('dedicated_offer_ds1_cpu')); ?></strong></td>
+                            <td><?php echo e(__('dedicated_offer_ds1_ram')); ?></td>
+                            <td><?php echo e(__('dedicated_offer_ds1_storage')); ?></td>
+                            <td><?php echo e(__('dedicated_offer_ds1_port')); ?></td>
+                            <td><?php echo e(__('dedicated_offer_ds1_bw')); ?></td>
+                            <td><span class="fi fi-fr"></span> <?php echo e(__('dedicated_offer_ds1_location')); ?></td>
+                            <td><span class="cloud-price-mo"><?php echo e(__('dedicated_offer_ds1_price')); ?><small><?php echo e(__('dedicated_offer_per_month')); ?></small></span></td>
+                            <td><a href="<?php echo e(SITE_URL); ?>/contact-us/" class="cloud-buy"><?php echo e(__('dedicated_table_order')); ?></a></td>
                         </tr>
                         <tr>
-                            <td><strong>DS-2</strong></td>
-                            <td><strong>2× Intel E5-2667v4</strong></td>
-                            <td>128 GB DDR4</td>
-                            <td>2 × 1 TB SSD</td>
-                            <td>1 Gbit/s</td>
-                            <td>150 TB</td>
-                            <td><span class="fi fi-fr"></span> France</td>
-                            <td><span class="cloud-price-mo">€74<small>/mo</small></span></td>
-                            <td><a href="<?php echo e(SITE_URL); ?>/contact-us/" class="cloud-buy">Order</a></td>
+                            <td><strong><?php echo e(__('dedicated_offer_ds2_name')); ?></strong></td>
+                            <td><strong><?php echo e(__('dedicated_offer_ds2_cpu')); ?></strong></td>
+                            <td><?php echo e(__('dedicated_offer_ds2_ram')); ?></td>
+                            <td><?php echo e(__('dedicated_offer_ds2_storage')); ?></td>
+                            <td><?php echo e(__('dedicated_offer_ds2_port')); ?></td>
+                            <td><?php echo e(__('dedicated_offer_ds2_bw')); ?></td>
+                            <td><span class="fi fi-fr"></span> <?php echo e(__('dedicated_offer_ds2_location')); ?></td>
+                            <td><span class="cloud-price-mo"><?php echo e(__('dedicated_offer_ds2_price')); ?><small><?php echo e(__('dedicated_offer_per_month')); ?></small></span></td>
+                            <td><a href="<?php echo e(SITE_URL); ?>/contact-us/" class="cloud-buy"><?php echo e(__('dedicated_table_order')); ?></a></td>
                         </tr>
                         <tr class="cloud-row-highlight">
-                            <td><strong>DS-3</strong> <span class="cloud-popular">Popular</span></td>
-                            <td><strong>2× E5-2640v4</strong></td>
-                            <td>64 GB DDR4</td>
-                            <td>1 × 960 GB SSD</td>
-                            <td>10 Gbit/s</td>
-                            <td>150 TB</td>
-                            <td><span class="fi fi-fr"></span> France</td>
-                            <td><span class="cloud-price-mo">€85<small>/mo</small></span></td>
-                            <td><a href="<?php echo e(SITE_URL); ?>/contact-us/" class="cloud-buy">Order</a></td>
+                            <td><strong><?php echo e(__('dedicated_offer_ds3_name')); ?></strong> <span class="cloud-popular"><?php echo e(__('dedicated_table_popular')); ?></span></td>
+                            <td><strong><?php echo e(__('dedicated_offer_ds3_cpu')); ?></strong></td>
+                            <td><?php echo e(__('dedicated_offer_ds3_ram')); ?></td>
+                            <td><?php echo e(__('dedicated_offer_ds3_storage')); ?></td>
+                            <td><?php echo e(__('dedicated_offer_ds3_port')); ?></td>
+                            <td><?php echo e(__('dedicated_offer_ds3_bw')); ?></td>
+                            <td><span class="fi fi-fr"></span> <?php echo e(__('dedicated_offer_ds3_location')); ?></td>
+                            <td><span class="cloud-price-mo"><?php echo e(__('dedicated_offer_ds3_price')); ?><small><?php echo e(__('dedicated_offer_per_month')); ?></small></span></td>
+                            <td><a href="<?php echo e(SITE_URL); ?>/contact-us/" class="cloud-buy"><?php echo e(__('dedicated_table_order')); ?></a></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
             <div class="cloud-note">
-                <p><i class="fas fa-info-circle"></i> Need more options? <a href="<?php echo e(SITE_URL); ?>/contact-us/">Contact us</a> for custom configurations, IPTV/VPN-optimized servers, high-bandwidth setups, and DMCA-ignored locations. Delivery takes 1–7 business days.</p>
+                <p><i class="fas fa-info-circle"></i> <?php echo __('dedicated_offers_note', ['url' => e(SITE_URL) . '/contact-us/']); ?></p>
             </div>
         </div>
     </section>
@@ -378,40 +378,40 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="ds-reliability reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">Reliability</div>
-                <h2>Enterprise Infrastructure You Can Trust</h2>
-                <p>Built-in redundancy, advanced protection, and 24/7 expert support — so you can focus on your business.</p>
+                <div class="section-tag"><?php echo e(__('dedicated_reliability_tag')); ?></div>
+                <h2><?php echo e(__('dedicated_reliability_title')); ?></h2>
+                <p><?php echo e(__('dedicated_reliability_desc')); ?></p>
             </div>
             <div class="ds-reliability-grid">
                 <div class="ds-reliability-card">
                     <div class="ds-reliability-icon"><i class="fas fa-shield-alt"></i></div>
-                    <h4>DDoS Protection</h4>
-                    <p>Network-level DDoS mitigation included on every server. Advanced protection available for high-risk deployments.</p>
+                    <h4><?php echo e(__('dedicated_rel_ddos_title')); ?></h4>
+                    <p><?php echo e(__('dedicated_rel_ddos_desc')); ?></p>
                 </div>
                 <div class="ds-reliability-card">
                     <div class="ds-reliability-icon icon-green"><i class="fas fa-headset"></i></div>
-                    <h4>24/7 Expert Support</h4>
-                    <p>Average response time: 10 minutes. Our infrastructure team is available around the clock for hardware and network issues.</p>
+                    <h4><?php echo e(__('dedicated_rel_support_title')); ?></h4>
+                    <p><?php echo e(__('dedicated_rel_support_desc')); ?></p>
                 </div>
                 <div class="ds-reliability-card">
                     <div class="ds-reliability-icon icon-purple"><i class="fas fa-globe"></i></div>
-                    <h4>Global Infrastructure</h4>
-                    <p>Tier III+ datacenters across Europe and North America — redundant power, cooling, and network connectivity.</p>
+                    <h4><?php echo e(__('dedicated_rel_global_title')); ?></h4>
+                    <p><?php echo e(__('dedicated_rel_global_desc')); ?></p>
                 </div>
                 <div class="ds-reliability-card">
                     <div class="ds-reliability-icon icon-amber"><i class="fas fa-project-diagram"></i></div>
-                    <h4>Redundant Networking</h4>
-                    <p>Multiple Tier-1 upstream providers with automatic failover. BGP routing for optimal path selection.</p>
+                    <h4><?php echo e(__('dedicated_rel_network_title')); ?></h4>
+                    <p><?php echo e(__('dedicated_rel_network_desc')); ?></p>
                 </div>
                 <div class="ds-reliability-card">
                     <div class="ds-reliability-icon icon-green"><i class="fas fa-clock"></i></div>
-                    <h4>99.99% Uptime SLA</h4>
-                    <p>Enterprise SLA with guaranteed uptime. Proactive monitoring and instant hardware replacement in case of failure.</p>
+                    <h4><?php echo e(__('dedicated_rel_uptime_title')); ?></h4>
+                    <p><?php echo e(__('dedicated_rel_uptime_desc')); ?></p>
                 </div>
                 <div class="ds-reliability-card">
                     <div class="ds-reliability-icon icon-purple"><i class="fas fa-key"></i></div>
-                    <h4>IPMI / KVM Access</h4>
-                    <p>Out-of-band management with IPMI and KVM-over-IP for full remote control — even when the OS is unreachable.</p>
+                    <h4><?php echo e(__('dedicated_rel_ipmi_title')); ?></h4>
+                    <p><?php echo e(__('dedicated_rel_ipmi_desc')); ?></p>
                 </div>
             </div>
         </div>
@@ -422,32 +422,32 @@ require_once __DIR__ . '/includes/topbar.php';
         <div class="container">
             <div class="ds-perf-layout">
                 <div class="ds-perf-content">
-                    <div class="section-tag">Performance</div>
-                    <h2 class="ds-perf-title">Raw Power, Zero Overhead</h2>
-                    <p class="ds-perf-desc">No hypervisor, no shared resources — your dedicated server delivers 100% of the hardware performance directly to your workloads.</p>
+                    <div class="section-tag"><?php echo e(__('dedicated_perf_tag')); ?></div>
+                    <h2 class="ds-perf-title"><?php echo e(__('dedicated_perf_title')); ?></h2>
+                    <p class="ds-perf-desc"><?php echo e(__('dedicated_perf_desc')); ?></p>
                     <ul class="ds-perf-highlights">
-                        <li><i class="fas fa-bolt"></i> <strong>Bare-metal performance</strong> — no virtualization overhead</li>
-                        <li><i class="fas fa-lock"></i> <strong>Full hardware isolation</strong> — single-tenant security</li>
-                        <li><i class="fas fa-network-wired"></i> <strong>Premium connectivity</strong> — multiple Tier-1 providers</li>
-                        <li><i class="fas fa-tools"></i> <strong>Custom hardware</strong> — configured to your exact needs</li>
+                        <li><i class="fas fa-bolt"></i> <?php echo __('dedicated_perf_li1'); ?></li>
+                        <li><i class="fas fa-lock"></i> <?php echo __('dedicated_perf_li2'); ?></li>
+                        <li><i class="fas fa-network-wired"></i> <?php echo __('dedicated_perf_li3'); ?></li>
+                        <li><i class="fas fa-tools"></i> <?php echo __('dedicated_perf_li4'); ?></li>
                     </ul>
                 </div>
                 <div class="ds-perf-stats">
                     <div class="ds-perf-stat-card">
-                        <div class="ds-perf-stat-value">100<span>Gbit/s</span></div>
-                        <div class="ds-perf-stat-label">Max Network Speed</div>
+                        <div class="ds-perf-stat-value"><?php echo e(__('dedicated_perf_stat1_value')); ?><span><?php echo e(__('dedicated_perf_stat1_unit')); ?></span></div>
+                        <div class="ds-perf-stat-label"><?php echo e(__('dedicated_perf_stat1_label')); ?></div>
                     </div>
                     <div class="ds-perf-stat-card">
-                        <div class="ds-perf-stat-value">900<span>TB</span></div>
-                        <div class="ds-perf-stat-label">Monthly Bandwidth</div>
+                        <div class="ds-perf-stat-value"><?php echo e(__('dedicated_perf_stat2_value')); ?><span><?php echo e(__('dedicated_perf_stat2_unit')); ?></span></div>
+                        <div class="ds-perf-stat-label"><?php echo e(__('dedicated_perf_stat2_label')); ?></div>
                     </div>
                     <div class="ds-perf-stat-card">
-                        <div class="ds-perf-stat-value">6<span>+</span></div>
-                        <div class="ds-perf-stat-label">Global Locations</div>
+                        <div class="ds-perf-stat-value"><?php echo e(__('dedicated_perf_stat3_value')); ?><span><?php echo e(__('dedicated_perf_stat3_unit')); ?></span></div>
+                        <div class="ds-perf-stat-label"><?php echo e(__('dedicated_perf_stat3_label')); ?></div>
                     </div>
                     <div class="ds-perf-stat-card">
-                        <div class="ds-perf-stat-value">99.99<span>%</span></div>
-                        <div class="ds-perf-stat-label">Uptime SLA</div>
+                        <div class="ds-perf-stat-value"><?php echo e(__('dedicated_perf_stat4_value')); ?><span><?php echo e(__('dedicated_perf_stat4_unit')); ?></span></div>
+                        <div class="ds-perf-stat-label"><?php echo e(__('dedicated_perf_stat4_label')); ?></div>
                     </div>
                 </div>
             </div>
@@ -459,18 +459,18 @@ require_once __DIR__ . '/includes/topbar.php';
         <div class="container">
             <div class="why-us-layout">
                 <div class="why-us-intro">
-                    <div class="section-tag">Advantages</div>
-                    <h2 class="why-us-title">Why YottaSrc Dedicated?</h2>
-                    <p class="why-us-desc">Enterprise-grade hardware with hands-on expert support. No middlemen, no templates — every server is built for your specific requirements.</p>
-                    <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-primary why-us-cta"><i class="fas fa-headset"></i> Talk to Sales</a>
+                    <div class="section-tag"><?php echo e(__('dedicated_why_tag')); ?></div>
+                    <h2 class="why-us-title"><?php echo e(__('dedicated_why_title')); ?></h2>
+                    <p class="why-us-desc"><?php echo e(__('dedicated_why_desc')); ?></p>
+                    <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-primary why-us-cta"><i class="fas fa-headset"></i> <?php echo e(__('dedicated_why_cta')); ?></a>
                 </div>
                 <div class="why-us-grid">
-                    <div class="why-us-card"><div class="why-us-card-icon"><i class="fas fa-server"></i></div><h4>Single-Tenant Hardware</h4><p>No shared resources. The entire physical server is dedicated exclusively to your workloads.</p></div>
-                    <div class="why-us-card"><div class="why-us-card-icon icon-green"><i class="fas fa-tachometer-alt"></i></div><h4>Up to 100 Gbit/s</h4><p>Premium connectivity options from 1G to 100G with up to 900TB monthly transfer.</p></div>
-                    <div class="why-us-card"><div class="why-us-card-icon icon-purple"><i class="fas fa-cogs"></i></div><h4>Custom Configurations</h4><p>Choose CPU, RAM, storage, bandwidth, and location — we build it to your exact specifications.</p></div>
-                    <div class="why-us-card"><div class="why-us-card-icon icon-amber"><i class="fas fa-network-wired"></i></div><h4>BGP / ASN Support</h4><p>Announce your own IP ranges via BGP sessions. Full routing control for network professionals.</p></div>
-                    <div class="why-us-card"><div class="why-us-card-icon icon-green"><i class="fas fa-tags"></i></div><h4>Transparent Pricing</h4><p>No hidden fees, no surprise renewals. Same price on renewal, always.</p></div>
-                    <div class="why-us-card"><div class="why-us-card-icon icon-purple"><i class="fas fa-headset"></i></div><h4>10-Min Response Time</h4><p>24/7 expert support with average 10-minute response. Real engineers, not chatbots.</p></div>
+                    <div class="why-us-card"><div class="why-us-card-icon"><i class="fas fa-server"></i></div><h4><?php echo e(__('dedicated_why_hw_title')); ?></h4><p><?php echo e(__('dedicated_why_hw_desc')); ?></p></div>
+                    <div class="why-us-card"><div class="why-us-card-icon icon-green"><i class="fas fa-tachometer-alt"></i></div><h4><?php echo e(__('dedicated_why_speed_title')); ?></h4><p><?php echo e(__('dedicated_why_speed_desc')); ?></p></div>
+                    <div class="why-us-card"><div class="why-us-card-icon icon-purple"><i class="fas fa-cogs"></i></div><h4><?php echo e(__('dedicated_why_custom_title')); ?></h4><p><?php echo e(__('dedicated_why_custom_desc')); ?></p></div>
+                    <div class="why-us-card"><div class="why-us-card-icon icon-amber"><i class="fas fa-network-wired"></i></div><h4><?php echo e(__('dedicated_why_bgp_title')); ?></h4><p><?php echo e(__('dedicated_why_bgp_desc')); ?></p></div>
+                    <div class="why-us-card"><div class="why-us-card-icon icon-green"><i class="fas fa-tags"></i></div><h4><?php echo e(__('dedicated_why_pricing_title')); ?></h4><p><?php echo e(__('dedicated_why_pricing_desc')); ?></p></div>
+                    <div class="why-us-card"><div class="why-us-card-icon icon-purple"><i class="fas fa-headset"></i></div><h4><?php echo e(__('dedicated_why_response_title')); ?></h4><p><?php echo e(__('dedicated_why_response_desc')); ?></p></div>
                 </div>
             </div>
         </div>
@@ -480,51 +480,51 @@ require_once __DIR__ . '/includes/topbar.php';
     <section class="faq-section reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">FAQ</div>
-                <h2>Frequently asked questions</h2>
-                <p>Everything you need to know about our dedicated servers — from ordering to management.</p>
+                <div class="section-tag"><?php echo e(__('dedicated_faq_tag')); ?></div>
+                <h2><?php echo e(__('dedicated_faq_title')); ?></h2>
+                <p><?php echo e(__('dedicated_faq_desc')); ?></p>
             </div>
             <div class="faq-layout faq-layout--full">
                 <div class="faq-panels">
                     <div class="faq-panel active" id="faq-ds-all">
                         <div class="faq-item">
-                            <button class="faq-question"><span>How long does delivery take?</span><i class="fas fa-chevron-down"></i></button>
-                            <div class="faq-answer"><p>Pre-configured servers from our offers list are typically delivered within 1–3 business days. Custom builds may take up to 7 business days depending on hardware availability and configuration complexity.</p></div>
+                            <button class="faq-question"><span><?php echo e(__('dedicated_faq_q1')); ?></span><i class="fas fa-chevron-down"></i></button>
+                            <div class="faq-answer"><p><?php echo e(__('dedicated_faq_a1')); ?></p></div>
                         </div>
                         <div class="faq-item">
-                            <button class="faq-question"><span>Can I customize the server hardware?</span><i class="fas fa-chevron-down"></i></button>
-                            <div class="faq-answer"><p>Absolutely. We offer full hardware customization — CPU, RAM, storage type and capacity, network port speed, bandwidth packages, and add-ons like DDoS protection, IPMI access, and additional IPs. Contact our sales team with your requirements.</p></div>
+                            <button class="faq-question"><span><?php echo e(__('dedicated_faq_q2')); ?></span><i class="fas fa-chevron-down"></i></button>
+                            <div class="faq-answer"><p><?php echo e(__('dedicated_faq_a2')); ?></p></div>
                         </div>
                         <div class="faq-item">
-                            <button class="faq-question"><span>Do you offer BGP sessions?</span><i class="fas fa-chevron-down"></i></button>
-                            <div class="faq-answer"><p>Yes, we support BGP sessions for customers who need to announce their own IP ranges via their ASN. This is available as an add-on for dedicated servers in supported locations.</p></div>
+                            <button class="faq-question"><span><?php echo e(__('dedicated_faq_q3')); ?></span><i class="fas fa-chevron-down"></i></button>
+                            <div class="faq-answer"><p><?php echo e(__('dedicated_faq_a3')); ?></p></div>
                         </div>
                         <div class="faq-item">
-                            <button class="faq-question"><span>What locations are available?</span><i class="fas fa-chevron-down"></i></button>
-                            <div class="faq-answer"><p>We currently offer dedicated servers in France, Netherlands, Germany, United Kingdom, Turkey, and the United States. All facilities are Tier III+ certified with redundant power, cooling, and network connectivity.</p></div>
+                            <button class="faq-question"><span><?php echo e(__('dedicated_faq_q4')); ?></span><i class="fas fa-chevron-down"></i></button>
+                            <div class="faq-answer"><p><?php echo e(__('dedicated_faq_a4')); ?></p></div>
                         </div>
                         <div class="faq-item">
-                            <button class="faq-question"><span>Is DDoS protection included?</span><i class="fas fa-chevron-down"></i></button>
-                            <div class="faq-answer"><p>Basic network-level DDoS protection is included with every server. Advanced protection with higher mitigation capacity is available as a paid add-on for servers in supported locations.</p></div>
+                            <button class="faq-question"><span><?php echo e(__('dedicated_faq_q5')); ?></span><i class="fas fa-chevron-down"></i></button>
+                            <div class="faq-answer"><p><?php echo e(__('dedicated_faq_a5')); ?></p></div>
                         </div>
                         <div class="faq-item">
-                            <button class="faq-question"><span>Do you offer DMCA-ignored servers?</span><i class="fas fa-chevron-down"></i></button>
-                            <div class="faq-answer"><p>Yes, we offer DMCA-ignored dedicated servers in select locations. Contact our sales team to discuss your requirements and available options.</p></div>
+                            <button class="faq-question"><span><?php echo e(__('dedicated_faq_q6')); ?></span><i class="fas fa-chevron-down"></i></button>
+                            <div class="faq-answer"><p><?php echo e(__('dedicated_faq_a6')); ?></p></div>
                         </div>
                         <div class="faq-item">
-                            <button class="faq-question"><span>What payment methods are accepted?</span><i class="fas fa-chevron-down"></i></button>
-                            <div class="faq-answer"><p>We accept credit/debit cards, PayPal, bank transfers, and cryptocurrency payments. All transactions are secure and encrypted.</p></div>
+                            <button class="faq-question"><span><?php echo e(__('dedicated_faq_q7')); ?></span><i class="fas fa-chevron-down"></i></button>
+                            <div class="faq-answer"><p><?php echo e(__('dedicated_faq_a7')); ?></p></div>
                         </div>
                         <div class="faq-item">
-                            <button class="faq-question"><span>Can I upgrade my server later?</span><i class="fas fa-chevron-down"></i></button>
-                            <div class="faq-answer"><p>Hardware upgrades such as additional RAM, storage, or network upgrades can be arranged by contacting our support team. Some upgrades may require brief downtime for physical installation.</p></div>
+                            <button class="faq-question"><span><?php echo e(__('dedicated_faq_q8')); ?></span><i class="fas fa-chevron-down"></i></button>
+                            <div class="faq-answer"><p><?php echo e(__('dedicated_faq_a8')); ?></p></div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="faq-actions">
-                <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-primary">Contact Sales <i class="fas fa-headset"></i></a>
-                <a href="<?php echo e(SITE_URL); ?>/faq" class="btn-secondary">Browse All FAQ <i class="fas fa-arrow-right"></i></a>
+                <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-primary"><?php echo e(__('dedicated_faq_cta_sales')); ?> <i class="fas fa-headset"></i></a>
+                <a href="<?php echo e(SITE_URL); ?>/faq" class="btn-secondary"><?php echo e(__('dedicated_faq_cta_browse')); ?> <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
@@ -535,9 +535,9 @@ require_once __DIR__ . '/includes/topbar.php';
             <div class="promo-cta-inner">
                 <div class="promo-cta-glow"></div>
                 <div class="promo-cta-icon"><i class="fas fa-server"></i></div>
-                <h2>Need a Custom Dedicated Server?</h2>
-                <p>Our infrastructure team will design and deploy a server tailored to your exact requirements. Contact sales for a personalized quote.</p>
-                <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-primary"><i class="fas fa-headset"></i> Contact Sales</a>
+                <h2><?php echo e(__('dedicated_cta_title')); ?></h2>
+                <p><?php echo e(__('dedicated_cta_desc')); ?></p>
+                <a href="<?php echo e(SITE_URL); ?>/contact-us/" class="btn-primary"><i class="fas fa-headset"></i> <?php echo e(__('dedicated_cta_btn')); ?></a>
             </div>
         </div>
     </section>
