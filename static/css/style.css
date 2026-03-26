@@ -818,6 +818,166 @@ img {
     gap: 10px;
 }
 
+/* ─── Frontend User Menu (mirrors dashboard #userMenu) ─── */
+.fe-user-menu {
+    position: relative;
+}
+
+.fe-user-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    border: none;
+    background: none;
+    transition: all var(--duration-fast) ease;
+}
+
+.fe-user-btn:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.fe-user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-full);
+    background: linear-gradient(135deg, var(--brand-primary), var(--brand-accent));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.82rem;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.fe-user-avatar--lg {
+    width: 40px;
+    height: 40px;
+    font-size: 0.92rem;
+}
+
+.fe-user-name {
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.fe-user-arrow {
+    font-size: 0.65rem;
+    color: var(--text-tertiary);
+    transition: transform var(--duration-fast) ease;
+}
+
+.fe-user-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 240px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-elevated);
+    padding: 6px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: all var(--duration-fast) var(--ease-out);
+    z-index: 1100;
+}
+
+[dir="rtl"] .fe-user-dropdown {
+    right: auto;
+    left: 0;
+}
+
+.fe-user-menu.open .fe-user-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.fe-user-menu.open .fe-user-arrow {
+    transform: rotate(180deg);
+}
+
+.fe-user-dropdown-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+}
+
+.fe-user-dropdown-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    min-width: 0;
+}
+
+.fe-user-dropdown-name {
+    font-size: 0.84rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.fe-user-dropdown-email {
+    font-size: 0.74rem;
+    color: var(--text-tertiary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.fe-user-dropdown-divider {
+    height: 1px;
+    background: var(--border-secondary);
+    margin: 4px 0;
+}
+
+.fe-user-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 0.84rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: all var(--duration-fast) ease;
+    text-decoration: none;
+}
+
+.fe-user-dropdown-item:hover {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+.fe-user-dropdown-item i {
+    width: 16px;
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+.fe-user-dropdown-item--danger {
+    color: var(--brand-error);
+}
+
+.fe-user-dropdown-item--danger:hover {
+    background: rgba(239, 68, 68, 0.08);
+    color: var(--brand-error);
+}
+
 .nav-mobile-toggle {
     display: none;
     width: 40px;
@@ -3725,6 +3885,30 @@ img {
     .switcher-dropdown .switcher-label,
     .switcher-dropdown .switcher-arrow {
         display: none;
+    }
+
+    /* Mobile: hide user name, show avatar only */
+    .fe-user-name,
+    .fe-user-arrow {
+        display: none;
+    }
+
+    .fe-user-btn {
+        padding: 4px;
+    }
+
+    .fe-user-dropdown {
+        position: fixed;
+        top: 52px;
+        right: 12px;
+        left: auto;
+        min-width: 240px;
+        max-width: calc(100vw - 24px);
+    }
+
+    [dir="rtl"] .fe-user-dropdown {
+        right: auto;
+        left: 12px;
     }
 
     .switcher-dropdown .switcher-toggle {

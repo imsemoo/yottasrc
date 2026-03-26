@@ -53,6 +53,9 @@ return [
     'nav_get_started'         => 'Get Started',
     'nav_my_account'          => 'My Account',
     'nav_dashboard'           => 'Dashboard',
+    'nav_profile'             => 'Profile',
+    'nav_security'            => 'Security',
+    'nav_settings'            => 'Settings',
     'nav_logout'              => 'Log Out',
 
     // ── Switchers ──

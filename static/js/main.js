@@ -480,6 +480,43 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     /* ═══════════════════════════════════════════
+       Module 8b: Frontend User Menu Dropdown
+       ═══════════════════════════════════════════ */
+    const FeUserMenu = (function () {
+        function init() {
+            var menu = document.getElementById('feUserMenu');
+            if (!menu) return;
+
+            var btn = document.getElementById('feUserMenuBtn');
+            if (!btn) return;
+
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                SwitcherDropdowns.closeAll();
+                menu.classList.toggle('open');
+                btn.setAttribute('aria-expanded', menu.classList.contains('open'));
+            });
+
+            document.addEventListener('click', function (e) {
+                if (!e.target.closest('#feUserMenu')) {
+                    menu.classList.remove('open');
+                    btn.setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') {
+                    menu.classList.remove('open');
+                    btn.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+
+        return { init: init };
+    })();
+
+
+    /* ═══════════════════════════════════════════
        Module 9: Mobile Drawer
        ═══════════════════════════════════════════ */
     const MobileDrawer = (function () {
@@ -2496,6 +2533,7 @@ document.addEventListener('DOMContentLoaded', function () {
     VpsCTAs.init();
     MsKeysCTAs.init();
     SwitcherDropdowns.init();
+    FeUserMenu.init();
     MobileDrawer.init();
     FAQSection.init();
     TestimonialsCarousel.init();

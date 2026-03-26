@@ -150,19 +150,46 @@
                     </div>
 
                     <!-- Logged-in state (authenticated user) -->
-                    <div class="nav-auth nav-auth-user" style="display:none;">
-                        <div class="switcher-dropdown" id="userMenu">
-                            <button class="nav-profile-circle" aria-label="<?php echo e(__('nav_my_account')); ?>">
-                                <i class="fas fa-user"></i>
+                    <?php
+                    $fe_user = $fe_user ?? ['first_name' => 'Islam', 'last_name' => 'Dev', 'email' => 'en.developer2@gmail.com'];
+                    $fe_initials = strtoupper(substr($fe_user['first_name'], 0, 1) . substr($fe_user['last_name'], 0, 1));
+                    $fe_display  = e($fe_user['first_name']);
+                    ?>
+                    <div class="nav-auth nav-auth-user" >
+                        <div class="fe-user-menu" id="feUserMenu">
+                            <button class="fe-user-btn" id="feUserMenuBtn" aria-expanded="false">
+                                <div class="fe-user-avatar"><?php echo $fe_initials; ?></div>
+                                <span class="fe-user-name"><?php echo $fe_display; ?></span>
+                                <i class="fas fa-chevron-down fe-user-arrow"></i>
                             </button>
-                            <div class="switcher-menu">
-                                <div class="switcher-menu-title"><?php echo e(__('nav_my_account')); ?></div>
-                                <a href="<?php echo e(CONSOLE_URL); ?>/dashboard" class="switcher-option">
+                            <div class="fe-user-dropdown" id="feUserDropdown">
+                                <div class="fe-user-dropdown-header">
+                                    <div class="fe-user-avatar fe-user-avatar--lg"><?php echo $fe_initials; ?></div>
+                                    <div class="fe-user-dropdown-info">
+                                        <span class="fe-user-dropdown-name"><?php echo e($fe_user['first_name'] . ' ' . $fe_user['last_name']); ?></span>
+                                        <span class="fe-user-dropdown-email"><?php echo e($fe_user['email']); ?></span>
+                                    </div>
+                                </div>
+                                <div class="fe-user-dropdown-divider"></div>
+                                <a href="<?php echo e(CONSOLE_URL); ?>/dashboard" class="fe-user-dropdown-item">
                                     <i class="fas fa-tachometer-alt"></i>
                                     <span><?php echo e(__('nav_dashboard')); ?></span>
                                 </a>
-                                <a href="<?php echo e(CONSOLE_URL); ?>/logout" class="switcher-option">
-                                    <i class="fas fa-sign-out-alt"></i>
+                                <a href="<?php echo e(CONSOLE_URL); ?>/profile" class="fe-user-dropdown-item">
+                                    <i class="fas fa-user"></i>
+                                    <span><?php echo e(__('nav_profile')); ?></span>
+                                </a>
+                                <a href="<?php echo e(CONSOLE_URL); ?>/profile/security" class="fe-user-dropdown-item">
+                                    <i class="fas fa-shield-halved"></i>
+                                    <span><?php echo e(__('nav_security')); ?></span>
+                                </a>
+                                <a href="<?php echo e(CONSOLE_URL); ?>/profile/settings" class="fe-user-dropdown-item">
+                                    <i class="fas fa-gear"></i>
+                                    <span><?php echo e(__('nav_settings')); ?></span>
+                                </a>
+                                <div class="fe-user-dropdown-divider"></div>
+                                <a href="<?php echo e(CONSOLE_URL); ?>/logout" class="fe-user-dropdown-item fe-user-dropdown-item--danger" id="logoutBtn">
+                                    <i class="fas fa-right-from-bracket"></i>
                                     <span><?php echo e(__('nav_logout')); ?></span>
                                 </a>
                             </div>
