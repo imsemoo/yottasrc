@@ -5056,3 +5056,652 @@ img {
         text-align: center;
     }
 }
+
+
+/* ═══════════════════════════════════════════
+   ALERT / NOTIFICATION SYSTEM
+   ═══════════════════════════════════════════ */
+
+/* ── Base Alert ── */
+.alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 20px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-primary);
+    background: var(--bg-card);
+    position: relative;
+    transition: opacity var(--duration-base) var(--ease-out),
+                transform var(--duration-base) var(--ease-out);
+}
+
+.alert + .alert {
+    margin-top: 12px;
+}
+
+/* ── Icon ── */
+.alert-icon {
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    font-size: 16px;
+}
+
+/* ── Content ── */
+.alert-content {
+    flex: 1;
+    min-width: 0;
+    padding-top: 2px;
+}
+
+.alert-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    line-height: 1.4;
+}
+
+.alert-content p,
+.alert-desc {
+    font-family: var(--font-body);
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.alert-content a {
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color var(--duration-fast) ease;
+}
+
+/* ── Close Button ── */
+.alert-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    color: var(--text-tertiary);
+    border-radius: var(--radius-xs);
+    cursor: pointer;
+    font-size: 13px;
+    transition: background var(--duration-fast) ease,
+                color var(--duration-fast) ease;
+    padding: 0;
+    line-height: 1;
+}
+
+.alert-close:hover {
+    background: var(--border-primary);
+    color: var(--text-primary);
+}
+
+[dir="rtl"] .alert-close {
+    right: auto;
+    left: 12px;
+}
+
+/* ── Dismiss Animation ── */
+.alert.alert-dismissing {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+    pointer-events: none;
+}
+
+
+/* ═══ Alert Types ═══ */
+
+/* ── Success ── */
+.alert-success {
+    border-color: rgba(16, 185, 129, 0.25);
+    background: rgba(16, 185, 129, 0.06);
+}
+.alert-success .alert-icon {
+    background: rgba(16, 185, 129, 0.12);
+    color: var(--brand-secondary);
+}
+.alert-success .alert-content a {
+    color: var(--brand-secondary);
+}
+.alert-success .alert-content a:hover {
+    color: #0d9668;
+}
+
+/* ── Error ── */
+.alert-error {
+    border-color: rgba(239, 68, 68, 0.25);
+    background: rgba(239, 68, 68, 0.06);
+}
+.alert-error .alert-icon {
+    background: rgba(239, 68, 68, 0.12);
+    color: var(--brand-error);
+}
+.alert-error .alert-content a {
+    color: var(--brand-error);
+}
+.alert-error .alert-content a:hover {
+    color: #dc2626;
+}
+
+/* ── Warning ── */
+.alert-warning {
+    border-color: rgba(245, 158, 11, 0.25);
+    background: rgba(245, 158, 11, 0.06);
+}
+.alert-warning .alert-icon {
+    background: rgba(245, 158, 11, 0.12);
+    color: var(--brand-warning);
+}
+.alert-warning .alert-content a {
+    color: var(--brand-warning);
+}
+.alert-warning .alert-content a:hover {
+    color: #d97706;
+}
+
+/* ── Info ── */
+.alert-info {
+    border-color: rgba(37, 99, 235, 0.25);
+    background: rgba(37, 99, 235, 0.06);
+}
+.alert-info .alert-icon {
+    background: rgba(37, 99, 235, 0.12);
+    color: var(--brand-primary);
+}
+.alert-info .alert-content a {
+    color: var(--brand-primary);
+}
+.alert-info .alert-content a:hover {
+    color: var(--brand-primary-hover);
+}
+
+
+/* ═══ Alert Variants ═══ */
+
+/* ── Compact ── */
+.alert-compact {
+    padding: 10px 14px;
+    gap: 10px;
+}
+.alert-compact .alert-icon {
+    width: 30px;
+    height: 30px;
+    font-size: 13px;
+}
+.alert-compact .alert-title {
+    font-size: 13px;
+    margin-bottom: 2px;
+}
+.alert-compact .alert-content p,
+.alert-compact .alert-desc {
+    font-size: 12.5px;
+}
+
+/* ── Inline (no background, minimal) ── */
+.alert-inline {
+    background: transparent;
+    border: none;
+    padding: 8px 0;
+    border-radius: 0;
+}
+.alert-inline .alert-icon {
+    background: transparent;
+    width: auto;
+    height: auto;
+    font-size: 15px;
+}
+
+/* ── With Actions ── */
+.alert-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.alert-actions .alert-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 16px;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: background var(--duration-fast) ease,
+                transform var(--duration-fast) ease;
+}
+
+.alert-btn:active {
+    transform: scale(0.97);
+}
+
+.alert-btn-primary {
+    color: #fff;
+}
+.alert-success .alert-btn-primary {
+    background: var(--brand-secondary);
+}
+.alert-success .alert-btn-primary:hover {
+    background: #0d9668;
+}
+.alert-error .alert-btn-primary {
+    background: var(--brand-error);
+}
+.alert-error .alert-btn-primary:hover {
+    background: #dc2626;
+}
+.alert-warning .alert-btn-primary {
+    background: var(--brand-warning);
+}
+.alert-warning .alert-btn-primary:hover {
+    background: #d97706;
+}
+.alert-info .alert-btn-primary {
+    background: var(--brand-primary);
+}
+.alert-info .alert-btn-primary:hover {
+    background: var(--brand-primary-hover);
+}
+
+.alert-btn-ghost {
+    background: transparent;
+    color: var(--text-secondary);
+}
+.alert-btn-ghost:hover {
+    background: var(--border-primary);
+    color: var(--text-primary);
+}
+
+/* ── Auto-dismiss progress bar ── */
+.alert-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+    transition: width linear;
+}
+.alert-success .alert-progress { background: var(--brand-secondary); }
+.alert-error   .alert-progress { background: var(--brand-error); }
+.alert-warning .alert-progress { background: var(--brand-warning); }
+.alert-info    .alert-progress { background: var(--brand-primary); }
+
+[dir="rtl"] .alert-progress {
+    left: auto;
+    right: 0;
+}
+
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+    .alert {
+        padding: 14px 16px;
+        gap: 12px;
+    }
+    .alert-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .alert-actions .alert-btn {
+        justify-content: center;
+    }
+}
+
+
+/* ═══════════════════════════════════════════
+   ERROR PAGE SYSTEM
+   ═══════════════════════════════════════════
+   Unified layout for all error pages.
+   Variants: default (blue) | --danger (red) | --warning (amber)
+   Usage:    .error-page                   → blue/primary
+             .error-page.error-page--danger  → red
+             .error-page.error-page--warning → amber
+   ═══════════════════════════════════════════ */
+
+/* ── Variant tokens (scoped) ── */
+.error-page {
+    --_error-hue: var(--brand-primary);
+    --_error-hue-end: var(--brand-accent);
+    --_error-bg: rgba(37, 99, 235, 0.07);
+    --_error-border: rgba(37, 99, 235, 0.18);
+    --_error-glow: rgba(37, 99, 235, 0.08);
+}
+
+.error-page--danger {
+    --_error-hue: var(--brand-error);
+    --_error-hue-end: #f97316;
+    --_error-bg: rgba(239, 68, 68, 0.07);
+    --_error-border: rgba(239, 68, 68, 0.18);
+    --_error-glow: rgba(239, 68, 68, 0.08);
+}
+
+.error-page--warning {
+    --_error-hue: var(--brand-warning);
+    --_error-hue-end: #f97316;
+    --_error-bg: rgba(245, 158, 11, 0.07);
+    --_error-border: rgba(245, 158, 11, 0.18);
+    --_error-glow: rgba(245, 158, 11, 0.08);
+}
+
+
+/* ── Full-page container ── */
+.error-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-primary);
+    padding: 60px var(--container-padding);
+    position: relative;
+    overflow: hidden;
+}
+
+.error-page::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 45% at 50% 35%, var(--_error-glow) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+
+/* ── Card (content wrapper) ── */
+.error-card {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 520px;
+    width: 100%;
+}
+
+
+/* ── Icon ── */
+.error-icon {
+    width: 88px;
+    height: 88px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 32px;
+    border-radius: var(--radius-lg);
+    font-size: 34px;
+    color: var(--_error-hue);
+    background: var(--_error-bg);
+    border: 1px solid var(--_error-border);
+}
+
+
+/* ── Error code (big number) ── */
+.error-code {
+    font-family: var(--font-display);
+    font-size: 110px;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 10px;
+    letter-spacing: -3px;
+}
+
+.error-code span {
+    background: linear-gradient(135deg, var(--_error-hue), var(--_error-hue-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+
+/* ── Badge ── */
+.error-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    border-radius: var(--radius-full);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.6px;
+    margin-bottom: 20px;
+    color: var(--_error-hue);
+    background: var(--_error-bg);
+    border: 1px solid var(--_error-border);
+}
+
+.error-badge i {
+    font-size: 7px;
+    animation: errorPulse 2s ease-in-out infinite;
+}
+
+@keyframes errorPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+
+/* ── Typography ── */
+.error-title {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    line-height: 1.3;
+}
+
+.error-desc {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0 auto 32px;
+    max-width: 440px;
+}
+
+
+/* ── Action buttons ── */
+.error-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.error-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all var(--duration-base) var(--ease-out);
+}
+
+.error-btn:active {
+    transform: scale(0.97);
+}
+
+.error-btn-primary {
+    background: var(--brand-primary);
+    color: #fff;
+    box-shadow: 0 2px 12px rgba(37, 99, 235, 0.25);
+}
+
+.error-btn-primary:hover {
+    background: var(--brand-primary-hover);
+    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.35);
+    transform: translateY(-1px);
+}
+
+.error-btn-ghost {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-primary);
+}
+
+.error-btn-ghost:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-active);
+    transform: translateY(-1px);
+}
+
+
+/* ── Helper links ── */
+.error-links {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-primary);
+}
+
+.error-links-label {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-tertiary);
+    margin-bottom: 14px;
+}
+
+.error-links-grid {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.error-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-card);
+    border: 1px solid var(--border-primary);
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all var(--duration-fast) ease;
+}
+
+.error-link i {
+    font-size: 13px;
+    color: var(--text-tertiary);
+    width: 14px;
+    text-align: center;
+}
+
+.error-link:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-active);
+    color: var(--text-primary);
+}
+
+.error-link:hover i {
+    color: var(--_error-hue);
+}
+
+
+/* ── Meta line ── */
+.error-meta {
+    margin-top: 16px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--text-tertiary);
+}
+
+.error-meta a {
+    color: var(--brand-primary);
+    text-decoration: none;
+}
+
+.error-meta a:hover {
+    text-decoration: underline;
+}
+
+.error-meta code {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    background: var(--bg-tertiary);
+    padding: 2px 8px;
+    border-radius: var(--radius-xs);
+}
+
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .error-page {
+        padding: 48px var(--container-padding);
+    }
+    .error-icon {
+        width: 72px;
+        height: 72px;
+        font-size: 28px;
+        margin-bottom: 24px;
+    }
+    .error-code {
+        font-size: 80px;
+        letter-spacing: -2px;
+    }
+    .error-title {
+        font-size: 22px;
+    }
+    .error-desc {
+        font-size: 14px;
+    }
+    .error-btn {
+        padding: 11px 22px;
+        font-size: 13px;
+    }
+    .error-links-grid {
+        gap: 6px;
+    }
+    .error-link {
+        padding: 7px 12px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .error-page {
+        padding: 36px 16px;
+    }
+    .error-code {
+        font-size: 64px;
+    }
+    .error-title {
+        font-size: 20px;
+    }
+    .error-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+    .error-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}

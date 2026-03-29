@@ -2520,6 +2520,48 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     /* ═══════════════════════════════════════════
+       Module: Alert Dismiss & Auto-dismiss
+       ═══════════════════════════════════════════ */
+    const AlertDismiss = (function () {
+        function dismiss(el) {
+            el.classList.add('alert-dismissing');
+            el.addEventListener('transitionend', function () {
+                el.remove();
+            }, { once: true });
+            // Fallback if transition doesn't fire
+            setTimeout(function () { if (el.parentNode) el.remove(); }, 400);
+        }
+
+        function init() {
+            // Close buttons
+            document.addEventListener('click', function (e) {
+                var btn = e.target.closest('.alert-close');
+                if (!btn) return;
+                var alert = btn.closest('.alert');
+                if (alert) dismiss(alert);
+            });
+
+            // Auto-dismiss: alerts with data-auto-dismiss="<ms>"
+            document.querySelectorAll('.alert[data-auto-dismiss]').forEach(function (el) {
+                var duration = parseInt(el.getAttribute('data-auto-dismiss'), 10) || 5000;
+                // Animate progress bar if present
+                var bar = el.querySelector('.alert-progress');
+                if (bar) {
+                    bar.style.width = '100%';
+                    // Force reflow then animate
+                    bar.offsetWidth;
+                    bar.style.transitionDuration = duration + 'ms';
+                    bar.style.width = '0%';
+                }
+                setTimeout(function () { dismiss(el); }, duration);
+            });
+        }
+
+        return { init: init, dismiss: dismiss };
+    })();
+
+
+    /* ═══════════════════════════════════════════
        INITIALIZE ALL MODULES
        ═══════════════════════════════════════════ */
     ThemeToggle.init();
@@ -2537,6 +2579,7 @@ document.addEventListener('DOMContentLoaded', function () {
     MobileDrawer.init();
     FAQSection.init();
     TestimonialsCarousel.init();
+    AlertDismiss.init();
     TechSwiper.init();
     ServicesSwiper.init();
     TutorialsSwiper.init();
