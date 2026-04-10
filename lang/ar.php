@@ -884,6 +884,205 @@ return [
     'domains_transfer_title'      => 'انقل <span class="highlight">نطاقاتك</span> إلى YottaSrc',
     'domains_transfer_desc'       => 'انقل نطاقاتك إلى YottaSrc في دقائق. احصل على تمديد سنة مجاني، خصوصية WHOIS مجانية، و DNS متميز — بدون تكلفة إضافية.',
 
+    // ── Domains: Registration page ──
+    'domains_reg_breadcrumb_parent'   => 'النطاقات',
+    'domains_reg_badge1'              => 'أكثر من 500 امتداد',
+    'domains_reg_badge2'              => 'خصوصية WHOIS مجانية',
+    'domains_reg_badge3'              => 'إدارة DNS مجانية',
+    'domains_reg_badge4'              => 'تفعيل فوري',
+
+    'domains_reg_search_title'        => 'ابحث عن نطاقك المثالي',
+    'domains_reg_search_placeholder'  => 'أدخل اسم النطاق المطلوب…',
+    'domains_reg_search_btn'          => 'بحث',
+    'domains_reg_search_ext_placeholder' => 'ابحث في الامتدادات…',
+
+    'domains_reg_pricing_tag'         => 'الامتدادات الشائعة',
+    'domains_reg_pricing_title'       => 'أكثر امتدادات النطاقات شيوعاً',
+    'domains_reg_pricing_desc'        => 'اختر من بين أوثق امتدادات النطاقات في العالم. أسعار شفافة، بلا رسوم خفية، ومزايا مجانية مع كل نطاق.',
+
+    'domains_reg_year'                => 'سنة',
+    'domains_reg_yr'                  => 'سنة',
+    'domains_reg_renewal'             => 'التجديد',
+    'domains_reg_register_btn'        => 'سجّل',
+    'domains_reg_popular'             => 'الأكثر شيوعاً',
+
+    'domains_reg_tld_com_desc'        => 'الامتداد الأكثر شهرة في العالم. مثالي لأي نوع من الأعمال.',
+    'domains_reg_tld_net_desc'        => 'بديل موثوق لشركات التقنية والشبكات والبنية التحتية.',
+    'domains_reg_tld_org_desc'        => 'مثالي للمنظمات غير الربحية والمجتمعات ومشاريع المصدر المفتوح.',
+    'domains_reg_tld_io_desc'         => 'الخيار المفضل للشركات الناشئة والمطورين وشركات التقنية.',
+    'domains_reg_tld_dev_desc'        => 'مصمّم للمطورين. آمن افتراضياً مع HTTPS مفعّل مسبقاً.',
+    'domains_reg_tld_co_desc'         => 'بديل قصير وعصري لـ .com — رائع للشركات.',
+    'domains_reg_tld_me_desc'         => 'العلامة الشخصية بسهولة. مثالي للمعارض والمدونات.',
+    'domains_reg_tld_store_desc'      => 'مصمّم لتجار التجزئة عبر الإنترنت وعلامات التجارة الإلكترونية.',
+
+    'domains_reg_browse_all'          => 'تبحث عن شيء محدد؟ <a href="#all-tlds">تصفح كل الـ 500+ امتداد</a> أو تواصل معنا للحصول على أسعار الجملة.',
+
+    'domains_reg_all_ext_tag'         => 'قائمة الأسعار الكاملة',
+    'domains_reg_all_ext_title'       => 'كل الامتدادات المتاحة',
+    'domains_reg_all_ext_desc'        => 'تصفح كتالوج امتدادات النطاقات الكامل. صنّف حسب الفئة أو ابحث عن الذي تحتاجه.',
+
+    'domains_reg_filter_all'          => 'الكل',
+    'domains_reg_filter_popular'      => 'الأكثر شيوعاً',
+    'domains_reg_filter_sale'         => 'تخفيضات',
+    'domains_reg_filter_country'      => 'دول',
+
+    'domains_reg_th_extension'        => 'الامتداد',
+    'domains_reg_th_register'         => 'تسجيل',
+    'domains_reg_th_transfer'         => 'نقل',
+    'domains_reg_th_renew'            => 'تجديد',
+
+    'domains_reg_badge_hot'           => 'الأعلى طلباً',
+    'domains_reg_badge_sale'          => 'تخفيض',
+    'domains_reg_badge_new'           => 'جديد',
+
+    'domains_reg_no_results'          => 'لا توجد امتدادات تطابق بحثك.',
+    'domains_reg_table_footer'        => 'الأسعار المعروضة باليورو ولا تشمل الضرائب المعمول بها. <a href="/contact/">تواصل معنا</a> للحصول على أسعار الجملة.',
+
+    'domains_reg_features_tag'        => 'المزايا المُضمّنة',
+    'domains_reg_features_title'      => 'كل ما تحتاجه مع كل نطاق',
+    'domains_reg_features_desc'       => 'بلا عروض إضافية، بلا رسوم خفية. كل نطاق يأتي مُحمّلاً بالأساسيات التي تتوقع دفع ثمنها في أماكن أخرى.',
+
+    'domains_reg_feat_whois_title'    => 'خصوصية WHOIS مجانية',
+    'domains_reg_feat_whois_desc'     => 'أخفِ بيانات الاتصال الشخصية من سجلات WHOIS العامة — مجاني للأبد.',
+    'domains_reg_feat_dns_title'      => 'DNS متميز',
+    'domains_reg_feat_dns_desc'       => 'DNS سريع وموثوق وموزّع عالمياً مع إدارة كاملة للسجلات مدمجة.',
+    'domains_reg_feat_email_title'    => 'توجيه البريد الإلكتروني',
+    'domains_reg_feat_email_desc'     => 'أعد توجيه رسائل البريد من نطاقك إلى أي صندوق وارد تستخدمه — بدون الحاجة لصندوق بريد منفصل.',
+    'domains_reg_feat_lock_title'     => 'قفل النطاق',
+    'domains_reg_feat_lock_desc'      => 'احمِ نطاقك من النقل غير المصرّح به بنقرة واحدة.',
+    'domains_reg_feat_renewal_title'  => 'التجديد التلقائي',
+    'domains_reg_feat_renewal_desc'   => 'لن تفقد نطاقك أبداً. فعّل التجديد التلقائي وانسَ تواريخ الانتهاء.',
+
+    'domains_reg_why_tag'             => 'لماذا YottaSrc',
+    'domains_reg_why_title'           => 'لماذا تسجّل نطاقك معنا',
+
+    'domains_reg_why_instant_title'   => 'تفعيل فوري',
+    'domains_reg_why_instant_desc'    => 'يتم تسجيل نطاقك وتفعيله خلال ثوانٍ من إتمام الدفع — بدون انتظار.',
+    'domains_reg_why_theft_title'     => 'حماية من السرقة',
+    'domains_reg_why_theft_desc'      => 'قفل النطاق، المصادقة الثنائية، وحراسة النقل تحافظ على نطاقك آمناً.',
+    'domains_reg_why_support_title'   => 'دعم خبراء 24/7',
+    'domains_reg_why_support_desc'    => 'فريق بشري حقيقي خبير في النطاقات، متاح على مدار الساعة عبر الدردشة والتذاكر.',
+    'domains_reg_why_bundle_title'    => 'باقة مع الاستضافة',
+    'domains_reg_why_bundle_desc'     => 'اربط نطاقك مع استضافة cPanel أو VPS ووفّر على الباقة.',
+    'domains_reg_why_transfer_title'  => 'نقل سهل',
+    'domains_reg_why_transfer_desc'   => 'انقل نطاقاتك الحالية في دقائق واحصل على تمديد سنة مجاني.',
+    'domains_reg_why_extensions_title'=> 'أكثر من 500 امتداد',
+    'domains_reg_why_extensions_desc' => 'من .com إلى .ninja، نقدّم واحداً من أكبر كتالوجات الامتدادات المتاحة.',
+
+    'domains_reg_faq_tag'             => 'الأسئلة الشائعة',
+    'domains_reg_faq_title'           => 'الأسئلة الأكثر شيوعاً',
+
+    'domains_reg_faq1_q'              => 'كم يستغرق تسجيل النطاق؟',
+    'domains_reg_faq1_a'              => 'التسجيل فوري. بمجرد إتمام الدفع، يصبح نطاقك مفعّلاً وجاهزاً للاستخدام خلال ثوانٍ.',
+    'domains_reg_faq2_q'              => 'ما هي خصوصية WHOIS وهل أحتاجها؟',
+    'domains_reg_faq2_a'              => 'خصوصية WHOIS تُخفي اسمك وعنوانك وبريدك الإلكتروني ورقم هاتفك من قاعدة بيانات WHOIS العامة. نوفّرها مجاناً مع كل نطاق مؤهّل لحمايتك من البريد المزعج وسرقة الهوية.',
+    'domains_reg_faq3_q'              => 'هل يمكنني نقل نطاقي إلى مسجّل آخر لاحقاً؟',
+    'domains_reg_faq3_a'              => 'نعم. بعد فترة القفل الإلزامية من ICANN ومدتها 60 يوماً بعد التسجيل، يمكنك نقل نطاقك إلى أي مسجّل آخر في أي وقت.',
+    'domains_reg_faq4_q'              => 'ماذا يحدث عند انتهاء نطاقي؟',
+    'domains_reg_faq4_a'              => 'نرسل عدة تذكيرات قبل انتهاء الصلاحية. إذا انتهى نطاقك فعلاً، فلديك فترة سماح 30 يوماً للتجديد بالسعر العادي، تليها فترة استرداد بتكلفة أعلى.',
+    'domains_reg_faq5_q'              => 'هل تقدّمون أسعار الجملة أو البيع بالتجزئة؟',
+    'domains_reg_faq5_a'              => 'نعم — إذا كنت بحاجة لتسجيل نطاقات كثيرة أو كنت موزّعاً، تواصل مع فريق المبيعات للحصول على أسعار جملة مخصصة.',
+
+    'domains_reg_contact_support'     => 'تواصل مع الدعم',
+    'domains_reg_browse_faq'          => 'تصفح كل الأسئلة',
+
+    'domains_reg_cta_title'           => 'جاهز للحصول على نطاقك؟',
+    'domains_reg_cta_desc'            => 'ابحث الآن واحصل على اسمك المثالي خلال ثوانٍ. خصوصية مجانية، DNS مجاني، وتفعيل فوري مُضمّن.',
+    'domains_reg_cta_btn'             => 'ابحث عن نطاق',
+
+
+    // ── Domains: Transfer page ──
+    'domains_transfer_breadcrumb_parent' => 'النطاقات',
+    'domains_transfer_badge1'         => 'تمديد سنة مجاني',
+    'domains_transfer_badge2'         => 'خصوصية WHOIS مجانية',
+    'domains_transfer_badge3'         => 'بدون انقطاع',
+    'domains_transfer_badge4'         => 'عملية سهلة من 4 خطوات',
+
+    'domains_transfer_search_title'   => 'انقل نطاقك إلى YottaSrc',
+    'domains_transfer_search_placeholder' => 'أدخل النطاق الذي تريد نقله…',
+    'domains_transfer_search_btn'     => 'ابدأ النقل',
+    'domains_transfer_search_note'    => 'تأكد من أن نطاقك عمره 60 يوماً على الأقل وغير مقفل لدى المسجّل الحالي.',
+    'domains_transfer_search_ext_placeholder' => 'ابحث في الامتدادات…',
+
+    'domains_transfer_steps_tag'      => 'كيف يعمل',
+    'domains_transfer_steps_title'    => 'انقل في 4 خطوات بسيطة',
+    'domains_transfer_steps_desc'     => 'نقل نطاقك إلى YottaSrc سريع وبدون عناء. إليك كيف يعمل.',
+
+    'domains_transfer_step1_title'    => 'افتح قفل نطاقك',
+    'domains_transfer_step1_desc'     => 'سجّل الدخول إلى مسجّلك الحالي وألغِ قفل النقل على نطاقك.',
+    'domains_transfer_step2_title'    => 'احصل على رمز EPP',
+    'domains_transfer_step2_desc'     => 'اطلب رمز التفويض (EPP) من المسجّل الحالي — عادةً يصل عبر البريد فوراً.',
+    'domains_transfer_step3_title'    => 'أنشئ طلب النقل',
+    'domains_transfer_step3_desc'     => 'أدخل نطاقك ورمز EPP في YottaSrc، ثم أكمل الدفع الآمن.',
+    'domains_transfer_step4_title'    => 'أكّد واكتمل',
+    'domains_transfer_step4_desc'     => 'وافق على بريد النقل. ينتقل نطاقك خلال ساعات — بلا انقطاع، بلا فقدان بيانات.',
+
+    'domains_transfer_pricing_tag'    => 'أسعار النقل',
+    'domains_transfer_pricing_title'  => 'أسعار النقل حسب الامتداد',
+    'domains_transfer_pricing_desc'   => 'كل عملية نقل تشمل تمديداً مجانياً لمدة سنة فوق فترة التسجيل الحالية لديك.',
+    'domains_transfer_free_ext'       => 'يشمل تمديد سنة',
+    'domains_transfer_per_transfer'   => 'نقل',
+    'domains_transfer_btn'            => 'نقل',
+    'domains_transfer_pricing_other'  => 'لا ترى امتدادك؟ <a href="#all-tlds">شاهد قائمة أسعار النقل الكاملة</a> بالأسفل.',
+
+    'domains_transfer_all_ext_tag'    => 'قائمة الأسعار الكاملة',
+    'domains_transfer_all_ext_title'  => 'كل الامتدادات القابلة للنقل',
+    'domains_transfer_all_ext_desc'   => 'تصفح القائمة الكاملة للامتدادات التي يمكنك نقلها إلى YottaSrc. صنّف أو ابحث للعثور على نطاقك.',
+
+    'domains_transfer_filter_all'     => 'الكل',
+    'domains_transfer_filter_popular' => 'الأكثر شيوعاً',
+    'domains_transfer_filter_sale'    => 'تخفيضات',
+    'domains_transfer_filter_country' => 'دول',
+
+    'domains_transfer_th_extension'   => 'الامتداد',
+    'domains_transfer_th_register'    => 'تسجيل',
+    'domains_transfer_th_transfer'    => 'نقل',
+    'domains_transfer_th_renew'       => 'تجديد',
+    'domains_transfer_yr'             => 'سنة',
+
+    'domains_transfer_badge_hot'      => 'الأعلى طلباً',
+    'domains_transfer_badge_sale'     => 'تخفيض',
+    'domains_transfer_badge_new'      => 'جديد',
+
+    'domains_transfer_no_results'     => 'لا توجد امتدادات تطابق بحثك.',
+    'domains_transfer_table_footer'   => 'الأسعار المعروضة باليورو ولا تشمل الضرائب المعمول بها. <a href="/contact/">تواصل معنا</a> للحصول على أسعار النقل بالجملة.',
+
+    'domains_transfer_benefits_tag'   => 'لماذا تنقل',
+    'domains_transfer_benefits_title' => 'لماذا تنقل نطاقاتك إلى YottaSrc',
+    'domains_transfer_benefits_desc'  => 'أكثر من مجرد تبديل مسجّل. احصل على مزايا تفوق بكثير ما تدفعه مقابل النقل.',
+
+    'domains_transfer_ben_ext_title'  => 'تمديد سنة مجاني',
+    'domains_transfer_ben_ext_desc'   => 'كل عملية نقل تضيف سنة كاملة إلى تسجيلك الحالي — بدون أي تكلفة إضافية.',
+    'domains_transfer_ben_whois_title'=> 'خصوصية WHOIS مجانية',
+    'domains_transfer_ben_whois_desc' => 'احتفظ بمعلوماتك الشخصية مخفية من سجلات WHOIS العامة، مُضمّنة مجاناً مع كل نقل.',
+    'domains_transfer_ben_dns_title'  => 'DNS أسرع',
+    'domains_transfer_ben_dns_desc'   => 'انتقل إلى DNS متميز موزّع عالمياً للحصول على استجابة أسرع في كل أنحاء العالم.',
+    'domains_transfer_ben_unified_title' => 'إدارة موحّدة',
+    'domains_transfer_ben_unified_desc'  => 'أدر كل نطاقاتك واستضافتك وخوادمك من لوحة تحكم واحدة نظيفة.',
+    'domains_transfer_ben_assist_title'  => 'مساعدة في النقل',
+    'domains_transfer_ben_assist_desc'   => 'خبراؤنا يتولّون الأجزاء الصعبة ويساعدونك في حل أي مشكلة تواجهها.',
+
+    'domains_transfer_faq_tag'        => 'الأسئلة الشائعة',
+    'domains_transfer_faq_title'      => 'إجابات أسئلة النقل',
+
+    'domains_transfer_faq1_q'         => 'كم يستغرق نقل النطاق؟',
+    'domains_transfer_faq1_a'         => 'معظم عمليات النقل تكتمل خلال 5–7 أيام، لكن الكثير منها ينتهي أسرع بكثير. الوقت الفعلي يعتمد على المسجّل الحالي وامتداد النطاق.',
+    'domains_transfer_faq2_q'         => 'هل سيتوقف موقعي أو بريدي خلال النقل؟',
+    'domains_transfer_faq2_a'         => 'لا. طالما حافظت على إعدادات DNS كما هي أو نسختها في YottaSrc قبل اكتمال النقل، يستمر موقعك وبريدك في العمل بدون انقطاع.',
+    'domains_transfer_faq3_q'         => 'ما هو رمز EPP وأين أحصل عليه؟',
+    'domains_transfer_faq3_a'         => 'رمز EPP (أو رمز التفويض) هو كلمة مرور فريدة تأذن بنقل نطاقك. اطلبه من مسجّلك الحالي — معظمهم يوفّرونه فوراً داخل لوحة التحكم أو عبر البريد.',
+    'domains_transfer_faq4_q'         => 'هل يمكنني نقل نطاق مسجّل أو منقول حديثاً؟',
+    'domains_transfer_faq4_a'         => 'لا. قواعد ICANN تشترط فترة انتظار 60 يوماً بعد أي تسجيل أو نقل جديد قبل إمكانية نقل النطاق مرة أخرى.',
+    'domains_transfer_faq5_q'         => 'هل أفقد الوقت المتبقي من تسجيلي الحالي؟',
+    'domains_transfer_faq5_a'         => 'لا — وقتك المتبقي ينتقل معك، ونضيف سنة مجانية فوقه.',
+
+    'domains_transfer_get_help'       => 'احصل على مساعدة',
+    'domains_transfer_browse_faq'     => 'تصفح كل الأسئلة',
+
+    'domains_transfer_cta_title'      => 'جاهز لنقل نطاقك؟',
+    'domains_transfer_cta_desc'       => 'ابدأ النقل في ثوانٍ واحصل على تمديد سنة مجاني كهدية ترحيب.',
+    'domains_transfer_cta_btn'        => 'ابدأ النقل',
+
     // ══════════════════════════════════════
     //  AFFILIATE PAGE
     // ══════════════════════════════════════

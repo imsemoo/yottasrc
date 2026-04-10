@@ -1980,6 +1980,205 @@ return [
     'domains_transfer_title'      => 'Transfer Your <span class="highlight">Domains</span> to YottaSrc',
     'domains_transfer_desc'       => 'Move your domains to YottaSrc in minutes. Get a free 1-year extension, free WHOIS privacy, and premium DNS — all at no extra cost.',
 
+    // ── Domains: Registration page ──
+    'domains_reg_breadcrumb_parent'   => 'Domains',
+    'domains_reg_badge1'              => '500+ TLDs available',
+    'domains_reg_badge2'              => 'Free WHOIS privacy',
+    'domains_reg_badge3'              => 'Free DNS management',
+    'domains_reg_badge4'              => 'Instant activation',
+
+    'domains_reg_search_title'        => 'Search for your perfect domain',
+    'domains_reg_search_placeholder'  => 'Enter your desired domain name…',
+    'domains_reg_search_btn'          => 'Search',
+    'domains_reg_search_ext_placeholder' => 'Search extensions…',
+
+    'domains_reg_pricing_tag'         => 'Popular extensions',
+    'domains_reg_pricing_title'       => 'Most popular domain extensions',
+    'domains_reg_pricing_desc'        => 'Choose from the world\'s most-trusted TLDs. Transparent pricing, no hidden fees, and free perks with every domain.',
+
+    'domains_reg_year'                => 'year',
+    'domains_reg_yr'                  => 'yr',
+    'domains_reg_renewal'             => 'Renewal',
+    'domains_reg_register_btn'        => 'Register',
+    'domains_reg_popular'             => 'Popular',
+
+    'domains_reg_tld_com_desc'        => 'The world\'s most recognized extension. Perfect for any business.',
+    'domains_reg_tld_net_desc'        => 'A trusted alternative for tech, networking, and infrastructure brands.',
+    'domains_reg_tld_org_desc'        => 'Ideal for non-profits, communities, and open-source projects.',
+    'domains_reg_tld_io_desc'         => 'The favorite of startups, developers, and tech companies.',
+    'domains_reg_tld_dev_desc'        => 'Built for developers. Secure by default with HTTPS preloaded.',
+    'domains_reg_tld_co_desc'         => 'A short, modern alternative to .com — great for companies.',
+    'domains_reg_tld_me_desc'         => 'Personal branding made easy. Perfect for portfolios and blogs.',
+    'domains_reg_tld_store_desc'      => 'Built for online retailers and e-commerce brands.',
+
+    'domains_reg_browse_all'          => 'Looking for something specific? <a href="#all-tlds">Browse all 500+ extensions</a> or contact us for bulk pricing.',
+
+    'domains_reg_all_ext_tag'         => 'Full price list',
+    'domains_reg_all_ext_title'       => 'All available extensions',
+    'domains_reg_all_ext_desc'        => 'Browse our complete catalog of domain extensions. Filter by category or search for the one you need.',
+
+    'domains_reg_filter_all'          => 'All',
+    'domains_reg_filter_popular'      => 'Popular',
+    'domains_reg_filter_sale'         => 'On Sale',
+    'domains_reg_filter_country'      => 'Country',
+
+    'domains_reg_th_extension'        => 'Extension',
+    'domains_reg_th_register'         => 'Register',
+    'domains_reg_th_transfer'         => 'Transfer',
+    'domains_reg_th_renew'            => 'Renew',
+
+    'domains_reg_badge_hot'           => 'HOT',
+    'domains_reg_badge_sale'          => 'SALE',
+    'domains_reg_badge_new'           => 'NEW',
+
+    'domains_reg_no_results'          => 'No extensions match your search.',
+    'domains_reg_table_footer'        => 'Prices shown are in EUR and exclude applicable taxes. <a href="/contact/">Contact us</a> for bulk or wholesale pricing.',
+
+    'domains_reg_features_tag'        => 'What\'s included',
+    'domains_reg_features_title'      => 'Everything you need with every domain',
+    'domains_reg_features_desc'       => 'No upsells, no hidden fees. Every domain comes loaded with the essentials you\'d expect to pay extra for elsewhere.',
+
+    'domains_reg_feat_whois_title'    => 'Free WHOIS Privacy',
+    'domains_reg_feat_whois_desc'     => 'Hide your personal contact details from public WHOIS records — included free, forever.',
+    'domains_reg_feat_dns_title'      => 'Premium DNS',
+    'domains_reg_feat_dns_desc'       => 'Fast, reliable, globally distributed DNS with full record management built right in.',
+    'domains_reg_feat_email_title'    => 'Email Forwarding',
+    'domains_reg_feat_email_desc'     => 'Forward emails from your domain to any inbox you already use — no mailbox needed.',
+    'domains_reg_feat_lock_title'     => 'Domain Lock',
+    'domains_reg_feat_lock_desc'      => 'Protect your domain from unauthorized transfers with a single click.',
+    'domains_reg_feat_renewal_title'  => 'Auto-Renewal',
+    'domains_reg_feat_renewal_desc'   => 'Never lose your domain. Enable auto-renewal and forget about expiration dates.',
+
+    'domains_reg_why_tag'             => 'Why YottaSrc',
+    'domains_reg_why_title'           => 'Why register your domain with us',
+
+    'domains_reg_why_instant_title'   => 'Instant Activation',
+    'domains_reg_why_instant_desc'    => 'Your domain is registered and live within seconds of checkout — no waiting around.',
+    'domains_reg_why_theft_title'     => 'Theft Protection',
+    'domains_reg_why_theft_desc'      => 'Domain lock, two-factor auth, and transfer guards keep your domain safe.',
+    'domains_reg_why_support_title'   => '24/7 Expert Support',
+    'domains_reg_why_support_desc'    => 'Real humans who know domains, available around the clock by chat or ticket.',
+    'domains_reg_why_bundle_title'    => 'Bundle with Hosting',
+    'domains_reg_why_bundle_desc'     => 'Pair your domain with cPanel hosting or a VPS and save on the bundle.',
+    'domains_reg_why_transfer_title'  => 'Easy Transfers',
+    'domains_reg_why_transfer_desc'   => 'Move existing domains in minutes and get a free 1-year extension.',
+    'domains_reg_why_extensions_title'=> '500+ Extensions',
+    'domains_reg_why_extensions_desc' => 'From .com to .ninja, we offer one of the largest TLD catalogs available.',
+
+    'domains_reg_faq_tag'             => 'FAQ',
+    'domains_reg_faq_title'           => 'Frequently asked questions',
+
+    'domains_reg_faq1_q'              => 'How long does it take to register a domain?',
+    'domains_reg_faq1_a'              => 'Registration is instant. Once you complete checkout, your domain is live and ready to use within seconds.',
+    'domains_reg_faq2_q'              => 'What is WHOIS privacy and do I need it?',
+    'domains_reg_faq2_a'              => 'WHOIS privacy hides your name, address, email, and phone number from the public WHOIS database. We include it free with every eligible domain to protect you from spam and identity theft.',
+    'domains_reg_faq3_q'              => 'Can I move my domain to another registrar later?',
+    'domains_reg_faq3_a'              => 'Yes. After the ICANN-mandated 60-day lock period following registration, you can transfer your domain to any other registrar at any time.',
+    'domains_reg_faq4_q'              => 'What happens when my domain expires?',
+    'domains_reg_faq4_a'              => 'We send multiple reminders before expiration. If your domain does expire, you have a 30-day grace period to renew at the standard price, followed by a redemption period at a higher cost.',
+    'domains_reg_faq5_q'              => 'Do you offer bulk or wholesale pricing?',
+    'domains_reg_faq5_a'              => 'Yes — if you need to register many domains or are a reseller, contact our sales team for custom wholesale pricing.',
+
+    'domains_reg_contact_support'     => 'Contact Support',
+    'domains_reg_browse_faq'          => 'Browse Full FAQ',
+
+    'domains_reg_cta_title'           => 'Ready to claim your domain?',
+    'domains_reg_cta_desc'            => 'Search now and secure your perfect name in seconds. Free privacy, free DNS, and instant activation included.',
+    'domains_reg_cta_btn'              => 'Search Domains',
+
+
+    // ── Domains: Transfer page ──
+    'domains_transfer_breadcrumb_parent' => 'Domains',
+    'domains_transfer_badge1'         => 'Free 1-year extension',
+    'domains_transfer_badge2'         => 'Free WHOIS privacy',
+    'domains_transfer_badge3'         => 'Zero downtime',
+    'domains_transfer_badge4'         => 'Easy 4-step process',
+
+    'domains_transfer_search_title'   => 'Transfer your domain to YottaSrc',
+    'domains_transfer_search_placeholder' => 'Enter the domain you want to transfer…',
+    'domains_transfer_search_btn'     => 'Start Transfer',
+    'domains_transfer_search_note'    => 'Make sure your domain is at least 60 days old and unlocked at your current registrar.',
+    'domains_transfer_search_ext_placeholder' => 'Search extensions…',
+
+    'domains_transfer_steps_tag'      => 'How it works',
+    'domains_transfer_steps_title'    => 'Transfer in 4 simple steps',
+    'domains_transfer_steps_desc'     => 'Moving your domain to YottaSrc is fast and stress-free. Here\'s how it works.',
+
+    'domains_transfer_step1_title'    => 'Unlock Your Domain',
+    'domains_transfer_step1_desc'     => 'Log in to your current registrar and disable the transfer lock on your domain.',
+    'domains_transfer_step2_title'    => 'Get the EPP Code',
+    'domains_transfer_step2_desc'     => 'Request the authorization (EPP) code from your current registrar — usually emailed instantly.',
+    'domains_transfer_step3_title'    => 'Place the Transfer Order',
+    'domains_transfer_step3_desc'     => 'Enter your domain and EPP code at YottaSrc, then complete the secure checkout.',
+    'domains_transfer_step4_title'    => 'Confirm & Complete',
+    'domains_transfer_step4_desc'     => 'Approve the transfer email. Your domain moves over within hours — no downtime, no data loss.',
+
+    'domains_transfer_pricing_tag'    => 'Transfer pricing',
+    'domains_transfer_pricing_title'  => 'Transfer rates by extension',
+    'domains_transfer_pricing_desc'   => 'Every transfer includes a free 1-year extension on top of your existing registration period.',
+    'domains_transfer_free_ext'       => 'Includes 1 year extension',
+    'domains_transfer_per_transfer'   => 'transfer',
+    'domains_transfer_btn'            => 'Transfer',
+    'domains_transfer_pricing_other'  => 'Don\'t see your extension? <a href="#all-tlds">View the full transfer price list</a> below.',
+
+    'domains_transfer_all_ext_tag'    => 'Full price list',
+    'domains_transfer_all_ext_title'  => 'All transferable extensions',
+    'domains_transfer_all_ext_desc'   => 'Browse the complete list of extensions you can transfer to YottaSrc. Filter or search to find yours.',
+
+    'domains_transfer_filter_all'     => 'All',
+    'domains_transfer_filter_popular' => 'Popular',
+    'domains_transfer_filter_sale'    => 'On Sale',
+    'domains_transfer_filter_country' => 'Country',
+
+    'domains_transfer_th_extension'   => 'Extension',
+    'domains_transfer_th_register'    => 'Register',
+    'domains_transfer_th_transfer'    => 'Transfer',
+    'domains_transfer_th_renew'       => 'Renew',
+    'domains_transfer_yr'             => 'yr',
+
+    'domains_transfer_badge_hot'      => 'HOT',
+    'domains_transfer_badge_sale'     => 'SALE',
+    'domains_transfer_badge_new'      => 'NEW',
+
+    'domains_transfer_no_results'     => 'No extensions match your search.',
+    'domains_transfer_table_footer'   => 'Prices shown are in EUR and exclude applicable taxes. <a href="/contact/">Contact us</a> for bulk transfer pricing.',
+
+    'domains_transfer_benefits_tag'   => 'Why transfer',
+    'domains_transfer_benefits_title' => 'Why move your domains to YottaSrc',
+    'domains_transfer_benefits_desc'  => 'More than just a registrar swap. Get extras worth far more than what you\'re paying for your transfer.',
+
+    'domains_transfer_ben_ext_title'  => 'Free 1-Year Extension',
+    'domains_transfer_ben_ext_desc'   => 'Every transfer adds a full year to your existing registration — at no extra cost.',
+    'domains_transfer_ben_whois_title'=> 'Free WHOIS Privacy',
+    'domains_transfer_ben_whois_desc' => 'Keep your personal info hidden from public WHOIS records, included free with every transfer.',
+    'domains_transfer_ben_dns_title'  => 'Faster DNS',
+    'domains_transfer_ben_dns_desc'   => 'Switch to our globally distributed premium DNS for faster resolution worldwide.',
+    'domains_transfer_ben_unified_title' => 'Unified Management',
+    'domains_transfer_ben_unified_desc'  => 'Manage all your domains, hosting, and servers from a single clean dashboard.',
+    'domains_transfer_ben_assist_title'  => 'Transfer Assistance',
+    'domains_transfer_ben_assist_desc'   => 'Our experts handle the tricky parts and walk you through any issue you encounter.',
+
+    'domains_transfer_faq_tag'        => 'FAQ',
+    'domains_transfer_faq_title'      => 'Transfer questions, answered',
+
+    'domains_transfer_faq1_q'         => 'How long does a domain transfer take?',
+    'domains_transfer_faq1_a'         => 'Most transfers complete within 5–7 days, though many finish much faster. The exact time depends on your current registrar and the TLD.',
+    'domains_transfer_faq2_q'         => 'Will my website or email go down during the transfer?',
+    'domains_transfer_faq2_a'         => 'No. As long as you keep your DNS settings unchanged or replicate them at YottaSrc before the transfer completes, your site and email keep working without interruption.',
+    'domains_transfer_faq3_q'         => 'What is an EPP code and where do I get it?',
+    'domains_transfer_faq3_a'         => 'An EPP (or auth) code is a unique password that authorizes the transfer of your domain. You request it from your current registrar — most provide it instantly inside their dashboard or by email.',
+    'domains_transfer_faq4_q'         => 'Can I transfer a recently registered or recently transferred domain?',
+    'domains_transfer_faq4_a'         => 'No. ICANN rules require a 60-day waiting period after any new registration or transfer before a domain can be moved again.',
+    'domains_transfer_faq5_q'         => 'Do I lose the time left on my current registration?',
+    'domains_transfer_faq5_a'         => 'No — your remaining time carries over, and we add a free 1-year extension on top of it.',
+
+    'domains_transfer_get_help'       => 'Get Help',
+    'domains_transfer_browse_faq'     => 'Browse Full FAQ',
+
+    'domains_transfer_cta_title'      => 'Ready to move your domain?',
+    'domains_transfer_cta_desc'       => 'Start your transfer in seconds and get a free 1-year extension as a welcome gift.',
+    'domains_transfer_cta_btn'        => 'Start Transfer',
+
     // ══════════════════════════════════════
     //  AFFILIATE PAGE
     // ══════════════════════════════════════
