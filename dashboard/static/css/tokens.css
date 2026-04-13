@@ -1,0 +1,216 @@
+/* ═══════════════════════════════════════════
+   YottaSrc Dashboard — Design Tokens
+   Ported from main site (assets/css/style.css)
+   ═══════════════════════════════════════════ */
+
+:root {
+    /* Typography */
+    --font-display: 'Plus Jakarta Sans', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    /* Spacing */
+    --section-gap: 60px;
+    --container-max: 1320px;
+    --container-padding: 24px;
+
+    /* Radius */
+    --radius-xs: 4px;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-xl: 28px;
+    --radius-full: 9999px;
+
+    /* Transitions */
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --duration-fast: 180ms;
+    --duration-base: 300ms;
+    --duration-slow: 500ms;
+
+    /* Brand Colors (base — same in both themes) */
+    --brand-primary: #2563EB;
+    --brand-primary-hover: #1D4FD7;
+    --brand-secondary: #10B981;
+    --brand-accent: #8B5CF6;
+    --brand-warning: #F59E0B;
+    --brand-error: #EF4444;
+
+    /* Status Colors (base) */
+    --status-active: #10B981;
+    --status-pending: #F59E0B;
+    --status-overdue: #EF4444;
+
+    /* Dashboard Layout Tokens */
+    --sidebar-width: 260px;
+    --sidebar-collapsed-width: 72px;
+    --topbar-height: 64px;
+    --content-padding: 24px;
+    --content-max-width: 1200px;
+}
+
+
+/* ═══ DARK THEME (default) ═══ */
+[data-theme="dark"] {
+    --bg-primary: #060C18;
+    --bg-secondary: #0D1527;
+    --bg-tertiary: #15203b;
+    --bg-card: #111B30;
+    --bg-card-hover: #162040;
+    --bg-elevated: #1A2540;
+    --bg-footer: #040910;
+    --bg-glass: rgba(13, 21, 39, 0.75);
+    --bg-glass-border: rgba(255, 255, 255, 0.06);
+
+    /* Sidebar specific */
+    --sidebar-bg: #0A1020;
+    --sidebar-border: rgba(255, 255, 255, 0.06);
+    --sidebar-item-hover: rgba(255, 255, 255, 0.04);
+    --sidebar-item-active-bg: rgba(37, 99, 235, 0.12);
+    --sidebar-item-active-text: #2563EB;
+    --sidebar-group-text: #5A6F96;
+
+    /* Topbar specific */
+    --topbar-bg: rgba(8, 14, 28, 0.92);
+    --topbar-border: rgba(255, 255, 255, 0.08);
+
+    --text-primary: #F1F5F9;
+    --text-secondary: #94A8CC;
+    --text-tertiary: #6478A0;
+    --text-inverse: #060C18;
+
+    --border-primary: rgba(255, 255, 255, 0.10);
+    --border-secondary: rgba(255, 255, 255, 0.05);
+    --border-active: rgba(37, 99, 235, 0.4);
+
+    --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.04);
+    --shadow-elevated: 0 12px 40px rgba(0, 0, 0, 0.4);
+    --shadow-glow: 0 0 60px rgba(37, 99, 235, 0.15);
+
+    --gradient-card: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+    --dot-color: rgba(255, 255, 255, 0.035);
+
+    /* Scrollbar */
+    --scrollbar-thumb: rgba(255, 255, 255, 0.1);
+    --scrollbar-track: transparent;
+
+    /* Alert/Toast — solid backgrounds (dark) */
+    --alert-bg-info:       hsl(222, 60%, 12%);
+    --alert-border-info:   hsl(222, 50%, 22%);
+    --alert-bg-success:    hsl(160, 45%, 10%);
+    --alert-border-success:hsl(160, 40%, 20%);
+    --alert-bg-warning:    hsl(38, 50%, 12%);
+    --alert-border-warning:hsl(38, 45%, 22%);
+    --alert-bg-error:      hsl(0, 50%, 12%);
+    --alert-border-error:  hsl(0, 45%, 22%);
+
+    /* Status colors — bright for dark bg */
+    --status-active:  #34d399;
+    --status-pending: #fbbf24;
+    --status-overdue: #f87171;
+
+    /* Brand colors — bright for dark bg */
+    --brand-primary: #3b82f6;
+    --brand-primary-hover: #2563eb;
+    --brand-secondary: #34d399;
+    --brand-accent: #a78bfa;
+    --brand-warning: #fbbf24;
+    --brand-error: #f87171;
+
+    /* Accent colors — bright for dark bg */
+    --accent-blue:    #5b9aff;
+    --accent-green:   #34d399;
+    --accent-yellow:  #fbbf24;
+    --accent-purple:  #a78bfa;
+    --accent-cyan:    #22d3ee;
+
+    /* Chat colors — dark theme */
+    --chat-bg:                    var(--bg-card);
+    --chat-bubble-customer:       var(--bg-tertiary);
+    --chat-bubble-customer-border:rgba(37, 99, 235, 0.15);
+    --chat-bubble-staff:          var(--bg-elevated);
+    --chat-bubble-staff-border:   rgba(16, 185, 129, 0.15);
+}
+
+
+/* ═══ LIGHT THEME ═══ */
+[data-theme="light"] {
+    --bg-primary: #F6F8FC;
+    --bg-secondary: #FFFFFF;
+    --bg-tertiary: #EEF2F8;
+    --bg-card: #FFFFFF;
+    --bg-card-hover: #F8FAFF;
+    --bg-elevated: #FFFFFF;
+    --bg-footer: #E6EBF4;
+    --bg-glass: rgba(255, 255, 255, 0.8);
+    --bg-glass-border: rgba(0, 0, 0, 0.06);
+
+    /* Sidebar specific */
+    --sidebar-bg: #FFFFFF;
+    --sidebar-border: rgba(0, 0, 0, 0.06);
+    --sidebar-item-hover: rgba(0, 0, 0, 0.03);
+    --sidebar-item-active-bg: rgba(37, 99, 235, 0.08);
+    --sidebar-item-active-text: #2563EB;
+    --sidebar-group-text: #8494B2;
+
+    /* Topbar specific */
+    --topbar-bg: rgba(246, 248, 252, 0.92);
+    --topbar-border: rgba(0, 0, 0, 0.08);
+
+    --text-primary: #0C1222;
+    --text-secondary: #3D5178;
+    --text-tertiary: #7688A8;
+    --text-inverse: #FFFFFF;
+
+    --border-primary: rgba(0, 0, 0, 0.10);
+    --border-secondary: rgba(0, 0, 0, 0.05);
+    --border-active: rgba(37, 99, 235, 0.35);
+
+    --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.04);
+    --shadow-elevated: 0 12px 40px rgba(0, 0, 0, 0.1);
+    --shadow-glow: 0 0 60px rgba(37, 99, 235, 0.08);
+
+    --gradient-card: linear-gradient(135deg, rgba(0, 0, 0, 0.01) 0%, rgba(0, 0, 0, 0.02) 100%);
+    --dot-color: rgba(0, 0, 0, 0.04);
+
+    /* Scrollbar */
+    --scrollbar-thumb: rgba(0, 0, 0, 0.12);
+    --scrollbar-track: transparent;
+
+    /* Alert/Toast — solid backgrounds (light) */
+    --alert-bg-info:       hsl(222, 80%, 97%);
+    --alert-border-info:   hsl(222, 60%, 88%);
+    --alert-bg-success:    hsl(160, 60%, 96%);
+    --alert-border-success:hsl(160, 45%, 85%);
+    --alert-bg-warning:    hsl(38, 80%, 96%);
+    --alert-border-warning:hsl(38, 60%, 85%);
+    --alert-bg-error:      hsl(0, 70%, 97%);
+    --alert-border-error:  hsl(0, 55%, 88%);
+
+    /* Status colors — deeper for light bg */
+    --status-active:  #059669;
+    --status-pending: #d97706;
+    --status-overdue: #dc2626;
+
+    /* Brand colors — deeper for light bg */
+    --brand-primary: #2563EB;
+    --brand-primary-hover: #1D4FD7;
+    --brand-secondary: #059669;
+    --brand-accent: #7c3aed;
+    --brand-warning: #d97706;
+    --brand-error: #dc2626;
+
+    /* Accent colors — deeper for light bg */
+    --accent-blue:    #2563eb;
+    --accent-green:   #059669;
+    --accent-yellow:  #d97706;
+    --accent-purple:  #7c3aed;
+    --accent-cyan:    #0891b2;
+
+    /* Chat colors — light theme */
+    --chat-bg:                    var(--bg-card);
+    --chat-bubble-customer:       var(--bg-tertiary);
+    --chat-bubble-customer-border:rgba(37, 99, 235, 0.15);
+    --chat-bubble-staff:          var(--bg-primary);
+    --chat-bubble-staff-border:   rgba(16, 185, 129, 0.15);
+}

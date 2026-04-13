@@ -1,0 +1,419 @@
+<?php
+/**
+ * YottaSrc Dashboard — Service Details (VPS Command Center)
+ * ==========================================================
+ * Tab-based layout with ALL VPS functions.
+ * Hero status bar → Tabs (Overview, Network, Bandwidth, Reinstall, Billing, Upgrade) → Sticky control panel
+ */
+
+$page_title = null;
+$breadcrumbs_data = null;
+$page_js = 'pages/service-details.js';
+
+require_once __DIR__ . '/../../layouts/config.php';
+
+$page_title = __('services_detail_title') . ' — ' . SITE_NAME;
+$breadcrumbs_data = [
+    ['label' => __('nav_dashboard'), 'url' => DASH_BASE_PATH . '/'],
+    ['label' => __('nav_my_services'), 'url' => DASH_BASE_PATH . '/pages/services/index.php'],
+    ['label' => '#' . ($_GET['id'] ?? '151926'), 'url' => null],
+];
+
+require_once __DIR__ . '/../../layouts/shell.php';
+
+$page_state = $_GET['state'] ?? 'active';
+
+$service = [
+    'id' => 151926, 'name' => 'Linux VPS/VDS', 'type' => 'VPS YTA 1 Package',
+    'hostname' => 'YTA6686328', 'ip' => '107.161.168.236',
+    'username' => 'root', 'password' => '99P7aSTnZ#Vn',
+    'status' => 'active', 'location' => 'USA', 'location_flag' => '🇺🇸',
+    'plan' => 'VPS YTA 1', 'cycle' => '1 Month', 'amount' => 3.25, 'currency' => 'EUR',
+    'due_date' => '24/04/2026', 'created' => '24/03/2026',
+    'days_left' => 23, 'days_total' => 30,
+    'cpu' => '1 Core', 'cpu_arch' => 'x86', 'ram' => '2 GB', 'ram_type' => 'DDR4',
+    'disk' => '25 GB', 'disk_type' => 'NVMe', 'bw_used' => '0', 'bw_total' => '25 TB',
+    'bw_speed' => '1 Gbit/s', 'ipv6' => true,
+];
+
+$network = [
+    ['num' => 1, 'ip' => '107.161.168.236', 'protocol' => 'IPv4', 'main' => true],
+    ['num' => 2, 'ip' => '2a12:bec4:1b79:b68::1/64', 'protocol' => 'IPv6', 'main' => false],
+];
+
+$bandwidth = ['used' => 3200, 'total' => 25600, 'percent' => 12];
+
+$linked_invoices = [
+    ['id' => 310630, 'date' => '03/04/2026', 'due' => '05/04/2026', 'amount' => 3.42, 'status' => 'unpaid', 'type' => 'renewal'],
+    ['id' => 307776, 'date' => '24/03/2026', 'due' => '24/03/2026', 'amount' => 3.42, 'status' => 'paid',   'type' => 'new_service'],
+];
+
+$os_list = [
+    ['name' => 'Ubuntu 24.04'], ['name' => 'Ubuntu 22.04', 'current' => true], ['name' => 'Ubuntu 20.04'], ['name' => 'Ubuntu 18.04'],
+    ['name' => 'Rocky Linux 9'], ['name' => 'Rocky Linux 8'], ['name' => 'Rocky Linux 10'], ['name' => 'Debian 9'],
+    ['name' => 'Debian 8'], ['name' => 'Debian 12'], ['name' => 'Debian 11'], ['name' => 'Debian 10'],
+    ['name' => 'CentOS Stream 9'], ['name' => 'CentOS Stream 8'], ['name' => 'CentOS 7'],
+    ['name' => 'AlmaLinux 9'], ['name' => 'AlmaLinux 8'], ['name' => 'AlmaLinux 10'],
+];
+
+$packages = [
+    ['name' => 'VPS YTA 2', 'price' => 1.41, 'full_price' => 5.15, 'save' => '10%', 'days' => 23, 'specs' => ['2 Core', '4 GB', '50 GB', '25 TB']],
+    ['name' => 'VPS YTA 3', 'price' => 4.26, 'full_price' => 8.99, 'save' => '40%', 'days' => 23, 'specs' => ['4 Core', '8 GB', '100 GB', '30 TB']],
+    ['name' => 'VPS YTA 4', 'price' => 9.45, 'full_price' => 15.99, 'save' => '20%', 'days' => 23, 'specs' => ['8 Core', '16 GB', '150 GB', '35 TB']],
+    ['name' => 'VPS YTA 5', 'price' => 19.10, 'full_price' => 29.00, 'save' => '15%', 'days' => 23, 'specs' => ['16 Core', '32 GB', '200 GB', '35 TB']],
+];
+?>
+
+<?php if ($page_state === 'error'): ?>
+    <?php $ph_title = '#' . e($service['id']); $ph_desc = ''; $ph_actions = ''; include __DIR__ . '/../../components/page-header.php'; ?>
+    <div class="db-card"><?php $error_retry = true; include __DIR__ . '/../../components/error-state.php'; ?></div>
+<?php elseif ($page_state === 'loading'): ?>
+    <?php $ph_title = '#' . e($service['id']); $ph_desc = ''; $ph_actions = ''; include __DIR__ . '/../../components/page-header.php'; ?>
+    <?php $skel_info_rows = 8; $skel_action_buttons = 5; include __DIR__ . '/../../components/skeleton-detail.php'; ?>
+<?php else: ?>
+
+<!-- ═══ HERO STATUS BAR ═══ -->
+<div class="db-srv-hero db-srv-hero--<?php echo e($service['status']); ?>">
+    <div class="db-srv-hero__left">
+        <div class="db-srv-hero__status">
+            <span class="db-srv-hero__dot"></span>
+            <span class="db-srv-hero__status-text"><?php echo e(__('services_server_' . $service['status'])); ?></span>
+        </div>
+        <div class="db-srv-hero__details">
+            <span class="db-srv-hero__name">#<?php echo e($service['id']); ?> <?php echo e($service['name']); ?> <button class="db-srv-hero__edit" onclick="DashToast.show('info','','Rename coming soon.')" title="Edit name"><i class="fas fa-pen"></i></button></span>
+            <span class="db-srv-hero__sep">·</span>
+            <span><?php echo e($service['type']); ?></span>
+            <span class="db-srv-hero__sep">·</span>
+            <span><?php echo $service['location_flag']; ?> <?php echo e($service['location']); ?></span>
+        </div>
+    </div>
+    <div class="db-srv-hero__actions">
+        <button class="db-btn db-btn--ghost db-btn--sm" onclick="DashCopy(null,'<?php echo e($service['ip']); ?>')" data-tooltip="Copy IP"><i class="fas fa-copy"></i> <?php echo e($service['ip']); ?></button>
+        <button class="db-btn db-btn--ghost db-btn--sm" onclick="DashToast.show('info','','Opening SSH...')" data-tooltip="SSH"><i class="fas fa-terminal"></i></button>
+        <button class="db-btn db-btn--ghost db-btn--sm" onclick="DashToast.show('info','','Restarting...')" data-tooltip="Restart"><i class="fas fa-rotate-right"></i></button>
+    </div>
+</div>
+
+<!-- ═══ MAIN LAYOUT ═══ -->
+<div class="db-detail-layout">
+    <!-- LEFT: Tabbed Content -->
+    <div>
+        <div class="db-card">
+            <!-- TABS -->
+            <div class="db-tabs" >
+                <button class="db-tab active" data-tab="overview"><i class="fas fa-table-cells"></i> <?php echo e(__('services_tab_overview')); ?></button>
+                <button class="db-tab" data-tab="network"><i class="fas fa-globe"></i> <?php echo e(__('services_tab_network')); ?></button>
+                <button class="db-tab" data-tab="bandwidth"><i class="fas fa-chart-area"></i> <?php echo e(__('services_tab_bandwidth')); ?></button>
+                <button class="db-tab" data-tab="reinstall"><i class="fas fa-rotate"></i> <?php echo e(__('services_tab_reinstall')); ?></button>
+                <button class="db-tab" data-tab="billing"><i class="fas fa-file-invoice"></i> <?php echo e(__('services_tab_billing')); ?></button>
+                <button class="db-tab" data-tab="upgrade"><i class="fas fa-arrow-up-arrow-down"></i> <?php echo e(__('services_tab_upgrade')); ?></button>
+            </div>
+
+            <!-- TAB: Overview -->
+            <div class="db-tab-panel active" id="tab-overview">
+                <div class="db-card-body">
+                    <!-- Server Access -->
+                    <h3 class="db-section-title"><i class="fas fa-server"></i> <?php echo e(__('services_section_info')); ?></h3>
+                    <div class="db-srv-summary" style="margin-bottom:24px;">
+                        <div class="db-srv-summary__item">
+                            <i class="fas fa-display"></i>
+                            <div><span class="db-srv-summary__label"><?php echo e(__('services_info_hostname')); ?></span><span class="db-srv-summary__value db-srv-summary__value--copy" onclick="DashCopy(this,'<?php echo e($service['hostname']); ?>')"><?php echo e($service['hostname']); ?> <i class="fas fa-copy"></i></span></div>
+                        </div>
+                        <div class="db-srv-summary__item">
+                            <i class="fas fa-user"></i>
+                            <div><span class="db-srv-summary__label"><?php echo e(__('services_info_username')); ?></span><span class="db-srv-summary__value db-srv-summary__value--copy" onclick="DashCopy(this,'<?php echo e($service['username']); ?>')"><?php echo e($service['username']); ?> <i class="fas fa-copy"></i></span></div>
+                        </div>
+                        <div class="db-srv-summary__item">
+                            <i class="fas fa-key"></i>
+                            <div><span class="db-srv-summary__label"><?php echo e(__('services_info_password')); ?></span><span class="db-srv-summary__value db-srv-summary__value--blur db-srv-summary__value--copy" onclick="this.classList.toggle('revealed'); DashCopy(this,'<?php echo e($service['password']); ?>')"><?php echo e($service['password']); ?> <i class="fas fa-copy"></i></span></div>
+                        </div>
+                        <div class="db-srv-summary__item">
+                            <i class="fas fa-globe"></i>
+                            <div><span class="db-srv-summary__label">IPv4</span><span class="db-srv-summary__value db-srv-summary__value--copy" onclick="DashCopy(this,'<?php echo e($service['ip']); ?>')"><?php echo e($service['ip']); ?> <i class="fas fa-copy"></i></span></div>
+                        </div>
+                    </div>
+
+                    <!-- Specifications & Status -->
+                    <h3 class="db-section-title"><i class="fas fa-circle-check"></i> <?php echo e(__('services_section_specs_status')); ?></h3>
+                    <div class="db-srv-specs" style="margin-bottom:24px;">
+                        <div class="db-srv-spec"><div class="db-srv-spec__value" style="color:var(--status-active);"><?php echo e(__('status_' . $service['status'])); ?></div><div class="db-srv-spec__label"><?php echo e(__('common_status')); ?></div></div>
+                        <div class="db-srv-spec__divider"></div>
+                        <div class="db-srv-spec"><div class="db-srv-spec__value"><?php echo $service['location_flag']; ?> <?php echo e($service['location']); ?></div><div class="db-srv-spec__label"><?php echo e(__('services_info_location')); ?></div></div>
+                        <div class="db-srv-spec__divider"></div>
+                        <div class="db-srv-spec"><div class="db-srv-spec__value"><?php echo e($service['cycle']); ?></div><div class="db-srv-spec__label"><?php echo e(__('services_info_cycle')); ?></div></div>
+                        <div class="db-srv-spec__divider"></div>
+                        <div class="db-srv-spec"><div class="db-srv-spec__value">€<?php echo number_format($service['amount'], 2); ?></div><div class="db-srv-spec__label"><?php echo e(__('services_billing_renewal_price')); ?></div></div>
+                        <div class="db-srv-spec__divider"></div>
+                        <div class="db-srv-spec"><div class="db-srv-spec__value"><?php echo e($service['due_date']); ?></div><div class="db-srv-spec__label"><?php echo e(__('services_info_next_due')); ?></div></div>
+                    </div>
+
+                    <!-- Package Specifications -->
+                    <h3 class="db-section-title"><i class="fas fa-microchip"></i> <?php echo e(__('services_section_package')); ?></h3>
+                    <div class="db-srv-specs">
+                        <div class="db-srv-spec"><div class="db-srv-spec__value"><?php echo e($service['cpu']); ?></div><div class="db-srv-spec__label">CPU <span><?php echo e($service['cpu_arch']); ?></span></div></div>
+                        <div class="db-srv-spec__divider"></div>
+                        <div class="db-srv-spec"><div class="db-srv-spec__value"><?php echo e($service['ram']); ?></div><div class="db-srv-spec__label">RAM <span><?php echo e($service['ram_type']); ?></span></div></div>
+                        <div class="db-srv-spec__divider"></div>
+                        <div class="db-srv-spec"><div class="db-srv-spec__value"><?php echo e($service['disk']); ?></div><div class="db-srv-spec__label">SSD <span><?php echo e($service['disk_type']); ?></span></div></div>
+                        <div class="db-srv-spec__divider"></div>
+                        <div class="db-srv-spec"><div class="db-srv-spec__value"><?php echo e($service['bw_total']); ?></div><div class="db-srv-spec__label">BW <span><?php echo e($service['bw_speed']); ?></span></div></div>
+                        <div class="db-srv-spec__divider"></div>
+                        <div class="db-srv-spec"><div class="db-srv-spec__value"><?php echo $service['ipv6'] ? '✓' : '✗'; ?></div><div class="db-srv-spec__label">IPv6</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: Network -->
+            <div class="db-tab-panel" id="tab-network">
+                <div class="db-card-body" style="padding:22px 24px 10px;">
+                    <h3 class="db-section-title"><i class="fas fa-globe"></i> <?php echo e(__('services_network_public')); ?></h3>
+                </div>
+                <div class="db-card-body--table">
+                    <div class="db-table-wrapper">
+                        <table class="db-table">
+                            <thead><tr><th>#</th><th>IP</th><th><?php echo e(__('services_network_protocol')); ?></th><th></th></tr></thead>
+                            <tbody>
+                                <?php foreach ($network as $net): ?>
+                                <tr>
+                                    <td><?php echo e($net['num']); ?></td>
+                                    <td><span class="db-table-cell-mono"><?php echo e($net['ip']); ?></span> <?php if ($net['main']): ?><span class="db-badge db-badge--active" style="font-size:0.6rem;padding:1px 6px;"><?php echo e(__('services_network_main')); ?></span><?php endif; ?></td>
+                                    <td><span class="db-badge db-badge--<?php echo $net['protocol'] === 'IPv4' ? 'active' : 'pending'; ?>"><?php echo e($net['protocol']); ?></span></td>
+                                    <td><?php if ($net['main']): ?><button class="db-btn db-btn--sm db-btn--ghost" onclick="DashToast.show('info','','<?php echo e(__('services_network_change_ip_msg')); ?>')"><i class="fas fa-pen"></i> <?php echo e(__('services_network_change_ip')); ?></button><?php endif; ?></td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="db-card-body" style="padding:14px 24px;">
+                    <div class="db-notice db-notice--info"><i class="fas fa-circle-info"></i> <span><?php echo e(__('services_network_notice')); ?></span></div>
+                </div>
+            </div>
+
+            <!-- TAB: Bandwidth -->
+            <div class="db-tab-panel" id="tab-bandwidth">
+                <div class="db-card-body" >
+                    <div class="db-notice db-notice--info" style="margin-bottom:18px;">
+                        <i class="fas fa-circle-info"></i>
+                        <span><?php echo e(__('services_bw_notice')); ?></span>
+                    </div>
+
+                    <h3 class="db-section-title"><i class="fas fa-chart-area"></i> <?php echo e(__('services_bw_usage_bar')); ?></h3>
+                    <div class="db-srv-specs" style="margin-bottom:16px;">
+                        <div class="db-srv-spec"><div class="db-srv-spec__value"><?php echo e($bandwidth['used']); ?>/<?php echo e($service['bw_total']); ?></div><div class="db-srv-spec__label"><?php echo e(__('services_bw_used')); ?></div></div>
+                        <div class="db-srv-spec__divider"></div>
+                        <div class="db-srv-spec"><div class="db-srv-spec__value"><?php echo $bandwidth['percent']; ?>%</div><div class="db-srv-spec__label"><?php echo e(__('services_bw_percent')); ?></div></div>
+                        <div class="db-srv-spec__divider"></div>
+                        <div class="db-srv-spec"><div class="db-srv-spec__value"><?php echo e($service['bw_speed']); ?></div><div class="db-srv-spec__label"><?php echo e(__('services_bw_speed')); ?></div></div>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:0.78rem;">
+                        <span style="color:var(--text-secondary);font-weight:600;"><?php echo number_format($bandwidth['used'] / 1024, 1); ?> TB / <?php echo e($service['bw_total']); ?></span>
+                        <span style="color:var(--text-tertiary);"><?php echo $bandwidth['percent']; ?>%</span>
+                    </div>
+                    <div class="db-progress-bar" style="height:10px;margin-bottom:16px;"><div class="db-progress-bar__fill" style="width:<?php echo $bandwidth['percent']; ?>%;"></div></div>
+
+                    <div class="db-notice db-notice--warning" style="margin-bottom:20px;">
+                        <i class="fas fa-clock"></i>
+                        <span><?php echo e(__('services_bw_reset_notice')); ?></span>
+                    </div>
+
+                    <!-- FAQ -->
+                    <h3 class="db-section-title"><i class="fas fa-circle-question"></i> <?php echo e(__('services_bw_faq_title')); ?></h3>
+                    <div class="db-faq-list">
+                        <details class="db-faq-item">
+                            <summary class="db-faq-item__q"><?php echo e(__('services_bw_faq1_q')); ?></summary>
+                            <div class="db-faq-item__a"><?php echo e(__('services_bw_faq1_a')); ?></div>
+                        </details>
+                        <details class="db-faq-item">
+                            <summary class="db-faq-item__q"><?php echo e(__('services_bw_faq2_q')); ?></summary>
+                            <div class="db-faq-item__a"><?php echo e(__('services_bw_faq2_a')); ?></div>
+                        </details>
+                        <details class="db-faq-item">
+                            <summary class="db-faq-item__q"><?php echo e(__('services_bw_faq3_q')); ?></summary>
+                            <div class="db-faq-item__a"><?php echo e(__('services_bw_faq3_a')); ?></div>
+                        </details>
+                        <details class="db-faq-item">
+                            <summary class="db-faq-item__q"><?php echo e(__('services_bw_faq4_q')); ?></summary>
+                            <div class="db-faq-item__a"><?php echo e(__('services_bw_faq4_a')); ?></div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: Reinstall -->
+            <div class="db-tab-panel" id="tab-reinstall">
+                <div class="db-card-body" >
+                    <h3 class="db-section-title"><i class="fas fa-rotate"></i> <?php echo e(__('services_reinstall_title')); ?></h3>
+                    <div class="db-notice db-notice--info" style="margin-bottom:16px;">
+                        <i class="fas fa-circle-info"></i>
+                        <div>
+                            <ul style="margin:0; padding-left:16px; font-size:0.78rem; line-height:1.8; color:var(--text-secondary);">
+                                <li><?php echo e(__('services_reinstall_note1')); ?></li>
+                                <li style="color:var(--status-overdue); font-weight:600;"><?php echo e(__('services_reinstall_note2')); ?></li>
+                                <li><?php echo e(__('services_reinstall_note3')); ?></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="db-os-grid" style="margin-bottom:16px;">
+                        <?php foreach ($os_list as $os): ?>
+                        <div class="db-os-card<?php echo !empty($os['current']) ? ' selected' : ''; ?>" onclick="document.querySelectorAll('.db-os-card').forEach(c=>c.classList.remove('selected')); this.classList.add('selected');">
+                            <span class="db-os-card__name"><?php echo e($os['name']); ?></span>
+                            <i class="fas fa-circle-check db-os-card__check"></i>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
+                    <div style="text-align:center;margin-bottom:16px;"><button class="db-btn db-btn--danger db-btn--sm" onclick="DashModal.open('reinstallModal')"><i class="fas fa-rotate"></i> <?php echo e(__('services_reinstall_btn')); ?></button></div>
+                    <div class="db-notice db-notice--warning"><i class="fas fa-triangle-exclamation"></i> <span><?php echo e(__('services_reinstall_warning')); ?></span></div>
+                </div>
+            </div>
+
+            <!-- TAB: Billing -->
+            <div class="db-tab-panel" id="tab-billing">
+                <div class="db-card-body" style="padding-bottom:0">
+                    <h3 class="db-section-title"><i class="fas fa-file-invoice"></i> <?php echo e(__('services_billing_info')); ?></h3>
+                    <div class="db-srv-specs" style="margin-bottom:16px;">
+                        <div class="db-srv-spec"><div class="db-srv-spec__value"><?php echo e($service['created']); ?></div><div class="db-srv-spec__label"><?php echo e(__('services_billing_reg_date')); ?></div></div>
+                        <div class="db-srv-spec__divider"></div>
+                        <div class="db-srv-spec"><div class="db-srv-spec__value"><?php echo e($service['cycle']); ?></div><div class="db-srv-spec__label"><?php echo e(__('services_info_cycle')); ?></div></div>
+                        <div class="db-srv-spec__divider"></div>
+                        <div class="db-srv-spec"><div class="db-srv-spec__value">€<?php echo number_format($service['amount'], 2); ?></div><div class="db-srv-spec__label"><?php echo e(__('services_billing_renewal_price')); ?></div></div>
+                        <div class="db-srv-spec__divider"></div>
+                        <div class="db-srv-spec"><div class="db-srv-spec__value"><?php echo e($service['due_date']); ?></div><div class="db-srv-spec__label"><?php echo e(__('services_info_next_due')); ?></div></div>
+                    </div>
+                    <?php $pct = round(($service['days_total'] - $service['days_left']) / $service['days_total'] * 100); ?>
+                    <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
+                        <div class="db-progress-bar" style="flex:1;height:6px;"><div class="db-progress-bar__fill" style="width:<?php echo $pct; ?>%;"></div></div>
+                        <span class="db-progress-badge"><?php echo $service['days_left']; ?> <?php echo e(__('services_billing_days_left')); ?></span>
+                    </div>
+
+                    <!-- Billing Tools -->
+                    <h3 class="db-section-title"><i class="fas fa-wrench"></i> <?php echo e(__('services_billing_tools')); ?></h3>
+                    <div class="db-billing-tools" style="margin-bottom:20px;">
+                        <div class="db-billing-tool">
+                            <div class="db-billing-tool__info"><div class="db-billing-tool__title"><?php echo e(__('services_billing_renewal_invoice')); ?></div><div class="db-billing-tool__desc"><?php echo __('services_billing_renewal_desc', ['amount' => '€' . number_format($service['amount'], 2) . ' ' . $service['currency'], 'days' => '6', 'date' => $service['due_date']]); ?></div></div>
+                            <div class="db-billing-tool__action"><button class="db-btn db-btn--sm db-btn--secondary" onclick="DashToast.show('success','','<?php echo e(__('services_billing_renewal_generated')); ?>')"><?php echo e(__('services_billing_generate_renewal')); ?></button></div>
+                        </div>
+                        <div class="db-billing-tool">
+                            <div class="db-billing-tool__info"><div class="db-billing-tool__title"><?php echo e(__('services_billing_cycle_title')); ?></div><div class="db-billing-tool__desc"><?php echo __('services_billing_cycle_desc', ['cycle' => $service['cycle'], 'date' => $service['due_date']]); ?></div></div>
+                            <div class="db-billing-tool__action"><button class="db-btn db-btn--sm db-btn--secondary" onclick="DashToast.show('info','','<?php echo e(__('services_billing_cycle_change_msg')); ?>')"><?php echo e(__('services_billing_change_cycle')); ?></button></div>
+                        </div>
+                        <div class="db-billing-tool">
+                            <div class="db-billing-tool__info"><div class="db-billing-tool__title"><?php echo e(__('services_billing_auto_renew')); ?></div><div class="db-billing-tool__desc"><?php echo __('services_billing_auto_renew_desc', ['days' => '6']); ?><br><span class="text-danger"><?php echo e(__('services_billing_auto_renew_warning')); ?></span></div></div>
+                            <div class="db-billing-tool__action"><label class="db-toggle"><input type="checkbox" checked onchange="DashToast.show('info','',this.checked?'<?php echo e(__('services_billing_auto_renew_on')); ?>':'<?php echo e(__('services_billing_auto_renew_off')); ?>')"><span class="db-toggle-track"><span class="db-toggle-thumb"></span></span></label></div>
+                        </div>
+                        <div class="db-billing-tool">
+                            <div class="db-billing-tool__info"><div class="db-billing-tool__title"><?php echo e(__('services_billing_credit_renewal')); ?></div><div class="db-billing-tool__desc"><?php echo e(__('services_billing_credit_renewal_desc')); ?></div></div>
+                            <div class="db-billing-tool__action"><label class="db-toggle"><input type="checkbox" onchange="DashToast.show('info','',this.checked?'<?php echo e(__('services_billing_credit_on')); ?>':'<?php echo e(__('services_billing_credit_off')); ?>')"><span class="db-toggle-track"><span class="db-toggle-thumb"></span></span></label></div>
+                        </div>
+                    </div>
+
+                    <h3 class="db-section-title"><i class="fas fa-list"></i> <?php echo e(__('services_billing_invoices_list')); ?></h3>
+                </div>
+                <div class="db-card-body--table">
+                    <div class="db-table-wrapper">
+                        <table class="db-table">
+                            <thead><tr><th>#</th><th><?php echo e(__('invoices_col_date')); ?></th><th><?php echo e(__('invoices_col_due_date')); ?></th><th><?php echo e(__('invoices_col_amount')); ?></th><th><?php echo e(__('common_status')); ?></th></tr></thead>
+                            <tbody>
+                                <?php foreach ($linked_invoices as $inv):
+                                    $is_urgent = ($inv['status'] === 'unpaid' || $inv['status'] === 'overdue');
+                                ?>
+                                <tr class="db-table-row-link <?php echo $is_urgent ? 'db-table-row--urgent' : ''; ?>" onclick="window.location='<?php echo DASH_BASE_PATH; ?>/pages/billing/invoice-details.php?id=<?php echo $inv['id']; ?>&status=<?php echo $inv['status']; ?>'">
+                                    <td><span style="color:var(--brand-primary);font-weight:600;">#<?php echo e($inv['id']); ?></span></td>
+                                    <td><?php echo e($inv['date']); ?></td>
+                                    <td><?php echo e($inv['due']); ?></td>
+                                    <td>€<?php echo number_format($inv['amount'], 2); ?></td>
+                                    <td><span class="db-badge db-badge--<?php echo e($inv['status']); ?>"><?php echo e(__('status_' . $inv['status'])); ?></span></td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: Upgrade -->
+            <div class="db-tab-panel" id="tab-upgrade">
+                <div class="db-card-body" >
+                    <h3 class="db-section-title"><i class="fas fa-arrow-up-arrow-down"></i> <?php echo e(__('services_tab_upgrade')); ?></h3>
+                    <div class="db-notice-list">
+                        <div class="db-notice db-notice--info">
+                            <i class="fas fa-circle-info"></i>
+                            <div>
+                                <ul style="margin:0; padding-left:16px; font-size:0.78rem; line-height:1.8; color:var(--text-secondary);">
+                                    <li><?php echo e(__('services_upgrade_note1')); ?></li>
+                                    <li><?php echo e(__('services_upgrade_note2')); ?></li>
+                                    <li><?php echo e(__('services_upgrade_note3')); ?></li>
+                                    <li><?php echo e(__('services_upgrade_note4')); ?></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="db-current-pkg"><i class="fas fa-triangle-exclamation"></i> <span><?php echo __('services_upgrade_current', ['plan' => $service['plan']]); ?></span></div>
+                    <div class="db-upgrade-grid">
+                        <?php foreach ($packages as $pkg): ?>
+                        <div class="db-upgrade-card">
+                            <?php if (!empty($pkg['save'])): ?><span class="db-upgrade-card__save"><i class="fas fa-tag"></i> <?php echo e(__('services_upgrade_save')); ?> <?php echo e($pkg['save']); ?></span><?php endif; ?>
+                            <div class="db-upgrade-card__name"><?php echo e($pkg['name']); ?></div>
+                            <div class="db-upgrade-card__price"><span class="db-upgrade-card__price-currency">€</span><span class="db-upgrade-card__price-amount"><?php echo e($pkg['price']); ?></span></div>
+                            <div class="db-upgrade-card__prorate">*<?php echo __('services_upgrade_prorate', ['days' => $pkg['days'], 'price' => '€' . number_format($pkg['full_price'], 2)]); ?></div>
+                            <button class="db-btn db-btn--secondary db-btn--sm" style="width:100%;justify-content:center;" onclick="DashToast.show('info','','<?php echo e(__('services_upgrade_processing')); ?>')"><?php echo e(__('services_upgrade_btn')); ?></button>
+                            <div class="db-upgrade-card__specs" style="margin-top:8px;"><?php foreach ($pkg['specs'] as $s): ?><span class="db-upgrade-card__spec"><?php echo e($s); ?></span><?php endforeach; ?></div>
+                            <span class="db-upgrade-card__link"><?php echo e(__('services_upgrade_full_specs')); ?> →</span>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RIGHT: Control Panel -->
+    <div>
+        <div class="db-ctrl-panel">
+            <a href="#" class="db-btn db-btn--primary db-ctrl-panel__primary" onclick="event.preventDefault(); DashToast.show('info','','Opening SSH terminal...');">
+                <i class="fas fa-terminal"></i> <?php echo e(__('services_action_ssh')); ?>
+            </a>
+            <div class="db-ctrl-panel__info">
+                <div class="db-ctrl-panel__row"><span><?php echo e(__('services_info_plan')); ?></span><strong><?php echo e($service['plan']); ?></strong></div>
+                <div class="db-ctrl-panel__row"><span><?php echo e(__('services_info_amount')); ?></span><strong>€<?php echo number_format($service['amount'], 2); ?>/<?php echo e(strtolower(substr($service['cycle'], 0, 2))); ?></strong></div>
+                <div class="db-ctrl-panel__row"><span><?php echo e(__('services_info_next_due')); ?></span><strong><?php echo e($service['due_date']); ?></strong></div>
+            </div>
+            <div class="db-ctrl-panel__actions">
+                <button class="db-ctrl-panel__action" onclick="DashToast.show('warning','','Server powering off...')"><i class="fas fa-power-off"></i> <?php echo e(__('services_power_off')); ?></button>
+                <button class="db-ctrl-panel__action" onclick="DashToast.show('info','','Rebooting...')"><i class="fas fa-rotate-right"></i> <?php echo e(__('services_reboot')); ?></button>
+                <button class="db-ctrl-panel__action" onclick="DashToast.show('info','','Password change coming soon.')"><i class="fas fa-key"></i> <?php echo e(__('services_action_password')); ?></button>
+                <button class="db-ctrl-panel__action" onclick="DashToast.show('info','','Opening console...')"><i class="fas fa-terminal"></i> <?php echo e(__('services_console')); ?></button>
+                <button class="db-ctrl-panel__action" onclick="DashToast.show('info','','Location change coming soon.')"><i class="fas fa-location-dot"></i> <?php echo e(__('services_change_location')); ?></button>
+                <button class="db-ctrl-panel__action" onclick="DashToast.show('info','','Renewal coming soon.')"><i class="fas fa-sync"></i> <?php echo e(__('services_renew')); ?></button>
+                <button class="db-ctrl-panel__action" onclick="document.querySelector('[data-tab=upgrade]').click()"><i class="fas fa-arrow-up-right-dots"></i> <?php echo e(__('services_action_upgrade')); ?></button>
+                <button class="db-ctrl-panel__action" onclick="document.querySelector('[data-tab=reinstall]').click()"><i class="fas fa-rotate"></i> <?php echo e(__('services_tab_reinstall')); ?></button>
+            </div>
+            <div class="db-ctrl-panel__danger">
+                <button class="db-ctrl-panel__action db-ctrl-panel__action--danger" onclick="DashModal.open('cancelServiceModal')"><i class="fas fa-xmark"></i> <?php echo e(__('services_action_cancel')); ?></button>
+            </div>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
+
+<!-- Modals -->
+<?php
+$modal_id = 'cancelServiceModal'; $modal_title = __('services_action_cancel'); $modal_size = 'sm';
+include __DIR__ . '/../../components/modal.php';
+?>
+<div class="db-confirm-body"><div class="db-modal-icon db-modal-icon--danger"><i class="fas fa-triangle-exclamation"></i></div><p><?php echo e(__('services_cancel_confirm')); ?></p></div>
+<?php
+$modal_footer = '<button class="db-btn db-btn--secondary" data-modal-close>' . e(__('common_cancel')) . '</button><button class="db-btn db-btn--danger" onclick="DashModal.close(this.closest(\'.db-modal-overlay\')); DashToast.show(\'success\',\'\',\'' . e(__('services_cancel_success')) . '\');">' . e(__('common_confirm')) . '</button>';
+include __DIR__ . '/../../components/modal-end.php';
+
+$modal_id = 'reinstallModal'; $modal_title = __('services_reinstall_title'); $modal_size = 'sm';
+include __DIR__ . '/../../components/modal.php';
+?>
+<div class="db-confirm-body"><div class="db-modal-icon db-modal-icon--danger"><i class="fas fa-triangle-exclamation"></i></div><p><?php echo e(__('services_reinstall_confirm')); ?></p></div>
+<?php
+$modal_footer = '<button class="db-btn db-btn--secondary" data-modal-close>' . e(__('common_cancel')) . '</button><button class="db-btn db-btn--danger" onclick="DashModal.close(this.closest(\'.db-modal-overlay\')); DashToast.show(\'success\',\'\',\'' . e(__('services_reinstall_success')) . '\');">' . e(__('common_confirm')) . '</button>';
+include __DIR__ . '/../../components/modal-end.php';
+?>
+
+<div class="db-toast-container" id="toastContainer"></div>
+<?php require_once __DIR__ . '/../../layouts/footer.php'; ?>
