@@ -579,65 +579,70 @@
 }
 
 
-/* ── Google Sign-in Button (theme-adaptive) ── */
-.auth-google {
-    width: 100%;
+/* ── Social Sign-in Buttons (4-button grid) ── */
+.auth-socials {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.auth-social-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    padding: 12px 20px;
+    height: 48px;
     border-radius: var(--radius-sm);
-    font-family: var(--font-body);
-    font-size: 0.86rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all var(--duration-fast) ease;
-    text-decoration: none;
-    position: relative;
     border: 1px solid var(--border-primary);
     background: var(--bg-elevated);
     color: var(--text-primary);
+    cursor: pointer;
+    transition: all var(--duration-fast) ease;
+    text-decoration: none;
+    padding: 0;
 }
 
-.auth-google:hover {
+.auth-social-btn:hover {
     background: var(--bg-tertiary);
-    border-color: var(--text-tertiary);
     transform: translateY(-1px);
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
 }
 
-.auth-google:active {
+.auth-social-btn:active {
     transform: translateY(0);
 }
 
-[data-theme="light"] .auth-google {
+.auth-social-btn svg {
+    width: 20px;
+    height: 20px;
+    display: block;
+}
+
+/* Brand-specific hover accents */
+.auth-social-btn--google:hover   { border-color: rgba(234, 67, 53, 0.55); }
+.auth-social-btn--facebook:hover { border-color: rgba(24, 119, 242, 0.55); }
+.auth-social-btn--x:hover        { border-color: rgba(255, 255, 255, 0.35); }
+.auth-social-btn--github:hover   { border-color: rgba(255, 255, 255, 0.35); }
+
+/* Icon color helpers */
+.auth-social-btn--x svg,
+.auth-social-btn--github svg { color: var(--text-primary); }
+
+/* Light theme */
+[data-theme="light"] .auth-social-btn {
     background: #ffffff;
     border-color: #dadce0;
     color: #3c4043;
     box-shadow: 0 1px 2px rgba(60, 64, 67, 0.08);
 }
 
-[data-theme="light"] .auth-google:hover {
+[data-theme="light"] .auth-social-btn:hover {
     background: #f8f9fa;
-    border-color: #c8cbd0;
     box-shadow: 0 4px 12px rgba(60, 64, 67, 0.12);
 }
 
-.auth-google__icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.auth-google__icon svg {
-    display: block;
-}
-
-.auth-google__text {
-    font-weight: 600;
-    letter-spacing: 0.01em;
+[data-theme="light"] .auth-social-btn--x:hover,
+[data-theme="light"] .auth-social-btn--github:hover {
+    border-color: #1a1a1a;
 }
 
 

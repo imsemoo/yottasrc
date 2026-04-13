@@ -327,7 +327,7 @@ html {
     position: relative;
     z-index: 1;
     width: 100%;
-    max-width: 560px;
+    max-width: 680px;
     flex-shrink: 0;
 }
 
@@ -444,33 +444,73 @@ html {
     text-align: center;
     font-size: 0.78rem;
     color: var(--text-secondary);
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     font-weight: 500;
 }
-.reg-google {
+
+.reg-socials {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    max-width: 420px;
+    margin: 0 auto 18px;
+}
+
+.reg-social-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    margin: 0 auto 16px;
-    padding: 11px 26px;
-    min-width: 230px;
-    background: #ea4335;
-    color: #fff;
-    border: none;
+    height: 48px;
     border-radius: var(--radius-sm);
-    font-size: 0.86rem;
-    font-weight: 600;
+    border: 1px solid var(--border-primary);
+    background: var(--bg-elevated);
+    color: var(--text-primary);
     cursor: pointer;
     transition: all var(--duration-fast) ease;
-    box-shadow: 0 2px 8px rgba(234, 67, 53, 0.25);
+    text-decoration: none;
+    padding: 0;
 }
-.reg-google:hover {
-    background: #d33426;
+
+.reg-social-btn:hover {
+    background: var(--bg-tertiary);
     transform: translateY(-1px);
-    box-shadow: 0 6px 16px rgba(234, 67, 53, 0.35);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
 }
-.reg-google i { font-size: 1rem; }
+
+.reg-social-btn:active {
+    transform: translateY(0);
+}
+
+.reg-social-btn svg {
+    width: 20px;
+    height: 20px;
+    display: block;
+}
+
+.reg-social-btn--google:hover   { border-color: rgba(234, 67, 53, 0.55); }
+.reg-social-btn--facebook:hover { border-color: rgba(24, 119, 242, 0.55); }
+.reg-social-btn--x:hover        { border-color: rgba(255, 255, 255, 0.35); }
+.reg-social-btn--github:hover   { border-color: rgba(255, 255, 255, 0.35); }
+
+.reg-social-btn--x svg,
+.reg-social-btn--github svg { color: var(--text-primary); }
+
+[data-theme="light"] .reg-social-btn {
+    background: #ffffff;
+    border-color: #dadce0;
+    color: #3c4043;
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.08);
+}
+
+[data-theme="light"] .reg-social-btn:hover {
+    background: #f8f9fa;
+    box-shadow: 0 4px 12px rgba(60, 64, 67, 0.12);
+}
+
+[data-theme="light"] .reg-social-btn--x:hover,
+[data-theme="light"] .reg-social-btn--github:hover {
+    border-color: #1a1a1a;
+}
 
 
 /* ── OR Divider ── */
