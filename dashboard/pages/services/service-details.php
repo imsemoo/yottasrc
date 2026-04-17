@@ -27,7 +27,7 @@ $service = [
     'id' => 151926, 'name' => 'Linux VPS/VDS', 'type' => 'VPS YTA 1 Package',
     'hostname' => 'YTA6686328', 'ip' => '107.161.168.236',
     'username' => 'root', 'password' => '99P7aSTnZ#Vn',
-    'status' => 'active', 'location' => 'USA', 'location_flag' => '🇺🇸',
+    'status' => 'active', 'location' => 'United States', 'location_flag' => 'us',
     'plan' => 'VPS YTA 1', 'cycle' => '1 Month', 'amount' => 3.25, 'currency' => 'EUR',
     'due_date' => '24/04/2026', 'created' => '24/03/2026',
     'days_left' => 23, 'days_total' => 30,
@@ -84,7 +84,7 @@ $packages = [
             <span class="db-srv-hero__sep">·</span>
             <span><?php echo e($service['type']); ?></span>
             <span class="db-srv-hero__sep">·</span>
-            <span><?php echo $service['location_flag']; ?> <?php echo e($service['location']); ?></span>
+            <span><span class="fi fi-<?php echo e($service['location_flag']); ?>" style="display:inline-block; width:18px; height:13px; border-radius:2px; vertical-align:middle; margin-inline-end:4px; background-size:cover; background-position:center;"></span> <?php echo e($service['location']); ?></span>
         </div>
     </div>
     <div class="db-srv-hero__actions">
@@ -138,7 +138,7 @@ $packages = [
                     <div class="db-srv-specs" style="margin-bottom:24px;">
                         <div class="db-srv-spec"><div class="db-srv-spec__value" style="color:var(--status-active);"><?php echo e(__('status_' . $service['status'])); ?></div><div class="db-srv-spec__label"><?php echo e(__('common_status')); ?></div></div>
                         <div class="db-srv-spec__divider"></div>
-                        <div class="db-srv-spec"><div class="db-srv-spec__value"><?php echo $service['location_flag']; ?> <?php echo e($service['location']); ?></div><div class="db-srv-spec__label"><?php echo e(__('services_info_location')); ?></div></div>
+                        <div class="db-srv-spec"><div class="db-srv-spec__value" style="display:flex; align-items:center; gap:6px; justify-content:center;"><span class="fi fi-<?php echo e($service['location_flag']); ?>" style="display:inline-block; width:20px; height:15px; border-radius:2px; background-size:cover; background-position:center;"></span><?php echo e($service['location']); ?></div><div class="db-srv-spec__label"><?php echo e(__('services_info_location')); ?></div></div>
                         <div class="db-srv-spec__divider"></div>
                         <div class="db-srv-spec"><div class="db-srv-spec__value"><?php echo e($service['cycle']); ?></div><div class="db-srv-spec__label"><?php echo e(__('services_info_cycle')); ?></div></div>
                         <div class="db-srv-spec__divider"></div>
@@ -159,6 +159,51 @@ $packages = [
                         <div class="db-srv-spec"><div class="db-srv-spec__value"><?php echo e($service['bw_total']); ?></div><div class="db-srv-spec__label">BW <span><?php echo e($service['bw_speed']); ?></span></div></div>
                         <div class="db-srv-spec__divider"></div>
                         <div class="db-srv-spec"><div class="db-srv-spec__value"><?php echo $service['ipv6'] ? '✓' : '✗'; ?></div><div class="db-srv-spec__label">IPv6</div></div>
+                    </div>
+
+                    <!-- ═══ Tutorials collapsible section ═══ -->
+                    <h3 class="db-section-title" style="margin-top:26px;"><i class="fas fa-graduation-cap"></i> <?php echo e(__('services_tutorials_title')); ?></h3>
+                    <div class="db-srv-tutorials">
+                        <details class="db-srv-tutorial">
+                            <summary>
+                                <span class="db-srv-tutorial__icon"><i class="fas fa-terminal"></i></span>
+                                <span class="db-srv-tutorial__q"><?php echo e(__('services_tutorial_q1')); ?></span>
+                                <i class="fas fa-chevron-down db-srv-tutorial__arrow"></i>
+                            </summary>
+                            <div class="db-srv-tutorial__body">
+                                <p><?php echo e(__('services_tutorial_a1')); ?></p>
+                            </div>
+                        </details>
+                        <details class="db-srv-tutorial">
+                            <summary>
+                                <span class="db-srv-tutorial__icon"><i class="fas fa-key"></i></span>
+                                <span class="db-srv-tutorial__q"><?php echo e(__('services_tutorial_q2')); ?></span>
+                                <i class="fas fa-chevron-down db-srv-tutorial__arrow"></i>
+                            </summary>
+                            <div class="db-srv-tutorial__body">
+                                <p><?php echo e(__('services_tutorial_a2')); ?></p>
+                            </div>
+                        </details>
+                        <details class="db-srv-tutorial">
+                            <summary>
+                                <span class="db-srv-tutorial__icon"><i class="fas fa-clock-rotate-left"></i></span>
+                                <span class="db-srv-tutorial__q"><?php echo e(__('services_tutorial_q3')); ?></span>
+                                <i class="fas fa-chevron-down db-srv-tutorial__arrow"></i>
+                            </summary>
+                            <div class="db-srv-tutorial__body">
+                                <p><?php echo e(__('services_tutorial_a3')); ?></p>
+                            </div>
+                        </details>
+                        <details class="db-srv-tutorial">
+                            <summary>
+                                <span class="db-srv-tutorial__icon"><i class="fas fa-circle-question"></i></span>
+                                <span class="db-srv-tutorial__q"><?php echo e(__('services_tutorial_q4')); ?></span>
+                                <i class="fas fa-chevron-down db-srv-tutorial__arrow"></i>
+                            </summary>
+                            <div class="db-srv-tutorial__body">
+                                <p><?php echo __('services_tutorial_a4'); ?></p>
+                            </div>
+                        </details>
                     </div>
                 </div>
             </div>

@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(php -l pages/support/index.php)",
+      "Bash(php -l lang/en.php)",
+      "Bash(php -l lang/ar.php)",
+      "Bash(php -l pages/support/ticket-details.php)",
+      "Bash(php -l pages/support/new.php)",
+      "Bash(php -l pages/services/service-details.php)",
+      "Bash(php -l pages/billing/invoice-details.php)",
+      "Bash(php -l pages/domains/index.php)",
+      "Bash(php -S localhost:3000)"
+    ],
+    "additionalDirectories": [
+      "c:\\laragon\\www\\yottasrc\\dashboard\\pages\\support"
+    ]
+  }
+}

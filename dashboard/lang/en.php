@@ -976,4 +976,587 @@ return [
     'auth_reset_expired_title'  => 'Link expired',
     'auth_reset_expired_desc'   => 'This password reset link has expired or is no longer valid. Please request a new one.',
     'auth_request_new_link'     => 'Request new link',
+
+    // ── Verification (M4) ──
+    'verify_title'              => 'Account Verification',
+    'verify_desc'               => 'Complete the verification process to start using Cloud Servers',
+    'verify_card_title'         => 'Verification Process',
+
+    // Banner (shown on other pages)
+    'verify_banner_label'       => 'Verification',
+    'verify_banner_text'        => 'Since you are a new customer, you need to verify your account before using Cloud Servers.',
+    'verify_banner_cta'         => 'Verify now',
+
+    // Stepper
+    'verify_step_information'   => 'Information',
+    'verify_step_payment'       => 'Payment',
+    'verify_step_finish'        => 'Finish',
+
+    // Buttons
+    'verify_next_step'          => 'Next Step',
+    'verify_back'               => 'Back',
+    'verify_submit'             => 'Submit Verification',
+    'verify_submitting'         => 'Submitting...',
+    'verify_back_dashboard'     => 'Back to Dashboard',
+
+    // Step 1 — Information form
+    'verify_purpose'            => 'Purpose of Cloud Servers',
+    'verify_purpose_website'    => 'Website Hosting',
+    'verify_purpose_app'        => 'App Development',
+    'verify_purpose_gaming'     => 'Gaming Server',
+    'verify_purpose_data'       => 'Data Processing',
+    'verify_purpose_ml'         => 'Machine Learning / AI',
+    'verify_purpose_crypto'     => 'Cryptocurrency / Blockchain',
+    'verify_purpose_vpn'        => 'VPN / Proxy',
+    'verify_purpose_other'      => 'Other',
+
+    'verify_entity_type'        => 'Entity Type',
+    'verify_entity_individual'  => 'Individual',
+    'verify_entity_business'    => 'Business',
+    'verify_entity_government'  => 'Government',
+    'verify_entity_nonprofit'   => 'Non-Profit',
+
+    'verify_language'           => 'Preferred Language',
+
+    'verify_referral'           => 'Referral Source',
+    'verify_referral_search'    => 'Online Search',
+    'verify_referral_social'    => 'Social Media',
+    'verify_referral_friend'    => 'Friend / Word of Mouth',
+    'verify_referral_forum'     => 'Forum / Community',
+    'verify_referral_youtube'   => 'YouTube',
+    'verify_referral_ad'        => 'Advertisement',
+    'verify_referral_other'     => 'Other',
+
+    // Step 2 — Payment
+    'verify_payment_heading'    => 'To start building cloud servers, you need to add funds of at least €5 EUR.',
+    'verify_amount_label'       => 'Initial deposit amount',
+    'verify_generate_invoice'   => 'Generate Invoice',
+    'verify_invoice_generated'  => 'Invoice generated. Check your email or the Invoices section.',
+    'verify_min_amount_error'   => 'Minimum deposit is €5 EUR.',
+    'verify_notice_balance'     => 'The funds will be added <strong>to your balance</strong> so you can use it to purchase servers.',
+    'verify_notice_prohibited'  => 'Please review our list of <strong>prohibited activities</strong> on servers before continuing.',
+    'verify_notice_port25'      => 'All ports are open <strong>except port 25</strong>, which is closed and cannot be opened.',
+    'verify_notice_nonrefundable' => '<strong>Note:</strong> The added funds are non-refundable if your account is accepted.',
+
+    // Step 3 — Finish (review + submit)
+    'verify_finish_title'       => 'Almost there!',
+    'verify_finish_desc'        => 'Review your information below and submit for verification.',
+    'verify_initial_funds'      => 'Initial Deposit',
+    'verify_tos_agree'          => 'I agree to the <a href="#">Terms of Service</a>, <a href="#">Refund Policy</a>, and confirm the information above is accurate.',
+    'verify_tos_required'       => 'Please accept the Terms of Service to continue.',
+
+    // Success state
+    'verify_success_title'      => 'Congratulations!',
+    'verify_success_desc'       => 'Just one step left! Your request has been sent for manual review. It will be verified in less than 10 hours. Just come back here and check the status.',
+
+    // Info card (below wizard)
+    'verify_info_title'         => 'Verification Process',
+    'verify_info_1'             => 'Identity verification or similar methods are not required.',
+    'verify_info_2'             => 'The information requested above is only for statistical purposes.',
+    'verify_info_3'             => 'Funds are non-refundable unless the application is rejected, per our <strong>refund policy</strong>.',
+    'verify_info_4'             => 'Verification typically occurs automatically with direct approval. However, manual verification may be necessary in certain cases.',
+    'verify_info_5'             => 'By clicking the submit button in the final step, you acknowledge and agree to our <strong>terms &amp; conditions</strong> and <strong>refund policy</strong>.',
+
+    // ── Cloud Hub (M4) ──
+    'cloud_title'                  => 'Cloud Servers',
+    'cloud_desc'                   => 'Manage your projects, billing, limits, and referrals in one place',
+
+    // Tabs
+    'cloud_tab_projects'           => 'Projects',
+    'cloud_tab_billing'            => 'Billing',
+    'cloud_tab_limits'             => 'Limits',
+    'cloud_tab_referral'           => 'Referral',
+
+    // Projects tab
+    'cloud_projects_title'         => 'Your Projects',
+    'cloud_new_project'            => '+ New Project',
+    'cloud_new_project_coming'     => 'New project creation will be available soon.',
+    'cloud_project_coming'         => 'Project context view will be available soon.',
+    'cloud_project_servers'        => ':count servers',
+    'cloud_project_actions'        => 'Project actions',
+    'cloud_project_open'           => 'Open Project',
+    'cloud_project_rename'         => 'Rename',
+    'cloud_project_copy_id'        => 'Copy Project ID',
+    'cloud_project_delete'         => 'Delete Project',
+    'cloud_projects_warn'          => '<strong>To create a cloud server</strong>, you must first create a project. You cannot create a server directly without a project.',
+
+    // Billing tab
+    'cloud_billing_title'          => 'Cloud Billing Overview',
+    'cloud_bill_current_usage'     => 'Current Usage',
+    'cloud_bill_this_month'        => 'This month',
+    'cloud_bill_last_invoice'      => 'Last Invoice',
+    'cloud_bill_next_charge'       => 'Next Charge',
+    'cloud_bill_lifetime'          => 'Lifetime',
+    'cloud_bill_total_spent'       => 'Total spent',
+    'cloud_autorecharge_title'     => 'Auto-Recharge',
+    'cloud_autorecharge_on'        => 'Automatically add funds when balance falls below the threshold.',
+    'cloud_autorecharge_off'       => 'Auto-recharge is currently disabled. Enable it to avoid service interruption.',
+    'cloud_autorecharge_enabled'   => 'Auto-recharge enabled',
+    'cloud_autorecharge_disabled'  => 'Auto-recharge disabled',
+    'cloud_billing_invoices_link_text' => 'View all your cloud invoices and payment history in the',
+    'cloud_billing_invoices_link'  => 'Invoices section',
+
+    // Limits tab
+    'cloud_limits_title'           => 'LIMITS!',
+    'cloud_limits_desc'            => 'Each customer has a set amount of limits, and these are shared across all the projects they start.',
+    'cloud_limits_cta_text'        => 'If you want more resources, just let us know and we\'ll be glad to help you out.',
+    'cloud_limits_cta_coming'      => 'Limit increase request flow coming soon.',
+    'cloud_limits_increase'        => 'Limit Increase',
+    'cloud_limit_servers'          => 'Servers',
+    'cloud_limit_ips'              => 'IPs',
+    'cloud_limit_projects'         => 'Projects',
+    'cloud_limit_terminate'        => 'Terminate / Month',
+
+    // Referral tab
+    'cloud_referral_referrals'     => 'Referrals',
+    'cloud_referral_pending'       => 'Pending',
+    'cloud_referral_paid'          => 'Paid',
+    'cloud_promo_15_title'         => 'Get €15',
+    'cloud_promo_15_desc'          => 'Spend €200 EUR on cloud servers and receive a one-time €15 EUR cloud credit reward.',
+    'cloud_promo_10_title'         => 'Get €10',
+    'cloud_promo_10_desc'          => 'Get €10 EUR in cloud credits for every referral spending over €100 EUR.',
+    'cloud_referral_code_title'    => 'Your Referral Code',
+    'cloud_referral_code_coming'   => 'In the next console update, the new REFERRALS system will be available.',
+
+    // New Project modal
+    'cloud_new_project_modal_title' => 'Create New Project',
+    'cloud_new_project_modal_desc'  => 'Projects help you organize your cloud servers. Each project has its own servers, network, and API keys.',
+    'cloud_project_name_label'      => 'Project Name',
+    'cloud_project_name_placeholder' => 'e.g. my-website',
+    'cloud_project_name_hint'       => '3–30 characters. Letters, numbers, dashes, and underscores only.',
+    'cloud_project_desc_label'      => 'Description',
+    'cloud_project_desc_placeholder' => 'Brief description of this project...',
+    'cloud_new_project_modal_notice' => 'A unique <strong>Project ID</strong> will be auto-generated. You can rename the project anytime from its settings.',
+    'cloud_create_project'          => 'Create Project',
+    'cloud_creating'                => 'Creating...',
+    'cloud_project_created'         => 'Project :id created successfully.',
+    'cloud_servers_word'            => 'servers',
+    'cloud_just_now'                => 'just now',
+    'common_optional'               => 'optional',
+
+    // ── Project Context (M4 Phase 3) ──
+    'project_badge_label'           => 'Project ID',
+    'project_nav_aria'              => 'Project navigation',
+    'project_nav_create_server'     => 'Create New Server',
+    'project_nav_servers'           => 'Servers',
+    'project_nav_network'           => 'Network',
+    'project_nav_api'                => 'API Access',
+    'project_nav_projects'          => 'Projects',
+    'project_nav_main_dashboard'    => 'Main Dashboard',
+
+    // Project — Servers page
+    'project_page_servers'          => 'Servers',
+    'project_servers_list_title'    => 'Servers List',
+    'project_create_server'         => 'Create Server',
+    'project_col_name'              => 'Name',
+    'project_col_os'                => 'OS',
+    'project_col_ip'                => 'IP',
+    'project_col_location'          => 'Location',
+    'project_col_status'            => 'Status',
+    'project_col_created'           => 'Created At',
+    'project_servers_empty_search'  => 'No servers match your search.',
+    'project_no_servers_title'      => 'No Servers!',
+    'project_no_servers_desc'       => 'You don\'t have any servers in this project yet.',
+    'project_no_servers_hint_prefix' => 'To create one, please click on',
+    'project_no_servers_hint_suffix' => 'above.',
+
+    // Project — Network page
+    'project_page_network'          => 'Network',
+    'project_network_list_title'    => 'Network List',
+    'project_label_project'         => 'Project',
+    'project_col_type'              => 'Type',
+    'project_col_protocol'          => 'Protocol',
+    'project_col_assigned_server'   => 'Assigned Server',
+    'project_ip_type_primary'       => 'Primary IP',
+    'project_ip_type_additional'    => 'Additional',
+    'project_ip_type_reserved'      => 'Reserved',
+    'project_ip_stat_total'         => 'Total IPs',
+    'project_ip_stat_primary'       => 'Primary',
+    'project_ip_action_rdns'        => 'Edit rDNS',
+    'project_ip_action_instructions' => 'Show Instructions',
+    'project_ip_action_remove'      => 'Remove IP',
+    'project_network_search'        => 'Search IPs or servers...',
+    'project_network_empty_search'  => 'No IP addresses match your search.',
+    'project_filter_all_protocols'  => 'All Protocols',
+    'project_filter_all_types'      => 'All Types',
+    'project_no_ips_title'          => 'No Network Addresses!',
+    'project_no_ips_desc'           => 'IP addresses are assigned automatically when you create servers.',
+    'project_no_ips_hint_prefix'    => 'To get your first IP, just click on',
+    'project_no_ips_hint_suffix'    => 'above and deploy a server.',
+    'project_server_coming'         => 'Server details view will be available soon.',
+
+    // Project — API Access page
+    'project_page_api'              => 'API Access',
+    'project_api_title'             => 'API Access',
+    'project_api_intro_title'       => 'API Access',
+    'project_api_intro_desc'        => 'In this section, you\'ll be able to generate API keys for remote control via <strong>HTTPS</strong>. It employs <strong>JSON format</strong> for server management and offers integration solutions with popular platforms like <strong>WHMCS, Blesta</strong>, and others. Comprehensive documentation is provided on API functionality and integrations, along with support for various programming languages such as <strong>PHP</strong> and <strong>Python</strong> through dedicated libraries.',
+    'project_api_construction_title' => 'Under Construction',
+    'project_api_construction_desc' => 'This section is currently under construction as the cloud is in its beta version. In future releases, this feature will be available with complete documentation. Meanwhile, you can stay updated on changes and upcoming features by following the changelogs provided <a href="#">here</a>.',
+    'project_api_preview_title'     => 'Coming Features',
+    'project_api_feat_keys_title'   => 'API Key Management',
+    'project_api_feat_keys_desc'    => 'Generate, rotate, and scope API keys per project with granular permissions.',
+    'project_api_feat_servers_title' => 'Server Operations',
+    'project_api_feat_servers_desc' => 'Create, resize, reboot, reinstall, and destroy servers programmatically.',
+    'project_api_feat_webhooks_title' => 'Webhooks & Events',
+    'project_api_feat_webhooks_desc' => 'Subscribe to real-time events (server lifecycle, billing, abuse reports).',
+    'project_api_feat_analytics_title' => 'Usage Analytics',
+    'project_api_feat_analytics_desc' => 'Query bandwidth, CPU, RAM, and cost metrics over time via the API.',
+    'project_api_notify_btn'        => 'Notify me when ready',
+    'project_api_notify_success'    => 'You will be notified when the API is available.',
+    'project_api_changelog_link'    => 'Read changelog',
+    'common_soon'                   => 'Soon',
+
+    // ── Create Server Wizard (M4 Phase 5) ──
+    'create_server_title'           => 'Create New Server',
+    'create_order_summary'          => 'Order Summary',
+    'create_label_resources'        => 'Resources',
+    'create_label_location'         => 'Location',
+    'create_label_package'          => 'Package',
+    'create_label_image'            => 'Image',
+    'create_label_total_mo'         => 'Total / Mo',
+    'create_label_total_h'          => 'Total / h',
+
+    // Nav buttons
+    'create_nav_back'               => 'Back',
+    'create_nav_next'               => 'Next',
+    'create_nav_select_resources'   => 'Select Resources',
+    'create_nav_select_location'    => 'Select Location',
+    'create_nav_select_package'     => 'Select Package',
+    'create_nav_select_image'       => 'Select Image',
+    'create_nav_create_server'      => 'Create Server',
+
+    // Step 1
+    'create_step1_os_title'         => 'Select OS',
+    'create_step1_resources_title' => 'Select Resources',
+    'create_os_linux'               => 'Linux OS',
+    'create_os_windows'             => 'Windows OS',
+    'create_res_shared'             => 'Shared Resources',
+    'create_res_dedicated'          => 'Dedicated Resources',
+
+    // Step 2
+    'create_region_europe'          => 'Europe',
+    'create_region_north_america'   => 'North America',
+    'create_location_info'          => 'Is your location not listed here? For other locations, you can place a monthly order from the pricing page. Locations available for hourly billing will be added gradually.',
+
+    // Step 3
+    'create_pkg_cores'              => 'Core',
+    'create_package_popular'        => 'Popular',
+
+    // Step 4
+    'create_image_warning'          => 'Installing Ubuntu 22, Ubuntu 24, or AlmaLinux 9 on servers with 1GB RAM may cause performance issues or server creation failures. Always check functionality after installation.',
+
+    // Validation
+    'create_validate_step1'         => 'Please select OS and resource type.',
+    'create_validate_step2'         => 'Please select a location.',
+    'create_validate_step3'         => 'Please select a package.',
+    'create_validate_step4'         => 'Please select an OS image.',
+
+    // Confirm modal
+    'create_confirm_title'          => 'Create Server',
+    'create_confirm_desc'           => 'Are you sure you want to create a new server with the following configuration?',
+    'create_confirm_yes'            => 'Yes, Create',
+    'create_creating'               => 'Creating...',
+
+    // Verification gate
+    'create_gate_title'             => 'Something is wrong!',
+    'create_gate_desc'              => 'You should complete the verification process first before creating any servers.',
+    'create_gate_cta'               => 'Complete Verification',
+
+    // ── Server Details (M4 Phase 6) ──
+    'srvd_actions'                  => 'Actions',
+    'srvd_action_restart'           => 'Restart',
+    'srvd_action_stop'              => 'Stop',
+    'srvd_action_snapshot'          => 'Take Snapshot',
+    'srvd_action_reset_pw'          => 'Reset Password',
+    'srvd_power_on'                 => 'Power ON',
+    'srvd_power_off'                => 'Power OFF',
+    'srvd_power_turned_on'          => 'Server powered on.',
+    'srvd_power_turned_off'         => 'Server powered off.',
+
+    'srvd_warn_label'               => 'Warning',
+    'srvd_warn_text'                => '— The server was just created moments ago. Please allow 2-5 minutes for it to become fully operational. This message will automatically disappear shortly.',
+
+    // Tabs
+    'srvd_tab_overview'             => 'Overview',
+    'srvd_tab_network'              => 'Network',
+    'srvd_tab_bandwidth'            => 'Bandwidth',
+    'srvd_tab_reinstall'            => 'Reinstall',
+    'srvd_tab_upgrade'              => 'Upgrade Server',
+    'srvd_tab_abuse'                => 'Abuse',
+    'srvd_tab_activities'           => 'Activities',
+    'srvd_tab_pricing'              => 'Pricing',
+    'srvd_tab_delete'               => 'Delete',
+
+    // Overview tab
+    'srvd_overview_access_title'    => 'Remote Desktop Access & Usage',
+    'srvd_overview_ip'              => 'IP',
+    'srvd_overview_username'        => 'Username',
+    'srvd_overview_password'        => 'Password',
+    'srvd_overview_usage'           => 'Usage',
+    'srvd_overview_specs_title'     => 'Specifications & Status',
+    'srvd_spec_cpu'                 => 'Server CPU',
+    'srvd_spec_ram'                 => 'Server RAM',
+    'srvd_spec_ssd'                 => 'Server SSD',
+    'srvd_spec_bandwidth'           => 'Bandwidth',
+    'srvd_spec_status'              => 'Status',
+    'srvd_spec_image'               => 'Image',
+
+    // Network tab
+    'srvd_network_public_title'     => 'Public Network',
+    'srvd_network_main_ip'          => 'Main IP',
+    'srvd_network_notice_1'         => 'Here, you\'ll find the primary IPs assigned to your server.',
+    'srvd_network_notice_2'         => 'Occasionally, the primary IP may be deleted or replaced, depending on the cloud provider\'s policies.',
+    'srvd_network_notice_3'         => 'If you delete an IP within 7 days of creating it, you\'ll be charged <strong>25% of the monthly cost of the IP</strong>. This is to prevent abuses of our resources.',
+    'srvd_network_notice_4'         => 'Certain packages include IPv6 capability. You can activate it by clicking the "Add IPv6" button. If you don\'t see this button, your current package doesn\'t support IPv6.',
+    'srvd_network_add_primary'      => 'Add Primary IP',
+    'srvd_network_add_ipv6'         => 'Add IPv6',
+    'srvd_network_add_additional'   => 'Add Additional IP',
+    'srvd_network_additional_title' => 'Additional IPs',
+    'srvd_network_add_notice_1'     => 'You can add up to 3 additional IPs to your current server, but keep in mind your account has a maximum limit of 5 IPs.',
+    'srvd_network_add_notice_2'     => 'You can\'t move IPs from one server to another.',
+    'srvd_network_add_notice_3'     => 'If you delete an IP within 7 days of creating it, you\'ll be charged <strong>25% of the monthly cost</strong>. This is to prevent abuses of our resources.',
+    'srvd_network_add_notice_4'     => 'If you need more resources or a higher IP limit, feel free to <a href="#">request them here</a>.',
+    'srvd_network_additional_empty' => 'No additional IPs have been added yet. To add one, simply click on the "Add Additional IP" button.',
+    'srvd_network_instructions'     => 'Show Instructions',
+
+    // Bandwidth tab
+    'srvd_bw_title'                 => 'Bandwidth!',
+    'srvd_bw_desc'                  => 'Each server has a custom bandwidth limit, and some servers have an unlimited limit.',
+    'srvd_bw_over_text'              => 'Some servers support over bandwidth calculated per TB in case the bandwidth limit is exceeded.',
+    'srvd_bw_over_btn'              => 'Enable Over Bandwidth',
+    'srvd_bw_usage_title'           => 'Bandwidth Usage',
+    'srvd_bw_usage_hint'            => 'If you exceed the included bandwidth with the over-bandwidth option enabled, each additional 1 TB costs €0.99 EUR. The bandwidth will reset automatically on the 1st of every month.',
+    'srvd_bw_faq_title'             => 'FAQ Questions',
+    'srvd_bw_faq_q1'                => 'How is additional traffic billed?',
+    'srvd_bw_faq_a1'                => 'Each additional 1 TB beyond your package limit costs €0.99 EUR, billed monthly.',
+    'srvd_bw_faq_q2'                => 'Is the bandwidth unlimited for all servers?',
+    'srvd_bw_faq_a2'                => 'No. Each package has its own bandwidth limit. Check your package details on the Pricing tab.',
+    'srvd_bw_faq_q3'                => 'How can I check my remaining bandwidth?',
+    'srvd_bw_faq_a3'                => 'The usage bar above shows your real-time consumption. It refreshes every few minutes.',
+    'srvd_bw_faq_q4'                => 'Can I increase my bandwidth if I exceed the limit?',
+    'srvd_bw_faq_a4'                => 'Yes, enable the over-bandwidth option to allow usage beyond the included limit at €0.99/TB.',
+
+    // Reinstall tab
+    'srvd_reinstall_title'          => 'Server Reinstall / Rebuild',
+    'srvd_reinstall_notice_1'       => 'This is where you can reinstall/rebuild your operating system, enabling you to switch to different distributions and versions.',
+    'srvd_reinstall_notice_2'       => 'Please note that all your files will be deleted during this process, <strong>and it cannot be restored</strong>.',
+    'srvd_reinstall_notice_3'       => 'Upon selecting the desired OS below, a dialogue will prompt you to confirm the installation process. You can retrieve the new password from the Overview section.',
+    'srvd_reinstall_btn'            => 'Reinstall Now',
+
+    // Upgrade tab
+    'srvd_upgrade_title'            => 'Upgrade Server',
+    'srvd_upgrade_warn'             => 'Once a server is upgraded, it can\'t be downgraded because the disk size cannot be safely reduced or shrunk.',
+    'srvd_upgrade_current_label'    => 'Your Current Package is:',
+    'srvd_upgrade_btn'              => 'Upgrade Server',
+
+    // Abuse tab
+    'srvd_abuse_title'              => 'Important Notes',
+    'srvd_abuse_firewall'           => 'Firewall Rules',
+    'srvd_abuse_notice_1_b'         => 'Enable the firewall on your server. Never ignore this!',
+    'srvd_abuse_notice_1'           => 'It will protect you from unexpected abuse reports. Close all ports, especially UDP, and open the TCP ports you need.',
+    'srvd_abuse_notice_2'           => 'If there\'s any abuse report about network attacks, IP attacks, or port scanning, the server will be permanently suspended. Don\'t open a ticket and say you forgot to enable the firewall!',
+    'srvd_abuse_notice_3'           => 'In other cases, a ticket will be opened, and you\'ll be given time to respond and solve the problem. Provide us with details about the reason. If you fail to respond by the deadline, the server may be suspended at any time.',
+    'srvd_abuse_notice_4'           => 'Remember, we partner with several data centers, each managing abuse reports differently. We can\'t control everything, and the final decision isn\'t always ours.',
+    'srvd_abuse_notice_5'           => 'You can click on the button above \'Firewall Rules\' to get complete protection, which will help you avoid any future abuse reports.',
+    'srvd_abuse_reports_title'      => 'Abuse Reports',
+    'srvd_abuse_pending'            => 'Pending',
+    'srvd_abuse_review'             => 'In Review',
+    'srvd_abuse_suspended'          => 'Suspended',
+    'srvd_abuse_solved'             => 'Solved',
+    'srvd_abuse_ok'                 => 'Yey! Everything is OK!',
+
+    // Activities tab
+    'srvd_activities_title'         => 'Server Activities',
+    'srvd_activities_col'           => 'Activity',
+    'srvd_activities_date'          => 'Date',
+    'srvd_act_create_server'        => 'Create Server',
+
+    // Pricing tab
+    'srvd_pricing_title'            => 'Cost & Usage (:month)',
+    'srvd_pricing_notice_1'         => 'The cost displayed in the boxes below is per hour and is calculated only for the current month.',
+    'srvd_pricing_notice_2'         => 'Any Primary or additional IPs that are added or removed will also be factored into the calculation here.',
+    'srvd_pricing_notice_3'         => 'Keep in mind that deleting IPs within 7 days of use will result in a deduction of 25% of their monthly price.',
+    'srvd_pricing_notice_4'         => 'The table below provides comprehensive details of the server\'s cost and usage for all months of operation.',
+    'srvd_pricing_notice_5'         => 'Certain cost add-ons are refreshed every 24 hours.',
+    'srvd_pricing_notice_6'         => 'You will pay a maximum of <strong>€7.49</strong> for using the server for up to 720 hours from 01/04/2026 to 30/04/2026. If you pay more and reach 720 hours, the extra amount will be refunded. For less than 720 hours, the hourly rate applies.',
+    'srvd_pricing_hourly'           => 'Hourly Price',
+    'srvd_pricing_monthly'          => 'Monthly Price',
+    'srvd_pricing_cycle'            => 'Current Cycle',
+    'srvd_pricing_usage'            => 'Current Usage',
+    'srvd_pricing_bk_server'        => 'Server',
+    'srvd_pricing_bk_primary_ips'   => 'Primary IPs',
+    'srvd_pricing_bk_additional_ips' => 'Additional IPs',
+    'srvd_pricing_bk_bandwidth'     => 'Bandwidth',
+    'srvd_pricing_billing_records'  => 'Billing Records',
+    'srvd_pricing_check_billing'    => 'Check Billing',
+    'srvd_pricing_records_desc'     => 'All payments made to the server for each month are displayed below.',
+    'srvd_pricing_no_usage'         => 'No usage has been recorded for this server yet.',
+
+    // Delete tab
+    'srvd_delete_title'             => 'Server Delete',
+    'srvd_delete_desc'              => 'When you delete your server, all ongoing tasks will stop, and the server\'s disk data and backups will be permanently removed.',
+    'srvd_delete_warning'           => 'Please note that once deleted, the data cannot be recovered.',
+    'srvd_delete_confirm_text'      => 'Additionally, clicking on the "Delete Server" button will prompt a dialogue box for confirmation.',
+    'srvd_delete_limit_text'        => 'Please be aware that only up to 15 server terminations are allowed per month.',
+    'srvd_delete_count_label'       => 'Number of terminations this month',
+    'srvd_delete_btn'               => 'Delete Server',
+    'srvd_delete_modal_title'       => 'Delete Server?',
+    'srvd_delete_modal_desc'        => 'Are you sure you want to permanently delete server :server? This action cannot be undone.',
+    'srvd_delete_confirm_btn'       => 'Yes, Delete',
+
+    // ── Service Details — Tutorials (Phase 7) ──
+    'services_tutorials_title'      => 'Tutorials & Guides',
+    'services_tutorial_q1'          => 'How to access your server via SSH / RDP?',
+    'services_tutorial_a1'          => 'Use the IP, username, and password shown above. For Linux, connect via SSH on port 22. For Windows, use Remote Desktop Connection on port 3389.',
+    'services_tutorial_q2'          => 'How to reset your server password?',
+    'services_tutorial_a2'          => 'Go to the server actions menu and select "Reset Password". A new password will be generated and displayed in the Overview tab within minutes.',
+    'services_tutorial_q3'          => 'How to see your login history?',
+    'services_tutorial_a3'          => 'Login history is tracked in the Activities tab of your server. It shows every session with IP, timestamp, and duration.',
+    'services_tutorial_q4'          => 'I can\'t access my server. What should I do?',
+    'services_tutorial_a4'          => 'First, ensure the firewall is not blocking your IP. Try pinging the server. If still unreachable, <a href="#">open a support ticket</a> with full details and we\'ll investigate within 10 hours.',
+
+    // ── Server Details — interactive actions (Phase 8 fixes) ──
+    'common_save'                   => 'Save',
+    'common_close'                  => 'Close',
+    'common_remove'                 => 'Remove',
+
+    // Rename server
+    'srvd_rename'                   => 'Rename server',
+    'srvd_rename_success'           => 'Server renamed successfully.',
+    'srvd_rename_invalid'           => 'Name must be 3-30 characters.',
+
+    // Action confirms (Restart, Stop, Snapshot, Reset Password)
+    'srvd_action_restart_heading'   => 'Restart Server?',
+    'srvd_action_restart_text'      => 'The server will be restarted immediately. Running services will be briefly interrupted.',
+    'srvd_action_restart_confirm'   => 'Restart Now',
+    'srvd_action_restart_done'      => 'Server restart initiated.',
+    'srvd_action_stop_heading'      => 'Stop Server?',
+    'srvd_action_stop_text'         => 'The server will be powered off. Your data will be preserved, but the server will be unreachable until you start it again.',
+    'srvd_action_stop_confirm'      => 'Stop Server',
+    'srvd_action_stop_done'         => 'Server is shutting down.',
+    'srvd_action_snapshot_heading'  => 'Take Snapshot?',
+    'srvd_action_snapshot_text'     => 'A full snapshot of the server will be created. You can restore from it later. This may take a few minutes.',
+    'srvd_action_snapshot_confirm'  => 'Create Snapshot',
+    'srvd_action_snapshot_done'     => 'Snapshot scheduled. You\'ll be notified when ready.',
+    'srvd_action_reset_pw_heading'  => 'Reset Password?',
+    'srvd_action_reset_pw_text'     => 'A new random password will be generated and shown in the Overview tab. Your existing sessions will be terminated.',
+    'srvd_action_reset_pw_confirm'  => 'Reset Password',
+    'srvd_action_reset_pw_done'     => 'New password generated. Check the Overview tab.',
+
+    // Add IP modal
+    'srvd_add_ip_title'             => 'Add IP Address',
+    'srvd_add_ip_title_primary'     => 'Add Primary IP',
+    'srvd_add_ip_title_ipv6'        => 'Add IPv6 Address',
+    'srvd_add_ip_title_additional'  => 'Add Additional IP',
+    'srvd_add_ip_desc_primary'      => 'Add a new primary IPv4 address for your server.',
+    'srvd_add_ip_desc_ipv6'         => 'Add an IPv6 address to your server. Supports /64 subnets.',
+    'srvd_add_ip_desc_additional'   => 'Add an additional IP for services that need multiple endpoints.',
+    'srvd_add_ip_protocol'          => 'Protocol',
+    'srvd_add_ip_ipv4_sub'          => 'Standard · widely supported',
+    'srvd_add_ip_ipv6_sub'          => 'Modern · larger address space',
+    'srvd_add_ip_rdns_label'        => 'Reverse DNS (rDNS)',
+    'srvd_add_ip_rdns_hint'         => 'Must be a valid hostname (letters, numbers, dots, hyphens).',
+    'srvd_add_ip_notice'            => '<strong>Note:</strong> If you delete this IP within 7 days, you\'ll be charged 25% of the monthly cost.',
+    'srvd_add_ip_submit'            => 'Add IP',
+    'srvd_add_ip_adding'            => 'Adding...',
+    'srvd_add_ip_success'           => 'IP added:',
+
+    // rDNS edit (inline prompt — server-details)
+    'srvd_rdns_prompt'              => 'Enter reverse DNS hostname (empty to clear):',
+    'srvd_rdns_invalid'             => 'Invalid hostname format.',
+    'srvd_rdns_saved'               => 'rDNS updated successfully.',
+
+    // Bandwidth toggle
+    'srvd_bw_over_enabled'          => 'Over Bandwidth Enabled',
+    'srvd_bw_over_on'               => 'Over-bandwidth is now enabled. Extra usage billed at €0.99/TB.',
+    'srvd_bw_over_off'              => 'Over-bandwidth disabled.',
+
+    // Reinstall modal
+    'srvd_reinstall_modal_title'    => 'Reinstall Server?',
+    'srvd_reinstall_modal_desc'     => 'The server will be wiped and reinstalled with the selected OS.',
+    'srvd_reinstall_modal_target_os' => 'Target OS',
+    'srvd_reinstall_modal_current'  => 'Current OS',
+    'srvd_reinstall_modal_warn'     => 'All your files will be deleted and cannot be restored.',
+    'srvd_reinstall_modal_confirm'  => 'Reinstall Now',
+    'srvd_reinstall_starting'       => 'Starting...',
+    'srvd_reinstall_started'        => 'Reinstall started. This may take 5-10 minutes.',
+
+    // Upgrade modal
+    'srvd_upgrade_modal_title'      => 'Upgrade Server?',
+    'srvd_upgrade_modal_desc'       => 'Your server will be upgraded to the new package. This can\'t be undone.',
+    'srvd_upgrade_modal_new'        => 'New Package',
+    'srvd_upgrade_modal_new_price'  => 'New Price',
+    'srvd_upgrade_modal_confirm'    => 'Upgrade Now',
+    'srvd_upgrade_upgrading'        => 'Upgrading...',
+    'srvd_upgrade_started'          => 'Upgrade started. Server will reboot.',
+
+    // Firewall modal
+    'srvd_firewall_title'           => 'Firewall Rules',
+    'srvd_firewall_intro'           => 'Configure inbound firewall rules for your server. Rules are applied in order from top to bottom.',
+    'srvd_firewall_col_protocol'    => 'Protocol',
+    'srvd_firewall_col_port'        => 'Port',
+    'srvd_firewall_col_source'      => 'Source',
+    'srvd_firewall_col_action'      => 'Action',
+    'srvd_firewall_action_allow'    => 'Allow',
+    'srvd_firewall_action_deny'     => 'Deny',
+    'srvd_firewall_add_rule'        => 'Add New Rule',
+    'srvd_firewall_add_coming'      => 'Rule editor coming soon.',
+    'srvd_firewall_saved'           => 'Firewall rules saved.',
+
+    // Console modal
+    'srvd_console_title'            => 'Web Console',
+    'srvd_console_connected'        => 'Connected',
+    'srvd_console_clear'            => 'Clear console',
+    'srvd_console_type_help'        => 'Type `help` to see available commands.',
+    'srvd_console_placeholder'      => 'Type a command and press Enter...',
+
+    // Instructions modal (server-details)
+    'srvd_instructions_title'       => 'IP Setup Instructions',
+    'srvd_instructions_desc'        => 'Follow these steps to configure the IP address on your server.',
+    'srvd_instructions_s1_title'    => '1. Assign the IP to your network interface',
+    'srvd_instructions_s1_desc'     => 'Add the IP address to your primary interface (usually eth0):',
+    'srvd_instructions_s2_title'    => '2. Configure the default route',
+    'srvd_instructions_s2_desc'     => 'Set the default gateway so outbound traffic uses your new IP:',
+    'srvd_instructions_s3_title'    => '3. Test connectivity',
+    'srvd_instructions_s3_desc'     => 'Verify the IP works by pinging a public DNS server:',
+    'srvd_instructions_view_docs'   => 'View Full Documentation',
+    'srvd_instructions_docs_coming' => 'Documentation portal coming soon.',
+    'common_confirm'                => 'Confirm',
+
+    // Network page — rDNS modal
+    'project_rdns_modal_title'      => 'Edit Reverse DNS',
+    'project_rdns_modal_desc'       => 'Reverse DNS maps your IP back to a hostname (useful for email sending, etc.).',
+    'project_rdns_modal_ip_label'   => 'IP Address',
+    'project_rdns_modal_value_label' => 'Reverse DNS Hostname',
+    'project_rdns_modal_hint'       => 'Leave empty to clear. Changes take up to 15 minutes to propagate globally.',
+
+    // Network page — Remove IP
+    'project_remove_ip_title'       => 'Remove IP?',
+    'project_remove_ip_desc'        => 'Are you sure you want to remove this IP?',
+    'project_remove_ip_warn'        => 'If you remove this IP within 7 days of adding it, you\'ll be charged 25% of the monthly cost.',
+    'project_remove_ip_confirm'     => 'Yes, Remove',
+    'project_remove_ip_done'        => 'IP removed:',
+
+    // Network page — Instructions
+    'project_instructions_desc'     => 'Follow these steps to configure the IP on Ubuntu/Debian with Netplan.',
+    'project_instructions_s1_title' => '1. Edit the netplan configuration',
+    'project_instructions_s1_desc'  => 'Open the netplan YAML file and add your IP to the addresses list:',
+    'project_instructions_s2_title' => '2. Apply the configuration',
+    'project_instructions_s2_desc'  => 'After saving, apply the new network configuration:',
+    'project_instructions_s3_title' => '3. Verify the changes',
+    'project_instructions_s3_desc'  => 'Confirm the IP is now active on the interface:',
+
+    // Cloud Hub — project rename/delete
+    'cloud_project_rename_title'    => 'Rename Project',
+    'cloud_project_rename_desc'     => 'Change the display name of this project. The Project ID will not change.',
+    'cloud_project_rename_id_label' => 'Project ID (cannot be changed)',
+    'cloud_project_rename_name_label' => 'New Name',
+    'cloud_project_rename_success'  => 'Project renamed successfully.',
+    'cloud_project_rename_invalid'  => 'Name must be 3-30 characters (letters, numbers, dashes only).',
+    'cloud_project_delete_title'    => 'Delete Project?',
+    'cloud_project_delete_desc'     => 'This will permanently delete the project and all its resources.',
+    'cloud_project_delete_project'  => 'Project',
+    'cloud_project_delete_warn'     => 'All servers, IPs, and API keys in this project will be destroyed. This cannot be undone.',
+    'cloud_project_delete_confirm'  => 'Yes, Delete Project',
+    'cloud_project_delete_done'     => 'Project deleted successfully.',
 ];

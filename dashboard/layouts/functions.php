@@ -29,9 +29,14 @@ function __($key, $replacements = []) {
 
 /**
  * Generate a versioned dashboard asset URL.
+ * Uses filemtime() for auto cache-busting when any static file changes.
+ * Falls back to DASHBOARD_VERSION if file doesn't exist (e.g. external URLs).
  */
 function dash_asset($path) {
-    return DASH_BASE_PATH . '/static/' . ltrim($path, '/') . '?v=' . DASHBOARD_VERSION;
+    $clean = ltrim($path, '/');
+    $abs = __DIR__ . '/../static/' . $clean;
+    $ver = file_exists($abs) ? filemtime($abs) : DASHBOARD_VERSION;
+    return DASH_BASE_PATH . '/static/' . $clean . '?v=' . $ver;
 }
 
 /**

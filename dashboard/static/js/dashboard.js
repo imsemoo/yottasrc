@@ -1058,3 +1058,116 @@ window.DashTable = (function () {
 document.addEventListener('DOMContentLoaded', function () {
     DashTable.initAll();
 });
+
+
+/* ═══════════════════════════════════════════════════════════
+   DashTabs — reusable content tab system (in-page JS swap)
+   ═══════════════════════════════════════════════════════════
+   Markup contract:
+
+   <div class="db-tab-bar" data-tab-bar data-tab-content="#myTabs">
+       <button class="db-tab-bar__btn is-active" data-tab-target="overview">
+           <i class="fas fa-house"></i> Overview
+       </button>
+       <button class="db-tab-bar__btn" data-tab-target="settings">
+           <i class="fas fa-gear"></i> Settings
+       </button>
+   </div>
+
+   <div id="myTabs">
+       <div class="db-tab-pane is-active" data-tab-pane="overview">...</div>
+       <div class="db-tab-pane" data-tab-pane="settings">...</div>
+   </div>
+
+   Features:
+   - Click a tab to swap content without page reload
+   - URL hash sync (#tab-overview) for direct linking + browser back/forward
+   - Keyboard support (Arrow Left/Right + Home/End)
+   - Auto-init on DOMContentLoaded for any [data-tab-bar]
+   - Emits 'dashtabs:change' custom event on the bar
+   ═══════════════════════════════════════════════════════════ */
+
+window.DashTabs = (function () {
+    function init(bar) {
+        if (!bar || bar.dataset.dashTabsInit === '1') return;
+        bar.dataset.dashTabsInit = '1';
+
+        var btns = Array.prototype.slice.call(bar.querySelectorAll('[data-tab-target]'));
+        var contentSelector = bar.getAttribute('data-tab-content');
+        var content = contentSelector ? document.querySelector(contentSelector) : null;
+        var hashPrefix = bar.getAttribute('data-tab-hash-prefix') || 'tab-';
+        var syncUrl = bar.getAttribute('data-tab-no-url') !== '1';
+
+        function activate(target, opts) {
+            if (!target) return;
+            opts = opts || {};
+            var found = false;
+
+            btns.forEach(function (b) {
+                var match = b.getAttribute('data-tab-target') === target;
+                b.classList.toggle('is-active', match);
+                if (match) found = true;
+            });
+
+            if (!found) return;
+
+            if (content) {
+                content.querySelectorAll('[data-tab-pane]').forEach(function (p) {
+                    p.classList.toggle('is-active', p.getAttribute('data-tab-pane') === target);
+                });
+            }
+
+            if (syncUrl && !opts.skipUrl && history.replaceState) {
+                try {
+                    history.replaceState(null, '', '#' + hashPrefix + target);
+                } catch (err) { /* ignore — restricted context (file://, sandbox, etc.) */ }
+            }
+
+            // Fire custom event
+            bar.dispatchEvent(new CustomEvent('dashtabs:change', {
+                detail: { target: target }
+            }));
+        }
+
+        btns.forEach(function (b, idx) {
+            b.addEventListener('click', function (e) {
+                e.preventDefault();
+                activate(b.getAttribute('data-tab-target'));
+            });
+            // Keyboard arrow navigation
+            b.addEventListener('keydown', function (e) {
+                var next = null;
+                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = btns[idx + 1] || btns[0];
+                else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = btns[idx - 1] || btns[btns.length - 1];
+                else if (e.key === 'Home') next = btns[0];
+                else if (e.key === 'End') next = btns[btns.length - 1];
+                if (next) {
+                    e.preventDefault();
+                    next.focus();
+                    activate(next.getAttribute('data-tab-target'));
+                }
+            });
+        });
+
+        // Initialize from URL hash if present
+        if (syncUrl) {
+            var hash = (window.location.hash || '').replace('#', '');
+            if (hash.indexOf(hashPrefix) === 0) {
+                var target = hash.substring(hashPrefix.length);
+                if (bar.querySelector('[data-tab-target="' + target + '"]')) {
+                    activate(target, { skipUrl: true });
+                }
+            }
+        }
+    }
+
+    function initAll(root) {
+        (root || document).querySelectorAll('[data-tab-bar]').forEach(init);
+    }
+
+    return { init: init, initAll: initAll };
+})();
+
+document.addEventListener('DOMContentLoaded', function () {
+    DashTabs.initAll();
+});
