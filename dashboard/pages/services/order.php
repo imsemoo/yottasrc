@@ -19,9 +19,40 @@ $breadcrumbs_data = [
 
 require_once __DIR__ . '/../../layouts/shell.php';
 
+/* ══════════════════════════════════════════════════════════════════════
+   ███  ORDER NEW  ·  MOCK DATA BLOCK  (single source of truth)  ███
+   ══════════════════════════════════════════════════════════════════════
+   BACKEND TEAM — PLEASE READ:
+
+   Product catalog — grouped into categories with products under each.
+   Used to render the "what would you like to order?" page.
+
+   Wiring real data:
+     • $catalog comes from your product management system.
+     • 'from' may be null (e.g. domains — price depends on TLD).
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ──────────────────────────────────────────
+   PAGE STATE  ('active' | 'loading' | 'error')
+   ────────────────────────────────────────── */
 $page_state = $_GET['state'] ?? 'active';
 
-// Product catalog
+/* ──────────────────────────────────────────
+   PRODUCT CATALOG
+   ──────────────────────────────────────────
+   Category shape:
+   • id       → slug (stable)
+   • name     → heading
+   • desc     → subheading
+   • icon     → Font Awesome class for the category tile
+   • color    → 'primary' | 'success' | 'warning' | 'accent' | 'info'
+   • products → array of:
+        - name  (plain string or translation)
+        - desc  (plain string or translation)
+        - icon  (Font Awesome class)
+        - from  (starting price float, or null for "pricing varies")
+        - url   (product-detail link; '#' for placeholders)
+   ────────────────────────────────────────── */
 $catalog = [
     [
         'id'    => 'hosting',
@@ -86,6 +117,8 @@ $catalog = [
         ],
     ],
 ];
+
+/* ══════════════  END OF MOCK DATA  ══════════════ */
 ?>
 
 <?php
@@ -102,7 +135,7 @@ include __DIR__ . '/../../components/page-header.php';
     <div style="display: flex; flex-direction: column; gap: 24px;">
         <?php for ($i = 0; $i < 3; $i++): ?>
         <div class="db-card">
-            <div class="db-card-body" style="padding: 24px;">
+            <div class="db-card-body db-card-body--lg">
                 <div style="display:flex; align-items:center; gap:16px; margin-bottom:20px;">
                     <div class="db-skeleton" style="width:48px; height:48px; border-radius:var(--radius-md);"></div>
                     <div><div class="db-skeleton db-skeleton--heading" style="width:160px; margin-bottom:6px;"></div><div class="db-skeleton db-skeleton--text" style="width:240px;"></div></div>
@@ -144,7 +177,7 @@ include __DIR__ . '/../../components/page-header.php';
                 <?php if ($p['from'] !== null): ?>
                 <div class="db-order-prod-card__price">
                     <span class="db-order-prod-card__price-label"><?php echo e(__('order_from')); ?></span>
-                    <span class="db-order-prod-card__price-value">€<?php echo number_format($p['from'], 2); ?></span>
+                    <span class="db-order-prod-card__price-value"><?php echo format_money($p['from']); ?></span>
                     <span class="db-order-prod-card__price-period">/<?php echo e(__('order_mo')); ?></span>
                 </div>
                 <?php endif; ?>

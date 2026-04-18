@@ -6,11 +6,12 @@
  */
 
 // Page config (loaded after config.php for __() access)
-$page_title = null; // set after config loads
+$page_title = null;       // set after config loads
 $breadcrumbs_data = null; // set after config loads
 
 // Bootstrap
 require_once __DIR__ . '/layouts/config.php';
+require_once __DIR__ . '/layouts/project-helpers.php';   // cloud_sparkline()
 
 $page_title = __('meta_title');
 $breadcrumbs_data = [
@@ -19,11 +20,309 @@ $breadcrumbs_data = [
 
 require_once __DIR__ . '/layouts/shell.php';
 
-// Demo data (will come from backend later)
-$user_name = 'Islam';
+/* ══════════════════════════════════════════════════════════════════════
+   ███  DASHBOARD HOME  ·  MOCK DATA BLOCK  (single source of truth)  ███
+   ══════════════════════════════════════════════════════════════════════
+   BACKEND TEAM — PLEASE READ:
+
+   Every number / label / chart value shown on the home page lives
+   in this single block. Edit a value here → the UI updates directly.
+   No numbers are hardcoded anywhere in the HTML below.
+
+   When wiring real data:
+     • Replace each array with the equivalent DB query result.
+     • Keep the array KEYS and SHAPE identical — the HTML loops over
+       these keys, so a structure mismatch will break the layout.
+     • Sparkline arrays:
+          - hero_stats[...].spark  → exactly  7 numbers (7-day trend)
+          - monthly_overview[...].spark → exactly 30 numbers (30-day)
+          - bandwidth.spark_30d    → exactly 30 numbers (30-day)
+     • Money values are stored as plain floats (e.g. 3.42).
+       Use format_money() to render with €/thousands separator.
+     • Dates are plain strings formatted by the backend
+       (e.g. '24/04/2026') — no parsing done on the frontend.
+   ══════════════════════════════════════════════════════════════════════ */
+
+
+/* ──────────────────────────────────────────
+   1. USER SESSION  (last-login meta line)
+   ────────────────────────────────────────── */
+$user_name       = 'Islam';
 $last_login_date = '24/03/2026';
 $last_login_time = '23:52 EET';
-$last_login_ip = '197.54.214.50';
+$last_login_ip   = '197.54.214.50';
+
+
+/* ──────────────────────────────────────────
+   2. HERO STATS  (4 cards at top of page)
+   ──────────────────────────────────────────
+   Each card shows: value + label + hint + mini sparkline.
+   • value   → big number shown in card (int / string)
+   • hint    → small colored text under the number
+              (tint: 'positive' = green, 'neutral' = grey)
+   • spark   → 7 numeric points (7-day trend background)
+   ────────────────────────────────────────── */
+$hero_stats = [
+    'services' => [
+        'value'      => 1,
+        'hint'       => __('dash_hint_this_month', ['count' => 1]),
+        'hint_tint'  => 'positive',   // 'positive' | 'neutral'
+        'hint_icon'  => 'fa-arrow-up',// Font Awesome class, nullable
+        'spark'      => [1, 1, 1, 1, 1, 1, 1],
+    ],
+    'domains' => [
+        'value'      => 0,
+        'hint'       => __('dash_hint_no_changes'),
+        'hint_tint'  => 'neutral',
+        'hint_icon'  => null,
+        'spark'      => [0, 0, 0, 0, 0, 0, 0],
+    ],
+    'cloud' => [
+        'value'      => 0,
+        'hint'       => __('dash_hint_no_changes'),
+        'hint_tint'  => 'neutral',
+        'hint_icon'  => null,
+        'spark'      => [0, 0, 0, 0, 0, 0, 0],
+    ],
+    'invoices' => [
+        'value'      => 0,
+        'hint'       => __('dash_hint_all_paid'),
+        'hint_tint'  => 'positive',
+        'hint_icon'  => 'fa-check',
+        'spark'      => [0, 0, 0, 0, 0, 1, 0],
+    ],
+];
+
+
+/* ──────────────────────────────────────────
+   3. MONTHLY OVERVIEW  (3 sparkline cards)
+   ──────────────────────────────────────────
+   Each card shows a big number + 30-day sparkline.
+   • value     → current-month number
+   • unit      → unit string ('TB', '%', '€', …)
+   • unit_pos  → 'prefix' puts the unit before the number
+                 (default suffix). Use for currency (€).
+   • hint      → small subline under the number
+   • trend.dir → 'up' | 'down' | 'flat'
+   • trend.pct → the string shown in the trend pill ('+12%')
+   • spark     → 30 numeric points (30-day trend)
+   ────────────────────────────────────────── */
+$monthly_overview = [
+    'traffic' => [
+        'value'    => 3.2,
+        'unit'     => 'TB',
+        'hint'     => __('dash_of_max', ['max' => '25 TB']),
+        'trend'    => ['dir' => 'up', 'pct' => '+12%'],
+        'spark'    => [0.1, 0.2, 0.3, 0.5, 0.4, 0.7, 0.6, 0.9, 0.8, 1.1, 1.0, 1.4, 1.6, 1.3, 1.8, 2.0, 1.9, 2.2, 2.5, 2.4, 2.7, 2.9, 2.6, 3.0, 2.8, 3.1, 3.0, 3.1, 3.2, 3.2],
+        'icon'     => 'fa-arrow-down-up-across-line',
+    ],
+    'spending' => [
+        'value'    => 3.42,
+        'unit'     => '€',
+        'unit_pos' => 'prefix',
+        'hint'     => __('dash_last_paid', ['date' => '24/03']),
+        'trend'    => ['dir' => 'flat', 'pct' => '0%'],
+        'spark'    => [3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42],
+        'icon'     => 'fa-coins',
+    ],
+    'uptime' => [
+        'value'    => 99.98,
+        'unit'     => '%',
+        'hint'     => __('dash_last_incident', ['days' => 31]),
+        'trend'    => ['dir' => 'up', 'pct' => '+0.02%'],
+        'spark'    => [99.9, 99.8, 99.9, 100, 100, 99.95, 100, 100, 99.9, 100, 100, 100, 99.85, 100, 100, 100, 99.9, 100, 100, 100, 100, 99.95, 100, 100, 100, 100, 100, 99.98, 99.99, 99.98],
+        'icon'     => 'fa-heart-pulse',
+    ],
+];
+
+
+/* ──────────────────────────────────────────
+   4. UPCOMING PAYMENT  (reminder banner)
+   ──────────────────────────────────────────
+   • days_left      → days until the next invoice is due
+   • billing_cycle  → length of the current billing period
+                      (the progress bar = % of cycle passed)
+   ────────────────────────────────────────── */
+$upcoming = [
+    'service'       => 'VPS YTA 1',
+    'amount'        => '€3.25',
+    'due_date'      => '24/04/2026',
+    'days_left'     => 15,
+    'billing_cycle' => 30,
+];
+// auto-computed — do not edit manually
+$upcoming['pct_passed'] = max(0, min(100, round(
+    (($upcoming['billing_cycle'] - $upcoming['days_left']) / max(1, $upcoming['billing_cycle'])) * 100
+)));
+
+
+/* ──────────────────────────────────────────
+   5. ACTIVE SERVICE  (rich row in Active Services card)
+   ──────────────────────────────────────────
+   Shown with flag, status dot, and a 4-metric usage strip.
+   • metrics[].value  → 0–100 number. Drives bar width AND
+                        color bucket: 0-49 green, 50-79 amber, 80+ red
+   ────────────────────────────────────────── */
+$active_service = [
+    'id'            => 151926,
+    'name'          => 'VPS YTA 1',
+    'type'          => 'Linux VPS/VDS',
+    'ip'            => '107.161.168.236',
+    'location'      => 'United States',
+    'location_flag' => 'us',             // ISO country code for flag-icons
+    'due_date'      => '24/04/2026',
+    'metrics'       => [
+        ['label' => 'CPU',  'value' => 12, 'unit' => '%'],
+        ['label' => 'RAM',  'value' => 34, 'unit' => '%'],
+        ['label' => 'Disk', 'value' => 8,  'unit' => '%'],
+        ['label' => 'BW',   'value' => 3,  'unit' => '%'],
+    ],
+];
+
+
+/* ──────────────────────────────────────────
+   6. BANDWIDTH CHART  (right column, 30-day area chart)
+   ──────────────────────────────────────────
+   • used_tb / total_tb → drive the "X of Y monthly quota"
+                          line and the % calculation.
+   • spark_30d          → 30 numeric points, rendered as
+                          a smooth area chart.
+   ────────────────────────────────────────── */
+$bandwidth = [
+    'used_tb'   => 3.2,
+    'total_tb'  => 25,
+    'spark_30d' => [0.1, 0.2, 0.3, 0.5, 0.4, 0.7, 0.6, 0.9, 0.8, 1.1, 1.0, 1.4, 1.6, 1.3, 1.8, 2.0, 1.9, 2.2, 2.5, 2.4, 2.7, 2.9, 2.6, 3.0, 2.8, 3.1, 3.0, 3.1, 3.2, 3.2],
+];
+// auto-computed
+$bandwidth['pct'] = round(($bandwidth['used_tb'] / max(0.01, $bandwidth['total_tb'])) * 100, 1);
+
+
+/* ──────────────────────────────────────────
+   7. LATEST INVOICES  (list in bottom-left card)
+   ──────────────────────────────────────────
+   Each row:
+   • id, type  → identification
+   • day       → day-of-month (2 digits, used in date chip)
+   • dow       → 3-letter day-of-week (used in date chip)
+   • date      → full date string (shown as meta)
+   • amount    → float, rendered with format_money()
+   • status    → 'paid' | 'unpaid' | 'overdue' — drives badge color
+   ────────────────────────────────────────── */
+$latest_invoices = [
+    [
+        'id'     => '307776',
+        'day'    => '03',
+        'dow'    => 'Tue',
+        'date'   => '24/03/2026',
+        'type'   => __('invoices_type_new_service'),
+        'amount' => 3.42,
+        'status' => 'paid',
+    ],
+];
+
+
+/* ──────────────────────────────────────────
+   8. RECENT ACTIVITY  (timeline in bottom-right card)
+   ──────────────────────────────────────────
+   Each row:
+   • icon  → Font Awesome class (e.g. 'fa-file-invoice')
+   • tint  → 'info' (blue) | 'success' (green) | 'warning' | 'danger'
+   • text  → main line (already translated / ready to print)
+   • meta  → optional secondary info (IP, amount, …)
+   • time  → shown on the right (short date/relative time)
+   ────────────────────────────────────────── */
+$recent_activity = [
+    [
+        'icon' => 'fa-file-invoice',
+        'tint' => 'info',
+        'text' => __('dash_activity_invoice_paid', ['id' => '307776']),
+        'meta' => '€3.42 EUR',
+        'time' => '24/03',
+    ],
+    [
+        'icon' => 'fa-server',
+        'tint' => 'success',
+        'text' => __('dash_activity_service_activated', ['service' => 'VPS YTA 1']),
+        'meta' => '107.161.168.236',
+        'time' => '24/03',
+    ],
+    [
+        'icon' => 'fa-right-to-bracket',
+        'tint' => 'success',
+        'text' => __('dash_activity_login'),
+        'meta' => 'IP: 197.54.214.50',
+        'time' => '24/03',
+    ],
+];
+
+
+/* ──────────────────────────────────────────
+   9. BALANCE  (wallet card at bottom)
+   ──────────────────────────────────────────
+   • total          → current account balance
+   • spent_month    → total spent this calendar month
+   • auto_recharge  → bool; 'Configure' vs 'Enable' CTA
+   • last_deposit   → null or ['amount' => 20.00, 'date' => '…']
+   ────────────────────────────────────────── */
+$balance = [
+    'total'           => 0.00,
+    'spent_month'     => 3.42,
+    'spent_month_txn' => 1,
+    'auto_recharge'   => false,
+    'last_deposit'    => null,
+];
+
+
+/* ════════════════════════════════════════════════════════════
+   END OF MOCK DATA — HTML RENDERING BELOW
+   ════════════════════════════════════════════════════════════ */
+
+/**
+ * Classify a usage metric (0–100) into a severity bucket used
+ * for the color of the bar in the Active Service metrics strip.
+ */
+if (!function_exists('dash_metric_sev')) {
+    function dash_metric_sev($v) {
+        if ($v >= 80) return 'high';  // red
+        if ($v >= 50) return 'med';   // amber
+        return 'low';                 // green
+    }
+}
+
+/**
+ * Map hero-stats keys to their visual metadata.
+ * Keep the key list in sync with $hero_stats above.
+ */
+$hero_stats_meta = [
+    'services' => [
+        'href'        => DASH_BASE_PATH . '/pages/services/index.php',
+        'variant'     => 'primary',
+        'icon'        => 'fa-server',
+        'spark_color' => 'var(--brand-primary)',
+        'label'       => __('dash_active_services'),
+    ],
+    'domains' => [
+        'href'        => DASH_BASE_PATH . '/pages/domains/index.php',
+        'variant'     => 'secondary',
+        'icon'        => 'fa-globe',
+        'spark_color' => 'var(--brand-secondary)',
+        'label'       => __('dash_active_domains'),
+    ],
+    'cloud' => [
+        'href'        => DASH_BASE_PATH . '/pages/cloud/index.php',
+        'variant'     => 'accent',
+        'icon'        => 'fa-cloud',
+        'spark_color' => 'var(--brand-accent)',
+        'label'       => __('dash_cloud_servers'),
+    ],
+    'invoices' => [
+        'href'        => DASH_BASE_PATH . '/pages/billing/invoices.php',
+        'variant'     => 'warning',
+        'icon'        => 'fa-file-lines',
+        'spark_color' => 'var(--brand-warning)',
+        'label'       => __('dash_unpaid_invoices'),
+    ],
+];
 ?>
 
 <!-- ═══════════════════════════════════════════
@@ -50,39 +349,24 @@ $last_login_ip = '197.54.214.50';
         </div>
     </div>
 
+    <!-- 4 stat cards  (values come from $hero_stats above) -->
     <div class="db-hero-stats">
-        <a href="<?php echo e(DASH_BASE_PATH); ?>/pages/services/index.php" class="db-hero-stat db-hero-stat--primary">
-            <div class="db-hero-stat-icon"><i class="fas fa-server"></i></div>
+        <?php foreach ($hero_stats as $key => $stat):
+            $meta = $hero_stats_meta[$key];
+        ?>
+        <a href="<?php echo e($meta['href']); ?>" class="db-hero-stat db-hero-stat--<?php echo e($meta['variant']); ?>">
+            <div class="db-hero-stat-icon"><i class="fas <?php echo e($meta['icon']); ?>"></i></div>
             <div class="db-hero-stat-body">
-                <span class="db-hero-stat-value">1</span>
-                <span class="db-hero-stat-label"><?php echo e(__('dash_active_services')); ?></span>
-                <span class="db-hero-stat-hint db-hero-stat-hint--positive"><i class="fas fa-arrow-up"></i> <?php echo e(__('dash_hint_this_month', ['count' => 1])); ?></span>
+                <span class="db-hero-stat-value"><?php echo e($stat['value']); ?></span>
+                <span class="db-hero-stat-label"><?php echo e($meta['label']); ?></span>
+                <span class="db-hero-stat-hint db-hero-stat-hint--<?php echo e($stat['hint_tint']); ?>">
+                    <?php if (!empty($stat['hint_icon'])): ?><i class="fas <?php echo e($stat['hint_icon']); ?>"></i><?php endif; ?>
+                    <?php echo e($stat['hint']); ?>
+                </span>
             </div>
+            <div class="db-hero-stat-spark" aria-hidden="true"><?php echo cloud_sparkline($stat['spark'], 120, 40, $meta['spark_color']); ?></div>
         </a>
-        <a href="<?php echo e(DASH_BASE_PATH); ?>/pages/domains/index.php" class="db-hero-stat db-hero-stat--secondary">
-            <div class="db-hero-stat-icon"><i class="fas fa-globe"></i></div>
-            <div class="db-hero-stat-body">
-                <span class="db-hero-stat-value">0</span>
-                <span class="db-hero-stat-label"><?php echo e(__('dash_active_domains')); ?></span>
-                <span class="db-hero-stat-hint db-hero-stat-hint--neutral"><?php echo e(__('dash_hint_no_changes')); ?></span>
-            </div>
-        </a>
-        <a href="<?php echo e(DASH_BASE_PATH); ?>/pages/cloud/index.php" class="db-hero-stat db-hero-stat--accent">
-            <div class="db-hero-stat-icon"><i class="fas fa-cloud"></i></div>
-            <div class="db-hero-stat-body">
-                <span class="db-hero-stat-value">0</span>
-                <span class="db-hero-stat-label"><?php echo e(__('dash_cloud_servers')); ?></span>
-                <span class="db-hero-stat-hint db-hero-stat-hint--neutral"><?php echo e(__('dash_hint_no_changes')); ?></span>
-            </div>
-        </a>
-        <a href="<?php echo e(DASH_BASE_PATH); ?>/pages/billing/invoices.php" class="db-hero-stat db-hero-stat--warning">
-            <div class="db-hero-stat-icon"><i class="fas fa-file-lines"></i></div>
-            <div class="db-hero-stat-body">
-                <span class="db-hero-stat-value">0</span>
-                <span class="db-hero-stat-label"><?php echo e(__('dash_unpaid_invoices')); ?></span>
-                <span class="db-hero-stat-hint db-hero-stat-hint--positive"><i class="fas fa-check"></i> <?php echo e(__('dash_hint_all_paid')); ?></span>
-            </div>
-        </a>
+        <?php endforeach; ?>
     </div>
 </div>
 
@@ -120,34 +404,80 @@ $last_login_ip = '197.54.214.50';
 
 
 <!-- ═══════════════════════════════════════════
+     MONTHLY OVERVIEW — 3 sparkline cards
+     (values come from $monthly_overview)
+     ═══════════════════════════════════════════ -->
+<div class="db-monthly-grid">
+    <?php
+    // Per-card visual metadata — paired with $monthly_overview by key.
+    $mo_items = [
+        'traffic'  => ['class' => 'db-monthly-card--traffic',  'title' => __('dash_mo_traffic')],
+        'spending' => ['class' => 'db-monthly-card--spending', 'title' => __('dash_mo_spending')],
+        'uptime'   => ['class' => 'db-monthly-card--uptime',   'title' => __('dash_mo_uptime')],
+    ];
+    foreach ($mo_items as $key => $meta):
+        $d = $monthly_overview[$key];
+        $trend_dir = $d['trend']['dir'];
+        $trend_icon = $trend_dir === 'up' ? 'fa-arrow-trend-up'
+                    : ($trend_dir === 'down' ? 'fa-arrow-trend-down' : 'fa-minus');
+    ?>
+    <div class="db-monthly-card <?php echo e($meta['class']); ?>">
+        <div class="db-monthly-card__top">
+            <span class="db-monthly-card__label">
+                <i class="fas <?php echo e($d['icon']); ?>"></i>
+                <?php echo e($meta['title']); ?>
+            </span>
+            <span class="db-monthly-card__trend db-monthly-card__trend--<?php echo e($trend_dir); ?>">
+                <i class="fas <?php echo e($trend_icon); ?>"></i>
+                <?php echo e($d['trend']['pct']); ?>
+            </span>
+        </div>
+        <div class="db-monthly-card__value">
+            <?php if (($d['unit_pos'] ?? '') === 'prefix'): ?>
+                <span class="db-monthly-card__unit"><?php echo e($d['unit']); ?></span><?php echo e(number_format($d['value'], 2)); ?>
+            <?php else: ?>
+                <?php echo e($d['value']); ?><span class="db-monthly-card__unit"><?php echo e($d['unit']); ?></span>
+            <?php endif; ?>
+        </div>
+        <div class="db-monthly-card__hint"><?php echo e($d['hint']); ?></div>
+        <div class="db-monthly-card__spark">
+            <?php echo cloud_sparkline($d['spark'], 260, 52); ?>
+        </div>
+    </div>
+    <?php endforeach; ?>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
      UPCOMING — Smart UX Banner
+     (values come from $upcoming above)
      ═══════════════════════════════════════════ -->
 <div class="db-upcoming-banner">
     <div class="db-upcoming-icon"><i class="fas fa-calendar-check"></i></div>
     <div class="db-upcoming-info">
-        <div class="db-upcoming-title"><?php echo e(__('dash_upcoming_payment')); ?> — VPS YTA 1</div>
-        <div class="db-upcoming-desc"><?php echo e(__('dash_upcoming_due', ['amount' => '€3.25', 'date' => '24/04/2026'])); ?></div>
+        <div class="db-upcoming-title"><?php echo e(__('dash_upcoming_payment')); ?> — <?php echo e($upcoming['service']); ?></div>
+        <div class="db-upcoming-desc"><?php echo e(__('dash_upcoming_due', ['amount' => $upcoming['amount'], 'date' => $upcoming['due_date']])); ?></div>
     </div>
     <span class="db-upcoming-countdown">
         <i class="fas fa-clock"></i>
-        <?php echo e(__('dash_upcoming_days', ['count' => 31])); ?>
+        <?php echo e(__('dash_upcoming_days', ['count' => $upcoming['days_left']])); ?>
     </span>
     <a href="<?php echo e(DASH_BASE_PATH); ?>/pages/billing/invoices.php" class="db-btn db-btn--secondary db-btn--sm db-upcoming-action">
         <?php echo e(__('common_view')); ?>
     </a>
-    <!-- Progress: shows how much of the billing period has passed -->
-    <div class="db-upcoming-progress">
-        <div class="db-upcoming-progress-bar" style="width: 0%;"></div>
+    <!-- Progress bar: how much of the billing period has passed -->
+    <div class="db-upcoming-progress" title="<?php echo e(__('dash_upcoming_progress', ['pct' => $upcoming['pct_passed']])); ?>">
+        <div class="db-upcoming-progress-bar" style="width: <?php echo (int)$upcoming['pct_passed']; ?>%;"></div>
     </div>
 </div>
 
 
 <!-- ═══════════════════════════════════════════
-     MAIN CONTENT GRID
+     MAIN CONTENT GRID — Active Services + Bandwidth
      ═══════════════════════════════════════════ -->
 <div class="db-grid-2">
 
-    <!-- Active Services -->
+    <!-- Active Services  (data from $active_service) -->
     <div class="db-card">
         <div class="db-card-header">
             <h3 class="db-card-title">
@@ -159,52 +489,92 @@ $last_login_ip = '197.54.214.50';
             </a>
         </div>
         <div class="db-card-body">
-            <div class="db-service-item">
-                <div class="db-service-item-icon">
-                    <i class="fab fa-linux"></i>
-                </div>
-                <div class="db-service-item-info">
-                    <span class="db-service-item-name">VPS YTA 1</span>
-                    <span class="db-service-item-meta">
-                        107.161.168.236
-                        <button class="db-copy-btn" title="Copy IP" aria-label="Copy IP address"><i class="fas fa-copy"></i></button>
-                        &middot; Linux VPS/VDS
-                    </span>
-                </div>
-                <div class="db-service-item-right">
-                    <span class="db-badge db-badge--active"><?php echo e(__('status_active')); ?></span>
-                    <div class="db-service-item-due">
-                        <span class="db-service-item-due-label"><?php echo e(__('dash_due')); ?></span>
-                        <span>24/04/2026</span>
+            <div class="db-service-item db-service-item--rich">
+                <div class="db-service-item-top">
+                    <div class="db-service-item-icon-wrap">
+                        <div class="db-service-item-icon">
+                            <i class="fab fa-linux"></i>
+                        </div>
+                        <span class="db-service-item-status-dot" aria-hidden="true"></span>
                     </div>
-                    <a href="#" class="db-btn db-btn--ghost db-btn--sm"><?php echo e(__('common_manage')); ?></a>
+                    <div class="db-service-item-info">
+                        <div class="db-service-item-head">
+                            <span class="db-service-item-name"><?php echo e($active_service['name']); ?></span>
+                            <span class="db-service-item-loc">
+                                <span class="fi fi-<?php echo e($active_service['location_flag']); ?>"></span>
+                                <?php echo e($active_service['location']); ?>
+                            </span>
+                        </div>
+                        <span class="db-service-item-meta">
+                            #<?php echo e($active_service['id']); ?>
+                            <span class="db-service-item-meta-sep">·</span>
+                            <?php echo e($active_service['ip']); ?>
+                            <button class="db-copy-btn" title="<?php echo e(__('common_copy')); ?>" aria-label="<?php echo e(__('common_copy')); ?>" onclick="DashCopy && DashCopy(this,'<?php echo e($active_service['ip']); ?>')"><i class="fas fa-copy"></i></button>
+                            <span class="db-service-item-meta-sep">·</span>
+                            <?php echo e($active_service['type']); ?>
+                        </span>
+                    </div>
+                    <div class="db-service-item-right">
+                        <span class="db-badge db-badge--active"><?php echo e(__('status_active')); ?></span>
+                        <div class="db-service-item-due">
+                            <span class="db-service-item-due-label"><?php echo e(__('dash_due')); ?></span>
+                            <span><?php echo e($active_service['due_date']); ?></span>
+                        </div>
+                        <a href="<?php echo e(DASH_BASE_PATH); ?>/pages/services/service-details.php?id=<?php echo e($active_service['id']); ?>" class="db-btn db-btn--ghost db-btn--sm"><?php echo e(__('common_manage')); ?></a>
+                    </div>
+                </div>
+                <!-- 4-metric usage strip — bar width = value% -->
+                <div class="db-service-item-metrics">
+                    <?php foreach ($active_service['metrics'] as $m):
+                        $sev = dash_metric_sev($m['value']);
+                    ?>
+                    <div class="db-svc-metric db-svc-metric--<?php echo e($sev); ?>">
+                        <div class="db-svc-metric__top">
+                            <span class="db-svc-metric__label"><?php echo e($m['label']); ?></span>
+                            <span class="db-svc-metric__val"><?php echo (int)$m['value']; ?><?php echo e($m['unit']); ?></span>
+                        </div>
+                        <div class="db-svc-metric__bar">
+                            <span class="db-svc-metric__bar-fill" style="width: <?php echo (int)$m['value']; ?>%;"></span>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Cloud Servers — Empty State -->
+    <!-- Bandwidth — area chart  (data from $bandwidth) -->
     <div class="db-card">
         <div class="db-card-header">
             <h3 class="db-card-title">
-                <i class="fas fa-cloud db-card-title-icon"></i>
-                <?php echo e(__('dash_cloud_servers_title')); ?>
+                <i class="fas fa-chart-area db-card-title-icon"></i>
+                <?php echo e(__('dash_bw_title')); ?>
             </h3>
-            <a href="<?php echo e(DASH_BASE_PATH); ?>/pages/cloud/index.php" class="db-card-link">
-                <?php echo e(__('dash_view_all')); ?> <i class="fas fa-arrow-right"></i>
+            <a href="<?php echo e(DASH_BASE_PATH); ?>/pages/services/service-details.php?id=<?php echo e($active_service['id']); ?>" class="db-card-link">
+                <?php echo e(__('common_details')); ?> <i class="fas fa-arrow-right"></i>
             </a>
         </div>
-        <div class="db-card-body">
-            <div class="db-empty-state">
-                <div class="db-empty-illustration db-empty-illustration--cloud">
-                    <i class="fas fa-cloud"></i>
+        <div class="db-card-body db-bw-chart">
+            <div class="db-bw-chart__head">
+                <div>
+                    <div class="db-bw-chart__value">
+                        <?php echo e($bandwidth['used_tb']); ?><span class="db-bw-chart__value-unit">TB</span>
+                    </div>
+                    <span class="db-bw-chart__value-sub">
+                        <?php echo e(__('dash_bw_of_quota', ['total' => $bandwidth['total_tb'] . ' TB', 'pct' => $bandwidth['pct']])); ?>
+                    </span>
                 </div>
-                <p class="db-empty-title"><?php echo e(__('dash_no_cloud')); ?></p>
-                <p class="db-empty-desc"><?php echo e(__('dash_no_cloud_desc_full')); ?></p>
-                <a href="<?php echo e(DASH_BASE_PATH); ?>/pages/cloud/index.php" class="db-btn db-btn--primary db-btn--sm">
-                    <i class="fas fa-rocket"></i>
-                    <?php echo e(__('dash_deploy_server')); ?>
-                </a>
+                <span class="db-bw-chart__trend">
+                    <i class="fas fa-arrow-trend-up"></i>
+                    <?php echo e(__('dash_bw_last_30')); ?>
+                </span>
+            </div>
+            <div class="db-bw-chart__body">
+                <?php echo cloud_sparkline($bandwidth['spark_30d'], 420, 140, 'var(--brand-primary)'); ?>
+            </div>
+            <div class="db-bw-chart__footer">
+                <span><?php echo e(__('dash_bw_30_days_ago')); ?></span>
+                <span><?php echo e(__('dash_bw_today')); ?></span>
             </div>
         </div>
     </div>
@@ -212,10 +582,12 @@ $last_login_ip = '197.54.214.50';
 </div>
 
 
-<!-- Latest Invoices + Recent Activity -->
+<!-- ═══════════════════════════════════════════
+     Latest Invoices + Recent Activity
+     ═══════════════════════════════════════════ -->
 <div class="db-grid-2">
 
-    <!-- Latest Invoices -->
+    <!-- Latest Invoices  (data from $latest_invoices) -->
     <div class="db-card">
         <div class="db-card-header">
             <h3 class="db-card-title">
@@ -227,24 +599,26 @@ $last_login_ip = '197.54.214.50';
             </a>
         </div>
         <div class="db-card-body">
-            <div class="db-invoice-item">
+            <?php foreach ($latest_invoices as $inv): ?>
+            <a href="<?php echo e(DASH_BASE_PATH); ?>/pages/billing/invoice-details.php?id=<?php echo e($inv['id']); ?>" class="db-invoice-item">
                 <div class="db-invoice-item-date">
-                    <span class="db-invoice-item-month">03</span>
-                    <span class="db-invoice-item-day">Tue</span>
+                    <span class="db-invoice-item-month"><?php echo e($inv['day']); ?></span>
+                    <span class="db-invoice-item-day"><?php echo e($inv['dow']); ?></span>
                 </div>
                 <div class="db-invoice-item-info">
-                    <span class="db-invoice-item-id">Invoice #307776</span>
-                    <span class="db-invoice-item-desc">24/03/2026 &middot; New Service</span>
+                    <span class="db-invoice-item-id">Invoice #<?php echo e($inv['id']); ?></span>
+                    <span class="db-invoice-item-desc"><?php echo e($inv['date']); ?> &middot; <?php echo e($inv['type']); ?></span>
                 </div>
                 <div class="db-invoice-item-right">
-                    <span class="db-invoice-item-amount">€3.42</span>
-                    <span class="db-badge db-badge--paid"><?php echo e(__('status_paid')); ?></span>
+                    <span class="db-invoice-item-amount"><?php echo format_money($inv['amount']); ?></span>
+                    <span class="db-badge db-badge--<?php echo e($inv['status']); ?>"><?php echo e(__('status_' . $inv['status'])); ?></span>
                 </div>
-            </div>
+            </a>
+            <?php endforeach; ?>
         </div>
     </div>
 
-    <!-- Recent Activity -->
+    <!-- Recent Activity  (data from $recent_activity) -->
     <div class="db-card">
         <div class="db-card-header">
             <h3 class="db-card-title">
@@ -253,46 +627,30 @@ $last_login_ip = '197.54.214.50';
             </h3>
         </div>
         <div class="db-card-body">
+            <?php foreach ($recent_activity as $a): ?>
             <div class="db-activity-item">
-                <div class="db-activity-icon db-activity-icon--info">
-                    <i class="fas fa-file-invoice"></i>
+                <div class="db-activity-icon db-activity-icon--<?php echo e($a['tint']); ?>">
+                    <i class="fas <?php echo e($a['icon']); ?>"></i>
                 </div>
                 <div class="db-activity-info">
-                    <span class="db-activity-text"><?php echo e(__('dash_activity_invoice_paid', ['id' => '307776'])); ?></span>
-                    <span class="db-activity-meta">€3.42 EUR</span>
+                    <span class="db-activity-text"><?php echo e($a['text']); ?></span>
+                    <?php if (!empty($a['meta'])): ?>
+                    <span class="db-activity-meta"><?php echo e($a['meta']); ?></span>
+                    <?php endif; ?>
                 </div>
-                <span class="db-activity-time">24/03</span>
+                <span class="db-activity-time"><?php echo e($a['time']); ?></span>
             </div>
-            <div class="db-activity-item">
-                <div class="db-activity-icon db-activity-icon--success">
-                    <i class="fas fa-server"></i>
-                </div>
-                <div class="db-activity-info">
-                    <span class="db-activity-text"><?php echo e(__('dash_activity_service_activated', ['service' => 'VPS YTA 1'])); ?></span>
-                    <span class="db-activity-meta">107.161.168.236</span>
-                </div>
-                <span class="db-activity-time">24/03</span>
-            </div>
-            <div class="db-activity-item">
-                <div class="db-activity-icon db-activity-icon--success">
-                    <i class="fas fa-right-to-bracket"></i>
-                </div>
-                <div class="db-activity-info">
-                    <span class="db-activity-text"><?php echo e(__('dash_activity_login')); ?></span>
-                    <span class="db-activity-meta">IP: 197.54.214.50</span>
-                </div>
-                <span class="db-activity-time">24/03</span>
-            </div>
+            <?php endforeach; ?>
         </div>
     </div>
 
 </div>
 
 
-<!-- Account Balance + Quick Links -->
-<?php
-$account_balance = 0;
-?>
+<!-- ═══════════════════════════════════════════
+     Account Balance + Quick Links
+     (data from $balance)
+     ═══════════════════════════════════════════ -->
 <div class="db-section-heading">
     <h2><?php echo e(__('dash_balance_resources')); ?></h2>
     <div class="db-section-heading-line"></div>
@@ -300,22 +658,66 @@ $account_balance = 0;
 
 <div class="db-grid-3-1">
 
-    <!-- Account Balance -->
+    <!-- Account Balance (enriched) -->
     <div class="db-balance-card">
         <div class="db-balance-card-header">
             <div class="db-balance-card-icon"><i class="fas fa-wallet"></i></div>
             <div class="db-balance-card-info">
                 <span class="db-balance-card-label"><?php echo e(__('balance_total')); ?></span>
-                <span class="db-balance-card-amount"><?php echo format_money($account_balance); ?></span>
+                <span class="db-balance-card-amount"><?php echo format_money($balance['total']); ?></span>
+                <?php if ($balance['total'] <= 0): ?>
+                <span class="db-balance-card-flag db-balance-card-flag--empty">
+                    <i class="fas fa-circle-exclamation"></i> <?php echo e(__('balance_empty')); ?>
+                </span>
+                <?php endif; ?>
             </div>
             <a href="<?php echo e(DASH_BASE_PATH); ?>/pages/billing/add-funds.php" class="db-btn db-btn--primary db-btn--sm">
                 <i class="fas fa-plus"></i> <?php echo e(__('balance_add_funds')); ?>
             </a>
         </div>
+
+        <!-- Micro-stats row: spending · auto-recharge · last deposit -->
+        <div class="db-balance-card-stats">
+            <a href="<?php echo e(DASH_BASE_PATH); ?>/pages/billing/transactions.php" class="db-balance-stat">
+                <span class="db-balance-stat__label">
+                    <i class="fas fa-arrow-trend-down"></i>
+                    <?php echo e(__('balance_spent_month')); ?>
+                </span>
+                <span class="db-balance-stat__value"><?php echo format_money($balance['spent_month']); ?></span>
+                <span class="db-balance-stat__meta"><?php echo e(__('balance_spent_txn_count', ['count' => $balance['spent_month_txn']])); ?></span>
+            </a>
+
+            <div class="db-balance-stat">
+                <span class="db-balance-stat__label">
+                    <i class="fas fa-rotate"></i>
+                    <?php echo e(__('balance_auto_recharge')); ?>
+                </span>
+                <span class="db-balance-stat__value db-balance-stat__value--muted">
+                    <?php echo e($balance['auto_recharge'] ? __('common_enabled') : __('common_disabled')); ?>
+                </span>
+                <a href="<?php echo e(DASH_BASE_PATH); ?>/pages/billing/payment-methods.php" class="db-balance-stat__meta db-balance-stat__meta--link">
+                    <?php echo e($balance['auto_recharge'] ? __('common_configure') : __('balance_enable')); ?> →
+                </a>
+            </div>
+
+            <div class="db-balance-stat">
+                <span class="db-balance-stat__label">
+                    <i class="fas fa-clock"></i>
+                    <?php echo e(__('balance_last_deposit')); ?>
+                </span>
+                <?php if (!empty($balance['last_deposit'])): ?>
+                <span class="db-balance-stat__value"><?php echo format_money($balance['last_deposit']['amount']); ?></span>
+                <span class="db-balance-stat__meta"><?php echo e($balance['last_deposit']['date']); ?></span>
+                <?php else: ?>
+                <span class="db-balance-stat__value db-balance-stat__value--muted">—</span>
+                <span class="db-balance-stat__meta"><?php echo e(__('balance_no_deposit')); ?></span>
+                <?php endif; ?>
+            </div>
+        </div>
     </div>
 
     <!-- Quick Links -->
-    <div class="db-grid-2" style="margin-bottom: 0;">
+    <div class="db-grid-2 db-grid-2--flush">
         <a href="<?php echo e(WIKI_URL); ?>/" target="_blank" class="db-link-card db-link-card--tutorials">
             <div class="db-link-card-icon"><i class="fas fa-graduation-cap"></i></div>
             <span class="db-link-card-title"><?php echo e(__('dash_tutorials')); ?></span>

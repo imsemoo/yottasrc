@@ -18,10 +18,51 @@ $breadcrumbs_data = [
 
 require_once __DIR__ . '/../../layouts/shell.php';
 
+/* ══════════════════════════════════════════════════════════════════════
+   ███  DOMAINS  ·  MOCK DATA BLOCK  (single source of truth)  ███
+   ══════════════════════════════════════════════════════════════════════
+   BACKEND TEAM — PLEASE READ:
+
+   Every domain / stat on this page lives in this block.
+   Edit a value here → UI updates directly.
+
+   Wiring real data:
+     • Replace $domains with the DB query result.
+     • Keep the KEYS and SHAPE identical; the HTML loop expects them.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ──────────────────────────────────────────
+   PAGE STATE
+   ──────────────────────────────────────────
+   'active' | 'loading' | 'error' | 'empty'
+   ────────────────────────────────────────── */
 $page_state = $_GET['state'] ?? 'active';
 
-$stats = ['total' => 4, 'active' => 2, 'expiring' => 1, 'expired' => 1];
+/* ──────────────────────────────────────────
+   STATS  (header metrics / pagination info)
+   ────────────────────────────────────────── */
+$stats = [
+    'total'    => 4,
+    'active'   => 2,
+    'expiring' => 1,
+    'expired'  => 1,
+];
 
+/* ──────────────────────────────────────────
+   DOMAINS LIST  (main table)
+   ──────────────────────────────────────────
+   Each row:
+   • domain     → full domain name
+   • tld        → TLD extension ('.com', '.io', …)
+   • registrar  → registrar name (usually 'YottaSrc')
+   • registered → registration date 'YYYY-MM-DD'
+   • expires    → expiration date   'YYYY-MM-DD'
+   • auto_renew → bool, drives auto-renew toggle column
+   • status     → 'active' | 'expiring' | 'expired' | 'pending'
+                  (drives badge via $status_badge map below)
+   • locked     → bool, shows lock/unlock icon
+   • price      → renewal price (float)
+   ────────────────────────────────────────── */
 $domains = [
     [
         'domain' => 'yottasrc.com', 'tld' => '.com', 'registrar' => 'YottaSrc',
@@ -49,9 +90,17 @@ $domains = [
     ],
 ];
 
+/* ──────────────────────────────────────────
+   STATUS → badge-class  mapping
+   ────────────────────────────────────────── */
 $status_badge = [
-    'active' => 'active', 'expiring' => 'unpaid', 'expired' => 'overdue', 'pending' => 'pending',
+    'active'   => 'active',
+    'expiring' => 'unpaid',
+    'expired'  => 'overdue',
+    'pending'  => 'pending',
 ];
+
+/* ══════════════  END OF MOCK DATA  ══════════════ */
 ?>
 
 <?php
@@ -74,12 +123,14 @@ include __DIR__ . '/../../components/page-header.php';
     <?php $skel_rows = 4; $skel_cols = 5; $skel_has_icon = false; $skel_has_filters = true; include __DIR__ . '/../../components/skeleton-table.php'; ?>
 
 <?php elseif ($page_state === 'empty'): ?>
-    <div class="db-card"><div class="db-empty-state">
-        <div class="db-empty-illustration db-empty-illustration--services"><i class="fas fa-globe"></i></div>
-        <h3 class="db-empty-title"><?php echo e(__('domains_empty_title')); ?></h3>
-        <p class="db-empty-desc"><?php echo e(__('domains_empty_desc')); ?></p>
-        <a href="<?php echo DASH_BASE_PATH; ?>/pages/services/order.php" class="db-btn db-btn--primary"><i class="fas fa-plus"></i> <?php echo e(__('domains_register')); ?></a>
-    </div></div>
+    <?php
+    $es_icon    = 'fa-globe';
+    $es_variant = 'domains';
+    $es_title   = __('domains_empty_title');
+    $es_desc    = __('domains_empty_desc');
+    $es_action  = '<a href="' . DASH_BASE_PATH . '/pages/services/order.php" class="db-btn db-btn--primary"><i class="fas fa-plus"></i> ' . e(__('domains_register')) . '</a>';
+    include __DIR__ . '/../../components/empty-state.php';
+    ?>
 
 <?php else: ?>
 
@@ -140,8 +191,8 @@ include __DIR__ . '/../../components/page-header.php';
                                 <div class="db-table-cell-with-icon">
                                     <div class="db-table-icon db-table-icon--primary"><i class="fas fa-globe"></i></div>
                                     <div>
-                                        <div class="db-table-cell-main"><?php echo e($d['domain']); ?></div>
-                                        <div class="db-table-cell-sub"><?php echo e($d['registrar']); ?> · €<?php echo number_format($d['price'], 2); ?>/yr</div>
+                                        <a href="<?php echo e(DASH_BASE_PATH . '/pages/domains/details.php?domain=' . urlencode($d['domain'])); ?>" class="db-table-cell-main db-table-cell-link"><?php echo e($d['domain']); ?></a>
+                                        <div class="db-table-cell-sub"><?php echo e($d['registrar']); ?> · <?php echo format_money($d['price']); ?>/yr</div>
                                     </div>
                                 </div>
                             </td>
@@ -149,20 +200,22 @@ include __DIR__ . '/../../components/page-header.php';
                             <td><?php echo e($d['expires']); ?></td>
                             <td class="db-table-hide-mobile">
                                 <label class="db-toggle db-toggle--sm">
-                                    <input type="checkbox" <?php echo $d['auto_renew'] ? 'checked' : ''; ?> onchange="DashToast.show('info','',this.checked?'Auto-renew enabled':'Auto-renew disabled')">
+                                    <input type="checkbox" <?php echo $d['auto_renew'] ? 'checked' : ''; ?> onchange="DashToast.show('success','',this.checked?'Auto-renew enabled.':'Auto-renew disabled.')">
                                     <span class="db-toggle-track"><span class="db-toggle-thumb"></span></span>
                                 </label>
                             </td>
                             <td><span class="db-badge db-badge--<?php echo e($badge); ?>"><?php echo e(__('domain_status_' . $d['status'])); ?></span></td>
                             <td>
+                                <?php $det_url = DASH_BASE_PATH . '/pages/domains/details.php?domain=' . urlencode($d['domain']); ?>
                                 <div class="db-row-actions db-row-actions--solid">
+                                    <a href="<?php echo e($det_url); ?>" class="db-row-action db-row-action--solid db-row-action--primary" data-tooltip="<?php echo e(__('common_open')); ?>"><i class="fas fa-arrow-up-right-from-square"></i></a>
                                     <div class="db-dropdown-wrapper">
                                         <button class="db-row-action db-row-action--solid db-row-action--menu" data-dropdown-toggle><i class="fas fa-ellipsis-vertical"></i></button>
                                         <div class="db-dropdown-menu">
-                                            <button class="db-dropdown-item" onclick="DashToast.show('info','','Managing domain...')"><i class="fas fa-gear"></i> <?php echo e(__('domains_manage')); ?></button>
-                                            <button class="db-dropdown-item" onclick="DashToast.show('info','','DNS management...')"><i class="fas fa-server"></i> <?php echo e(__('domains_dns')); ?></button>
-                                            <button class="db-dropdown-item" onclick="DashToast.show('info','','Nameservers...')"><i class="fas fa-network-wired"></i> <?php echo e(__('domains_nameservers')); ?></button>
-                                            <button class="db-dropdown-item" onclick="DashToast.show('info','','WHOIS info...')"><i class="fas fa-circle-info"></i> <?php echo e(__('domains_whois')); ?></button>
+                                            <a href="<?php echo e($det_url); ?>" class="db-dropdown-item"><i class="fas fa-gear"></i> <?php echo e(__('domains_manage')); ?></a>
+                                            <a href="<?php echo e($det_url); ?>#tab-dns" class="db-dropdown-item"><i class="fas fa-server"></i> <?php echo e(__('domains_dns')); ?></a>
+                                            <a href="<?php echo e($det_url); ?>#tab-nameservers" class="db-dropdown-item"><i class="fas fa-network-wired"></i> <?php echo e(__('domains_nameservers')); ?></a>
+                                            <a href="<?php echo e($det_url); ?>#tab-whois" class="db-dropdown-item"><i class="fas fa-circle-info"></i> <?php echo e(__('domains_whois')); ?></a>
                                             <div class="db-dropdown-divider"></div>
                                             <?php if ($d['status'] === 'expired' || $d['status'] === 'expiring'): ?>
                                             <button class="db-dropdown-item" onclick="DashToast.show('info','','Renewing domain...')"><i class="fas fa-rotate-right"></i> <?php echo e(__('domains_renew')); ?></button>
@@ -174,21 +227,22 @@ include __DIR__ . '/../../components/page-header.php';
                             </td>
                         </tr>
                         <?php endforeach; ?>
-                        <tr data-table-empty>
-                            <td colspan="6"><div class="db-table-empty-state"><i class="fas fa-magnifying-glass"></i> <?php echo e(__('domains_empty_search')); ?></div></td>
-                        </tr>
+                        <?php
+                        $te_colspan = 6; $te_text = __('domains_empty_search');
+                        include __DIR__ . '/../../components/table-empty.php';
+                        ?>
                     </tbody>
                 </table>
             </div>
 
-            <div class="db-pagination-bar">
-                <div class="db-pagination-bar__info"><?php echo e(__('domains_showing', ['from' => 1, 'to' => count($domains), 'total' => $stats['total']])); ?></div>
-                <div class="db-pagination-bar__nav">
-                    <button class="db-pagination-bar__btn" disabled><i class="fas fa-chevron-left"></i> <?php echo e(__('common_previous')); ?></button>
-                    <span class="db-pagination-bar__page active">1</span>
-                    <button class="db-pagination-bar__btn" disabled><?php echo e(__('common_next')); ?> <i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
+            <?php
+            $pg_current    = 1;
+            $pg_total      = max(1, (int)ceil($stats['total'] / max(1, count($domains))));
+            $pg_from       = 1;
+            $pg_to         = count($domains);
+            $pg_total_rows = $stats['total'];
+            include __DIR__ . '/../../components/pagination.php';
+            ?>
         </div>
     </div>
 <?php endif; ?>

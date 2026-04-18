@@ -23,24 +23,33 @@ $breadcrumbs_data = [
 
 require_once __DIR__ . '/../../../layouts/project-shell.php';
 
+/* ══════════════════════════════════════════════════════════════════════
+   ███  PROJECT API  ·  NO MOCK DATA NEEDED                         ███
+   ══════════════════════════════════════════════════════════════════════
+   This page is a "coming soon" announcement for the API feature.
+   It only reads $page_state from the URL (for design states) and
+   renders static marketing copy. No DB data to wire — when the API
+   launches, replace this file entirely with the real API config UI.
+   ══════════════════════════════════════════════════════════════════════ */
 $page_state = $_GET['state'] ?? 'active';
 ?>
 
-<div class="db-proj-header">
-    <div class="db-proj-header__title">
-        <h1 class="db-proj-header__heading">
-            <i class="fas fa-code" style="color:var(--brand-accent); font-size:0.9em; margin-inline-end:6px;"></i>
-            <?php echo e(__('project_api_title')); ?>
-        </h1>
-    </div>
-</div>
+<?php
+$hero_eyebrow = __('project_pro_eyebrow_api');
+$hero_title   = $current_project['name'];
+$hero_sub     = __('project_pro_sub_api');
+$hero_stats   = null;
+$hero_actions = '<button type="button" class="ds-btn ds-btn--primary" onclick="DashToast.show(\'success\',\'\',' . json_encode(__('project_api_notify_success')) . ')"><i class="fas fa-bell"></i> <span>' . e(__('project_api_notify_btn')) . '</span></button>';
+include __DIR__ . '/../../../components/project-pro-hero.php';
+unset($hero_eyebrow, $hero_title, $hero_sub, $hero_stats, $hero_actions);
+?>
 
 <?php if ($page_state === 'error'): ?>
     <div class="db-card"><?php $error_retry = true; include __DIR__ . '/../../../components/error-state.php'; ?></div>
 
 <?php elseif ($page_state === 'loading'): ?>
     <div class="db-card">
-        <div class="db-card-body" style="padding:24px;">
+        <div class="db-card-body db-card-body--lg">
             <div class="db-skeleton db-skeleton--heading" style="width:30%; margin-bottom:18px;"></div>
             <div class="db-skeleton db-skeleton--text" style="width:95%; margin-bottom:10px;"></div>
             <div class="db-skeleton db-skeleton--text" style="width:88%; margin-bottom:10px;"></div>
@@ -53,8 +62,8 @@ $page_state = $_GET['state'] ?? 'active';
             <div class="db-skeleton" style="height:80px; border-radius:var(--radius-md);"></div>
         </div>
     </div>
-    <div class="db-card" style="margin-top:14px;">
-        <div class="db-card-body" style="padding:24px;">
+    <div class="db-card db-mt-sm">
+        <div class="db-card-body db-card-body--lg">
             <div class="db-skeleton db-skeleton--heading" style="width:25%; margin-bottom:16px;"></div>
             <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:14px;">
                 <?php for ($i = 0; $i < 4; $i++): ?>
@@ -118,64 +127,56 @@ $page_state = $_GET['state'] ?? 'active';
     </div>
 </div>
 
-<!-- Preview card (coming soon features) -->
-<div class="db-card db-api-preview">
-    <div class="db-card-header">
-        <h3 class="db-card-title">
-            <i class="fas fa-wand-magic-sparkles"></i>
-            <?php echo e(__('project_api_preview_title')); ?>
+<!-- Roadmap timeline (replaces old feature grid) -->
+<div class="db-api-roadmap">
+    <div class="db-api-roadmap__head">
+        <h3 class="db-api-roadmap__title">
+            <i class="fas fa-route"></i>
+            <?php echo e(__('project_api_roadmap_title')); ?>
         </h3>
+        <p class="db-api-roadmap__sub"><?php echo e(__('project_api_roadmap_sub')); ?></p>
     </div>
-    <div class="db-card-body">
-        <div class="db-api-feature-grid">
-            <div class="db-api-feature">
-                <div class="db-api-feature__icon"><i class="fas fa-key"></i></div>
-                <div class="db-api-feature__body">
-                    <h4 class="db-api-feature__title"><?php echo e(__('project_api_feat_keys_title')); ?></h4>
-                    <p class="db-api-feature__desc"><?php echo e(__('project_api_feat_keys_desc')); ?></p>
-                </div>
-                <span class="db-api-feature__badge"><?php echo e(__('common_soon')); ?></span>
-            </div>
 
-            <div class="db-api-feature">
-                <div class="db-api-feature__icon"><i class="fas fa-server"></i></div>
-                <div class="db-api-feature__body">
-                    <h4 class="db-api-feature__title"><?php echo e(__('project_api_feat_servers_title')); ?></h4>
-                    <p class="db-api-feature__desc"><?php echo e(__('project_api_feat_servers_desc')); ?></p>
-                </div>
-                <span class="db-api-feature__badge"><?php echo e(__('common_soon')); ?></span>
+    <ol class="db-api-roadmap__list">
+        <?php
+        $roadmap = [
+            ['icon' => 'fa-key',         'title' => __('project_api_feat_keys_title'),     'desc' => __('project_api_feat_keys_desc'),     'status' => 'in_progress', 'eta' => __('project_api_eta_next')],
+            ['icon' => 'fa-server',      'title' => __('project_api_feat_servers_title'),  'desc' => __('project_api_feat_servers_desc'),  'status' => 'in_progress', 'eta' => __('project_api_eta_next')],
+            ['icon' => 'fa-bolt',        'title' => __('project_api_feat_webhooks_title'), 'desc' => __('project_api_feat_webhooks_desc'), 'status' => 'planned',     'eta' => __('project_api_eta_soon')],
+            ['icon' => 'fa-chart-line',  'title' => __('project_api_feat_analytics_title'),'desc' => __('project_api_feat_analytics_desc'),'status' => 'planned',     'eta' => __('project_api_eta_later')],
+        ];
+        foreach ($roadmap as $i => $item):
+        ?>
+        <li class="db-api-roadmap__item" data-status="<?php echo e($item['status']); ?>">
+            <div class="db-api-roadmap__dot">
+                <i class="fas <?php echo e($item['icon']); ?>"></i>
             </div>
-
-            <div class="db-api-feature">
-                <div class="db-api-feature__icon"><i class="fas fa-bolt"></i></div>
-                <div class="db-api-feature__body">
-                    <h4 class="db-api-feature__title"><?php echo e(__('project_api_feat_webhooks_title')); ?></h4>
-                    <p class="db-api-feature__desc"><?php echo e(__('project_api_feat_webhooks_desc')); ?></p>
+            <div class="db-api-roadmap__card">
+                <div class="db-api-roadmap__card-head">
+                    <h4 class="db-api-roadmap__card-title"><?php echo e($item['title']); ?></h4>
+                    <span class="db-api-roadmap__status db-api-roadmap__status--<?php echo e($item['status']); ?>">
+                        <?php echo e($item['status'] === 'in_progress' ? __('project_api_status_in_progress') : __('project_api_status_planned')); ?>
+                    </span>
                 </div>
-                <span class="db-api-feature__badge"><?php echo e(__('common_soon')); ?></span>
-            </div>
-
-            <div class="db-api-feature">
-                <div class="db-api-feature__icon"><i class="fas fa-chart-line"></i></div>
-                <div class="db-api-feature__body">
-                    <h4 class="db-api-feature__title"><?php echo e(__('project_api_feat_analytics_title')); ?></h4>
-                    <p class="db-api-feature__desc"><?php echo e(__('project_api_feat_analytics_desc')); ?></p>
+                <p class="db-api-roadmap__card-desc"><?php echo e($item['desc']); ?></p>
+                <div class="db-api-roadmap__eta">
+                    <i class="fas fa-clock"></i> <?php echo e($item['eta']); ?>
                 </div>
-                <span class="db-api-feature__badge"><?php echo e(__('common_soon')); ?></span>
             </div>
-        </div>
+        </li>
+        <?php endforeach; ?>
+    </ol>
 
-        <!-- Notify me button -->
-        <div class="db-api-notify">
-            <button class="db-btn db-btn--primary" onclick="DashToast.show('success','','<?php echo e(__('project_api_notify_success')); ?>')">
-                <i class="fas fa-bell"></i>
-                <?php echo e(__('project_api_notify_btn')); ?>
-            </button>
-            <a href="#" onclick="event.preventDefault(); DashToast.show('info','','Changelog is coming soon.')" class="db-api-changelog-link">
-                <i class="fas fa-newspaper"></i>
-                <?php echo e(__('project_api_changelog_link')); ?>
-            </a>
-        </div>
+    <!-- Notify me + changelog -->
+    <div class="db-api-roadmap__cta-row">
+        <button class="db-btn db-btn--primary" onclick="DashToast.show('success','','<?php echo e(__('project_api_notify_success')); ?>')">
+            <i class="fas fa-bell"></i>
+            <?php echo e(__('project_api_notify_btn')); ?>
+        </button>
+        <a href="#" onclick="event.preventDefault(); DashToast.show('info','','Changelog is coming soon.')" class="db-api-roadmap__link">
+            <i class="fas fa-newspaper"></i>
+            <?php echo e(__('project_api_changelog_link')); ?>
+        </a>
     </div>
 </div>
 

@@ -33,18 +33,43 @@ $breadcrumbs_data = [
 
 require_once __DIR__ . '/../../../layouts/project-shell.php';
 
-/**
- * Verification gate: auto-triggers if $is_verified === false (backend sets this).
- * Demo: pass ?state=verification_gate to force the gate view.
- * Backend replaces this with real user verification status.
- */
-$is_verified = $is_verified ?? true;   // default true for demo (so wizard shows)
+/* ══════════════════════════════════════════════════════════════════════
+   ███  CREATE SERVER  ·  MOCK DATA BLOCK  (single source of truth)  ███
+   ══════════════════════════════════════════════════════════════════════
+   BACKEND TEAM — PLEASE READ:
+
+   This is the multi-step create-server wizard. Edit the arrays below
+   to change available locations, packages, or OS images.
+
+   Wiring real data:
+     • $regions    → pull from your provisioning platform (location catalog)
+     • $packages   → pull from the plan catalog (filter by arch if needed)
+     • $linux_images / $windows_images → pull from your image store
+     • $is_verified must come from the logged-in user's KYC status.
+                    The wizard is blocked behind the verification gate
+                    when false (demo: ?state=verification_gate forces it).
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ──────────────────────────────────────────
+   PAGE STATE  +  VERIFICATION GATE
+   ──────────────────────────────────────────
+   'active' | 'loading' | 'error'  (or 'verification_gate' auto)
+   Demo default $is_verified = true so the wizard renders.
+   ────────────────────────────────────────── */
+$is_verified = $is_verified ?? true;
 $page_state  = $_GET['state'] ?? 'active';
 if (!$is_verified) {
     $page_state = 'verification_gate';
 }
 
-// Mock data — locations
+/* ──────────────────────────────────────────
+   REGIONS  (grouped by continent)
+   ──────────────────────────────────────────
+   Each region:
+   • label      → group heading
+   • countries  → array of ['code' => 'us', 'name' => '…']
+                  'code' = ISO-2 country code (flag-icons lib)
+   ────────────────────────────────────────── */
 $regions = [
     'europe' => [
         'label' => __('create_region_europe'),
@@ -66,7 +91,22 @@ $regions = [
     ],
 ];
 
-// Mock packages
+/* ──────────────────────────────────────────
+   PACKAGES  (plan catalog — picker cards)
+   ──────────────────────────────────────────
+   Each plan:
+   • id          → SKU slug (sent to backend on submit)
+   • arch        → 'x86' | 'Arm64'
+   • cores       → int, vCPU count
+   • ram         → memory string ('8GB')
+   • storage     → disk string ('80GB NVMe')
+   • bandwidth   → monthly quota ('30TB')
+   • speed       → network speed ('10 Gbit/s')
+   • ipv4/ipv6   → bool, IP inclusion
+   • price_m     → monthly price (float)
+   • price_h     → hourly price  (float)
+   • featured    → bool, highlights the card with a "Popular" ribbon
+   ────────────────────────────────────────── */
 $packages = [
     ['id'=>'CLY1', 'arch'=>'x86', 'cores'=>1, 'ram'=>'2GB', 'storage'=>'25GB NVMe', 'bandwidth'=>'25TB', 'speed'=>'1 Gbit/s', 'ipv4'=>true, 'ipv6'=>true, 'price_m'=>3.25, 'price_h'=>0.0048, 'featured'=>false],
     ['id'=>'CLH1', 'arch'=>'Arm64', 'cores'=>2, 'ram'=>'4GB', 'storage'=>'40GB NVMe', 'bandwidth'=>'30TB', 'speed'=>'10 Gbit/s', 'ipv4'=>true, 'ipv6'=>true, 'price_m'=>4.99, 'price_h'=>0.0097, 'featured'=>false],
@@ -86,7 +126,12 @@ $packages = [
     ['id'=>'CLH13','arch'=>'x86', 'cores'=>16,'ram'=>'32GB','storage'=>'640GB NVMe', 'bandwidth'=>'30TB', 'speed'=>'10 Gbit/s', 'ipv4'=>true, 'ipv6'=>true, 'price_m'=>71.49, 'price_h'=>0.1021, 'featured'=>false],
 ];
 
-// Mock OS images — all use fab fa-linux (only valid brand) with distinctive colors per distro family
+/* ──────────────────────────────────────────
+   LINUX IMAGES  (slug → [display name, accent color])
+   ──────────────────────────────────────────
+   • Icon is always fab fa-linux; color is the distro family brand.
+   • Extend with new distros here — they'll render automatically.
+   ────────────────────────────────────────── */
 $linux_images = [
     'ubuntu-24-04' => ['name' => 'Ubuntu 24.04',   'color' => '#e95420'],
     'ubuntu-22-04' => ['name' => 'Ubuntu 22.04',   'color' => '#e95420'],
@@ -108,6 +153,12 @@ $linux_images = [
     'alma-8'       => ['name' => 'AlmaLinux 8',    'color' => '#0091ea'],
 ];
 
+/* ──────────────────────────────────────────
+   WINDOWS IMAGES  (slug → [name, release year])
+   ──────────────────────────────────────────
+   • Icon is fab fa-windows (color = --os-windows token).
+   • 'year' is shown as a small release-year badge.
+   ────────────────────────────────────────── */
 $windows_images = [
     'win-server-2025' => ['name' => 'Windows Server 2025', 'year' => 2025],
     'win-server-2022' => ['name' => 'Windows Server 2022', 'year' => 2022],
@@ -118,41 +169,11 @@ $windows_images = [
     'win-10'          => ['name' => 'Windows 10',          'year' => 2015],
     'win-7'           => ['name' => 'Windows 7',           'year' => 2009],
 ];
+
+/* ══════════════  END OF MOCK DATA  ══════════════ */
 ?>
 
-<!-- Order Summary (sticky top) -->
-<div class="db-os-summary" id="orderSummary">
-    <div class="db-os-summary__title">
-        <i class="fas fa-cart-shopping"></i>
-        <?php echo e(__('create_order_summary')); ?>
-    </div>
-    <div class="db-os-summary__row">
-        <div class="db-os-summary__item" data-summary="resources">
-            <div class="db-os-summary__label"><?php echo e(__('create_label_resources')); ?></div>
-            <div class="db-os-summary__value" data-value>—</div>
-        </div>
-        <div class="db-os-summary__item" data-summary="location">
-            <div class="db-os-summary__label"><?php echo e(__('create_label_location')); ?></div>
-            <div class="db-os-summary__value" data-value>—</div>
-        </div>
-        <div class="db-os-summary__item" data-summary="package">
-            <div class="db-os-summary__label"><?php echo e(__('create_label_package')); ?></div>
-            <div class="db-os-summary__value" data-value>—</div>
-        </div>
-        <div class="db-os-summary__item" data-summary="image">
-            <div class="db-os-summary__label"><?php echo e(__('create_label_image')); ?></div>
-            <div class="db-os-summary__value" data-value>—</div>
-        </div>
-        <div class="db-os-summary__item db-os-summary__item--total" data-summary="total_m">
-            <div class="db-os-summary__label"><?php echo e(__('create_label_total_mo')); ?></div>
-            <div class="db-os-summary__value" data-value>—</div>
-        </div>
-        <div class="db-os-summary__item db-os-summary__item--total db-os-summary__item--green" data-summary="total_h">
-            <div class="db-os-summary__label"><?php echo e(__('create_label_total_h')); ?></div>
-            <div class="db-os-summary__value" data-value>—</div>
-        </div>
-    </div>
-</div>
+<div class="db-cs">
 
 <?php if ($page_state === 'verification_gate'): ?>
 
@@ -175,7 +196,7 @@ $windows_images = [
 <?php elseif ($page_state === 'loading'): ?>
 
     <div class="db-card">
-        <div class="db-card-body" style="padding:48px 24px; display:flex; flex-direction:column; align-items:center; gap:16px;">
+        <div class="db-card-body db-card-body--hero">
             <div class="db-skeleton" style="width:60%; max-width:400px; height:32px;"></div>
             <div class="db-skeleton" style="width:80%; max-width:520px; height:120px;"></div>
             <div class="db-skeleton" style="width:80%; max-width:520px; height:120px;"></div>
@@ -184,49 +205,82 @@ $windows_images = [
 
 <?php else: ?>
 
-    <!-- Wizard navigation (top action bar — back/next) -->
-    <div class="db-create-nav" id="createNav">
-        <button type="button" class="db-create-nav__btn db-create-nav__btn--back" id="createPrev" style="visibility:hidden;">
-            <i class="fas fa-arrow-left"></i> <span id="createPrevLabel"><?php echo e(__('create_nav_back')); ?></span>
-        </button>
-        <button type="button" class="db-create-nav__btn db-create-nav__btn--next" id="createNext">
-            <span id="createNextLabel"><?php echo e(__('create_nav_select_location')); ?></span> <i class="fas fa-arrow-right"></i>
-        </button>
+    <!-- Progress stepper -->
+    <?php
+    $cs_steps = [
+        1 => ['label' => __('create_cs_step1_label'), 'icon' => 'fa-sliders'],
+        2 => ['label' => __('create_cs_step2_label'), 'icon' => 'fa-earth-americas'],
+        3 => ['label' => __('create_cs_step3_label'), 'icon' => 'fa-microchip'],
+        4 => ['label' => __('create_cs_step4_label'), 'icon' => 'fa-compact-disc'],
+    ];
+    ?>
+    <div class="db-cs-stepper" id="csStepper" data-current="1">
+        <?php foreach ($cs_steps as $n => $s): ?>
+        <div class="db-cs-stepper__step<?php echo $n === 1 ? ' is-active' : ''; ?>" data-stepper="<?php echo $n; ?>">
+            <div class="db-cs-stepper__circle">
+                <span class="db-cs-stepper__num"><?php echo $n; ?></span>
+                <i class="fas fa-check db-cs-stepper__tick"></i>
+            </div>
+            <div class="db-cs-stepper__label">
+                <span class="db-cs-stepper__meta"><?php echo e(__('create_cs_step_prefix')); ?> <?php echo $n; ?></span>
+                <span class="db-cs-stepper__name"><?php echo e($s['label']); ?></span>
+            </div>
+        </div>
+        <?php if ($n < count($cs_steps)): ?>
+        <div class="db-cs-stepper__line"></div>
+        <?php endif; ?>
+        <?php endforeach; ?>
     </div>
+
+    <!-- ══════════════════════════════════════════════
+         Wizard grid: main content (left) + sticky summary (right)
+         ══════════════════════════════════════════════ -->
+    <div class="db-cs-grid">
+    <main class="db-cs-main">
 
     <!-- ═══ STEP 1: Resources ═══ -->
     <div class="db-create-step is-active" data-step="1">
-        <h2 class="db-create-step__title"><?php echo e(__('create_step1_os_title')); ?></h2>
+        <header class="db-cs-step-head">
+
+            <h2 class="db-cs-step-head__title"><?php echo e(__('create_cs_step1_title')); ?></h2>
+            <p class="db-cs-step-head__sub"><?php echo e(__('create_cs_step1_sub')); ?></p>
+        </header>
+
+        <h3 class="db-cs-subtitle"><?php echo e(__('create_step1_os_title')); ?></h3>
         <div class="db-selector-grid">
             <button type="button" class="db-selector-card is-selected" data-os="linux">
-                <div class="db-selector-card__main">
-                    <i class="fab fa-linux db-selector-card__icon" style="color:#f5b800;"></i>
+                <i class="fab fa-linux db-selector-card__icon db-os-icon--linux"></i>
+                <div class="db-selector-card__body">
                     <span class="db-selector-card__label"><?php echo e(__('create_os_linux')); ?></span>
+                    <span class="db-selector-card__desc"><?php echo e(__('create_os_linux_desc')); ?></span>
                 </div>
                 <i class="fas fa-check-circle db-selector-card__check"></i>
             </button>
             <button type="button" class="db-selector-card" data-os="windows">
-                <div class="db-selector-card__main">
-                    <i class="fab fa-windows db-selector-card__icon" style="color:#0078d4;"></i>
+                <i class="fab fa-windows db-selector-card__icon db-os-icon--windows"></i>
+                <div class="db-selector-card__body">
                     <span class="db-selector-card__label"><?php echo e(__('create_os_windows')); ?></span>
+                    <span class="db-selector-card__desc"><?php echo e(__('create_os_windows_desc')); ?></span>
                 </div>
                 <i class="fas fa-check-circle db-selector-card__check"></i>
             </button>
         </div>
 
-        <h2 class="db-create-step__title"><?php echo e(__('create_step1_resources_title')); ?></h2>
+        <h3 class="db-cs-subtitle"><?php echo e(__('create_step1_resources_title')); ?></h3>
         <div class="db-selector-grid">
             <button type="button" class="db-selector-card is-selected" data-resources="shared">
-                <div class="db-selector-card__main">
-                    <i class="fas fa-users db-selector-card__icon" style="color:var(--brand-accent);"></i>
+                <i class="fas fa-users db-selector-card__icon db-selector-card__icon--accent"></i>
+                <div class="db-selector-card__body">
                     <span class="db-selector-card__label"><?php echo e(__('create_res_shared')); ?></span>
+                    <span class="db-selector-card__desc"><?php echo e(__('create_res_shared_desc')); ?></span>
                 </div>
                 <i class="fas fa-check-circle db-selector-card__check"></i>
             </button>
             <button type="button" class="db-selector-card" data-resources="dedicated">
-                <div class="db-selector-card__main">
-                    <i class="fas fa-server db-selector-card__icon" style="color:var(--brand-primary);"></i>
+                <i class="fas fa-server db-selector-card__icon db-selector-card__icon--primary"></i>
+                <div class="db-selector-card__body">
                     <span class="db-selector-card__label"><?php echo e(__('create_res_dedicated')); ?></span>
+                    <span class="db-selector-card__desc"><?php echo e(__('create_res_dedicated_desc')); ?></span>
                 </div>
                 <i class="fas fa-check-circle db-selector-card__check"></i>
             </button>
@@ -235,6 +289,12 @@ $windows_images = [
 
     <!-- ═══ STEP 2: Location ═══ -->
     <div class="db-create-step" data-step="2">
+        <header class="db-cs-step-head">
+
+            <h2 class="db-cs-step-head__title"><?php echo e(__('create_cs_step2_title')); ?></h2>
+            <p class="db-cs-step-head__sub"><?php echo e(__('create_cs_step2_sub')); ?></p>
+        </header>
+
         <div class="db-create-regions">
             <?php foreach ($regions as $region_key => $region): ?>
             <button type="button" class="db-create-region-tab <?php echo $region_key === 'europe' ? 'is-active' : ''; ?>" data-region="<?php echo e($region_key); ?>">
@@ -263,24 +323,30 @@ $windows_images = [
 
     <!-- ═══ STEP 3: Package ═══ -->
     <div class="db-create-step" data-step="3">
+        <header class="db-cs-step-head">
+
+            <h2 class="db-cs-step-head__title"><?php echo e(__('create_cs_step3_title')); ?></h2>
+            <p class="db-cs-step-head__sub"><?php echo e(__('create_cs_step3_sub')); ?></p>
+        </header>
+
         <div class="db-package-grid">
             <?php foreach ($packages as $pkg): ?>
             <button type="button"
-                    class="db-package-card"
+                    class="db-package-card<?php echo $pkg['featured'] ? ' is-featured' : ''; ?>"
                     data-package="<?php echo e($pkg['id']); ?>"
                     data-price-m="<?php echo e($pkg['price_m']); ?>"
                     data-price-h="<?php echo e($pkg['price_h']); ?>">
-                <?php if ($pkg['featured']): ?>
-                <span class="db-package-card__ribbon"><?php echo e(__('create_package_popular')); ?></span>
-                <?php endif; ?>
                 <div class="db-package-card__head">
                     <div class="db-package-card__id">
                         <?php echo e($pkg['id']); ?>
                         <span class="db-package-card__arch"><?php echo e($pkg['arch']); ?></span>
+                        <?php if ($pkg['featured']): ?>
+                        <span class="db-package-card__ribbon"><i class="fas fa-star"></i> <?php echo e(__('create_package_popular')); ?></span>
+                        <?php endif; ?>
                     </div>
                     <div class="db-package-card__price">
-                        <span class="db-package-card__price-m">€<?php echo number_format($pkg['price_m'], 2); ?><small>/m</small></span>
-                        <span class="db-package-card__price-h">€<?php echo number_format($pkg['price_h'], 4); ?><small>/h</small></span>
+                        <span class="db-package-card__price-m"><?php echo format_money($pkg['price_m']); ?><small>/m</small></span>
+                        <span class="db-package-card__price-h"><?php echo format_money($pkg['price_h'], 4); ?><small>/h</small></span>
                     </div>
                 </div>
                 <div class="db-package-card__specs">
@@ -302,6 +368,12 @@ $windows_images = [
 
     <!-- ═══ STEP 4: Image ═══ -->
     <div class="db-create-step" data-step="4">
+        <header class="db-cs-step-head">
+
+            <h2 class="db-cs-step-head__title"><?php echo e(__('create_cs_step4_title')); ?></h2>
+            <p class="db-cs-step-head__sub"><?php echo e(__('create_cs_step4_sub')); ?></p>
+        </header>
+
         <!-- Linux images (shown when OS = linux) -->
         <div class="db-image-grid" data-image-group="linux">
             <?php foreach ($linux_images as $slug => $img): ?>
@@ -317,7 +389,7 @@ $windows_images = [
         <div class="db-image-grid" data-image-group="windows" style="display:none;">
             <?php foreach ($windows_images as $slug => $img): ?>
             <button type="button" class="db-image-card" data-image="<?php echo e($slug); ?>" data-image-name="<?php echo e($img['name']); ?>">
-                <i class="fab fa-windows db-image-card__icon" style="color:#0078d4;"></i>
+                <i class="fab fa-windows db-image-card__icon db-os-icon--windows"></i>
                 <span class="db-image-card__name"><?php echo e($img['name']); ?></span>
                 <i class="fas fa-check-circle db-image-card__check"></i>
             </button>
@@ -330,7 +402,59 @@ $windows_images = [
         </div>
     </div>
 
+    <!-- Wizard navigation (bottom — conventional wizard flow) -->
+    <div class="db-create-nav db-create-nav--bottom" id="createNav">
+        <button type="button" class="db-create-nav__btn db-create-nav__btn--back" id="createPrev" style="visibility:hidden;">
+            <i class="fas fa-arrow-left"></i> <span id="createPrevLabel"><?php echo e(__('create_nav_back')); ?></span>
+        </button>
+        <button type="button" class="db-create-nav__btn db-create-nav__btn--next" id="createNext">
+            <span id="createNextLabel"><?php echo e(__('create_nav_select_location')); ?></span> <i class="fas fa-arrow-right"></i>
+        </button>
+    </div>
+
+    </main><!-- /.db-cs-main -->
+
+    <!-- ═══ STICKY ORDER SUMMARY (right sidebar) ═══ -->
+    <aside class="db-cs-summary" id="orderSummary">
+        <div class="db-cs-summary__head">
+            <i class="fas fa-cart-shopping"></i>
+            <span><?php echo e(__('create_order_summary')); ?></span>
+        </div>
+        <dl class="db-cs-summary__list db-os-summary__row">
+            <div class="db-cs-summary__row db-os-summary__item" data-summary="resources">
+                <dt class="db-os-summary__label"><?php echo e(__('create_label_resources')); ?></dt>
+                <dd class="db-os-summary__value" data-value>—</dd>
+            </div>
+            <div class="db-cs-summary__row db-os-summary__item" data-summary="location">
+                <dt class="db-os-summary__label"><?php echo e(__('create_label_location')); ?></dt>
+                <dd class="db-os-summary__value" data-value>—</dd>
+            </div>
+            <div class="db-cs-summary__row db-os-summary__item" data-summary="package">
+                <dt class="db-os-summary__label"><?php echo e(__('create_label_package')); ?></dt>
+                <dd class="db-os-summary__value" data-value>—</dd>
+            </div>
+            <div class="db-cs-summary__row db-os-summary__item" data-summary="image">
+                <dt class="db-os-summary__label"><?php echo e(__('create_label_image')); ?></dt>
+                <dd class="db-os-summary__value" data-value>—</dd>
+            </div>
+        </dl>
+        <div class="db-cs-summary__totals">
+            <div class="db-cs-summary__total db-os-summary__item db-os-summary__item--total" data-summary="total_m">
+                <span class="db-os-summary__label"><?php echo e(__('create_label_total_mo')); ?></span>
+                <span class="db-os-summary__value" data-value>—</span>
+            </div>
+            <div class="db-cs-summary__total db-os-summary__item db-os-summary__item--total db-os-summary__item--green" data-summary="total_h">
+                <span class="db-os-summary__label"><?php echo e(__('create_label_total_h')); ?></span>
+                <span class="db-os-summary__value" data-value>—</span>
+            </div>
+        </div>
+    </aside>
+
+    </div><!-- /.db-cs-grid -->
+
 <?php endif; ?>
+
+</div><!-- /.db-cs -->
 
 <!-- ═══ CONFIRM MODAL ═══ -->
 <?php
@@ -439,6 +563,16 @@ include __DIR__ . '/../../../components/modal-end.php';
         steps.forEach(function (s) {
             s.classList.toggle('is-active', parseInt(s.getAttribute('data-step'), 10) === n);
         });
+        // Sync progress stepper
+        var stepperRoot = document.getElementById('csStepper');
+        if (stepperRoot) {
+            stepperRoot.setAttribute('data-current', String(n));
+            stepperRoot.querySelectorAll('[data-stepper]').forEach(function (el) {
+                var idx = parseInt(el.getAttribute('data-stepper'), 10);
+                el.classList.toggle('is-active', idx === n);
+                el.classList.toggle('is-complete', idx < n);
+            });
+        }
         prevBtn.style.visibility = n === 1 ? 'hidden' : '';
         prevLabel.textContent = backLabels[n] || <?php echo json_encode(__('create_nav_back')); ?>;
         nextLabel.textContent = stepLabels[n] || <?php echo json_encode(__('create_nav_next')); ?>;

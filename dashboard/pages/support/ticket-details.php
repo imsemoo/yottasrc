@@ -22,16 +22,70 @@ $breadcrumbs_data = [
 
 require_once __DIR__ . '/../../layouts/shell.php';
 
+/* ══════════════════════════════════════════════════════════════════════
+   ███  TICKET DETAILS  ·  MOCK DATA BLOCK  (single source of truth)  ███
+   ══════════════════════════════════════════════════════════════════════
+   BACKEND TEAM — PLEASE READ:
+
+   This page shows a single support ticket ($ticket_id from URL) —
+   header meta, chat thread with attachments, and a flat attachments
+   list for the sidebar.
+
+   Wiring real data:
+     • Look up $ticket_id in DB; populate $ticket + $messages.
+     • $attachments is the de-duped flat list across ALL messages,
+       shown in the sidebar. Can be derived from $messages if preferred.
+     • $status_badge is a static mapping (status → badge color).
+     • $is_open is AUTO-computed — do not edit manually.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ──────────────────────────────────────────
+   PAGE STATE
+   ──────────────────────────────────────────
+   'active' | 'loading' | 'error'
+   ────────────────────────────────────────── */
 $page_state = $_GET['state'] ?? 'active';
 
+/* ──────────────────────────────────────────
+   TICKET HEADER
+   ──────────────────────────────────────────
+   • id            → ticket id (from URL)
+   • subject       → full subject line (already includes service info)
+   • department    → 'Technical' | 'Billing' | 'Sales' | 'Abuse'
+   • status        → 'new' | 'open' | 'answered' | 'customer_reply'
+                     | 'in_progress' | 'on_hold' | 'closed' | 'solved'
+   • priority      → 'low' | 'medium' | 'high' | 'urgent'
+   • created       → relative time string
+   • last_activity → relative time string
+   • service       → linked service label (for sidebar service card)
+   • service_url   → link to the service-details page
+   ────────────────────────────────────────── */
 $ticket = [
-    'id' => $ticket_id, 'subject' => 'Linux VPS/VDS | #151926 YTA6686328 107.161.168.236',
-    'department' => 'Technical', 'status' => 'answered', 'priority' => 'medium',
-    'created' => '11 minutes ago', 'last_activity' => '7 minutes ago',
-    'service' => 'Linux VPS/VDS | #151926 YTA6686328 107.161.168.236',
-    'service_url' => DASH_BASE_PATH . '/pages/services/service-details.php?id=151926',
+    'id'            => $ticket_id,
+    'subject'       => 'Linux VPS/VDS | #151926 YTA6686328 107.161.168.236',
+    'department'    => 'Technical',
+    'status'        => 'answered',
+    'priority'      => 'medium',
+    'created'       => '11 minutes ago',
+    'last_activity' => '7 minutes ago',
+    'service'       => 'Linux VPS/VDS | #151926 YTA6686328 107.161.168.236',
+    'service_url'   => DASH_BASE_PATH . '/pages/services/service-details.php?id=151926',
 ];
 
+/* ──────────────────────────────────────────
+   MESSAGES (chat thread, oldest → newest)
+   ──────────────────────────────────────────
+   Each message:
+   • author       → display name
+   • role         → 'customer' | 'staff'  (drives bubble style + side)
+   • time         → relative time string
+   • body         → plain text (newlines → <br> via nl2br)
+   • attachments  → array; each:
+       - name  → file name (used for download + icon lookup)
+       - type  → 'image' | 'file'
+       - size  → human-readable size string
+       - url   → download URL (or lightbox src for images)
+   ────────────────────────────────────────── */
 $messages = [
     [
         'author' => 'islam dev', 'role' => 'customer', 'time' => '11 minutes ago',
@@ -53,7 +107,12 @@ $messages = [
     ],
 ];
 
-// Sidebar attachments — flatten unique items from all messages
+/* ──────────────────────────────────────────
+   SIDEBAR ATTACHMENTS (flat de-duped list)
+   ──────────────────────────────────────────
+   For real data, you can derive this from $messages.
+   Shape matches message attachments exactly.
+   ────────────────────────────────────────── */
 $attachments = [
     ['name' => 'console-error.png',   'type' => 'image', 'size' => '312 KB', 'url' => 'https://picsum.photos/seed/yotta-console/1280/800'],
     ['name' => 'cpu-spike-graph.png', 'type' => 'image', 'size' => '198 KB', 'url' => 'https://picsum.photos/seed/yotta-cpu/1280/800'],
@@ -63,18 +122,30 @@ $attachments = [
     ['name' => 'fix-guide.pdf',       'type' => 'file',  'size' => '118 KB', 'url' => '#'],
 ];
 
+/* ──────────────────────────────────────────
+   STATUS → badge-class  mapping
+   ────────────────────────────────────────── */
+$status_badge = [
+    'new'            => 'pending',
+    'open'           => 'pending',
+    'answered'       => 'active',
+    'customer_reply' => 'unpaid',
+    'in_progress'    => 'pending',
+    'on_hold'        => 'suspended',
+    'closed'         => 'cancelled',
+    'solved'         => 'paid',
+];
+
+/* ══════════════  END OF MOCK DATA  ══════════════ */
+
+// File extension → icon class (used for non-image attachments).
 function ticket_file_icon($name) {
     $ext = strtolower(pathinfo($name, PATHINFO_EXTENSION));
     $map = ['pdf'=>'fa-file-pdf','doc'=>'fa-file-word','docx'=>'fa-file-word','xls'=>'fa-file-excel','xlsx'=>'fa-file-excel','zip'=>'fa-file-zipper','rar'=>'fa-file-zipper','txt'=>'fa-file-lines','log'=>'fa-file-lines'];
     return $map[$ext] ?? 'fa-file';
 }
 
-$status_badge = [
-    'new' => 'pending', 'open' => 'pending', 'answered' => 'active',
-    'customer_reply' => 'unpaid', 'in_progress' => 'pending',
-    'on_hold' => 'suspended', 'closed' => 'cancelled', 'solved' => 'paid',
-];
-
+// Auto-computed: ticket is open if status isn't 'closed'/'solved'.
 $is_open = ($ticket['status'] !== 'closed' && $ticket['status'] !== 'solved');
 ?>
 
@@ -91,7 +162,7 @@ $is_open = ($ticket['status'] !== 'closed' && $ticket['status'] !== 'solved');
     <div class="db-ticket-header__info">
         <h1 class="db-ticket-header__title">#<?php echo e($ticket['id']); ?> — <?php echo e($ticket['subject']); ?></h1>
         <div class="db-ticket-header__meta">
-            <span class="db-badge db-badge--<?php echo e($status_badge[$ticket['status']] ?? 'pending'); ?>" style="font-size:0.68rem;"><?php echo e(__('ticket_status_' . $ticket['status'])); ?></span>
+            <span class="db-badge db-badge--<?php echo e($status_badge[$ticket['status']] ?? 'pending'); ?>"><?php echo e(__('ticket_status_' . $ticket['status'])); ?></span>
             <span class="db-ticket-header__sep">·</span>
             <span><?php echo e($ticket['department']); ?></span>
             <span class="db-ticket-header__sep">·</span>
@@ -131,7 +202,7 @@ $is_open = ($ticket['status'] !== 'closed' && $ticket['status'] !== 'solved');
             </div>
             <div class="db-chat-reply__footer">
                 <label class="db-btn db-btn--ghost db-btn--sm" for="chatReplyFileInput"><i class="fas fa-paperclip"></i> <?php echo e(__('ticket_new_attachments')); ?></label>
-                <input type="file" multiple id="chatReplyFileInput" style="display:none;">
+                <input type="file" multiple id="chatReplyFileInput" class="db-hidden-file-input">
                 <button class="db-btn db-btn--primary db-btn--sm" id="chatReplySend"><i class="fas fa-paper-plane"></i> <?php echo e(__('ticket_reply_send')); ?></button>
             </div>
         </div>
@@ -258,9 +329,12 @@ $is_open = ($ticket['status'] !== 'closed' && $ticket['status'] !== 'solved');
 <?php
 $modal_id = 'closeTicketModal'; $modal_title = __('ticket_close'); $modal_size = 'sm';
 include __DIR__ . '/../../components/modal.php';
-?>
-<div class="db-confirm-body"><div class="db-modal-icon db-modal-icon--danger"><i class="fas fa-xmark"></i></div><p><?php echo e(__('ticket_close_confirm')); ?></p></div>
-<?php
+
+$cb_desc = __('ticket_close_confirm');
+$cb_icon = 'fa-xmark';
+$cb_target_label = null; $cb_target_value = null; $cb_warn = null;
+include __DIR__ . '/../../components/confirm-body.php';
+
 $modal_footer = '<button class="db-btn db-btn--secondary" data-modal-close>' . e(__('common_cancel')) . '</button>
 <button class="db-btn db-btn--danger" onclick="DashModal.close(this.closest(\'.db-modal-overlay\')); DashToast.show(\'success\',\'\',\'' . e(__('ticket_close_success')) . '\');">' . e(__('common_confirm')) . '</button>';
 include __DIR__ . '/../../components/modal-end.php';
@@ -326,7 +400,7 @@ include __DIR__ . '/../../components/modal-end.php';
                 '<button type="button" class="db-chat-reply__file-remove" aria-label="Remove"><i class="fas fa-xmark"></i></button>';
             item.querySelector('.db-chat-reply__file-remove').addEventListener('click', function(){
                 queued.splice(i, 1); render();
-                if (window.DashToast) DashToast.show('info','', '<?php echo e(__('ticket_file_removed')); ?>');
+                if (window.DashToast) DashToast.show('success','', '<?php echo e(__('ticket_file_removed')); ?>');
             });
             fileList.appendChild(item);
         });

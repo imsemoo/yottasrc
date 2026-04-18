@@ -28,12 +28,38 @@ $breadcrumbs_data = [
 
 require_once __DIR__ . '/../../layouts/shell.php';
 
+/* ══════════════════════════════════════════════════════════════════════
+   ███  VERIFICATION  ·  MOCK DATA BLOCK  (single source of truth)  ███
+   ══════════════════════════════════════════════════════════════════════
+   BACKEND TEAM — PLEASE READ:
+
+   KYC verification wizard — 3 steps. The arrays below drive the
+   form options (purposes, entity types, languages, referral sources).
+   All are static catalogs.
+
+   Wiring real data:
+     • Catalogs are usually fine as-is; adjust if product requirements
+       change (adding a new verification purpose, etc.).
+     • $page_state / $current_step / $status come from the URL for
+       design states — replace with real wizard-state from the DB.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ──────────────────────────────────────────
+   PAGE STATE + WIZARD STATE
+   ──────────────────────────────────────────
+   • page_state   → 'active' | 'loading' | 'error'
+   • current_step → 1..3 (current wizard step; clamped)
+   • status       → if 'submitted', the success-confirmation view renders
+   ────────────────────────────────────────── */
 $page_state    = $_GET['state']  ?? 'active';
 $current_step  = max(1, min(3, (int)($_GET['step'] ?? 1)));
 $status        = $_GET['status'] ?? '';
 $is_submitted  = ($status === 'submitted');
 
-// Form options (mock data — backend will replace)
+/* ──────────────────────────────────────────
+   PURPOSES  (select: "What will you use our services for?")
+   Extend when a new product category needs a purpose flag.
+   ────────────────────────────────────────── */
 $purposes = [
     ['id' => 'website_hosting',   'label' => __('verify_purpose_website')],
     ['id' => 'app_dev',           'label' => __('verify_purpose_app')],
@@ -45,6 +71,9 @@ $purposes = [
     ['id' => 'other',             'label' => __('verify_purpose_other')],
 ];
 
+/* ──────────────────────────────────────────
+   ENTITY TYPES  (select: individual vs business)
+   ────────────────────────────────────────── */
 $entity_types = [
     ['id' => 'individual',  'label' => __('verify_entity_individual')],
     ['id' => 'business',    'label' => __('verify_entity_business')],
@@ -52,6 +81,10 @@ $entity_types = [
     ['id' => 'nonprofit',   'label' => __('verify_entity_nonprofit')],
 ];
 
+/* ──────────────────────────────────────────
+   LANGUAGES  (preferred communication language)
+   Labels are shown native-form (not translated).
+   ────────────────────────────────────────── */
 $languages_list = [
     ['id' => 'en', 'label' => 'English'],
     ['id' => 'ar', 'label' => 'العربية'],
@@ -61,23 +94,24 @@ $languages_list = [
     ['id' => 'tr', 'label' => 'Türkçe'],
 ];
 
+/* ──────────────────────────────────────────
+   REFERRAL SOURCES  ("How did you hear about us?")
+   Used for growth/marketing analytics.
+   ────────────────────────────────────────── */
 $referral_sources = [
-    ['id' => 'search',       'label' => __('verify_referral_search')],
-    ['id' => 'social',       'label' => __('verify_referral_social')],
-    ['id' => 'friend',       'label' => __('verify_referral_friend')],
-    ['id' => 'forum',        'label' => __('verify_referral_forum')],
-    ['id' => 'youtube',      'label' => __('verify_referral_youtube')],
-    ['id' => 'ad',           'label' => __('verify_referral_ad')],
-    ['id' => 'other',        'label' => __('verify_referral_other')],
+    ['id' => 'search',   'label' => __('verify_referral_search')],
+    ['id' => 'social',   'label' => __('verify_referral_social')],
+    ['id' => 'friend',   'label' => __('verify_referral_friend')],
+    ['id' => 'forum',    'label' => __('verify_referral_forum')],
+    ['id' => 'youtube',  'label' => __('verify_referral_youtube')],
+    ['id' => 'ad',       'label' => __('verify_referral_ad')],
+    ['id' => 'other',    'label' => __('verify_referral_other')],
 ];
+
+/* ══════════════  END OF MOCK DATA  ══════════════ */
 ?>
 
-<?php
-$ph_title = __('verify_title');
-$ph_desc  = __('verify_desc');
-$ph_actions = '';
-include __DIR__ . '/../../components/page-header.php';
-?>
+<div class="db-vx">
 
 <?php if ($page_state === 'error'): ?>
 
@@ -86,7 +120,7 @@ include __DIR__ . '/../../components/page-header.php';
 <?php elseif ($page_state === 'loading'): ?>
 
     <div class="db-card">
-        <div class="db-card-body" style="display:flex; flex-direction:column; align-items:center; gap:18px; padding:48px 24px;">
+        <div class="db-card-body db-card-body--hero">
             <div class="db-skeleton" style="width:120px; height:36px;"></div>
             <div class="db-skeleton" style="width:80%; max-width:520px; height:46px;"></div>
             <div class="db-skeleton" style="width:60%; max-width:380px; height:14px;"></div>
@@ -94,274 +128,298 @@ include __DIR__ . '/../../components/page-header.php';
         </div>
     </div>
 
-<?php else: ?>
+<?php elseif ($is_submitted): ?>
 
-    <!-- ═══ MAIN VERIFICATION CARD ═══ -->
-    <div class="db-card db-verify-card">
-        <div class="db-card-header">
-            <h3 class="db-card-title"><?php echo e(__('verify_card_title')); ?></h3>
+    <!-- ═══ SUCCESS STATE ═══ -->
+    <div class="db-vx-done">
+        <div class="db-vx-done__badge">
+            <svg class="db-vx-done__check" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle class="db-vx-done__check-circle" cx="26" cy="26" r="24" fill="none" stroke-width="2"/>
+                <path class="db-vx-done__check-path" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" d="M14 27 l8 8 l16 -16"/>
+            </svg>
         </div>
-        <div class="db-card-body">
+        <span class="ds-eyebrow ds-eyebrow--success">
+            <i class="fas fa-circle-check"></i>
+            <?php echo e(__('verify_vx_done_eyebrow')); ?>
+        </span>
+        <h1 class="db-vx-done__title"><?php echo e(__('verify_vx_done_title')); ?></h1>
+        <p class="db-vx-done__sub"><?php echo e(__('verify_vx_done_sub')); ?></p>
 
-            <?php if ($is_submitted): ?>
-            <!-- ── SUCCESS STATE: pending manual review ── -->
-            <div class="db-verify-success">
-                <div class="db-verify-success__brand">
-                    <img src="<?php echo dash_asset('images/logo_dark.png'); ?>" alt="<?php echo SITE_NAME; ?>" class="db-verify-success__logo db-verify-success__logo--dark">
-                    <img src="<?php echo dash_asset('images/logo_light.png'); ?>" alt="<?php echo SITE_NAME; ?>" class="db-verify-success__logo db-verify-success__logo--light">
-                </div>
-                <div class="db-verify-success__check">
-                    <i class="fas fa-check"></i>
-                </div>
-                <h2 class="db-verify-success__title"><?php echo e(__('verify_success_title')); ?></h2>
-                <p class="db-verify-success__desc"><?php echo e(__('verify_success_desc')); ?></p>
-                <div class="db-verify-success__actions">
-                    <a href="<?php echo DASH_BASE_PATH; ?>/" class="db-btn db-btn--primary">
-                        <i class="fas fa-arrow-left"></i> <?php echo e(__('verify_back_dashboard')); ?>
-                    </a>
-                </div>
-            </div>
-
-            <?php else: ?>
-            <!-- ── WIZARD STATE ── -->
-            <div class="db-verify-wizard">
-
-                <!-- Brand mark above stepper -->
-                <div class="db-verify-wizard__brand">
-                    <img src="<?php echo dash_asset('images/logo_dark.png'); ?>" alt="<?php echo SITE_NAME; ?>" class="db-verify-wizard__logo db-verify-wizard__logo--dark">
-                    <img src="<?php echo dash_asset('images/logo_light.png'); ?>" alt="<?php echo SITE_NAME; ?>" class="db-verify-wizard__logo db-verify-wizard__logo--light">
-                </div>
-
-                <!-- Stepper (3 steps) -->
-                <div class="db-verify-stepper" id="verifyStepper">
-                    <?php
-                    $steps = [
-                        1 => __('verify_step_information'),
-                        2 => __('verify_step_payment'),
-                        3 => __('verify_step_finish'),
-                    ];
-                    foreach ($steps as $num => $label):
-                        $is_active = ($num === $current_step);
-                        $is_done   = ($num < $current_step);
-                        $class = $is_active ? 'is-active' : ($is_done ? 'is-done' : '');
-                    ?>
-                    <button type="button" class="db-verify-step <?php echo $class; ?>" data-step="<?php echo $num; ?>">
-                        <span class="db-verify-step__num">
-                            <?php if ($is_done): ?>
-                                <i class="fas fa-check"></i>
-                            <?php else: ?>
-                                <?php echo $num; ?>
-                            <?php endif; ?>
-                        </span>
-                        <span class="db-verify-step__label"><?php echo e($label); ?></span>
-                    </button>
-                    <?php endforeach; ?>
-                </div>
-
-                <!-- Step Panels -->
-                <div class="db-verify-panels">
-
-                    <!-- ═══ STEP 1 — INFORMATION ═══ -->
-                    <div class="db-verify-panel <?php echo $current_step === 1 ? 'is-active' : ''; ?>" data-panel="1">
-                        <div class="db-verify-grid db-verify-grid--4">
-                            <div class="db-form-group">
-                                <label class="db-form-label" for="verifyPurpose"><?php echo e(__('verify_purpose')); ?></label>
-                                <select class="db-select" id="verifyPurpose" name="purpose">
-                                    <?php foreach ($purposes as $opt): ?>
-                                    <option value="<?php echo e($opt['id']); ?>"><?php echo e($opt['label']); ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="db-form-group">
-                                <label class="db-form-label" for="verifyEntity"><?php echo e(__('verify_entity_type')); ?></label>
-                                <select class="db-select" id="verifyEntity" name="entity_type">
-                                    <?php foreach ($entity_types as $opt): ?>
-                                    <option value="<?php echo e($opt['id']); ?>"><?php echo e($opt['label']); ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="db-form-group">
-                                <label class="db-form-label" for="verifyLang"><?php echo e(__('verify_language')); ?></label>
-                                <select class="db-select" id="verifyLang" name="preferred_language">
-                                    <?php foreach ($languages_list as $opt): ?>
-                                    <option value="<?php echo e($opt['id']); ?>" <?php echo $opt['id'] === $current_lang ? 'selected' : ''; ?>><?php echo e($opt['label']); ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="db-form-group">
-                                <label class="db-form-label" for="verifyReferral"><?php echo e(__('verify_referral')); ?></label>
-                                <select class="db-select" id="verifyReferral" name="referral_source">
-                                    <?php foreach ($referral_sources as $opt): ?>
-                                    <option value="<?php echo e($opt['id']); ?>"><?php echo e($opt['label']); ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="db-verify-actions db-verify-actions--end">
-                            <button type="button" class="db-btn db-btn--primary" data-verify-next="2">
-                                <?php echo e(__('verify_next_step')); ?> <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
+        <div class="db-vx-done__meanwhile">
+            <div class="db-vx-done__meanwhile-title"><?php echo e(__('verify_vx_done_meanwhile')); ?></div>
+            <ul class="db-vx-done__list">
+                <li>
+                    <i class="fas fa-compass"></i>
+                    <div>
+                        <strong><?php echo e(__('verify_vx_done_item1_title')); ?></strong>
+                        <span><?php echo e(__('verify_vx_done_item1_desc')); ?></span>
                     </div>
-
-                    <!-- ═══ STEP 2 — PAYMENT ═══ -->
-                    <div class="db-verify-panel <?php echo $current_step === 2 ? 'is-active' : ''; ?>" data-panel="2">
-                        <div class="db-verify-payment">
-                            <p class="db-verify-payment__heading">
-                                <?php echo e(__('verify_payment_heading')); ?>
-                            </p>
-
-                            <div class="db-verify-payment__input-row">
-                                <div class="db-verify-amount">
-                                    <span class="db-verify-amount__currency">€</span>
-                                    <input type="number" id="verifyAmount" class="db-verify-amount__input" value="10" min="5" step="1" aria-label="<?php echo e(__('verify_amount_label')); ?>">
-                                </div>
-                                <button type="button" class="db-btn db-btn--secondary" id="verifyGenerateInvoice">
-                                    <i class="fas fa-file-invoice"></i> <?php echo e(__('verify_generate_invoice')); ?>
-                                </button>
-                            </div>
-
-                            <ul class="db-verify-notices">
-                                <li>
-                                    <i class="fas fa-circle-check"></i>
-                                    <span><?php echo __('verify_notice_balance'); ?></span>
-                                </li>
-                                <li>
-                                    <i class="fas fa-shield-halved"></i>
-                                    <span><?php echo __('verify_notice_prohibited'); ?></span>
-                                </li>
-                                <li>
-                                    <i class="fas fa-network-wired"></i>
-                                    <span><?php echo __('verify_notice_port25'); ?></span>
-                                </li>
-                                <li class="db-verify-notices__warn">
-                                    <i class="fas fa-triangle-exclamation"></i>
-                                    <span><?php echo __('verify_notice_nonrefundable'); ?></span>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="db-verify-actions">
-                            <button type="button" class="db-btn db-btn--ghost" data-verify-prev="1">
-                                <i class="fas fa-arrow-left"></i> <?php echo e(__('verify_back')); ?>
-                            </button>
-                            <button type="button" class="db-btn db-btn--primary" data-verify-next="3">
-                                <?php echo e(__('verify_next_step')); ?> <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
+                </li>
+                <li>
+                    <i class="fas fa-book-open"></i>
+                    <div>
+                        <strong><?php echo e(__('verify_vx_done_item2_title')); ?></strong>
+                        <span><?php echo e(__('verify_vx_done_item2_desc')); ?></span>
                     </div>
-
-                    <!-- ═══ STEP 3 — FINISH (review + submit) ═══ -->
-                    <div class="db-verify-panel <?php echo $current_step === 3 ? 'is-active' : ''; ?>" data-panel="3">
-                        <div class="db-verify-finish">
-                            <div class="db-verify-finish__icon"><i class="fas fa-clipboard-check"></i></div>
-                            <h3 class="db-verify-finish__title"><?php echo e(__('verify_finish_title')); ?></h3>
-                            <p class="db-verify-finish__desc"><?php echo e(__('verify_finish_desc')); ?></p>
-
-                            <div class="db-verify-summary">
-                                <div class="db-verify-summary__row">
-                                    <span class="db-verify-summary__label"><?php echo e(__('verify_purpose')); ?></span>
-                                    <span class="db-verify-summary__value" id="sumPurpose">—</span>
-                                </div>
-                                <div class="db-verify-summary__row">
-                                    <span class="db-verify-summary__label"><?php echo e(__('verify_entity_type')); ?></span>
-                                    <span class="db-verify-summary__value" id="sumEntity">—</span>
-                                </div>
-                                <div class="db-verify-summary__row">
-                                    <span class="db-verify-summary__label"><?php echo e(__('verify_language')); ?></span>
-                                    <span class="db-verify-summary__value" id="sumLang">—</span>
-                                </div>
-                                <div class="db-verify-summary__row">
-                                    <span class="db-verify-summary__label"><?php echo e(__('verify_referral')); ?></span>
-                                    <span class="db-verify-summary__value" id="sumReferral">—</span>
-                                </div>
-                                <div class="db-verify-summary__row">
-                                    <span class="db-verify-summary__label"><?php echo e(__('verify_initial_funds')); ?></span>
-                                    <span class="db-verify-summary__value" id="sumAmount">€10</span>
-                                </div>
-                            </div>
-
-                            <label class="db-verify-tos">
-                                <input type="checkbox" id="verifyTos">
-                                <span class="db-verify-tos__box"></span>
-                                <span class="db-verify-tos__text"><?php echo __('verify_tos_agree'); ?></span>
-                            </label>
-                        </div>
-
-                        <div class="db-verify-actions">
-                            <button type="button" class="db-btn db-btn--ghost" data-verify-prev="2">
-                                <i class="fas fa-arrow-left"></i> <?php echo e(__('verify_back')); ?>
-                            </button>
-                            <button type="button" class="db-btn db-btn--primary" id="verifySubmitBtn">
-                                <i class="fas fa-paper-plane"></i> <?php echo e(__('verify_submit')); ?>
-                            </button>
-                        </div>
+                </li>
+                <li>
+                    <i class="fas fa-life-ring"></i>
+                    <div>
+                        <strong><?php echo e(__('verify_vx_done_item3_title')); ?></strong>
+                        <span><?php echo e(__('verify_vx_done_item3_desc')); ?></span>
                     </div>
-
-                </div>
-            </div>
-            <?php endif; ?>
-
+                </li>
+            </ul>
         </div>
+
+        <a href="<?php echo DASH_BASE_PATH; ?>/" class="ds-btn ds-btn--primary db-vx-done__cta">
+            <i class="fas fa-arrow-left"></i>
+            <span><?php echo e(__('verify_back_dashboard')); ?></span>
+        </a>
     </div>
 
-    <!-- ═══ INFO CARD (always visible below) ═══ -->
-    <div class="db-card db-verify-info">
-        <div class="db-card-body">
-            <h4 class="db-verify-info__title"><?php echo e(__('verify_info_title')); ?></h4>
-            <ul class="db-verify-info__list">
-                <li><i class="fas fa-circle"></i> <?php echo e(__('verify_info_1')); ?></li>
-                <li><i class="fas fa-circle"></i> <?php echo e(__('verify_info_2')); ?></li>
-                <li><i class="fas fa-circle"></i> <?php echo __('verify_info_3'); ?></li>
-                <li><i class="fas fa-circle"></i> <?php echo e(__('verify_info_4')); ?></li>
-                <li><i class="fas fa-circle"></i> <?php echo __('verify_info_5'); ?></li>
-            </ul>
+<?php else: ?>
+
+    <!-- Intro hero (same shape as Create Server) -->
+    <section class="ds-hero ds-hero--compact">
+        <div class="ds-hero__top">
+            <div class="ds-hero__title-block">
+                <span class="ds-eyebrow">
+                    <i class="fas fa-shield-halved"></i>
+                    <?php echo e(__('verify_vx_eyebrow')); ?>
+                </span>
+                <h1 class="ds-hero__title" style="margin-top:10px;"><?php echo e(__('verify_vx_intro_title')); ?></h1>
+                <p class="ds-hero__sub"><?php echo e(__('verify_vx_intro_sub')); ?></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stepper (reuses Create Server's .db-cs-stepper) -->
+    <?php
+    $vx_steps = [
+        1 => __('verify_vx_step_nav_info'),
+        2 => __('verify_vx_step_nav_pay'),
+        3 => __('verify_vx_step_nav_review'),
+    ];
+    ?>
+    <div class="db-cs-stepper" id="vxStepper" data-current="<?php echo $current_step; ?>">
+        <?php foreach ($vx_steps as $n => $label):
+            $active   = ($n === $current_step);
+            $complete = ($n < $current_step);
+            $class    = $active ? 'is-active' : ($complete ? 'is-complete' : '');
+        ?>
+        <div class="db-cs-stepper__step <?php echo $class; ?>" data-stepper="<?php echo $n; ?>">
+            <div class="db-cs-stepper__circle">
+                <span class="db-cs-stepper__num"><?php echo $n; ?></span>
+                <i class="fas fa-check db-cs-stepper__tick"></i>
+            </div>
+            <div class="db-cs-stepper__label">
+                <span class="db-cs-stepper__meta"><?php echo e(__('verify_vx_step_prefix')); ?> <?php echo $n; ?></span>
+                <span class="db-cs-stepper__name"><?php echo e($label); ?></span>
+            </div>
+        </div>
+        <?php if ($n < 3): ?>
+        <div class="db-cs-stepper__line"></div>
+        <?php endif; ?>
+        <?php endforeach; ?>
+    </div>
+
+    <!-- Single form card holds all 3 panels -->
+    <div class="ds-section db-verify-wizard">
+        <div class="db-verify-panels">
+
+            <!-- ═══ STEP 1: Information ═══ -->
+            <div class="db-verify-panel <?php echo $current_step === 1 ? 'is-active' : ''; ?>" data-panel="1">
+                <header class="db-cs-step-head">
+                    <span class="ds-eyebrow"><?php echo e(__('verify_vx_step_prefix')); ?> 1 / 3</span>
+                    <h2 class="db-cs-step-head__title"><?php echo e(__('verify_vx_step1_title')); ?></h2>
+                    <p class="db-cs-step-head__sub"><?php echo e(__('verify_vx_step1_sub')); ?></p>
+                </header>
+
+                <div class="db-vx-fields db-vx-fields--2col">
+                    <div class="db-vx-field">
+                        <label class="db-vx-field__label" for="verifyPurpose"><?php echo e(__('verify_vx_q_purpose')); ?></label>
+                        <select class="db-vx-select" id="verifyPurpose" name="purpose" required>
+                            <?php foreach ($purposes as $opt): ?>
+                            <option value="<?php echo e($opt['id']); ?>"><?php echo e($opt['label']); ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="db-vx-field">
+                        <label class="db-vx-field__label" for="verifyEntity"><?php echo e(__('verify_vx_q_entity')); ?></label>
+                        <select class="db-vx-select" id="verifyEntity" name="entity_type" required>
+                            <?php foreach ($entity_types as $opt): ?>
+                            <option value="<?php echo e($opt['id']); ?>"><?php echo e($opt['label']); ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="db-vx-field">
+                        <label class="db-vx-field__label" for="verifyLang"><?php echo e(__('verify_vx_q_language')); ?></label>
+                        <select class="db-vx-select" id="verifyLang" name="preferred_language" required>
+                            <?php foreach ($languages_list as $opt): ?>
+                            <option value="<?php echo e($opt['id']); ?>" <?php echo $opt['id'] === $current_lang ? 'selected' : ''; ?>><?php echo e($opt['label']); ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="db-vx-field">
+                        <label class="db-vx-field__label" for="verifyReferral"><?php echo e(__('verify_vx_q_referral')); ?></label>
+                        <select class="db-vx-select" id="verifyReferral" name="referral_source" required>
+                            <?php foreach ($referral_sources as $opt): ?>
+                            <option value="<?php echo e($opt['id']); ?>"><?php echo e($opt['label']); ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="db-vx-nav db-vx-nav--end">
+                    <button type="button" class="ds-btn ds-btn--primary" data-verify-next="2">
+                        <span><?php echo e(__('verify_vx_continue')); ?></span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- ═══ STEP 2: Payment ═══ -->
+            <div class="db-verify-panel <?php echo $current_step === 2 ? 'is-active' : ''; ?>" data-panel="2">
+                <header class="db-cs-step-head">
+                    <span class="ds-eyebrow"><?php echo e(__('verify_vx_step_prefix')); ?> 2 / 3</span>
+                    <h2 class="db-cs-step-head__title"><?php echo e(__('verify_vx_step2_title')); ?></h2>
+                    <p class="db-cs-step-head__sub"><?php echo e(__('verify_vx_step2_sub')); ?></p>
+                </header>
+
+                <div class="db-vx-amount-wrap">
+                    <div class="db-vx-amount">
+                        <span class="db-vx-amount__currency">€</span>
+                        <input type="number" id="verifyAmount" class="db-vx-amount__input" value="10" min="5" step="1" aria-label="<?php echo e(__('verify_amount_label')); ?>">
+                    </div>
+                    <div class="db-vx-chips">
+                        <button type="button" class="db-vx-chip" data-vx-amount="5">€5</button>
+                        <button type="button" class="db-vx-chip is-active" data-vx-amount="10">€10</button>
+                        <button type="button" class="db-vx-chip" data-vx-amount="25">€25</button>
+                        <button type="button" class="db-vx-chip" data-vx-amount="50">€50</button>
+                        <button type="button" class="db-vx-chip" data-vx-amount="100">€100</button>
+                    </div>
+                </div>
+
+                <!-- One compact note — replaces the 4 reassure cards -->
+                <div class="db-vx-note">
+                    <i class="fas fa-circle-info"></i>
+                    <div>
+                        <strong><?php echo e(__('verify_vx_note_title')); ?></strong>
+                        <span><?php echo e(__('verify_vx_note_desc')); ?></span>
+                    </div>
+                </div>
+
+                <div class="db-vx-nav">
+                    <button type="button" class="ds-btn ds-btn--ghost" data-verify-prev="1">
+                        <i class="fas fa-arrow-left"></i>
+                        <span><?php echo e(__('verify_back')); ?></span>
+                    </button>
+                    <span class="db-vx-nav__spacer">
+                        <button type="button" class="ds-btn ds-btn--ghost ds-btn--sm" id="verifyGenerateInvoice">
+                            <i class="fas fa-file-invoice"></i>
+                            <span><?php echo e(__('verify_generate_invoice')); ?></span>
+                        </button>
+                    </span>
+                    <button type="button" class="ds-btn ds-btn--primary" data-verify-next="3">
+                        <span><?php echo e(__('verify_vx_continue')); ?></span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- ═══ STEP 3: Review ═══ -->
+            <div class="db-verify-panel <?php echo $current_step === 3 ? 'is-active' : ''; ?>" data-panel="3">
+                <header class="db-cs-step-head">
+                    <span class="ds-eyebrow"><?php echo e(__('verify_vx_step_prefix')); ?> 3 / 3</span>
+                    <h2 class="db-cs-step-head__title"><?php echo e(__('verify_vx_step3_title')); ?></h2>
+                    <p class="db-cs-step-head__sub"><?php echo e(__('verify_vx_step3_sub')); ?></p>
+                </header>
+
+                <dl class="db-vx-summary">
+                    <div class="db-vx-summary__row">
+                        <dt><?php echo e(__('verify_purpose')); ?></dt>
+                        <dd id="sumPurpose">—</dd>
+                        <button type="button" class="db-vx-summary__edit" data-verify-prev="1" title="<?php echo e(__('verify_vx_edit')); ?>"><i class="fas fa-pen"></i></button>
+                    </div>
+                    <div class="db-vx-summary__row">
+                        <dt><?php echo e(__('verify_entity_type')); ?></dt>
+                        <dd id="sumEntity">—</dd>
+                        <button type="button" class="db-vx-summary__edit" data-verify-prev="1" title="<?php echo e(__('verify_vx_edit')); ?>"><i class="fas fa-pen"></i></button>
+                    </div>
+                    <div class="db-vx-summary__row">
+                        <dt><?php echo e(__('verify_language')); ?></dt>
+                        <dd id="sumLang">—</dd>
+                        <button type="button" class="db-vx-summary__edit" data-verify-prev="1" title="<?php echo e(__('verify_vx_edit')); ?>"><i class="fas fa-pen"></i></button>
+                    </div>
+                    <div class="db-vx-summary__row">
+                        <dt><?php echo e(__('verify_referral')); ?></dt>
+                        <dd id="sumReferral">—</dd>
+                        <button type="button" class="db-vx-summary__edit" data-verify-prev="1" title="<?php echo e(__('verify_vx_edit')); ?>"><i class="fas fa-pen"></i></button>
+                    </div>
+                    <div class="db-vx-summary__row db-vx-summary__row--amount">
+                        <dt><?php echo e(__('verify_vx_starting_balance')); ?></dt>
+                        <dd id="sumAmount">€10</dd>
+                        <button type="button" class="db-vx-summary__edit" data-verify-prev="2" title="<?php echo e(__('verify_vx_edit')); ?>"><i class="fas fa-pen"></i></button>
+                    </div>
+                </dl>
+
+                <label class="db-vx-tos">
+                    <input type="checkbox" id="verifyTos">
+                    <span class="db-vx-tos__box"></span>
+                    <span class="db-vx-tos__text"><?php echo __('verify_tos_agree'); ?></span>
+                </label>
+
+                <div class="db-vx-nav">
+                    <button type="button" class="ds-btn ds-btn--ghost" data-verify-prev="2">
+                        <i class="fas fa-arrow-left"></i>
+                        <span><?php echo e(__('verify_back')); ?></span>
+                    </button>
+                    <button type="button" class="ds-btn ds-btn--primary" id="verifySubmitBtn">
+                        <i class="fas fa-paper-plane"></i>
+                        <span><?php echo e(__('verify_submit')); ?></span>
+                    </button>
+                </div>
+            </div>
+
         </div>
     </div>
 
 <?php endif; ?>
 
+</div><!-- /.db-vx -->
 <div class="db-toast-container" id="toastContainer"></div>
 
 <script>
 (function () {
     /* ── Wizard navigation ── */
-    var stepperBtns = document.querySelectorAll('.db-verify-step');
-    var panels      = document.querySelectorAll('.db-verify-panel');
-    var wizard      = document.querySelector('.db-verify-wizard');
+    var panels  = document.querySelectorAll('.db-verify-panel');
+    var wizard  = document.querySelector('.db-verify-wizard');
+    var stepper = document.getElementById('vxStepper');
     if (!wizard) return;
 
     var currentStep = <?php echo $current_step; ?>;
-    var maxReached  = currentStep;
 
     function setStep(target, opts) {
         target = parseInt(target, 10);
         if (isNaN(target) || target < 1 || target > 3) return;
         currentStep = target;
-        if (target > maxReached) maxReached = target;
-
-        // Stepper visual state
-        stepperBtns.forEach(function (b) {
-            var n = parseInt(b.getAttribute('data-step'), 10);
-            b.classList.remove('is-active', 'is-done');
-            var numEl = b.querySelector('.db-verify-step__num');
-            if (n === currentStep) {
-                b.classList.add('is-active');
-                numEl.innerHTML = String(n);
-            } else if (n < currentStep) {
-                b.classList.add('is-done');
-                numEl.innerHTML = '<i class="fas fa-check"></i>';
-            } else {
-                numEl.innerHTML = String(n);
-            }
-        });
 
         // Panel visibility
         panels.forEach(function (p) {
             var n = parseInt(p.getAttribute('data-panel'), 10);
             p.classList.toggle('is-active', n === currentStep);
         });
+
+        // Stepper sync (same pattern as Create Server)
+        if (stepper) {
+            stepper.setAttribute('data-current', String(currentStep));
+            stepper.querySelectorAll('[data-stepper]').forEach(function (el) {
+                var idx = parseInt(el.getAttribute('data-stepper'), 10);
+                el.classList.toggle('is-active', idx === currentStep);
+                el.classList.toggle('is-complete', idx < currentStep);
+            });
+        }
 
         // URL sync (history.replaceState — no reload)
         if (!opts || !opts.skipUrl) {
@@ -374,6 +432,25 @@ include __DIR__ . '/../../components/page-header.php';
         var first = document.querySelector('.db-verify-panel.is-active select, .db-verify-panel.is-active input');
         if (first && currentStep !== 3) setTimeout(function () { first.focus(); }, 50);
         wizard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    /* ── Amount picker: chips sync to the input ── */
+    var amountInput = document.getElementById('verifyAmount');
+    var amountChips = document.querySelectorAll('.db-vx-chip[data-vx-amount]');
+    function syncAmount(val) {
+        amountChips.forEach(function (c) {
+            c.classList.toggle('is-active', String(c.getAttribute('data-vx-amount')) === String(val));
+        });
+    }
+    if (amountInput) {
+        amountInput.addEventListener('input', function () { syncAmount(amountInput.value); });
+        amountChips.forEach(function (c) {
+            c.addEventListener('click', function () {
+                amountInput.value = c.getAttribute('data-vx-amount');
+                syncAmount(amountInput.value);
+            });
+        });
+        syncAmount(amountInput.value);
     }
 
     /* ── Validation per step ── */
@@ -428,16 +505,6 @@ include __DIR__ . '/../../components/page-header.php';
     document.querySelectorAll('[data-verify-prev]').forEach(function (btn) {
         btn.addEventListener('click', function () {
             setStep(parseInt(btn.getAttribute('data-verify-prev'), 10));
-        });
-    });
-    stepperBtns.forEach(function (b) {
-        b.addEventListener('click', function () {
-            var target = parseInt(b.getAttribute('data-step'), 10);
-            // Allow jumping back freely; forward only if reached
-            if (target <= maxReached) {
-                if (target === 3) buildSummary();
-                setStep(target);
-            }
         });
     });
 

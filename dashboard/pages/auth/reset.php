@@ -27,7 +27,7 @@ $token = $_GET['token'] ?? 'demo-token-abc123';
             <div class="auth-success__icon"><i class="fas fa-check"></i></div>
             <h2 class="auth-success__title"><?php echo e(__('auth_reset_done_title')); ?></h2>
             <p class="auth-success__desc"><?php echo e(__('auth_reset_done_desc')); ?></p>
-            <a href="<?php echo DASH_BASE_PATH; ?>/pages/auth/login.php" class="auth-submit" style="text-decoration:none; display:inline-flex; width:auto; padding:12px 28px;">
+            <a href="<?php echo DASH_BASE_PATH; ?>/pages/auth/login.php" class="auth-submit auth-submit--link">
                 <i class="fas fa-right-to-bracket"></i> <?php echo e(__('auth_login_now')); ?>
             </a>
         </div>
@@ -35,12 +35,12 @@ $token = $_GET['token'] ?? 'demo-token-abc123';
         <?php elseif ($state === 'expired'): ?>
         <!-- Token expired -->
         <div class="auth-success">
-            <div class="auth-success__icon" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.2);color:var(--brand-error);">
+            <div class="auth-success__icon auth-success__icon--error">
                 <i class="fas fa-link-slash"></i>
             </div>
             <h2 class="auth-success__title"><?php echo e(__('auth_reset_expired_title')); ?></h2>
             <p class="auth-success__desc"><?php echo e(__('auth_reset_expired_desc')); ?></p>
-            <a href="<?php echo DASH_BASE_PATH; ?>/pages/auth/forgot.php" class="auth-submit" style="text-decoration:none; display:inline-flex; width:auto; padding:12px 28px;">
+            <a href="<?php echo DASH_BASE_PATH; ?>/pages/auth/forgot.php" class="auth-submit auth-submit--link">
                 <i class="fas fa-rotate-right"></i> <?php echo e(__('auth_request_new_link')); ?>
             </a>
         </div>

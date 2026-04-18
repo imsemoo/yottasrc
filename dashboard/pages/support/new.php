@@ -19,6 +19,19 @@ $breadcrumbs_data = [
 
 require_once __DIR__ . '/../../layouts/shell.php';
 
+/* ══════════════════════════════════════════════════════════════════════
+   ███  NEW TICKET  ·  MOCK DATA BLOCK  (single source of truth)  ███
+   ══════════════════════════════════════════════════════════════════════
+   BACKEND TEAM — PLEASE READ:
+
+   Three dropdowns on the New Ticket form. All three are static /
+   semi-static catalogs — replace with DB/config lookups.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ──────────────────────────────────────────
+   DEPARTMENTS  (select options — ticket routing)
+   Extend when adding a new department.
+   ────────────────────────────────────────── */
 $departments = [
     ['id' => 'technical', 'name' => __('dept_technical')],
     ['id' => 'billing',   'name' => __('dept_billing')],
@@ -26,6 +39,12 @@ $departments = [
     ['id' => 'abuse',     'name' => __('dept_abuse')],
 ];
 
+/* ──────────────────────────────────────────
+   SERVICES  (select options — "Related Service")
+   ──────────────────────────────────────────
+   • id = 0 → "No related service" (always first)
+   • Other rows come from the user's active services.
+   ────────────────────────────────────────── */
 $services = [
     ['id' => 0,    'name' => __('ticket_new_service_none')],
     ['id' => 1041, 'name' => 'Business Pro Hosting — yottasrc.com'],
@@ -34,12 +53,17 @@ $services = [
     ['id' => 1029, 'name' => 'Enterprise Dedicated — erp.companyxyz.com'],
 ];
 
+/* ──────────────────────────────────────────
+   PRIORITIES  (select options — SLA routing)
+   ────────────────────────────────────────── */
 $priorities = [
     ['id' => 'low',    'name' => __('ticket_priority_low')],
     ['id' => 'medium', 'name' => __('ticket_priority_medium')],
     ['id' => 'high',   'name' => __('ticket_priority_high')],
     ['id' => 'urgent', 'name' => __('ticket_priority_urgent')],
 ];
+
+/* ══════════════  END OF MOCK DATA  ══════════════ */
 ?>
 
 <?php

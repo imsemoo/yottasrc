@@ -9,7 +9,24 @@
       "Bash(php -l pages/services/service-details.php)",
       "Bash(php -l pages/billing/invoice-details.php)",
       "Bash(php -l pages/domains/index.php)",
-      "Bash(php -S localhost:3000)"
+      "Bash(php -S localhost:3000)",
+      "Bash(grep -nE '^\\\\s*\\\\$[a-z_]+\\\\s*=' pages/cloud/project/server-details.php)",
+      "Bash(curl -s --max-time 8 http://localhost:8080/yottasrc/dashboard/pages/support/new.php)",
+      "Bash(curl -s --max-time 8 http://localhost:8080/yottasrc/dashboard/pages/profile/settings.php)",
+      "Bash(awk 'NR>=4530 && NR<=4540' static/css/components.css)",
+      "Bash(awk 'NR>=4980 && NR<=4995' static/css/components.css)",
+      "Bash(awk 'NR>=7195 && NR<=7210' static/css/components.css)",
+      "Bash(awk '/^\\\\.db-verify-stepper/,/^\\\\s*\\\\}\\\\s*$/' static/css/components.css)",
+      "Bash(grep -nA 5 '@media.*verify-stepper' static/css/components.css)",
+      "Bash(grep -E '^[^{]+\\\\{\\\\s*$|@media')",
+      "Bash(grep -nE 'width:\\\\s*[3-9][0-9]{2,}px|min-width:\\\\s*[3-9][0-9]{2,}px' static/css/components.css)",
+      "Bash(grep -nE 'min-width:\\\\s*[2-9][0-9]{2,}px' static/css/components.css)",
+      "Bash(grep -rn '€<?php echo number_format\\\\|€<?php echo \\\\$' pages/ --include='*.php')",
+      "Bash(grep -rl '€<?php echo number_format\\\\|€<?php echo \\\\$' pages/ --include='*.php')",
+      "Bash(grep -v ':0$')",
+      "Bash(sort -t: -k2 -rn)",
+      "Bash(curl -s --max-time 8 http://localhost:8080/yottasrc/dashboard/pages/services/service-details.php?id=151926)",
+      "Bash(awk '{if \\(length\\($0\\)<80\\) print}')"
     ],
     "additionalDirectories": [
       "c:\\laragon\\www\\yottasrc\\dashboard\\pages\\support"

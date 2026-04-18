@@ -20,8 +20,41 @@ $breadcrumbs_data = [
 
 require_once __DIR__ . '/../../layouts/shell.php';
 
+/* ══════════════════════════════════════════════════════════════════════
+   ███  TRANSACTIONS  ·  MOCK DATA BLOCK  (single source of truth)  ███
+   ══════════════════════════════════════════════════════════════════════
+   BACKEND TEAM — PLEASE READ:
+
+   Every row / total / grouping on this page is derived from $transactions.
+   Edit the array → UI + totals + monthly groups update directly.
+
+   Wiring real data:
+     • Replace $transactions with the DB query result (ordered newest-first).
+     • Keep the KEYS and SHAPE identical; totals + month-grouping below
+       will still compute correctly.
+     • $total_in, $total_out, $net, $grouped are AUTO-computed —
+       do NOT edit manually.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ──────────────────────────────────────────
+   PAGE STATE
+   ──────────────────────────────────────────
+   'active' | 'loading' | 'error' | 'empty'
+   ────────────────────────────────────────── */
 $page_state = $_GET['state'] ?? 'active';
 
+/* ──────────────────────────────────────────
+   TRANSACTIONS LIST
+   ──────────────────────────────────────────
+   Each row:
+   • id      → transaction id (e.g. 'TXN-8841')
+   • date    → ISO date 'YYYY-MM-DD' (also used for month grouping)
+   • type    → one of $type_icons keys below (drives icon + color)
+               Current types: 'credit' | 'payment' | 'refund' | 'invoice'
+   • desc    → human-readable description
+   • amount  → positive = credit to account, negative = debit
+   • balance → running balance AFTER this transaction
+   ────────────────────────────────────────── */
 $transactions = [
     ['id' => 'TXN-8841', 'date' => '2026-03-28', 'type' => 'invoice',  'desc' => 'Invoice INV-1047 generated', 'amount' => -24.99,  'balance' => 125.01],
     ['id' => 'TXN-8838', 'date' => '2026-03-20', 'type' => 'payment',  'desc' => 'Payment for INV-1040',        'amount' => -149.99, 'balance' => 150.00],
@@ -33,21 +66,31 @@ $transactions = [
     ['id' => 'TXN-8817', 'date' => '2026-02-15', 'type' => 'payment',  'desc' => 'Payment for INV-1032',        'amount' => -49.99,  'balance' => 19.98],
 ];
 
-$total_in = 0; $total_out = 0;
+/* ──────────────────────────────────────────
+   TYPE → [icon, color, label]  mapping
+   ──────────────────────────────────────────
+   color values: 'success' | 'error' | 'warning' | 'primary'
+   Extend this table when adding a new transaction type.
+   ────────────────────────────────────────── */
+$type_icons = [
+    'credit'  => ['fas fa-arrow-down',         'success', __('transactions_type_credit')],
+    'payment' => ['fas fa-arrow-up',            'error',   __('transactions_type_payment')],
+    'refund'  => ['fas fa-arrow-rotate-left',   'warning', __('transactions_type_refund')],
+    'invoice' => ['fas fa-file-invoice',        'primary', __('transactions_type_invoice')],
+];
+
+/* ══════════════  END OF MOCK DATA  ══════════════ */
+
+// Auto-computed: totals for the insights row.
+$total_in = 0;
+$total_out = 0;
 foreach ($transactions as $t) {
     if ($t['amount'] > 0) $total_in += $t['amount'];
-    else $total_out += abs($t['amount']);
+    else                  $total_out += abs($t['amount']);
 }
 $net = $total_in - $total_out;
 
-$type_icons = [
-    'credit'  => ['fas fa-arrow-down',       'success', __('transactions_type_credit')],
-    'payment' => ['fas fa-arrow-up',          'error',   __('transactions_type_payment')],
-    'refund'  => ['fas fa-arrow-rotate-left', 'warning', __('transactions_type_refund')],
-    'invoice' => ['fas fa-file-invoice',      'primary', __('transactions_type_invoice')],
-];
-
-// Group by month
+// Auto-computed: group transactions by month ('January 2026' => [...]).
 $grouped = [];
 foreach ($transactions as $t) {
     $month = date('F Y', strtotime($t['date']));
@@ -72,11 +115,12 @@ include __DIR__ . '/../../components/page-header.php';
     <?php $skel_rows = 6; $skel_cols = 4; $skel_has_icon = false; $skel_has_filters = true; include __DIR__ . '/../../components/skeleton-table.php'; ?>
 
 <?php elseif ($page_state === 'empty'): ?>
-    <div class="db-card"><div class="db-empty-state">
-        <div class="db-empty-illustration db-empty-illustration--services"><i class="fas fa-receipt"></i></div>
-        <h3 class="db-empty-title"><?php echo e(__('transactions_empty_title')); ?></h3>
-        <p class="db-empty-desc"><?php echo e(__('transactions_empty_desc')); ?></p>
-    </div></div>
+    <?php
+    $es_icon  = 'fa-receipt';
+    $es_title = __('transactions_empty_title');
+    $es_desc  = __('transactions_empty_desc');
+    include __DIR__ . '/../../components/empty-state.php';
+    ?>
 
 <?php else: ?>
 
@@ -85,21 +129,21 @@ include __DIR__ . '/../../components/page-header.php';
         <div class="db-wallet-insight">
             <div class="db-wallet-insight__icon db-wallet-insight__icon--success"><i class="fas fa-arrow-down"></i></div>
             <div>
-                <div class="db-wallet-insight__value">+€<?php echo number_format($total_in, 2); ?></div>
+                <div class="db-wallet-insight__value">+<?php echo format_money($total_in); ?></div>
                 <div class="db-wallet-insight__label"><?php echo e(__('txn_total_in')); ?></div>
             </div>
         </div>
         <div class="db-wallet-insight">
             <div class="db-wallet-insight__icon db-wallet-insight__icon--error"><i class="fas fa-arrow-up"></i></div>
             <div>
-                <div class="db-wallet-insight__value">-€<?php echo number_format($total_out, 2); ?></div>
+                <div class="db-wallet-insight__value">-<?php echo format_money($total_out); ?></div>
                 <div class="db-wallet-insight__label"><?php echo e(__('txn_total_out')); ?></div>
             </div>
         </div>
         <div class="db-wallet-insight">
             <div class="db-wallet-insight__icon db-wallet-insight__icon--<?php echo $net >= 0 ? 'success' : 'error'; ?>"><i class="fas fa-equals"></i></div>
             <div>
-                <div class="db-wallet-insight__value"><?php echo $net >= 0 ? '+' : '-'; ?>€<?php echo number_format(abs($net), 2); ?></div>
+                <div class="db-wallet-insight__value"><?php echo $net >= 0 ? '+' : '-'; ?><?php echo format_money(abs($net)); ?></div>
                 <div class="db-wallet-insight__label"><?php echo e(__('txn_net_change')); ?></div>
             </div>
         </div>
@@ -179,13 +223,18 @@ include __DIR__ . '/../../components/page-header.php';
             </div>
             <?php endforeach; ?>
 
-            <div id="txnEmpty" class="db-table-empty-state" style="display:none;">
+            <div id="txnEmpty" class="db-table-empty-state" hidden>
                 <i class="fas fa-magnifying-glass"></i> <?php echo e(__('transactions_empty_search')); ?>
             </div>
 
-            <div class="db-pagination-bar">
-                <div class="db-pagination-bar__info"><?php echo e(__('services_showing', ['from' => 1, 'to' => count($transactions), 'total' => count($transactions)])); ?></div>
-            </div>
+            <?php
+            $pg_current    = 1;
+            $pg_total      = 1;
+            $pg_from       = 1;
+            $pg_to         = count($transactions);
+            $pg_total_rows = count($transactions);
+            include __DIR__ . '/../../components/pagination.php';
+            ?>
         </div>
     </div>
 <?php endif; ?>

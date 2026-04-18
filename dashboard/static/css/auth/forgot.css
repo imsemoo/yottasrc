@@ -485,6 +485,15 @@
     font-size: 0.82rem;
 }
 
+/* Link variant: used when .auth-submit wraps an <a> instead of a submit button.
+   Renders inline, auto-width, no underline, tighter padding. */
+.auth-submit--link {
+    display: inline-flex;
+    width: auto;
+    padding: 12px 28px;
+    text-decoration: none;
+}
+
 .auth-submit.is-loading {
     pointer-events: none;
     opacity: 0.85;

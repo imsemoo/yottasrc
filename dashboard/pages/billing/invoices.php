@@ -23,11 +23,62 @@ $breadcrumbs_data = [
 
 require_once __DIR__ . '/../../layouts/shell.php';
 
+/* ══════════════════════════════════════════════════════════════════════
+   ███  INVOICES  ·  MOCK DATA BLOCK  (single source of truth)  ███
+   ══════════════════════════════════════════════════════════════════════
+   BACKEND TEAM — PLEASE READ:
+
+   Every number/row/label on this page lives in this block.
+   Edit a value here → the UI updates directly. No numbers are
+   hardcoded elsewhere.
+
+   Wiring real data:
+     • Replace each array with the equivalent DB query result.
+     • Keep the array KEYS and SHAPE identical — the HTML loops
+       expect these specific keys.
+     • $outstanding and $outstanding_total are AUTO-computed
+       from $invoices; do not edit them manually.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ──────────────────────────────────────────
+   PAGE STATE  (which view to render)
+   ──────────────────────────────────────────
+   • 'active'   → normal list (default)
+   • 'loading'  → skeleton placeholder
+   • 'error'    → retry card
+   • 'empty'    → "no invoices yet" message
+   ────────────────────────────────────────── */
 $page_state = $_GET['state'] ?? 'active';
 
-$stats = ['total' => 12, 'paid' => 8, 'unpaid' => 3, 'overdue' => 1];
+/* ──────────────────────────────────────────
+   STATS  (shown in header / pagination info)
+   ────────────────────────────────────────── */
+$stats = [
+    'total'   => 12,
+    'paid'    => 8,
+    'unpaid'  => 3,
+    'overdue' => 1,
+];
+
+/* ──────────────────────────────────────────
+   ACCOUNT BALANCE  (optional extra number, if needed in header)
+   ────────────────────────────────────────── */
 $balance = 0.00;
 
+/* ──────────────────────────────────────────
+   INVOICES LIST  (table rows — full history)
+   ──────────────────────────────────────────
+   Each row:
+   • id       → invoice id (routes to invoice-details.php?id=…)
+   • date     → issue date (YYYY-MM-DD)
+   • due      → due date   (YYYY-MM-DD)
+   • desc     → human-readable description (product + cycle)
+   • amount   → float, rendered with format_money()
+   • status   → 'paid' | 'unpaid' | 'overdue' | 'cancelled'
+                (drives badge color + filters)
+   • type     → 'new_service' | 'renewal' | 'upgrade'
+                (drives the type badge + filters)
+   ────────────────────────────────────────── */
 $invoices = [
     ['id' => 'INV-1047', 'date' => '2026-03-28', 'due' => '2026-04-12', 'desc' => 'Business Pro Hosting — Monthly', 'amount' => 24.99, 'status' => 'unpaid',  'type' => 'renewal'],
     ['id' => 'INV-1045', 'date' => '2026-03-20', 'due' => '2026-03-25', 'desc' => 'WordPress Premium — Monthly',   'amount' => 14.99, 'status' => 'overdue', 'type' => 'renewal'],
@@ -39,8 +90,12 @@ $invoices = [
     ['id' => 'INV-1030', 'date' => '2026-02-01', 'due' => '2026-02-15', 'desc' => 'Enterprise Dedicated — Monthly', 'amount' => 149.99, 'status' => 'paid',   'type' => 'renewal'],
 ];
 
-// Split outstanding
-$outstanding = array_filter($invoices, function($i) { return $i['status'] === 'unpaid' || $i['status'] === 'overdue'; });
+/* ══════════════  END OF MOCK DATA  ══════════════ */
+
+// Auto-computed: outstanding (unpaid + overdue) rows and their total.
+$outstanding = array_filter($invoices, function ($i) {
+    return $i['status'] === 'unpaid' || $i['status'] === 'overdue';
+});
 $outstanding_total = array_sum(array_column($outstanding, 'amount'));
 ?>
 
@@ -59,11 +114,12 @@ include __DIR__ . '/../../components/page-header.php';
     <?php $skel_rows = 6; $skel_cols = 5; $skel_has_icon = false; $skel_has_filters = true; include __DIR__ . '/../../components/skeleton-table.php'; ?>
 
 <?php elseif ($page_state === 'empty'): ?>
-    <div class="db-card"><div class="db-empty-state">
-        <div class="db-empty-illustration db-empty-illustration--services"><i class="fas fa-file-invoice"></i></div>
-        <h3 class="db-empty-title"><?php echo e(__('invoices_empty_title')); ?></h3>
-        <p class="db-empty-desc"><?php echo e(__('invoices_empty_desc')); ?></p>
-    </div></div>
+    <?php
+    $es_icon  = 'fa-file-invoice';
+    $es_title = __('invoices_empty_title');
+    $es_desc  = __('invoices_empty_desc');
+    include __DIR__ . '/../../components/empty-state.php';
+    ?>
 
 <?php else: ?>
 
@@ -77,7 +133,7 @@ include __DIR__ . '/../../components/page-header.php';
                 <span class="db-outstanding__count"><?php echo count($outstanding); ?></span>
             </div>
             <div class="db-outstanding__total">
-                <?php echo e(__('invoices_total_due')); ?>: <strong>€<?php echo number_format($outstanding_total, 2); ?></strong>
+                <?php echo e(__('invoices_total_due')); ?>: <strong><?php echo format_money($outstanding_total); ?></strong>
             </div>
         </div>
         <div class="db-outstanding__list">
@@ -93,7 +149,7 @@ include __DIR__ . '/../../components/page-header.php';
                     <span class="db-badge db-badge--<?php echo e($inv['status']); ?>"><?php echo e(__('status_' . $inv['status'])); ?></span>
                     <span class="db-outstanding__item-date"><?php echo e(__('invoices_due_by')); ?> <?php echo e($inv['due']); ?></span>
                 </div>
-                <div class="db-outstanding__item-amount">€<?php echo number_format($inv['amount'], 2); ?></div>
+                <div class="db-outstanding__item-amount"><?php echo format_money($inv['amount']); ?></div>
                 <a href="<?php echo $detail_url; ?>" class="db-btn db-btn--primary db-btn--sm db-outstanding__item-pay">
                     <i class="fas fa-credit-card"></i> <?php echo e(__('invoices_pay_now')); ?>
                 </a>
@@ -171,29 +227,39 @@ include __DIR__ . '/../../components/page-header.php';
                             <td class="db-table-cell--right"><span class="db-table-cell-amount"><?php echo format_money($inv['amount']); ?></span></td>
                             <td>
                                 <div class="db-row-actions db-row-actions--solid" onclick="event.stopPropagation();">
-                                    <a href="<?php echo $detail_url; ?>" class="db-row-action db-row-action--solid db-row-action--primary" data-tooltip="<?php echo e(__('common_view')); ?>"><i class="fas fa-eye"></i></a>
-                                    <a href="#" class="db-row-action db-row-action--solid" data-tooltip="<?php echo e(__('invoices_download')); ?>" onclick="event.preventDefault(); DashToast.show('success','','Invoice PDF downloaded.');"><i class="fas fa-download"></i></a>
+                                    <a href="<?php echo $detail_url; ?>" class="db-row-action db-row-action--solid db-row-action--primary" data-tooltip="<?php echo e(__('common_open')); ?>"><i class="fas fa-arrow-up-right-from-square"></i></a>
+                                    <div class="db-dropdown-wrapper">
+                                        <button class="db-row-action db-row-action--solid db-row-action--menu" data-dropdown-toggle><i class="fas fa-ellipsis-vertical"></i></button>
+                                        <div class="db-dropdown-menu">
+                                            <a href="<?php echo $detail_url; ?>" class="db-dropdown-item"><i class="fas fa-eye"></i> <?php echo e(__('common_view')); ?></a>
+                                            <button class="db-dropdown-item" onclick="DashToast.show('success','','Invoice PDF downloaded.');"><i class="fas fa-download"></i> <?php echo e(__('invoices_download')); ?></button>
+                                            <?php if ($inv['status'] === 'unpaid' || $inv['status'] === 'overdue'): ?>
+                                            <div class="db-dropdown-divider"></div>
+                                            <a href="<?php echo $detail_url; ?>" class="db-dropdown-item"><i class="fas fa-credit-card"></i> <?php echo e(__('invoices_pay_now')); ?></a>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
                                 </div>
                             </td>
                         </tr>
                         <?php endforeach; ?>
-                        <tr data-table-empty>
-                            <td colspan="7"><div class="db-table-empty-state"><i class="fas fa-magnifying-glass"></i> <?php echo e(__('invoices_empty_search')); ?></div></td>
-                        </tr>
+                        <?php
+                        $te_colspan = 7; $te_text = __('invoices_empty_search');
+                        include __DIR__ . '/../../components/table-empty.php';
+                        ?>
                     </tbody>
                 </table>
             </div>
 
             <!-- Pagination -->
-            <div class="db-pagination-bar">
-                <div class="db-pagination-bar__info"><?php echo e(__('services_showing', ['from' => 1, 'to' => count($invoices), 'total' => $stats['total']])); ?></div>
-                <div class="db-pagination-bar__nav">
-                    <button class="db-pagination-bar__btn" disabled><i class="fas fa-chevron-left"></i> <?php echo e(__('common_previous')); ?></button>
-                    <span class="db-pagination-bar__page active">1</span>
-                    <span class="db-pagination-bar__page">2</span>
-                    <button class="db-pagination-bar__btn"><?php echo e(__('common_next')); ?> <i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
+            <?php
+            $pg_current    = 1;
+            $pg_total      = 2;
+            $pg_from       = 1;
+            $pg_to         = count($invoices);
+            $pg_total_rows = $stats['total'];
+            include __DIR__ . '/../../components/pagination.php';
+            ?>
         </div>
     </div>
 <?php endif; ?>

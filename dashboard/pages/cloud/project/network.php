@@ -22,9 +22,42 @@ $breadcrumbs_data = [
 
 require_once __DIR__ . '/../../../layouts/project-shell.php';
 
+/* ══════════════════════════════════════════════════════════════════════
+   ███  PROJECT NETWORK  ·  MOCK DATA BLOCK  (single source of truth) ███
+   ══════════════════════════════════════════════════════════════════════
+   BACKEND TEAM — PLEASE READ:
+
+   This page lists all IPs across the current project.
+   Edit $ips → table + hero counters update directly.
+
+   Wiring real data:
+     • Replace $ips with a DB query scoped to $current_project['id'].
+     • Keep the KEYS and SHAPE identical; the hero stats below
+       (ipv4/ipv6/primary counts) are AUTO-computed from $ips.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ──────────────────────────────────────────
+   PAGE STATE
+   ──────────────────────────────────────────
+   'active'  → normal view
+   'loading' → skeleton
+   'error'   → retry card
+   'empty'   → empty state (auto-empties $ips below)
+   ────────────────────────────────────────── */
 $page_state = $_GET['state'] ?? 'active';
 
-// Mock data — IP addresses in this project
+/* ──────────────────────────────────────────
+   IPs LIST  (project-wide)
+   ──────────────────────────────────────────
+   Each row:
+   • id        → internal IP id (for remove/edit actions)
+   • ip        → full address (v4 or v6)
+   • type      → 'primary' | 'additional' | 'reserved'
+                 (drives filter + badge via $type_badge)
+   • rdns      → reverse-DNS hostname, or null
+   • protocol  → 'IPv4' | 'IPv6'
+   • server    → attached server name (CLYxxx)
+   ────────────────────────────────────────── */
 $ips = ($page_state === 'empty') ? [] : [
     [
         'id'       => 1,
@@ -52,28 +85,36 @@ $ips = ($page_state === 'empty') ? [] : [
     ],
 ];
 
+/* ──────────────────────────────────────────
+   IP TYPE → badge-class  mapping
+   ────────────────────────────────────────── */
 $type_badge = [
     'primary'    => 'pending',
     'additional' => 'active',
     'reserved'   => 'unpaid',
 ];
+
+/* ══════════════  END OF MOCK DATA  ══════════════ */
 ?>
 
-<!-- Page header -->
-<div class="db-proj-header">
-    <div class="db-proj-header__title">
-        <h1 class="db-proj-header__heading">
-            <?php echo e(__('project_network_list_title')); ?>,
-            <span><?php echo e(__('project_label_project')); ?></span>
-            <span class="db-proj-header__id">#<?php echo e($current_project['id']); ?></span>
-        </h1>
-    </div>
-    <div class="db-proj-header__actions">
-        <a href="<?php echo e(cloud_project_url('create-server', $current_project['id'])); ?>" class="db-btn db-btn--primary">
-            <i class="fas fa-plus"></i> <?php echo e(__('project_create_server')); ?>
-        </a>
-    </div>
-</div>
+<?php
+$ipv4_count    = count(array_filter($ips, fn($x) => $x['protocol'] === 'IPv4'));
+$ipv6_count    = count(array_filter($ips, fn($x) => $x['protocol'] === 'IPv6'));
+$primary_count = count(array_filter($ips, fn($x) => $x['type'] === 'primary'));
+
+$hero_eyebrow = __('project_pro_eyebrow_network');
+$hero_title   = $current_project['name'];
+$hero_sub     = __('project_pro_sub_network');
+$hero_stats   = empty($ips) ? null : [
+    ['icon' => 'fa-globe',       'label' => __('project_ip_stat_total'), 'value' => count($ips),     'seed' => 0],
+    ['icon' => 'fa-circle-dot',  'label' => 'IPv4',                       'value' => $ipv4_count,     'seed' => 1],
+    ['icon' => 'fa-diamond',     'label' => 'IPv6',                       'value' => $ipv6_count,     'seed' => 2],
+    ['icon' => 'fa-star',        'label' => __('project_pro_stat_primary'),'value'=> $primary_count,  'seed' => 3],
+];
+$hero_actions = '<a href="' . e(cloud_project_url('create-server', $current_project['id'])) . '" class="ds-btn ds-btn--primary"><i class="fas fa-plus"></i> <span>' . e(__('project_create_server')) . '</span></a>';
+include __DIR__ . '/../../../components/project-pro-hero.php';
+unset($hero_eyebrow, $hero_title, $hero_sub, $hero_stats, $hero_actions);
+?>
 
 <?php if ($page_state === 'error'): ?>
     <div class="db-card"><?php $error_retry = true; include __DIR__ . '/../../../components/error-state.php'; ?></div>
@@ -82,59 +123,30 @@ $type_badge = [
     <?php $skel_rows = 3; $skel_cols = 7; $skel_has_icon = false; $skel_has_filters = true; include __DIR__ . '/../../../components/skeleton-table.php'; ?>
 
 <?php elseif (empty($ips)): ?>
-    <div class="db-card">
-        <div class="db-card-body" style="padding:36px 28px;">
-            <div class="db-empty-state">
-                <div class="db-empty-illustration db-empty-illustration--services"><i class="fas fa-network-wired"></i></div>
-                <h3 class="db-empty-title"><?php echo e(__('project_no_ips_title')); ?></h3>
-                <p class="db-empty-desc"><?php echo e(__('project_no_ips_desc')); ?></p>
-                <div class="db-empty-hint">
-                    <i class="fas fa-circle-info"></i>
-                    <span>
-                        <?php echo e(__('project_no_ips_hint_prefix')); ?>
-                        <a href="<?php echo e(cloud_project_url('create-server', $current_project['id'])); ?>" class="db-empty-hint__link">
-                            <?php echo e(__('project_create_server')); ?>
-                        </a>
-                        <?php echo e(__('project_no_ips_hint_suffix')); ?>
-                    </span>
-                </div>
-            </div>
-        </div>
+    <?php
+    ob_start();
+    ?>
+    <div class="db-empty-hint">
+        <i class="fas fa-circle-info"></i>
+        <span>
+            <?php echo e(__('project_no_ips_hint_prefix')); ?>
+            <a href="<?php echo e(cloud_project_url('create-server', $current_project['id'])); ?>" class="db-empty-hint__link">
+                <?php echo e(__('project_create_server')); ?>
+            </a>
+            <?php echo e(__('project_no_ips_hint_suffix')); ?>
+        </span>
     </div>
+    <?php
+    $es_action = ob_get_clean();
+    $es_icon   = 'fa-network-wired';
+    $es_title  = __('project_no_ips_title');
+    $es_desc   = __('project_no_ips_desc');
+    include __DIR__ . '/../../../components/empty-state.php';
+    ?>
 
 <?php else: ?>
 
-    <!-- Stats row -->
-    <div class="db-stats-row">
-        <div class="db-stat-card">
-            <div class="db-stat-card-icon db-stat-card-icon--primary"><i class="fas fa-globe"></i></div>
-            <div class="db-stat-card-body">
-                <div class="db-stat-card-value"><?php echo count($ips); ?></div>
-                <div class="db-stat-card-label"><?php echo e(__('project_ip_stat_total')); ?></div>
-            </div>
-        </div>
-        <div class="db-stat-card">
-            <div class="db-stat-card-icon db-stat-card-icon--secondary"><i class="fas fa-circle-dot"></i></div>
-            <div class="db-stat-card-body">
-                <div class="db-stat-card-value"><?php echo count(array_filter($ips, fn($x) => $x['protocol'] === 'IPv4')); ?></div>
-                <div class="db-stat-card-label">IPv4</div>
-            </div>
-        </div>
-        <div class="db-stat-card">
-            <div class="db-stat-card-icon db-stat-card-icon--accent"><i class="fas fa-infinity"></i></div>
-            <div class="db-stat-card-body">
-                <div class="db-stat-card-value"><?php echo count(array_filter($ips, fn($x) => $x['protocol'] === 'IPv6')); ?></div>
-                <div class="db-stat-card-label">IPv6</div>
-            </div>
-        </div>
-        <div class="db-stat-card">
-            <div class="db-stat-card-icon db-stat-card-icon--warning"><i class="fas fa-star"></i></div>
-            <div class="db-stat-card-body">
-                <div class="db-stat-card-value"><?php echo count(array_filter($ips, fn($x) => $x['type'] === 'primary')); ?></div>
-                <div class="db-stat-card-label"><?php echo e(__('project_ip_stat_primary')); ?></div>
-            </div>
-        </div>
-    </div>
+    <!-- Stats moved into the pro hero above -->
 
     <!-- Network table -->
     <div class="db-card">
@@ -219,7 +231,7 @@ $type_badge = [
                                     <div class="db-dropdown-wrapper">
                                         <button class="db-row-action db-row-action--solid db-row-action--menu" data-dropdown-toggle><i class="fas fa-ellipsis-vertical"></i></button>
                                         <div class="db-dropdown-menu">
-                                            <button class="db-dropdown-item" data-rdns-edit data-ip="<?php echo e($ip['ip']); ?>" data-rdns-current="<?php echo e($ip['rdns'] ?? ''); ?>"><i class="fas fa-edit"></i> <?php echo e(__('project_ip_action_rdns')); ?></button>
+                                            <button class="db-dropdown-item" data-rdns-edit data-ip="<?php echo e($ip['ip']); ?>" data-rdns-current="<?php echo e($ip['rdns'] ?? ''); ?>"><i class="fas fa-pen"></i> <?php echo e(__('project_ip_action_rdns')); ?></button>
                                             <button class="db-dropdown-item" onclick="DashModal.open('netInstructionsModal')"><i class="fas fa-book"></i> <?php echo e(__('project_ip_action_instructions')); ?></button>
                                             <?php if ($ip['type'] !== 'primary'): ?>
                                             <div class="db-dropdown-divider"></div>
@@ -231,13 +243,23 @@ $type_badge = [
                             </td>
                         </tr>
                         <?php endforeach; ?>
-                        <tr data-table-empty>
-                            <td colspan="7"><div class="db-table-empty-state"><i class="fas fa-magnifying-glass"></i> <?php echo e(__('project_network_empty_search')); ?></div></td>
-                        </tr>
+                        <?php
+                        $te_colspan = 7; $te_text = __('project_network_empty_search');
+                        include __DIR__ . '/../../../components/table-empty.php';
+                        ?>
                     </tbody>
                 </table>
             </div>
         </div>
+
+        <?php
+        $pg_current    = 1;
+        $pg_total      = 1;
+        $pg_from       = 1;
+        $pg_to         = count($ips);
+        $pg_total_rows = count($ips);
+        include __DIR__ . '/../../../components/pagination.php';
+        ?>
     </div>
 
 <?php endif; ?>
@@ -281,7 +303,7 @@ include __DIR__ . '/../../../components/modal.php';
     <div class="db-confirm-body">
         <div class="db-modal-icon db-modal-icon--danger"><i class="fas fa-triangle-exclamation"></i></div>
         <p id="removeIpText"></p>
-        <div class="db-notice db-notice--warning" style="margin-top:10px; text-align:start;">
+        <div class="db-notice db-notice--warning db-confirm-body__warn">
             <i class="fas fa-triangle-exclamation"></i>
             <span><?php echo e(__('project_remove_ip_warn')); ?></span>
         </div>

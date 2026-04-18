@@ -515,6 +515,22 @@
     font-size: 0.82rem;
 }
 
+/* Link variant: used when .auth-submit wraps an <a> instead of a submit button.
+   Renders inline, auto-width, no underline, tighter padding. */
+.auth-submit--link {
+    display: inline-flex;
+    width: auto;
+    padding: 12px 28px;
+    text-decoration: none;
+}
+
+/* Success-icon error variant (token-expired state) */
+.auth-success__icon--error {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.2);
+    color: var(--brand-error);
+}
+
 .auth-submit.is-loading {
     pointer-events: none;
     opacity: 0.85;

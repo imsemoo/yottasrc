@@ -20,10 +20,48 @@ $breadcrumbs_data = [
 
 require_once __DIR__ . '/../../layouts/shell.php';
 
+/* ══════════════════════════════════════════════════════════════════════
+   ███  CREDIT BALANCE  ·  MOCK DATA BLOCK  (single source of truth) ███
+   ══════════════════════════════════════════════════════════════════════
+   BACKEND TEAM — PLEASE READ:
+
+   The wallet header, insights row, and ledger are all driven from
+   this block. Edit a value → UI updates directly.
+
+   Wiring real data:
+     • Replace $history with the DB query result.
+     • Keep the KEYS and SHAPE identical; the ledger loop expects them.
+     • $total_added and $total_spent are AUTO-computed from $history;
+       do NOT edit manually.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ──────────────────────────────────────────
+   PAGE STATE
+   ──────────────────────────────────────────
+   'active' | 'loading' | 'error' | 'empty'
+   ────────────────────────────────────────── */
 $page_state = $_GET['state'] ?? 'active';
-$balance = 125.01;
+
+/* ──────────────────────────────────────────
+   WALLET HEADER
+   ──────────────────────────────────────────
+   • balance      → current account balance (float)
+   • max_balance  → cap shown on the usage gauge (float)
+   ────────────────────────────────────────── */
+$balance     = 125.01;
 $max_balance = 5500;
 
+/* ──────────────────────────────────────────
+   HISTORY LIST (ledger)
+   ──────────────────────────────────────────
+   Each row:
+   • date    → ISO date 'YYYY-MM-DD'
+   • desc    → human-readable description
+   • type    → one of $type_icons keys below
+               ('credit' | 'debit' | 'refund')
+   • amount  → positive = money IN, negative = money OUT
+   • balance → running balance AFTER this event
+   ────────────────────────────────────────── */
 $history = [
     ['date' => '2026-03-28', 'desc' => 'Invoice INV-1047 generated',    'type' => 'debit',  'amount' => -24.99,  'balance' => 125.01],
     ['date' => '2026-03-18', 'desc' => 'Added funds via PayPal',        'type' => 'credit', 'amount' => 200.00,  'balance' => 150.00],
@@ -33,20 +71,31 @@ $history = [
     ['date' => '2026-02-15', 'desc' => 'Payment for INV-1032',          'type' => 'debit',  'amount' => -49.99,  'balance' => -140.00],
 ];
 
-// Compute insights
-$total_added = 0; $total_spent = 0;
-foreach ($history as $h) {
-    if ($h['amount'] > 0) $total_added += $h['amount'];
-    else $total_spent += abs($h['amount']);
-}
-
+/* ──────────────────────────────────────────
+   TYPE → [icon, color, label]  mapping
+   color values: 'success' | 'error' | 'warning'
+   ────────────────────────────────────────── */
 $type_icons = [
-    'credit' => ['fas fa-arrow-down',     'success',  __('credit_type_added')],
-    'debit'  => ['fas fa-arrow-up',        'error',    __('credit_type_payment')],
-    'refund' => ['fas fa-arrow-rotate-left','warning',  __('credit_type_refund')],
+    'credit' => ['fas fa-arrow-down',        'success', __('credit_type_added')],
+    'debit'  => ['fas fa-arrow-up',           'error',   __('credit_type_payment')],
+    'refund' => ['fas fa-arrow-rotate-left',  'warning', __('credit_type_refund')],
 ];
 
+/* ──────────────────────────────────────────
+   DEPOSIT QUICK-AMOUNT PRESETS
+   Buttons shown on the "Add funds" CTA.
+   ────────────────────────────────────────── */
 $presets = [10, 25, 50, 100];
+
+/* ══════════════  END OF MOCK DATA  ══════════════ */
+
+// Auto-computed: total added + total spent for the insights row.
+$total_added = 0;
+$total_spent = 0;
+foreach ($history as $h) {
+    if ($h['amount'] > 0) $total_added += $h['amount'];
+    else                  $total_spent += abs($h['amount']);
+}
 ?>
 
 <?php
@@ -69,12 +118,13 @@ include __DIR__ . '/../../components/page-header.php';
     <?php $skel_rows = 5; $skel_cols = 4; $skel_has_icon = false; $skel_has_filters = false; include __DIR__ . '/../../components/skeleton-table.php'; ?>
 
 <?php elseif ($page_state === 'empty'): ?>
-    <div class="db-card"><div class="db-empty-state">
-        <div class="db-empty-illustration db-empty-illustration--services"><i class="fas fa-wallet"></i></div>
-        <h3 class="db-empty-title"><?php echo e(__('credit_empty_title')); ?></h3>
-        <p class="db-empty-desc"><?php echo e(__('credit_empty_desc')); ?></p>
-        <a href="<?php echo DASH_BASE_PATH; ?>/pages/billing/add-funds.php" class="db-btn db-btn--primary"><i class="fas fa-plus"></i> <?php echo e(__('credit_add_funds')); ?></a>
-    </div></div>
+    <?php
+    $es_icon   = 'fa-wallet';
+    $es_title  = __('credit_empty_title');
+    $es_desc   = __('credit_empty_desc');
+    $es_action = '<a href="' . DASH_BASE_PATH . '/pages/billing/add-funds.php" class="db-btn db-btn--primary"><i class="fas fa-plus"></i> ' . e(__('credit_add_funds')) . '</a>';
+    include __DIR__ . '/../../components/empty-state.php';
+    ?>
 
 <?php else: ?>
 
@@ -83,7 +133,7 @@ include __DIR__ . '/../../components/page-header.php';
         <div class="db-wallet-hero__main">
             <div class="db-wallet-hero__balance">
                 <div class="db-wallet-hero__label"><?php echo e(__('credit_available_balance')); ?></div>
-                <div class="db-wallet-hero__amount">€<?php echo number_format($balance, 2); ?></div>
+                <div class="db-wallet-hero__amount"><?php echo format_money($balance); ?></div>
                 <div class="db-wallet-hero__sub"><?php echo e(__('credit_wallet_sub')); ?></div>
             </div>
             <div class="db-wallet-hero__bar">
@@ -91,7 +141,7 @@ include __DIR__ . '/../../components/page-header.php';
                 <div class="db-wallet-hero__bar-track">
                     <div class="db-wallet-hero__bar-fill" style="width:<?php echo $pct; ?>%;"></div>
                 </div>
-                <div class="db-wallet-hero__bar-label">€<?php echo number_format($balance, 2); ?> / €<?php echo number_format($max_balance, 2); ?></div>
+                <div class="db-wallet-hero__bar-label"><?php echo format_money($balance); ?> / <?php echo format_money($max_balance); ?></div>
             </div>
         </div>
 
@@ -100,7 +150,7 @@ include __DIR__ . '/../../components/page-header.php';
             <div class="db-wallet-hero__quick-label"><?php echo e(__('credit_quick_add')); ?></div>
             <div class="db-wallet-hero__quick-btns">
                 <?php foreach ($presets as $p): ?>
-                <a href="<?php echo DASH_BASE_PATH; ?>/pages/billing/add-funds.php" class="db-wallet-hero__quick-btn">+€<?php echo $p; ?></a>
+                <a href="<?php echo DASH_BASE_PATH; ?>/pages/billing/add-funds.php" class="db-wallet-hero__quick-btn">+<?php echo format_money($p, 0); ?></a>
                 <?php endforeach; ?>
                 <a href="<?php echo DASH_BASE_PATH; ?>/pages/billing/add-funds.php" class="db-wallet-hero__quick-btn db-wallet-hero__quick-btn--custom"><?php echo e(__('credit_custom_amount')); ?></a>
             </div>
@@ -112,14 +162,14 @@ include __DIR__ . '/../../components/page-header.php';
         <div class="db-wallet-insight">
             <div class="db-wallet-insight__icon db-wallet-insight__icon--success"><i class="fas fa-arrow-down"></i></div>
             <div>
-                <div class="db-wallet-insight__value">+€<?php echo number_format($total_added, 2); ?></div>
+                <div class="db-wallet-insight__value">+<?php echo format_money($total_added); ?></div>
                 <div class="db-wallet-insight__label"><?php echo e(__('credit_total_added')); ?></div>
             </div>
         </div>
         <div class="db-wallet-insight">
             <div class="db-wallet-insight__icon db-wallet-insight__icon--error"><i class="fas fa-arrow-up"></i></div>
             <div>
-                <div class="db-wallet-insight__value">-€<?php echo number_format($total_spent, 2); ?></div>
+                <div class="db-wallet-insight__value">-<?php echo format_money($total_spent); ?></div>
                 <div class="db-wallet-insight__label"><?php echo e(__('credit_total_spent')); ?></div>
             </div>
         </div>
@@ -186,16 +236,22 @@ include __DIR__ . '/../../components/page-header.php';
                             <td class="db-table-hide-mobile db-table-cell--right"><span class="db-table-cell-mono"><?php echo format_money($row['balance']); ?></span></td>
                         </tr>
                         <?php endforeach; ?>
-                        <tr data-table-empty>
-                            <td colspan="5"><div class="db-table-empty-state"><i class="fas fa-magnifying-glass"></i> <?php echo e(__('credit_empty_search')); ?></div></td>
-                        </tr>
+                        <?php
+                        $te_colspan = 5; $te_text = __('credit_empty_search');
+                        include __DIR__ . '/../../components/table-empty.php';
+                        ?>
                     </tbody>
                 </table>
             </div>
 
-            <div class="db-pagination-bar">
-                <div class="db-pagination-bar__info"><?php echo e(__('services_showing', ['from' => 1, 'to' => count($history), 'total' => count($history)])); ?></div>
-            </div>
+            <?php
+            $pg_current    = 1;
+            $pg_total      = 1;
+            $pg_from       = 1;
+            $pg_to         = count($history);
+            $pg_total_rows = count($history);
+            include __DIR__ . '/../../components/pagination.php';
+            ?>
         </div>
     </div>
 <?php endif; ?>

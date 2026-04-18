@@ -25,69 +25,112 @@ $breadcrumbs_data = [
 
 require_once __DIR__ . '/../../../layouts/project-shell.php';
 
-// Default to populated — users want to see their servers first. Use ?state=empty for the empty state demo.
+/* ══════════════════════════════════════════════════════════════════════
+   ███  PROJECT SERVERS  ·  MOCK DATA BLOCK  (single source of truth)  ███
+   ══════════════════════════════════════════════════════════════════════
+   BACKEND TEAM — PLEASE READ:
+
+   This page lists all servers inside the current project. The hero
+   counters (Total / Running / Stopped) are AUTO-computed from the
+   $servers array below.
+
+   Wiring real data:
+     • Replace $servers with a DB query scoped to $current_project['id'].
+     • Keep the KEYS and SHAPE identical.
+     • 'os_icon' + 'os_color' drive the icon in the OS column. Use
+       the same tokens used in create-server.php (--os-windows etc.).
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ──────────────────────────────────────────
+   PAGE STATE
+   ──────────────────────────────────────────
+   'active'  → populated list (default)
+   'loading' → skeleton
+   'error'   → retry card
+   'empty'   → auto-empties $servers for the empty state demo
+   ────────────────────────────────────────── */
 $page_state = $_GET['state'] ?? 'active';
 
-// Mock: empty list for state=empty, richer populated list for state=active
+/* ──────────────────────────────────────────
+   SERVERS LIST  (table rows)
+   ──────────────────────────────────────────
+   Each row:
+   • id            → internal server id (for action links)
+   • name          → server name (CLYxxx)
+   • package       → human-readable package summary
+   • os            → OS display name
+   • os_icon       → Font Awesome class (e.g. 'fab fa-windows')
+   • os_color      → hex color for the icon
+                     (future: replace with --os-* token lookup)
+   • ip            → primary IP
+   • location      → country label
+   • location_flag → ISO-2 code (flag-icons)
+   • status        → 'active' | 'suspended' | 'stopped' | 'terminated'
+                     (drives badge color)
+   • created       → relative time string
+   ────────────────────────────────────────── */
 $servers = ($page_state === 'empty') ? [] : [
     [
-        'id'       => 1,
-        'name'     => 'CLY806752',
-        'package'  => 'CLW1 | x64 | 2 CPU, 4 GB RAM, 50 GB SSD',
-        'os'       => 'Windows Server 2025',
-        'os_icon'  => 'fab fa-windows',
-        'os_color' => '#0078d4',
-        'ip'       => '107.161.174.200',
-        'location' => 'Turkey',
+        'id'            => 1,
+        'name'          => 'CLY806752',
+        'package'       => 'CLW1 | x64 | 2 CPU, 4 GB RAM, 50 GB SSD',
+        'os'            => 'Windows Server 2025',
+        'os_icon'       => 'fab fa-windows',
+        'os_color'      => '#0078d4',
+        'ip'            => '107.161.174.200',
+        'location'      => 'Turkey',
         'location_flag' => 'tr',
-        'status'   => 'active',
-        'created'  => '1 minute ago',
+        'status'        => 'active',
+        'created'       => '1 minute ago',
     ],
     [
-        'id'       => 2,
-        'name'     => 'CLY806731',
-        'package'  => 'CLY3 | x86 | 4 CPU, 8 GB RAM, 100 GB NVMe',
-        'os'       => 'Ubuntu 22.04',
-        'os_icon'  => 'fab fa-ubuntu',
-        'os_color' => '#e95420',
-        'ip'       => '185.225.49.42',
-        'location' => 'Germany',
+        'id'            => 2,
+        'name'          => 'CLY806731',
+        'package'       => 'CLY3 | x86 | 4 CPU, 8 GB RAM, 100 GB NVMe',
+        'os'            => 'Ubuntu 22.04',
+        'os_icon'       => 'fab fa-ubuntu',
+        'os_color'      => '#e95420',
+        'ip'            => '185.225.49.42',
+        'location'      => 'Germany',
         'location_flag' => 'de',
-        'status'   => 'active',
-        'created'  => '3 hours ago',
+        'status'        => 'active',
+        'created'       => '3 hours ago',
     ],
     [
-        'id'       => 3,
-        'name'     => 'CLY806702',
-        'package'  => 'CLH5 | x86 | 4 CPU, 4 GB RAM, 40 GB NVMe',
-        'os'       => 'Debian 12',
-        'os_icon'  => 'fab fa-debian',
-        'os_color' => '#a81d33',
-        'ip'       => '51.222.18.77',
-        'location' => 'France',
+        'id'            => 3,
+        'name'          => 'CLY806702',
+        'package'       => 'CLH5 | x86 | 4 CPU, 4 GB RAM, 40 GB NVMe',
+        'os'            => 'Debian 12',
+        'os_icon'       => 'fab fa-debian',
+        'os_color'      => '#a81d33',
+        'ip'            => '51.222.18.77',
+        'location'      => 'France',
         'location_flag' => 'fr',
-        'status'   => 'suspended',
-        'created'  => '2 days ago',
+        'status'        => 'suspended',
+        'created'       => '2 days ago',
     ],
 ];
+
+/* ══════════════  END OF MOCK DATA  ══════════════ */
 ?>
 
-<!-- Page header: Servers List #ID - name + Create Server button -->
-<div class="db-proj-header">
-    <div class="db-proj-header__title">
-        <h1 class="db-proj-header__heading">
-            <?php echo e(__('project_servers_list_title')); ?> —
-            <span class="db-proj-header__id">#<?php echo e($current_project['id']); ?></span>
-            <span class="db-proj-header__sep">-</span>
-            <span class="db-proj-header__name"><?php echo e($current_project['name']); ?></span>
-        </h1>
-    </div>
-    <div class="db-proj-header__actions">
-        <a href="<?php echo e(cloud_project_url('create-server', $current_project['id'])); ?>" class="db-btn db-btn--primary">
-            <i class="fas fa-plus"></i> <?php echo e(__('project_create_server')); ?>
-        </a>
-    </div>
-</div>
+<?php
+$active_count    = count(array_filter($servers, fn($s) => $s['status'] === 'active'));
+$suspended_count = count(array_filter($servers, fn($s) => $s['status'] === 'suspended'));
+
+$hero_eyebrow = __('project_pro_eyebrow_servers');
+$hero_title   = $current_project['name'];
+$hero_sub     = __('project_pro_sub_servers');
+$hero_stats   = empty($servers) ? null : [
+    ['icon' => 'fa-server',       'label' => __('project_pro_stat_total'),     'value' => count($servers), 'seed' => 0],
+    ['icon' => 'fa-circle-check', 'label' => __('project_pro_stat_running'),   'value' => $active_count,   'seed' => 1],
+    ['icon' => 'fa-circle-pause', 'label' => __('project_pro_stat_stopped'),   'value' => $suspended_count,'seed' => 3],
+    ['icon' => 'fa-clock',        'label' => __('project_pro_stat_created'),   'value' => $current_project['created'], 'seed' => 2],
+];
+$hero_actions = '<a href="' . e(cloud_project_url('create-server', $current_project['id'])) . '" class="ds-btn ds-btn--primary"><i class="fas fa-plus"></i> <span>' . e(__('project_create_server')) . '</span></a>';
+include __DIR__ . '/../../../components/project-pro-hero.php';
+unset($hero_eyebrow, $hero_title, $hero_sub, $hero_stats, $hero_actions);
+?>
 
 <?php if ($page_state === 'error'): ?>
     <div class="db-card"><?php $error_retry = true; include __DIR__ . '/../../../components/error-state.php'; ?></div>
@@ -96,26 +139,26 @@ $servers = ($page_state === 'empty') ? [] : [
     <?php $skel_rows = 3; $skel_cols = 7; $skel_has_icon = false; $skel_has_filters = true; include __DIR__ . '/../../../components/skeleton-table.php'; ?>
 
 <?php elseif (empty($servers)): ?>
-    <!-- Empty state (matches reference screenshot) -->
-    <div class="db-card">
-        <div class="db-card-body" style="padding:36px 28px;">
-            <div class="db-empty-state">
-                <div class="db-empty-illustration db-empty-illustration--services"><i class="fas fa-server"></i></div>
-                <h3 class="db-empty-title"><?php echo e(__('project_no_servers_title')); ?></h3>
-                <p class="db-empty-desc"><?php echo e(__('project_no_servers_desc')); ?></p>
-                <div class="db-empty-hint">
-                    <i class="fas fa-circle-info"></i>
-                    <span>
-                        <?php echo e(__('project_no_servers_hint_prefix')); ?>
-                        <a href="<?php echo e(cloud_project_url('create-server', $current_project['id'])); ?>" class="db-empty-hint__link">
-                            <?php echo e(__('project_create_server')); ?>
-                        </a>
-                        <?php echo e(__('project_no_servers_hint_suffix')); ?>
-                    </span>
-                </div>
-            </div>
-        </div>
+    <?php
+    ob_start();
+    ?>
+    <div class="db-empty-hint">
+        <i class="fas fa-circle-info"></i>
+        <span>
+            <?php echo e(__('project_no_servers_hint_prefix')); ?>
+            <a href="<?php echo e(cloud_project_url('create-server', $current_project['id'])); ?>" class="db-empty-hint__link">
+                <?php echo e(__('project_create_server')); ?>
+            </a>
+            <?php echo e(__('project_no_servers_hint_suffix')); ?>
+        </span>
     </div>
+    <?php
+    $es_action = ob_get_clean();
+    $es_icon   = 'fa-server';
+    $es_title  = __('project_no_servers_title');
+    $es_desc   = __('project_no_servers_desc');
+    include __DIR__ . '/../../../components/empty-state.php';
+    ?>
 
 <?php else: ?>
 
@@ -177,19 +220,39 @@ $servers = ($page_state === 'empty') ? [] : [
                             </td>
                             <td class="db-table-hide-mobile"><?php echo e($s['created']); ?></td>
                             <td>
-                                <div class="db-row-actions db-row-actions--solid">
-                                    <button class="db-row-action db-row-action--solid db-row-action--menu" data-dropdown-toggle><i class="fas fa-ellipsis-vertical"></i></button>
+                                <div class="db-row-actions db-row-actions--solid" onclick="event.stopPropagation();">
+                                    <a href="<?php echo e($srv_url); ?>" class="db-row-action db-row-action--solid db-row-action--primary" data-tooltip="<?php echo e(__('common_open')); ?>"><i class="fas fa-arrow-up-right-from-square"></i></a>
+                                    <div class="db-dropdown-wrapper">
+                                        <button class="db-row-action db-row-action--solid db-row-action--menu" data-dropdown-toggle><i class="fas fa-ellipsis-vertical"></i></button>
+                                        <div class="db-dropdown-menu">
+                                            <a href="<?php echo e($srv_url); ?>" class="db-dropdown-item"><i class="fas fa-eye"></i> <?php echo e(__('common_view')); ?></a>
+                                            <button class="db-dropdown-item" onclick="DashToast.show('info','','Opening SSH...')"><i class="fas fa-terminal"></i> SSH</button>
+                                            <button class="db-dropdown-item" onclick="DashToast.show('info','','Rebooting...')"><i class="fas fa-rotate-right"></i> <?php echo e(__('services_reboot')); ?></button>
+                                            <div class="db-dropdown-divider"></div>
+                                            <button class="db-dropdown-item db-dropdown-item--danger"><i class="fas fa-power-off"></i> <?php echo e(__('services_power_off')); ?></button>
+                                        </div>
+                                    </div>
                                 </div>
                             </td>
                         </tr>
                         <?php endforeach; ?>
-                        <tr data-table-empty>
-                            <td colspan="8"><div class="db-table-empty-state"><i class="fas fa-magnifying-glass"></i> <?php echo e(__('project_servers_empty_search')); ?></div></td>
-                        </tr>
+                        <?php
+                        $te_colspan = 8; $te_text = __('project_servers_empty_search');
+                        include __DIR__ . '/../../../components/table-empty.php';
+                        ?>
                     </tbody>
                 </table>
             </div>
         </div>
+
+        <?php
+        $pg_current    = 1;
+        $pg_total      = 1;
+        $pg_from       = 1;
+        $pg_to         = count($servers);
+        $pg_total_rows = count($servers);
+        include __DIR__ . '/../../../components/pagination.php';
+        ?>
     </div>
 
 <?php endif; ?>

@@ -26,7 +26,7 @@ $state = $_GET['state'] ?? 'form';
             <div class="auth-success__icon"><i class="fas fa-envelope-circle-check"></i></div>
             <h2 class="auth-success__title"><?php echo e(__('auth_forgot_sent_title')); ?></h2>
             <p class="auth-success__desc"><?php echo e(__('auth_forgot_sent_desc')); ?></p>
-            <a href="<?php echo DASH_BASE_PATH; ?>/pages/auth/login.php" class="auth-submit" style="text-decoration:none; display:inline-flex; width:auto; padding:12px 28px;">
+            <a href="<?php echo DASH_BASE_PATH; ?>/pages/auth/login.php" class="auth-submit auth-submit--link">
                 <i class="fas fa-arrow-left"></i> <?php echo e(__('auth_back_to_login')); ?>
             </a>
         </div>

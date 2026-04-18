@@ -22,11 +22,48 @@
     --radius-xl: 28px;
     --radius-full: 9999px;
 
-    /* Transitions */
+    /* Transitions (legacy) */
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
     --duration-fast: 180ms;
     --duration-base: 300ms;
     --duration-slow: 500ms;
+
+    /* ═══ M4 PREMIUM — Motion system ═══ */
+    --motion-instant: 100ms;
+    --motion-fast: 180ms;
+    --motion-base: 280ms;
+    --motion-slow: 420ms;
+    --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-glide: cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* ═══ M4 PREMIUM — Project seed palette ═══ */
+    /* Each project gets one of these seeds for its identity color.
+       Mapping: hash(project_id) % 4 → seed-0..seed-3 */
+    --seed-0: 167, 139, 250;   /* violet/iris */
+    --seed-1: 52, 211, 153;    /* emerald */
+    --seed-2: 251, 191, 36;    /* amber */
+    --seed-3: 244, 114, 182;   /* rose */
+
+    /* ═══ M4 PREMIUM — Typography scale (strict) ═══ */
+    --fs-xs: 0.7rem;
+    --fs-sm: 0.82rem;
+    --fs-base: 0.9rem;
+    --fs-lg: 1.05rem;
+    --fs-xl: 1.3rem;
+    --fs-2xl: 1.75rem;
+    --fs-3xl: 2.4rem;
+    --fs-display: 3.2rem;
+
+    /* Spacing scale (8px grid) */
+    --sp-1: 4px;
+    --sp-2: 8px;
+    --sp-3: 12px;
+    --sp-4: 16px;
+    --sp-5: 24px;
+    --sp-6: 32px;
+    --sp-7: 48px;
+    --sp-8: 64px;
 
     /* Brand Colors (base — same in both themes) */
     --brand-primary: #2563EB;
@@ -35,6 +72,13 @@
     --brand-accent: #8B5CF6;
     --brand-warning: #F59E0B;
     --brand-error: #EF4444;
+
+    /* OS Vendor Colors (Microsoft/Ubuntu brand — not our tokens, kept
+       here for central maintenance & reuse across OS selector cards) */
+    --os-windows: #0078d4;
+    --os-linux:   #f5b800;
+    --os-debian:  #A81D33;
+    --os-centos:  #932279;
 
     /* Status Colors (base) */
     --status-active: #10B981;

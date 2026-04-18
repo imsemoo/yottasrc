@@ -19,9 +19,56 @@ $breadcrumbs_data = [
 
 require_once __DIR__ . '/../../layouts/shell.php';
 
-$page_state = $_GET['state'] ?? 'active';
-$stats = ['total' => 8, 'active' => 5, 'suspended' => 1, 'pending' => 2];
+/* ══════════════════════════════════════════════════════════════════════
+   ███  MY SERVICES  ·  MOCK DATA BLOCK  (single source of truth)  ███
+   ══════════════════════════════════════════════════════════════════════
+   BACKEND TEAM — PLEASE READ:
 
+   Every piece of data on this page lives in the block below.
+   Edit a value here → the UI updates directly (table + cards view).
+
+   When wiring real data:
+     • Replace each array with the equivalent DB query result.
+     • Keep the array KEYS and SHAPE identical — the HTML loops over
+       these keys, so a structure change will break the layout.
+     • $page_state drives the UI mode (see comment below).
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ──────────────────────────────────────────
+   PAGE STATE  (which view to render)
+   ──────────────────────────────────────────
+   • 'active'   → normal list (default)
+   • 'loading'  → skeleton placeholder
+   • 'error'    → retry card
+   • 'empty'    → "no services yet" CTA
+   ────────────────────────────────────────── */
+$page_state = $_GET['state'] ?? 'active';
+
+/* ──────────────────────────────────────────
+   STATS  (used for header metrics / pagination info)
+   ────────────────────────────────────────── */
+$stats = [
+    'total'     => 8,
+    'active'    => 5,
+    'suspended' => 1,
+    'pending'   => 2,
+];
+
+/* ──────────────────────────────────────────
+   SERVICES LIST  (table + card rows)
+   ──────────────────────────────────────────
+   Each row:
+   • id       → internal service id (routes to service-details.php?id=…)
+   • name     → product name (first column)
+   • type     → one of $type_icons keys below (drives icon + tint)
+   • domain   → attached domain (empty string allowed)
+   • ip       → IP address or '—' if not applicable
+   • status   → 'active' | 'suspended' | 'pending' | 'cancelled'
+                (drives badge color + filter)
+   • cycle    → billing cycle label ('Monthly', 'Annually', …)
+   • amount   → float (use format_money() to render)
+   • due_date → ISO date string 'YYYY-MM-DD'
+   ────────────────────────────────────────── */
 $services = [
     ['id' => 1041, 'name' => 'Business Pro Hosting',  'type' => 'Shared Hosting',    'domain' => 'yottasrc.com',         'ip' => '185.230.120.41', 'status' => 'active',    'cycle' => 'Monthly',  'amount' => 24.99,  'due_date' => '2026-04-15'],
     ['id' => 1038, 'name' => 'Starter VPS',           'type' => 'VPS Server',         'domain' => 'api.yottasrc.com',     'ip' => '185.230.120.55', 'status' => 'active',    'cycle' => 'Monthly',  'amount' => 49.99,  'due_date' => '2026-04-20'],
@@ -33,6 +80,13 @@ $services = [
     ['id' => 1020, 'name' => 'Development Sandbox',   'type' => 'VPS Server',         'domain' => 'dev.yottasrc.com',     'ip' => '185.230.120.62', 'status' => 'pending',   'cycle' => 'Monthly',  'amount' => 29.99,  'due_date' => '2026-04-15'],
 ];
 
+/* ──────────────────────────────────────────
+   TYPE → [icon class, tint]  (visual mapping)
+   ──────────────────────────────────────────
+   tint values: 'primary' | 'secondary' | 'accent' | 'warning'
+   If a new $services row uses a type not listed here, the row
+   falls back to a generic box icon.
+   ────────────────────────────────────────── */
 $type_icons = [
     'Shared Hosting'    => ['fas fa-server',        'primary'],
     'VPS Server'        => ['fas fa-microchip',     'accent'],
@@ -42,6 +96,8 @@ $type_icons = [
     'SSL / Security'    => ['fas fa-shield-halved', 'secondary'],
     'Email Hosting'     => ['fas fa-envelope',      'primary'],
 ];
+
+/* ═════════════  END OF MOCK DATA  ═════════════ */
 ?>
 
 <?php
@@ -64,14 +120,13 @@ include __DIR__ . '/../../components/page-header.php';
     </div>
 
 <?php elseif ($page_state === 'empty'): ?>
-    <div class="db-card">
-        <div class="db-empty-state">
-            <div class="db-empty-illustration db-empty-illustration--services"><i class="fas fa-server"></i></div>
-            <h3 class="db-empty-title"><?php echo e(__('services_empty_title')); ?></h3>
-            <p class="db-empty-desc"><?php echo e(__('services_empty_desc')); ?></p>
-            <a href="<?php echo DASH_BASE_PATH; ?>/pages/services/order.php" class="db-btn db-btn--primary"><i class="fas fa-plus"></i> <?php echo e(__('services_order_new')); ?></a>
-        </div>
-    </div>
+    <?php
+    $es_icon   = 'fa-server';
+    $es_title  = __('services_empty_title');
+    $es_desc   = __('services_empty_desc');
+    $es_action = '<a href="' . DASH_BASE_PATH . '/pages/services/order.php" class="db-btn db-btn--primary"><i class="fas fa-plus"></i> ' . e(__('services_order_new')) . '</a>';
+    include __DIR__ . '/../../components/empty-state.php';
+    ?>
 
 <?php else: ?>
     <div class="db-card">
@@ -110,7 +165,7 @@ include __DIR__ . '/../../components/page-header.php';
 
         <!-- ═══ TABLE VIEW (default) ═══ -->
         <div class="db-view" id="view-table">
-            <div class="db-card-body--table" style="border-top:none;">
+            <div class="db-card-body--table db-card-body--no-border-top">
                 <div class="db-table-wrapper">
                     <table class="db-table" id="servicesTable" data-table-tools>
                         <thead>
@@ -152,7 +207,7 @@ include __DIR__ . '/../../components/page-header.php';
                                 <td class="db-table-cell--right"><span class="db-table-cell-amount"><?php echo format_money($svc['amount']); ?></span></td>
                                 <td>
                                     <div class="db-row-actions db-row-actions--solid" onclick="event.stopPropagation();">
-                                        <a href="<?php echo $detail_url; ?>" class="db-row-action db-row-action--solid db-row-action--primary" data-tooltip="<?php echo e(__('services_manage')); ?>"><i class="fas fa-arrow-up-right-from-square"></i></a>
+                                        <a href="<?php echo $detail_url; ?>" class="db-row-action db-row-action--solid db-row-action--primary" data-tooltip="<?php echo e(__('common_open')); ?>"><i class="fas fa-arrow-up-right-from-square"></i></a>
                                         <div class="db-dropdown-wrapper">
                                             <button class="db-row-action db-row-action--solid db-row-action--menu" data-dropdown-toggle><i class="fas fa-ellipsis-vertical"></i></button>
                                             <div class="db-dropdown-menu">
@@ -167,9 +222,10 @@ include __DIR__ . '/../../components/page-header.php';
                                 </td>
                             </tr>
                             <?php endforeach; ?>
-                            <tr data-table-empty>
-                                <td colspan="6"><div class="db-table-empty-state"><i class="fas fa-magnifying-glass"></i> <?php echo e(__('services_empty_search')); ?></div></td>
-                            </tr>
+                            <?php
+                            $te_colspan = 6; $te_text = __('services_empty_search');
+                            include __DIR__ . '/../../components/table-empty.php';
+                            ?>
                         </tbody>
                     </table>
                 </div>
@@ -213,14 +269,14 @@ include __DIR__ . '/../../components/page-header.php';
         </div>
 
         <!-- ═══ PAGINATION ═══ -->
-        <div class="db-pagination-bar">
-            <div class="db-pagination-bar__info"><?php echo e(__('services_showing', ['from' => 1, 'to' => count($services), 'total' => $stats['total']])); ?></div>
-            <div class="db-pagination-bar__nav">
-                <button class="db-pagination-bar__btn" disabled><i class="fas fa-chevron-left"></i> <?php echo e(__('common_previous')); ?></button>
-                <span class="db-pagination-bar__page active">1</span>
-                <button class="db-pagination-bar__btn" disabled><?php echo e(__('common_next')); ?> <i class="fas fa-chevron-right"></i></button>
-            </div>
-        </div>
+        <?php
+        $pg_current    = 1;
+        $pg_total      = max(1, (int)ceil($stats['total'] / max(1, count($services))));
+        $pg_from       = 1;
+        $pg_to         = count($services);
+        $pg_total_rows = $stats['total'];
+        include __DIR__ . '/../../components/pagination.php';
+        ?>
     </div>
 <?php endif; ?>
 

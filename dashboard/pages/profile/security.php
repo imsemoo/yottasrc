@@ -20,9 +20,39 @@ $breadcrumbs_data = [
 
 require_once __DIR__ . '/../../layouts/shell.php';
 
+/* ══════════════════════════════════════════════════════════════════════
+   ███  SECURITY  ·  MOCK DATA BLOCK  (single source of truth)  ███
+   ══════════════════════════════════════════════════════════════════════
+   BACKEND TEAM — PLEASE READ:
+
+   Two arrays drive this page:
+     • $security_features → toggle cards (2FA, email login, …)
+     • $sessions          → active-session list with revoke actions
+
+   Wiring real data:
+     • Replace $security_features[n]['enabled'] with the user's real
+       setting for each feature.
+     • Sessions come from the user's session store (IP + UA parsed).
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ──────────────────────────────────────────
+   PAGE STATE  ('active' | 'loading' | 'error')
+   ────────────────────────────────────────── */
 $page_state = $_GET['state'] ?? 'active';
 
-// Demo data — security features
+/* ──────────────────────────────────────────
+   SECURITY FEATURES  (toggle cards)
+   ──────────────────────────────────────────
+   Each row:
+   • id       → unique slug (keys form submissions)
+   • icon     → Font Awesome class
+   • title    → card title (translated)
+   • desc     → subtitle (translated)
+   • enabled  → bool → current state (drives button label + modal tone)
+   • btn_on/btn_off → labels (usually same translation)
+   • color    → 'primary' | 'accent' | 'secondary' | 'warning'
+   • soon     → bool, adds "Coming Soon" badge (disables actions)
+   ────────────────────────────────────────── */
 $security_features = [
     [
         'id'      => '2fa',
@@ -77,11 +107,23 @@ $security_features = [
     ],
 ];
 
+/* ──────────────────────────────────────────
+   ACTIVE SESSIONS
+   ──────────────────────────────────────────
+   Each row:
+   • device       → human-readable user agent
+   • ip           → session IP
+   • location     → geo-resolved (city, country)
+   • last_active  → relative time string
+   • current      → bool, hides the "Revoke" button for current session
+   ────────────────────────────────────────── */
 $sessions = [
-    ['device' => 'Chrome on Windows', 'ip' => '197.54.214.50', 'location' => 'Cairo, Egypt', 'last_active' => '2 minutes ago', 'current' => true],
-    ['device' => 'Safari on iPhone',  'ip' => '197.54.214.55', 'location' => 'Cairo, Egypt', 'last_active' => '3 hours ago',   'current' => false],
-    ['device' => 'Firefox on macOS',  'ip' => '41.33.120.12',  'location' => 'Alexandria, Egypt', 'last_active' => '2 days ago', 'current' => false],
+    ['device' => 'Chrome on Windows', 'ip' => '197.54.214.50', 'location' => 'Cairo, Egypt',       'last_active' => '2 minutes ago', 'current' => true],
+    ['device' => 'Safari on iPhone',  'ip' => '197.54.214.55', 'location' => 'Cairo, Egypt',       'last_active' => '3 hours ago',   'current' => false],
+    ['device' => 'Firefox on macOS',  'ip' => '41.33.120.12',  'location' => 'Alexandria, Egypt',  'last_active' => '2 days ago',    'current' => false],
 ];
+
+/* ══════════════  END OF MOCK DATA  ══════════════ */
 ?>
 
 <?php
@@ -132,7 +174,7 @@ include __DIR__ . '/../../components/page-header.php';
         </div>
         <div class="db-card-body">
             <div class="db-2fa-status">
-                <div class="db-2fa-status-icon" style="background: rgba(37, 99, 235, 0.1); color: var(--brand-primary);">
+                <div class="db-2fa-status-icon db-2fa-status-icon--info">
                     <i class="fas fa-envelope"></i>
                 </div>
                 <div class="db-2fa-status-info">
@@ -160,11 +202,11 @@ include __DIR__ . '/../../components/page-header.php';
                     <div class="db-settings-item-title">
                         <?php echo e($feat['title']); ?>
                         <?php if ($feat['enabled']): ?>
-                            <span class="db-badge db-badge--active" style="margin-left: 6px; font-size: 0.62rem;"><?php echo e(__('status_active')); ?></span>
+                            <span class="db-badge db-badge--active db-badge--inline"><?php echo e(__('status_active')); ?></span>
                         <?php elseif (!empty($feat['soon'])): ?>
-                            <span class="db-badge db-badge--pending" style="margin-left: 6px; font-size: 0.62rem;">Soon</span>
+                            <span class="db-badge db-badge--pending db-badge--inline">Soon</span>
                         <?php else: ?>
-                            <span class="db-badge db-badge--cancelled" style="margin-left: 6px; font-size: 0.62rem;"><?php echo e(__('security_feat_not_enabled')); ?></span>
+                            <span class="db-badge db-badge--cancelled db-badge--inline"><?php echo e(__('security_feat_not_enabled')); ?></span>
                         <?php endif; ?>
                     </div>
                     <div class="db-settings-item-desc"><?php echo e($feat['desc']); ?></div>
@@ -249,15 +291,18 @@ include __DIR__ . '/../../components/modal-end.php';
 endforeach; ?>
 
 <!-- Revoke All Modal -->
-<?php $modal_id = 'revokeAllModal'; $modal_title = __('security_revoke_all'); $modal_size = 'sm'; include __DIR__ . '/../../components/modal.php'; ?>
-<div class="db-confirm-body">
-    <div class="db-modal-icon db-modal-icon--danger"><i class="fas fa-right-from-bracket"></i></div>
-    <p><?php echo e(__('security_revoke_all_confirm')); ?></p>
-</div>
 <?php
+$modal_id = 'revokeAllModal'; $modal_title = __('security_revoke_all'); $modal_size = 'sm';
+include __DIR__ . '/../../components/modal.php';
+
+$cb_desc = __('security_revoke_all_confirm'); $cb_icon = 'fa-right-from-bracket';
+$cb_target_label = null; $cb_target_value = null; $cb_warn = null; $cb_variant = 'danger';
+include __DIR__ . '/../../components/confirm-body.php';
+
 $modal_footer = '<button class="db-btn db-btn--secondary" data-modal-close>' . e(__('common_cancel')) . '</button>
 <button class="db-btn db-btn--danger" onclick="DashModal.close(this.closest(\'.db-modal-overlay\')); DashToast.show(\'success\', \'\', \'' . e(__('security_all_revoked')) . '\');">' . e(__('common_confirm')) . '</button>';
-include __DIR__ . '/../../components/modal-end.php'; ?>
+include __DIR__ . '/../../components/modal-end.php';
+?>
 
 <div class="db-toast-container" id="toastContainer"></div>
 <?php require_once __DIR__ . '/../../layouts/footer.php'; ?>

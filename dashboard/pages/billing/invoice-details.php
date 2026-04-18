@@ -26,26 +26,99 @@ $breadcrumbs_data = [
 
 require_once __DIR__ . '/../../layouts/shell.php';
 
+/* ══════════════════════════════════════════════════════════════════════
+   ███  INVOICE DETAILS  ·  MOCK DATA BLOCK  (single source of truth)  ███
+   ══════════════════════════════════════════════════════════════════════
+   BACKEND TEAM — PLEASE READ:
+
+   This page shows a single invoice ($invoice_id from URL).
+   All data (company, client, line items, transaction, payment
+   methods) lives in this block. Edit a value → UI updates directly.
+
+   Wiring real data:
+     • Look up $invoice_id in your DB and populate $invoice, $client,
+       $line_items, $transaction.
+     • $company is the SELLER (your company) — usually static, pulled
+       from site settings.
+     • $is_unpaid is AUTO-computed from status — do not edit manually.
+     • $pay_methods is the list of available gateways (from settings).
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ──────────────────────────────────────────
+   PAGE STATE
+   ──────────────────────────────────────────
+   'active' | 'loading' | 'error'
+   ────────────────────────────────────────── */
 $page_state = $_GET['state'] ?? 'active';
+
+/* ──────────────────────────────────────────
+   STATUS RESOLUTION
+   ──────────────────────────────────────────
+   Mock: status is looked up per invoice_id for demo consistency.
+   A ?status= query param overrides (for design testing).
+   Backend: replace with DB lookup → $invoice_status = row.status
+   ────────────────────────────────────────── */
 $demo_status = $_GET['status'] ?? null;
 $invoice_statuses = [
-    '310630' => 'unpaid', 'INV-1047' => 'unpaid', 'INV-1045' => 'overdue',
-    'INV-1042' => 'unpaid', '307776' => 'paid',
+    '310630'    => 'unpaid',
+    'INV-1047'  => 'unpaid',
+    'INV-1045'  => 'overdue',
+    'INV-1042'  => 'unpaid',
+    '307776'    => 'paid',
 ];
 $invoice_status = $demo_status ?? ($invoice_statuses[$invoice_id] ?? 'paid');
 $is_unpaid = ($invoice_status === 'unpaid' || $invoice_status === 'overdue');
 
+/* ──────────────────────────────────────────
+   INVOICE (header section)
+   ──────────────────────────────────────────
+   • id/date/due  → display strings (dd/mm/yyyy)
+   • status       → 'paid' | 'unpaid' | 'overdue' | 'cancelled'
+   • type         → 'new_service' | 'renewal' | 'upgrade'
+   • total        → float, final amount including fees
+   ────────────────────────────────────────── */
 $invoice = [
-    'id' => $invoice_id, 'date' => '03/04/2026', 'due' => '05/04/2026',
-    'status' => $invoice_status, 'type' => 'new_service', 'total' => 3.42,
+    'id'     => $invoice_id,
+    'date'   => '03/04/2026',
+    'due'    => '05/04/2026',
+    'status' => $invoice_status,
+    'type'   => 'new_service',
+    'total'  => 3.42,
 ];
 
+/* ──────────────────────────────────────────
+   SELLER COMPANY (static — from site settings)
+   ────────────────────────────────────────── */
 $company = [
-    'name' => 'YottaSrc Inc', 'address' => '39951 Hafar Al Batin / Saudi Arabia',
-    'tax_no' => '2511130857', 'website' => 'YottaSrc.com', 'email' => 'Sales@YottaSrc.com',
+    'name'    => 'YottaSrc Inc',
+    'address' => '39951 Hafar Al Batin / Saudi Arabia',
+    'tax_no'  => '2511130857',
+    'website' => 'YottaSrc.com',
+    'email'   => 'Sales@YottaSrc.com',
 ];
-$client = ['name' => 'islam dev', 'address' => 'Abdullah Arous house - dndnaa / Toukh / 13846', 'country' => 'Egypt'];
 
+/* ──────────────────────────────────────────
+   CLIENT  (billed-to party — from user profile)
+   ────────────────────────────────────────── */
+$client = [
+    'name'    => 'islam dev',
+    'address' => 'Abdullah Arous house - dndnaa / Toukh / 13846',
+    'country' => 'Egypt',
+];
+
+/* ──────────────────────────────────────────
+   LINE ITEMS (table rows in the invoice)
+   ──────────────────────────────────────────
+   Each row:
+   • num            → row number
+   • desc           → main description line
+   • details        → array of secondary info lines
+   • details_danger → bool; if true, details are rendered in red italic
+                      (used for "fee" clarifications)
+   • amount         → float
+   • service_link   → bool; if true, adds a "View Service" link
+                      under the description (wires to service-details.php)
+   ────────────────────────────────────────── */
 $line_items = [
     ['num' => 1, 'desc' => 'VPS YTA 1 (24/03/2026 - 23/04/2026)', 'details' => [
         'Location: USA', 'Operating System: Ubuntu 22.04', 'Additional IP: None',
@@ -55,9 +128,18 @@ $line_items = [
      'details' => ['This cost is not for us; it\'s for the selected payment gateway fee.'],
      'details_danger' => true, 'amount' => 0.17],
 ];
-$subtotal = 3.42; $total = 3.42;
 
-// Transaction info (for paid invoices)
+/* ──────────────────────────────────────────
+   TOTALS  (usually sum of line_items — edit if needed)
+   ────────────────────────────────────────── */
+$subtotal = 3.42;
+$total    = 3.42;
+
+/* ──────────────────────────────────────────
+   TRANSACTION (only shown when invoice is paid)
+   ──────────────────────────────────────────
+   Set to null on unpaid invoices. Auto-selected below.
+   ────────────────────────────────────────── */
 $transaction = !$is_unpaid ? [
     'id'     => 'TXN-884102',
     'date'   => '24/03/2026 14:32',
@@ -65,15 +147,28 @@ $transaction = !$is_unpaid ? [
     'amount' => '€3.42 EUR',
 ] : null;
 
+/* ──────────────────────────────────────────
+   PAY METHODS (only rendered when unpaid)
+   ──────────────────────────────────────────
+   The enabled gateway list — usually from site settings.
+   Each row:
+   • id    → gateway slug (sent to backend on "Pay")
+   • name  → display name
+   • desc  → subtitle shown under the name
+   • icon  → Font Awesome class
+   • color → brand color (unused yet, reserved for future)
+   ────────────────────────────────────────── */
 $pay_methods = [
-    ['id' => 'binance',  'name' => 'Binance Pay',               'desc' => 'Pay with Binance wallet',           'icon' => 'fas fa-coins',     'color' => '#F0B90B'],
-    ['id' => 'crypto',   'name' => 'Cryptomus',                  'desc' => 'BTC, ETH, USDT & more',            'icon' => 'fab fa-bitcoin',   'color' => '#8B5CF6'],
-    ['id' => 'plisio',   'name' => 'Plisio',                     'desc' => 'Cryptocurrency payments',           'icon' => 'fas fa-wallet',    'color' => '#3B82F6'],
-    ['id' => 'alipay',   'name' => 'Alipay',                     'desc' => 'China\'s leading payment',          'icon' => 'fab fa-alipay',    'color' => '#1677FF'],
-    ['id' => 'paypal',   'name' => 'PayPal',                     'desc' => 'Pay with PayPal balance or card',   'icon' => 'fab fa-paypal',    'color' => '#003087'],
-    ['id' => 'revolut',  'name' => 'Revolut Pay',                'desc' => 'Instant bank transfer',             'icon' => 'fas fa-r',         'color' => '#0075EB'],
-    ['id' => 'stripe',   'name' => 'Card / Google Pay / Apple Pay', 'desc' => 'Visa, Mastercard, Amex',         'icon' => 'fab fa-stripe-s',  'color' => '#635BFF'],
+    ['id' => 'binance',  'name' => 'Binance Pay',                   'desc' => 'Pay with Binance wallet',         'icon' => 'fas fa-coins',    'color' => '#F0B90B'],
+    ['id' => 'crypto',   'name' => 'Cryptomus',                     'desc' => 'BTC, ETH, USDT & more',            'icon' => 'fab fa-bitcoin',  'color' => '#8B5CF6'],
+    ['id' => 'plisio',   'name' => 'Plisio',                        'desc' => 'Cryptocurrency payments',          'icon' => 'fas fa-wallet',   'color' => '#3B82F6'],
+    ['id' => 'alipay',   'name' => 'Alipay',                        'desc' => 'China\'s leading payment',         'icon' => 'fab fa-alipay',   'color' => '#1677FF'],
+    ['id' => 'paypal',   'name' => 'PayPal',                        'desc' => 'Pay with PayPal balance or card',  'icon' => 'fab fa-paypal',   'color' => '#003087'],
+    ['id' => 'revolut',  'name' => 'Revolut Pay',                   'desc' => 'Instant bank transfer',            'icon' => 'fas fa-r',        'color' => '#0075EB'],
+    ['id' => 'stripe',   'name' => 'Card / Google Pay / Apple Pay', 'desc' => 'Visa, Mastercard, Amex',           'icon' => 'fab fa-stripe-s', 'color' => '#635BFF'],
 ];
+
+/* ══════════════  END OF MOCK DATA  ══════════════ */
 ?>
 
 <?php if ($page_state === 'error'): ?>
@@ -99,7 +194,7 @@ $pay_methods = [
      ══════════════════════════════════════════════════ -->
 <div class="db-inv-hero db-inv-hero--<?php echo e($invoice['status']); ?>">
     <div class="db-inv-hero__main">
-        <div class="db-inv-hero__amount">€<?php echo number_format($total, 2); ?></div>
+        <div class="db-inv-hero__amount"><?php echo format_money($total); ?></div>
         <div class="db-inv-hero__meta">
             <span class="db-badge db-badge--<?php echo e($invoice['status']); ?>"><?php echo e(__('status_' . $invoice['status'])); ?></span>
             <span class="db-inv-hero__sep">·</span>
@@ -109,11 +204,11 @@ $pay_methods = [
         </div>
     </div>
     <div class="db-inv-hero__actions">
-        <button class="db-btn db-btn--ghost db-btn--sm" onclick="DashToast.show('info','','<?php echo e(__('invoices_share_msg')); ?>')"><i class="fas fa-share-nodes"></i></button>
+        <button class="db-btn db-btn--ghost db-btn--sm" onclick="DashToast.show('success','','<?php echo e(__('invoices_share_msg')); ?>')"><i class="fas fa-share-nodes"></i></button>
         <button class="db-btn db-btn--ghost db-btn--sm" onclick="DashToast.show('success','','Invoice PDF downloaded.')"><i class="fas fa-download"></i></button>
         <button class="db-btn db-btn--ghost db-btn--sm" onclick="window.print()"><i class="fas fa-print"></i></button>
         <?php if ($is_unpaid): ?>
-        <button class="db-btn db-btn--ghost db-btn--sm" style="color:var(--status-overdue);" onclick="DashModal.open('cancelInvoiceModal')"><i class="fas fa-xmark"></i></button>
+        <button class="db-btn db-btn--ghost db-btn--sm db-btn--danger-text" onclick="DashModal.open('cancelInvoiceModal')"><i class="fas fa-xmark"></i></button>
         <?php endif; ?>
     </div>
 </div>
@@ -142,7 +237,7 @@ $pay_methods = [
 
             <!-- Block 2: Client -->
             <div class="db-inv-block">
-                <div class="db-invoice-client" style="margin-bottom:0;">
+                <div class="db-invoice-client">
                     <div class="db-invoice-client__label"><?php echo e(__('invoices_invoiced_to')); ?></div>
                     <div class="db-invoice-client__name"><?php echo e($client['name']); ?></div>
                     <div class="db-invoice-client__detail"><?php echo e($client['address']); ?></div>
@@ -173,28 +268,28 @@ $pay_methods = [
             </div>
 
             <!-- Block 4: Line Items -->
-            <div class="db-card-body--table" style="border-top:1px solid var(--border-primary);">
+            <div class="db-card-body--table db-inv-line-items">
                 <div class="db-table-wrapper">
                     <table class="db-table">
                         <thead><tr>
-                            <th style="width:32px;">#</th>
+                            <th class="db-col-num">#</th>
                             <th><?php echo e(__('invoices_line_service_details')); ?></th>
-                            <th style="width:110px; text-align:right;"><?php echo e(__('invoices_col_amount')); ?></th>
+                            <th class="db-col-amount"><?php echo e(__('invoices_col_amount')); ?></th>
                         </tr></thead>
                         <tbody>
                             <?php foreach ($line_items as $item): ?>
                             <tr>
                                 <td><?php echo $item['num']; ?></td>
                                 <td>
-                                    <div style="font-weight:600; color:var(--text-primary);"><?php echo e($item['desc']); ?></div>
+                                    <div class="db-inv-line-title"><?php echo e($item['desc']); ?></div>
                                     <?php foreach ($item['details'] as $d): ?>
-                                    <div style="font-size:0.7rem; color:<?php echo !empty($item['details_danger']) ? 'var(--status-overdue)' : 'var(--text-secondary)'; ?>; margin-top:2px; font-style:<?php echo !empty($item['details_danger']) ? 'italic' : 'normal'; ?>;"><?php echo e($d); ?></div>
+                                    <div class="db-inv-line-detail<?php echo !empty($item['details_danger']) ? ' db-inv-line-detail--danger' : ''; ?>"><?php echo e($d); ?></div>
                                     <?php endforeach; ?>
                                     <?php if (!empty($item['service_link'])): ?>
-                                    <a href="<?php echo DASH_BASE_PATH; ?>/pages/services/service-details.php?id=151926" style="font-size:0.72rem; color:var(--brand-primary); text-decoration:none; margin-top:4px; display:inline-block;">(<?php echo e(__('common_view')); ?> <?php echo e(__('ticket_info_service')); ?> - <span class="db-badge db-badge--active" style="font-size:0.58rem;"><?php echo e(__('status_active')); ?></span>)</a>
+                                    <a href="<?php echo DASH_BASE_PATH; ?>/pages/services/service-details.php?id=151926" class="db-inv-line-link">(<?php echo e(__('common_view')); ?> <?php echo e(__('ticket_info_service')); ?> - <span class="db-badge db-badge--active"><?php echo e(__('status_active')); ?></span>)</a>
                                     <?php endif; ?>
                                 </td>
-                                <td style="text-align:right; font-family:var(--font-display); font-weight:700;">€<?php echo number_format($item['amount'], 2); ?></td>
+                                <td class="db-inv-line-amount"><?php echo format_money($item['amount']); ?></td>
                             </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -203,22 +298,22 @@ $pay_methods = [
 
                 <!-- Block 5: Totals -->
                 <div class="db-invoice-totals">
-                    <div class="db-invoice-total-row"><span><?php echo e(__('invoices_subtotal')); ?></span><span>€<?php echo number_format($subtotal, 2); ?></span></div>
-                    <div class="db-invoice-total-row"><span><strong><?php echo e(__('invoices_total_due')); ?></strong></span><span><strong>€<?php echo number_format($total, 2); ?> EUR</strong></span></div>
+                    <div class="db-invoice-total-row"><span><?php echo e(__('invoices_subtotal')); ?></span><span><?php echo format_money($subtotal); ?></span></div>
+                    <div class="db-invoice-total-row"><span><strong><?php echo e(__('invoices_total_due')); ?></strong></span><span><strong><?php echo format_money($total); ?> <?php echo e($current_currency ?? 'EUR'); ?></strong></span></div>
                 </div>
             </div>
 
             <?php if ($transaction): ?>
             <!-- Transaction Info (paid) -->
-            <div class="db-inv-block" style="background:rgba(16,185,129,0.04);">
-                <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px;">
-                    <i class="fas fa-circle-check" style="color:var(--status-active);"></i>
-                    <span style="font-family:var(--font-display); font-size:0.84rem; font-weight:700; color:var(--status-active);"><?php echo e(__('invoices_transaction_info')); ?></span>
+            <div class="db-inv-block db-inv-block--txn">
+                <div class="db-inv-txn-title">
+                    <i class="fas fa-circle-check"></i>
+                    <span><?php echo e(__('invoices_transaction_info')); ?></span>
                 </div>
                 <div class="db-inv-info-grid">
                     <div class="db-inv-info-item">
                         <span class="db-inv-info-item__label"><?php echo e(__('invoices_txn_id')); ?></span>
-                        <span class="db-inv-info-item__value" style="font-family:var(--font-mono);"><?php echo e($transaction['id']); ?></span>
+                        <span class="db-inv-info-item__value db-inv-info-item__value--mono"><?php echo e($transaction['id']); ?></span>
                     </div>
                     <div class="db-inv-info-item">
                         <span class="db-inv-info-item__label"><?php echo e(__('invoices_txn_date')); ?></span>
@@ -239,13 +334,13 @@ $pay_methods = [
     </div>
 
     <!-- RIGHT: Payment Selection (unpaid) / Paid Status -->
-    <div class="db-inv-pay" style="align-self:start; position:sticky; top:88px;">
+    <div class="db-inv-pay">
         <?php if ($is_unpaid): ?>
         <div class="db-card">
-            <div class="db-card-header" style="padding:12px 16px;">
-                <h2 class="db-card-title" style="font-size:0.8rem;"><?php echo e(__('invoices_select_method')); ?></h2>
+            <div class="db-card-header">
+                <h2 class="db-card-title"><?php echo e(__('invoices_select_method')); ?></h2>
             </div>
-            <div class="db-card-body" style="padding:8px 16px 16px;">
+            <div class="db-card-body">
                 <div class="db-pay-grid">
                     <?php foreach ($pay_methods as $i => $pm): ?>
                     <label class="db-pay-card<?php echo $i === 0 ? ' db-pay-card--active' : ''; ?>">
@@ -265,13 +360,13 @@ $pay_methods = [
 
         <?php else: ?>
         <div class="db-card">
-            <div class="db-card-body" style="text-align:center; padding:32px 20px;">
-                <div style="width:56px; height:56px; border-radius:50%; background:rgba(16,185,129,0.12); display:inline-flex; align-items:center; justify-content:center; margin-bottom:14px;">
-                    <i class="fas fa-circle-check" style="font-size:1.5rem; color:var(--status-active);"></i>
+            <div class="db-card-body db-inv-paid">
+                <div class="db-inv-paid__badge">
+                    <i class="fas fa-circle-check"></i>
                 </div>
-                <div style="font-family:var(--font-display); font-size:1.1rem; font-weight:800; color:var(--text-primary); margin-bottom:4px;"><?php echo e(__('invoices_paid_title')); ?></div>
-                <div style="font-size:0.8rem; color:var(--text-tertiary); margin-bottom:16px;"><?php echo e(__('invoices_paid_desc')); ?></div>
-                <div style="display:flex; gap:8px; justify-content:center;">
+                <div class="db-inv-paid__title"><?php echo e(__('invoices_paid_title')); ?></div>
+                <div class="db-inv-paid__desc"><?php echo e(__('invoices_paid_desc')); ?></div>
+                <div class="db-inv-paid__actions">
                     <button class="db-btn db-btn--secondary db-btn--sm" onclick="DashToast.show('success','','Invoice PDF downloaded.')"><i class="fas fa-download"></i> <?php echo e(__('invoices_download')); ?></button>
                     <button class="db-btn db-btn--ghost db-btn--sm" onclick="window.print()"><i class="fas fa-print"></i> <?php echo e(__('invoices_print')); ?></button>
                 </div>
@@ -289,7 +384,7 @@ $pay_methods = [
     <div class="db-sticky-cta__inner">
         <div class="db-sticky-cta__info">
             <span class="db-sticky-cta__label"><?php echo e(__('invoices_total_due')); ?></span>
-            <span class="db-sticky-cta__amount">€<?php echo number_format($total, 2); ?> EUR</span>
+            <span class="db-sticky-cta__amount"><?php echo format_money($total); ?> <?php echo e($current_currency ?? 'EUR'); ?></span>
         </div>
         <button class="db-btn db-btn--primary db-sticky-cta__btn" onclick="DashToast.show('info','','Redirecting to payment gateway...')">
             <i class="fas fa-lock"></i> <?php echo e(__('invoices_pay_now')); ?>
@@ -306,12 +401,11 @@ $modal_id = 'cancelInvoiceModal';
 $modal_title = __('invoices_cancel_invoice');
 $modal_size = 'sm';
 include __DIR__ . '/../../components/modal.php';
-?>
-<div class="db-confirm-body">
-    <div class="db-modal-icon db-modal-icon--danger"><i class="fas fa-triangle-exclamation"></i></div>
-    <p><?php echo e(__('invoices_cancel_confirm')); ?></p>
-</div>
-<?php
+
+$cb_desc = __('invoices_cancel_confirm'); $cb_icon = null;
+$cb_target_label = null; $cb_target_value = null; $cb_warn = null;
+include __DIR__ . '/../../components/confirm-body.php';
+
 $modal_footer = '<button class="db-btn db-btn--secondary" data-modal-close>' . e(__('common_cancel')) . '</button>
 <button class="db-btn db-btn--danger" onclick="DashModal.close(this.closest(\'.db-modal-overlay\')); DashToast.show(\'success\', \'\', \'' . e(__('invoices_cancel_success')) . '\');">' . e(__('common_confirm')) . '</button>';
 include __DIR__ . '/../../components/modal-end.php';

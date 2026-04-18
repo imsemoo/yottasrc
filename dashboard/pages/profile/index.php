@@ -20,26 +20,58 @@ $breadcrumbs_data = [
 require_once __DIR__ . '/../../layouts/shell.php';
 require_once __DIR__ . '/../../components/phone-countries.php';
 
+/* ══════════════════════════════════════════════════════════════════════
+   ███  PROFILE  ·  MOCK DATA BLOCK  (single source of truth)  ███
+   ══════════════════════════════════════════════════════════════════════
+   BACKEND TEAM — PLEASE READ:
+
+   Profile page — personal details + address + phone.
+   Replace $user with the logged-in user's DB row.
+
+   Auto-computed:
+     • $initials              → first-name + last-name initials
+     • $current_phone_country → looked up from $phone_countries
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ──────────────────────────────────────────
+   PAGE STATE  ('active' | 'loading' | 'error')
+   ────────────────────────────────────────── */
 $page_state = $_GET['state'] ?? 'active';
 
-// Demo data
+/* ──────────────────────────────────────────
+   USER PROFILE
+   ──────────────────────────────────────────
+   • first_name / last_name → display name + initials
+   • email / email_verified → profile header + verified badge
+   • phone_country          → ISO-2 code (matches phone-countries.php)
+   • phone_code             → calling code ('+20')
+   • phone_number           → local phone (no country code)
+   • company                → optional (empty string if none)
+   • address / city / state / postal_code → shipping/billing address
+   • country                → ISO-2 code for address country
+   ────────────────────────────────────────── */
 $user = [
-    'first_name'    => 'Islam',
-    'last_name'     => 'Alhassan',
-    'email'         => 'en.developer2@gmail.com',
+    'first_name'     => 'Islam',
+    'last_name'      => 'Alhassan',
+    'email'          => 'en.developer2@gmail.com',
     'email_verified' => true,
-    'phone_country' => 'EG',
-    'phone_code'    => '+20',
-    'phone_number'  => '100 123 4567',
-    'company'       => 'YottaSrc',
-    'address'       => '123 Main Street',
-    'city'          => 'Cairo',
-    'state'         => 'Cairo Governorate',
-    'country'       => 'EG',
-    'postal_code'   => '11511',
+    'phone_country'  => 'EG',
+    'phone_code'     => '+20',
+    'phone_number'   => '100 123 4567',
+    'company'        => 'YottaSrc',
+    'address'        => '123 Main Street',
+    'city'           => 'Cairo',
+    'state'          => 'Cairo Governorate',
+    'country'        => 'EG',
+    'postal_code'    => '11511',
 ];
+
+/* ══════════════  END OF MOCK DATA  ══════════════ */
+
+// Auto-computed: initials for the avatar fallback.
 $initials = strtoupper(substr($user['first_name'], 0, 1) . substr($user['last_name'], 0, 1));
 
+// Auto-resolved: current phone country row (falls back to first entry).
 $current_phone_country = null;
 foreach ($phone_countries as $c) {
     if ($c[0] === $user['phone_country']) { $current_phone_country = $c; break; }
@@ -99,7 +131,7 @@ include __DIR__ . '/../../components/page-header.php';
                     <div class="db-profile-avatar-email">
                         <?php echo e($user['email']); ?>
                         <?php if ($user['email_verified']): ?>
-                        <span class="db-badge db-badge--active" style="margin-left: 6px; font-size: 0.65rem;"><?php echo e(__('profile_verified')); ?></span>
+                        <span class="db-badge db-badge--active db-badge--inline"><?php echo e(__('profile_verified')); ?></span>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -133,7 +165,7 @@ include __DIR__ . '/../../components/page-header.php';
                         <label class="db-form-label" for="email">
                             <?php echo e(__('profile_email')); ?>
                             <?php if ($user['email_verified']): ?>
-                            <span class="db-badge db-badge--active" style="margin-left: 4px; font-size: 0.6rem;"><?php echo e(__('profile_verified')); ?></span>
+                            <span class="db-badge db-badge--active db-badge--inline"><?php echo e(__('profile_verified')); ?></span>
                             <?php endif; ?>
                             <a href="#" class="db-form-label-action" onclick="event.preventDefault(); DashModal.open('changeEmailModal');"><?php echo e(__('profile_change_email')); ?></a>
                         </label>
@@ -230,7 +262,7 @@ include __DIR__ . '/../../components/page-header.php';
                                 <div class="db-phone-dropdown-list" id="countryList">
                                     <?php foreach ($countries_list as $code => $name): ?>
                                     <div class="db-phone-dropdown-item<?php echo $code === $user['country'] ? ' is-selected' : ''; ?>" role="option" data-code="<?php echo e($code); ?>" data-name="<?php echo e($name); ?>">
-                                        <span class="fi fi-<?php echo e(strtolower($code)); ?>" style="font-size: 1.1rem; border-radius: 2px;"></span>
+                                        <span class="fi fi-<?php echo e(strtolower($code)); ?> db-dropdown-flag"></span>
                                         <span class="db-phone-dropdown-item-name"><?php echo e($name); ?></span>
                                         <span class="db-phone-dropdown-item-code"><?php echo e($code); ?></span>
                                     </div>
@@ -258,7 +290,7 @@ include __DIR__ . '/../../components/page-header.php';
 
 <!-- Change Email Modal -->
 <?php $modal_id = 'changeEmailModal'; $modal_title = __('profile_change_email'); $modal_size = ''; include __DIR__ . '/../../components/modal.php'; ?>
-<div class="db-form" style="gap: 16px;">
+<div class="db-form db-form--modal">
     <p class="db-modal-text"><?php echo e(__('profile_change_email_desc')); ?></p>
     <div class="db-form-group">
         <label class="db-form-label" for="new_email"><?php echo e(__('profile_new_email')); ?></label>

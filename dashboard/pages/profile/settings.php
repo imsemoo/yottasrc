@@ -19,11 +19,37 @@ $breadcrumbs_data = [
 
 require_once __DIR__ . '/../../layouts/shell.php';
 
-$page_state = $_GET['state'] ?? 'active';
+/* ══════════════════════════════════════════════════════════════════════
+   ███  SETTINGS  ·  MOCK DATA BLOCK  (single source of truth)  ███
+   ══════════════════════════════════════════════════════════════════════
+   BACKEND TEAM — PLEASE READ:
+
+   Settings page — language/currency preferences + notification toggles.
+   All toggles here render as checkboxes. The 'checked' flag mirrors
+   the user's saved preference.
+
+   Wiring real data:
+     • Replace each array's 'checked' value with the user's row.
+     • $current_lang / $current_curr come from session/user — already
+       populated via layouts/config.php.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ──────────────────────────────────────────
+   PAGE STATE + CURRENT PREFERENCES
+   ────────────────────────────────────────── */
+$page_state   = $_GET['state'] ?? 'active';
 $current_lang = $current_language ?? 'en';
 $current_curr = $current_currency ?? 'EUR';
 
-// Email notification categories (from reference)
+/* ──────────────────────────────────────────
+   EMAIL NOTIFICATIONS (per-category toggles)
+   ──────────────────────────────────────────
+   Each row:
+   • key     → notification category slug (saved to user_prefs)
+   • title   → translated label
+   • desc    → translated subtitle
+   • checked → current setting (bool)
+   ────────────────────────────────────────── */
 $email_notifications = [
     ['key' => 'product',   'title' => __('notif_product'),   'desc' => __('notif_product_desc'),   'checked' => true],
     ['key' => 'invoice',   'title' => __('notif_invoice'),   'desc' => __('notif_invoice_desc'),   'checked' => true],
@@ -34,11 +60,16 @@ $email_notifications = [
     ['key' => 'marketing', 'title' => __('notif_marketing'), 'desc' => __('notif_marketing_desc'), 'checked' => true],
 ];
 
-// Telegram notifications (from reference — coming soon)
+/* ──────────────────────────────────────────
+   TELEGRAM NOTIFICATIONS (feature coming soon)
+   Disabled in UI for now — same shape as email.
+   ────────────────────────────────────────── */
 $telegram_notifications = [
     ['key' => 'tg_product', 'title' => __('notif_product'), 'desc' => __('notif_product_desc'), 'checked' => false],
     ['key' => 'tg_invoice', 'title' => __('notif_invoice'), 'desc' => __('notif_invoice_desc'), 'checked' => false],
 ];
+
+/* ══════════════  END OF MOCK DATA  ══════════════ */
 ?>
 
 <?php
@@ -151,7 +182,7 @@ include __DIR__ . '/../../components/page-header.php';
             <h2 class="db-card-title">
                 <i class="db-card-title-icon fab fa-telegram"></i>
                 <?php echo e(__('settings_telegram_notifications')); ?>
-                <span class="db-badge db-badge--pending" style="margin-left: 8px; font-size: 0.62rem;">Soon</span>
+                <span class="db-badge db-badge--pending db-badge--inline">Soon</span>
             </h2>
         </div>
         <div class="db-card-body">
@@ -175,7 +206,7 @@ include __DIR__ . '/../../components/page-header.php';
     <!-- Danger Zone -->
     <div class="db-card">
         <div class="db-card-header">
-            <h2 class="db-card-title"><i class="db-card-title-icon fas fa-triangle-exclamation" style="color: var(--brand-error);"></i> <?php echo e(__('settings_danger_zone')); ?></h2>
+            <h2 class="db-card-title"><i class="db-card-title-icon db-card-title-icon--danger fas fa-triangle-exclamation"></i> <?php echo e(__('settings_danger_zone')); ?></h2>
         </div>
         <div class="db-card-body">
             <div class="db-settings-item" style="border-bottom: none; padding-bottom: 0;">
@@ -193,14 +224,17 @@ include __DIR__ . '/../../components/page-header.php';
 <?php endif; ?>
 
 <!-- Close Account Modal -->
-<?php $modal_id = 'closeAccountModal'; $modal_title = __('settings_close_account'); $modal_size = 'sm'; include __DIR__ . '/../../components/modal.php'; ?>
-<div class="db-confirm-body">
-    <div class="db-modal-icon db-modal-icon--danger"><i class="fas fa-triangle-exclamation"></i></div>
-    <p><?php echo e(__('settings_close_account_confirm')); ?></p>
-</div>
 <?php
+$modal_id = 'closeAccountModal'; $modal_title = __('settings_close_account'); $modal_size = 'sm';
+include __DIR__ . '/../../components/modal.php';
+
+$cb_desc = __('settings_close_account_confirm'); $cb_icon = null;
+$cb_target_label = null; $cb_target_value = null; $cb_warn = null;
+include __DIR__ . '/../../components/confirm-body.php';
+
 $modal_footer = '<button class="db-btn db-btn--secondary" data-modal-close>' . e(__('common_cancel')) . '</button>
 <button class="db-btn db-btn--danger">' . e(__('common_confirm')) . '</button>';
-include __DIR__ . '/../../components/modal-end.php'; ?>
+include __DIR__ . '/../../components/modal-end.php';
+?>
 
 <?php require_once __DIR__ . '/../../layouts/footer.php'; ?>

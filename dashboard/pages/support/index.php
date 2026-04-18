@@ -18,10 +18,50 @@ $breadcrumbs_data = [
 
 require_once __DIR__ . '/../../layouts/shell.php';
 
+/* ══════════════════════════════════════════════════════════════════════
+   ███  SUPPORT TICKETS  ·  MOCK DATA BLOCK  (single source of truth) ███
+   ══════════════════════════════════════════════════════════════════════
+   BACKEND TEAM — PLEASE READ:
+
+   Every ticket / stat / mapping on this page lives in this block.
+   Edit a value here → UI updates directly.
+
+   Wiring real data:
+     • Replace $tickets with the DB query result.
+     • Keep the KEYS and SHAPE identical; the HTML loops expect them.
+     • $status_badge / $priority_badge / $dept_icons are static
+       lookup tables — extend them if a new status/dept is added.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ──────────────────────────────────────────
+   PAGE STATE
+   ──────────────────────────────────────────
+   'active' | 'loading' | 'error' | 'empty'
+   ────────────────────────────────────────── */
 $page_state = $_GET['state'] ?? 'active';
 
-$stats = ['total' => 5, 'pending' => 1, 'closed' => 2, 'progress' => 1];
+/* ──────────────────────────────────────────
+   STATS  (shown in header metrics)
+   ────────────────────────────────────────── */
+$stats = [
+    'total'    => 5,
+    'pending'  => 1,
+    'closed'   => 2,
+    'progress' => 1,
+];
 
+/* ──────────────────────────────────────────
+   TICKETS LIST  (main table)
+   ──────────────────────────────────────────
+   Each row:
+   • id           → ticket id (routes to ticket-details.php?id=…)
+   • subject      → plain-text subject line
+   • department   → one of $dept_icons keys below
+   • status       → one of $status_badge keys (drives badge)
+   • priority     → one of $priority_badge keys (drives badge)
+   • last_update  → relative time string ('1 minute ago')
+   • created      → ISO date 'YYYY-MM-DD'
+   ────────────────────────────────────────── */
 $tickets = [
     [
         'id' => 'ENH-796520', 'subject' => 'Linux VPS/VDS | #151926 YTA6686328 107.161.168.236',
@@ -50,21 +90,43 @@ $tickets = [
     ],
 ];
 
-// Badge class map
+/* ──────────────────────────────────────────
+   STATUS → badge-class  mapping
+   (status values come from DB; badges are visual)
+   ────────────────────────────────────────── */
 $status_badge = [
-    'new' => 'pending', 'open' => 'pending', 'answered' => 'active',
-    'customer_reply' => 'unpaid', 'in_progress' => 'pending',
-    'on_hold' => 'suspended', 'closed' => 'cancelled', 'solved' => 'paid',
+    'new'            => 'pending',
+    'open'           => 'pending',
+    'answered'       => 'active',
+    'customer_reply' => 'unpaid',
+    'in_progress'    => 'pending',
+    'on_hold'        => 'suspended',
+    'closed'         => 'cancelled',
+    'solved'         => 'paid',
 ];
 
+/* ──────────────────────────────────────────
+   PRIORITY → badge-class  mapping
+   ────────────────────────────────────────── */
 $priority_badge = [
-    'low' => 'active', 'medium' => 'pending', 'high' => 'unpaid', 'urgent' => 'overdue',
+    'low'    => 'active',
+    'medium' => 'pending',
+    'high'   => 'unpaid',
+    'urgent' => 'overdue',
 ];
 
+/* ──────────────────────────────────────────
+   DEPARTMENT → icon class  mapping
+   Extend when adding new departments.
+   ────────────────────────────────────────── */
 $dept_icons = [
-    'Technical' => 'fas fa-wrench', 'Billing' => 'fas fa-file-invoice',
-    'Sales' => 'fas fa-shopping-cart', 'Abuse' => 'fas fa-shield-halved',
+    'Technical' => 'fas fa-wrench',
+    'Billing'   => 'fas fa-file-invoice',
+    'Sales'     => 'fas fa-shopping-cart',
+    'Abuse'     => 'fas fa-shield-halved',
 ];
+
+/* ══════════════  END OF MOCK DATA  ══════════════ */
 ?>
 
 <?php
@@ -84,12 +146,13 @@ include __DIR__ . '/../../components/page-header.php';
     <?php $skel_rows = 5; $skel_cols = 5; $skel_has_icon = false; $skel_has_filters = true; include __DIR__ . '/../../components/skeleton-table.php'; ?>
 
 <?php elseif ($page_state === 'empty'): ?>
-    <div class="db-card"><div class="db-empty-state">
-        <div class="db-empty-illustration db-empty-illustration--services"><i class="fas fa-headset"></i></div>
-        <h3 class="db-empty-title"><?php echo e(__('tickets_empty_title')); ?></h3>
-        <p class="db-empty-desc"><?php echo e(__('tickets_empty_desc')); ?></p>
-        <a href="<?php echo DASH_BASE_PATH; ?>/pages/support/new.php" class="db-btn db-btn--primary"><i class="fas fa-plus"></i> <?php echo e(__('tickets_create')); ?></a>
-    </div></div>
+    <?php
+    $es_icon   = 'fa-headset';
+    $es_title  = __('tickets_empty_title');
+    $es_desc   = __('tickets_empty_desc');
+    $es_action = '<a href="' . DASH_BASE_PATH . '/pages/support/new.php" class="db-btn db-btn--primary"><i class="fas fa-plus"></i> ' . e(__('tickets_create')) . '</a>';
+    include __DIR__ . '/../../components/empty-state.php';
+    ?>
 
 <?php else: ?>
 
@@ -168,29 +231,38 @@ include __DIR__ . '/../../components/page-header.php';
                             <td class="db-table-hide-mobile"><?php echo e($t['last_update']); ?></td>
                             <td>
                                 <div class="db-row-actions db-row-actions--solid" onclick="event.stopPropagation();">
-                                    <a href="<?php echo $detail_url; ?>" class="db-row-action db-row-action--solid db-row-action--primary" data-tooltip="<?php echo e(__('common_view')); ?>"><i class="fas fa-eye"></i></a>
-                                    <?php if ($is_open): ?>
-                                    <button class="db-row-action db-row-action--solid db-row-action--danger" data-tooltip="<?php echo e(__('ticket_close')); ?>" onclick="DashToast.show('success','','<?php echo e(__('ticket_close_success')); ?>')"><i class="fas fa-xmark"></i></button>
-                                    <?php endif; ?>
+                                    <a href="<?php echo $detail_url; ?>" class="db-row-action db-row-action--solid db-row-action--primary" data-tooltip="<?php echo e(__('common_open')); ?>"><i class="fas fa-arrow-up-right-from-square"></i></a>
+                                    <div class="db-dropdown-wrapper">
+                                        <button class="db-row-action db-row-action--solid db-row-action--menu" data-dropdown-toggle><i class="fas fa-ellipsis-vertical"></i></button>
+                                        <div class="db-dropdown-menu">
+                                            <a href="<?php echo $detail_url; ?>" class="db-dropdown-item"><i class="fas fa-eye"></i> <?php echo e(__('common_view')); ?></a>
+                                            <?php if ($is_open): ?>
+                                            <button class="db-dropdown-item"><i class="fas fa-reply"></i> <?php echo e(__('ticket_reply')); ?></button>
+                                            <div class="db-dropdown-divider"></div>
+                                            <button class="db-dropdown-item db-dropdown-item--danger" onclick="DashToast.show('success','','<?php echo e(__('ticket_close_success')); ?>')"><i class="fas fa-xmark"></i> <?php echo e(__('ticket_close')); ?></button>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
                                 </div>
                             </td>
                         </tr>
                         <?php endforeach; ?>
-                        <tr data-table-empty>
-                            <td colspan="6"><div class="db-table-empty-state"><i class="fas fa-magnifying-glass"></i> <?php echo e(__('ticket_empty_search')); ?></div></td>
-                        </tr>
+                        <?php
+                        $te_colspan = 6; $te_text = __('ticket_empty_search');
+                        include __DIR__ . '/../../components/table-empty.php';
+                        ?>
                     </tbody>
                 </table>
             </div>
 
-            <div class="db-pagination-bar">
-                <div class="db-pagination-bar__info"><?php echo e(__('tickets_showing', ['from' => 1, 'to' => count($tickets), 'total' => $stats['total']])); ?></div>
-                <div class="db-pagination-bar__nav">
-                    <button class="db-pagination-bar__btn" disabled><i class="fas fa-chevron-left"></i> <?php echo e(__('common_previous')); ?></button>
-                    <span class="db-pagination-bar__page active">1</span>
-                    <button class="db-pagination-bar__btn" disabled><?php echo e(__('common_next')); ?> <i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
+            <?php
+            $pg_current    = 1;
+            $pg_total      = max(1, (int)ceil($stats['total'] / max(1, count($tickets))));
+            $pg_from       = 1;
+            $pg_to         = count($tickets);
+            $pg_total_rows = $stats['total'];
+            include __DIR__ . '/../../components/pagination.php';
+            ?>
         </div>
     </div>
 <?php endif; ?>

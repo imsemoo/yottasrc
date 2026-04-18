@@ -586,10 +586,10 @@ html {
 }
 
 .reg-step.is-active .reg-step__num {
-    background: var(--brand-accent);
-    border-color: var(--brand-accent);
+    background: var(--brand-primary);
+    border-color: var(--brand-primary);
     color: #fff;
-    box-shadow: 0 0 0 5px rgba(139, 92, 246, 0.18);
+    box-shadow: 0 0 0 5px rgba(37, 99, 235, 0.18);
 }
 
 .reg-step.is-active .reg-step__label {
@@ -728,8 +728,8 @@ html {
 .reg-input::placeholder { color: var(--text-tertiary); }
 .reg-input:hover { border-color: var(--text-tertiary); }
 .reg-input:focus {
-    border-color: var(--brand-accent);
-    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.14);
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14);
     background: var(--bg-card);
 }
 
@@ -820,8 +820,8 @@ html {
 .reg-combo__btn:hover { border-color: var(--text-tertiary); }
 
 .reg-combo.is-open .reg-combo__btn {
-    border-color: var(--brand-accent);
-    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.14);
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14);
     background: var(--bg-card);
 }
 
@@ -935,8 +935,8 @@ html {
     background: var(--bg-tertiary);
 }
 .reg-combo__option.is-selected {
-    background: rgba(139, 92, 246, 0.1);
-    color: var(--brand-accent);
+    background: rgba(37, 99, 235, 0.1);
+    color: var(--brand-primary);
     font-weight: 600;
 }
 .reg-combo__option-name {
@@ -975,8 +975,8 @@ html {
 }
 .reg-phone:hover { border-color: var(--text-tertiary); }
 .reg-phone:focus-within {
-    border-color: var(--brand-accent);
-    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.14);
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14);
     background: var(--bg-card);
 }
 
@@ -1077,14 +1077,14 @@ html {
 .reg-btn-next,
 .reg-submit {
     flex: 1;
-    background: var(--brand-accent);
+    background: var(--brand-primary);
     color: #fff;
 }
 .reg-btn-next:hover,
 .reg-submit:hover {
-    background: #7c3aed;
+    background: var(--brand-primary-hover);
     transform: translateY(-1px);
-    box-shadow: 0 8px 24px rgba(139, 92, 246, 0.35);
+    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35);
 }
 .reg-btn-next:active,
 .reg-submit:active {
@@ -1238,12 +1238,12 @@ html {
 }
 
 .reg-check:hover .reg-check__box {
-    border-color: var(--brand-accent);
+    border-color: var(--brand-primary);
 }
 
 .reg-check input:checked ~ .reg-check__box {
-    background: var(--brand-accent);
-    border-color: var(--brand-accent);
+    background: var(--brand-primary);
+    border-color: var(--brand-primary);
 }
 
 .reg-check input:checked ~ .reg-check__box::after {
@@ -1252,11 +1252,11 @@ html {
 }
 
 .reg-check input:focus-visible ~ .reg-check__box {
-    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
 }
 
 .reg-check__text a {
-    color: var(--brand-accent);
+    color: var(--brand-primary);
     font-weight: 600;
     text-decoration: none;
 }
@@ -1342,13 +1342,13 @@ html {
     color: var(--text-secondary);
 }
 .reg-bottom a {
-    color: var(--brand-accent);
+    color: var(--brand-primary);
     font-weight: 600;
     text-decoration: none;
     transition: color var(--duration-fast) ease;
 }
 .reg-bottom a:hover {
-    color: #7c3aed;
+    color: var(--brand-primary-hover);
     text-decoration: underline;
 }
 

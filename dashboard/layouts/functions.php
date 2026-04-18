@@ -13,7 +13,9 @@
  *   // "dash_upcoming_days" => ":count days" → "31 days"
  *
  * @param  string $key          Dot-style or flat translation key.
- * @param  array  $replacements Associative array of [:placeholder => value].
+ * @param  array  $replacements Associative array of [placeholder => value].
+ *                              Supports both `:name` and `{name}` placeholder
+ *                              styles in the translation string.
  * @return string               Translated string (falls back to the key itself).
  */
 function __($key, $replacements = []) {
@@ -21,7 +23,11 @@ function __($key, $replacements = []) {
     $text = $lang[$key] ?? $key;
 
     foreach ($replacements as $placeholder => $value) {
-        $text = str_replace(':' . $placeholder, (string) $value, $text);
+        $v = (string) $value;
+        // Laravel-style :name
+        $text = str_replace(':' . $placeholder, $v, $text);
+        // Curly-brace {name} style (also supports {name})
+        $text = str_replace('{' . $placeholder . '}', $v, $text);
     }
 
     return $text;
@@ -94,13 +100,20 @@ function is_group_open($pages) {
 }
 
 /**
- * Format currency amount.
+ * Format a currency amount for display.
+ *
+ * @param  float|int|string  $amount    — the raw number (e.g. 3.42, -149.99)
+ * @param  int               $decimals  — number of decimal places (default 2,
+ *                                        use 4 for hourly prices like €0.0097)
+ * @param  string|null       $currency  — ISO currency code override; falls back
+ *                                        to the user's $current_currency session
+ * @return string  e.g. "€3.42" or "$3.42"
  */
-function format_money($amount, $currency = null) {
+function format_money($amount, $decimals = 2, $currency = null) {
     global $current_currency, $supported_currencies;
     $cur = $currency ?? $current_currency;
     $symbol = $supported_currencies[$cur]['symbol'] ?? '€';
-    return $symbol . number_format((float)$amount, 2);
+    return $symbol . number_format((float)$amount, (int)$decimals);
 }
 
 /**

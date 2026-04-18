@@ -21,38 +21,109 @@
 require_once __DIR__ . '/../../../layouts/config.php';
 require_once __DIR__ . '/../../../layouts/project-helpers.php';
 
-$project_id         = $_GET['id']         ?? '';
-$server_id          = $_GET['server']     ?? 'CLY806752';
+$project_id         = $_GET['id']     ?? '';
+$server_id          = $_GET['server'] ?? 'CLY806752';
 $current_project    = cloud_require_project($project_id);
 $project_nav_active = 'servers';
 
-// Mock server data
+/* ══════════════════════════════════════════════════════════════════════
+   ███  SERVER DETAILS  ·  MOCK DATA BLOCK  (single source of truth)  ███
+   ══════════════════════════════════════════════════════════════════════
+   BACKEND TEAM — PLEASE READ:
+
+   This is the per-server dashboard (biggest page in the app).
+   Every spec, credential, metric, chart, IP, image, and package
+   lives in this block.
+
+   Wiring real data:
+     • Look up the server by ($project_id, $server_id) and populate
+       $server with the server row + telemetry.
+     • $server['telemetry'] should come from your metrics backend
+       (CPU/RAM/Disk/Net over the last N minutes).
+     • All other arrays ($reinstall_linux, $reinstall_windows,
+       $upgrade_packages, $rdns_rows, etc.) are option/catalog data
+       from the provisioning platform.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ──────────────────────────────────────────
+   SERVER — core fields
+   ──────────────────────────────────────────
+   • name            → server name (= $server_id)
+   • package         → plan SKU (e.g. 'CLW1')
+   • os / os_family  → OS display name + 'windows' | 'linux'
+   • cpu             → ['cores' => int, 'arch' => 'x64'|'arm64']
+   • ram             → ['size' => GB int, 'type' => 'DDR4']
+   • ssd             → ['size' => GB int, 'type' => 'NVMe']
+   • bandwidth       → ['used' => TB, 'max' => TB, 'speed' => '10 Gbit/s']
+   • status          → 'active' | 'suspended' | 'terminated'
+   • ip / location   → primary IP + country label
+   • location_flag   → ISO-2 code (flag-icons)
+   • username/password → admin credentials
+   • usage           → MTD usage cost (float)
+   • price_m / price_h → monthly + hourly pricing
+   • cycle           → months in current cycle (1 = monthly)
+   ────────────────────────────────────────── */
 $server = [
-    'name'       => $server_id,
-    'package'    => 'CLW1',
-    'os'         => 'Windows Server 2025',
-    'os_family'  => 'windows',
-    'cpu'        => ['cores' => 2, 'arch' => 'x64'],
-    'ram'        => ['size' => 4, 'type' => 'DDR4'],
-    'ssd'        => ['size' => 50, 'type' => 'NVMe'],
-    'bandwidth'  => ['used' => 0, 'max' => 5, 'speed' => '10 Gbit/s'],
-    'status'     => 'active',
-    'ip'         => '107.161.174.200',
-    'location'   => 'Turkey',
+    'name'          => $server_id,
+    'package'       => 'CLW1',
+    'os'            => 'Windows Server 2025',
+    'os_family'     => 'windows',
+    'cpu'           => ['cores' => 2, 'arch' => 'x64'],
+    'ram'           => ['size' => 4,  'type' => 'DDR4'],
+    'ssd'           => ['size' => 50, 'type' => 'NVMe'],
+    'bandwidth'     => ['used' => 0,  'max' => 5,  'speed' => '10 Gbit/s'],
+    'status'        => 'active',
+    'ip'            => '107.161.174.200',
+    'location'      => 'Turkey',
     'location_flag' => 'tr',
-    'username'   => 'admin',
-    'password'   => 'BbBQznCZI5uQM2fv',
-    'usage'      => 0.01,
-    'price_m'    => 7.49,
-    'price_h'    => 0.0109,
-    'cycle'      => 1,
+    'username'      => 'admin',
+    'password'      => 'BbBQznCZI5uQM2fv',
+    'usage'         => 0.01,
+    'price_m'       => 7.49,
+    'price_h'       => 0.0109,
+    'cycle'         => 1,
 ];
 
-// Demo controls via query params:
-//   ?power=off               — server is powered off
-//   ?created=recent          — show "just created" warning
-$server['power']           = ($_GET['power'] ?? 'on') === 'off' ? 'off' : 'on';
+// Demo-only toggles (set via URL for design states — backend ignores):
+//   ?power=off      → powered-off view
+//   ?created=recent → "just created" notice
+$server['power']            = ($_GET['power'] ?? 'on') === 'off' ? 'off' : 'on';
 $server['created_recently'] = ($_GET['created'] ?? '') === 'recent';
+
+/* ──────────────────────────────────────────
+   TELEMETRY  (live metrics for the header strip)
+   ──────────────────────────────────────────
+   Each metric:
+   • pct       → 0–100, drives gauge + color severity
+   • spark     → array of recent samples (any length; auto-scaled)
+   • used_gb   → (RAM/disk only) human-readable current usage
+   • in_mbps/out_mbps → (network) current throughput
+
+   Backend: poll every N seconds and replace these values.
+   ────────────────────────────────────────── */
+$server['uptime']   = $server['power'] === 'on' ? '2h 14m' : '—';
+$server['port_rdp'] = 3389;
+$server['telemetry'] = [
+    'cpu'  => [
+        'pct'   => 34,
+        'spark' => [12, 18, 22, 17, 24, 30, 34, 28, 32, 38, 34, 30, 28, 32, 34],
+    ],
+    'ram'  => [
+        'pct'     => 58,
+        'used_gb' => round($server['ram']['size'] * 0.58, 1),
+        'spark'   => [50, 52, 54, 55, 56, 58, 59, 60, 58, 56, 57, 58, 59, 58, 58],
+    ],
+    'disk' => [
+        'pct'     => 42,
+        'used_gb' => round($server['ssd']['size'] * 0.42, 0),
+        'spark'   => [35, 36, 38, 39, 40, 41, 42, 42, 41, 42, 42, 42, 42, 42, 42],
+    ],
+    'net'  => [
+        'in_mbps'  => 45,
+        'out_mbps' => 12,
+        'spark'    => [8, 12, 18, 22, 28, 35, 30, 42, 48, 52, 47, 55, 45, 42, 40],
+    ],
+];
 
 $page_title = $server['name'] . ' — ' . SITE_NAME;
 $breadcrumbs_data = [
@@ -108,52 +179,105 @@ $page_state = $_GET['state'] ?? 'active';
 
 <?php else: ?>
 
-<!-- ═══ SERVER HEADER ═══ -->
-<div class="db-srvd-header">
-    <div class="db-srvd-header__left">
-        <div class="db-srvd-pkg-badge"><?php echo e($server['package']); ?></div>
-        <div class="db-srvd-title-block">
-            <h1 class="db-srvd-title">
-                <span class="db-srvd-power db-srvd-power--<?php echo e($server['power']); ?>"></span>
-                <span class="db-srvd-title-view" id="srvdNameView"><?php echo e($server['name']); ?></span>
-                <input type="text" class="db-srvd-title-input" id="srvdNameInput" value="<?php echo e($server['name']); ?>" maxlength="30" style="display:none;">
-                <button class="db-srvd-title-edit" id="srvdNameEdit" title="<?php echo e(__('srvd_rename')); ?>">
-                    <i class="fas fa-pen"></i>
-                </button>
-                <button class="db-srvd-title-save" id="srvdNameSave" style="display:none;" title="<?php echo e(__('common_save')); ?>">
-                    <i class="fas fa-check"></i>
-                </button>
-                <button class="db-srvd-title-cancel" id="srvdNameCancel" style="display:none;" title="<?php echo e(__('common_cancel')); ?>">
-                    <i class="fas fa-xmark"></i>
-                </button>
-            </h1>
-            <div class="db-srvd-meta">
-                <span class="db-srvd-meta-item"><i class="fas fa-globe"></i> <?php echo e($server['ip']); ?></span>
-                <span class="db-srvd-meta-item"><span class="fi fi-<?php echo e($server['location_flag']); ?>"></span> <?php echo e($server['location']); ?></span>
+<!-- ═══════════════════════════════════════════
+     SERVER HERO — premium header with live status
+     ═══════════════════════════════════════════ -->
+<?php
+$is_on = $server['power'] === 'on';
+$status_key = $is_on ? 'active' : 'stopped';
+?>
+<?php $__srvd_seed = cloud_project_seed($current_project['id']); ?>
+<section class="ds-hero ds-hero--seeded<?php echo $is_on ? '' : ' ds-hero--danger'; ?>" data-power="<?php echo e($server['power']); ?>" style="--hero-seed: var(--seed-<?php echo $__srvd_seed; ?>);">
+    <div class="ds-hero__top">
+        <div class="ds-hero__identity">
+            <div class="ds-hero__avatar ds-hero__avatar--pkg">
+                <span class="ds-hero__pkg-label"><?php echo e(__('srvd_hero_plan')); ?></span>
+                <span class="ds-hero__pkg-name"><?php echo e($server['package']); ?></span>
+            </div>
+            <div class="ds-hero__title-block">
+                <div class="ds-hero__meta-top">
+                    <span class="ds-eyebrow <?php echo $is_on ? 'ds-eyebrow--success' : 'ds-eyebrow--danger'; ?>" id="srvdStatusPill">
+                        <span class="ds-status-dot"></span>
+                        <span id="srvdStatusLabel"><?php echo e($is_on ? __('srvd_status_running') : __('srvd_status_stopped')); ?></span>
+                    </span>
+                    <span class="ds-hero__meta-sep">·</span>
+                    <span class="ds-hero__os"><i class="fab fa-windows"></i> <?php echo e($server['os']); ?></span>
+                </div>
+                <h1 class="ds-hero__title">
+                    <span class="db-srvd-title-view" id="srvdNameView"><?php echo e($server['name']); ?></span>
+                    <input type="text" class="db-srvd-title-input" id="srvdNameInput" value="<?php echo e($server['name']); ?>" maxlength="30" style="display:none;">
+                    <button class="db-srvd-title-edit" id="srvdNameEdit" title="<?php echo e(__('srvd_rename')); ?>">
+                        <i class="fas fa-pen"></i>
+                    </button>
+                    <button class="db-srvd-title-save" id="srvdNameSave" style="display:none;" title="<?php echo e(__('common_save')); ?>">
+                        <i class="fas fa-check"></i>
+                    </button>
+                    <button class="db-srvd-title-cancel" id="srvdNameCancel" style="display:none;" title="<?php echo e(__('common_cancel')); ?>">
+                        <i class="fas fa-xmark"></i>
+                    </button>
+                </h1>
+                <div class="ds-hero__meta">
+                    <span class="ds-hero__meta-item"><i class="fas fa-globe"></i> <?php echo e($server['ip']); ?></span>
+                    <span class="ds-hero__meta-item"><span class="fi fi-<?php echo e($server['location_flag']); ?>"></span> <?php echo e($server['location']); ?></span>
+                    <span class="ds-hero__meta-item"><i class="fas fa-clock"></i> <?php echo e(__('srvd_hero_uptime')); ?> <strong><?php echo e($server['uptime']); ?></strong></span>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="db-srvd-header__right">
-        <button class="db-srvd-action-btn db-srvd-action-btn--console" onclick="DashModal.open('consoleModal')" title="<?php echo e(__('srvd_console_title')); ?>">
-            <i class="fas fa-terminal"></i>
-        </button>
-        <div class="db-dropdown-wrapper">
-            <button class="db-srvd-action-btn" data-dropdown-toggle>
-                <i class="fas fa-ellipsis-vertical"></i> <span class="db-srvd-action-btn__label"><?php echo e(__('srvd_actions')); ?></span> <i class="fas fa-chevron-down" style="font-size:0.6rem;"></i>
+
+        <div class="ds-hero__actions">
+            <button class="ds-btn ds-btn--primary" onclick="DashModal.open('consoleModal')">
+                <i class="fas fa-terminal"></i>
+                <span><?php echo e(__('srvd_console_title')); ?></span>
             </button>
-            <div class="db-dropdown-menu">
-                <button class="db-dropdown-item" data-srvd-action="restart"><i class="fas fa-rotate"></i> <?php echo e(__('srvd_action_restart')); ?></button>
-                <button class="db-dropdown-item" data-srvd-action="stop"><i class="fas fa-stop"></i> <?php echo e(__('srvd_action_stop')); ?></button>
-                <button class="db-dropdown-item" data-srvd-action="snapshot"><i class="fas fa-camera"></i> <?php echo e(__('srvd_action_snapshot')); ?></button>
-                <div class="db-dropdown-divider"></div>
-                <button class="db-dropdown-item" data-srvd-action="reset_password"><i class="fas fa-key"></i> <?php echo e(__('srvd_action_reset_pw')); ?></button>
+            <div class="db-dropdown-wrapper">
+                <button class="ds-btn" data-dropdown-toggle>
+                    <i class="fas fa-bolt"></i>
+                    <span><?php echo e(__('srvd_actions')); ?></span>
+                    <i class="fas fa-chevron-down ds-btn__chev"></i>
+                </button>
+                <div class="db-dropdown-menu">
+                    <button class="db-dropdown-item" data-srvd-action="restart"><i class="fas fa-rotate"></i> <?php echo e(__('srvd_action_restart')); ?></button>
+                    <button class="db-dropdown-item" data-srvd-action="stop"><i class="fas fa-stop"></i> <?php echo e(__('srvd_action_stop')); ?></button>
+                    <button class="db-dropdown-item" data-srvd-action="snapshot"><i class="fas fa-camera"></i> <?php echo e(__('srvd_action_snapshot')); ?></button>
+                    <div class="db-dropdown-divider"></div>
+                    <button class="db-dropdown-item" data-srvd-action="reset_password"><i class="fas fa-key"></i> <?php echo e(__('srvd_action_reset_pw')); ?></button>
+                </div>
             </div>
+            <button id="srvdPowerBtn" class="ds-btn ds-btn--power ds-btn--power-<?php echo e($server['power']); ?>" data-power="<?php echo e($server['power']); ?>">
+                <i class="fas fa-power-off"></i>
+                <span id="srvdPowerLabel"><?php echo e($is_on ? __('srvd_power_on') : __('srvd_power_off')); ?></span>
+            </button>
         </div>
-        <button id="srvdPowerBtn" class="db-srvd-power-btn db-srvd-power-btn--<?php echo e($server['power']); ?>" data-power="<?php echo e($server['power']); ?>">
-            <i class="fas fa-power-off"></i> <span id="srvdPowerLabel"><?php echo e($server['power'] === 'on' ? __('srvd_power_on') : __('srvd_power_off')); ?></span>
-        </button>
     </div>
-</div>
+
+    <!-- Live telemetry strip — uses .ds-stat-grid + .ds-stat--glass -->
+    <div class="ds-hero__stats">
+        <div class="ds-stat-grid">
+            <?php
+            $tele = $server['telemetry'];
+            $tele_items = [
+                ['key' => 'cpu',  'icon' => 'fa-microchip',     'label' => __('srvd_tele_cpu'),  'value' => $tele['cpu']['pct'] . '%',  'sub' => $server['cpu']['cores'] . ' ' . __('srvd_tele_cores') . ' · ' . $server['cpu']['arch'], 'spark' => $tele['cpu']['spark'],  'seed' => 0],
+                ['key' => 'ram',  'icon' => 'fa-memory',        'label' => __('srvd_tele_ram'),  'value' => $tele['ram']['pct'] . '%',  'sub' => $tele['ram']['used_gb'] . ' / ' . $server['ram']['size'] . ' GB', 'spark' => $tele['ram']['spark'], 'seed' => 1],
+                ['key' => 'disk', 'icon' => 'fa-hard-drive',    'label' => __('srvd_tele_disk'), 'value' => $tele['disk']['pct'] . '%', 'sub' => $tele['disk']['used_gb'] . ' / ' . $server['ssd']['size'] . ' GB', 'spark' => $tele['disk']['spark'], 'seed' => 2],
+                ['key' => 'net',  'icon' => 'fa-wave-square',   'label' => __('srvd_tele_net'),  'value' => '↓' . $tele['net']['in_mbps'] . ' ↑' . $tele['net']['out_mbps'], 'sub' => __('srvd_tele_mbps'), 'spark' => $tele['net']['spark'], 'seed' => 3, 'value_compact' => true],
+            ];
+            foreach ($tele_items as $m):
+                $tele_color = 'rgb(var(--seed-' . $m['seed'] . '))';
+            ?>
+            <div class="ds-stat ds-stat--glass" data-metric="<?php echo e($m['key']); ?>" style="--stat-seed: var(--seed-<?php echo $m['seed']; ?>);">
+                <div class="ds-stat__head">
+                    <span class="ds-stat__label"><i class="fas <?php echo e($m['icon']); ?>"></i> <?php echo e($m['label']); ?></span>
+                </div>
+                <div class="ds-stat__value">
+                    <span class="ds-stat__num<?php echo !empty($m['value_compact']) ? ' ds-stat__num--compact' : ''; ?>"><?php echo e($m['value']); ?></span>
+                </div>
+                <div class="ds-stat__spark"><?php echo cloud_sparkline($m['spark'], 260, 36, $tele_color); ?></div>
+                <div class="ds-stat__sub"><?php echo e($m['sub']); ?></div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
 
 <?php if (!empty($server['created_recently'])): ?>
 <!-- "Just created" warning banner -->
@@ -183,67 +307,95 @@ $page_state = $_GET['state'] ?? 'active';
 
     <!-- ═══ OVERVIEW ═══ -->
     <div class="db-tab-pane is-active" data-tab-pane="overview">
-        <!-- Remote Desktop Access -->
-        <h3 class="db-srvd-section-title"><i class="fas fa-plug"></i> <?php echo e(__('srvd_overview_access_title')); ?></h3>
-        <div class="db-srvd-access-grid">
-            <div class="db-srvd-access-card">
-                <div class="db-srvd-access-card__label"><i class="fas fa-globe"></i> <?php echo e(__('srvd_overview_ip')); ?></div>
-                <div class="db-srvd-access-card__value">→ <?php echo e($server['ip']); ?></div>
-            </div>
-            <div class="db-srvd-access-card">
-                <div class="db-srvd-access-card__label"><i class="fas fa-user"></i> <?php echo e(__('srvd_overview_username')); ?></div>
-                <div class="db-srvd-access-card__value">→ <?php echo e($server['username']); ?></div>
-            </div>
-            <div class="db-srvd-access-card">
-                <div class="db-srvd-access-card__label"><i class="fas fa-key"></i> <?php echo e(__('srvd_overview_password')); ?></div>
-                <div class="db-srvd-access-card__value db-srvd-password" id="srvdPassword">
-                    <span id="srvdPasswordText" class="db-srvd-password__hidden">••••••••••••••••</span>
-                    <span id="srvdPasswordReal" style="display:none;">→ <?php echo e($server['password']); ?></span>
-                    <button type="button" class="db-srvd-password-toggle" onclick="toggleSrvdPassword()"><i class="fas fa-eye" id="srvdPwdEye"></i></button>
+        <!-- Remote Access card — copy-to-clipboard chips -->
+        <div class="db-srvd-access">
+            <div class="db-srvd-access__head">
+                <div class="db-srvd-access__title-wrap">
+                    <h3 class="db-srvd-access__title">
+                        <span class="db-srvd-access__icon"><i class="fas fa-plug"></i></span>
+                        <?php echo e(__('srvd_overview_access_title')); ?>
+                    </h3>
+                    <p class="db-srvd-access__sub"><?php echo e(__('srvd_access_sub')); ?></p>
                 </div>
             </div>
-            <div class="db-srvd-access-card">
-                <div class="db-srvd-access-card__label"><i class="fas fa-chart-line"></i> <?php echo e(__('srvd_overview_usage')); ?></div>
-                <div class="db-srvd-access-card__value">→ €<?php echo number_format($server['usage'], 2); ?></div>
+
+            <div class="db-srvd-access__grid">
+                <button type="button" class="db-srvd-access-chip" data-srvd-copy="<?php echo e($server['ip']); ?>" data-srvd-toast="<?php echo e(__('srvd_access_ip_copied')); ?>">
+                    <div class="db-srvd-access-chip__head">
+                        <span class="db-srvd-access-chip__label"><i class="fas fa-globe"></i> <?php echo e(__('srvd_overview_ip')); ?></span>
+                        <i class="fas fa-copy db-srvd-access-chip__copy"></i>
+                    </div>
+                    <div class="db-srvd-access-chip__value"><?php echo e($server['ip']); ?></div>
+                </button>
+
+                <button type="button" class="db-srvd-access-chip" data-srvd-copy="<?php echo e($server['username']); ?>" data-srvd-toast="<?php echo e(__('srvd_access_username_copied')); ?>">
+                    <div class="db-srvd-access-chip__head">
+                        <span class="db-srvd-access-chip__label"><i class="fas fa-user"></i> <?php echo e(__('srvd_overview_username')); ?></span>
+                        <i class="fas fa-copy db-srvd-access-chip__copy"></i>
+                    </div>
+                    <div class="db-srvd-access-chip__value"><?php echo e($server['username']); ?></div>
+                </button>
+
+                <div class="db-srvd-access-chip db-srvd-access-chip--password" id="srvdPassword">
+                    <div class="db-srvd-access-chip__head">
+                        <span class="db-srvd-access-chip__label"><i class="fas fa-key"></i> <?php echo e(__('srvd_overview_password')); ?></span>
+                        <div class="db-srvd-access-chip__tools">
+                            <button type="button" class="db-srvd-password-toggle" onclick="toggleSrvdPassword()" aria-label="<?php echo e(__('srvd_access_reveal')); ?>"><i class="fas fa-eye" id="srvdPwdEye"></i></button>
+                            <button type="button" class="db-srvd-access-chip__copy-btn" data-srvd-copy="<?php echo e($server['password']); ?>" data-srvd-toast="<?php echo e(__('srvd_access_password_copied')); ?>" aria-label="<?php echo e(__('srvd_access_copy')); ?>"><i class="fas fa-copy"></i></button>
+                        </div>
+                    </div>
+                    <div class="db-srvd-access-chip__value db-srvd-access-chip__value--mono">
+                        <span id="srvdPasswordText">••••••••••••••••</span>
+                        <span id="srvdPasswordReal" style="display:none;"><?php echo e($server['password']); ?></span>
+                    </div>
+                </div>
+
+                <button type="button" class="db-srvd-access-chip" data-srvd-copy="<?php echo e($server['port_rdp']); ?>" data-srvd-toast="<?php echo e(__('srvd_access_port_copied')); ?>">
+                    <div class="db-srvd-access-chip__head">
+                        <span class="db-srvd-access-chip__label"><i class="fas fa-plug-circle-bolt"></i> <?php echo e(__('srvd_access_port')); ?></span>
+                        <i class="fas fa-copy db-srvd-access-chip__copy"></i>
+                    </div>
+                    <div class="db-srvd-access-chip__value"><?php echo e($server['port_rdp']); ?></div>
+                </button>
             </div>
         </div>
 
-        <!-- Specifications -->
-        <h3 class="db-srvd-section-title" style="margin-top:24px;"><i class="fas fa-microchip"></i> <?php echo e(__('srvd_overview_specs_title')); ?></h3>
-        <div class="db-srvd-specs-grid">
-            <div class="db-srvd-spec-card">
-                <div class="db-srvd-spec-card__icon" style="color:#e91e63;"><i class="fas fa-microchip"></i></div>
-                <div class="db-srvd-spec-card__label"><?php echo e(__('srvd_spec_cpu')); ?></div>
-                <div class="db-srvd-spec-card__value"><?php echo e($server['cpu']['cores']); ?></div>
-                <div class="db-srvd-spec-card__unit">Core <small><?php echo e($server['cpu']['arch']); ?></small></div>
+        <!-- Specifications — premium 6-tile grid -->
+        <div class="db-srvd-specs">
+            <div class="db-srvd-specs__head">
+                <h3 class="db-srvd-specs__title">
+                    <span class="db-srvd-specs__icon"><i class="fas fa-microchip"></i></span>
+                    <?php echo e(__('srvd_overview_specs_title')); ?>
+                </h3>
+                <p class="db-srvd-specs__sub"><?php echo e(__('srvd_specs_sub')); ?></p>
             </div>
-            <div class="db-srvd-spec-card">
-                <div class="db-srvd-spec-card__icon" style="color:#ec4899;"><i class="fas fa-memory"></i></div>
-                <div class="db-srvd-spec-card__label"><?php echo e(__('srvd_spec_ram')); ?></div>
-                <div class="db-srvd-spec-card__value"><?php echo e($server['ram']['size']); ?></div>
-                <div class="db-srvd-spec-card__unit">GB <small><?php echo e($server['ram']['type']); ?></small></div>
-            </div>
-            <div class="db-srvd-spec-card">
-                <div class="db-srvd-spec-card__icon" style="color:var(--brand-accent);"><i class="fas fa-hard-drive"></i></div>
-                <div class="db-srvd-spec-card__label"><?php echo e(__('srvd_spec_ssd')); ?></div>
-                <div class="db-srvd-spec-card__value"><?php echo e($server['ssd']['size']); ?></div>
-                <div class="db-srvd-spec-card__unit">GB <small><?php echo e($server['ssd']['type']); ?></small></div>
-            </div>
-            <div class="db-srvd-spec-card">
-                <div class="db-srvd-spec-card__icon" style="color:var(--brand-accent);"><i class="fas fa-arrows-left-right"></i></div>
-                <div class="db-srvd-spec-card__label"><?php echo e(__('srvd_spec_bandwidth')); ?></div>
-                <div class="db-srvd-spec-card__value"><?php echo e($server['bandwidth']['used']); ?>/<?php echo e($server['bandwidth']['max']); ?></div>
-                <div class="db-srvd-spec-card__unit">TB <small><?php echo e($server['bandwidth']['speed']); ?></small></div>
-            </div>
-            <div class="db-srvd-spec-card">
-                <div class="db-srvd-spec-card__icon" style="color:var(--brand-secondary);"><i class="fas fa-circle-check"></i></div>
-                <div class="db-srvd-spec-card__label"><?php echo e(__('srvd_spec_status')); ?></div>
-                <div class="db-srvd-spec-card__value" style="color:var(--brand-secondary); font-size:1rem; text-transform:uppercase;"><?php echo e($server['status']); ?></div>
-            </div>
-            <div class="db-srvd-spec-card">
-                <div class="db-srvd-spec-card__icon" style="color:#0078d4;"><i class="fab fa-windows"></i></div>
-                <div class="db-srvd-spec-card__label"><?php echo e(__('srvd_spec_image')); ?></div>
-                <div class="db-srvd-spec-card__value" style="font-size:0.86rem;"><?php echo e($server['os']); ?></div>
+
+            <div class="db-srvd-specs__grid">
+                <?php
+                $specs = [
+                    ['icon' => 'fa-microchip',     'label' => __('srvd_spec_cpu'),       'value' => $server['cpu']['cores'], 'unit' => __('srvd_spec_cores'), 'meta' => $server['cpu']['arch'], 'seed' => 0],
+                    ['icon' => 'fa-memory',        'label' => __('srvd_spec_ram'),       'value' => $server['ram']['size'],  'unit' => 'GB',                   'meta' => $server['ram']['type'], 'seed' => 1],
+                    ['icon' => 'fa-hard-drive',    'label' => __('srvd_spec_ssd'),       'value' => $server['ssd']['size'],  'unit' => 'GB',                   'meta' => $server['ssd']['type'], 'seed' => 2],
+                    ['icon' => 'fa-arrows-left-right', 'label' => __('srvd_spec_bandwidth'), 'value' => $server['bandwidth']['used'] . '/' . $server['bandwidth']['max'], 'unit' => 'TB', 'meta' => $server['bandwidth']['speed'], 'seed' => 3],
+                    ['icon' => 'fa-circle-check',  'label' => __('srvd_spec_status'),    'value' => strtoupper($server['status']), 'unit' => '',             'meta' => __('srvd_spec_status_sub'), 'seed' => 1, 'is_status' => true],
+                    ['icon' => 'fa-hashtag',       'label' => __('srvd_spec_cycle'),     'value' => '€' . number_format($server['price_m'], 2), 'unit' => '/mo', 'meta' => '€' . number_format($server['price_h'], 4) . ' /h', 'seed' => 2],
+                ];
+                foreach ($specs as $s):
+                ?>
+                <div class="db-srvd-spec" style="--spec-seed: var(--seed-<?php echo $s['seed']; ?>);">
+                    <div class="db-srvd-spec__icon"><i class="fas <?php echo e($s['icon']); ?>"></i></div>
+                    <div class="db-srvd-spec__label"><?php echo e($s['label']); ?></div>
+                    <div class="db-srvd-spec__value<?php echo !empty($s['is_status']) ? ' db-srvd-spec__value--status' : ''; ?>">
+                        <span class="db-srvd-spec__num"><?php echo e($s['value']); ?></span>
+                        <?php if (!empty($s['unit'])): ?>
+                        <span class="db-srvd-spec__unit"><?php echo e($s['unit']); ?></span>
+                        <?php endif; ?>
+                    </div>
+                    <?php if (!empty($s['meta'])): ?>
+                    <div class="db-srvd-spec__meta"><?php echo e($s['meta']); ?></div>
+                    <?php endif; ?>
+                </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
@@ -259,7 +411,7 @@ $page_state = $_GET['state'] ?? 'active';
                 <li class="db-srvd-notice--warn"><i class="fas fa-circle"></i> <?php echo e(__('srvd_network_notice_4')); ?></li>
             </ul>
 
-            <table class="db-table" style="margin-top:16px;">
+            <table class="db-table db-srvd-inner--mt-lg">
                 <thead>
                     <tr>
                         <th><?php echo e(__('srvd_network_main_ip')); ?></th>
@@ -282,7 +434,7 @@ $page_state = $_GET['state'] ?? 'active';
                             <div class="db-dropdown-wrapper">
                                 <button class="db-row-action db-row-action--solid" data-dropdown-toggle><i class="fas fa-ellipsis"></i></button>
                                 <div class="db-dropdown-menu">
-                                    <button class="db-dropdown-item" data-rdns-edit><i class="fas fa-edit"></i> <?php echo e(__('project_ip_action_rdns')); ?></button>
+                                    <button class="db-dropdown-item" data-rdns-edit><i class="fas fa-pen"></i> <?php echo e(__('project_ip_action_rdns')); ?></button>
                                     <button class="db-dropdown-item" onclick="DashModal.open('instructionsModal')"><i class="fas fa-book"></i> <?php echo e(__('srvd_network_instructions')); ?></button>
                                 </div>
                             </div>
@@ -301,7 +453,7 @@ $page_state = $_GET['state'] ?? 'active';
             </div>
         </div>
 
-        <div class="db-srvd-card" style="margin-top:14px;">
+        <div class="db-srvd-card db-srvd-card--mt">
             <div class="db-srvd-card__head-row">
                 <div class="db-srvd-card__head"><i class="fas fa-link"></i> <?php echo e(__('srvd_network_additional_title')); ?></div>
                 <button class="db-btn db-btn--primary db-btn--sm" data-open-ip-modal="additional">
@@ -340,7 +492,7 @@ $page_state = $_GET['state'] ?? 'active';
                     <span class="db-srvd-card__head"><?php echo e(__('srvd_bw_usage_title')); ?></span>
                     <span class="db-srvd-bw-count"><?php echo $server['bandwidth']['used']; ?>/<?php echo $server['bandwidth']['max']; ?> TB</span>
                 </div>
-                <div class="db-resource-card__bar-wrap" style="margin-top:14px;">
+                <div class="db-resource-card__bar-wrap db-srvd-inner--mt-md">
                     <div class="db-resource-card__pct">0%</div>
                     <div class="db-resource-card__bar" style="width:0%;"></div>
                 </div>
@@ -383,8 +535,10 @@ $page_state = $_GET['state'] ?? 'active';
                 <li><i class="fas fa-circle"></i> <?php echo e(__('srvd_reinstall_notice_3')); ?></li>
             </ul>
 
-            <div class="db-image-grid" style="margin-top:16px;">
+            <div class="db-image-grid db-srvd-inner--mt-lg">
                 <?php
+                // MOCK — Reinstall image picker (tab-scoped).
+                // Backend: pull from the same image catalog used in create-server.
                 $reinstall_images = [
                     'win-2025' => 'Windows Server 2025',
                     'win-2022' => 'Windows Server 2022',
@@ -399,7 +553,7 @@ $page_state = $_GET['state'] ?? 'active';
                     $selected = $slug === 'win-10' ? ' is-selected' : '';
                 ?>
                 <button type="button" class="db-image-card<?php echo $selected; ?>" data-reinstall-image="<?php echo e($slug); ?>">
-                    <i class="fab fa-windows db-image-card__icon" style="color:#0078d4;"></i>
+                    <i class="fab fa-windows db-image-card__icon db-os-icon--windows"></i>
                     <span class="db-image-card__name"><?php echo e($name); ?></span>
                     <i class="fas fa-check-circle db-image-card__check"></i>
                 </button>
@@ -418,7 +572,7 @@ $page_state = $_GET['state'] ?? 'active';
     <div class="db-tab-pane" data-tab-pane="upgrade">
         <div class="db-srvd-card">
             <div class="db-srvd-card__head"><i class="fas fa-arrow-up-right-dots"></i> <?php echo e(__('srvd_upgrade_title')); ?></div>
-            <div class="db-cloud-info" style="margin-top:10px;">
+            <div class="db-cloud-info db-srvd-inner--mt-sm">
                 <i class="fas fa-circle-info"></i>
                 <span><?php echo e(__('srvd_upgrade_warn')); ?></span>
             </div>
@@ -428,11 +582,15 @@ $page_state = $_GET['state'] ?? 'active';
                 <strong><?php echo e($server['package']); ?></strong>
             </div>
 
-            <div class="db-package-grid" style="margin-top:16px;">
+            <div class="db-package-grid db-srvd-inner--mt-lg">
                 <?php
+                // MOCK — Upgrade catalog (tab-scoped).
+                // Backend: filter the global package catalog to exclude the
+                // current plan ($server['package']) and optionally mark one
+                // row 'selected' => true as the recommended upgrade.
                 $upgrade_packages = [
-                    ['id'=>'CLW2', 'arch'=>'x64', 'cores'=>4, 'ram'=>'8GB', 'storage'=>'100GB NVMe', 'bandwidth'=>'5TB', 'speed'=>'10 Gbit/s', 'price_m'=>12.99, 'price_h'=>0.0189],
-                    ['id'=>'CLW3', 'arch'=>'x64', 'cores'=>8, 'ram'=>'16GB', 'storage'=>'150GB NVMe', 'bandwidth'=>'5TB', 'speed'=>'10 Gbit/s', 'price_m'=>21.99, 'price_h'=>0.0319],
+                    ['id'=>'CLW2', 'arch'=>'x64', 'cores'=>4,  'ram'=>'8GB',  'storage'=>'100GB NVMe', 'bandwidth'=>'5TB', 'speed'=>'10 Gbit/s', 'price_m'=>12.99, 'price_h'=>0.0189],
+                    ['id'=>'CLW3', 'arch'=>'x64', 'cores'=>8,  'ram'=>'16GB', 'storage'=>'150GB NVMe', 'bandwidth'=>'5TB', 'speed'=>'10 Gbit/s', 'price_m'=>21.99, 'price_h'=>0.0319],
                     ['id'=>'CLW4', 'arch'=>'x64', 'cores'=>16, 'ram'=>'32GB', 'storage'=>'200GB NVMe', 'bandwidth'=>'5TB', 'speed'=>'10 Gbit/s', 'price_m'=>40.00, 'price_h'=>0.0579, 'selected'=>true],
                 ];
                 foreach ($upgrade_packages as $pkg):
@@ -445,8 +603,8 @@ $page_state = $_GET['state'] ?? 'active';
                             <span class="db-package-card__arch"><?php echo e($pkg['arch']); ?></span>
                         </div>
                         <div class="db-package-card__price">
-                            <span class="db-package-card__price-m">€<?php echo number_format($pkg['price_m'], 2); ?><small>/m</small></span>
-                            <span class="db-package-card__price-h">€<?php echo number_format($pkg['price_h'], 4); ?><small>/h</small></span>
+                            <span class="db-package-card__price-m"><?php echo format_money($pkg['price_m']); ?><small>/m</small></span>
+                            <span class="db-package-card__price-h"><?php echo format_money($pkg['price_h'], 4); ?><small>/h</small></span>
                         </div>
                     </div>
                     <div class="db-package-card__specs">
@@ -491,9 +649,9 @@ $page_state = $_GET['state'] ?? 'active';
             </ul>
         </div>
 
-        <div class="db-srvd-card" style="margin-top:14px;">
+        <div class="db-srvd-card db-srvd-card--mt">
             <div class="db-srvd-card__head"><i class="fas fa-flag"></i> <?php echo e(__('srvd_abuse_reports_title')); ?></div>
-            <div class="db-tab-bar" data-tab-bar data-tab-content="#abuseTabs" data-tab-hash-prefix="abuse-" data-tab-no-url="1" style="margin-top:12px;">
+            <div class="db-tab-bar db-srvd-inner--mt" data-tab-bar data-tab-content="#abuseTabs" data-tab-hash-prefix="abuse-" data-tab-no-url="1">
                 <button type="button" class="db-tab-bar__btn is-active" data-tab-target="pending"><i class="fas fa-circle-notch"></i> <?php echo e(__('srvd_abuse_pending')); ?> <span class="db-tab-bar__count">0</span></button>
                 <button type="button" class="db-tab-bar__btn" data-tab-target="review"><i class="fas fa-eye"></i> <?php echo e(__('srvd_abuse_review')); ?> <span class="db-tab-bar__count">0</span></button>
                 <button type="button" class="db-tab-bar__btn" data-tab-target="suspended"><i class="fas fa-pause"></i> <?php echo e(__('srvd_abuse_suspended')); ?> <span class="db-tab-bar__count">0</span></button>
@@ -512,12 +670,12 @@ $page_state = $_GET['state'] ?? 'active';
     <div class="db-tab-pane" data-tab-pane="activities">
         <div class="db-srvd-card">
             <div class="db-srvd-card__head"><i class="fas fa-clock-rotate-left"></i> <?php echo e(__('srvd_activities_title')); ?></div>
-            <table class="db-table" id="activitiesTable" data-table-tools style="margin-top:12px;">
+            <table class="db-table db-table--spaced-top" id="activitiesTable" data-table-tools>
                 <thead>
                     <tr>
-                        <th style="width:60px;">#</th>
+                        <th class="db-col-num">#</th>
                         <th class="db-table-sortable" data-sort-key="activity"><?php echo e(__('srvd_activities_col')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
-                        <th class="db-table-sortable" data-sort-key="date" style="width:200px;"><?php echo e(__('srvd_activities_date')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
+                        <th class="db-table-sortable db-col-date" data-sort-key="date"><?php echo e(__('srvd_activities_date')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -526,11 +684,21 @@ $page_state = $_GET['state'] ?? 'active';
                         <td><strong><?php echo e(__('srvd_act_create_server')); ?></strong></td>
                         <td>1 minute ago</td>
                     </tr>
-                    <tr data-table-empty>
-                        <td colspan="3"><div class="db-table-empty-state"><i class="fas fa-magnifying-glass"></i> No activities.</div></td>
-                    </tr>
+                    <?php
+                    $te_colspan = 3; $te_text = 'No activities.';
+                    include __DIR__ . '/../../../components/table-empty.php';
+                    ?>
                 </tbody>
             </table>
+
+            <?php
+            $pg_current    = 1;
+            $pg_total      = 1;
+            $pg_from       = 1;
+            $pg_to         = 1;
+            $pg_total_rows = 1;
+            include __DIR__ . '/../../../components/pagination.php';
+            ?>
         </div>
     </div>
 
@@ -547,22 +715,22 @@ $page_state = $_GET['state'] ?? 'active';
                 <li class="db-srvd-notice--warn"><i class="fas fa-circle"></i> <?php echo __('srvd_pricing_notice_6'); ?></li>
             </ul>
 
-            <div class="db-cloud-billing-summary" style="margin-top:14px;">
+            <div class="db-cloud-billing-summary db-srvd-inner--mt-md">
                 <div class="db-cloud-bill-card">
                     <div class="db-cloud-bill-card__label"><?php echo e(__('srvd_pricing_hourly')); ?></div>
-                    <div class="db-cloud-bill-card__value">€<?php echo number_format($server['price_h'], 4); ?></div>
+                    <div class="db-cloud-bill-card__value"><?php echo format_money($server['price_h'], 4); ?></div>
                 </div>
                 <div class="db-cloud-bill-card">
                     <div class="db-cloud-bill-card__label"><?php echo e(__('srvd_pricing_monthly')); ?></div>
-                    <div class="db-cloud-bill-card__value">€<?php echo number_format($server['price_m'], 2); ?></div>
+                    <div class="db-cloud-bill-card__value"><?php echo format_money($server['price_m']); ?></div>
                 </div>
                 <div class="db-cloud-bill-card">
                     <div class="db-cloud-bill-card__label"><?php echo e(__('srvd_pricing_cycle')); ?></div>
                     <div class="db-cloud-bill-card__value"><?php echo $server['cycle']; ?>hr</div>
                 </div>
-                <div class="db-cloud-bill-card" style="background:rgba(139, 92, 246, 0.1); border-color:rgba(139, 92, 246, 0.3);">
-                    <div class="db-cloud-bill-card__label" style="color:var(--brand-accent);"><?php echo e(__('srvd_pricing_usage')); ?></div>
-                    <div class="db-cloud-bill-card__value" style="color:var(--brand-accent);">€<?php echo number_format($server['usage'], 2); ?></div>
+                <div class="db-cloud-bill-card db-cloud-bill-card--accent">
+                    <div class="db-cloud-bill-card__label"><?php echo e(__('srvd_pricing_usage')); ?></div>
+                    <div class="db-cloud-bill-card__value"><?php echo format_money($server['usage']); ?></div>
                 </div>
             </div>
 
@@ -591,7 +759,7 @@ $page_state = $_GET['state'] ?? 'active';
             </div>
         </div>
 
-        <div class="db-srvd-card" style="margin-top:14px;">
+        <div class="db-srvd-card db-srvd-card--mt">
             <div class="db-srvd-card__head-row">
                 <div class="db-srvd-card__head"><i class="fas fa-file-invoice"></i> <?php echo e(__('srvd_pricing_billing_records')); ?></div>
                 <a href="<?php echo DASH_BASE_PATH; ?>/pages/billing/invoices.php" class="db-btn db-btn--secondary db-btn--sm">
@@ -616,7 +784,7 @@ $page_state = $_GET['state'] ?? 'active';
             <div class="db-srvd-termination-count">
                 <?php echo e(__('srvd_delete_count_label')); ?>: <strong>0/15</strong>
             </div>
-            <div style="margin-top:16px;">
+            <div class="db-srvd-inner--mt-lg">
                 <button class="db-btn db-btn--danger" onclick="DashModal.open('deleteServerModal')">
                     <i class="fas fa-trash"></i> <?php echo e(__('srvd_delete_btn')); ?>
                 </button>
@@ -634,12 +802,12 @@ $modal_id    = 'deleteServerModal';
 $modal_title = __('srvd_delete_modal_title');
 $modal_size  = 'sm';
 include __DIR__ . '/../../../components/modal.php';
-?>
-    <div class="db-confirm-body">
-        <div class="db-modal-icon db-modal-icon--danger"><i class="fas fa-triangle-exclamation"></i></div>
-        <p><?php echo e(__('srvd_delete_modal_desc', ['server' => $server['name']])); ?></p>
-    </div>
-<?php
+
+$cb_desc = __('srvd_delete_modal_desc', ['server' => $server['name']]);
+$cb_icon = null; $cb_variant = 'danger';
+$cb_target_label = null; $cb_target_value = null; $cb_warn = null;
+include __DIR__ . '/../../../components/confirm-body.php';
+
 $modal_footer = '
     <button class="db-btn db-btn--secondary" data-modal-close>' . e(__('common_cancel')) . '</button>
     <button class="db-btn db-btn--danger" onclick="DashModal.close(this.closest(\'.db-modal-overlay\')); DashToast.show(\'success\',\'\',\'Server deletion scheduled.\');">
@@ -681,7 +849,7 @@ include __DIR__ . '/../../../components/modal.php';
             <div class="db-form-hint"><?php echo e(__('srvd_add_ip_rdns_hint')); ?></div>
         </div>
 
-        <div class="db-notice db-notice--warning" style="margin-top:4px;">
+        <div class="db-notice db-notice--warning db-notice--mt-xs">
             <i class="fas fa-triangle-exclamation"></i>
             <span><?php echo __('srvd_add_ip_notice'); ?></span>
         </div>
@@ -718,7 +886,7 @@ include __DIR__ . '/../../../components/modal.php';
                 <span><?php echo e($server['os']); ?></span>
             </div>
         </div>
-        <p class="db-srvd-danger-note" style="margin-top:14px;">
+        <p class="db-srvd-danger-note db-srvd-danger-note--mt">
             <u><?php echo e(__('srvd_reinstall_modal_warn')); ?></u>
         </p>
     </div>
@@ -751,7 +919,7 @@ include __DIR__ . '/../../../components/modal.php';
             </div>
             <div class="db-confirm-summary__row">
                 <span><?php echo e(__('srvd_upgrade_modal_new')); ?></span>
-                <span style="color:var(--brand-accent);">CLW4</span>
+                <span class="db-confirm-summary__value--accent">CLW4</span>
             </div>
             <div class="db-confirm-summary__row db-confirm-summary__row--total">
                 <span><?php echo e(__('srvd_upgrade_modal_new_price')); ?></span>
@@ -921,7 +1089,7 @@ include __DIR__ . '/../../../components/modal.php';
 ?>
     <div class="db-confirm-body">
         <div class="db-modal-icon" id="srvdActionIcon"><i class="fas fa-circle-question"></i></div>
-        <h3 id="srvdActionHeading" style="margin:0 0 6px; font-family:var(--font-display); font-size:1rem; font-weight:700;"></h3>
+        <h3 id="srvdActionHeading" class="db-confirm-body__heading"></h3>
         <p id="srvdActionText"></p>
     </div>
 <?php
@@ -1371,25 +1539,36 @@ function toggleSrvdPassword() {
 
 /* ── Power toggle (mock — real API call goes to backend) ── */
 (function () {
-    var btn = document.getElementById('srvdPowerBtn');
-    var label = document.getElementById('srvdPowerLabel');
-    var powerDot = document.querySelector('.db-srvd-power');
+    var btn        = document.getElementById('srvdPowerBtn');
+    var label      = document.getElementById('srvdPowerLabel');
+    var hero       = document.querySelector('.ds-hero');
+    var statusPill = document.getElementById('srvdStatusPill');
+    var statusLbl  = document.getElementById('srvdStatusLabel');
     if (!btn) return;
     var labels = {
         on:  <?php echo json_encode(__('srvd_power_on')); ?>,
         off: <?php echo json_encode(__('srvd_power_off')); ?>,
     };
+    var statusLabels = {
+        on:  <?php echo json_encode(__('srvd_status_running')); ?>,
+        off: <?php echo json_encode(__('srvd_status_stopped')); ?>,
+    };
     btn.addEventListener('click', function () {
         var current = btn.getAttribute('data-power');
         var next = current === 'on' ? 'off' : 'on';
         btn.setAttribute('data-power', next);
-        btn.classList.remove('db-srvd-power-btn--on', 'db-srvd-power-btn--off');
-        btn.classList.add('db-srvd-power-btn--' + next);
+        btn.classList.remove('ds-btn--power-on', 'ds-btn--power-off');
+        btn.classList.add('ds-btn--power-' + next);
         if (label) label.textContent = labels[next];
-        if (powerDot) {
-            powerDot.classList.remove('db-srvd-power--on', 'db-srvd-power--off');
-            powerDot.classList.add('db-srvd-power--' + next);
+        if (hero) {
+            hero.setAttribute('data-power', next);
+            hero.classList.toggle('ds-hero--danger', next === 'off');
         }
+        if (statusPill) {
+            statusPill.classList.remove('ds-eyebrow--success', 'ds-eyebrow--danger');
+            statusPill.classList.add(next === 'on' ? 'ds-eyebrow--success' : 'ds-eyebrow--danger');
+        }
+        if (statusLbl) statusLbl.textContent = statusLabels[next];
         if (window.DashToast) {
             DashToast.show(
                 next === 'on' ? 'success' : 'warning',
@@ -1399,6 +1578,39 @@ function toggleSrvdPassword() {
                     : <?php echo json_encode(__('srvd_power_turned_off')); ?>
             );
         }
+    });
+})();
+
+/* ── Copy-to-clipboard for access chips (Overview tab) ── */
+(function () {
+    var chips = document.querySelectorAll('[data-srvd-copy]');
+    chips.forEach(function (el) {
+        el.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var val  = el.getAttribute('data-srvd-copy');
+            var toast = el.getAttribute('data-srvd-toast') || 'Copied.';
+            if (!val) return;
+            var target = el.closest('.db-srvd-access-chip') || el;
+            var done = function () {
+                target.classList.add('is-copied');
+                if (window.DashToast) DashToast.show('success', '', toast);
+                setTimeout(function () { target.classList.remove('is-copied'); }, 1400);
+            };
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(val).then(done).catch(function () {
+                    var ta = document.createElement('textarea');
+                    ta.value = val; document.body.appendChild(ta); ta.select();
+                    try { document.execCommand('copy'); done(); } catch (_) {}
+                    document.body.removeChild(ta);
+                });
+            } else {
+                var ta = document.createElement('textarea');
+                ta.value = val; document.body.appendChild(ta); ta.select();
+                try { document.execCommand('copy'); done(); } catch (_) {}
+                document.body.removeChild(ta);
+            }
+        });
     });
 })();
 

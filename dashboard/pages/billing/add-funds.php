@@ -20,19 +20,57 @@ $breadcrumbs_data = [
 
 require_once __DIR__ . '/../../layouts/shell.php';
 
+/* ══════════════════════════════════════════════════════════════════════
+   ███  ADD FUNDS  ·  MOCK DATA BLOCK  (single source of truth)  ███
+   ══════════════════════════════════════════════════════════════════════
+   BACKEND TEAM — PLEASE READ:
+
+   "Add funds" wizard: pick an amount, pick a payment method, confirm.
+   Limits + methods are editable below.
+
+   Wiring real data:
+     • $current_balance → user's live account balance
+     • $min/$max_deposit → from site settings (currency limits)
+     • $presets → quick-amount buttons (from settings or A/B-tested)
+     • $methods → enabled gateways for this user/country
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ──────────────────────────────────────────
+   PAGE STATE  ('active' | 'loading' | 'error')
+   ────────────────────────────────────────── */
 $page_state = $_GET['state'] ?? 'active';
+
+/* ──────────────────────────────────────────
+   DEPOSIT LIMITS  (from site settings)
+   ────────────────────────────────────────── */
 $current_balance = 125.01;
-$min_deposit = 5;
-$max_deposit = 1000;
+$min_deposit     = 5;
+$max_deposit     = 1000;
+
+/* ──────────────────────────────────────────
+   QUICK-AMOUNT PRESETS  (buttons above the input)
+   ────────────────────────────────────────── */
 $presets = [10, 25, 50, 100, 250, 500];
 
+/* ──────────────────────────────────────────
+   PAYMENT METHODS
+   ──────────────────────────────────────────
+   Each row:
+   • id       → gateway slug (sent to backend on submit)
+   • name     → display name
+   • desc     → subtitle line
+   • icon     → Font Awesome class
+   • default  → bool; exactly ONE row should be true (pre-selected)
+   ────────────────────────────────────────── */
 $methods = [
-    ['id' => 'stripe',  'name' => 'Credit / Debit Card',  'desc' => 'Visa, Mastercard, Amex',       'icon' => 'fas fa-credit-card', 'default' => true],
-    ['id' => 'paypal',  'name' => 'PayPal',                'desc' => 'Pay with PayPal balance',       'icon' => 'fab fa-paypal',      'default' => false],
-    ['id' => 'crypto',  'name' => 'Cryptocurrency',        'desc' => 'BTC, ETH, USDT & more',        'icon' => 'fab fa-bitcoin',     'default' => false],
-    ['id' => 'binance', 'name' => 'Binance Pay',           'desc' => 'Pay with Binance wallet',       'icon' => 'fas fa-coins',       'default' => false],
-    ['id' => 'alipay',  'name' => 'Alipay',                'desc' => 'China\'s leading payment',      'icon' => 'fab fa-alipay',      'default' => false],
+    ['id' => 'stripe',  'name' => 'Credit / Debit Card', 'desc' => 'Visa, Mastercard, Amex',   'icon' => 'fas fa-credit-card', 'default' => true],
+    ['id' => 'paypal',  'name' => 'PayPal',              'desc' => 'Pay with PayPal balance',   'icon' => 'fab fa-paypal',      'default' => false],
+    ['id' => 'crypto',  'name' => 'Cryptocurrency',      'desc' => 'BTC, ETH, USDT & more',     'icon' => 'fab fa-bitcoin',     'default' => false],
+    ['id' => 'binance', 'name' => 'Binance Pay',         'desc' => 'Pay with Binance wallet',   'icon' => 'fas fa-coins',       'default' => false],
+    ['id' => 'alipay',  'name' => 'Alipay',              'desc' => 'China\'s leading payment',  'icon' => 'fab fa-alipay',      'default' => false],
 ];
+
+/* ══════════════  END OF MOCK DATA  ══════════════ */
 ?>
 
 <?php
@@ -61,14 +99,14 @@ include __DIR__ . '/../../components/page-header.php';
     <div>
         <!-- Amount Selection -->
         <div class="db-card db-mb">
-            <div class="db-card-header" style="padding:14px 18px;">
-                <h2 class="db-card-title" style="font-size:0.82rem;"><i class="db-card-title-icon fas fa-coins"></i> <?php echo e(__('add_funds_choose_amount')); ?></h2>
+            <div class="db-card-header db-card-header--md">
+                <h2 class="db-card-title db-card-title--sm"><i class="db-card-title-icon fas fa-coins"></i> <?php echo e(__('add_funds_choose_amount')); ?></h2>
             </div>
-            <div class="db-card-body" style="padding:12px 18px 18px;">
+            <div class="db-card-body db-card-body--dense">
                 <div class="db-amount-grid" id="amountPresets">
                     <?php foreach ($presets as $p): ?>
                     <button class="db-amount-card" data-amount="<?php echo $p; ?>">
-                        <span class="db-amount-card__value">€<?php echo $p; ?></span>
+                        <span class="db-amount-card__value"><?php echo format_money($p, 0); ?></span>
                     </button>
                     <?php endforeach; ?>
                 </div>
@@ -86,10 +124,10 @@ include __DIR__ . '/../../components/page-header.php';
 
         <!-- Payment Method -->
         <div class="db-card">
-            <div class="db-card-header" style="padding:14px 18px;">
-                <h2 class="db-card-title" style="font-size:0.82rem;"><i class="db-card-title-icon fas fa-lock"></i> <?php echo e(__('add_funds_payment_method')); ?></h2>
+            <div class="db-card-header db-card-header--md">
+                <h2 class="db-card-title db-card-title--sm"><i class="db-card-title-icon fas fa-lock"></i> <?php echo e(__('add_funds_payment_method')); ?></h2>
             </div>
-            <div class="db-card-body" style="padding:8px 18px 18px;">
+            <div class="db-card-body db-card-body--tight">
                 <div class="db-pay-grid">
                     <?php foreach ($methods as $m): ?>
                     <label class="db-pay-card<?php echo $m['default'] ? ' db-pay-card--active' : ''; ?>">
@@ -113,7 +151,7 @@ include __DIR__ . '/../../components/page-header.php';
             <div class="db-checkout-summary__section">
                 <div class="db-checkout-summary__row">
                     <span><?php echo e(__('add_funds_current_balance')); ?></span>
-                    <span>€<?php echo number_format($current_balance, 2); ?></span>
+                    <span><?php echo format_money($current_balance); ?></span>
                 </div>
                 <div class="db-checkout-summary__row db-checkout-summary__row--highlight">
                     <span><?php echo e(__('add_funds_adding')); ?></span>
@@ -126,7 +164,7 @@ include __DIR__ . '/../../components/page-header.php';
             <div class="db-checkout-summary__section">
                 <div class="db-checkout-summary__row db-checkout-summary__row--total">
                     <span><?php echo e(__('add_funds_new_balance')); ?></span>
-                    <span id="summaryNewBalance">€<?php echo number_format($current_balance, 2); ?></span>
+                    <span id="summaryNewBalance"><?php echo format_money($current_balance); ?></span>
                 </div>
             </div>
 
