@@ -124,6 +124,23 @@ $lang_options = [
         </button>
 
         <div class="db-topbar-user-dropdown" id="userDropdown">
+            <div class="db-topbar-dropdown-header">
+                <div class="db-topbar-dropdown-avatar"><?php echo $user_initials; ?></div>
+                <div class="db-topbar-dropdown-identity">
+                    <span class="db-topbar-dropdown-name"><?php echo e($user_data['first_name'] . ' ' . $user_data['last_name']); ?></span>
+                    <span class="db-topbar-dropdown-email"><?php echo e($user_data['email']); ?></span>
+                </div>
+            </div>
+            <div class="db-topbar-dropdown-divider"></div>
+            <div class="db-topbar-dropdown-pin">
+                <?php $spin_variant = 'inline'; include __DIR__ . '/../components/support-pin.php'; ?>
+            </div>
+            <div class="db-topbar-dropdown-divider"></div>
+            <button type="button" class="db-topbar-dropdown-item db-topbar-dropdown-item--accent" data-whatsnew-open>
+                <i class="fas fa-wand-magic-sparkles"></i>
+                <span><?php echo e(__('nav_whatsnew')); ?></span>
+                <span class="db-topbar-dropdown-item__chip"><?php echo e(__('whatsnew_badge_new')); ?></span>
+            </button>
             <a href="<?php echo e(DASH_BASE_PATH); ?>/pages/profile/index.php" class="db-topbar-dropdown-item">
                 <i class="fas fa-user"></i>
                 <span><?php echo e(__('nav_profile')); ?></span>

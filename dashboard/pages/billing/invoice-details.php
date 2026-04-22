@@ -12,6 +12,7 @@
 
 $page_title = null;
 $breadcrumbs_data = null;
+$nav_active_override = 'invoices';
 
 require_once __DIR__ . '/../../layouts/config.php';
 
@@ -185,7 +186,16 @@ $pay_methods = [
     $ph_desc = ''; $ph_actions = '';
     include __DIR__ . '/../../components/page-header.php';
     ?>
-    <?php $skel_info_rows = 5; $skel_action_buttons = 3; include __DIR__ . '/../../components/skeleton-detail.php'; ?>
+    <!-- Invoice hero banner (amount + status + due date + actions) -->
+    <?php $skel_hero_meta_chips = 3; $skel_hero_actions = 2; include __DIR__ . '/../../components/skeleton-hero.php'; ?>
+    <!-- 2-col: left = invoice document (items table), right = payment method selection -->
+    <?php
+        $skel_tcol_tabs = 0;
+        $skel_tcol_rows = 8;
+        $skel_tcol_side_btns = 3;
+        $skel_tcol_side_info = 4;
+        include __DIR__ . '/../../components/skeleton-two-col.php';
+    ?>
 
 <?php else: ?>
 
@@ -203,10 +213,10 @@ $pay_methods = [
             <span><?php echo e(__('invoices_due_by')); ?> <?php echo e($invoice['due']); ?></span>
         </div>
     </div>
-    <div class="db-inv-hero__actions">
+    <div class="db-inv-hero__actions db-inv-actions">
         <button class="db-btn db-btn--ghost db-btn--sm" onclick="DashToast.show('success','','<?php echo e(__('invoices_share_msg')); ?>')"><i class="fas fa-share-nodes"></i></button>
-        <button class="db-btn db-btn--ghost db-btn--sm" onclick="DashToast.show('success','','Invoice PDF downloaded.')"><i class="fas fa-download"></i></button>
-        <button class="db-btn db-btn--ghost db-btn--sm" onclick="window.print()"><i class="fas fa-print"></i></button>
+        <button class="db-btn db-btn--ghost db-btn--sm" onclick="downloadInvoice()" title="<?php echo e(__('invoices_download')); ?>"><i class="fas fa-download"></i></button>
+        <button class="db-btn db-btn--ghost db-btn--sm" onclick="window.print()" title="<?php echo e(__('invoices_print')); ?>"><i class="fas fa-print"></i></button>
         <?php if ($is_unpaid): ?>
         <button class="db-btn db-btn--ghost db-btn--sm db-btn--danger-text" onclick="DashModal.open('cancelInvoiceModal')"><i class="fas fa-xmark"></i></button>
         <?php endif; ?>
@@ -367,7 +377,7 @@ $pay_methods = [
                 <div class="db-inv-paid__title"><?php echo e(__('invoices_paid_title')); ?></div>
                 <div class="db-inv-paid__desc"><?php echo e(__('invoices_paid_desc')); ?></div>
                 <div class="db-inv-paid__actions">
-                    <button class="db-btn db-btn--secondary db-btn--sm" onclick="DashToast.show('success','','Invoice PDF downloaded.')"><i class="fas fa-download"></i> <?php echo e(__('invoices_download')); ?></button>
+                    <button class="db-btn db-btn--secondary db-btn--sm" onclick="downloadInvoice()"><i class="fas fa-download"></i> <?php echo e(__('invoices_download')); ?></button>
                     <button class="db-btn db-btn--ghost db-btn--sm" onclick="window.print()"><i class="fas fa-print"></i> <?php echo e(__('invoices_print')); ?></button>
                 </div>
             </div>
@@ -413,4 +423,19 @@ include __DIR__ . '/../../components/modal-end.php';
 <?php endif; ?>
 
 <div class="db-toast-container" id="toastContainer"></div>
+
+<script>
+/*  Invoice download / print: both route through window.print() so the
+    @media print CSS hides the app chrome, payment-method column and
+    action buttons. Browser's built-in "Save as PDF" in the print
+    dialog doubles as the download. */
+function downloadInvoice() {
+    if (window.DashToast) {
+        DashToast.show('info', '', <?php echo json_encode(__('invoices_download_hint')); ?>);
+    }
+    // Give the toast a moment to render, then open the print dialog.
+    setTimeout(function () { window.print(); }, 250);
+}
+</script>
+
 <?php require_once __DIR__ . '/../../layouts/footer.php'; ?>

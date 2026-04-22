@@ -97,9 +97,11 @@ $hero_stats = [
 /* ──────────────────────────────────────────
    3. MONTHLY OVERVIEW  (3 sparkline cards)
    ──────────────────────────────────────────
+   Every card on this page is billing- or server-related by design, so the
+   client can see the health of their account at a glance.
    Each card shows a big number + 30-day sparkline.
-   • value     → current-month number
-   • unit      → unit string ('TB', '%', '€', …)
+   • value     → current number (integer/float/string)
+   • unit      → unit string ('€', 'servers', …)
    • unit_pos  → 'prefix' puts the unit before the number
                  (default suffix). Use for currency (€).
    • hint      → small subline under the number
@@ -108,30 +110,33 @@ $hero_stats = [
    • spark     → 30 numeric points (30-day trend)
    ────────────────────────────────────────── */
 $monthly_overview = [
-    'traffic' => [
-        'value'    => 3.2,
-        'unit'     => 'TB',
-        'hint'     => __('dash_of_max', ['max' => '25 TB']),
-        'trend'    => ['dir' => 'up', 'pct' => '+12%'],
-        'spark'    => [0.1, 0.2, 0.3, 0.5, 0.4, 0.7, 0.6, 0.9, 0.8, 1.1, 1.0, 1.4, 1.6, 1.3, 1.8, 2.0, 1.9, 2.2, 2.5, 2.4, 2.7, 2.9, 2.6, 3.0, 2.8, 3.1, 3.0, 3.1, 3.2, 3.2],
-        'icon'     => 'fa-arrow-down-up-across-line',
-    ],
+    // Spending this month — running total charged from the wallet.
     'spending' => [
-        'value'    => 3.42,
+        'value'    => 42.17,
         'unit'     => '€',
         'unit_pos' => 'prefix',
         'hint'     => __('dash_last_paid', ['date' => '24/03']),
-        'trend'    => ['dir' => 'flat', 'pct' => '0%'],
-        'spark'    => [3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42, 3.42],
+        'trend'    => ['dir' => 'up', 'pct' => '+8%'],
+        'spark'    => [0, 1.4, 3.2, 4.1, 5.8, 7.2, 8.1, 9.6, 11.0, 12.4, 13.7, 15.0, 16.8, 18.2, 19.5, 21.0, 22.6, 24.3, 25.7, 27.1, 28.9, 30.5, 32.0, 33.5, 35.2, 36.7, 38.4, 40.0, 41.3, 42.17],
         'icon'     => 'fa-coins',
     ],
-    'uptime' => [
-        'value'    => 99.98,
-        'unit'     => '%',
-        'hint'     => __('dash_last_incident', ['days' => 31]),
-        'trend'    => ['dir' => 'up', 'pct' => '+0.02%'],
-        'spark'    => [99.9, 99.8, 99.9, 100, 100, 99.95, 100, 100, 99.9, 100, 100, 100, 99.85, 100, 100, 100, 99.9, 100, 100, 100, 100, 99.95, 100, 100, 100, 100, 100, 99.98, 99.99, 99.98],
-        'icon'     => 'fa-heart-pulse',
+    // Active cloud servers across the account — growth over 30 days.
+    'servers' => [
+        'value'    => 7,
+        'unit'     => __('dash_mo_servers_unit'),
+        'hint'     => __('dash_mo_servers_hint', ['total' => 7]),
+        'trend'    => ['dir' => 'up', 'pct' => '+2'],
+        'spark'    => [5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7],
+        'icon'     => 'fa-server',
+    ],
+    // Invoices paid year-to-date — invoices count on the wallet ledger.
+    'invoices' => [
+        'value'    => 12,
+        'unit'     => __('dash_mo_invoices_unit'),
+        'hint'     => __('dash_mo_invoices_hint'),
+        'trend'    => ['dir' => 'up', 'pct' => '+1'],
+        'spark'    => [1, 1, 2, 2, 3, 3, 3, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 8, 8, 9, 9, 9, 10, 10, 11, 11, 11, 12, 12, 12],
+        'icon'     => 'fa-file-invoice',
     ],
 ];
 
@@ -181,20 +186,21 @@ $active_service = [
 
 
 /* ──────────────────────────────────────────
-   6. BANDWIDTH CHART  (right column, 30-day area chart)
+   6. SPENDING TREND CHART  (right column, 30-day area chart)
    ──────────────────────────────────────────
-   • used_tb / total_tb → drive the "X of Y monthly quota"
-                          line and the % calculation.
-   • spark_30d          → 30 numeric points, rendered as
-                          a smooth area chart.
+   Billing-focused: shows the running total spent this month
+   alongside a 30-day area chart so the user sees exactly
+   how their cost is pacing.
+   • used        → running-total spent this month (float, €)
+   • projected   → forecasted end-of-month spend (float, €)
+   • spark_30d   → 30 cumulative daily spend points
    ────────────────────────────────────────── */
-$bandwidth = [
-    'used_tb'   => 3.2,
-    'total_tb'  => 25,
-    'spark_30d' => [0.1, 0.2, 0.3, 0.5, 0.4, 0.7, 0.6, 0.9, 0.8, 1.1, 1.0, 1.4, 1.6, 1.3, 1.8, 2.0, 1.9, 2.2, 2.5, 2.4, 2.7, 2.9, 2.6, 3.0, 2.8, 3.1, 3.0, 3.1, 3.2, 3.2],
+$spending_trend = [
+    'used'      => 42.17,
+    'projected' => 50.00,
+    'spark_30d' => [0, 1.4, 3.2, 4.1, 5.8, 7.2, 8.1, 9.6, 11.0, 12.4, 13.7, 15.0, 16.8, 18.2, 19.5, 21.0, 22.6, 24.3, 25.7, 27.1, 28.9, 30.5, 32.0, 33.5, 35.2, 36.7, 38.4, 40.0, 41.3, 42.17],
 ];
-// auto-computed
-$bandwidth['pct'] = round(($bandwidth['used_tb'] / max(0.01, $bandwidth['total_tb'])) * 100, 1);
+$spending_trend['pct'] = round(($spending_trend['used'] / max(0.01, $spending_trend['projected'])) * 100, 1);
 
 
 /* ──────────────────────────────────────────
@@ -350,7 +356,8 @@ $hero_stats_meta = [
     </div>
 
     <!-- 4 stat cards  (values come from $hero_stats above) -->
-    <div class="db-hero-stats">
+    <div class="db-hero-stats" id="dashHomeStats"
+         data-collapsible-stats data-stats-key="dash-home">
         <?php foreach ($hero_stats as $key => $stat):
             $meta = $hero_stats_meta[$key];
         ?>
@@ -368,6 +375,16 @@ $hero_stats_meta = [
         </a>
         <?php endforeach; ?>
     </div>
+    <div class="db-stats-rail">
+        <button type="button" class="db-stats-toggle"
+                data-stats-toggle="dash-home"
+                aria-expanded="true"
+                aria-controls="dashHomeStats"
+                title="<?php echo e(__('common_hide_stats')); ?>">
+            <span class="db-stats-toggle__label"><?php echo e(__('common_statistics')); ?></span>
+            <i class="fas fa-chevron-up db-stats-toggle__icon"></i>
+        </button>
+    </div>
 </div>
 
 
@@ -380,7 +397,7 @@ $hero_stats_meta = [
         <span class="db-action-card-title"><?php echo e(__('dash_order_service')); ?></span>
         <span class="db-action-card-desc"><?php echo e(__('dash_order_service_desc')); ?></span>
     </a>
-    <a href="<?php echo e(DASH_BASE_PATH); ?>/pages/cloud/index.php" class="db-action-card db-action-card--deploy">
+    <a href="<?php echo e(DASH_BASE_PATH); ?>/pages/cloud/index.php?deploy=1" class="db-action-card db-action-card--deploy">
         <div class="db-action-card-icon"><i class="fas fa-rocket"></i></div>
         <span class="db-action-card-title"><?php echo e(__('dash_deploy_server')); ?></span>
         <span class="db-action-card-desc"><?php echo e(__('dash_deploy_server_desc')); ?></span>
@@ -411,9 +428,9 @@ $hero_stats_meta = [
     <?php
     // Per-card visual metadata — paired with $monthly_overview by key.
     $mo_items = [
-        'traffic'  => ['class' => 'db-monthly-card--traffic',  'title' => __('dash_mo_traffic')],
         'spending' => ['class' => 'db-monthly-card--spending', 'title' => __('dash_mo_spending')],
-        'uptime'   => ['class' => 'db-monthly-card--uptime',   'title' => __('dash_mo_uptime')],
+        'servers'  => ['class' => 'db-monthly-card--servers',  'title' => __('dash_mo_servers')],
+        'invoices' => ['class' => 'db-monthly-card--invoices', 'title' => __('dash_mo_invoices')],
     ];
     foreach ($mo_items as $key => $meta):
         $d = $monthly_overview[$key];
@@ -543,14 +560,14 @@ $hero_stats_meta = [
         </div>
     </div>
 
-    <!-- Bandwidth — area chart  (data from $bandwidth) -->
+    <!-- Monthly Spending Trend — area chart (data from $spending_trend) -->
     <div class="db-card">
         <div class="db-card-header">
             <h3 class="db-card-title">
                 <i class="fas fa-chart-area db-card-title-icon"></i>
-                <?php echo e(__('dash_bw_title')); ?>
+                <?php echo e(__('dash_spend_title')); ?>
             </h3>
-            <a href="<?php echo e(DASH_BASE_PATH); ?>/pages/services/service-details.php?id=<?php echo e($active_service['id']); ?>" class="db-card-link">
+            <a href="<?php echo e(DASH_BASE_PATH); ?>/pages/billing/invoices.php" class="db-card-link">
                 <?php echo e(__('common_details')); ?> <i class="fas fa-arrow-right"></i>
             </a>
         </div>
@@ -558,19 +575,19 @@ $hero_stats_meta = [
             <div class="db-bw-chart__head">
                 <div>
                     <div class="db-bw-chart__value">
-                        <?php echo e($bandwidth['used_tb']); ?><span class="db-bw-chart__value-unit">TB</span>
+                        <span class="db-bw-chart__value-unit db-bw-chart__value-unit--prefix">€</span><?php echo e(number_format($spending_trend['used'], 2)); ?>
                     </div>
                     <span class="db-bw-chart__value-sub">
-                        <?php echo e(__('dash_bw_of_quota', ['total' => $bandwidth['total_tb'] . ' TB', 'pct' => $bandwidth['pct']])); ?>
+                        <?php echo e(__('dash_spend_of_projected', ['total' => '€' . number_format($spending_trend['projected'], 2), 'pct' => $spending_trend['pct']])); ?>
                     </span>
                 </div>
                 <span class="db-bw-chart__trend">
                     <i class="fas fa-arrow-trend-up"></i>
-                    <?php echo e(__('dash_bw_last_30')); ?>
+                    <?php echo e(__('dash_spend_last_30')); ?>
                 </span>
             </div>
             <div class="db-bw-chart__body">
-                <?php echo cloud_sparkline($bandwidth['spark_30d'], 420, 140, 'var(--brand-primary)'); ?>
+                <?php echo cloud_sparkline($spending_trend['spark_30d'], 420, 140, 'var(--brand-accent)'); ?>
             </div>
             <div class="db-bw-chart__footer">
                 <span><?php echo e(__('dash_bw_30_days_ago')); ?></span>

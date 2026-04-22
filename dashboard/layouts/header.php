@@ -47,15 +47,18 @@
         if (t === 'light' || t === 'dark') {
             document.documentElement.setAttribute('data-theme', t);
         }
-        /* Pre-apply sidebar collapsed state to prevent layout flash */
-        if (window.innerWidth > 1024 && localStorage.getItem('yottasrc_sidebar') === 'collapsed') {
+        /* Pre-apply sidebar collapsed state to prevent layout flash.
+           Also forces collapse on pages that request it (e.g. create-server
+           wizard, which benefits from extra horizontal space). */
+        var forceCollapse = <?php echo !empty($force_collapse_sidebar) ? 'true' : 'false'; ?>;
+        if (window.innerWidth > 1024 && (forceCollapse || localStorage.getItem('yottasrc_sidebar') === 'collapsed')) {
             document.documentElement.classList.add('db-sidebar-will-collapse');
         }
     })();
     </script>
 </head>
 
-<body>
+<body<?php echo !empty($force_collapse_sidebar) ? ' data-force-collapse-sidebar' : ''; ?>>
     <!-- Skip to content (accessibility) -->
     <a href="#db-content" class="db-sr-only">Skip to main content</a>
 

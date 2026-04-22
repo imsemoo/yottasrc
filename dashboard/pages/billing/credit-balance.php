@@ -198,7 +198,7 @@ include __DIR__ . '/../../components/page-header.php';
                             <option value="debit"><?php echo e(__('credit_type_payment')); ?></option>
                             <option value="refund"><?php echo e(__('credit_type_refund')); ?></option>
                         </select>
-                        <button class="db-view-switch__btn" onclick="DashExport('csv')" title="Export CSV"><i class="fas fa-download"></i></button>
+                        <?php include __DIR__ . '/../../components/export-dropdown.php'; ?>
                     </div>
                 </div>
             </div>
@@ -244,14 +244,7 @@ include __DIR__ . '/../../components/page-header.php';
                 </table>
             </div>
 
-            <?php
-            $pg_current    = 1;
-            $pg_total      = 1;
-            $pg_from       = 1;
-            $pg_to         = count($history);
-            $pg_total_rows = count($history);
-            include __DIR__ . '/../../components/pagination.php';
-            ?>
+            <div id="creditPagination" data-pager-for="creditTable" data-page-size="10"></div>
         </div>
     </div>
 <?php endif; ?>

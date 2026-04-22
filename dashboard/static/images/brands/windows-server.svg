@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Windows Server">
+  <defs>
+    <linearGradient id="ws-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0078d4"/>
+      <stop offset="100%" stop-color="#005a9e"/>
+    </linearGradient>
+  </defs>
+  <circle cx="32" cy="32" r="32" fill="url(#ws-bg)"/>
+  <!-- Windows flag (slight skew for server feel) -->
+  <g transform="translate(14 18)">
+    <path d="M0 4 L16 0 L16 16 L0 18 Z" fill="#fff"/>
+    <path d="M18 0 L36 -2 L36 16 L18 16 Z" fill="#fff"/>
+    <path d="M0 20 L16 18 L16 34 L0 32 Z" fill="#fff"/>
+    <path d="M18 18 L36 18 L36 34 L18 36 Z" fill="#fff"/>
+  </g>
+</svg>

@@ -48,8 +48,15 @@ $__pro_seed = cloud_project_seed($current_project['id']);
         <?php endif; ?>
     </div>
 
-    <?php if (!empty($hero_stats) && is_array($hero_stats)): ?>
-    <div class="ds-hero__stats">
+    <?php
+    $__pro_stats_key    = 'proj-' . $current_project['id'];
+    $__pro_has_stats    = !empty($hero_stats) && is_array($hero_stats);
+    $__pro_hide_label   = __('common_hide_stats');
+    $__pro_show_label   = __('common_show_stats');
+    ?>
+    <?php if ($__pro_has_stats): ?>
+    <div class="ds-hero__stats" id="proStats-<?php echo e($current_project['id']); ?>"
+         data-collapsible-stats data-stats-key="<?php echo e($__pro_stats_key); ?>">
         <div class="ds-stat-grid">
             <?php foreach ($hero_stats as $st):
                 $seed = $st['seed'] ?? 0;
@@ -63,6 +70,16 @@ $__pro_seed = cloud_project_seed($current_project['id']);
             </div>
             <?php endforeach; ?>
         </div>
+    </div>
+    <div class="db-stats-rail">
+        <button type="button" class="db-stats-toggle"
+                data-stats-toggle="<?php echo e($__pro_stats_key); ?>"
+                aria-expanded="true"
+                aria-controls="proStats-<?php echo e($current_project['id']); ?>"
+                title="<?php echo e($__pro_hide_label); ?>">
+            <span class="db-stats-toggle__label"><?php echo e(__('common_statistics')); ?></span>
+            <i class="fas fa-chevron-up db-stats-toggle__icon"></i>
+        </button>
     </div>
     <?php endif; ?>
 </section>

@@ -80,14 +80,29 @@ $balance = 0.00;
                 (drives the type badge + filters)
    ────────────────────────────────────────── */
 $invoices = [
-    ['id' => 'INV-1047', 'date' => '2026-03-28', 'due' => '2026-04-12', 'desc' => 'Business Pro Hosting — Monthly', 'amount' => 24.99, 'status' => 'unpaid',  'type' => 'renewal'],
-    ['id' => 'INV-1045', 'date' => '2026-03-20', 'due' => '2026-03-25', 'desc' => 'WordPress Premium — Monthly',   'amount' => 14.99, 'status' => 'overdue', 'type' => 'renewal'],
-    ['id' => 'INV-1042', 'date' => '2026-03-15', 'due' => '2026-03-30', 'desc' => 'Starter VPS — Monthly',          'amount' => 49.99, 'status' => 'unpaid',  'type' => 'new_service'],
-    ['id' => 'INV-1040', 'date' => '2026-03-01', 'due' => '2026-03-15', 'desc' => 'Enterprise Dedicated — Monthly', 'amount' => 149.99, 'status' => 'paid',   'type' => 'new_service'],
-    ['id' => 'INV-1038', 'date' => '2026-02-28', 'due' => '2026-03-12', 'desc' => 'Business Pro Hosting — Monthly', 'amount' => 24.99, 'status' => 'paid',    'type' => 'renewal'],
-    ['id' => 'INV-1035', 'date' => '2026-02-20', 'due' => '2026-03-05', 'desc' => 'Email Pro Suite — Monthly',      'amount' => 9.99,  'status' => 'paid',    'type' => 'upgrade'],
-    ['id' => 'INV-1032', 'date' => '2026-02-15', 'due' => '2026-03-01', 'desc' => 'Starter VPS — Monthly',          'amount' => 49.99, 'status' => 'paid',    'type' => 'new_service'],
-    ['id' => 'INV-1030', 'date' => '2026-02-01', 'due' => '2026-02-15', 'desc' => 'Enterprise Dedicated — Monthly', 'amount' => 149.99, 'status' => 'paid',   'type' => 'renewal'],
+    ['id' => 'INV-1047', 'date' => '2026-03-28', 'due' => '2026-04-12', 'desc' => 'Business Pro Hosting — Monthly', 'amount' => 24.99,  'status' => 'unpaid',  'type' => 'renewal'],
+    ['id' => 'INV-1045', 'date' => '2026-03-20', 'due' => '2026-03-25', 'desc' => 'WordPress Premium — Monthly',    'amount' => 14.99,  'status' => 'overdue', 'type' => 'renewal'],
+    ['id' => 'INV-1042', 'date' => '2026-03-15', 'due' => '2026-03-30', 'desc' => 'Starter VPS — Monthly',          'amount' => 49.99,  'status' => 'unpaid',  'type' => 'new_service'],
+    ['id' => 'INV-1040', 'date' => '2026-03-01', 'due' => '2026-03-15', 'desc' => 'Enterprise Dedicated — Monthly', 'amount' => 149.99, 'status' => 'paid',    'type' => 'new_service'],
+    ['id' => 'INV-1038', 'date' => '2026-02-28', 'due' => '2026-03-12', 'desc' => 'Business Pro Hosting — Monthly', 'amount' => 24.99,  'status' => 'paid',    'type' => 'renewal'],
+    ['id' => 'INV-1035', 'date' => '2026-02-20', 'due' => '2026-03-05', 'desc' => 'Email Pro Suite — Monthly',      'amount' => 9.99,   'status' => 'paid',    'type' => 'upgrade'],
+    ['id' => 'INV-1032', 'date' => '2026-02-15', 'due' => '2026-03-01', 'desc' => 'Starter VPS — Monthly',          'amount' => 49.99,  'status' => 'paid',    'type' => 'new_service'],
+    ['id' => 'INV-1030', 'date' => '2026-02-01', 'due' => '2026-02-15', 'desc' => 'Enterprise Dedicated — Monthly', 'amount' => 149.99, 'status' => 'paid',    'type' => 'renewal'],
+    ['id' => 'INV-1028', 'date' => '2026-01-25', 'due' => '2026-02-08', 'desc' => 'Cloud Server CLY2 — Monthly',    'amount' => 12.00,  'status' => 'paid',    'type' => 'renewal'],
+    ['id' => 'INV-1026', 'date' => '2026-01-20', 'due' => '2026-02-03', 'desc' => 'Domain .com — Annual',           'amount' => 12.99,  'status' => 'paid',    'type' => 'new_service'],
+    ['id' => 'INV-1024', 'date' => '2026-01-15', 'due' => '2026-01-29', 'desc' => 'Cloud Server CLY4 — Monthly',    'amount' => 48.00,  'status' => 'paid',    'type' => 'renewal'],
+    ['id' => 'INV-1022', 'date' => '2026-01-10', 'due' => '2026-01-24', 'desc' => 'Business Pro Hosting — Monthly', 'amount' => 24.99,  'status' => 'paid',    'type' => 'renewal'],
+    ['id' => 'INV-1020', 'date' => '2026-01-05', 'due' => '2026-01-19', 'desc' => 'Cloud Add-on: Backup',           'amount' => 6.00,   'status' => 'paid',    'type' => 'upgrade'],
+    ['id' => 'INV-1018', 'date' => '2026-01-01', 'due' => '2026-01-15', 'desc' => 'Enterprise Dedicated — Monthly', 'amount' => 149.99, 'status' => 'paid',    'type' => 'renewal'],
+    ['id' => 'INV-1015', 'date' => '2025-12-28', 'due' => '2026-01-11', 'desc' => 'Starter VPS — Monthly',          'amount' => 49.99,  'status' => 'paid',    'type' => 'renewal'],
+    ['id' => 'INV-1012', 'date' => '2025-12-20', 'due' => '2026-01-03', 'desc' => 'Domain .io — Annual',            'amount' => 29.99,  'status' => 'paid',    'type' => 'new_service'],
+    ['id' => 'INV-1010', 'date' => '2025-12-15', 'due' => '2025-12-29', 'desc' => 'Email Pro Suite — Monthly',      'amount' => 9.99,   'status' => 'paid',    'type' => 'renewal'],
+    ['id' => 'INV-1008', 'date' => '2025-12-10', 'due' => '2025-12-24', 'desc' => 'Cloud Add-on: IP',               'amount' => 2.50,   'status' => 'paid',    'type' => 'upgrade'],
+    ['id' => 'INV-1005', 'date' => '2025-12-01', 'due' => '2025-12-15', 'desc' => 'Enterprise Dedicated — Monthly', 'amount' => 149.99, 'status' => 'paid',    'type' => 'renewal'],
+    ['id' => 'INV-1002', 'date' => '2025-11-25', 'due' => '2025-12-09', 'desc' => 'Business Pro Hosting — Monthly', 'amount' => 24.99,  'status' => 'paid',    'type' => 'renewal'],
+    ['id' => 'INV-1000', 'date' => '2025-11-20', 'due' => '2025-12-04', 'desc' => 'Starter VPS — Monthly',          'amount' => 49.99,  'status' => 'paid',    'type' => 'renewal'],
+    ['id' => 'INV-0998', 'date' => '2025-11-15', 'due' => '2025-11-29', 'desc' => 'WordPress Premium — Monthly',    'amount' => 14.99,  'status' => 'paid',    'type' => 'renewal'],
+    ['id' => 'INV-0995', 'date' => '2025-11-10', 'due' => '2025-11-24', 'desc' => 'Cloud Server CLY3 — Monthly',    'amount' => 32.00,  'status' => 'refunded','type' => 'renewal'],
 ];
 
 /* ══════════════  END OF MOCK DATA  ══════════════ */
@@ -182,7 +197,7 @@ include __DIR__ . '/../../components/page-header.php';
                             <option value="renewal"><?php echo e(__('invoices_type_renewal')); ?></option>
                             <option value="upgrade"><?php echo e(__('invoices_type_upgrade')); ?></option>
                         </select>
-                        <button class="db-view-switch__btn" onclick="DashExport('csv')" title="Export CSV"><i class="fas fa-download"></i></button>
+                        <?php include __DIR__ . '/../../components/export-dropdown.php'; ?>
                     </div>
                 </div>
             </div>
@@ -251,15 +266,8 @@ include __DIR__ . '/../../components/page-header.php';
                 </table>
             </div>
 
-            <!-- Pagination -->
-            <?php
-            $pg_current    = 1;
-            $pg_total      = 2;
-            $pg_from       = 1;
-            $pg_to         = count($invoices);
-            $pg_total_rows = $stats['total'];
-            include __DIR__ . '/../../components/pagination.php';
-            ?>
+            <!-- Pagination — client-side via DashTablePager -->
+            <div id="invoicesPagination" data-pager-for="invoicesTable" data-page-size="10"></div>
         </div>
     </div>
 <?php endif; ?>

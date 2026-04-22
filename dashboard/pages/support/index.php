@@ -156,6 +156,12 @@ include __DIR__ . '/../../components/page-header.php';
 
 <?php else: ?>
 
+    <!-- Support PIN banner -->
+    <div class="db-support-pin-banner">
+        <?php $spin_variant = 'inline'; include __DIR__ . '/../../components/support-pin.php'; ?>
+        <span class="db-support-pin-banner__hint"><?php echo e(__('support_pin_banner_hint')); ?></span>
+    </div>
+
     <!-- Stats -->
     <div class="db-stats-row">
         <div class="db-stat-card"><div class="db-stat-card-icon db-stat-card-icon--primary"><i class="fas fa-headset"></i></div><div class="db-stat-card-body"><div class="db-stat-card-value"><?php echo $stats['total']; ?></div><div class="db-stat-card-label"><?php echo e(__('tickets_stat_total')); ?></div></div></div>
@@ -181,7 +187,7 @@ include __DIR__ . '/../../components/page-header.php';
                             <option value="in_progress"><?php echo e(__('ticket_status_in_progress')); ?></option>
                             <option value="closed"><?php echo e(__('ticket_status_closed')); ?></option>
                         </select>
-                        <button class="db-view-switch__btn" onclick="DashExport('csv')" title="Export CSV"><i class="fas fa-download"></i></button>
+                        <?php include __DIR__ . '/../../components/export-dropdown.php'; ?>
                     </div>
                 </div>
             </div>
@@ -255,14 +261,7 @@ include __DIR__ . '/../../components/page-header.php';
                 </table>
             </div>
 
-            <?php
-            $pg_current    = 1;
-            $pg_total      = max(1, (int)ceil($stats['total'] / max(1, count($tickets))));
-            $pg_from       = 1;
-            $pg_to         = count($tickets);
-            $pg_total_rows = $stats['total'];
-            include __DIR__ . '/../../components/pagination.php';
-            ?>
+            <div id="ticketsPagination" data-pager-for="ticketsTable" data-page-size="10"></div>
         </div>
     </div>
 <?php endif; ?>

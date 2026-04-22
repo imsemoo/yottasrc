@@ -8,6 +8,7 @@
 
 $page_title = null;
 $breadcrumbs_data = null;
+$nav_active_override = 'services';
 
 require_once __DIR__ . '/../../layouts/config.php';
 
@@ -21,7 +22,41 @@ $breadcrumbs_data = [
 require_once __DIR__ . '/../../layouts/shell.php';
 
 /* ══════════════════════════════════════════════════════════════════════
-   ███  SERVICE DETAILS  ·  MOCK DATA BLOCK  (single source of truth) ███
+   ███  SERVICE DETAILS  ·  TYPE ROUTER                              ███
+   ══════════════════════════════════════════════════════════════════════
+   Different service types need very different detail pages. We look up
+   the service by id, detect its type, and dispatch to the right partial:
+     • cpanel   → partials/cpanel.php     (cPanel single-site hosting)
+     • reseller → partials/reseller.php   (Reseller / WHM)
+     • keys     → partials/keys.php       (Microsoft keys — minimal)
+     • vps      → (fall through to the VPS detail below)
+
+   BACKEND: replace $__service_type_map with a DB lookup by id.
+   ══════════════════════════════════════════════════════════════════════ */
+$__svc_id          = $_GET['id'] ?? '151926';
+$__service_type_map = [
+    '153785' => 'cpanel',
+    '154330' => 'reseller',
+    '154331' => 'keys',
+    '1027'   => 'keys',
+    '1041'   => 'cpanel',
+    '1035'   => 'reseller',
+    '1032'   => 'cpanel',
+    '151926' => 'vps',
+    '151820' => 'vps',
+    '1020'   => 'vps',
+    '1024'   => 'cpanel',
+];
+$__svc_type = $__service_type_map[(string)$__svc_id] ?? 'vps';
+
+if ($__svc_type !== 'vps') {
+    include __DIR__ . '/partials/' . $__svc_type . '.php';
+    require_once __DIR__ . '/../../layouts/footer.php';
+    return;
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   ███  VPS SERVICE DETAILS  ·  MOCK DATA BLOCK                      ███
    ══════════════════════════════════════════════════════════════════════
    BACKEND TEAM — PLEASE READ:
 
@@ -169,7 +204,11 @@ $packages = [
     <div class="db-card"><?php $error_retry = true; include __DIR__ . '/../../components/error-state.php'; ?></div>
 <?php elseif ($page_state === 'loading'): ?>
     <?php $ph_title = '#' . e($service['id']); $ph_desc = ''; $ph_actions = ''; include __DIR__ . '/../../components/page-header.php'; ?>
-    <?php $skel_info_rows = 8; $skel_action_buttons = 5; include __DIR__ . '/../../components/skeleton-detail.php'; ?>
+    <!-- Hero status bar + action buttons -->
+    <?php $skel_hero_meta_chips = 3; $skel_hero_actions = 3; include __DIR__ . '/../../components/skeleton-hero.php'; ?>
+    <!-- Tab bar (Overview, Network, Bandwidth, Reinstall, Billing, Upgrade) + 2-col body -->
+    <?php $skel_tcol_tabs = 6; $skel_tcol_rows = 8; $skel_tcol_side_btns = 5; $skel_tcol_side_info = 5;
+          include __DIR__ . '/../../components/skeleton-two-col.php'; ?>
 <?php else: ?>
 
 <!-- ═══ HERO STATUS BAR ═══ -->

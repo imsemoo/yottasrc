@@ -119,14 +119,22 @@ $referral_sources = [
 
 <?php elseif ($page_state === 'loading'): ?>
 
-    <div class="db-card">
+    <!-- Wizard hero (title + subtitle) -->
+    <div class="db-card db-mb">
         <div class="db-card-body db-card-body--hero">
-            <div class="db-skeleton" style="width:120px; height:36px;"></div>
-            <div class="db-skeleton" style="width:80%; max-width:520px; height:46px;"></div>
-            <div class="db-skeleton" style="width:60%; max-width:380px; height:14px;"></div>
-            <div class="db-skeleton" style="width:60%; max-width:380px; height:14px;"></div>
+            <div class="db-skeleton db-skeleton--heading" style="width: 60%; max-width: 420px; height: 36px;"></div>
+            <div class="db-skeleton db-skeleton--text-sm" style="width: 80%; max-width: 520px; margin-top: 10px;"></div>
         </div>
     </div>
+
+    <!-- Stepper (3 steps: Scope → Amount → Review) + form panel -->
+    <?php
+        $skel_stepper_count   = 3;
+        $skel_stepper_current = 0;
+        $skel_stepper_panel   = true;
+        $skel_stepper_rows    = 4;
+        include __DIR__ . '/../../components/skeleton-stepper.php';
+    ?>
 
 <?php elseif ($is_submitted): ?>
 

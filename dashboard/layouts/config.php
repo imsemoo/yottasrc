@@ -73,5 +73,14 @@ if (!headers_sent()) {
     setcookie('yottasrc_currency', $current_currency, time() + (86400 * 30), '/');
 }
 
+/* ──────────────────────────────────────────
+   SUPPORT PIN  (mock — backend: replace with users.support_pin)
+   ──────────────────────────────────────────
+   Fixed PIN each client shares with our support team for identity
+   verification. No refresh logic here — the refresh icon in the UI is
+   decorative only; regeneration is handled server-side when called.
+   ────────────────────────────────────────── */
+$current_support_pin = 'YS-4827-9361';
+
 // ── Load Functions ──
 require_once __DIR__ . '/functions.php';

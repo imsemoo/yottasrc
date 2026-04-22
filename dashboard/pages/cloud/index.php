@@ -192,6 +192,17 @@ $limits_stats = [
 ];
 
 /* ──────────────────────────────────────────
+   LIMIT INCREASE REQUESTS  (history table under the radial dials)
+   Backend: pull last N rows for this user, newest first.
+   Statuses: pending | approved | rejected
+   ────────────────────────────────────────── */
+$limit_requests = [
+    ['date' => '10/04/2026', 'type' => 'servers',  'from' => 10, 'to' => 15, 'status' => 'approved'],
+    ['date' => '02/03/2026', 'type' => 'ips',      'from' => 3,  'to' => 5,  'status' => 'approved'],
+    ['date' => '18/02/2026', 'type' => 'projects', 'from' => 3,  'to' => 8,  'status' => 'pending'],
+];
+
+/* ──────────────────────────────────────────
    REFERRAL TAB
    ────────────────────────────────────────── */
 $referral_stats = [
@@ -265,10 +276,10 @@ if (!$is_verified) {
                 <i class="fas fa-plus"></i>
                 <span><?php echo e(__('cloud_new_project_short')); ?></span>
             </button>
-            <a href="<?php echo DASH_BASE_PATH; ?>/pages/cloud/project/create-server.php?id=<?php echo e($projects[0]['id']); ?>" class="db-mc__quick-btn db-mc__quick-btn--primary">
+            <button type="button" class="db-mc__quick-btn db-mc__quick-btn--primary" data-modal-open="deployServerPickerModal">
                 <i class="fas fa-rocket"></i>
                 <?php echo e(__('cloud_hero_deploy_cta')); ?>
-            </a>
+            </button>
         </div>
     </div>
 
@@ -308,12 +319,15 @@ if (!$is_verified) {
 
 <?php elseif ($page_state === 'loading'): ?>
 
-    <div style="display:flex; gap:8px; margin-bottom:20px;">
-        <?php for ($i = 0; $i < 4; $i++): ?>
-        <div class="db-skeleton" style="width:120px; height:38px; border-radius:var(--radius-sm);"></div>
-        <?php endfor; ?>
-    </div>
-    <div class="db-skeleton" style="width:100%; height:200px; border-radius:var(--radius-md);"></div>
+    <!-- Hero stats (mirrors the Mission Control 4 metric cards) -->
+    <?php $skel_stat_count = 4; include __DIR__ . '/../../components/skeleton-stats.php'; ?>
+
+    <!-- Tab bar (Projects / Billing / Limits / Referral) -->
+    <?php $skel_tabs_count = 4; include __DIR__ . '/../../components/skeleton-tabs.php'; ?>
+
+    <!-- Projects grid -->
+    <?php $skel_grid_count = 6; $skel_grid_min = 280; $skel_grid_height = 200; $skel_grid_rich = true;
+          include __DIR__ . '/../../components/skeleton-grid.php'; ?>
 
 <?php else: ?>
 
@@ -391,7 +405,7 @@ if (!$is_verified) {
                         $ring_offset = $ring_circ - ($servers_pct / 100) * $ring_circ;
                         $is_recent   = ($__px_i === 0); // First in the array = most recent
                     ?>
-                    <div class="db-px-card<?php echo $is_recent ? ' db-px-card--recent' : ''; ?>" data-seed="<?php echo $seed_idx; ?>" style="--px-seed: var(--seed-<?php echo $seed_idx; ?>);">
+                    <div class="db-px-card db-px-card--clickable<?php echo $is_recent ? ' db-px-card--recent' : ''; ?>" data-seed="<?php echo $seed_idx; ?>" style="--px-seed: var(--seed-<?php echo $seed_idx; ?>);" data-href="<?php echo e($project_url); ?>" role="link" tabindex="0" onclick="if (event.target.closest('.db-px-card__menu, a, button')) return; window.location=this.dataset.href;" onkeydown="if ((event.key==='Enter'||event.key===' ') && !event.target.closest('.db-px-card__menu, a, button')) { event.preventDefault(); window.location=this.dataset.href; }">
                         <div class="db-px-card__head">
                             <div class="db-px-card__icon-wrap">
                                 <!-- Ring chart behind the identicon -->
@@ -571,6 +585,70 @@ if (!$is_verified) {
                 </label>
             </div>
 
+            <!-- Current month usage breakdown per project -->
+            <div class="db-card  db-mb">
+                <div class="db-card-header db-card-header--md">
+                    <h3 class="db-card-title">
+                        <i class="fas fa-chart-pie db-card-title-icon"></i>
+                        <?php echo e(__('cloud_bill_usage_title', ['month' => date('F Y')])); ?>
+                    </h3>
+                    <span class="db-card-title-meta">
+                        <?php echo e(__('cloud_bill_usage_total')); ?>
+                        <strong><?php echo format_money($total_monthly); ?></strong>
+                    </span>
+                </div>
+                <div class="db-card-body--table">
+                    <div class="db-table-wrapper">
+                        <table class="db-table">
+                            <thead>
+                                <tr>
+                                    <th><?php echo e(__('cloud_bill_usage_col_project')); ?></th>
+                                    <th><?php echo e(__('cloud_bill_usage_col_servers')); ?></th>
+                                    <th><?php echo e(__('cloud_bill_usage_col_status')); ?></th>
+                                    <th class="db-table-cell--right"><?php echo e(__('cloud_bill_usage_col_usage')); ?></th>
+                                    <th class="db-table-cell--right"><?php echo e(__('cloud_bill_usage_col_share')); ?></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($projects as $p):
+                                    $share = $total_monthly > 0 ? round(($p['monthly_cost'] / $total_monthly) * 100) : 0;
+                                    $proj_url = cloud_project_url('servers', $p['id']);
+                                ?>
+                                <tr class="db-table-row-link" onclick="window.location='<?php echo e($proj_url); ?>'">
+                                    <td>
+                                        <div class="db-table-cell-main">
+                                            <a href="<?php echo e($proj_url); ?>" class="db-table-cell-link" onclick="event.stopPropagation();"><?php echo e($p['name']); ?></a>
+                                            <span class="db-table-cell-sub">#<?php echo e($p['id']); ?></span>
+                                        </div>
+                                    </td>
+                                    <td><?php echo (int)$p['servers']; ?>/<?php echo (int)$p['servers_max']; ?></td>
+                                    <td>
+                                        <span class="db-badge db-badge--active">
+                                            <?php echo e(__('cloud_px_running', ['n' => (int)$p['status_breakdown']['running']])); ?>
+                                        </span>
+                                        <?php if (!empty($p['status_breakdown']['stopped'])): ?>
+                                        <span class="db-badge db-badge--cancelled">
+                                            <?php echo (int)$p['status_breakdown']['stopped']; ?> <?php echo e(__('cloud_px_stopped_short')); ?>
+                                        </span>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td class="db-table-cell--right"><span class="db-table-cell-amount"><?php echo format_money($p['monthly_cost']); ?></span></td>
+                                    <td class="db-table-cell--right">
+                                        <div class="db-bill-share">
+                                            <div class="db-bill-share__bar">
+                                                <span class="db-bill-share__fill" style="width:<?php echo (int)$share; ?>%;"></span>
+                                            </div>
+                                            <span class="db-bill-share__pct"><?php echo (int)$share; ?>%</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
             <!-- Link to invoices -->
             <a href="<?php echo DASH_BASE_PATH; ?>/pages/billing/invoices.php" class="db-bx-link">
                 <i class="fas fa-file-invoice"></i>
@@ -595,7 +673,7 @@ if (!$is_verified) {
                         <p class="db-lx-hero__sub"><?php echo e(__('cloud_limits_desc')); ?></p>
                     </div>
                 </div>
-                <button type="button" class="db-lx-hero__cta" onclick="DashToast.show('info','','<?php echo e(__('cloud_limits_cta_coming')); ?>')">
+                <button type="button" class="db-lx-hero__cta" onclick="DashModal.open('limitIncreaseModal')">
                     <i class="fas fa-plus"></i>
                     <?php echo e(__('cloud_limits_increase')); ?>
                 </button>
@@ -652,6 +730,63 @@ if (!$is_verified) {
             <div class="db-lx-hint">
                 <i class="fas fa-lightbulb"></i>
                 <?php echo e(__('cloud_limits_cta_text')); ?>
+            </div>
+
+            <!-- Past limit increase requests -->
+            <div class="db-card db-mt ">
+                <div class="db-card-header db-card-header--md">
+                    <h3 class="db-card-title">
+                        <i class="fas fa-clock-rotate-left db-card-title-icon"></i>
+                        <?php echo e(__('cloud_limit_req_history')); ?>
+                    </h3>
+                </div>
+                <?php if (empty($limit_requests)): ?>
+                    <div class="db-card-body">
+                        <?php
+                        $empty_icon  = 'fa-gauge-high';
+                        $empty_title = __('cloud_limit_req_empty');
+                        $empty_desc  = '';
+                        include __DIR__ . '/../../components/empty-state.php';
+                        ?>
+                    </div>
+                <?php else: ?>
+                    <div class="db-card-body--table">
+                        <div class="db-table-wrapper">
+                            <table class="db-table">
+                                <thead>
+                                    <tr>
+                                        <th><?php echo e(__('cloud_limit_req_col_date')); ?></th>
+                                        <th><?php echo e(__('cloud_limit_req_col_type')); ?></th>
+                                        <th class="db-table-cell--right"><?php echo e(__('cloud_limit_req_col_from')); ?></th>
+                                        <th class="db-table-cell--right"><?php echo e(__('cloud_limit_req_col_to')); ?></th>
+                                        <th class="db-table-cell--right"><?php echo e(__('cloud_limit_req_col_status')); ?></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($limit_requests as $req):
+                                        $badge_cls = [
+                                            'pending'  => 'db-badge--warning',
+                                            'approved' => 'db-badge--active',
+                                            'rejected' => 'db-badge--cancelled',
+                                        ][$req['status']] ?? 'db-badge--cancelled';
+                                    ?>
+                                    <tr>
+                                        <td><?php echo e($req['date']); ?></td>
+                                        <td><?php echo e(__('cloud_limit_' . $req['type'])); ?></td>
+                                        <td class="db-table-cell--right"><?php echo (int)$req['from']; ?></td>
+                                        <td class="db-table-cell--right"><strong><?php echo (int)$req['to']; ?></strong></td>
+                                        <td class="db-table-cell--right">
+                                            <span class="db-badge <?php echo e($badge_cls); ?>">
+                                                <?php echo e(__('cloud_limit_req_status_' . $req['status'])); ?>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
 
@@ -811,7 +946,7 @@ include __DIR__ . '/../../components/modal.php';
     <form class="db-form" id="newProjectForm" onsubmit="return handleNewProject(event)">
         <p class="db-modal-lead"><?php echo e(__('cloud_new_project_modal_desc')); ?></p>
 
-        <div class="db-form-group">
+        <div class="db-form-group ">
             <label class="db-form-label" for="projectName"><?php echo e(__('cloud_project_name_label')); ?> <span class="db-required">*</span></label>
             <div class="db-input-icon-wrapper">
                 <input type="text" id="projectName" name="name" class="db-input"
@@ -911,8 +1046,10 @@ include __DIR__ . '/../../components/modal-end.php';
 function handleNewProject(e) { e.preventDefault(); return false; }
 
 
-/* ═══ Rename Project ═══ */
-(function () {
+/* ═══ Rename Project ═══
+   Deferred to DOMContentLoaded because the modal markup is output
+   after this <script> block runs. */
+document.addEventListener('DOMContentLoaded', function () {
     var renameModal = document.getElementById('renameProjectModal');
     if (!renameModal) return;
     var renameIdEl = document.getElementById('renameProjectId');
@@ -949,7 +1086,7 @@ function handleNewProject(e) { e.preventDefault(); return false; }
     renameInput.addEventListener('keydown', function (e) {
         if (e.key === 'Enter') { e.preventDefault(); save(); }
     });
-})();
+});
 
 
 /* ═══ Referral — copy to clipboard chips ═══ */
@@ -983,8 +1120,9 @@ function handleNewProject(e) { e.preventDefault(); return false; }
 })();
 
 
-/* ═══ Delete Project ═══ */
-(function () {
+/* ═══ Delete Project ═══
+   Deferred to DOMContentLoaded: modal markup is output after this script. */
+document.addEventListener('DOMContentLoaded', function () {
     var modal = document.getElementById('deleteProjectModal');
     if (!modal) return;
     var nameEl = document.getElementById('deleteProjectName');
@@ -1018,7 +1156,7 @@ function handleNewProject(e) { e.preventDefault(); return false; }
         DashModal.close(modal);
         if (window.DashToast) DashToast.show('success', '', <?php echo json_encode(__('cloud_project_delete_done')); ?>);
     });
-})();
+});
 </script>
 
 <!-- ═══ RENAME PROJECT MODAL ═══ -->
@@ -1032,9 +1170,9 @@ include __DIR__ . '/../../components/modal.php';
         <p class="db-modal-lead"><?php echo e(__('cloud_project_rename_desc')); ?></p>
         <div class="db-form-group">
             <label class="db-form-label"><?php echo e(__('cloud_project_rename_id_label')); ?></label>
-            <div class="db-form-static db-form-static--danger" id="renameProjectId"></div>
+            <div class="db-form-static db-form-static--danger" style="margin-bottom: 12px;" id="renameProjectId"></div>
         </div>
-        <div class="db-form-group">
+        <div class="db-form-group ">
             <label class="db-form-label" for="renameProjectName"><?php echo e(__('cloud_project_rename_name_label')); ?> <span class="db-required">*</span></label>
             <input type="text" id="renameProjectName" class="db-input" required minlength="3" maxlength="30" pattern="[A-Za-z0-9\-_ ]{3,30}">
             <div class="db-form-hint"><?php echo e(__('cloud_project_name_hint')); ?></div>
@@ -1080,5 +1218,201 @@ $modal_footer = '
 ';
 include __DIR__ . '/../../components/modal-end.php';
 ?>
+
+<!-- ═══ DEPLOY SERVER PICKER MODAL ═══
+     Shown when user hits "Deploy Server" without being inside a project.
+     They pick a project from the list, then we navigate to
+     create-server.php?id=<selected>.
+     Auto-opens when ?deploy=1 is set on the URL. -->
+<?php
+$modal_id    = 'deployServerPickerModal';
+$modal_title = __('cloud_deploy_pick_title');
+$modal_size  = 'sm';
+include __DIR__ . '/../../components/modal.php';
+?>
+    <div class="db-deploy-picker">
+        <p class="db-deploy-picker__desc"><?php echo e(__('cloud_deploy_pick_desc')); ?></p>
+        <div class="db-deploy-picker__list">
+            <?php foreach ($projects as $p): ?>
+            <a href="<?php echo e(cloud_project_url('create-server', $p['id'])); ?>" class="db-deploy-picker__row">
+                <span class="db-deploy-picker__icon" style="--px-seed: var(--seed-<?php echo cloud_project_seed($p['id']); ?>);">
+                    <?php echo cloud_project_identicon($p['id'], 28); ?>
+                </span>
+                <span class="db-deploy-picker__info">
+                    <span class="db-deploy-picker__name"><?php echo e($p['name']); ?></span>
+                    <span class="db-deploy-picker__meta">#<?php echo e($p['id']); ?> · <?php echo e(__('cloud_px_servers')); ?>: <?php echo (int)$p['servers']; ?>/<?php echo (int)$p['servers_max']; ?></span>
+                </span>
+                <i class="fas fa-arrow-right db-deploy-picker__arrow"></i>
+            </a>
+            <?php endforeach; ?>
+        </div>
+        <button type="button" class="db-deploy-picker__new" data-modal-close data-modal-open="newProjectModal">
+            <i class="fas fa-plus"></i> <?php echo e(__('cloud_deploy_pick_new_project')); ?>
+        </button>
+    </div>
+<?php
+$modal_footer = '<button class="db-btn db-btn--secondary" data-modal-close>' . e(__('common_cancel')) . '</button>';
+include __DIR__ . '/../../components/modal-end.php';
+?>
+
+<!-- Auto-open picker when landing with ?deploy=1 (from the Dashboard CTA) -->
+<?php if (!empty($_GET['deploy'])): ?>
+<script>
+(function () {
+    document.addEventListener('DOMContentLoaded', function () {
+        if (window.DashModal) DashModal.open('deployServerPickerModal');
+    });
+})();
+</script>
+<?php endif; ?>
+
+<!-- ═══ LIMIT INCREASE REQUEST MODAL ═══ -->
+<?php
+$modal_id    = 'limitIncreaseModal';
+$modal_title = __('cloud_limit_req_modal_title');
+$modal_size  = '';
+include __DIR__ . '/../../components/modal.php';
+
+/* Rows — keep in sync with $limits_stats. Icon + label + current max. */
+$lx_req_rows = [
+    ['key' => 'servers',   'icon' => 'fa-server',             'label' => __('cloud_limit_servers'),   'current' => (int)$limits_stats['servers']['max']],
+    ['key' => 'ips',       'icon' => 'fa-globe',              'label' => __('cloud_limit_ips'),       'current' => (int)$limits_stats['ips']['max']],
+    ['key' => 'projects',  'icon' => 'fa-folder-tree',        'label' => __('cloud_limit_projects'),  'current' => (int)$limits_stats['projects']['max']],
+    ['key' => 'terminate', 'icon' => 'fa-arrow-rotate-right', 'label' => __('cloud_limit_terminate'), 'current' => (int)$limits_stats['terminate']['max']],
+];
+?>
+    <form class="db-form" id="limitIncreaseForm" onsubmit="return false;">
+        <p class="db-modal-lead"><?php echo e(__('cloud_limit_req_intro')); ?></p>
+
+        <div class="db-lx-req-grid" role="table" aria-label="<?php echo e(__('cloud_limit_req_modal_title')); ?>">
+            <div class="db-lx-req-grid__head" role="row">
+                <span role="columnheader"><?php echo e(__('cloud_limit_req_col_resource')); ?></span>
+                <span role="columnheader" class="db-lx-req-grid__col-num"><?php echo e(__('cloud_limit_req_current')); ?></span>
+                <span role="columnheader" class="db-lx-req-grid__col-num"><?php echo e(__('cloud_limit_req_desired')); ?></span>
+            </div>
+
+            <?php foreach ($lx_req_rows as $row): ?>
+            <div class="db-lx-req-row" role="row" data-lx-key="<?php echo e($row['key']); ?>" data-lx-current="<?php echo (int)$row['current']; ?>">
+                <div class="db-lx-req-row__label" role="cell">
+                    <span class="db-lx-req-row__icon"><i class="fas <?php echo e($row['icon']); ?>"></i></span>
+                    <span class="db-lx-req-row__name"><?php echo e($row['label']); ?></span>
+                </div>
+                <div class="db-lx-req-row__current" role="cell"><?php echo (int)$row['current']; ?></div>
+                <div class="db-lx-req-row__stepper" role="cell">
+                    <div class="db-lx-stepper">
+                        <button type="button" class="db-lx-stepper__btn" data-lx-step="-1" aria-label="<?php echo e(__('common_decrease')); ?>">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <input type="number" class="db-lx-stepper__input"
+                               value="<?php echo (int)$row['current']; ?>"
+                               min="<?php echo (int)$row['current']; ?>"
+                               step="1">
+                        <button type="button" class="db-lx-stepper__btn" data-lx-step="+1" aria-label="<?php echo e(__('common_increase')); ?>">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+
+        <div class="db-form-group db-mt">
+            <label class="db-form-label" for="lxReqReason">
+                <?php echo e(__('cloud_limit_req_reason')); ?>
+                <span class="db-form-label-meta">(<?php echo e(__('common_optional')); ?>)</span>
+            </label>
+            <textarea class="db-input" id="lxReqReason" rows="3" placeholder="<?php echo e(__('cloud_limit_req_reason_ph')); ?>"></textarea>
+        </div>
+    </form>
+<?php
+$modal_footer = '
+    <button class="db-btn db-btn--secondary" data-modal-close>' . e(__('common_cancel')) . '</button>
+    <button class="db-btn db-btn--primary" id="limitIncreaseSubmit" disabled>
+        <i class="fas fa-paper-plane"></i> ' . e(__('cloud_limit_req_submit')) . '
+    </button>
+';
+include __DIR__ . '/../../components/modal-end.php';
+?>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var modal  = document.getElementById('limitIncreaseModal');
+    var form   = document.getElementById('limitIncreaseForm');
+    var submit = document.getElementById('limitIncreaseSubmit');
+    var reason = document.getElementById('lxReqReason');
+    if (!modal || !form || !submit) return;
+
+    var rows = form.querySelectorAll('.db-lx-req-row');
+
+    function clamp(row, val) {
+        var current = parseInt(row.getAttribute('data-lx-current'), 10) || 0;
+        if (isNaN(val) || val < current) val = current;
+        if (val > 9999) val = 9999;
+        return val;
+    }
+
+    function syncRow(row) {
+        var input   = row.querySelector('.db-lx-stepper__input');
+        var minus   = row.querySelector('[data-lx-step="-1"]');
+        var current = parseInt(row.getAttribute('data-lx-current'), 10) || 0;
+        var val     = parseInt(input.value, 10);
+        val = clamp(row, val);
+        input.value = val;
+        minus.disabled = (val <= current);
+        row.classList.toggle('is-changed', val > current);
+    }
+
+    function refreshSubmit() {
+        var anyChanged = false;
+        rows.forEach(function (r) {
+            if (r.classList.contains('is-changed')) anyChanged = true;
+        });
+        submit.disabled = !anyChanged;
+    }
+
+    rows.forEach(function (row) {
+        var input = row.querySelector('.db-lx-stepper__input');
+        row.querySelectorAll('[data-lx-step]').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var step = parseInt(btn.getAttribute('data-lx-step'), 10) || 0;
+                var val  = (parseInt(input.value, 10) || 0) + step;
+                input.value = clamp(row, val);
+                syncRow(row);
+                refreshSubmit();
+            });
+        });
+        input.addEventListener('input', function () {
+            syncRow(row);
+            refreshSubmit();
+        });
+        syncRow(row);
+    });
+    refreshSubmit();
+
+    submit.addEventListener('click', function () {
+        var changed = [];
+        rows.forEach(function (r) {
+            if (r.classList.contains('is-changed')) {
+                changed.push({
+                    key:     r.getAttribute('data-lx-key'),
+                    from:    parseInt(r.getAttribute('data-lx-current'), 10),
+                    to:      parseInt(r.querySelector('.db-lx-stepper__input').value, 10)
+                });
+            }
+        });
+        if (!changed.length) return;
+        // Backend: POST { items: changed, reason: reason.value } → /api/limit-requests
+        if (window.DashModal) DashModal.close(modal);
+        if (window.DashToast) DashToast.show('success', '', <?php echo json_encode(__('cloud_limit_req_sent')); ?>);
+        // Reset form for next open
+        rows.forEach(function (r) {
+            var cur = parseInt(r.getAttribute('data-lx-current'), 10) || 0;
+            r.querySelector('.db-lx-stepper__input').value = cur;
+            syncRow(r);
+        });
+        if (reason) reason.value = '';
+        refreshSubmit();
+    });
+});
+</script>
 
 <?php require_once __DIR__ . '/../../layouts/footer.php'; ?>

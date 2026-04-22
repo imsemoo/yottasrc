@@ -47,10 +47,13 @@
 
             if (!this.sidebar) return;
 
-            // Restore collapsed state (desktop only)
+            // Restore collapsed state (desktop only).
+            // Pages can force collapse by setting data-force-collapse-sidebar
+            // on <body> (set via $force_collapse_sidebar PHP flag before shell).
             if (window.innerWidth > 1024) {
                 const saved = localStorage.getItem(this.STORAGE_KEY);
-                if (saved === 'collapsed') {
+                const forced = document.body.hasAttribute('data-force-collapse-sidebar');
+                if (saved === 'collapsed' || forced) {
                     this.sidebar.classList.add('collapsed');
                     const shell = document.querySelector('.db-shell');
                     if (shell) shell.classList.add('db-shell--collapsed');
@@ -79,6 +82,35 @@
             }
 
             this.initExpandGroups();
+            this.initHoverExpand();
+        },
+
+        // Hover-to-expand: when the sidebar is collapsed, hovering it adds
+        // `.is-hover-expanded` so CSS shows the full-width overlay state.
+        // On mouseleave we wait LEAVE_DELAY ms before removing the class,
+        // which prevents flicker when the chevron button shifts position
+        // as the sidebar grows/shrinks. Any re-entry cancels the timer.
+        initHoverExpand() {
+            const LEAVE_DELAY = 180;
+            let leaveTimer = null;
+
+            const enter = () => {
+                if (window.innerWidth <= 1024) return;
+                if (!this.sidebar.classList.contains('collapsed')) return;
+                if (leaveTimer) { clearTimeout(leaveTimer); leaveTimer = null; }
+                this.sidebar.classList.add('is-hover-expanded');
+            };
+
+            const leave = () => {
+                if (leaveTimer) clearTimeout(leaveTimer);
+                leaveTimer = setTimeout(() => {
+                    this.sidebar.classList.remove('is-hover-expanded');
+                    leaveTimer = null;
+                }, LEAVE_DELAY);
+            };
+
+            this.sidebar.addEventListener('mouseenter', enter);
+            this.sidebar.addEventListener('mouseleave', leave);
         },
 
         toggleCollapse() {
@@ -367,10 +399,18 @@
     // ═══════════════════════════════════════════
 
     const Search = {
+        // Sample size for the "no query yet" state — shuffles on every open
+        // so the user sees different examples each time they launch search.
+        SAMPLE_SIZE: 8,
+
         init() {
             this.overlay = document.getElementById('searchOverlay');
             this.input = document.getElementById('searchInput');
+            this.body = document.getElementById('searchBody');
             this.trigger = document.getElementById('searchTrigger');
+            this.suggestions = Array.isArray(window.__dashSearchSuggestions)
+                ? window.__dashSearchSuggestions.slice()
+                : [];
 
             if (!this.overlay || !this.input) return;
 
@@ -388,6 +428,19 @@
             this.overlay.addEventListener('click', (e) => {
                 if (e.target === this.overlay) this.close();
             });
+
+            this.input.addEventListener('input', () => {
+                this.render(this.input.value.trim().toLowerCase());
+            });
+
+            this.input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    const first = this.body && this.body.querySelector('.db-search-suggestion');
+                    if (first && first.dataset.href) {
+                        window.location.href = first.dataset.href;
+                    }
+                }
+            });
         },
 
         isOpen() {
@@ -397,6 +450,7 @@
         open() {
             this.overlay.classList.add('visible');
             document.body.style.overflow = 'hidden';
+            this.render('');
             setTimeout(() => this.input.focus(), 100);
         },
 
@@ -404,6 +458,66 @@
             this.overlay.classList.remove('visible');
             document.body.style.overflow = '';
             this.input.value = '';
+        },
+
+        // Fisher–Yates shuffle
+        shuffle(arr) {
+            const a = arr.slice();
+            for (let i = a.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [a[i], a[j]] = [a[j], a[i]];
+            }
+            return a;
+        },
+
+        render(query) {
+            if (!this.body || !this.suggestions.length) return;
+
+            let items;
+            let heading;
+            if (!query) {
+                // No query — show a random sample as "try these" examples
+                items = this.shuffle(this.suggestions).slice(0, this.SAMPLE_SIZE);
+                heading = 'Try searching for';
+            } else {
+                items = this.suggestions.filter(s => {
+                    const hay = (s.label + ' ' + (s.meta || '') + ' ' + (s.type || '')).toLowerCase();
+                    return hay.includes(query);
+                });
+                heading = items.length ? 'Results' : '';
+            }
+
+            if (!items.length) {
+                this.body.innerHTML = '<div class="db-search-empty">No matches for "' + this.escape(query) + '"</div>';
+                return;
+            }
+
+            const parts = ['<div class="db-search-section-label">' + heading + '</div>'];
+            items.forEach(s => {
+                parts.push(
+                    '<a href="' + s.href + '" data-href="' + s.href + '" class="db-search-suggestion">' +
+                        '<span class="db-search-suggestion__icon"><i class="' + s.icon + '"></i></span>' +
+                        '<span class="db-search-suggestion__body">' +
+                            '<span class="db-search-suggestion__label">' + this.highlight(s.label, query) + '</span>' +
+                            (s.meta ? '<span class="db-search-suggestion__meta">' + this.escape(s.meta) + '</span>' : '') +
+                        '</span>' +
+                        '<span class="db-search-suggestion__type">' + this.escape(s.type || '') + '</span>' +
+                    '</a>'
+                );
+            });
+            this.body.innerHTML = parts.join('');
+        },
+
+        escape(str) {
+            return String(str).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+        },
+
+        highlight(text, query) {
+            const esc = this.escape(text);
+            if (!query) return esc;
+            const q = this.escape(query);
+            const re = new RegExp('(' + q.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&') + ')', 'ig');
+            return esc.replace(re, '<mark>$1</mark>');
         }
     };
 
@@ -448,6 +562,53 @@
     };
 
     window.DashModal = Modal;
+
+
+    // ═══════════════════════════════════════════
+    // Type-to-confirm (destructive actions safety)
+    // ───────────────────────────────────────────
+    // Usage (markup):
+    //   <input class="db-type-to-confirm__input"
+    //          data-type-to-confirm="DELETE"
+    //          data-type-to-confirm-target="#myConfirmBtn">
+    //   <button id="myConfirmBtn" disabled>Delete</button>
+    //
+    // The button stays disabled until the user types the exact word
+    // (case-insensitive by default, trimmed of whitespace).
+    // ═══════════════════════════════════════════
+    const TypeToConfirm = {
+        init() {
+            document.querySelectorAll('.db-type-to-confirm__input').forEach(input => {
+                const expected = (input.getAttribute('data-type-to-confirm') || '').trim();
+                const targetSel = input.getAttribute('data-type-to-confirm-target');
+                const target    = targetSel ? document.querySelector(targetSel) : null;
+                if (!expected || !target) return;
+
+                const sync = () => {
+                    const match = input.value.trim().toUpperCase() === expected.toUpperCase();
+                    target.disabled = !match;
+                    input.classList.toggle('is-valid', match && input.value.length > 0);
+                };
+
+                input.addEventListener('input', sync);
+
+                // Reset when the modal it lives inside is closed, so reopening
+                // starts fresh and the confirm button is disabled again.
+                const modalRoot = input.closest('.db-modal-overlay');
+                if (modalRoot) {
+                    const observer = new MutationObserver(() => {
+                        if (!modalRoot.classList.contains('is-active')) {
+                            input.value = '';
+                            sync();
+                        }
+                    });
+                    observer.observe(modalRoot, { attributes: true, attributeFilter: ['class'] });
+                }
+
+                sync();
+            });
+        }
+    };
 
 
     // ═══════════════════════════════════════════
@@ -661,6 +822,7 @@
         TopbarDropdowns.init();
         Search.init();
         Modal.init();
+        TypeToConfirm.init();
         PasswordToggle.init();
         FormValidation.init();
         RowDropdown.init();
@@ -789,6 +951,51 @@
 })();
 
 /**
+ * View Switcher — toggle Table <-> Cards view on any page.
+ *
+ * Markup contract:
+ *   <div class="db-view-switch" data-view-switch="<storageKey>">
+ *       <button class="db-view-switch__btn active" data-view="table">...</button>
+ *       <button class="db-view-switch__btn" data-view="cards">...</button>
+ *   </div>
+ *   <div class="db-view" id="view-table">...</div>
+ *   <div class="db-view" id="view-cards">...</div>
+ *
+ * localStorage key comes from `data-view-switch` on the container (fallback
+ * 'dash_view') so multiple pages can persist independently.
+ */
+(function () {
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.db-view-switch').forEach(function (container) {
+            if (container.dataset.dashViewInit === '1') return;
+            container.dataset.dashViewInit = '1';
+
+            var scope = container.closest('.db-card, body') || document;
+            var buttons = container.querySelectorAll('.db-view-switch__btn[data-view]');
+            var views   = scope.querySelectorAll('.db-view');
+            if (!buttons.length || !views.length) return;
+
+            var key = 'yotta_view_' + (container.dataset.viewSwitch || 'default');
+
+            function apply(mode) {
+                buttons.forEach(function (b) { b.classList.toggle('active', b.dataset.view === mode); });
+                views.forEach(function (v) { v.style.display = v.id === 'view-' + mode ? '' : 'none'; });
+                try { localStorage.setItem(key, mode); } catch (e) {}
+            }
+
+            var saved = null;
+            try { saved = localStorage.getItem(key); } catch (e) {}
+            if (saved === 'cards' || saved === 'table') apply(saved);
+
+            buttons.forEach(function (btn) {
+                btn.addEventListener('click', function () { apply(btn.dataset.view); });
+            });
+        });
+    });
+})();
+
+
+/**
  * Copy to clipboard helper
  */
 function DashCopy(el, text) {
@@ -799,6 +1006,42 @@ function DashCopy(el, text) {
         }
     });
 }
+
+/**
+ * Support PIN — wires up [data-support-pin] blocks anywhere on the page.
+ * Copy button pulls the text from [data-pin-value]; refresh is decorative
+ * only (backend handles regeneration server-side, this just flashes the icon
+ * and shows a toast so the user gets feedback).
+ */
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('[data-support-pin]').forEach(function (root) {
+        var valueEl = root.querySelector('[data-pin-value]');
+        if (!valueEl) return;
+
+        root.querySelectorAll('[data-pin-copy]').forEach(function (btn) {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                DashCopy(btn, valueEl.textContent.trim());
+            });
+        });
+
+        root.querySelectorAll('[data-pin-refresh]').forEach(function (btn) {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                var icon = btn.querySelector('i');
+                if (icon) {
+                    icon.classList.add('fa-spin');
+                    setTimeout(function () { icon.classList.remove('fa-spin'); }, 600);
+                }
+                if (typeof DashToast !== 'undefined') {
+                    DashToast.show('info', '', 'Contact support to regenerate your PIN.');
+                }
+            });
+        });
+    });
+});
 
 /**
  * Table export — CSV download from any visible table
@@ -1015,6 +1258,12 @@ window.DashTable = (function () {
                     th.classList.add(sortState.dir === 1 ? 'is-sorted-asc' : 'is-sorted-desc');
                 }
             });
+
+            // Notify listeners (e.g. DashTablePager) so they can re-render
+            // based on the new row order.
+            table.dispatchEvent(new CustomEvent('dashtable:sort', {
+                detail: { key: key, dir: sortState.dir }
+            }));
         }
 
         // Wire events
@@ -1057,6 +1306,294 @@ window.DashTable = (function () {
 
 document.addEventListener('DOMContentLoaded', function () {
     DashTable.initAll();
+});
+
+
+/* ═══════════════════════════════════════════════════════════
+   DashTablePager — client-side pagination for any [data-table-tools]
+   ═══════════════════════════════════════════════════════════
+   Markup contract:
+
+   <table id="serversTable" data-table-tools>...</table>
+   <div data-pager-for="serversTable" data-page-size="10"></div>
+
+   • Works hand-in-hand with DashTable: search/filter/sort all still apply.
+   • Reads rows AFTER DashTable filter runs, shows only the current page.
+   • Listens for the 'dashtable:filter' event to reset to page 1.
+   • Uses a marker attribute [data-pager-hidden] so we can distinguish
+     rows hidden-by-filter (DashTable) vs hidden-by-pager (us).
+   ═══════════════════════════════════════════════════════════ */
+window.DashTablePager = (function () {
+    var PAGE_SIZES = [10, 25, 50, 100];
+
+    function sizeKey(tableId) { return 'yotta_pager_size_' + tableId; }
+    function loadSize(tableId, defaultSize) {
+        try {
+            var v = parseInt(localStorage.getItem(sizeKey(tableId)), 10);
+            if (PAGE_SIZES.indexOf(v) >= 0) return v;
+        } catch (e) {}
+        return defaultSize;
+    }
+    function saveSize(tableId, size) {
+        try { localStorage.setItem(sizeKey(tableId), String(size)); } catch (e) {}
+    }
+
+    function buildPageList(current, total, edgeWindow) {
+        var pages = [];
+        var left  = Math.max(1, current - edgeWindow);
+        var right = Math.min(total, current + edgeWindow);
+        for (var i = 1; i <= total; i++) {
+            if (i === 1 || i === total || (i >= left && i <= right)) {
+                pages.push(i);
+            } else if (pages[pages.length - 1] !== '…') {
+                pages.push('…');
+            }
+        }
+        return pages;
+    }
+
+    function init(container) {
+        if (!container || container.dataset.dashPagerInit === '1') return;
+        var tableId     = container.getAttribute('data-pager-for');
+        var defaultSize = parseInt(container.getAttribute('data-page-size'), 10) || 10;
+        var table       = tableId && document.getElementById(tableId);
+        if (!table) return;
+        var tbody = table.querySelector('tbody');
+        if (!tbody) return;
+        container.dataset.dashPagerInit = '1';
+
+        var state = {
+            page: 1,
+            pageSize: loadSize(tableId, defaultSize)
+        };
+
+        // A row is "available" (i.e. filter-visible) when DashTable did NOT
+        // hide it. We detect that by reading current display: rows we hid
+        // ourselves are tagged with [data-pager-hidden].
+        function getAvailableRows() {
+            var rows = Array.prototype.slice.call(tbody.querySelectorAll('tr[data-row]'));
+            return rows.filter(function (r) {
+                if (r.hasAttribute('data-pager-hidden')) return true;      // we hid it (page)
+                return r.style.display !== 'none';                          // DashTable kept it
+            });
+        }
+
+        function applyPage() {
+            var rows    = getAvailableRows();
+            var total   = rows.length;
+            var pages   = Math.max(1, Math.ceil(total / state.pageSize));
+            if (state.page > pages) state.page = pages;
+            if (state.page < 1)     state.page = 1;
+            var from    = (state.page - 1) * state.pageSize;
+            var to      = Math.min(from + state.pageSize, total);
+
+            rows.forEach(function (row, idx) {
+                var onPage = (idx >= from && idx < to);
+                if (onPage) {
+                    row.removeAttribute('data-pager-hidden');
+                    row.style.display = '';
+                } else {
+                    row.setAttribute('data-pager-hidden', '1');
+                    row.style.display = 'none';
+                }
+            });
+
+            renderBar(state.page, pages, total === 0 ? 0 : from + 1, to, total);
+        }
+
+        function renderBar(current, totalPages, from, to, totalRows) {
+            var parts = ['<nav class="db-pagination-bar" aria-label="Pagination">'];
+            parts.push('<div class="db-pagination-bar__left">');
+            if (totalRows === 0) {
+                parts.push('<div class="db-pagination-bar__info">No results</div>');
+            } else {
+            parts.push('<div class="db-pagination-bar__info">Showing ' + from + '\u2013' + to + ' of ' + totalRows + '</div>');
+            }
+            parts.push(
+                '<label class="db-pagination-bar__size">' +
+                  '<span>Show</span>' +
+                  '<select data-page-size-select aria-label="Rows per page">' +
+                    PAGE_SIZES.map(function (n) {
+                        return '<option value="' + n + '"' + (n === state.pageSize ? ' selected' : '') + '>' + n + '</option>';
+                    }).join('') +
+                  '</select>' +
+                  '<span>per page</span>' +
+                '</label>'
+            );
+            parts.push('</div>');
+
+            if (totalPages > 1) {
+                parts.push('<div class="db-pagination-bar__nav">');
+                parts.push(
+                    '<button type="button" class="db-pagination-bar__btn db-pagination-bar__btn--nav"' +
+                    (current <= 1 ? ' disabled' : '') +
+                    ' data-page="' + (current - 1) + '" aria-label="Previous">' +
+                    '<i class="fas fa-chevron-left db-pagination-bar__chevron" aria-hidden="true"></i></button>'
+                );
+                buildPageList(current, totalPages, 1).forEach(function (p) {
+                    if (p === '…') {
+                        parts.push('<span class="db-pagination-bar__ellipsis" aria-hidden="true">\u2026</span>');
+                    } else {
+                        var isActive = (p === current);
+                        parts.push(
+                            '<button type="button" class="db-pagination-bar__page' +
+                            (isActive ? ' active' : '') + '"' +
+                            (isActive ? ' aria-current="page" aria-disabled="true"' : '') +
+                            ' data-page="' + p + '">' + p + '</button>'
+                        );
+                    }
+                });
+                parts.push(
+                    '<button type="button" class="db-pagination-bar__btn db-pagination-bar__btn--nav"' +
+                    (current >= totalPages ? ' disabled' : '') +
+                    ' data-page="' + (current + 1) + '" aria-label="Next">' +
+                    '<i class="fas fa-chevron-right db-pagination-bar__chevron" aria-hidden="true"></i></button>'
+                );
+                parts.push('</div>');
+            }
+            parts.push('</nav>');
+            container.innerHTML = parts.join('');
+
+            // Wire page buttons
+            container.querySelectorAll('[data-page]').forEach(function (btn) {
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (btn.hasAttribute('disabled') || btn.getAttribute('aria-disabled') === 'true') return;
+                    var target = parseInt(btn.getAttribute('data-page'), 10);
+                    if (!target || target === current) return;
+                    state.page = target;
+                    applyPage();
+                    // Scroll the table back into view so the user sees the new page
+                    var yOffset = -80;
+                    var top = table.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                    window.scrollTo({ top: top, behavior: 'smooth' });
+                });
+            });
+
+            // Wire page-size selector
+            var sel = container.querySelector('[data-page-size-select]');
+            if (sel) {
+                sel.addEventListener('change', function () {
+                    var n = parseInt(sel.value, 10);
+                    if (PAGE_SIZES.indexOf(n) < 0) return;
+                    state.pageSize = n;
+                    state.page = 1;
+                    saveSize(tableId, n);
+                    applyPage();
+                });
+            }
+        }
+
+        // When search/filter changes, snap back to page 1 and re-paginate.
+        table.addEventListener('dashtable:filter', function () {
+            state.page = 1;
+            applyPage();
+        });
+
+        // Sort doesn't reset the page — user stays on whatever page they
+        // were viewing — but we need to re-slice since DOM order changed.
+        table.addEventListener('dashtable:sort', function () {
+            applyPage();
+        });
+
+        applyPage();
+    }
+
+    function initAll(root) {
+        (root || document).querySelectorAll('[data-pager-for]').forEach(init);
+    }
+
+    return { init: init, initAll: initAll };
+})();
+
+document.addEventListener('DOMContentLoaded', function () {
+    DashTablePager.initAll();
+});
+
+
+/* ═══════════════════════════════════════════════════════════
+   DashStatsToggle — reusable collapse/expand for hero stats
+   ═══════════════════════════════════════════════════════════
+   Markup contract:
+
+   <div data-collapsible-stats data-stats-key="proj-hero">...stat cards...</div>
+   <button type="button" class="db-stats-toggle"
+           data-stats-toggle="proj-hero"
+           aria-expanded="true"
+           aria-controls="..."
+           data-label-hide="Hide Stats"
+           data-label-show="Show Stats">
+       <i class="fas fa-chevron-up db-stats-toggle__icon"></i>
+       <span class="db-stats-toggle__label">Hide Stats</span>
+   </button>
+
+   • State persisted per key in localStorage ("dash:stats:<key>" = "1" collapsed, "0" expanded).
+   • Default state: expanded (no surprise to first-time visitors).
+   • Works for any number of pairs on the page.
+   ═══════════════════════════════════════════════════════════ */
+window.DashStatsToggle = (function () {
+    var STORAGE_PREFIX = 'dash:stats:';
+
+    function readState(key) {
+        try { return localStorage.getItem(STORAGE_PREFIX + key) === '1'; }
+        catch (e) { return false; }
+    }
+
+    function writeState(key, collapsed) {
+        try { localStorage.setItem(STORAGE_PREFIX + key, collapsed ? '1' : '0'); }
+        catch (e) { /* storage unavailable — still animate for the session */ }
+    }
+
+    function apply(panel, btn, collapsed, animate) {
+        if (!animate) panel.style.transition = 'none';
+        panel.classList.toggle('is-collapsed', collapsed);
+        if (!animate) {
+            // Force reflow, then restore transition
+            void panel.offsetHeight;
+            panel.style.transition = '';
+        }
+        if (btn) {
+            btn.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+            // Only swap the label text if both hide/show strings are
+            // provided; otherwise keep whatever static label is in markup.
+            var hideLabel = btn.getAttribute('data-label-hide');
+            var showLabel = btn.getAttribute('data-label-show');
+            var label = btn.querySelector('.db-stats-toggle__label');
+            if (label && hideLabel && showLabel) {
+                label.textContent = collapsed ? showLabel : hideLabel;
+            }
+        }
+    }
+
+    function init(btn) {
+        if (!btn || btn.dataset.dashStatsToggleInit === '1') return;
+        btn.dataset.dashStatsToggleInit = '1';
+
+        var key = btn.getAttribute('data-stats-toggle');
+        if (!key) return;
+        var panel = document.querySelector('[data-collapsible-stats][data-stats-key="' + key + '"]');
+        if (!panel) return;
+
+        // Restore persisted state (no animation on first paint)
+        apply(panel, btn, readState(key), false);
+
+        btn.addEventListener('click', function () {
+            var nextCollapsed = !panel.classList.contains('is-collapsed');
+            apply(panel, btn, nextCollapsed, true);
+            writeState(key, nextCollapsed);
+        });
+    }
+
+    function initAll(root) {
+        (root || document).querySelectorAll('[data-stats-toggle]').forEach(init);
+    }
+
+    return { init: init, initAll: initAll };
+})();
+
+document.addEventListener('DOMContentLoaded', function () {
+    DashStatsToggle.initAll();
 });
 
 
@@ -1112,7 +1649,10 @@ window.DashTabs = (function () {
             if (!found) return;
 
             if (content) {
-                content.querySelectorAll('[data-tab-pane]').forEach(function (p) {
+                // Only toggle DIRECT-child panes so nested tab bars
+                // (e.g. the Abuse sub-tabs inside the main Server tabs)
+                // keep their own state intact.
+                content.querySelectorAll(':scope > [data-tab-pane]').forEach(function (p) {
                     p.classList.toggle('is-active', p.getAttribute('data-tab-pane') === target);
                 });
             }

@@ -97,6 +97,13 @@ $type_badge = [
 /* ══════════════  END OF MOCK DATA  ══════════════ */
 ?>
 
+<?php if ($page_state === 'loading'): ?>
+    <!-- Full-page skeleton — hide the real hero since we don't have data yet -->
+    <?php $skel_stat_count = 4; include __DIR__ . '/../../../components/skeleton-stats.php'; ?>
+    <?php $skel_rows = 6; $skel_cols = 5; $skel_has_icon = false; $skel_has_filters = true; include __DIR__ . '/../../../components/skeleton-table.php'; ?>
+
+<?php else: ?>
+
 <?php
 $ipv4_count    = count(array_filter($ips, fn($x) => $x['protocol'] === 'IPv4'));
 $ipv6_count    = count(array_filter($ips, fn($x) => $x['protocol'] === 'IPv6'));
@@ -118,9 +125,6 @@ unset($hero_eyebrow, $hero_title, $hero_sub, $hero_stats, $hero_actions);
 
 <?php if ($page_state === 'error'): ?>
     <div class="db-card"><?php $error_retry = true; include __DIR__ . '/../../../components/error-state.php'; ?></div>
-
-<?php elseif ($page_state === 'loading'): ?>
-    <?php $skel_rows = 3; $skel_cols = 7; $skel_has_icon = false; $skel_has_filters = true; include __DIR__ . '/../../../components/skeleton-table.php'; ?>
 
 <?php elseif (empty($ips)): ?>
     <?php
@@ -168,7 +172,7 @@ unset($hero_eyebrow, $hero_title, $hero_sub, $hero_stats, $hero_actions);
                             <option value="primary"><?php echo e(__('project_ip_type_primary')); ?></option>
                             <option value="additional"><?php echo e(__('project_ip_type_additional')); ?></option>
                         </select>
-                        <button class="db-view-switch__btn" onclick="DashExport('csv')" title="Export CSV"><i class="fas fa-download"></i></button>
+                        <?php include __DIR__ . '/../../../components/export-dropdown.php'; ?>
                     </div>
                 </div>
             </div>
@@ -198,10 +202,12 @@ unset($hero_eyebrow, $hero_title, $hero_sub, $hero_stats, $hero_actions);
                             data-server="<?php echo e(strtolower($ip['server'])); ?>">
                             <td><?php echo e($ip['id']); ?></td>
                             <td>
-                                <span class="db-proj-server-ip">
+                                <button type="button" class="db-proj-server-ip db-proj-server-ip--copy" title="<?php echo e(__('common_copy')); ?>"
+                                    onclick="DashCopy && DashCopy(this,'<?php echo e($ip['ip']); ?>');">
                                     <i class="fas fa-ethernet"></i>
-                                    <?php echo e($ip['ip']); ?>
-                                </span>
+                                    <span><?php echo e($ip['ip']); ?></span>
+                                    <i class="fas fa-copy db-proj-server-ip__copy-icon"></i>
+                                </button>
                             </td>
                             <td>
                                 <span class="db-badge db-badge--<?php echo e($badge); ?>">
@@ -264,6 +270,8 @@ unset($hero_eyebrow, $hero_title, $hero_sub, $hero_stats, $hero_actions);
 
 <?php endif; ?>
 
+<?php endif; /* close outer $page_state === 'loading' guard */ ?>
+
 <!-- ═══ rDNS EDIT MODAL ═══ -->
 <?php
 $modal_id    = 'rdnsModal';
@@ -273,7 +281,7 @@ include __DIR__ . '/../../../components/modal.php';
 ?>
     <form onsubmit="return false;">
         <p class="db-modal-lead"><?php echo e(__('project_rdns_modal_desc')); ?></p>
-        <div class="db-form-group">
+        <div class="db-form-group db-mb">
             <label class="db-form-label"><?php echo e(__('project_rdns_modal_ip_label')); ?></label>
             <input type="text" class="db-input" id="rdnsModalIp" readonly style="font-family:var(--font-mono); background:var(--bg-tertiary);">
         </div>

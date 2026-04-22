@@ -60,22 +60,48 @@ function is_preview() {
 }
 
 /**
- * Get the current page identifier from the URL for active nav highlighting.
- * Returns a string like 'dashboard', 'services', 'invoices', etc.
+ * Get the current page identifier used for active nav highlighting.
+ * Returns a slug like 'dashboard', 'services', 'invoices', 'security', etc.
+ *
+ * A page can override detection by setting $nav_active_override before the
+ * shell is included. This is useful for detail pages that should keep a
+ * parent group lit (e.g. service-details → 'services').
+ *
+ * URL-based detection rules:
+ *   /dashboard/                         → 'dashboard'
+ *   /dashboard/pages/X/index.php        → X        (the folder name)
+ *   /dashboard/pages/X/Y.php            → Y        (.php stripped)
+ *   /dashboard/pages/X/Y/Z.php (deeper) → X        (top-level group)
  */
 function current_page() {
+    global $nav_active_override;
+    if (!empty($nav_active_override)) {
+        return $nav_active_override;
+    }
+
     $uri = $_SERVER['REQUEST_URI'] ?? '';
     $path = parse_url($uri, PHP_URL_PATH);
     $path = rtrim($path, '/');
 
-    // Extract the last segment after /dashboard/
-    if (preg_match('#/dashboard/pages/([^/]+)(?:/([^/?]+))?#', $path, $m)) {
-        return $m[2] ?? $m[1];
-    }
-
-    // Dashboard root
     if (preg_match('#/dashboard/?$#', $path)) {
         return 'dashboard';
+    }
+
+    if (preg_match('#/dashboard/pages/([^/]+)(?:/([^/]+))?(?:/([^/?]+))?#', $path, $m)) {
+        $folder = $m[1] ?? '';
+        $seg2   = $m[2] ?? '';
+        $seg3   = $m[3] ?? '';
+
+        // Deep path (folder/sub/file.php): light up the top-level folder
+        if ($seg3 !== '') {
+            return $folder;
+        }
+
+        $page = preg_replace('/\.php$/', '', $seg2);
+        if ($page === '' || $page === 'index') {
+            return $folder;
+        }
+        return $page;
     }
 
     return 'dashboard';

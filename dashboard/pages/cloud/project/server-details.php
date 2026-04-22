@@ -241,6 +241,7 @@ $status_key = $is_on ? 'active' : 'stopped';
                     <button class="db-dropdown-item" data-srvd-action="snapshot"><i class="fas fa-camera"></i> <?php echo e(__('srvd_action_snapshot')); ?></button>
                     <div class="db-dropdown-divider"></div>
                     <button class="db-dropdown-item" data-srvd-action="reset_password"><i class="fas fa-key"></i> <?php echo e(__('srvd_action_reset_pw')); ?></button>
+                    <button class="db-dropdown-item" onclick="DashModal.open('transferServerModal')"><i class="fas fa-right-left"></i> <?php echo e(__('srvd_action_transfer')); ?></button>
                 </div>
             </div>
             <button id="srvdPowerBtn" class="ds-btn ds-btn--power ds-btn--power-<?php echo e($server['power']); ?>" data-power="<?php echo e($server['power']); ?>">
@@ -251,7 +252,9 @@ $status_key = $is_on ? 'active' : 'stopped';
     </div>
 
     <!-- Live telemetry strip — uses .ds-stat-grid + .ds-stat--glass -->
-    <div class="ds-hero__stats">
+    <?php $__srvd_stats_key = 'srvd-' . $server['name']; ?>
+    <div class="ds-hero__stats" id="srvdStats-<?php echo e($server['name']); ?>"
+         data-collapsible-stats data-stats-key="<?php echo e($__srvd_stats_key); ?>">
         <div class="ds-stat-grid">
             <?php
             $tele = $server['telemetry'];
@@ -277,6 +280,16 @@ $status_key = $is_on ? 'active' : 'stopped';
             <?php endforeach; ?>
         </div>
     </div>
+    <div class="db-stats-rail">
+        <button type="button" class="db-stats-toggle"
+                data-stats-toggle="<?php echo e($__srvd_stats_key); ?>"
+                aria-expanded="true"
+                aria-controls="srvdStats-<?php echo e($server['name']); ?>"
+                title="<?php echo e(__('common_hide_stats')); ?>">
+            <span class="db-stats-toggle__label"><?php echo e(__('common_statistics')); ?></span>
+            <i class="fas fa-chevron-up db-stats-toggle__icon"></i>
+        </button>
+    </div>
 </section>
 
 <?php if (!empty($server['created_recently'])): ?>
@@ -295,6 +308,8 @@ $status_key = $is_on ? 'active' : 'stopped';
     <button type="button" class="db-tab-bar__btn is-active" data-tab-target="overview"><i class="fas fa-table-cells"></i> <?php echo e(__('srvd_tab_overview')); ?></button>
     <button type="button" class="db-tab-bar__btn" data-tab-target="network"><i class="fas fa-globe"></i> <?php echo e(__('srvd_tab_network')); ?></button>
     <button type="button" class="db-tab-bar__btn" data-tab-target="bandwidth"><i class="fas fa-cloud-arrow-down"></i> <?php echo e(__('srvd_tab_bandwidth')); ?></button>
+    <button type="button" class="db-tab-bar__btn" data-tab-target="backup"><i class="fas fa-box-archive"></i> <?php echo e(__('srvd_tab_backup')); ?></button>
+    <button type="button" class="db-tab-bar__btn" data-tab-target="firewall"><i class="fas fa-fire"></i> <?php echo e(__('srvd_tab_firewall')); ?></button>
     <button type="button" class="db-tab-bar__btn" data-tab-target="reinstall"><i class="fas fa-rotate"></i> <?php echo e(__('srvd_tab_reinstall')); ?></button>
     <button type="button" class="db-tab-bar__btn" data-tab-target="upgrade"><i class="fas fa-arrow-up-right-dots"></i> <?php echo e(__('srvd_tab_upgrade')); ?></button>
     <button type="button" class="db-tab-bar__btn" data-tab-target="abuse"><i class="fas fa-shield-halved"></i> <?php echo e(__('srvd_tab_abuse')); ?></button>
@@ -349,14 +364,6 @@ $status_key = $is_on ? 'active' : 'stopped';
                         <span id="srvdPasswordReal" style="display:none;"><?php echo e($server['password']); ?></span>
                     </div>
                 </div>
-
-                <button type="button" class="db-srvd-access-chip" data-srvd-copy="<?php echo e($server['port_rdp']); ?>" data-srvd-toast="<?php echo e(__('srvd_access_port_copied')); ?>">
-                    <div class="db-srvd-access-chip__head">
-                        <span class="db-srvd-access-chip__label"><i class="fas fa-plug-circle-bolt"></i> <?php echo e(__('srvd_access_port')); ?></span>
-                        <i class="fas fa-copy db-srvd-access-chip__copy"></i>
-                    </div>
-                    <div class="db-srvd-access-chip__value"><?php echo e($server['port_rdp']); ?></div>
-                </button>
             </div>
         </div>
 
@@ -402,6 +409,14 @@ $status_key = $is_on ? 'active' : 'stopped';
 
     <!-- ═══ NETWORK ═══ -->
     <div class="db-tab-pane" data-tab-pane="network">
+        <?php
+        // MOCK — Primary IPs attached to this server (IPv4 + IPv6).
+        // Backend: pull real IPs scoped to this server.
+        $srvd_primary_ips = [
+            ['ip' => $server['ip'],               'protocol' => 'IPv4', 'rdns' => null],
+            ['ip' => '2a06:8ec0::1234:5678',      'protocol' => 'IPv6', 'rdns' => 'srv1.example.com'],
+        ];
+        ?>
         <div class="db-srvd-card">
             <div class="db-srvd-card__head"><i class="fas fa-globe"></i> <?php echo e(__('srvd_network_public_title')); ?></div>
             <ul class="db-srvd-notice-list">
@@ -411,37 +426,53 @@ $status_key = $is_on ? 'active' : 'stopped';
                 <li class="db-srvd-notice--warn"><i class="fas fa-circle"></i> <?php echo e(__('srvd_network_notice_4')); ?></li>
             </ul>
 
-            <table class="db-table db-srvd-inner--mt-lg">
-                <thead>
-                    <tr>
-                        <th><?php echo e(__('srvd_network_main_ip')); ?></th>
-                        <th style="width:120px;"><?php echo e(__('project_col_protocol')); ?></th>
-                        <th style="width:200px;">rDNS</th>
-                        <th style="width:70px;">#</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr data-ip-row data-ip="<?php echo e($server['ip']); ?>" data-ip-type="primary">
-                        <td><span class="db-proj-server-ip"><?php echo e($server['ip']); ?></span></td>
-                        <td><span class="db-proj-protocol db-proj-protocol--ipv4">IPv4</span></td>
-                        <td>
-                            <span class="db-proj-rdns-cell">
-                                <span class="db-proj-rdns db-proj-rdns--empty" data-rdns-view>—</span>
-                                <button class="db-proj-rdns-edit" data-rdns-edit title="<?php echo e(__('project_ip_action_rdns')); ?>"><i class="fas fa-pen"></i></button>
-                            </span>
-                        </td>
-                        <td>
-                            <div class="db-dropdown-wrapper">
-                                <button class="db-row-action db-row-action--solid" data-dropdown-toggle><i class="fas fa-ellipsis"></i></button>
-                                <div class="db-dropdown-menu">
-                                    <button class="db-dropdown-item" data-rdns-edit><i class="fas fa-pen"></i> <?php echo e(__('project_ip_action_rdns')); ?></button>
-                                    <button class="db-dropdown-item" onclick="DashModal.open('instructionsModal')"><i class="fas fa-book"></i> <?php echo e(__('srvd_network_instructions')); ?></button>
+            <div class="db-table-wrapper db-srvd-inner--mt-lg">
+                <table class="db-table">
+                    <thead>
+                        <tr>
+                            <th><?php echo e(__('srvd_network_main_ip')); ?></th>
+                            <th class="db-col-date"><?php echo e(__('project_col_protocol')); ?></th>
+                            <th>rDNS</th>
+                            <th class="db-col-num"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($srvd_primary_ips as $ip_row):
+                            $proto_slug = strtolower($ip_row['protocol']);
+                        ?>
+                        <tr data-ip-row data-ip="<?php echo e($ip_row['ip']); ?>" data-ip-type="primary">
+                            <td>
+                                <button type="button" class="db-proj-server-ip db-proj-server-ip--copy" title="<?php echo e(__('common_copy')); ?>"
+                                    onclick="DashCopy && DashCopy(this,'<?php echo e($ip_row['ip']); ?>')">
+                                    <span><?php echo e($ip_row['ip']); ?></span>
+                                    <i class="fas fa-copy db-proj-server-ip__copy-icon"></i>
+                                </button>
+                            </td>
+                            <td><span class="db-proj-protocol db-proj-protocol--<?php echo e($proto_slug); ?>"><?php echo e($ip_row['protocol']); ?></span></td>
+                            <td>
+                                <span class="db-proj-rdns-cell">
+                                    <?php if (!empty($ip_row['rdns'])): ?>
+                                    <span class="db-proj-rdns" data-rdns-view><?php echo e($ip_row['rdns']); ?></span>
+                                    <?php else: ?>
+                                    <span class="db-proj-rdns db-proj-rdns--empty" data-rdns-view>—</span>
+                                    <?php endif; ?>
+                                    <button class="db-proj-rdns-edit" data-rdns-edit title="<?php echo e(__('project_ip_action_rdns')); ?>"><i class="fas fa-pen"></i></button>
+                                </span>
+                            </td>
+                            <td>
+                                <div class="db-dropdown-wrapper">
+                                    <button class="db-row-action db-row-action--solid" data-dropdown-toggle><i class="fas fa-ellipsis"></i></button>
+                                    <div class="db-dropdown-menu">
+                                        <button class="db-dropdown-item" data-rdns-edit><i class="fas fa-pen"></i> <?php echo e(__('project_ip_action_rdns')); ?></button>
+                                        <button class="db-dropdown-item" onclick="DashModal.open('instructionsModal')"><i class="fas fa-book"></i> <?php echo e(__('srvd_network_instructions')); ?></button>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
 
             <div class="db-srvd-actions-row">
                 <button class="db-btn db-btn--primary db-btn--sm" data-open-ip-modal="primary">
@@ -474,54 +505,263 @@ $status_key = $is_on ? 'active' : 'stopped';
 
     <!-- ═══ BANDWIDTH ═══ -->
     <div class="db-tab-pane" data-tab-pane="bandwidth">
-        <div class="db-srvd-card db-srvd-bandwidth-intro">
-            <div class="db-srvd-card__head"><i class="fas fa-cloud-arrow-down"></i> <?php echo e(__('srvd_bw_title')); ?></div>
-            <p class="db-srvd-card__desc"><?php echo e(__('srvd_bw_desc')); ?></p>
-        </div>
+        <?php
+        // MOCK — Bandwidth daily usage (30 days, GB per day).
+        // Backend: replace with real daily samples from metrics backend.
+        $srvd_bw_daily = [
+            12, 18, 22, 17, 24, 30, 34, 28, 32, 38, 34, 30, 28, 32, 34,
+            36, 40, 38, 42, 45, 40, 44, 48, 50, 46, 52, 55, 58, 62, 66,
+        ];
+        $srvd_bw_used_gb   = array_sum($srvd_bw_daily);
+        $srvd_bw_max_gb    = $server['bandwidth']['max'] * 1024; // TB→GB
+        $srvd_bw_pct       = $srvd_bw_max_gb > 0 ? min(100, round(($srvd_bw_used_gb / $srvd_bw_max_gb) * 100, 1)) : 0;
+        $srvd_bw_used_tb   = round($srvd_bw_used_gb / 1024, 2);
+        $srvd_bw_last_day  = end($srvd_bw_daily);
+        $srvd_bw_avg_day   = round($srvd_bw_used_gb / max(1, count($srvd_bw_daily)), 1);
+        ?>
 
-        <div class="db-srvd-over-bandwidth">
-            <span><?php echo e(__('srvd_bw_over_text')); ?></span>
-            <button class="db-btn db-btn--primary db-btn--sm" id="srvdBwOverBtn">
-                <i class="fas fa-plus"></i> <span><?php echo e(__('srvd_bw_over_btn')); ?></span>
-            </button>
-        </div>
-
-        <div class="db-srvd-grid-bandwidth">
-            <div class="db-srvd-card">
-                <div class="db-srvd-bw-head">
-                    <span class="db-srvd-card__head"><?php echo e(__('srvd_bw_usage_title')); ?></span>
-                    <span class="db-srvd-bw-count"><?php echo $server['bandwidth']['used']; ?>/<?php echo $server['bandwidth']['max']; ?> TB</span>
-                </div>
-                <div class="db-resource-card__bar-wrap db-srvd-inner--mt-md">
-                    <div class="db-resource-card__pct">0%</div>
-                    <div class="db-resource-card__bar" style="width:0%;"></div>
-                </div>
-                <p class="db-srvd-bw-hint">
-                    <?php echo e(__('srvd_bw_usage_hint')); ?>
-                </p>
+        <div class="db-srvd-card">
+            <div class="db-srvd-card__head-row">
+                <div class="db-srvd-card__head"><i class="fas fa-cloud-arrow-down"></i> <?php echo e(__('srvd_bw_title')); ?></div>
+                <button class="db-btn db-btn--secondary db-btn--sm" id="srvdBwResetBtn"
+                    onclick="DashToast.show('success','','<?php echo e(__('srvd_bw_reset_done')); ?>')">
+                    <i class="fas fa-rotate-left"></i> <span><?php echo e(__('srvd_bw_reset_btn')); ?></span>
+                </button>
             </div>
 
-            <div class="db-srvd-card">
-                <div class="db-srvd-card__head"><i class="fas fa-circle-question"></i> <?php echo e(__('srvd_bw_faq_title')); ?></div>
-                <div class="db-srvd-faq">
-                    <details class="db-srvd-faq-item">
-                        <summary><?php echo e(__('srvd_bw_faq_q1')); ?> <i class="fas fa-chevron-down"></i></summary>
-                        <p><?php echo e(__('srvd_bw_faq_a1')); ?></p>
-                    </details>
-                    <details class="db-srvd-faq-item">
-                        <summary><?php echo e(__('srvd_bw_faq_q2')); ?> <i class="fas fa-chevron-down"></i></summary>
-                        <p><?php echo e(__('srvd_bw_faq_a2')); ?></p>
-                    </details>
-                    <details class="db-srvd-faq-item">
-                        <summary><?php echo e(__('srvd_bw_faq_q3')); ?> <i class="fas fa-chevron-down"></i></summary>
-                        <p><?php echo e(__('srvd_bw_faq_a3')); ?></p>
-                    </details>
-                    <details class="db-srvd-faq-item">
-                        <summary><?php echo e(__('srvd_bw_faq_q4')); ?> <i class="fas fa-chevron-down"></i></summary>
-                        <p><?php echo e(__('srvd_bw_faq_a4')); ?></p>
-                    </details>
+            <!-- Headline usage -->
+            <div class="db-srvd-bw-headline">
+                <div class="db-srvd-bw-headline__main">
+                    <span class="db-srvd-bw-headline__value"><?php echo e($srvd_bw_used_tb); ?></span>
+                    <span class="db-srvd-bw-headline__unit">TB</span>
+                    <span class="db-srvd-bw-headline__sub">/ <?php echo (int)$server['bandwidth']['max']; ?> TB <?php echo e(__('srvd_bw_this_month')); ?></span>
+                </div>
+                <div class="db-srvd-bw-headline__pills">
+                    <span class="db-srvd-bw-pill">
+                        <i class="fas fa-calendar-day"></i>
+                        <?php echo e(__('srvd_bw_today', ['gb' => $srvd_bw_last_day])); ?>
+                    </span>
+                    <span class="db-srvd-bw-pill">
+                        <i class="fas fa-chart-line"></i>
+                        <?php echo e(__('srvd_bw_avg', ['gb' => $srvd_bw_avg_day])); ?>
+                    </span>
                 </div>
             </div>
+
+            <!-- Progress bar -->
+            <div class="db-resource-card__bar-wrap db-srvd-inner--mt-md">
+                <div class="db-resource-card__pct"><?php echo e($srvd_bw_pct); ?>%</div>
+                <div class="db-resource-card__bar" style="width:<?php echo (float)$srvd_bw_pct; ?>%;"></div>
+            </div>
+
+            <!-- 30-day area chart -->
+            <div class="db-srvd-bw-chart">
+                <?php echo cloud_sparkline($srvd_bw_daily, 720, 160, 'var(--brand-primary)'); ?>
+            </div>
+            <div class="db-srvd-bw-chart__footer">
+                <span><?php echo e(__('dash_bw_30_days_ago')); ?></span>
+                <span><?php echo e(__('dash_bw_today')); ?></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ BACKUP ═══ -->
+    <div class="db-tab-pane" data-tab-pane="backup">
+        <?php
+        // MOCK — Backup state + history. Backend: replace with server
+        // backup-service state + list of snapshots.
+        $srvd_backup = [
+            'enabled'       => false,
+            'monthly_cost'  => round($server['price_m'] * 0.25, 2),   // 25% of server cost
+            'retention_days'=> 7,
+            'next_run'      => '2026-04-21 03:00',
+            'items'         => [
+                ['id' => 'BKP-88421', 'date' => '2026-04-19 03:02', 'size' => '42.1 GB', 'type' => 'auto',   'status' => 'ready'],
+                ['id' => 'BKP-88299', 'date' => '2026-04-18 03:01', 'size' => '41.8 GB', 'type' => 'auto',   'status' => 'ready'],
+                ['id' => 'BKP-88152', 'date' => '2026-04-17 03:02', 'size' => '41.5 GB', 'type' => 'auto',   'status' => 'ready'],
+                ['id' => 'BKP-88012', 'date' => '2026-04-16 14:18', 'size' => '41.2 GB', 'type' => 'manual', 'status' => 'ready'],
+            ],
+        ];
+        ?>
+
+        <div class="db-srvd-card">
+            <div class="db-srvd-card__head-row">
+                <div class="db-srvd-card__head"><i class="fas fa-box-archive"></i> <?php echo e(__('srvd_backup_title')); ?></div>
+                <span class="db-badge db-badge--<?php echo $srvd_backup['enabled'] ? 'active' : 'cancelled'; ?>">
+                    <?php echo e($srvd_backup['enabled'] ? __('common_enabled') : __('common_disabled')); ?>
+                </span>
+            </div>
+            <ul class="db-srvd-notice-list">
+                <li><i class="fas fa-circle"></i> <?php echo __('srvd_backup_notice_1', ['pct' => '<strong>25%</strong>']); ?></li>
+                <li><i class="fas fa-circle"></i> <?php echo e(__('srvd_backup_notice_2', ['days' => $srvd_backup['retention_days']])); ?></li>
+                <li class="db-srvd-notice--warn"><i class="fas fa-circle"></i> <?php echo e(__('srvd_backup_notice_3')); ?></li>
+            </ul>
+
+            <!-- Cost + controls -->
+            <div class="db-srvd-backup-controls db-srvd-inner--mt-md">
+                <div class="db-srvd-backup-cost">
+                    <span class="db-srvd-backup-cost__label"><?php echo e(__('srvd_backup_monthly_cost')); ?></span>
+                    <span class="db-srvd-backup-cost__value"><?php echo format_money($srvd_backup['monthly_cost']); ?> <small>/m</small></span>
+                </div>
+                <?php if ($srvd_backup['enabled']): ?>
+                <button class="db-btn db-btn--danger db-btn--sm"
+                    onclick="DashToast.show('warning','','<?php echo e(__('srvd_backup_disabled_toast')); ?>')">
+                    <i class="fas fa-power-off"></i> <?php echo e(__('srvd_backup_disable')); ?>
+                </button>
+                <?php else: ?>
+                <button class="db-btn db-btn--primary db-btn--sm"
+                    onclick="DashToast.show('success','','<?php echo e(__('srvd_backup_enabled_toast')); ?>')">
+                    <i class="fas fa-circle-check"></i> <?php echo e(__('srvd_backup_enable')); ?>
+                </button>
+                <?php endif; ?>
+            </div>
+        </div>
+
+        <!-- Available backups -->
+        <div class="db-srvd-card db-srvd-card--mt">
+            <div class="db-srvd-card__head-row">
+                <div class="db-srvd-card__head"><i class="fas fa-clock-rotate-left"></i> <?php echo e(__('srvd_backup_available')); ?></div>
+                <button class="db-btn db-btn--secondary db-btn--sm"
+                    <?php echo $srvd_backup['enabled'] ? '' : 'disabled'; ?>
+                    onclick="DashToast.show('info','','<?php echo e(__('srvd_backup_manual_toast')); ?>')">
+                    <i class="fas fa-plus"></i> <?php echo e(__('srvd_backup_create_manual')); ?>
+                </button>
+            </div>
+
+            <?php if (empty($srvd_backup['items'])): ?>
+                <div class="db-srvd-empty-inline">
+                    <?php echo e(__('srvd_backup_empty')); ?>
+                </div>
+            <?php else: ?>
+                <div class="db-table-wrapper db-srvd-inner--mt">
+                    <table class="db-table">
+                        <thead>
+                            <tr>
+                                <th><?php echo e(__('srvd_backup_col_id')); ?></th>
+                                <th><?php echo e(__('srvd_backup_col_date')); ?></th>
+                                <th><?php echo e(__('srvd_backup_col_size')); ?></th>
+                                <th><?php echo e(__('srvd_backup_col_type')); ?></th>
+                                <th><?php echo e(__('common_status')); ?></th>
+                                <th class="db-col-num"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($srvd_backup['items'] as $bk): ?>
+                            <tr>
+                                <td><span class="db-table-cell-mono"><?php echo e($bk['id']); ?></span></td>
+                                <td><span class="db-table-cell-mono"><?php echo e($bk['date']); ?></span></td>
+                                <td><?php echo e($bk['size']); ?></td>
+                                <td><span class="db-badge db-badge--<?php echo $bk['type'] === 'auto' ? 'pending' : 'active'; ?>"><?php echo e(__('srvd_backup_type_' . $bk['type'])); ?></span></td>
+                                <td><span class="db-badge db-badge--active"><?php echo e(__('srvd_backup_status_' . $bk['status'])); ?></span></td>
+                                <td>
+                                    <div class="db-row-actions db-row-actions--solid" onclick="event.stopPropagation();">
+                                        <button class="db-row-action db-row-action--solid db-row-action--primary"
+                                            data-tooltip="<?php echo e(__('srvd_backup_restore')); ?>"
+                                            onclick="DashToast.show('info','','<?php echo e(__('srvd_backup_restore_toast')); ?>')">
+                                            <i class="fas fa-rotate-left"></i>
+                                        </button>
+                                        <div class="db-dropdown-wrapper">
+                                            <button class="db-row-action db-row-action--solid db-row-action--menu" data-dropdown-toggle><i class="fas fa-ellipsis-vertical"></i></button>
+                                            <div class="db-dropdown-menu">
+                                                <button class="db-dropdown-item"><i class="fas fa-download"></i> <?php echo e(__('srvd_backup_download')); ?></button>
+                                                <button class="db-dropdown-item"><i class="fas fa-clone"></i> <?php echo e(__('srvd_backup_clone')); ?></button>
+                                                <div class="db-dropdown-divider"></div>
+                                                <button class="db-dropdown-item db-dropdown-item--danger"><i class="fas fa-trash"></i> <?php echo e(__('common_delete')); ?></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+
+    <!-- ═══ FIREWALL ═══ -->
+    <div class="db-tab-pane" data-tab-pane="firewall">
+        <?php
+        // MOCK — Firewall rules. Backend: pull real rule list.
+        $srvd_firewall_rules = [
+            ['id' => 1, 'action' => 'allow', 'direction' => 'inbound',  'protocol' => 'TCP',  'port' => '22',       'source' => 'any',            'note' => 'SSH'],
+            ['id' => 2, 'action' => 'allow', 'direction' => 'inbound',  'protocol' => 'TCP',  'port' => '80',       'source' => 'any',            'note' => 'HTTP'],
+            ['id' => 3, 'action' => 'allow', 'direction' => 'inbound',  'protocol' => 'TCP',  'port' => '443',      'source' => 'any',            'note' => 'HTTPS'],
+            ['id' => 4, 'action' => 'allow', 'direction' => 'inbound',  'protocol' => 'TCP',  'port' => '3389',     'source' => '197.54.0.0/16',  'note' => 'RDP (office)'],
+            ['id' => 5, 'action' => 'deny',  'direction' => 'inbound',  'protocol' => 'any',  'port' => 'any',      'source' => '103.0.0.0/8',    'note' => 'Blocked range'],
+        ];
+        ?>
+
+        <div class="db-srvd-card">
+            <div class="db-srvd-card__head-row">
+                <div class="db-srvd-card__head"><i class="fas fa-fire"></i> <?php echo e(__('srvd_firewall_title')); ?></div>
+                <button class="db-btn db-btn--primary db-btn--sm" onclick="DashModal.open('firewallRuleModal')">
+                    <i class="fas fa-plus"></i> <?php echo e(__('srvd_firewall_add_rule')); ?>
+                </button>
+            </div>
+            <ul class="db-srvd-notice-list">
+                <li><i class="fas fa-circle"></i> <?php echo e(__('srvd_firewall_notice_1')); ?></li>
+                <li><i class="fas fa-circle"></i> <?php echo e(__('srvd_firewall_notice_2')); ?></li>
+                <li class="db-srvd-notice--warn"><i class="fas fa-circle"></i> <?php echo e(__('srvd_firewall_notice_3')); ?></li>
+            </ul>
+
+            <?php if (empty($srvd_firewall_rules)): ?>
+                <div class="db-srvd-empty-inline">
+                    <?php echo e(__('srvd_firewall_empty')); ?>
+                </div>
+            <?php else: ?>
+                <div class="db-table-wrapper db-srvd-inner--mt">
+                    <table class="db-table">
+                        <thead>
+                            <tr>
+                                <th class="db-col-num">#</th>
+                                <th><?php echo e(__('srvd_firewall_col_action')); ?></th>
+                                <th><?php echo e(__('srvd_firewall_col_direction')); ?></th>
+                                <th><?php echo e(__('srvd_firewall_col_protocol')); ?></th>
+                                <th><?php echo e(__('srvd_firewall_col_port')); ?></th>
+                                <th><?php echo e(__('srvd_firewall_col_source')); ?></th>
+                                <th><?php echo e(__('srvd_firewall_col_note')); ?></th>
+                                <th class="db-col-num"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($srvd_firewall_rules as $rule): ?>
+                            <tr>
+                                <td><?php echo (int)$rule['id']; ?></td>
+                                <td>
+                                    <span class="db-badge db-badge--<?php echo $rule['action'] === 'allow' ? 'active' : 'overdue'; ?>">
+                                        <i class="fas fa-<?php echo $rule['action'] === 'allow' ? 'check' : 'ban'; ?>"></i>
+                                        <?php echo e(__('srvd_firewall_action_' . $rule['action'])); ?>
+                                    </span>
+                                </td>
+                                <td><?php echo e(__('srvd_firewall_dir_' . $rule['direction'])); ?></td>
+                                <td><span class="db-table-cell-mono"><?php echo e(strtoupper($rule['protocol'])); ?></span></td>
+                                <td><span class="db-table-cell-mono"><?php echo e($rule['port']); ?></span></td>
+                                <td><span class="db-table-cell-mono"><?php echo e($rule['source']); ?></span></td>
+                                <td><span class="db-table-cell-sub"><?php echo e($rule['note']); ?></span></td>
+                                <td>
+                                    <div class="db-row-actions db-row-actions--solid" onclick="event.stopPropagation();">
+                                        <div class="db-dropdown-wrapper">
+                                            <button class="db-row-action db-row-action--solid db-row-action--menu" data-dropdown-toggle><i class="fas fa-ellipsis-vertical"></i></button>
+                                            <div class="db-dropdown-menu">
+                                                <button class="db-dropdown-item" onclick="DashModal.open('firewallRuleModal')"><i class="fas fa-pen"></i> <?php echo e(__('common_edit')); ?></button>
+                                                <button class="db-dropdown-item"><i class="fas fa-clone"></i> <?php echo e(__('srvd_firewall_duplicate')); ?></button>
+                                                <div class="db-dropdown-divider"></div>
+                                                <button class="db-dropdown-item db-dropdown-item--danger"
+                                                    onclick="DashToast.show('success','','<?php echo e(__('srvd_firewall_deleted_toast')); ?>')">
+                                                    <i class="fas fa-trash"></i> <?php echo e(__('common_delete')); ?>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 
@@ -649,20 +889,115 @@ $status_key = $is_on ? 'active' : 'stopped';
             </ul>
         </div>
 
+        <?php
+        /*  MOCK — Abuse reports (flat list). Each row carries its own status
+            so the UI can filter, sort, search, paginate and export through
+            the unified DashTable + DashTablePager pipeline. */
+        $srvd_abuse_rows = [
+            ['id' => 'AB-52144', 'date' => '2026-04-18 14:32', 'type' => 'DMCA',     'source' => 'Acme Rights Ltd.',    'summary' => 'Alleged copyrighted content at /share/movie.mp4',                     'status' => 'pending'],
+            ['id' => 'AB-52098', 'date' => '2026-04-10 08:17', 'type' => 'Spam',     'source' => 'abuse@spamhaus.org',  'summary' => 'Outbound SMTP burst detected — awaiting proof of remediation',        'status' => 'review'],
+            ['id' => 'AB-51720', 'date' => '2026-03-02 11:05', 'type' => 'Phishing', 'source' => 'Cert-BD',             'summary' => 'Phishing page removed, reply sent to reporter',                       'status' => 'solved'],
+            ['id' => 'AB-51612', 'date' => '2026-02-14 19:48', 'type' => 'Malware',  'source' => 'abuseipdb.com',       'summary' => 'Compromised WordPress plugin patched',                                'status' => 'solved'],
+        ];
+
+        // Counts per status for the segmented tab filter.
+        $srvd_abuse_counts = ['pending' => 0, 'review' => 0, 'suspended' => 0, 'solved' => 0];
+        foreach ($srvd_abuse_rows as $__r) {
+            if (isset($srvd_abuse_counts[$__r['status']])) $srvd_abuse_counts[$__r['status']]++;
+        }
+        $srvd_abuse_total = count($srvd_abuse_rows);
+
+        // Status → badge variant
+        $srvd_abuse_status_badge = [
+            'pending'   => 'pending',
+            'review'    => 'unpaid',
+            'suspended' => 'suspended',
+            'solved'    => 'paid',
+        ];
+
+        // Unique type list for the filter dropdown.
+        $srvd_abuse_types = array_values(array_unique(array_column($srvd_abuse_rows, 'type')));
+        sort($srvd_abuse_types);
+        ?>
         <div class="db-srvd-card db-srvd-card--mt">
             <div class="db-srvd-card__head"><i class="fas fa-flag"></i> <?php echo e(__('srvd_abuse_reports_title')); ?></div>
-            <div class="db-tab-bar db-srvd-inner--mt" data-tab-bar data-tab-content="#abuseTabs" data-tab-hash-prefix="abuse-" data-tab-no-url="1">
-                <button type="button" class="db-tab-bar__btn is-active" data-tab-target="pending"><i class="fas fa-circle-notch"></i> <?php echo e(__('srvd_abuse_pending')); ?> <span class="db-tab-bar__count">0</span></button>
-                <button type="button" class="db-tab-bar__btn" data-tab-target="review"><i class="fas fa-eye"></i> <?php echo e(__('srvd_abuse_review')); ?> <span class="db-tab-bar__count">0</span></button>
-                <button type="button" class="db-tab-bar__btn" data-tab-target="suspended"><i class="fas fa-pause"></i> <?php echo e(__('srvd_abuse_suspended')); ?> <span class="db-tab-bar__count">0</span></button>
-                <button type="button" class="db-tab-bar__btn" data-tab-target="solved"><i class="fas fa-check"></i> <?php echo e(__('srvd_abuse_solved')); ?> <span class="db-tab-bar__count">0</span></button>
+
+            <?php if (empty($srvd_abuse_rows)): ?>
+                <div class="db-srvd-ok-state db-srvd-inner--mt"><i class="fas fa-circle-check"></i> <?php echo e(__('srvd_abuse_ok')); ?></div>
+            <?php else: ?>
+
+            <!-- ═══ FILTER BAR ═══ -->
+            <div class="db-fbar db-srvd-inner--mt">
+                <div class="db-fbar__top">
+                    <div class="db-fbar__search">
+                        <i class="fas fa-magnifying-glass"></i>
+                        <input type="text" data-table-search="abuseTable" placeholder="<?php echo e(__('srvd_abuse_search_ph')); ?>">
+                    </div>
+                    <div class="db-fbar__tools">
+                        <select class="db-fbar__sort" data-table-filter="abuseTable" data-filter-key="type">
+                            <option value=""><?php echo e(__('srvd_abuse_filter_all_types')); ?></option>
+                            <?php foreach ($srvd_abuse_types as $t): ?>
+                            <option value="<?php echo e(strtolower($t)); ?>"><?php echo e($t); ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <?php include __DIR__ . '/../../../components/export-dropdown.php'; ?>
+                    </div>
+                </div>
+                <!-- Segmented status tabs — act as shortcuts that toggle the status filter -->
+                <div class="db-fbar__bottom">
+                    <div class="db-seg-tabs" data-table-tabs="abuseTable" data-tab-key="status">
+                        <button type="button" class="db-seg-tab active" data-tab-value="all"><?php echo e(__('srvd_abuse_filter_all')); ?> <span class="db-seg-tab__count"><?php echo (int)$srvd_abuse_total; ?></span></button>
+                        <button type="button" class="db-seg-tab" data-tab-value="pending"><?php echo e(__('srvd_abuse_pending')); ?> <span class="db-seg-tab__count"><?php echo (int)$srvd_abuse_counts['pending']; ?></span></button>
+                        <button type="button" class="db-seg-tab" data-tab-value="review"><?php echo e(__('srvd_abuse_review')); ?> <span class="db-seg-tab__count"><?php echo (int)$srvd_abuse_counts['review']; ?></span></button>
+                        <button type="button" class="db-seg-tab" data-tab-value="suspended"><?php echo e(__('srvd_abuse_suspended')); ?> <span class="db-seg-tab__count"><?php echo (int)$srvd_abuse_counts['suspended']; ?></span></button>
+                        <button type="button" class="db-seg-tab" data-tab-value="solved"><?php echo e(__('srvd_abuse_solved')); ?> <span class="db-seg-tab__count"><?php echo (int)$srvd_abuse_counts['solved']; ?></span></button>
+                    </div>
+                </div>
             </div>
-            <div id="abuseTabs">
-                <div class="db-tab-pane is-active" data-tab-pane="pending"><div class="db-srvd-ok-state"><i class="fas fa-circle-check"></i> <?php echo e(__('srvd_abuse_ok')); ?></div></div>
-                <div class="db-tab-pane" data-tab-pane="review"><div class="db-srvd-ok-state"><i class="fas fa-circle-check"></i> <?php echo e(__('srvd_abuse_ok')); ?></div></div>
-                <div class="db-tab-pane" data-tab-pane="suspended"><div class="db-srvd-ok-state"><i class="fas fa-circle-check"></i> <?php echo e(__('srvd_abuse_ok')); ?></div></div>
-                <div class="db-tab-pane" data-tab-pane="solved"><div class="db-srvd-ok-state"><i class="fas fa-circle-check"></i> <?php echo e(__('srvd_abuse_ok')); ?></div></div>
+
+            <!-- ═══ UNIFIED ABUSE TABLE ═══ -->
+            <div class="db-table-wrapper">
+                <table class="db-table" id="abuseTable" data-table-tools>
+                    <thead>
+                        <tr>
+                            <th class="db-col-num">#</th>
+                            <th class="db-table-sortable" data-sort-key="date"><?php echo e(__('srvd_abuse_col_date')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
+                            <th class="db-table-sortable" data-sort-key="type"><?php echo e(__('srvd_abuse_col_type')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
+                            <th class="db-table-sortable" data-sort-key="source"><?php echo e(__('srvd_abuse_col_source')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
+                            <th><?php echo e(__('srvd_abuse_col_summary')); ?></th>
+                            <th class="db-table-sortable" data-sort-key="status"><?php echo e(__('common_status')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($srvd_abuse_rows as $r):
+                            $badge = $srvd_abuse_status_badge[$r['status']] ?? 'pending';
+                        ?>
+                        <tr data-row
+                            data-id="<?php echo e(strtolower($r['id'])); ?>"
+                            data-date="<?php echo e($r['date']); ?>"
+                            data-type="<?php echo e(strtolower($r['type'])); ?>"
+                            data-source="<?php echo e(strtolower($r['source'])); ?>"
+                            data-status="<?php echo e($r['status']); ?>">
+                            <td><span class="db-table-cell-mono"><?php echo e($r['id']); ?></span></td>
+                            <td><span class="db-table-cell-mono"><?php echo e($r['date']); ?></span></td>
+                            <td><span class="db-badge db-badge--pending"><?php echo e($r['type']); ?></span></td>
+                            <td><?php echo e($r['source']); ?></td>
+                            <td><span class="db-table-cell-sub"><?php echo e($r['summary']); ?></span></td>
+                            <td><span class="db-badge db-badge--<?php echo e($badge); ?>"><?php echo e(__('srvd_abuse_' . $r['status'])); ?></span></td>
+                        </tr>
+                        <?php endforeach; ?>
+                        <?php
+                        $te_colspan = 6; $te_text = __('srvd_abuse_empty_search');
+                        include __DIR__ . '/../../../components/table-empty.php';
+                        ?>
+                    </tbody>
+                </table>
             </div>
+
+            <!-- Pagination — built client-side by DashTablePager based on current filters -->
+            <div id="abusePagination" data-pager-for="abuseTable" data-page-size="10"></div>
+
+            <?php endif; ?>
         </div>
     </div>
 
@@ -759,6 +1094,20 @@ $status_key = $is_on ? 'active' : 'stopped';
             </div>
         </div>
 
+        <?php
+        // MOCK — Per-server billing records (daily usage rollups).
+        // Backend: pull daily usage rows for this server.id from the billing table.
+        $srvd_billing_records = [
+            ['date' => '2026-04-19', 'hours' => 24, 'server_cost' => 0.26, 'ip_cost' => 0.00, 'bw_cost' => 0.00, 'total' => 0.26],
+            ['date' => '2026-04-18', 'hours' => 24, 'server_cost' => 0.26, 'ip_cost' => 0.00, 'bw_cost' => 0.00, 'total' => 0.26],
+            ['date' => '2026-04-17', 'hours' => 24, 'server_cost' => 0.26, 'ip_cost' => 0.00, 'bw_cost' => 0.00, 'total' => 0.26],
+            ['date' => '2026-04-16', 'hours' => 24, 'server_cost' => 0.26, 'ip_cost' => 0.00, 'bw_cost' => 0.00, 'total' => 0.26],
+            ['date' => '2026-04-15', 'hours' => 24, 'server_cost' => 0.26, 'ip_cost' => 0.00, 'bw_cost' => 0.00, 'total' => 0.26],
+            ['date' => '2026-04-14', 'hours' => 18, 'server_cost' => 0.20, 'ip_cost' => 0.00, 'bw_cost' => 0.00, 'total' => 0.20],
+            ['date' => '2026-04-13', 'hours' => 24, 'server_cost' => 0.26, 'ip_cost' => 0.00, 'bw_cost' => 0.00, 'total' => 0.26],
+        ];
+        $srvd_billing_total = array_sum(array_column($srvd_billing_records, 'total'));
+        ?>
         <div class="db-srvd-card db-srvd-card--mt">
             <div class="db-srvd-card__head-row">
                 <div class="db-srvd-card__head"><i class="fas fa-file-invoice"></i> <?php echo e(__('srvd_pricing_billing_records')); ?></div>
@@ -767,9 +1116,52 @@ $status_key = $is_on ? 'active' : 'stopped';
                 </a>
             </div>
             <p class="db-srvd-card__desc"><?php echo e(__('srvd_pricing_records_desc')); ?></p>
-            <div class="db-srvd-empty-inline">
-                <?php echo e(__('srvd_pricing_no_usage')); ?>
-            </div>
+
+            <?php if (empty($srvd_billing_records)): ?>
+                <div class="db-srvd-empty-inline">
+                    <?php echo e(__('srvd_pricing_no_usage')); ?>
+                </div>
+            <?php else: ?>
+                <div class="db-table-wrapper db-srvd-inner--mt">
+                    <table class="db-table">
+                        <thead>
+                            <tr>
+                                <th><?php echo e(__('srvd_pricing_col_date')); ?></th>
+                                <th class="db-col-num"><?php echo e(__('srvd_pricing_col_hours')); ?></th>
+                                <th class="db-table-cell--right"><?php echo e(__('srvd_pricing_col_server')); ?></th>
+                                <th class="db-table-cell--right"><?php echo e(__('srvd_pricing_col_ips')); ?></th>
+                                <th class="db-table-cell--right"><?php echo e(__('srvd_pricing_col_bandwidth')); ?></th>
+                                <th class="db-table-cell--right"><?php echo e(__('srvd_pricing_col_total')); ?></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($srvd_billing_records as $rec): ?>
+                            <tr>
+                                <td><span class="db-table-cell-mono"><?php echo e($rec['date']); ?></span></td>
+                                <td><?php echo (int)$rec['hours']; ?>h</td>
+                                <td class="db-table-cell--right"><?php echo format_money($rec['server_cost']); ?></td>
+                                <td class="db-table-cell--right"><?php echo format_money($rec['ip_cost']); ?></td>
+                                <td class="db-table-cell--right"><?php echo format_money($rec['bw_cost']); ?></td>
+                                <td class="db-table-cell--right"><span class="db-table-cell-amount"><?php echo format_money($rec['total']); ?></span></td>
+                            </tr>
+                            <?php endforeach; ?>
+                            <tr class="db-srvd-billing-total-row">
+                                <td colspan="5" class="db-table-cell--right"><strong><?php echo e(__('srvd_pricing_total_so_far')); ?></strong></td>
+                                <td class="db-table-cell--right"><strong><?php echo format_money($srvd_billing_total); ?></strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <?php
+                $pg_current    = 1;
+                $pg_total      = 1;
+                $pg_from       = 1;
+                $pg_to         = count($srvd_billing_records);
+                $pg_total_rows = count($srvd_billing_records);
+                include __DIR__ . '/../../../components/pagination.php';
+                ?>
+            <?php endif; ?>
         </div>
     </div>
 
@@ -796,21 +1188,180 @@ $status_key = $is_on ? 'active' : 'stopped';
 
 <?php endif; ?>
 
-<!-- Delete confirmation modal -->
+<!-- ═══════════════════════════════════════════
+     TRANSFER TO PROJECT MODAL
+     Moves the server from $current_project to a different project.
+     ═══════════════════════════════════════════ -->
+<?php
+$modal_id    = 'transferServerModal';
+$modal_title = __('srvd_transfer_modal_title');
+$modal_size  = 'sm';
+include __DIR__ . '/../../../components/modal.php';
+
+// MOCK — Other projects the server can be transferred to. Backend:
+// replace with a query that excludes $current_project['id'].
+$srvd_transfer_projects = array_filter(
+    cloud_projects_mock(),
+    function ($p) use ($current_project) { return $p['id'] !== $current_project['id']; }
+);
+?>
+    <form id="transferServerForm" onsubmit="return false;">
+        <p class="db-modal-lead">
+            <?php echo __('srvd_transfer_modal_desc', ['server' => '<strong>' . e($server['name']) . '</strong>']); ?>
+        </p>
+
+        <div class="db-form-group">
+            <label class="db-form-label"><?php echo e(__('srvd_transfer_current_project')); ?></label>
+            <div class="db-form-static"><?php echo e($current_project['name']); ?> <span class="db-form-static__meta">#<?php echo e($current_project['id']); ?></span></div>
+        </div>
+
+        <div class="db-form-group">
+            <label class="db-form-label" for="transferTargetProject">
+                <?php echo e(__('srvd_transfer_target_label')); ?> <span class="db-required">*</span>
+            </label>
+            <select id="transferTargetProject" class="db-input" required>
+                <option value=""><?php echo e(__('srvd_transfer_pick_placeholder')); ?></option>
+                <?php foreach ($srvd_transfer_projects as $p): ?>
+                <option value="<?php echo e($p['id']); ?>"><?php echo e($p['name']); ?> — #<?php echo e($p['id']); ?></option>
+                <?php endforeach; ?>
+            </select>
+            <?php if (empty($srvd_transfer_projects)): ?>
+            <div class="db-form-hint"><?php echo e(__('srvd_transfer_no_other_projects')); ?></div>
+            <?php endif; ?>
+        </div>
+
+        <div class="db-notice db-notice--warning db-confirm-body__warn">
+            <i class="fas fa-triangle-exclamation"></i>
+            <span><?php echo e(__('srvd_transfer_warn')); ?></span>
+        </div>
+    </form>
+<?php
+$modal_footer = '
+    <button type="button" class="db-btn db-btn--secondary" data-modal-close>' . e(__('common_cancel')) . '</button>
+    <button type="button" class="db-btn db-btn--primary" id="transferServerConfirm"
+        onclick="(function(b){var t=document.getElementById(\'transferTargetProject\'); if(!t||!t.value){DashToast.show(\'warning\',\'\',\'' . e(__('srvd_transfer_pick_placeholder')) . '\');return;} DashModal.close(b.closest(\'.db-modal-overlay\')); DashToast.show(\'success\',\'\',\'Server transfer queued.\');})(this)">
+        <i class="fas fa-right-left"></i> ' . e(__('srvd_transfer_confirm')) . '
+    </button>
+';
+include __DIR__ . '/../../../components/modal-end.php';
+?>
+
+<!-- ═══════════════════════════════════════════
+     FIREWALL RULE MODAL (Add / Edit single rule)
+     ═══════════════════════════════════════════ -->
+<?php
+$modal_id    = 'firewallRuleModal';
+$modal_title = __('srvd_firewall_rule_title');
+$modal_size  = 'sm';
+include __DIR__ . '/../../../components/modal.php';
+?>
+    <form id="firewallRuleForm" onsubmit="return false;">
+        <div class="db-form-group">
+            <label class="db-form-label"><?php echo e(__('srvd_firewall_col_action')); ?> <span class="db-required">*</span></label>
+            <div class="db-proto-toggle" role="tablist">
+                <button type="button" class="db-proto-toggle__btn is-selected" data-fw-action="allow">
+                    <span class="db-proto-toggle__label"><i class="fas fa-check"></i> <?php echo e(__('srvd_firewall_action_allow')); ?></span>
+                    <span class="db-proto-toggle__sub"><?php echo e(__('srvd_firewall_action_allow_sub')); ?></span>
+                </button>
+                <button type="button" class="db-proto-toggle__btn" data-fw-action="deny">
+                    <span class="db-proto-toggle__label"><i class="fas fa-ban"></i> <?php echo e(__('srvd_firewall_action_deny')); ?></span>
+                    <span class="db-proto-toggle__sub"><?php echo e(__('srvd_firewall_action_deny_sub')); ?></span>
+                </button>
+            </div>
+        </div>
+
+        <div class="db-grid-2 db-grid-2--flush">
+            <div class="db-form-group">
+                <label class="db-form-label" for="fwDirection"><?php echo e(__('srvd_firewall_col_direction')); ?></label>
+                <select id="fwDirection" class="db-input">
+                    <option value="inbound"><?php echo e(__('srvd_firewall_dir_inbound')); ?></option>
+                    <option value="outbound"><?php echo e(__('srvd_firewall_dir_outbound')); ?></option>
+                </select>
+            </div>
+            <div class="db-form-group">
+                <label class="db-form-label" for="fwProtocol"><?php echo e(__('srvd_firewall_col_protocol')); ?></label>
+                <select id="fwProtocol" class="db-input">
+                    <option value="tcp">TCP</option>
+                    <option value="udp">UDP</option>
+                    <option value="icmp">ICMP</option>
+                    <option value="any"><?php echo e(__('srvd_firewall_any')); ?></option>
+                </select>
+            </div>
+        </div>
+
+        <div class="db-grid-2 db-grid-2--flush">
+            <div class="db-form-group">
+                <label class="db-form-label" for="fwPort">
+                    <?php echo e(__('srvd_firewall_col_port')); ?> <span class="db-form-label-meta">(<?php echo e(__('srvd_firewall_port_hint')); ?>)</span>
+                </label>
+                <input type="text" id="fwPort" class="db-input" placeholder="22, 80, 1000-2000" autocomplete="off">
+            </div>
+            <div class="db-form-group">
+                <label class="db-form-label" for="fwSource"><?php echo e(__('srvd_firewall_col_source')); ?></label>
+                <input type="text" id="fwSource" class="db-input" placeholder="0.0.0.0/0" autocomplete="off">
+                <div class="db-form-hint"><?php echo e(__('srvd_firewall_source_hint')); ?></div>
+            </div>
+        </div>
+
+        <div class="db-form-group">
+            <label class="db-form-label" for="fwNote">
+                <?php echo e(__('srvd_firewall_col_note')); ?> <span class="db-form-label-meta">(<?php echo e(__('common_optional')); ?>)</span>
+            </label>
+            <input type="text" id="fwNote" class="db-input" placeholder="SSH for office" autocomplete="off">
+        </div>
+    </form>
+<?php
+$modal_footer = '
+    <button type="button" class="db-btn db-btn--secondary" data-modal-close>' . e(__('common_cancel')) . '</button>
+    <button type="button" class="db-btn db-btn--primary" id="firewallRuleSave"
+        onclick="DashModal.close(this.closest(\'.db-modal-overlay\')); DashToast.show(\'success\',\'\',\'' . e(__('srvd_firewall_saved_toast')) . '\');">
+        <i class="fas fa-check"></i> ' . e(__('srvd_firewall_save_rule')) . '
+    </button>
+';
+include __DIR__ . '/../../../components/modal-end.php';
+?>
+
+<!-- Delete confirmation modal — type-to-confirm for safety -->
 <?php
 $modal_id    = 'deleteServerModal';
 $modal_title = __('srvd_delete_modal_title');
 $modal_size  = 'sm';
 include __DIR__ . '/../../../components/modal.php';
+?>
+    <div class="db-confirm-body">
+        <div class="db-modal-icon db-modal-icon--danger">
+            <i class="fas fa-triangle-exclamation"></i>
+        </div>
+        <p><?php echo e(__('srvd_delete_modal_desc', ['server' => $server['name']])); ?></p>
 
-$cb_desc = __('srvd_delete_modal_desc', ['server' => $server['name']]);
-$cb_icon = null; $cb_variant = 'danger';
-$cb_target_label = null; $cb_target_value = null; $cb_warn = null;
-include __DIR__ . '/../../../components/confirm-body.php';
+        <div class="db-confirm-summary">
+            <div class="db-confirm-summary__row">
+                <span><?php echo e(__('srvd_delete_modal_server_label')); ?></span>
+                <span class="db-confirm-summary__target"><?php echo e($server['name']); ?></span>
+            </div>
+        </div>
 
+        <div class="db-notice db-notice--danger db-confirm-body__warn">
+            <i class="fas fa-triangle-exclamation"></i>
+            <span><?php echo e(__('srvd_delete_modal_warn')); ?></span>
+        </div>
+
+        <div class="db-form-group db-type-to-confirm">
+            <label class="db-form-label" for="deleteConfirmInput">
+                <?php echo __('srvd_type_to_confirm', ['word' => '<strong>DELETE</strong>']); ?>
+            </label>
+            <input type="text" id="deleteConfirmInput"
+                class="db-input db-type-to-confirm__input"
+                data-type-to-confirm="DELETE"
+                data-type-to-confirm-target="#deleteServerConfirmBtn"
+                autocomplete="off"
+                placeholder="DELETE">
+        </div>
+    </div>
+<?php
 $modal_footer = '
     <button class="db-btn db-btn--secondary" data-modal-close>' . e(__('common_cancel')) . '</button>
-    <button class="db-btn db-btn--danger" onclick="DashModal.close(this.closest(\'.db-modal-overlay\')); DashToast.show(\'success\',\'\',\'Server deletion scheduled.\');">
+    <button class="db-btn db-btn--danger" id="deleteServerConfirmBtn" disabled onclick="DashModal.close(this.closest(\'.db-modal-overlay\')); DashToast.show(\'success\',\'\',\'Server deletion scheduled.\');">
         <i class="fas fa-trash"></i> ' . e(__('srvd_delete_confirm_btn')) . '
     </button>
 ';
@@ -889,11 +1440,23 @@ include __DIR__ . '/../../../components/modal.php';
         <p class="db-srvd-danger-note db-srvd-danger-note--mt">
             <u><?php echo e(__('srvd_reinstall_modal_warn')); ?></u>
         </p>
+
+        <div class="db-form-group db-type-to-confirm">
+            <label class="db-form-label" for="reinstallConfirmInput">
+                <?php echo __('srvd_type_to_confirm', ['word' => '<strong>REINSTALL</strong>']); ?>
+            </label>
+            <input type="text" id="reinstallConfirmInput"
+                class="db-input db-type-to-confirm__input"
+                data-type-to-confirm="REINSTALL"
+                data-type-to-confirm-target="#reinstallConfirmBtn"
+                autocomplete="off"
+                placeholder="REINSTALL">
+        </div>
     </div>
 <?php
 $modal_footer = '
     <button class="db-btn db-btn--secondary" data-modal-close>' . e(__('common_cancel')) . '</button>
-    <button class="db-btn db-btn--danger" id="reinstallConfirmBtn">
+    <button class="db-btn db-btn--danger" id="reinstallConfirmBtn" disabled>
         <i class="fas fa-rotate"></i> ' . e(__('srvd_reinstall_modal_confirm')) . '
     </button>
 ';

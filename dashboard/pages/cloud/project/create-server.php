@@ -23,6 +23,10 @@ $project_id         = $_GET['id'] ?? '';
 $current_project    = cloud_require_project($project_id);
 $project_nav_active = 'create-server';
 
+// Auto-collapse the sidebar on desktop so the wizard has more horizontal
+// space for the package grid + image panel. User can still expand manually.
+$force_collapse_sidebar = true;
+
 $page_title = __('create_server_title') . ' — #' . $current_project['id'] . ' — ' . SITE_NAME;
 $breadcrumbs_data = [
     ['label' => __('nav_dashboard'),       'url' => DASH_BASE_PATH . '/'],
@@ -195,13 +199,14 @@ $windows_images = [
 
 <?php elseif ($page_state === 'loading'): ?>
 
-    <div class="db-card">
-        <div class="db-card-body db-card-body--hero">
-            <div class="db-skeleton" style="width:60%; max-width:400px; height:32px;"></div>
-            <div class="db-skeleton" style="width:80%; max-width:520px; height:120px;"></div>
-            <div class="db-skeleton" style="width:80%; max-width:520px; height:120px;"></div>
-        </div>
-    </div>
+    <!-- Wizard stepper (4 steps: Plan → Location → OS → Confirm) + first-step panel -->
+    <?php
+        $skel_stepper_count   = 4;
+        $skel_stepper_current = 0;
+        $skel_stepper_panel   = true;
+        $skel_stepper_rows    = 5;
+        include __DIR__ . '/../../../components/skeleton-stepper.php';
+    ?>
 
 <?php else: ?>
 
@@ -237,6 +242,17 @@ $windows_images = [
          ══════════════════════════════════════════════ -->
     <div class="db-cs-grid">
     <main class="db-cs-main">
+
+    <!-- Top wizard navigation — mirrors the bottom nav so users can progress
+         without scrolling through all the options. -->
+    <div class="db-create-nav db-create-nav--top" data-create-nav>
+        <button type="button" class="db-create-nav__btn db-create-nav__btn--back db-create-nav__btn-prev" style="visibility:hidden;">
+            <i class="fas fa-arrow-left"></i> <span class="db-create-nav__prev-label"><?php echo e(__('create_nav_back')); ?></span>
+        </button>
+        <button type="button" class="db-create-nav__btn db-create-nav__btn--next db-create-nav__btn-next">
+            <span class="db-create-nav__next-label"><?php echo e(__('create_nav_select_location')); ?></span> <i class="fas fa-arrow-right"></i>
+        </button>
+    </div>
 
     <!-- ═══ STEP 1: Resources ═══ -->
     <div class="db-create-step is-active" data-step="1">
@@ -374,42 +390,34 @@ $windows_images = [
             <p class="db-cs-step-head__sub"><?php echo e(__('create_cs_step4_sub')); ?></p>
         </header>
 
-        <!-- Linux images (shown when OS = linux) -->
-        <div class="db-image-grid" data-image-group="linux">
-            <?php foreach ($linux_images as $slug => $img): ?>
-            <button type="button" class="db-image-card" data-image="<?php echo e($slug); ?>" data-image-name="<?php echo e($img['name']); ?>">
-                <span class="db-image-card__dot" style="background:<?php echo e($img['color']); ?>;"></span>
-                <span class="db-image-card__name"><?php echo e($img['name']); ?></span>
-                <i class="fas fa-check-circle db-image-card__check"></i>
-            </button>
-            <?php endforeach; ?>
-        </div>
+        <div class="db-image-panel">
+            <!-- Linux images (shown when OS = linux) -->
+            <div class="db-image-grid" data-image-group="linux">
+                <?php foreach ($linux_images as $slug => $img): ?>
+                <button type="button" class="db-image-card" data-image="<?php echo e($slug); ?>" data-image-name="<?php echo e($img['name']); ?>">
+                    <span class="db-image-card__dot" style="background:<?php echo e($img['color']); ?>;"></span>
+                    <span class="db-image-card__name"><?php echo e($img['name']); ?></span>
+                    <i class="fas fa-check-circle db-image-card__check"></i>
+                </button>
+                <?php endforeach; ?>
+            </div>
 
-        <!-- Windows images (shown when OS = windows) -->
-        <div class="db-image-grid" data-image-group="windows" style="display:none;">
-            <?php foreach ($windows_images as $slug => $img): ?>
-            <button type="button" class="db-image-card" data-image="<?php echo e($slug); ?>" data-image-name="<?php echo e($img['name']); ?>">
-                <i class="fab fa-windows db-image-card__icon db-os-icon--windows"></i>
-                <span class="db-image-card__name"><?php echo e($img['name']); ?></span>
-                <i class="fas fa-check-circle db-image-card__check"></i>
-            </button>
-            <?php endforeach; ?>
+            <!-- Windows images (shown when OS = windows) -->
+            <div class="db-image-grid" data-image-group="windows" style="display:none;">
+                <?php foreach ($windows_images as $slug => $img): ?>
+                <button type="button" class="db-image-card" data-image="<?php echo e($slug); ?>" data-image-name="<?php echo e($img['name']); ?>">
+                    <i class="fab fa-windows db-image-card__icon db-os-icon--windows"></i>
+                    <span class="db-image-card__name"><?php echo e($img['name']); ?></span>
+                    <i class="fas fa-check-circle db-image-card__check"></i>
+                </button>
+                <?php endforeach; ?>
+            </div>
         </div>
 
         <div class="db-create-info db-create-info--warn">
             <i class="fas fa-triangle-exclamation"></i>
             <span><?php echo e(__('create_image_warning')); ?></span>
         </div>
-    </div>
-
-    <!-- Wizard navigation (bottom — conventional wizard flow) -->
-    <div class="db-create-nav db-create-nav--bottom" id="createNav">
-        <button type="button" class="db-create-nav__btn db-create-nav__btn--back" id="createPrev" style="visibility:hidden;">
-            <i class="fas fa-arrow-left"></i> <span id="createPrevLabel"><?php echo e(__('create_nav_back')); ?></span>
-        </button>
-        <button type="button" class="db-create-nav__btn db-create-nav__btn--next" id="createNext">
-            <span id="createNextLabel"><?php echo e(__('create_nav_select_location')); ?></span> <i class="fas fa-arrow-right"></i>
-        </button>
     </div>
 
     </main><!-- /.db-cs-main -->
@@ -515,12 +523,13 @@ include __DIR__ . '/../../../components/modal-end.php';
         imageName: null,
     };
 
-    // DOM refs
+    // DOM refs — navs appear twice (top + bottom) so we collect them all
+    // and update them in sync.
     var steps = document.querySelectorAll('.db-create-step');
-    var prevBtn = document.getElementById('createPrev');
-    var nextBtn = document.getElementById('createNext');
-    var prevLabel = document.getElementById('createPrevLabel');
-    var nextLabel = document.getElementById('createNextLabel');
+    var prevBtns = document.querySelectorAll('.db-create-nav__btn-prev');
+    var nextBtns = document.querySelectorAll('.db-create-nav__btn-next');
+    var prevLabels = document.querySelectorAll('.db-create-nav__prev-label');
+    var nextLabels = document.querySelectorAll('.db-create-nav__next-label');
     var summaryItems = document.querySelectorAll('[data-summary]');
     if (!steps.length) return;
 
@@ -573,9 +582,12 @@ include __DIR__ . '/../../../components/modal-end.php';
                 el.classList.toggle('is-complete', idx < n);
             });
         }
-        prevBtn.style.visibility = n === 1 ? 'hidden' : '';
-        prevLabel.textContent = backLabels[n] || <?php echo json_encode(__('create_nav_back')); ?>;
-        nextLabel.textContent = stepLabels[n] || <?php echo json_encode(__('create_nav_next')); ?>;
+        var prevVis = n === 1 ? 'hidden' : '';
+        var backText = backLabels[n] || <?php echo json_encode(__('create_nav_back')); ?>;
+        var nextText = stepLabels[n] || <?php echo json_encode(__('create_nav_next')); ?>;
+        prevBtns.forEach(function (b) { b.style.visibility = prevVis; });
+        prevLabels.forEach(function (l) { l.textContent = backText; });
+        nextLabels.forEach(function (l) { l.textContent = nextText; });
         // On step 4, swap Windows/Linux image grid
         if (n === 4) {
             document.querySelectorAll('[data-image-group]').forEach(function (g) {
@@ -700,11 +712,11 @@ include __DIR__ . '/../../../components/modal-end.php';
     }
 
     /* ── Nav buttons ── */
-    prevBtn.addEventListener('click', function () { goToStep(state.step - 1); });
-    nextBtn.addEventListener('click', function () {
+    prevBtns.forEach(function (b) { b.addEventListener('click', function () { goToStep(state.step - 1); }); });
+    nextBtns.forEach(function (b) { b.addEventListener('click', function () {
         if (!validateStep(state.step)) return;
         goToStep(state.step + 1);
-    });
+    }); });
 
     // Initial summary fill
     updateSummary();

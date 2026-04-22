@@ -132,17 +132,26 @@ include __DIR__ . '/../../components/page-header.php';
     <div class="db-card"><?php $error_retry = true; include __DIR__ . '/../../components/error-state.php'; ?></div>
 
 <?php elseif ($page_state === 'loading'): ?>
-    <div style="display: flex; flex-direction: column; gap: 24px;">
-        <?php for ($i = 0; $i < 3; $i++): ?>
+    <div style="display: flex; flex-direction: column; gap: 20px;">
+        <?php for ($i = 0; $i < 5; $i++): ?>
         <div class="db-card">
             <div class="db-card-body db-card-body--lg">
+                <!-- Category header -->
                 <div style="display:flex; align-items:center; gap:16px; margin-bottom:20px;">
-                    <div class="db-skeleton" style="width:48px; height:48px; border-radius:var(--radius-md);"></div>
-                    <div><div class="db-skeleton db-skeleton--heading" style="width:160px; margin-bottom:6px;"></div><div class="db-skeleton db-skeleton--text" style="width:240px;"></div></div>
+                    <div class="db-skeleton" style="width:48px; height:48px; border-radius:var(--radius-md); flex-shrink: 0;"></div>
+                    <div style="flex: 1;">
+                        <div class="db-skeleton db-skeleton--heading" style="width:200px; margin-bottom:6px;"></div>
+                        <div class="db-skeleton db-skeleton--text-sm" style="width:320px;"></div>
+                    </div>
                 </div>
-                <div class="db-grid-2" style="gap:12px;">
+                <!-- Product cards grid -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px;">
                     <?php for ($j = 0; $j < 4; $j++): ?>
-                    <div class="db-skeleton" style="height:80px; border-radius:var(--radius-md);"></div>
+                    <div style="padding: 14px; border: 1px solid var(--border-primary); border-radius: var(--radius-md); display: flex; flex-direction: column; gap: 8px;">
+                        <div class="db-skeleton db-skeleton--text" style="width: 60%;"></div>
+                        <div class="db-skeleton db-skeleton--text-sm" style="width: 40%;"></div>
+                        <div class="db-skeleton" style="width: 100%; height: 38px; border-radius: var(--radius-sm); margin-top: 4px;"></div>
+                    </div>
                     <?php endfor; ?>
                 </div>
             </div>

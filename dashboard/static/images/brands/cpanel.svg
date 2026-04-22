@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="cPanel">
+  <defs>
+    <linearGradient id="cp-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ff6c2c"/>
+      <stop offset="100%" stop-color="#ef5c1b"/>
+    </linearGradient>
+  </defs>
+  <circle cx="32" cy="32" r="32" fill="url(#cp-bg)"/>
+  <!-- Simplified "cP" monogram -->
+  <g fill="#fff" font-family="Helvetica, Arial, sans-serif" font-weight="900">
+    <text x="50%" y="54%" text-anchor="middle" dominant-baseline="middle" font-size="24" letter-spacing="-1">cP</text>
+  </g>
+  <!-- Accent arc (cPanel mark evocation) -->
+  <path d="M18 22 C 18 18, 22 16, 26 18" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" opacity="0.55"/>
+  <path d="M46 42 C 46 46, 42 48, 38 46" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" opacity="0.55"/>
+</svg>

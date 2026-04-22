@@ -22,6 +22,8 @@
 require_once __DIR__ . '/header.php';
 ?>
 
+<?php include __DIR__ . '/../components/promo-bar.php'; ?>
+
 <div class="db-shell">
     <?php require_once __DIR__ . '/sidebar.php'; ?>
 

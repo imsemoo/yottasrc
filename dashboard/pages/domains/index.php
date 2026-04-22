@@ -158,11 +158,16 @@ include __DIR__ . '/../../components/page-header.php';
                             <option value="expiring"><?php echo e(__('domain_status_expiring')); ?></option>
                             <option value="expired"><?php echo e(__('domain_status_expired')); ?></option>
                         </select>
-                        <button class="db-view-switch__btn" onclick="DashExport('csv')" title="Export CSV"><i class="fas fa-download"></i></button>
+                        <?php include __DIR__ . '/../../components/export-dropdown.php'; ?>
+                        <div class="db-view-switch" data-view-switch="domains">
+                            <button type="button" class="db-view-switch__btn active" data-view="table" title="<?php echo e(__('view_table')); ?>"><i class="fas fa-list"></i></button>
+                            <button type="button" class="db-view-switch__btn" data-view="cards" title="<?php echo e(__('view_cards')); ?>"><i class="fas fa-grip"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>
 
+            <div class="db-view" id="view-table">
             <div class="db-table-wrapper">
                 <table class="db-table" id="domainsTable" data-table-tools>
                     <thead>
@@ -234,17 +239,76 @@ include __DIR__ . '/../../components/page-header.php';
                     </tbody>
                 </table>
             </div>
+            </div><!-- /#view-table -->
 
-            <?php
-            $pg_current    = 1;
-            $pg_total      = max(1, (int)ceil($stats['total'] / max(1, count($domains))));
-            $pg_from       = 1;
-            $pg_to         = count($domains);
-            $pg_total_rows = $stats['total'];
-            include __DIR__ . '/../../components/pagination.php';
-            ?>
+            <!-- Cards view -->
+            <div class="db-view" id="view-cards" style="display:none;">
+                <div class="db-svc-cards" style="padding:14px 18px;">
+                    <?php foreach ($domains as $d):
+                        $badge = $status_badge[$d['status']] ?? 'pending';
+                        $det_url = DASH_BASE_PATH . '/pages/domains/details.php?domain=' . urlencode($d['domain']);
+                    ?>
+                    <div class="db-svc-card db-svc-card--<?php echo e($d['status']); ?>"
+                         data-svc-card
+                         data-domain="<?php echo e(strtolower($d['domain'])); ?>"
+                         data-registrar="<?php echo e(strtolower($d['registrar'])); ?>"
+                         data-status="<?php echo e($d['status']); ?>">
+                        <div class="db-svc-card__top">
+                            <div class="db-svc-card__icon db-svc-card__icon--primary"><i class="fas fa-globe"></i></div>
+                            <div class="db-svc-card__title">
+                                <a href="<?php echo e($det_url); ?>" class="db-svc-card__name"><?php echo e($d['domain']); ?></a>
+                                <div class="db-svc-card__domain"><?php echo e($d['registrar']); ?> · <?php echo format_money($d['price']); ?>/yr</div>
+                            </div>
+                            <span class="db-badge db-badge--<?php echo e($badge); ?>"><?php echo e(__('domain_status_' . $d['status'])); ?></span>
+                        </div>
+                        <div class="db-svc-card__bottom">
+                            <div class="db-svc-card__meta">
+                                <span class="db-svc-card__tag"><?php echo e(__('domains_col_registered')); ?>: <?php echo e($d['registered']); ?></span>
+                                <span class="db-svc-card__due"><?php echo e(__('domains_col_expires')); ?>: <?php echo e($d['expires']); ?></span>
+                                <span class="db-svc-card__tag">
+                                    <?php echo e(__('domains_col_auto_renew')); ?>:
+                                    <strong><?php echo $d['auto_renew'] ? __('status_active') : __('status_cancelled'); ?></strong>
+                                </span>
+                            </div>
+                            <div class="db-svc-card__right">
+                                <a href="<?php echo e($det_url); ?>" class="db-btn db-btn--primary db-btn--sm db-svc-card__manage"><?php echo e(__('domains_manage')); ?> <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+
+            <div id="domainsPagination" data-pager-for="domainsTable" data-page-size="10"></div>
         </div>
     </div>
+
+<script>
+/* Mirror table filter to cards view (domains) */
+(function () {
+    var table = document.getElementById('domainsTable');
+    if (!table) return;
+    var cards = document.querySelectorAll('[data-svc-card]');
+    function apply(detail) {
+        var queries = (detail && detail.queries) || [];
+        var filters = (detail && detail.filters) || [];
+        cards.forEach(function (card) {
+            var text = '';
+            for (var i = 0; i < card.attributes.length; i++) {
+                var a = card.attributes[i];
+                if (a.name.indexOf('data-') === 0 && a.name !== 'data-svc-card') text += ' ' + a.value.toLowerCase();
+            }
+            text += ' ' + (card.textContent || '').toLowerCase();
+            var searchOk = queries.every(function (q) { return text.indexOf(q) !== -1; });
+            var filterOk = filters.every(function (f) {
+                return (card.getAttribute('data-' + f.key) || '').toLowerCase() === f.val;
+            });
+            card.style.display = (searchOk && filterOk) ? '' : 'none';
+        });
+    }
+    table.addEventListener('dashtable:filter', function (e) { apply(e.detail); });
+})();
+</script>
 <?php endif; ?>
 
 <div class="db-toast-container" id="toastContainer"></div>

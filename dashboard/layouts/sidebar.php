@@ -99,6 +99,11 @@
                 <i class="fas fa-circle-plus"></i>
                 <span class="db-nav-item-text"><?php echo e(__('nav_add_funds')); ?></span>
             </a>
+
+            <a href="<?php echo e(DASH_BASE_PATH); ?>/pages/affiliates/index.php" class="db-nav-item<?php echo is_active('affiliates'); ?>" data-tooltip="<?php echo e(__('nav_affiliates')); ?>">
+                <i class="fas fa-handshake-angle"></i>
+                <span class="db-nav-item-text"><?php echo e(__('nav_affiliates')); ?></span>
+            </a>
         </div>
 
         <!-- SUPPORT -->

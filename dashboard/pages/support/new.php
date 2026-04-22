@@ -157,12 +157,14 @@ include __DIR__ . '/../../components/page-header.php';
             <!-- File Upload -->
             <div class="db-form-group">
                 <label class="db-form-label"><?php echo e(__('ticket_new_attachments')); ?></label>
-                <div class="db-file-upload">
-                    <div class="db-file-upload__area">
+                <div class="db-file-upload" id="ticketAttachments">
+                    <label class="db-file-upload__area" for="ticketAttachmentsInput">
                         <i class="fas fa-cloud-arrow-up"></i>
                         <span class="db-file-upload__text"><?php echo e(__('ticket_upload_hint')); ?></span>
-                        <input type="file" multiple accept="image/*,.pdf,.zip,.doc,.docx,.txt" class="db-file-upload__input">
-                    </div>
+                        <input type="file" id="ticketAttachmentsInput" name="attachments[]" multiple
+                               accept="image/*,.pdf,.zip,.doc,.docx,.txt" class="db-file-upload__input">
+                    </label>
+                    <ul class="db-file-upload__list" id="ticketAttachmentsList" hidden></ul>
                 </div>
             </div>
 
@@ -179,6 +181,127 @@ include __DIR__ . '/../../components/page-header.php';
 <div class="db-toast-container" id="toastContainer"></div>
 
 <script>
+/* ═══════════════════════════════════════════
+   TICKET ATTACHMENTS — selected-files list + drag/drop + remove
+   ═══════════════════════════════════════════ */
+(function () {
+    var wrap  = document.getElementById('ticketAttachments');
+    var input = document.getElementById('ticketAttachmentsInput');
+    var list  = document.getElementById('ticketAttachmentsList');
+    if (!wrap || !input || !list) return;
+
+    var maxSize = 10 * 1024 * 1024; // 10MB per file
+
+    function fileIcon(name) {
+        var ext = (name.split('.').pop() || '').toLowerCase();
+        if (['png','jpg','jpeg','gif','webp','svg'].indexOf(ext) !== -1) return 'fa-image';
+        if (['pdf'].indexOf(ext) !== -1)                                 return 'fa-file-pdf';
+        if (['zip','rar','7z'].indexOf(ext) !== -1)                      return 'fa-file-zipper';
+        if (['doc','docx'].indexOf(ext) !== -1)                          return 'fa-file-word';
+        if (['txt','log','md'].indexOf(ext) !== -1)                      return 'fa-file-lines';
+        return 'fa-file';
+    }
+
+    function formatSize(bytes) {
+        if (!bytes) return '0 B';
+        var units = ['B', 'KB', 'MB', 'GB'];
+        var i = Math.floor(Math.log(bytes) / Math.log(1024));
+        return (bytes / Math.pow(1024, i)).toFixed(i === 0 ? 0 : 1) + ' ' + units[i];
+    }
+
+    function render() {
+        list.innerHTML = '';
+        var files = Array.prototype.slice.call(input.files || []);
+        if (!files.length) {
+            list.hidden = true;
+            return;
+        }
+        list.hidden = false;
+        files.forEach(function (f, idx) {
+            var li = document.createElement('li');
+            li.className = 'db-file-upload__item';
+            li.innerHTML =
+                '<span class="db-file-upload__item-icon"><i class="fas ' + fileIcon(f.name) + '"></i></span>' +
+                '<span class="db-file-upload__item-info">' +
+                    '<span class="db-file-upload__item-name"></span>' +
+                    '<span class="db-file-upload__item-size"></span>' +
+                '</span>' +
+                '<button type="button" class="db-file-upload__item-remove" aria-label="Remove"><i class="fas fa-xmark"></i></button>';
+            li.querySelector('.db-file-upload__item-name').textContent = f.name;
+            li.querySelector('.db-file-upload__item-size').textContent = formatSize(f.size);
+            li.querySelector('.db-file-upload__item-remove').addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                removeFile(idx);
+            });
+            list.appendChild(li);
+        });
+    }
+
+    function rebuildInputFiles(nextFiles) {
+        // DataTransfer lets us reassign FileList contents — needed because
+        // input.files is a read-only FileList.
+        var dt = new DataTransfer();
+        nextFiles.forEach(function (f) { dt.items.add(f); });
+        input.files = dt.files;
+    }
+
+    function addFiles(newFiles) {
+        var existing = Array.prototype.slice.call(input.files || []);
+        var combined = existing.slice();
+        var rejectedBig = 0;
+        newFiles.forEach(function (f) {
+            if (f.size > maxSize) { rejectedBig++; return; }
+            // De-dup by name + size
+            var dup = combined.some(function (x) { return x.name === f.name && x.size === f.size; });
+            if (!dup) combined.push(f);
+        });
+        rebuildInputFiles(combined);
+        render();
+        if (rejectedBig && window.DashToast) {
+            DashToast.show('warning', '', <?php echo json_encode(__('ticket_attach_too_big')); ?>);
+        }
+    }
+
+    function removeFile(idx) {
+        var files = Array.prototype.slice.call(input.files || []);
+        files.splice(idx, 1);
+        rebuildInputFiles(files);
+        render();
+    }
+
+    input.addEventListener('change', function () {
+        // Browsers replace input.files on each pick — preserve previous selection
+        // by adding only the newly-picked files on top.
+        var picked = Array.prototype.slice.call(input.files || []);
+        // Reset so we can programmatically decide the final file list.
+        rebuildInputFiles([]);
+        addFiles(picked);
+    });
+
+    // Drag & drop onto the dashed area
+    var area = wrap.querySelector('.db-file-upload__area');
+    ['dragenter', 'dragover'].forEach(function (ev) {
+        area.addEventListener(ev, function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            wrap.classList.add('is-dragover');
+        });
+    });
+    ['dragleave', 'drop'].forEach(function (ev) {
+        area.addEventListener(ev, function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            wrap.classList.remove('is-dragover');
+        });
+    });
+    area.addEventListener('drop', function (e) {
+        if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length) {
+            addFiles(Array.prototype.slice.call(e.dataTransfer.files));
+        }
+    });
+})();
+
 (function(){
     document.querySelectorAll('[data-combobox]').forEach(function(root){
         var trigger = root.querySelector('[data-combobox-trigger]');

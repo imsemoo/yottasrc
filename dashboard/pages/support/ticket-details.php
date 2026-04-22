@@ -8,6 +8,7 @@
 
 $page_title = null;
 $breadcrumbs_data = null;
+$nav_active_override = 'support';
 
 require_once __DIR__ . '/../../layouts/config.php';
 
@@ -154,7 +155,16 @@ $is_open = ($ticket['status'] !== 'closed' && $ticket['status'] !== 'solved');
     <div class="db-card"><?php $error_retry = true; include __DIR__ . '/../../components/error-state.php'; ?></div>
 <?php elseif ($page_state === 'loading'): ?>
     <?php $ph_title = '#' . e($ticket_id); $ph_desc = ''; $ph_actions = ''; include __DIR__ . '/../../components/page-header.php'; ?>
-    <?php $skel_info_rows = 5; $skel_action_buttons = 3; include __DIR__ . '/../../components/skeleton-detail.php'; ?>
+    <!-- Compact ticket header (title + meta + actions) -->
+    <?php $skel_hero_meta_chips = 3; $skel_hero_actions = 3; include __DIR__ . '/../../components/skeleton-hero.php'; ?>
+    <!-- Two-column: left = chat thread (reply box + bubbles), right = sidebar (info + attachments) -->
+    <?php
+        $skel_tcol_body_slot = __DIR__ . '/../../components/skeleton-chat.php';
+        $skel_chat_messages  = 5;
+        $skel_tcol_side_btns = 0;
+        $skel_tcol_side_info = 6;
+        include __DIR__ . '/../../components/skeleton-two-col.php';
+    ?>
 <?php else: ?>
 
 <!-- Compact Header -->

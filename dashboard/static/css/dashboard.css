@@ -27,6 +27,120 @@ body {
     overflow-x: hidden;
     transition: background-color var(--duration-base) var(--ease-out),
         color var(--duration-base) var(--ease-out);
+    --db-promo-height: 38px;
+}
+
+/* Zero the promo offset once the bar is dismissed or absent */
+body:has(.db-promo-bar.is-hidden),
+body:not(:has(.db-promo-bar)) {
+    --db-promo-height: 0px;
+}
+
+/* ═══════════════════════════════════════════
+   PROMO BAR (above the shell)
+   ═══════════════════════════════════════════ */
+.db-promo-bar {
+    background: linear-gradient(90deg, #2563EB 0%, #1D4FD7 50%, #1a3fa0 100%);
+    color: #FFFFFF;
+    position: sticky;
+    top: 0;
+    z-index: 120;
+    height: var(--db-promo-height);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    transition: height var(--duration-base) var(--ease-out);
+}
+
+[data-theme="dark"] .db-promo-bar {
+    background: linear-gradient(90deg, #1a103a 0%, #0f1d3d 50%, #0a1628 100%);
+}
+
+.db-promo-bar.is-hidden {
+    height: 0;
+    overflow: hidden;
+}
+
+.db-promo-marquee {
+    display: flex;
+    width: max-content;
+    animation: db-promo-marquee 30s linear infinite;
+    will-change: transform;
+}
+
+.db-promo-marquee:hover {
+    animation-play-state: paused;
+}
+
+.db-promo-marquee-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+    padding: 0 48px;
+}
+
+@keyframes db-promo-marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+[dir="rtl"] .db-promo-marquee {
+    animation-name: db-promo-marquee-rtl;
+}
+
+@keyframes db-promo-marquee-rtl {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(50%); }
+}
+
+.db-promo-bar a {
+    color: #FCD34D;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.db-promo-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 14px;
+    width: 80px;
+    background: linear-gradient(90deg, transparent 0%, #1a3fa0 45%);
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+[data-theme="dark"] .db-promo-close {
+    background: linear-gradient(90deg, transparent 0%, #0a1628 45%);
+}
+
+.db-promo-close:hover {
+    color: #fff;
+}
+
+[dir="rtl"] .db-promo-close {
+    right: auto;
+    left: 0;
+    padding-right: 0;
+    padding-left: 14px;
+    justify-content: flex-start;
+    background: linear-gradient(270deg, transparent 0%, #1a3fa0 45%);
+}
+
+[dir="rtl"][data-theme="dark"] .db-promo-close {
+    background: linear-gradient(270deg, transparent 0%, #0a1628 45%);
 }
 
 a {
@@ -48,7 +162,9 @@ button {
     color: inherit;
 }
 
-input, select, textarea {
+input,
+select,
+textarea {
     font-family: inherit;
     font-size: inherit;
     color: inherit;
@@ -97,17 +213,19 @@ input, select, textarea {
 /* ─── Sidebar ─── */
 .db-sidebar {
     position: fixed;
-    top: 0;
+    top: var(--db-promo-height, 0);
     left: 0;
     width: var(--sidebar-width);
-    height: 100vh;
+    height: calc(100vh - var(--db-promo-height, 0px));
     background: var(--sidebar-bg);
     border-right: 1px solid var(--sidebar-border);
     display: flex;
     flex-direction: column;
     z-index: 100;
     transition: transform var(--duration-base) var(--ease-out),
-        width var(--duration-base) var(--ease-out);
+        width var(--duration-base) var(--ease-out),
+        top var(--duration-base) var(--ease-out),
+        height var(--duration-base) var(--ease-out);
     /* overflow: hidden; */
 }
 
@@ -143,11 +261,21 @@ input, select, textarea {
 }
 
 /* Logo: swap between dark/light variants per theme */
-.db-logo-icon.logo-light { display: none; }
-.db-logo-icon.logo-dark { display: block; }
+.db-logo-icon.logo-light {
+    display: none;
+}
 
-[data-theme="light"] .db-logo-icon.logo-light { display: block; }
-[data-theme="light"] .db-logo-icon.logo-dark { display: none; }
+.db-logo-icon.logo-dark {
+    display: block;
+}
+
+[data-theme="light"] .db-logo-icon.logo-light {
+    display: block;
+}
+
+[data-theme="light"] .db-logo-icon.logo-dark {
+    display: none;
+}
 
 .db-sidebar-collapse {
     display: flex;
@@ -371,7 +499,7 @@ input, select, textarea {
     color: var(--text-primary);
 }
 
-.db-nav-expand-trigger > i:first-child {
+.db-nav-expand-trigger>i:first-child {
     width: 18px;
     text-align: center;
     font-size: 0.92rem;
@@ -528,12 +656,24 @@ input, select, textarea {
 
 /* The collapsed state — desktop only (>1024px) */
 @media (min-width: 1025px) {
-    .db-sidebar.collapsed {
+    .db-sidebar.collapsed:not(.is-hover-expanded) {
         width: var(--sidebar-collapsed-width);
     }
 
-    .db-sidebar.collapsed + .db-sidebar-overlay + .db-main,
-    .db-sidebar.collapsed ~ .db-main {
+    /* Hover-to-expand: sidebar pops out to full width over the content.
+       Main content margin stays fixed at collapsed width so nothing shifts.
+       The class is toggled by JS (mouseenter adds, mouseleave removes with
+       a short delay) to prevent flicker as the chevron moves with the edge. */
+    .db-sidebar.collapsed.is-hover-expanded {
+        box-shadow: 4px 0 24px rgba(0, 0, 0, 0.28);
+    }
+
+    [dir="rtl"] .db-sidebar.collapsed.is-hover-expanded {
+        box-shadow: -4px 0 24px rgba(0, 0, 0, 0.28);
+    }
+
+    .db-sidebar.collapsed+.db-sidebar-overlay+.db-main,
+    .db-sidebar.collapsed~.db-main {
         margin-left: var(--sidebar-collapsed-width);
     }
 
@@ -552,21 +692,21 @@ input, select, textarea {
     }
 
     /* Header: center logo mark, hide full logo */
-    .db-sidebar.collapsed .db-sidebar-header {
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-sidebar-header {
         justify-content: center;
         padding: 16px 0;
     }
 
-    .db-sidebar.collapsed .db-logo-full {
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-logo-full {
         display: none;
     }
 
-    .db-sidebar.collapsed .db-logo-mark {
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-logo-mark {
         display: flex;
     }
 
     /* Collapse button: rotate arrow */
-    .db-sidebar.collapsed .db-collapse-icon {
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-collapse-icon {
         transform: rotate(180deg);
     }
 
@@ -574,10 +714,16 @@ input, select, textarea {
         transform: rotate(180deg);
     }
 
-    [dir="rtl"] .db-sidebar.collapsed .db-collapse-icon {
+    [dir="rtl"] .db-sidebar.collapsed:not(.is-hover-expanded) .db-collapse-icon {
         transform: rotate(0deg);
     }
 
+    /* Collapsed state — overhang the right edge so the chevron is always
+       visible. Since we use JS-based hover (mouseenter/leave + a small
+       leave-delay) to toggle .is-hover-expanded, the button can safely
+       move with the edge when expanding: the leave delay prevents the
+       classic :hover oscillation when the button shifts away from the
+       cursor mid-transition. */
     .db-sidebar.collapsed .db-sidebar-collapse {
         position: absolute;
         right: -14px;
@@ -622,36 +768,36 @@ input, select, textarea {
     }
 
     /* Search: icon only */
-    .db-sidebar.collapsed .db-sidebar-search {
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-sidebar-search {
         padding: 12px 10px;
     }
 
-    .db-sidebar.collapsed .db-sidebar-search-input {
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-sidebar-search-input {
         justify-content: center;
         padding: 8px;
     }
 
-    .db-sidebar.collapsed .db-hide-collapsed {
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-hide-collapsed {
         display: none;
     }
 
-    .db-sidebar.collapsed .db-show-collapsed {
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-show-collapsed {
         display: inline;
     }
 
     /* Nav groups */
-    .db-sidebar.collapsed .db-nav-group {
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-group {
         padding: 0 8px;
     }
 
-    .db-sidebar.collapsed .db-nav-group-label {
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-group-label {
         font-size: 0;
         padding: 6px 0 2px;
         text-align: center;
     }
 
     /* Render a tiny dot separator instead of text */
-    .db-sidebar.collapsed .db-nav-group-label::before {
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-group-label::before {
         content: '';
         display: block;
         width: 16px;
@@ -660,54 +806,54 @@ input, select, textarea {
         margin: 0 auto;
     }
 
-    .db-sidebar.collapsed .db-nav-group:first-child .db-nav-group-label::before {
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-group:first-child .db-nav-group-label::before {
         display: none;
     }
 
     /* Nav items: center icon, hide text */
-    .db-sidebar.collapsed .db-nav-item {
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-item {
         justify-content: center;
         padding: 10px;
         position: relative;
     }
 
-    .db-sidebar.collapsed .db-nav-item .db-nav-item-text {
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-item .db-nav-item-text {
         display: none;
     }
 
-    .db-sidebar.collapsed .db-nav-item i {
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-item i {
         width: auto;
         font-size: 1rem;
     }
 
     /* Active indicator: centered */
-    .db-sidebar.collapsed .db-nav-item.active::before {
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-item.active::before {
         left: -8px;
         height: 20px;
     }
 
-    [dir="rtl"] .db-sidebar.collapsed .db-nav-item.active::before {
+    [dir="rtl"] .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-item.active::before {
         right: -8px;
     }
 
     /* Expand trigger: icon only, hide arrow + text */
-    .db-sidebar.collapsed .db-nav-expand-trigger {
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-expand-trigger {
         justify-content: center;
         padding: 10px;
     }
 
-    .db-sidebar.collapsed .db-nav-expand-trigger .db-nav-item-text,
-    .db-sidebar.collapsed .db-nav-expand-arrow {
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-expand-trigger .db-nav-item-text,
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-expand-arrow {
         display: none;
     }
 
-    .db-sidebar.collapsed .db-nav-expand-trigger > i:first-child {
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-expand-trigger>i:first-child {
         width: auto;
         font-size: 1rem;
     }
 
     /* Expand sub-items: popup on hover */
-    .db-sidebar.collapsed .db-nav-expand-items {
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-expand-items {
         display: none;
         position: absolute;
         left: 100%;
@@ -722,7 +868,7 @@ input, select, textarea {
         margin-left: 8px;
     }
 
-    [dir="rtl"] .db-sidebar.collapsed .db-nav-expand-items {
+    [dir="rtl"] .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-expand-items {
         left: auto;
         right: 100%;
         margin-left: 0;
@@ -731,28 +877,28 @@ input, select, textarea {
         padding-left: 6px;
     }
 
-    .db-sidebar.collapsed .db-nav-expand {
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-expand {
         position: relative;
     }
 
-    .db-sidebar.collapsed .db-nav-expand:hover .db-nav-expand-items,
-    .db-sidebar.collapsed .db-nav-expand.open .db-nav-expand-items {
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-expand:hover .db-nav-expand-items,
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-expand.open .db-nav-expand-items {
         display: block;
     }
 
-    .db-sidebar.collapsed .db-nav-expand-items .db-nav-item {
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-expand-items .db-nav-item {
         justify-content: flex-start;
         padding: 8px 12px;
     }
 
-    .db-sidebar.collapsed .db-nav-expand-items .db-nav-item .db-nav-item-text {
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-expand-items .db-nav-item .db-nav-item-text {
         display: block;
     }
 
     /* Tooltips (shown only in collapsed mode) */
-    .db-sidebar.collapsed .db-nav-item[data-tooltip]:hover::after,
-    .db-sidebar.collapsed .db-nav-expand-trigger[data-tooltip]:hover::after,
-    .db-sidebar.collapsed .db-sidebar-logout[data-tooltip]:hover::after {
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-item[data-tooltip]:hover::after,
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-expand-trigger[data-tooltip]:hover::after,
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-sidebar-logout[data-tooltip]:hover::after {
         content: attr(data-tooltip);
         position: absolute;
         left: calc(100% + 12px);
@@ -772,44 +918,44 @@ input, select, textarea {
         pointer-events: none;
     }
 
-    [dir="rtl"] .db-sidebar.collapsed .db-nav-item[data-tooltip]:hover::after,
-    [dir="rtl"] .db-sidebar.collapsed .db-nav-expand-trigger[data-tooltip]:hover::after,
-    [dir="rtl"] .db-sidebar.collapsed .db-sidebar-logout[data-tooltip]:hover::after {
+    [dir="rtl"] .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-item[data-tooltip]:hover::after,
+    [dir="rtl"] .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-expand-trigger[data-tooltip]:hover::after,
+    [dir="rtl"] .db-sidebar.collapsed:not(.is-hover-expanded) .db-sidebar-logout[data-tooltip]:hover::after {
         left: auto;
         right: calc(100% + 12px);
     }
 
     /* Don't show tooltips for items with visible popout submenus */
-    .db-sidebar.collapsed .db-nav-expand:hover .db-nav-expand-trigger[data-tooltip]::after {
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-expand:hover .db-nav-expand-trigger[data-tooltip]::after {
         display: none;
     }
 
     /* Footer: compact */
-    .db-sidebar.collapsed .db-sidebar-footer {
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-sidebar-footer {
         padding: 8px;
     }
 
-    .db-sidebar.collapsed .db-sidebar-balance {
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-sidebar-balance {
         padding: 8px;
         text-align: center;
     }
 
-    .db-sidebar.collapsed .db-sidebar-balance-total {
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-sidebar-balance-total {
         justify-content: center;
     }
 
-    .db-sidebar.collapsed .db-sidebar-balance-action {
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-sidebar-balance-action {
         padding: 6px;
     }
 
     /* Logout: icon only */
-    .db-sidebar.collapsed .db-sidebar-logout {
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-sidebar-logout {
         justify-content: center;
         padding: 10px;
         position: relative;
     }
 
-    .db-sidebar.collapsed .db-sidebar-logout .db-nav-item-text {
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-sidebar-logout .db-nav-item-text {
         display: none;
     }
 }
@@ -853,6 +999,7 @@ input, select, textarea {
     flex: 1;
     margin-left: var(--sidebar-width);
     min-height: 100vh;
+    min-width: 0;
     display: flex;
     flex-direction: column;
     transition: margin-left var(--duration-base) var(--ease-out);
@@ -882,9 +1029,10 @@ input, select, textarea {
 /* ─── Top Bar ─── */
 .db-topbar {
     position: sticky;
-    top: 0;
+    top: var(--db-promo-height, 0);
     z-index: 50;
     height: var(--topbar-height);
+    transition: top var(--duration-base) var(--ease-out);
     background: var(--topbar-bg);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -919,7 +1067,49 @@ input, select, textarea {
     gap: 6px;
     font-size: 0.84rem;
     color: var(--text-tertiary);
+    min-width: 0;
+    flex: 0 1 auto;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    /* Hide scrollbar while keeping scroll working — cleaner on mobile. */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    /* Fade out on overflow edge so users see there's more to scroll. */
+    /* -webkit-mask-image: linear-gradient(to right,
+            transparent 0,
+            black 12px,
+            black calc(100% - 16px),
+            transparent 100%);
+    mask-image: linear-gradient(to right,
+            transparent 0,
+            black 12px,
+            black calc(100% - 16px),
+            transparent 100%); */
+}
+
+.db-breadcrumbs::-webkit-scrollbar {
+    display: none;
+}
+
+[dir="rtl"] .db-breadcrumbs {
+    -webkit-mask-image: linear-gradient(to left,
+            transparent 0,
+            black 12px,
+            black calc(100% - 16px),
+            transparent 100%);
+    mask-image: linear-gradient(to left,
+            transparent 0,
+            black 12px,
+            black calc(100% - 16px),
+            transparent 100%);
+}
+
+.db-breadcrumb-link,
+.db-breadcrumb-current,
+.db-breadcrumb-sep {
     flex-shrink: 0;
+    white-space: nowrap;
 }
 
 .db-breadcrumb-link {
@@ -944,6 +1134,18 @@ input, select, textarea {
 .db-breadcrumb-current {
     color: var(--text-primary);
     font-weight: 600;
+    /* Constrain only the current (last) crumb on mobile — it's usually
+       the longest label. Truncate with ellipsis instead of overflowing. */
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* On narrow mobile, cap the last crumb so long titles get ellipsed. */
+@media (max-width: 640px) {
+    .db-breadcrumb-current {
+        max-width: 180px;
+    }
 }
 
 /* Topbar Spacer */
@@ -1143,31 +1345,131 @@ input, select, textarea {
     color: var(--brand-error);
 }
 
+/* Header block inside user dropdown (avatar + name + email) */
+.db-topbar-dropdown-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 14px 12px 14px;
+}
+
+.db-topbar-dropdown-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-full);
+    background: var(--brand-primary);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+    flex-shrink: 0;
+}
+
+.db-topbar-dropdown-identity {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.db-topbar-dropdown-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.db-topbar-dropdown-email {
+    font-size: 0.76rem;
+    color: var(--text-tertiary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Support PIN block inside the user dropdown.
+   The default inline variant packs label + value + 2 buttons on one row,
+   which wraps ugly in the narrow user dropdown. Inside the dropdown we
+   stack the label on top and put the value + action buttons on a single
+   row below it. */
+.db-topbar-dropdown-pin {
+    padding: 10px 14px 8px 14px;
+}
+
+.db-topbar-dropdown-pin .db-support-pin--inline {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+        "label label label"
+        "value copy refresh";
+    column-gap: 6px;
+    row-gap: 4px;
+    width: 100%;
+    padding: 10px 12px;
+    background: var(--bg-tertiary);
+    align-items: center;
+}
+
+.db-topbar-dropdown-pin .db-support-pin__icon {
+    display: none;
+}
+
+.db-topbar-dropdown-pin .db-support-pin__label {
+    grid-area: label;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-tertiary);
+}
+
+.db-topbar-dropdown-pin .db-support-pin__value {
+    grid-area: value;
+    font-size: 0.92rem;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+}
+
+.db-topbar-dropdown-pin .db-support-pin__btn:nth-of-type(1) { grid-area: copy; }
+.db-topbar-dropdown-pin .db-support-pin__btn:nth-of-type(2) { grid-area: refresh; }
+
 
 /* ─── Theme Toggle (ported from frontend) ─── */
 .db-theme-toggle {
-       width: 36px;
-       height: 36px;
-       border-radius: var(--radius-sm);
-       border: 1px solid var(--border-primary);
-       background: var(--bg-elevated);
-       color: var(--text-secondary);
-       cursor: pointer;
-       display: flex;
-       align-items: center;
-       justify-content: center;
-       transition: all var(--duration-fast) ease;
-       position: relative;
-       overflow: hidden;
-       flex-shrink: 0;
-       -webkit-border-radius: var(--radius-sm);
-       -moz-border-radius: var(--radius-sm);
-       -ms-border-radius: var(--radius-sm);
-       -o-border-radius: var(--radius-sm);
-       -webkit-transition: all var(--duration-fast) ease;
-       -moz-transition: all var(--duration-fast) ease;
-       -ms-transition: all var(--duration-fast) ease;
-       -o-transition: all var(--duration-fast) ease;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-primary);
+    background: var(--bg-elevated);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--duration-fast) ease;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    -webkit-border-radius: var(--radius-sm);
+    -moz-border-radius: var(--radius-sm);
+    -ms-border-radius: var(--radius-sm);
+    -o-border-radius: var(--radius-sm);
+    -webkit-transition: all var(--duration-fast) ease;
+    -moz-transition: all var(--duration-fast) ease;
+    -ms-transition: all var(--duration-fast) ease;
+    -o-transition: all var(--duration-fast) ease;
 }
 
 .db-theme-toggle:hover {
@@ -1361,7 +1663,7 @@ input, select, textarea {
 .db-switcher-option .fi {
     font-size: 1.35rem;
     border-radius: 3px;
-    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1));
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
 }
 
 .db-switcher-option:hover {
@@ -1568,6 +1870,7 @@ input, select, textarea {
     padding: var(--content-padding);
     /* max-width: var(--content-max-width); */
     width: 100%;
+    min-width: 0;
 }
 
 /* Page Header */
@@ -1697,13 +2000,164 @@ input, select, textarea {
     max-height: 360px;
     overflow-y: auto;
     padding: 8px;
+    /* Themed scrollbar (Firefox) */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(var(--seed-0), 0.22) transparent;
 }
+
+/* Themed scrollbar (WebKit) — slim seed-tinted thumb that brightens on hover */
+.db-search-body::-webkit-scrollbar {
+    width: 6px;
+}
+.db-search-body::-webkit-scrollbar-track {
+    background: transparent;
+    margin-block: 8px;
+}
+.db-search-body::-webkit-scrollbar-thumb {
+    background: rgba(var(--seed-0), 0.22);
+    border-radius: 999px;
+    transition: background var(--duration-fast) ease;
+}
+.db-search-body:hover {
+    scrollbar-color: rgba(var(--seed-0), 0.5) transparent;
+}
+.db-search-body:hover::-webkit-scrollbar-thumb {
+    background: rgba(var(--seed-0), 0.5);
+}
+.db-search-body::-webkit-scrollbar-thumb:hover,
+.db-search-body::-webkit-scrollbar-thumb:active {
+    background: rgba(var(--seed-0), 0.75);
+}
+.db-search-body::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+/* Light theme — slightly more opaque for contrast */
+[data-theme="light"] .db-search-body {
+    scrollbar-color: rgba(var(--seed-0), 0.35) transparent;
+}
+[data-theme="light"] .db-search-body::-webkit-scrollbar-thumb {
+    background: rgba(var(--seed-0), 0.35);
+}
+[data-theme="light"] .db-search-body:hover {
+    scrollbar-color: rgba(var(--seed-0), 0.6) transparent;
+}
+[data-theme="light"] .db-search-body:hover::-webkit-scrollbar-thumb {
+    background: rgba(var(--seed-0), 0.6);
+}
+
+/* Generic themed scrollbar utility — apply to any scroll container inside
+   the dashboard that needs to match the design language (e.g. long modal
+   contents, custom scroll panes). Mirrors the .db-modal-body treatment. */
+.db-scroll-themed {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(var(--seed-0), 0.22) transparent;
+}
+.db-scroll-themed::-webkit-scrollbar          { width: 6px; }
+.db-scroll-themed::-webkit-scrollbar-track    { background: transparent; margin-block: 8px; }
+.db-scroll-themed::-webkit-scrollbar-thumb    { background: rgba(var(--seed-0), 0.22); border-radius: 999px; }
+.db-scroll-themed:hover::-webkit-scrollbar-thumb      { background: rgba(var(--seed-0), 0.5); }
+.db-scroll-themed::-webkit-scrollbar-thumb:hover,
+.db-scroll-themed::-webkit-scrollbar-thumb:active     { background: rgba(var(--seed-0), 0.75); }
+.db-scroll-themed::-webkit-scrollbar-corner  { background: transparent; }
+
+[data-theme="light"] .db-scroll-themed                { scrollbar-color: rgba(var(--seed-0), 0.35) transparent; }
+[data-theme="light"] .db-scroll-themed::-webkit-scrollbar-thumb       { background: rgba(var(--seed-0), 0.35); }
+[data-theme="light"] .db-scroll-themed:hover::-webkit-scrollbar-thumb { background: rgba(var(--seed-0), 0.6); }
 
 .db-search-empty {
     padding: 40px 20px;
     text-align: center;
     color: var(--text-tertiary);
     font-size: 0.88rem;
+}
+
+.db-search-section-label {
+    padding: 8px 12px 6px 12px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-tertiary);
+    font-weight: 600;
+}
+
+.db-search-suggestion {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: background var(--duration-fast) ease;
+    cursor: pointer;
+}
+
+.db-search-suggestion:hover,
+.db-search-suggestion:focus {
+    background: var(--bg-tertiary);
+    outline: none;
+}
+
+.db-search-suggestion__icon {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.88rem;
+    flex-shrink: 0;
+}
+
+.db-search-suggestion:hover .db-search-suggestion__icon {
+    background: var(--bg-elevated);
+    color: var(--brand-primary);
+}
+
+.db-search-suggestion__body {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.db-search-suggestion__label {
+    font-size: 0.88rem;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.db-search-suggestion__label mark {
+    background: rgba(37, 99, 235, 0.2);
+    color: var(--brand-primary);
+    padding: 0 1px;
+    border-radius: 2px;
+}
+
+.db-search-suggestion__meta {
+    font-size: 0.76rem;
+    color: var(--text-tertiary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.db-search-suggestion__type {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-tertiary);
+    padding: 3px 8px;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-xs);
+    flex-shrink: 0;
 }
 
 
@@ -1747,6 +2201,16 @@ input, select, textarea {
     :root {
         --content-padding: 16px;
         --topbar-height: 56px;
+    }
+
+    .db-topbar {
+        gap: 12px;
+    }
+
+    .db-topbar-notif,
+    .db-theme-toggle {
+        width: 30px;
+        height: 30px;
     }
 
     .db-topbar-actions {
@@ -1852,6 +2316,7 @@ input, select, textarea {
 
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {
