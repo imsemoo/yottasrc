@@ -15,12 +15,12 @@ $project_id         = $_GET['id'] ?? '';
 $current_project    = cloud_require_project($project_id);
 $project_nav_active = 'servers';
 
-$page_title = __('project_page_servers') . ' — #' . $current_project['id'] . ' — ' . SITE_NAME;
+$page_title = __('cloud_px_servers') . ' — #' . $current_project['id'] . ' — ' . SITE_NAME;
 $breadcrumbs_data = [
     ['label' => __('nav_dashboard'),       'url' => DASH_BASE_PATH . '/'],
     ['label' => __('cloud_title'),          'url' => DASH_BASE_PATH . '/pages/cloud/index.php'],
     ['label' => '#' . $current_project['id'] . ' - ' . $current_project['name'], 'url' => cloud_project_url('servers', $current_project['id'])],
-    ['label' => __('project_page_servers'), 'url' => null],
+    ['label' => __('cloud_px_servers'), 'url' => null],
 ];
 
 require_once __DIR__ . '/../../../layouts/project-shell.php';
@@ -102,16 +102,16 @@ $servers = ($page_state === 'empty') ? [] : [
 $active_count    = count(array_filter($servers, fn($s) => $s['status'] === 'active'));
 $suspended_count = count(array_filter($servers, fn($s) => $s['status'] === 'suspended'));
 
-$hero_eyebrow = __('project_pro_eyebrow_servers');
+$hero_eyebrow = __('cloud_px_servers');
 $hero_title   = $current_project['name'];
 $hero_sub     = __('project_pro_sub_servers');
 $hero_stats   = empty($servers) ? null : [
     ['icon' => 'fa-server',       'label' => __('project_pro_stat_total'),     'value' => count($servers), 'seed' => 0],
-    ['icon' => 'fa-circle-check', 'label' => __('project_pro_stat_running'),   'value' => $active_count,   'seed' => 1],
-    ['icon' => 'fa-circle-pause', 'label' => __('project_pro_stat_stopped'),   'value' => $suspended_count,'seed' => 3],
-    ['icon' => 'fa-clock',        'label' => __('project_pro_stat_created'),   'value' => $current_project['created'], 'seed' => 2],
+    ['icon' => 'fa-circle-check', 'label' => __('srvd_status_running'),   'value' => $active_count,   'seed' => 1],
+    ['icon' => 'fa-circle-pause', 'label' => __('srvd_status_stopped'),   'value' => $suspended_count,'seed' => 3],
+    ['icon' => 'fa-clock',        'label' => __('srvd_backup_col_date'),   'value' => $current_project['created'], 'seed' => 2],
 ];
-$hero_actions = '<a href="' . e(cloud_project_url('create-server', $current_project['id'])) . '" class="ds-btn ds-btn--primary"><i class="fas fa-plus"></i> <span>' . e(__('project_create_server')) . '</span></a>';
+$hero_actions = '<a href="' . e(cloud_project_url('create-server', $current_project['id'])) . '" class="ds-btn ds-btn--primary"><i class="fas fa-plus"></i> <span>' . e(__('create_confirm_title')) . '</span></a>';
 include __DIR__ . '/../../../components/project-pro-hero.php';
 unset($hero_eyebrow, $hero_title, $hero_sub, $hero_stats, $hero_actions);
 ?>
@@ -131,7 +131,7 @@ unset($hero_eyebrow, $hero_title, $hero_sub, $hero_stats, $hero_actions);
         <span>
             <?php echo e(__('project_no_servers_hint_prefix')); ?>
             <a href="<?php echo e(cloud_project_url('create-server', $current_project['id'])); ?>" class="db-empty-hint__link">
-                <?php echo e(__('project_create_server')); ?>
+                <?php echo e(__('create_confirm_title')); ?>
             </a>
             <?php echo e(__('project_no_servers_hint_suffix')); ?>
         </span>
@@ -157,7 +157,7 @@ unset($hero_eyebrow, $hero_title, $hero_sub, $hero_stats, $hero_actions);
                 </div>
                 <div class="db-fbar__tools">
                     <select class="db-fbar__sort" data-table-filter="serversTable" data-filter-key="status">
-                        <option value=""><?php echo e(__('project_servers_filter_all')); ?></option>
+                        <option value=""><?php echo e(__('aff_ref_filter_all')); ?></option>
                         <option value="active"><?php echo e(__('status_active')); ?></option>
                         <option value="suspended"><?php echo e(__('status_suspended')); ?></option>
                         <option value="terminated"><?php echo e(__('status_terminated')); ?></option>
@@ -178,11 +178,11 @@ unset($hero_eyebrow, $hero_title, $hero_sub, $hero_stats, $hero_actions);
                     <thead>
                         <tr>
                             <th style="width:60px;">#</th>
-                            <th class="db-table-sortable" data-sort-key="name"><?php echo e(__('project_col_name')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
+                            <th class="db-table-sortable" data-sort-key="name"><?php echo e(__('dom_dns_name')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
                             <th class="db-table-sortable db-table-hide-tablet" data-sort-key="os"><?php echo e(__('project_col_os')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
-                            <th class="db-table-sortable" data-sort-key="ip"><?php echo e(__('project_col_ip')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
-                            <th class="db-table-sortable db-table-hide-mobile" data-sort-key="location"><?php echo e(__('project_col_location')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
-                            <th class="db-table-sortable" data-sort-key="status"><?php echo e(__('project_col_status')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
+                            <th class="db-table-sortable" data-sort-key="ip"><?php echo e(__('cpanel_ip')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
+                            <th class="db-table-sortable db-table-hide-mobile" data-sort-key="location"><?php echo e(__('cpanel_fact_location')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
+                            <th class="db-table-sortable" data-sort-key="status"><?php echo e(__('common_status')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
                             <th class="db-table-hide-mobile"><?php echo e(__('project_col_created')); ?></th>
                             <th style="width:60px;"></th>
                         </tr>
@@ -276,7 +276,17 @@ unset($hero_eyebrow, $hero_title, $hero_sub, $hero_stats, $hero_actions);
                         </div>
                         <div class="db-svc-card__title">
                             <a href="<?php echo e($srv_url); ?>" class="db-svc-card__name"><?php echo e($s['name']); ?></a>
-                            <div class="db-svc-card__domain"><?php echo e($s['package']); ?> <span class="db-svc-card__ip"><?php echo e($s['ip']); ?></span></div>
+                            <div class="db-svc-card__domain">
+                                <span class="db-svc-card__pkg"><?php echo e($s['package']); ?></span>
+                                <button type="button"
+                                        class="db-proj-server-ip db-proj-server-ip--copy db-proj-server-ip--inline"
+                                        title="<?php echo e(__('common_copy')); ?>"
+                                        onclick="event.stopPropagation(); DashCopy && DashCopy(this,'<?php echo e($s['ip']); ?>');">
+                                    <i class="fas fa-ethernet"></i>
+                                    <span><?php echo e($s['ip']); ?></span>
+                                    <i class="fas fa-copy db-proj-server-ip__copy-icon"></i>
+                                </button>
+                            </div>
                         </div>
                         <span class="db-badge db-badge--<?php echo e($s['status']); ?>"><?php echo e(__('status_' . $s['status'])); ?></span>
                     </div>

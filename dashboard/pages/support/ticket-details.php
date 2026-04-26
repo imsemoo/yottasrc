@@ -211,7 +211,7 @@ $is_open = ($ticket['status'] !== 'closed' && $ticket['status'] !== 'solved');
                 <div class="db-chat-reply__files" id="chatReplyFiles"></div>
             </div>
             <div class="db-chat-reply__footer">
-                <label class="db-btn db-btn--ghost db-btn--sm" for="chatReplyFileInput"><i class="fas fa-paperclip"></i> <?php echo e(__('ticket_new_attachments')); ?></label>
+                <label class="db-btn db-btn--ghost db-btn--sm" for="chatReplyFileInput"><i class="fas fa-paperclip"></i> <?php echo e(__('ticket_attachments')); ?></label>
                 <input type="file" multiple id="chatReplyFileInput" class="db-hidden-file-input">
                 <button class="db-btn db-btn--primary db-btn--sm" id="chatReplySend"><i class="fas fa-paper-plane"></i> <?php echo e(__('ticket_reply_send')); ?></button>
             </div>
@@ -269,9 +269,9 @@ $is_open = ($ticket['status'] !== 'closed' && $ticket['status'] !== 'solved');
             <div class="db-ticket-sidebar__title"><?php echo e(__('ticket_detail_title')); ?></div>
             <div class="db-info-list db-info-list--compact">
                 <div class="db-info-item"><span class="db-info-label"><?php echo e(__('ticket_info_id')); ?></span><span class="db-info-value db-info-value--mono"><?php echo e($ticket['id']); ?></span></div>
-                <div class="db-info-item"><span class="db-info-label"><?php echo e(__('ticket_info_department')); ?></span><span class="db-info-value"><?php echo e($ticket['department']); ?></span></div>
-                <div class="db-info-item"><span class="db-info-label"><?php echo e(__('ticket_info_status')); ?></span><span class="db-badge db-badge--<?php echo e($status_badge[$ticket['status']] ?? 'pending'); ?>"><?php echo e(__('ticket_status_' . $ticket['status'])); ?></span></div>
-                <div class="db-info-item"><span class="db-info-label"><?php echo e(__('ticket_info_priority')); ?></span><span class="db-info-value"><?php echo e(__('ticket_priority_' . $ticket['priority'])); ?></span></div>
+                <div class="db-info-item"><span class="db-info-label"><?php echo e(__('ticket_new_department')); ?></span><span class="db-info-value"><?php echo e($ticket['department']); ?></span></div>
+                <div class="db-info-item"><span class="db-info-label"><?php echo e(__('common_status')); ?></span><span class="db-badge db-badge--<?php echo e($status_badge[$ticket['status']] ?? 'pending'); ?>"><?php echo e(__('ticket_status_' . $ticket['status'])); ?></span></div>
+                <div class="db-info-item"><span class="db-info-label"><?php echo e(__('ticket_new_priority')); ?></span><span class="db-info-value"><?php echo e(__('ticket_priority_' . $ticket['priority'])); ?></span></div>
                 <div class="db-info-item"><span class="db-info-label"><?php echo e(__('ticket_info_created')); ?></span><span class="db-info-value"><?php echo e($ticket['created']); ?></span></div>
                 <div class="db-info-item"><span class="db-info-label"><?php echo e(__('ticket_info_last_activity')); ?></span><span class="db-info-value"><?php echo e($ticket['last_activity']); ?></span></div>
             </div>

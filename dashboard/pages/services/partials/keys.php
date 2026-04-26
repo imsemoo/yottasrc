@@ -59,7 +59,7 @@ $status_badge_map = [
 
 $breadcrumbs_data = [
     ['label' => __('nav_dashboard'), 'url' => DASH_BASE_PATH . '/'],
-    ['label' => __('nav_my_services'), 'url' => DASH_BASE_PATH . '/pages/services/index.php'],
+    ['label' => __('services_title'), 'url' => DASH_BASE_PATH . '/pages/services/index.php'],
     ['label' => '#' . $kp_id, 'url' => null],
 ];
 
@@ -78,7 +78,7 @@ $breadcrumbs_data = [
                 <div class="ds-hero__meta-top">
                     <span class="ds-eyebrow ds-eyebrow--success">
                         <span class="ds-status-dot"></span>
-                        <?php echo e(__('services_status_active')); ?>
+                        <?php echo e(__('domains_stat_active')); ?>
                     </span>
                     <span class="ds-hero__meta-sep">·</span>
                     <span class="db-key-hero__num">#<?php echo e($kp_id); ?></span>
@@ -96,20 +96,26 @@ $breadcrumbs_data = [
     </div>
 </section>
 
-<!-- ═══ KEY DISPLAY CARD ═══ -->
+<!-- ═══ KEY DISPLAY CARD ═══
+     The key is visible by default — customers use this screen once to
+     copy the license into Microsoft's activator, so hiding it behind a
+     reveal toggle added friction for no security benefit (the value is
+     already printed in the invoice, too). The eye toggle lets users
+     obscure the key during screen-shares. -->
 <div class="db-key-row">
     <div class="db-key-row__icon"><i class="fas fa-key"></i></div>
     <div class="db-key-row__value">
         <span class="db-key-row__arrow">→</span>
         <code class="db-key-row__code" id="keyValue"
               data-real="<?php echo e($kp['key']); ?>"
-              data-masked="<?php echo e(preg_replace('/[A-Z0-9]/', '•', $kp['key'])); ?>">
-            <?php echo e(preg_replace('/[A-Z0-9]/', '•', $kp['key'])); ?>
+              data-masked="<?php echo e(preg_replace('/[A-Z0-9]/', '•', $kp['key'])); ?>"
+              data-visible="1">
+            <?php echo e($kp['key']); ?>
         </code>
     </div>
     <div class="db-key-row__actions">
-        <button type="button" class="db-key-row__btn" id="keyRevealBtn" title="<?php echo e(__('keys_reveal')); ?>">
-            <i class="fas fa-eye" id="keyRevealIcon"></i>
+        <button type="button" class="db-key-row__btn" id="keyRevealBtn" title="<?php echo e(__('keys_hide')); ?>" aria-pressed="true">
+            <i class="fas fa-eye-slash" id="keyRevealIcon"></i>
         </button>
         <button type="button" class="db-key-row__btn" id="keyCopyBtn" title="<?php echo e(__('common_copy')); ?>">
             <i class="fas fa-copy"></i>
@@ -122,7 +128,7 @@ $breadcrumbs_data = [
     <div class="db-card-header db-card-header--md">
         <div class="db-tab-bar db-tab-bar--inline">
             <button type="button" class="db-tab-bar__btn is-active">
-                <i class="fas fa-list-ul"></i> <?php echo e(__('keys_details_tab')); ?>
+                <i class="fas fa-list-ul"></i> <?php echo e(__('pm_step_details')); ?>
             </button>
         </div>
     </div>
@@ -185,11 +191,21 @@ document.addEventListener('DOMContentLoaded', function () {
     var copyBtn = document.getElementById('keyCopyBtn');
     if (!code || !reveal) return;
 
-    var shown = false;
-    reveal.addEventListener('click', function () {
-        shown = !shown;
+    // Key is shown by default; clicking the eye toggles obscure mode.
+    var shown = code.getAttribute('data-visible') === '1';
+    var hideLabel   = <?php echo json_encode(__('keys_hide')); ?>;
+    var revealLabel = <?php echo json_encode(__('keys_reveal')); ?>;
+
+    function render() {
         code.textContent = shown ? code.getAttribute('data-real') : code.getAttribute('data-masked');
         if (icon) icon.className = shown ? 'fas fa-eye-slash' : 'fas fa-eye';
+        reveal.setAttribute('aria-pressed', shown ? 'true' : 'false');
+        reveal.setAttribute('title', shown ? hideLabel : revealLabel);
+    }
+
+    reveal.addEventListener('click', function () {
+        shown = !shown;
+        render();
     });
 
     if (copyBtn) {

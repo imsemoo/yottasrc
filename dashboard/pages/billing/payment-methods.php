@@ -12,7 +12,7 @@ $breadcrumbs_data = null;
 
 require_once __DIR__ . '/../../layouts/config.php';
 
-$page_title = __('payment_methods_title') . ' — ' . SITE_NAME;
+$page_title = __('nav_payment_methods') . ' — ' . SITE_NAME;
 $breadcrumbs_data = [
     ['label' => __('nav_dashboard'), 'url' => DASH_BASE_PATH . '/'],
     ['label' => __('nav_payment_methods'), 'url' => null],
@@ -76,7 +76,7 @@ $add_types = [
 ?>
 
 <?php
-$ph_title = __('payment_methods_title');
+$ph_title = __('nav_payment_methods');
 $ph_desc = __('payment_methods_desc');
 $ph_actions = '<button class="db-btn db-btn--primary" onclick="DashModal.open(\'addMethodModal\')"><i class="fas fa-plus"></i> ' . e(__('payment_methods_add')) . '</button>';
 include __DIR__ . '/../../components/page-header.php';
@@ -212,9 +212,9 @@ include __DIR__ . '/../../components/modal.php';
 
 <!-- Step indicator -->
 <div class="db-wizard-steps" id="wizardSteps">
-    <div class="db-wizard-step active" data-step="1"><span class="db-wizard-step__num">1</span> <?php echo e(__('pm_step_type')); ?></div>
+    <div class="db-wizard-step active" data-step="1"><span class="db-wizard-step__num">1</span> <?php echo e(__('dom_dns_type')); ?></div>
     <div class="db-wizard-step" data-step="2"><span class="db-wizard-step__num">2</span> <?php echo e(__('pm_step_details')); ?></div>
-    <div class="db-wizard-step" data-step="3"><span class="db-wizard-step__num">3</span> <?php echo e(__('pm_step_confirm')); ?></div>
+    <div class="db-wizard-step" data-step="3"><span class="db-wizard-step__num">3</span> <?php echo e(__('common_confirm')); ?></div>
 </div>
 
 <!-- Step 1: Choose type -->

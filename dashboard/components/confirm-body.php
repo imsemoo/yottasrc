@@ -17,7 +17,7 @@
  *
  * Example:
  *   $cb_desc         = __('cloud_project_delete_desc');
- *   $cb_target_label = __('cloud_project_delete_project');
+ *   $cb_target_label = __('cloud_bill_usage_col_project');
  *   $cb_target_value = '#' . $id . ' — ' . $name;
  *   $cb_warn         = __('cloud_project_delete_warn');
  *   include __DIR__ . '/../../components/confirm-body.php';

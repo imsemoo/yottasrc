@@ -214,8 +214,8 @@ $windows_images = [
     <?php
     $cs_steps = [
         1 => ['label' => __('create_cs_step1_label'), 'icon' => 'fa-sliders'],
-        2 => ['label' => __('create_cs_step2_label'), 'icon' => 'fa-earth-americas'],
-        3 => ['label' => __('create_cs_step3_label'), 'icon' => 'fa-microchip'],
+        2 => ['label' => __('cpanel_fact_location'), 'icon' => 'fa-earth-americas'],
+        3 => ['label' => __('create_label_package'), 'icon' => 'fa-microchip'],
         4 => ['label' => __('create_cs_step4_label'), 'icon' => 'fa-compact-disc'],
     ];
     ?>
@@ -246,8 +246,8 @@ $windows_images = [
     <!-- Top wizard navigation — mirrors the bottom nav so users can progress
          without scrolling through all the options. -->
     <div class="db-create-nav db-create-nav--top" data-create-nav>
-        <button type="button" class="db-create-nav__btn db-create-nav__btn--back db-create-nav__btn-prev" style="visibility:hidden;">
-            <i class="fas fa-arrow-left"></i> <span class="db-create-nav__prev-label"><?php echo e(__('create_nav_back')); ?></span>
+        <button type="button" class="db-create-nav__btn db-create-nav__btn--back db-create-nav__btn-prev" hidden aria-hidden="true">
+            <i class="fas fa-arrow-left"></i> <span class="db-create-nav__prev-label"><?php echo e(__('auth_back')); ?></span>
         </button>
         <button type="button" class="db-create-nav__btn db-create-nav__btn--next db-create-nav__btn-next">
             <span class="db-create-nav__next-label"><?php echo e(__('create_nav_select_location')); ?></span> <i class="fas fa-arrow-right"></i>
@@ -287,7 +287,7 @@ $windows_images = [
             <button type="button" class="db-selector-card is-selected" data-resources="shared">
                 <i class="fas fa-users db-selector-card__icon db-selector-card__icon--accent"></i>
                 <div class="db-selector-card__body">
-                    <span class="db-selector-card__label"><?php echo e(__('create_res_shared')); ?></span>
+                    <span class="db-selector-card__label"><?php echo e(__('cpanel_shared')); ?></span>
                     <span class="db-selector-card__desc"><?php echo e(__('create_res_shared_desc')); ?></span>
                 </div>
                 <i class="fas fa-check-circle db-selector-card__check"></i>
@@ -295,7 +295,7 @@ $windows_images = [
             <button type="button" class="db-selector-card" data-resources="dedicated">
                 <i class="fas fa-server db-selector-card__icon db-selector-card__icon--primary"></i>
                 <div class="db-selector-card__body">
-                    <span class="db-selector-card__label"><?php echo e(__('create_res_dedicated')); ?></span>
+                    <span class="db-selector-card__label"><?php echo e(__('cpanel_dedicated')); ?></span>
                     <span class="db-selector-card__desc"><?php echo e(__('create_res_dedicated_desc')); ?></span>
                 </div>
                 <i class="fas fa-check-circle db-selector-card__check"></i>
@@ -430,11 +430,11 @@ $windows_images = [
         </div>
         <dl class="db-cs-summary__list db-os-summary__row">
             <div class="db-cs-summary__row db-os-summary__item" data-summary="resources">
-                <dt class="db-os-summary__label"><?php echo e(__('create_label_resources')); ?></dt>
+                <dt class="db-os-summary__label"><?php echo e(__('create_cs_step1_label')); ?></dt>
                 <dd class="db-os-summary__value" data-value>—</dd>
             </div>
             <div class="db-cs-summary__row db-os-summary__item" data-summary="location">
-                <dt class="db-os-summary__label"><?php echo e(__('create_label_location')); ?></dt>
+                <dt class="db-os-summary__label"><?php echo e(__('cpanel_fact_location')); ?></dt>
                 <dd class="db-os-summary__value" data-value>—</dd>
             </div>
             <div class="db-cs-summary__row db-os-summary__item" data-summary="package">
@@ -476,7 +476,7 @@ include __DIR__ . '/../../../components/modal.php';
         <p><?php echo e(__('create_confirm_desc')); ?></p>
         <div class="db-confirm-summary">
             <div class="db-confirm-summary__row">
-                <span><?php echo e(__('create_label_location')); ?></span>
+                <span><?php echo e(__('cpanel_fact_location')); ?></span>
                 <span id="confirmLocation">—</span>
             </div>
             <div class="db-confirm-summary__row">
@@ -582,10 +582,22 @@ include __DIR__ . '/../../../components/modal-end.php';
                 el.classList.toggle('is-complete', idx < n);
             });
         }
-        var prevVis = n === 1 ? 'hidden' : '';
-        var backText = backLabels[n] || <?php echo json_encode(__('create_nav_back')); ?>;
-        var nextText = stepLabels[n] || <?php echo json_encode(__('create_nav_next')); ?>;
-        prevBtns.forEach(function (b) { b.style.visibility = prevVis; });
+        var isFirstStep = n === 1;
+        var backText = backLabels[n] || <?php echo json_encode(__('auth_back')); ?>;
+        var nextText = stepLabels[n] || <?php echo json_encode(__('common_next')); ?>;
+        prevBtns.forEach(function (b) {
+            // Fully remove the button from layout on the first step — `hidden`
+            // keeps it out of the flow (no reserved empty space). Using an
+            // attribute also prevents any transition flash that `visibility`
+            // or `display` style toggles can produce.
+            if (isFirstStep) {
+                b.setAttribute('hidden', '');
+                b.setAttribute('aria-hidden', 'true');
+            } else {
+                b.removeAttribute('hidden');
+                b.removeAttribute('aria-hidden');
+            }
+        });
         prevLabels.forEach(function (l) { l.textContent = backText; });
         nextLabels.forEach(function (l) { l.textContent = nextText; });
         // On step 4, swap Windows/Linux image grid
@@ -594,9 +606,21 @@ include __DIR__ . '/../../../components/modal-end.php';
                 g.style.display = g.getAttribute('data-image-group') === state.os ? '' : 'none';
             });
         }
-        // Scroll back to summary
-        var summary = document.getElementById('orderSummary');
-        if (summary) summary.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Scroll the active step into view. On mobile the summary sits as a
+        // sticky bottom bar, so scrolling to it would push the user PAST the
+        // step content. Instead, scroll to the stepper on mobile (keeps the
+        // step head visible) and to the summary on desktop (reveals the
+        // running totals alongside the fresh step).
+        var isMobile = window.matchMedia('(max-width: 980px)').matches;
+        if (isMobile) {
+            var stepper = document.getElementById('csStepper');
+            if (stepper) {
+                stepper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        } else {
+            var summary = document.getElementById('orderSummary');
+            if (summary) summary.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
     }
 
     function validateStep(n) {
@@ -703,7 +727,7 @@ include __DIR__ . '/../../../components/modal-end.php';
     if (confirmBtn) {
         confirmBtn.addEventListener('click', function () {
             confirmBtn.disabled = true;
-            confirmBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> <?php echo e(__('create_creating')); ?>';
+            confirmBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> <?php echo e(__('cloud_creating')); ?>';
             setTimeout(function () {
                 // Redirect to new server details (mock)
                 window.location.href = '<?php echo e(cloud_project_url('server-details', $current_project['id'])); ?>&server=CLY806752';

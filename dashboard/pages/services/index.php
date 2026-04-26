@@ -14,7 +14,7 @@ require_once __DIR__ . '/../../layouts/config.php';
 $page_title = __('services_title') . ' — ' . SITE_NAME;
 $breadcrumbs_data = [
     ['label' => __('nav_dashboard'), 'url' => DASH_BASE_PATH . '/'],
-    ['label' => __('nav_my_services'), 'url' => null],
+    ['label' => __('services_title'), 'url' => null],
 ];
 
 require_once __DIR__ . '/../../layouts/shell.php';
@@ -123,7 +123,7 @@ $type_brand_logo = [
 <?php
 $ph_title = __('services_title');
 $ph_desc = __('services_desc');
-$ph_actions = '<a href="' . DASH_BASE_PATH . '/pages/services/order.php" class="db-btn db-btn--primary"><i class="fas fa-plus"></i> ' . e(__('services_order_new')) . '</a>';
+$ph_actions = '<a href="' . DASH_BASE_PATH . '/pages/services/order.php" class="db-btn db-btn--primary"><i class="fas fa-plus"></i> ' . e(__('order_title')) . '</a>';
 include __DIR__ . '/../../components/page-header.php';
 ?>
 
@@ -144,7 +144,7 @@ include __DIR__ . '/../../components/page-header.php';
     $es_icon   = 'fa-server';
     $es_title  = __('services_empty_title');
     $es_desc   = __('services_empty_desc');
-    $es_action = '<a href="' . DASH_BASE_PATH . '/pages/services/order.php" class="db-btn db-btn--primary"><i class="fas fa-plus"></i> ' . e(__('services_order_new')) . '</a>';
+    $es_action = '<a href="' . DASH_BASE_PATH . '/pages/services/order.php" class="db-btn db-btn--primary"><i class="fas fa-plus"></i> ' . e(__('order_title')) . '</a>';
     include __DIR__ . '/../../components/empty-state.php';
     ?>
 
@@ -160,7 +160,7 @@ include __DIR__ . '/../../components/page-header.php';
                 </div>
                 <div class="db-fbar__tools">
                     <select class="db-fbar__sort" id="svcSort" data-table-filter="servicesTable" data-filter-key="status">
-                        <option value=""><?php echo e(__('services_filter_all')); ?></option>
+                        <option value=""><?php echo e(__('domains_filter_all')); ?></option>
                         <option value="active"><?php echo e(__('status_active')); ?></option>
                         <option value="suspended"><?php echo e(__('status_suspended')); ?></option>
                         <option value="pending"><?php echo e(__('status_pending')); ?></option>
@@ -175,7 +175,7 @@ include __DIR__ . '/../../components/page-header.php';
             <!-- Row 2: Status segmented tabs (wired via DashTable) -->
             <div class="db-fbar__bottom">
                 <div class="db-seg-tabs" data-table-tabs="servicesTable" data-tab-key="status">
-                    <button type="button" class="db-seg-tab active" data-tab-value="all"><?php echo e(__('services_filter_all')); ?> <span class="db-seg-tab__count"><?php echo $stats['total']; ?></span></button>
+                    <button type="button" class="db-seg-tab active" data-tab-value="all"><?php echo e(__('domains_filter_all')); ?> <span class="db-seg-tab__count"><?php echo $stats['total']; ?></span></button>
                     <button type="button" class="db-seg-tab" data-tab-value="active"><?php echo e(__('status_active')); ?> <span class="db-seg-tab__count"><?php echo $stats['active']; ?></span></button>
                     <button type="button" class="db-seg-tab" data-tab-value="suspended"><?php echo e(__('status_suspended')); ?> <span class="db-seg-tab__count"><?php echo $stats['suspended']; ?></span></button>
                     <button type="button" class="db-seg-tab" data-tab-value="pending"><?php echo e(__('status_pending')); ?> <span class="db-seg-tab__count"><?php echo $stats['pending']; ?></span></button>
@@ -190,11 +190,11 @@ include __DIR__ . '/../../components/page-header.php';
                     <table class="db-table" id="servicesTable" data-table-tools>
                         <thead>
                             <tr>
-                                <th class="db-table-sortable" data-sort-key="name"><?php echo e(__('services_col_service')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
+                                <th class="db-table-sortable" data-sort-key="name"><?php echo e(__('ticket_info_service')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
                                 <th class="db-table-sortable" data-sort-key="status"><?php echo e(__('common_status')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
-                                <th class="db-table-hide-tablet db-table-sortable" data-sort-key="cycle"><?php echo e(__('services_col_cycle')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
+                                <th class="db-table-hide-tablet db-table-sortable" data-sort-key="cycle"><?php echo e(__('cpanel_bf_cycle')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
                                 <th class="db-table-hide-mobile db-table-sortable" data-sort-key="due_date"><?php echo e(__('services_col_due')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
-                                <th class="db-table-sortable db-table-cell--right" data-sort-key="amount"><?php echo e(__('services_col_amount')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
+                                <th class="db-table-sortable db-table-cell--right" data-sort-key="amount"><?php echo e(__('keys_col_amount')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
                                 <th style="width:80px;"></th>
                             </tr>
                         </thead>
@@ -228,7 +228,19 @@ include __DIR__ . '/../../components/page-header.php';
                                         <?php endif; ?>
                                         <div>
                                             <div class="db-table-cell-main"><?php echo e($svc['name']); ?></div>
-                                            <div class="db-table-cell-sub"><?php echo e($svc['domain']); ?><?php echo $svc['ip'] !== '—' ? ' · ' . e($svc['ip']) : ''; ?></div>
+                                            <div class="db-table-cell-sub">
+                                                <?php echo e($svc['domain']); ?>
+                                                <?php if ($svc['ip'] !== '—'): ?>
+                                                <span class="db-table-cell-sub__sep">·</span>
+                                                <button type="button"
+                                                        class="db-proj-server-ip db-proj-server-ip--copy db-proj-server-ip--inline"
+                                                        title="<?php echo e(__('common_copy')); ?>"
+                                                        onclick="event.stopPropagation(); DashCopy && DashCopy(this,'<?php echo e($svc['ip']); ?>');">
+                                                    <span><?php echo e($svc['ip']); ?></span>
+                                                    <i class="fas fa-copy db-proj-server-ip__copy-icon"></i>
+                                                </button>
+                                                <?php endif; ?>
+                                            </div>
                                         </div>
                                     </div>
                                 </td>
@@ -244,7 +256,7 @@ include __DIR__ . '/../../components/page-header.php';
                                             <div class="db-dropdown-menu">
                                                 <a href="<?php echo $detail_url; ?>" class="db-dropdown-item"><i class="fas fa-eye"></i> <?php echo e(__('common_view')); ?></a>
                                                 <button class="db-dropdown-item" onclick="DashToast.show('info','','Redirecting to cPanel...')"><i class="fas fa-right-to-bracket"></i> <?php echo e(__('services_action_login')); ?></button>
-                                                <button class="db-dropdown-item" onclick="DashToast.show('info','','Upgrade coming soon.')"><i class="fas fa-arrow-up-right-dots"></i> <?php echo e(__('services_action_upgrade')); ?></button>
+                                                <button class="db-dropdown-item" onclick="DashToast.show('info','','Upgrade coming soon.')"><i class="fas fa-arrow-up-right-dots"></i> <?php echo e(__('services_tab_upgrade')); ?></button>
                                                 <div class="db-dropdown-divider"></div>
                                                 <button class="db-dropdown-item db-dropdown-item--danger" onclick="DashToast.show('warning','','Cancellation coming soon.')"><i class="fas fa-xmark"></i> <?php echo e(__('services_action_cancel')); ?></button>
                                             </div>
@@ -289,7 +301,18 @@ include __DIR__ . '/../../components/page-header.php';
                         <?php endif; ?>
                         <div class="db-svc-card__title">
                             <a href="<?php echo $detail_url; ?>" class="db-svc-card__name"><?php echo e($svc['name']); ?></a>
-                            <div class="db-svc-card__domain"><?php echo e($svc['domain']); ?> <?php if ($svc['ip'] !== '—'): ?><span class="db-svc-card__ip"><?php echo e($svc['ip']); ?></span><?php endif; ?></div>
+                            <div class="db-svc-card__domain">
+                                <span><?php echo e($svc['domain']); ?></span>
+                                <?php if ($svc['ip'] !== '—'): ?>
+                                <button type="button"
+                                        class="db-proj-server-ip db-proj-server-ip--copy db-proj-server-ip--inline"
+                                        title="<?php echo e(__('common_copy')); ?>"
+                                        onclick="event.stopPropagation(); DashCopy && DashCopy(this,'<?php echo e($svc['ip']); ?>');">
+                                    <span><?php echo e($svc['ip']); ?></span>
+                                    <i class="fas fa-copy db-proj-server-ip__copy-icon"></i>
+                                </button>
+                                <?php endif; ?>
+                            </div>
                         </div>
                         <span class="db-badge db-badge--<?php echo e($svc['status']); ?>"><?php echo e(__('status_' . $svc['status'])); ?></span>
                     </div>
@@ -301,7 +324,7 @@ include __DIR__ . '/../../components/page-header.php';
                         </div>
                         <div class="db-svc-card__right">
                             <div class="db-svc-card__price"><?php echo format_money($svc['amount']); ?><span>/<?php echo e(strtolower(substr($svc['cycle'], 0, 2))); ?></span></div>
-                            <a href="<?php echo $detail_url; ?>" class="db-btn db-btn--primary db-btn--sm db-svc-card__manage"><?php echo e(__('services_manage')); ?> <i class="fas fa-arrow-right"></i></a>
+                            <a href="<?php echo $detail_url; ?>" class="db-btn db-btn--primary db-btn--sm db-svc-card__manage"><?php echo e(__('common_manage')); ?> <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>

@@ -10,7 +10,7 @@ $breadcrumbs_data = null;
 
 require_once __DIR__ . '/../../layouts/config.php';
 
-$page_title = __('auth_login_title') . ' — ' . SITE_NAME;
+$page_title = __('auth_login_btn') . ' — ' . SITE_NAME;
 $auth_heading = __('auth_login_heading');
 $auth_subheading = __('auth_login_subheading');
 $auth_css = 'login.css';

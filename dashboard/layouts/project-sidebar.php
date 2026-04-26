@@ -50,23 +50,23 @@ function _pnav_active($slug) {
         <div class="db-nav-group">
             <a href="<?php echo e(cloud_project_url('create-server', $current_project['id'] ?? '')); ?>"
                class="db-nav-item<?php echo _pnav_active('create-server'); ?>"
-               data-tooltip="<?php echo e(__('project_nav_create_server')); ?>">
+               data-tooltip="<?php echo e(__('create_server_title')); ?>">
                 <i class="fas fa-square-plus"></i>
-                <span class="db-nav-item-text"><?php echo e(__('project_nav_create_server')); ?></span>
+                <span class="db-nav-item-text"><?php echo e(__('create_server_title')); ?></span>
             </a>
 
             <a href="<?php echo e(cloud_project_url('servers', $current_project['id'] ?? '')); ?>"
                class="db-nav-item<?php echo _pnav_active('servers'); ?>"
-               data-tooltip="<?php echo e(__('project_nav_servers')); ?>">
+               data-tooltip="<?php echo e(__('cloud_px_servers')); ?>">
                 <i class="fas fa-server"></i>
-                <span class="db-nav-item-text"><?php echo e(__('project_nav_servers')); ?></span>
+                <span class="db-nav-item-text"><?php echo e(__('cloud_px_servers')); ?></span>
             </a>
 
             <a href="<?php echo e(cloud_project_url('network', $current_project['id'] ?? '')); ?>"
                class="db-nav-item<?php echo _pnav_active('network'); ?>"
-               data-tooltip="<?php echo e(__('project_nav_network')); ?>">
+               data-tooltip="<?php echo e(__('srvd_tele_net')); ?>">
                 <i class="fas fa-globe"></i>
-                <span class="db-nav-item-text"><?php echo e(__('project_nav_network')); ?></span>
+                <span class="db-nav-item-text"><?php echo e(__('srvd_tele_net')); ?></span>
             </a>
 
             <a href="<?php echo e(cloud_project_url('api', $current_project['id'] ?? '')); ?>"
@@ -83,9 +83,9 @@ function _pnav_active($slug) {
 
             <a href="<?php echo e(DASH_BASE_PATH); ?>/pages/cloud/index.php"
                class="db-nav-item"
-               data-tooltip="<?php echo e(__('project_nav_projects')); ?>">
+               data-tooltip="<?php echo e(__('cloud_tab_projects')); ?>">
                 <i class="fas fa-folder"></i>
-                <span class="db-nav-item-text"><?php echo e(__('project_nav_projects')); ?></span>
+                <span class="db-nav-item-text"><?php echo e(__('cloud_tab_projects')); ?></span>
             </a>
 
             <a href="<?php echo e(DASH_BASE_PATH); ?>/"

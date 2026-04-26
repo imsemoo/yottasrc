@@ -338,7 +338,7 @@ if (!$is_verified) {
             <span class="db-tab-bar__count"><?php echo count($projects); ?></span>
         </button>
         <button type="button" class="db-tab-bar__btn" data-tab-target="billing">
-            <i class="fas fa-receipt"></i> <?php echo e(__('cloud_tab_billing')); ?>
+            <i class="fas fa-receipt"></i> <?php echo e(__('nav_billing')); ?>
         </button>
         <button type="button" class="db-tab-bar__btn" data-tab-target="limits">
             <i class="fas fa-gauge-high"></i> <?php echo e(__('cloud_tab_limits')); ?>
@@ -484,7 +484,7 @@ if (!$is_verified) {
                                 <span class="db-px-card__cost-value"><?php echo format_money($p['monthly_cost']); ?></span>
                             </div>
                             <a href="<?php echo e($project_url); ?>" class="db-px-card__open">
-                                <span><?php echo e(__('cloud_px_open')); ?></span>
+                                <span><?php echo e(__('common_open')); ?></span>
                                 <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
@@ -603,8 +603,8 @@ if (!$is_verified) {
                             <thead>
                                 <tr>
                                     <th><?php echo e(__('cloud_bill_usage_col_project')); ?></th>
-                                    <th><?php echo e(__('cloud_bill_usage_col_servers')); ?></th>
-                                    <th><?php echo e(__('cloud_bill_usage_col_status')); ?></th>
+                                    <th><?php echo e(__('cloud_px_servers')); ?></th>
+                                    <th><?php echo e(__('common_status')); ?></th>
                                     <th class="db-table-cell--right"><?php echo e(__('cloud_bill_usage_col_usage')); ?></th>
                                     <th class="db-table-cell--right"><?php echo e(__('cloud_bill_usage_col_share')); ?></th>
                                 </tr>
@@ -721,9 +721,9 @@ if (!$is_verified) {
             ?>
 
             <div class="db-lx-grid">
-                <?php render_dial('servers',   'fa-server',             __('cloud_limit_servers'),   $limits_stats['servers'],   0); ?>
+                <?php render_dial('servers',   'fa-server',             __('cloud_px_servers'),   $limits_stats['servers'],   0); ?>
                 <?php render_dial('ips',       'fa-globe',              __('cloud_limit_ips'),       $limits_stats['ips'],       1); ?>
-                <?php render_dial('projects',  'fa-folder-tree',        __('cloud_limit_projects'),  $limits_stats['projects'],  2); ?>
+                <?php render_dial('projects',  'fa-folder-tree',        __('cloud_tab_projects'),  $limits_stats['projects'],  2); ?>
                 <?php render_dial('terminate', 'fa-arrow-rotate-right', __('cloud_limit_terminate'), $limits_stats['terminate'], 3); ?>
             </div>
 
@@ -755,11 +755,11 @@ if (!$is_verified) {
                             <table class="db-table">
                                 <thead>
                                     <tr>
-                                        <th><?php echo e(__('cloud_limit_req_col_date')); ?></th>
+                                        <th><?php echo e(__('credit_col_date')); ?></th>
                                         <th><?php echo e(__('cloud_limit_req_col_type')); ?></th>
                                         <th class="db-table-cell--right"><?php echo e(__('cloud_limit_req_col_from')); ?></th>
                                         <th class="db-table-cell--right"><?php echo e(__('cloud_limit_req_col_to')); ?></th>
-                                        <th class="db-table-cell--right"><?php echo e(__('cloud_limit_req_col_status')); ?></th>
+                                        <th class="db-table-cell--right"><?php echo e(__('common_status')); ?></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -892,7 +892,7 @@ if (!$is_verified) {
                 <div class="db-rx-stat" style="--rx-seed: var(--seed-1);">
                     <div class="db-rx-stat__top">
                         <div class="db-rx-stat__icon"><i class="fas fa-circle-dollar-to-slot"></i></div>
-                        <div class="db-rx-stat__label"><?php echo e(__('cloud_referral_paid')); ?></div>
+                        <div class="db-rx-stat__label"><?php echo e(__('status_paid')); ?></div>
                     </div>
                     <div class="db-rx-stat__value"><?php echo format_money($referral_stats['paid'], 0); ?></div>
                     <div class="db-rx-stat__sub"><?php echo e(__('cloud_rx_stat_paid_sub')); ?></div>
@@ -918,7 +918,7 @@ if (!$is_verified) {
                         <div class="db-rx-reward__amount">€15</div>
                         <h4 class="db-rx-reward__title"><?php echo e(__('cloud_promo_15_title')); ?></h4>
                         <p class="db-rx-reward__desc"><?php echo e(__('cloud_promo_15_desc')); ?></p>
-                        <div class="db-rx-reward__chip"><i class="fas fa-bolt"></i> <?php echo e(__('cloud_rx_reward_one_time')); ?></div>
+                        <div class="db-rx-reward__chip"><i class="fas fa-bolt"></i> <?php echo e(__('aff_reward_one_time')); ?></div>
                     </div>
                 </div>
             </div>
@@ -960,7 +960,7 @@ include __DIR__ . '/../../components/modal.php';
         </div>
 
         <div class="db-form-group">
-            <label class="db-form-label" for="projectDesc"><?php echo e(__('cloud_project_desc_label')); ?> <span class="db-form-label-meta">(<?php echo e(__('common_optional')); ?>)</span></label>
+            <label class="db-form-label" for="projectDesc"><?php echo e(__('credit_col_description')); ?> <span class="db-form-label-meta">(<?php echo e(__('common_optional')); ?>)</span></label>
             <textarea id="projectDesc" name="description" class="db-input db-textarea"
                       rows="3" maxlength="200"
                       placeholder="<?php echo e(__('cloud_project_desc_placeholder')); ?>"></textarea>
@@ -1200,7 +1200,7 @@ include __DIR__ . '/../../components/modal.php';
         <p><?php echo e(__('cloud_project_delete_desc')); ?></p>
         <div class="db-confirm-summary">
             <div class="db-confirm-summary__row">
-                <span><?php echo e(__('cloud_project_delete_project')); ?></span>
+                <span><?php echo e(__('cloud_bill_usage_col_project')); ?></span>
                 <span id="deleteProjectName" class="db-confirm-summary__target"></span>
             </div>
         </div>
@@ -1275,9 +1275,9 @@ include __DIR__ . '/../../components/modal.php';
 
 /* Rows — keep in sync with $limits_stats. Icon + label + current max. */
 $lx_req_rows = [
-    ['key' => 'servers',   'icon' => 'fa-server',             'label' => __('cloud_limit_servers'),   'current' => (int)$limits_stats['servers']['max']],
+    ['key' => 'servers',   'icon' => 'fa-server',             'label' => __('cloud_px_servers'),   'current' => (int)$limits_stats['servers']['max']],
     ['key' => 'ips',       'icon' => 'fa-globe',              'label' => __('cloud_limit_ips'),       'current' => (int)$limits_stats['ips']['max']],
-    ['key' => 'projects',  'icon' => 'fa-folder-tree',        'label' => __('cloud_limit_projects'),  'current' => (int)$limits_stats['projects']['max']],
+    ['key' => 'projects',  'icon' => 'fa-folder-tree',        'label' => __('cloud_tab_projects'),  'current' => (int)$limits_stats['projects']['max']],
     ['key' => 'terminate', 'icon' => 'fa-arrow-rotate-right', 'label' => __('cloud_limit_terminate'), 'current' => (int)$limits_stats['terminate']['max']],
 ];
 ?>
@@ -1286,7 +1286,7 @@ $lx_req_rows = [
 
         <div class="db-lx-req-grid" role="table" aria-label="<?php echo e(__('cloud_limit_req_modal_title')); ?>">
             <div class="db-lx-req-grid__head" role="row">
-                <span role="columnheader"><?php echo e(__('cloud_limit_req_col_resource')); ?></span>
+                <span role="columnheader"><?php echo e(__('cloud_limit_req_col_type')); ?></span>
                 <span role="columnheader" class="db-lx-req-grid__col-num"><?php echo e(__('cloud_limit_req_current')); ?></span>
                 <span role="columnheader" class="db-lx-req-grid__col-num"><?php echo e(__('cloud_limit_req_desired')); ?></span>
             </div>

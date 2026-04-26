@@ -147,7 +147,7 @@ $cp_tutorials = [
 $page_title = '#' . $cp_id . ' ' . $cp['name'] . ' — ' . SITE_NAME;
 $breadcrumbs_data = [
     ['label' => __('nav_dashboard'), 'url' => DASH_BASE_PATH . '/'],
-    ['label' => __('nav_my_services'), 'url' => DASH_BASE_PATH . '/pages/services/index.php'],
+    ['label' => __('services_title'), 'url' => DASH_BASE_PATH . '/pages/services/index.php'],
     ['label' => 'Service #' . $cp_id, 'url' => null],
 ];
 
@@ -189,7 +189,7 @@ $cp_is_active = $cp['status'] === 'active';
             <div class="db-dropdown-wrapper">
                 <button class="ds-btn" data-dropdown-toggle>
                     <i class="fas fa-bolt"></i>
-                    <span><?php echo e(__('services_actions')); ?></span>
+                    <span><?php echo e(__('dom_actions')); ?></span>
                     <i class="fas fa-chevron-down ds-btn__chev"></i>
                 </button>
                 <div class="db-dropdown-menu">
@@ -223,13 +223,13 @@ $cp_is_active = $cp['status'] === 'active';
 
 <!-- ═══ TAB BAR (scrolls on mobile via .db-srvd-tabs) ═══ -->
 <div class="db-tab-bar db-srvd-tabs" data-tab-bar data-tab-content="#cpTabs">
-    <button type="button" class="db-tab-bar__btn is-active" data-tab-target="overview"><i class="fas fa-table-cells"></i> <?php echo e(__('cpanel_tab_overview')); ?></button>
-    <button type="button" class="db-tab-bar__btn" data-tab-target="nameservers"><i class="fas fa-network-wired"></i> <?php echo e(__('cpanel_tab_nameservers')); ?></button>
+    <button type="button" class="db-tab-bar__btn is-active" data-tab-target="overview"><i class="fas fa-table-cells"></i> <?php echo e(__('dom_tab_overview')); ?></button>
+    <button type="button" class="db-tab-bar__btn" data-tab-target="nameservers"><i class="fas fa-network-wired"></i> <?php echo e(__('cpanel_ns_title')); ?></button>
     <button type="button" class="db-tab-bar__btn" data-tab-target="domains"><i class="fas fa-globe"></i> <?php echo e(__('cpanel_tab_domains')); ?> <span class="db-tab-bar__count"><?php echo count($cp_domains); ?></span></button>
-    <button type="button" class="db-tab-bar__btn" data-tab-target="databases"><i class="fas fa-database"></i> <?php echo e(__('cpanel_tab_databases')); ?> <span class="db-tab-bar__count"><?php echo count($cp_databases); ?></span></button>
+    <button type="button" class="db-tab-bar__btn" data-tab-target="databases"><i class="fas fa-database"></i> <?php echo e(__('cpanel_db_title')); ?> <span class="db-tab-bar__count"><?php echo count($cp_databases); ?></span></button>
     <button type="button" class="db-tab-bar__btn" data-tab-target="email"><i class="fas fa-envelope"></i> <?php echo e(__('cpanel_tab_email')); ?> <span class="db-tab-bar__count"><?php echo count($cp_emails); ?></span></button>
     <button type="button" class="db-tab-bar__btn" data-tab-target="ftp"><i class="fas fa-server"></i> <?php echo e(__('cpanel_tab_ftp')); ?> <span class="db-tab-bar__count"><?php echo count($cp_ftp); ?></span></button>
-    <button type="button" class="db-tab-bar__btn" data-tab-target="billing"><i class="fas fa-coins"></i> <?php echo e(__('cpanel_tab_billing')); ?></button>
+    <button type="button" class="db-tab-bar__btn" data-tab-target="billing"><i class="fas fa-coins"></i> <?php echo e(__('nav_billing')); ?></button>
     <button type="button" class="db-tab-bar__btn" data-tab-target="upgrade"><i class="fas fa-arrow-up-right-dots"></i> <?php echo e(__('cpanel_tab_upgrade')); ?></button>
 </div>
 
@@ -266,7 +266,7 @@ $cp_is_active = $cp['status'] === 'active';
                 </button>
                 <div class="db-srvd-access-chip db-srvd-access-chip--password" id="cpPasswordChip">
                     <div class="db-srvd-access-chip__head">
-                        <span class="db-srvd-access-chip__label"><i class="fas fa-lock"></i> <?php echo e(__('cpanel_password')); ?></span>
+                        <span class="db-srvd-access-chip__label"><i class="fas fa-lock"></i> <?php echo e(__('auth_password')); ?></span>
                         <div class="db-srvd-access-chip__tools">
                             <button type="button" class="db-srvd-password-toggle" id="cpPwdToggle" aria-label="<?php echo e(__('common_reveal')); ?>"><i class="fas fa-eye" id="cpPwdEye"></i></button>
                             <button type="button" class="db-srvd-access-chip__copy-btn" onclick="DashCopy && DashCopy(this,'<?php echo e($cp['password']); ?>');" aria-label="<?php echo e(__('common_copy')); ?>"><i class="fas fa-copy"></i></button>
@@ -306,7 +306,7 @@ $cp_is_active = $cp['status'] === 'active';
             </div>
             <div class="db-cpanel-facts">
                 <div class="db-cpanel-fact">
-                    <span class="db-cpanel-fact__label"><?php echo e(__('cpanel_fact_status')); ?></span>
+                    <span class="db-cpanel-fact__label"><?php echo e(__('common_status')); ?></span>
                     <span class="db-cpanel-fact__value">
                         <i class="fas fa-circle-check" style="color: var(--status-active);"></i>
                         <?php echo e(__('services_status_' . $cp['status'])); ?>
@@ -320,21 +320,21 @@ $cp_is_active = $cp['status'] === 'active';
                     </span>
                 </div>
                 <div class="db-cpanel-fact">
-                    <span class="db-cpanel-fact__label"><?php echo e(__('cpanel_fact_cycle')); ?></span>
+                    <span class="db-cpanel-fact__label"><?php echo e(__('cpanel_bf_cycle')); ?></span>
                     <span class="db-cpanel-fact__value">
                         <i class="fas fa-clock" style="color: rgb(var(--seed-0));"></i>
                         <?php echo e($cp['cycle']); ?>
                     </span>
                 </div>
                 <div class="db-cpanel-fact">
-                    <span class="db-cpanel-fact__label"><?php echo e(__('cpanel_fact_renewal')); ?></span>
+                    <span class="db-cpanel-fact__label"><?php echo e(__('cpanel_bf_renewal')); ?></span>
                     <span class="db-cpanel-fact__value">
                         <i class="fas fa-euro-sign" style="color: var(--brand-warning);"></i>
                         <?php echo format_money($cp['amount']); ?>
                     </span>
                 </div>
                 <div class="db-cpanel-fact">
-                    <span class="db-cpanel-fact__label"><?php echo e(__('cpanel_fact_due')); ?></span>
+                    <span class="db-cpanel-fact__label"><?php echo e(__('cpanel_bf_due')); ?></span>
                     <span class="db-cpanel-fact__value">
                         <i class="fas fa-calendar" style="color: var(--brand-error);"></i>
                         <?php echo e($cp['due_date']); ?>
@@ -464,7 +464,7 @@ $cp_is_active = $cp['status'] === 'active';
     <div class="db-tab-pane" data-tab-pane="domains">
         <div class="db-card">
             <div class="db-card-header db-card-header--md">
-                <h3 class="db-card-title"><i class="fas fa-globe db-card-title-icon"></i> <?php echo e(__('cpanel_domains_title')); ?></h3>
+                <h3 class="db-card-title"><i class="fas fa-globe db-card-title-icon"></i> <?php echo e(__('cpanel_tab_domains')); ?></h3>
                 <div class="db-card-actions">
                     <a href="#" onclick="event.preventDefault(); DashToast.show('info','','<?php echo e(__('cpanel_manage_in_cpanel')); ?>');" class="db-chip-btn db-chip-btn--primary">
                         <i class="fas fa-plus"></i> <?php echo e(__('cpanel_dom_create')); ?>
@@ -481,9 +481,9 @@ $cp_is_active = $cp['status'] === 'active';
                 <div class="db-table-wrapper">
                     <table class="db-table">
                         <thead><tr>
-                            <th><?php echo e(__('cpanel_dom_col_domain')); ?></th>
+                            <th><?php echo e(__('cpanel_domain')); ?></th>
                             <th><?php echo e(__('cpanel_dom_col_root')); ?></th>
-                            <th style="width:200px;"><?php echo e(__('cpanel_dom_col_actions')); ?></th>
+                            <th style="width:200px;"><?php echo e(__('dom_actions')); ?></th>
                         </tr></thead>
                         <tbody>
                             <?php foreach ($cp_domains as $d): ?>
@@ -540,9 +540,9 @@ $cp_is_active = $cp['status'] === 'active';
                 <div class="db-table-wrapper">
                     <table class="db-table">
                         <thead><tr>
-                            <th><?php echo e(__('cpanel_db_col_name')); ?></th>
+                            <th><?php echo e(__('dom_dns_name')); ?></th>
                             <th><?php echo e(__('cpanel_db_col_users')); ?></th>
-                            <th class="db-table-cell--right"><?php echo e(__('cpanel_db_col_actions')); ?></th>
+                            <th class="db-table-cell--right"><?php echo e(__('dom_actions')); ?></th>
                         </tr></thead>
                         <tbody>
                             <?php if (empty($cp_databases)): ?>
@@ -571,7 +571,7 @@ $cp_is_active = $cp['status'] === 'active';
     <div class="db-tab-pane" data-tab-pane="email">
         <div class="db-card">
             <div class="db-card-header db-card-header--md">
-                <h3 class="db-card-title"><i class="fas fa-envelope db-card-title-icon"></i> <?php echo e(__('cpanel_email_title')); ?></h3>
+                <h3 class="db-card-title"><i class="fas fa-envelope db-card-title-icon"></i> <?php echo e(__('cpanel_tab_email')); ?></h3>
                 <div class="db-card-actions">
                     <a href="#" onclick="event.preventDefault(); DashToast.show('info','','<?php echo e(__('cpanel_manage_in_cpanel')); ?>');" class="db-chip-btn db-chip-btn--primary">
                         <i class="fas fa-plus"></i> <?php echo e(__('cpanel_email_create')); ?>
@@ -585,10 +585,10 @@ $cp_is_active = $cp['status'] === 'active';
                 <div class="db-table-wrapper">
                     <table class="db-table">
                         <thead><tr>
-                            <th><?php echo e(__('cpanel_email_col_address')); ?></th>
-                            <th><?php echo e(__('cpanel_email_col_quota')); ?></th>
-                            <th><?php echo e(__('cpanel_email_col_used')); ?></th>
-                            <th class="db-table-cell--right"><?php echo e(__('cpanel_email_col_actions')); ?></th>
+                            <th><?php echo e(__('auth_address')); ?></th>
+                            <th><?php echo e(__('cpanel_ftp_col_quota')); ?></th>
+                            <th><?php echo e(__('services_bw_used')); ?></th>
+                            <th class="db-table-cell--right"><?php echo e(__('dom_actions')); ?></th>
                         </tr></thead>
                         <tbody>
                             <?php if (empty($cp_emails)): ?>
@@ -618,7 +618,7 @@ $cp_is_active = $cp['status'] === 'active';
     <div class="db-tab-pane" data-tab-pane="ftp">
         <div class="db-card">
             <div class="db-card-header db-card-header--md">
-                <h3 class="db-card-title"><i class="fas fa-server db-card-title-icon"></i> <?php echo e(__('cpanel_ftp_title')); ?></h3>
+                <h3 class="db-card-title"><i class="fas fa-server db-card-title-icon"></i> <?php echo e(__('cpanel_tab_ftp')); ?></h3>
                 <div class="db-card-actions">
                     <a href="#" onclick="event.preventDefault(); DashToast.show('info','','<?php echo e(__('cpanel_manage_in_cpanel')); ?>');" class="db-chip-btn db-chip-btn--muted">
                         <i class="fas fa-list-check"></i> <?php echo e(__('cpanel_ftp_open_mgr')); ?>
@@ -629,12 +629,12 @@ $cp_is_active = $cp['status'] === 'active';
                 <div class="db-table-wrapper">
                     <table class="db-table db-ftp-table">
                         <thead><tr>
-                            <th><?php echo e(__('cpanel_ftp_col_user')); ?></th>
-                            <th><?php echo e(__('cpanel_ftp_col_password')); ?></th>
+                            <th><?php echo e(__('aff_ref_col_user')); ?></th>
+                            <th><?php echo e(__('auth_password')); ?></th>
                             <th><?php echo e(__('cpanel_ftp_col_folder')); ?></th>
-                            <th class="db-table-cell--right"><?php echo e(__('cpanel_ftp_col_used')); ?></th>
+                            <th class="db-table-cell--right"><?php echo e(__('services_bw_used')); ?></th>
                             <th class="db-table-cell--right"><?php echo e(__('cpanel_ftp_col_quota')); ?></th>
-                            <th style="width:80px;"><?php echo e(__('cpanel_ftp_col_actions')); ?></th>
+                            <th style="width:80px;"><?php echo e(__('dom_actions')); ?></th>
                         </tr></thead>
                         <tbody>
                             <?php foreach ($cp_ftp as $f): ?>
@@ -698,8 +698,34 @@ $cp_is_active = $cp['status'] === 'active';
         $cp_days_left     = 29;
         $cp_days_elapsed  = $cp_days_total - $cp_days_left;
         $cp_progress      = max(0, min(100, round(($cp_days_elapsed / max(1, $cp_days_total)) * 100)));
+
+        /* Quick billing totals — driven off the linked invoice list so
+           adding/paying an invoice in the mock reflects here automatically. */
+        $cp_total_paid    = 0;
+        $cp_total_pending = 0;
+        foreach ($cp_invoices as $cp_inv) {
+            if ($cp_inv['status'] === 'paid') { $cp_total_paid += (float)$cp_inv['amount']; }
+            else { $cp_total_pending += (float)$cp_inv['amount']; }
+        }
         ?>
-        <h3 class="db-srv-section-title"><?php echo e(__('cpanel_billing_info')); ?></h3>
+
+        <!-- Summary strip — 3 quick metrics customers check first -->
+        <div class="db-billing-summary-strip">
+            <div class="db-billing-summary-strip__item">
+                <span class="db-billing-summary-strip__label"><i class="fas fa-check-double"></i> <?php echo e(__('cpanel_billing_lifetime_paid')); ?></span>
+                <span class="db-billing-summary-strip__value"><?php echo format_money($cp_total_paid); ?></span>
+            </div>
+            <div class="db-billing-summary-strip__item<?php echo $cp_total_pending > 0 ? ' db-billing-summary-strip__item--warn' : ''; ?>">
+                <span class="db-billing-summary-strip__label"><i class="fas fa-hourglass-half"></i> <?php echo e(__('cpanel_billing_outstanding')); ?></span>
+                <span class="db-billing-summary-strip__value"><?php echo format_money($cp_total_pending); ?></span>
+            </div>
+            <div class="db-billing-summary-strip__item">
+                <span class="db-billing-summary-strip__label"><i class="fas fa-calendar-day"></i> <?php echo e(__('cpanel_billing_next_due')); ?></span>
+                <span class="db-billing-summary-strip__value"><?php echo e($cp['due_date']); ?></span>
+            </div>
+        </div>
+
+        <h3 class="db-srv-section-title db-srvd-inner--mt-md"><?php echo e(__('cpanel_billing_info')); ?></h3>
         <div class="db-billing-facts">
             <div class="db-billing-fact">
                 <span class="db-billing-fact__icon" style="--fact-color: var(--brand-primary);"><i class="fas fa-calendar-check"></i></span>
@@ -757,6 +783,26 @@ $cp_is_active = $cp['status'] === 'active';
                     <span class="db-toggle-track"><span class="db-toggle-thumb"></span></span>
                 </label>
             </div>
+            <div class="db-billing-tool">
+                <div>
+                    <strong><?php echo e(__('cpanel_bt_renew_now_title')); ?></strong>
+                    <span><?php echo e(__('cpanel_bt_renew_now_desc')); ?></span>
+                </div>
+                <button class="db-btn db-btn--primary db-btn--sm"
+                        onclick="DashToast.show('success','','<?php echo e(__('cpanel_bt_renew_now_queued')); ?>')">
+                    <i class="fas fa-arrow-rotate-right"></i> <?php echo e(__('dom_renew_now')); ?>
+                </button>
+            </div>
+            <div class="db-billing-tool">
+                <div>
+                    <strong><?php echo e(__('cpanel_bt_change_cycle_title')); ?></strong>
+                    <span><?php echo e(__('cpanel_bt_change_cycle_desc')); ?></span>
+                </div>
+                <button class="db-btn db-btn--secondary db-btn--sm"
+                        onclick="DashToast.show('info','','<?php echo e(__('cpanel_bt_change_cycle_soon')); ?>')">
+                    <i class="fas fa-calendar-days"></i> <?php echo e(__('cpanel_bt_change_cycle_btn')); ?>
+                </button>
+            </div>
         </div>
 
         <!-- Linked invoices -->
@@ -771,8 +817,8 @@ $cp_is_active = $cp['status'] === 'active';
                             <th>#</th>
                             <th><?php echo e(__('cpanel_inv_date')); ?></th>
                             <th><?php echo e(__('cpanel_inv_due')); ?></th>
-                            <th class="db-table-cell--right"><?php echo e(__('cpanel_inv_amount')); ?></th>
-                            <th><?php echo e(__('cpanel_inv_status')); ?></th>
+                            <th class="db-table-cell--right"><?php echo e(__('keys_col_amount')); ?></th>
+                            <th><?php echo e(__('common_status')); ?></th>
                         </tr></thead>
                         <tbody>
                             <?php foreach ($cp_invoices as $inv): ?>
@@ -793,9 +839,19 @@ $cp_is_active = $cp['status'] === 'active';
 
     <!-- ═══ UPGRADE ═══ -->
     <div class="db-tab-pane" data-tab-pane="upgrade">
+        <?php
+        // MOCK — Upgrade packages. Backend: pull from packages catalog and
+        // mark the one matching the current service as 'is_current'.
+        $cp_upgrade_packages = [
+            ['id' => 'CP-S', 'name' => __('cpanel_up_pkg_starter'),  'storage' => '10 GB',   'domains' => 1,  'email' => 5,   'db' => 5,  'price_m' => 0.99,  'is_current' => ($cp['amount'] < 3)],
+            ['id' => 'CP-B', 'name' => __('cpanel_up_pkg_business'),'storage' => '30 GB',   'domains' => 5,  'email' => 50,  'db' => 20, 'price_m' => 3.49,  'is_current' => ($cp['amount'] >= 3 && $cp['amount'] < 8), 'is_featured' => true],
+            ['id' => 'CP-P', 'name' => __('cpanel_up_pkg_pro'),     'storage' => '80 GB',   'domains' => 20, 'email' => 200, 'db' => 50, 'price_m' => 9.99,  'is_current' => ($cp['amount'] >= 8 && $cp['amount'] < 20)],
+            ['id' => 'CP-X', 'name' => __('cpanel_up_pkg_enterprise'), 'storage' => 'Unlimited', 'domains' => '∞', 'email' => '∞', 'db' => '∞', 'price_m' => 24.99, 'is_current' => ($cp['amount'] >= 20)],
+        ];
+        ?>
         <div class="db-card">
             <div class="db-card-header db-card-header--md">
-                <h3 class="db-card-title"><i class="fas fa-arrow-up-right-dots db-card-title-icon"></i> <?php echo e(__('cpanel_upgrade_title')); ?></h3>
+                <h3 class="db-card-title"><i class="fas fa-arrow-up-right-dots db-card-title-icon"></i> <?php echo e(__('cpanel_tab_upgrade')); ?></h3>
                 <p class="db-card-subtitle"><?php echo e(__('cpanel_upgrade_sub')); ?></p>
             </div>
             <div class="db-card-body">
@@ -803,8 +859,65 @@ $cp_is_active = $cp['status'] === 'active';
                     <i class="fas fa-circle-info"></i>
                     <span><?php echo e(__('cpanel_upgrade_hint')); ?></span>
                 </div>
-                <div style="margin-top:14px;">
-                    <a href="<?php echo DASH_BASE_PATH; ?>/pages/services/order.php" class="db-btn db-btn--primary">
+
+                <!-- Current package summary -->
+                <div class="db-srvd-current-pkg db-srvd-inner--mt-md">
+                    <div class="db-srvd-current-pkg__label">
+                        <i class="fas fa-box"></i>
+                        <?php echo e(__('cpanel_upgrade_current_pkg')); ?>
+                    </div>
+                    <div class="db-srvd-current-pkg__name"><?php echo e($cp['type']); ?></div>
+                    <div class="db-srvd-current-pkg__meta">
+                        <span><?php echo e($cp['cycle']); ?></span>
+                        <span class="db-srvd-current-pkg__price"><?php echo format_money($cp['amount']); ?>/<?php echo e(strtolower(substr($cp['cycle'], 0, 2))); ?></span>
+                    </div>
+                </div>
+
+                <!-- Available upgrade packages (grid) -->
+                <h4 class="db-srv-section-title db-srvd-inner--mt-md"><?php echo e(__('cpanel_upgrade_packages_title')); ?></h4>
+                <div class="db-package-grid">
+                    <?php foreach ($cp_upgrade_packages as $pkg): ?>
+                    <div class="db-package-card<?php echo !empty($pkg['is_featured']) ? ' is-featured' : ''; ?><?php echo !empty($pkg['is_current']) ? ' is-current is-selected' : ''; ?>">
+                        <div class="db-package-card__head">
+                            <div class="db-package-card__id">
+                                <?php echo e($pkg['name']); ?>
+                                <?php if (!empty($pkg['is_current'])): ?>
+                                <span class="db-package-card__ribbon db-package-card__ribbon--current"><i class="fas fa-circle-check"></i> <?php echo e(__('cpanel_upgrade_current_label')); ?></span>
+                                <?php elseif (!empty($pkg['is_featured'])): ?>
+                                <span class="db-package-card__ribbon"><i class="fas fa-star"></i> <?php echo e(__('create_package_popular')); ?></span>
+                                <?php endif; ?>
+                            </div>
+                            <div class="db-package-card__price">
+                                <span class="db-package-card__price-m"><?php echo format_money($pkg['price_m']); ?><small>/m</small></span>
+                            </div>
+                        </div>
+                        <div class="db-package-card__specs">
+                            <span class="db-package-spec db-package-spec--accent"><?php echo e($pkg['storage']); ?></span>
+                            <span class="db-package-spec db-package-spec--info"><?php echo e($pkg['domains']); ?> <?php echo e(__('order_cat_domains')); ?></span>
+                            <span class="db-package-spec db-package-spec--info"><?php echo e($pkg['email']); ?> <?php echo e(__('cpanel_up_spec_email')); ?></span>
+                            <span class="db-package-spec db-package-spec--primary"><?php echo e($pkg['db']); ?> <?php echo e(__('cpanel_up_spec_db')); ?></span>
+                        </div>
+                        <?php if (empty($pkg['is_current'])): ?>
+                        <button class="db-btn db-btn--primary db-btn--sm db-srvd-inner--mt-md db-btn--full"
+                                onclick="DashToast.show('info','', '<?php echo e(__('cpanel_upgrade_queued')); ?>')">
+                            <i class="fas fa-arrow-up-right-dots"></i> <?php echo e(__('cpanel_upgrade_switch_to', ['pkg' => $pkg['name']])); ?>
+                        </button>
+                        <?php endif; ?>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+
+                <!-- What changes after upgrade (info block) -->
+                <div class="db-srvd-notice-list db-srvd-inner--mt-md">
+                    <ul class="db-srvd-notice-list">
+                        <li><i class="fas fa-circle"></i> <?php echo e(__('cpanel_upgrade_note_1')); ?></li>
+                        <li><i class="fas fa-circle"></i> <?php echo e(__('cpanel_upgrade_note_2')); ?></li>
+                        <li class="db-srvd-notice--warn"><i class="fas fa-circle"></i> <?php echo e(__('cpanel_upgrade_note_3')); ?></li>
+                    </ul>
+                </div>
+
+                <div class="db-srvd-inner--mt-md">
+                    <a href="<?php echo DASH_BASE_PATH; ?>/pages/services/order.php" class="db-btn db-btn--secondary">
                         <i class="fas fa-cart-plus"></i> <?php echo e(__('cpanel_upgrade_browse')); ?>
                     </a>
                 </div>

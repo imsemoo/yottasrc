@@ -109,7 +109,7 @@ $rs_status_variant = ['active' => 'success', 'suspended' => 'warning', 'terminat
 $page_title = '#' . $rs_id . ' ' . $rs['name'] . ' — ' . SITE_NAME;
 $breadcrumbs_data = [
     ['label' => __('nav_dashboard'), 'url' => DASH_BASE_PATH . '/'],
-    ['label' => __('nav_my_services'), 'url' => DASH_BASE_PATH . '/pages/services/index.php'],
+    ['label' => __('services_title'), 'url' => DASH_BASE_PATH . '/pages/services/index.php'],
     ['label' => 'Service #' . $rs_id, 'url' => null],
 ];
 ?>
@@ -146,16 +146,16 @@ $breadcrumbs_data = [
             <div class="db-dropdown-wrapper">
                 <button class="ds-btn" data-dropdown-toggle>
                     <i class="fas fa-bolt"></i>
-                    <span><?php echo e(__('services_actions')); ?></span>
+                    <span><?php echo e(__('dom_actions')); ?></span>
                     <i class="fas fa-chevron-down ds-btn__chev"></i>
                 </button>
                 <div class="db-dropdown-menu">
                     <button class="db-dropdown-item" onclick="DashToast.show('info','','<?php echo e(__('reseller_action_whm_reset')); ?>')"><i class="fas fa-key"></i> <?php echo e(__('reseller_action_whm_reset')); ?></button>
                     <button class="db-dropdown-item" onclick="DashToast.show('info','','<?php echo e(__('reseller_action_backup')); ?>')"><i class="fas fa-download"></i> <?php echo e(__('reseller_action_backup')); ?></button>
-                    <button class="db-dropdown-item" onclick="DashToast.show('info','','<?php echo e(__('reseller_action_restart')); ?>')"><i class="fas fa-rotate"></i> <?php echo e(__('reseller_action_restart')); ?></button>
+                    <button class="db-dropdown-item" onclick="DashToast.show('info','','<?php echo e(__('cpanel_action_restart')); ?>')"><i class="fas fa-rotate"></i> <?php echo e(__('cpanel_action_restart')); ?></button>
                 </div>
             </div>
-            <a href="#" onclick="event.preventDefault(); DashToast.show('info','','<?php echo e(__('reseller_login_redirect')); ?>'); setTimeout(function(){ window.open('https://<?php echo e($rs['hostname']); ?>:2087', '_blank'); }, 400);" class="ds-btn ds-btn--primary">
+            <a href="#" onclick="event.preventDefault(); DashToast.show('info','','<?php echo e(__('reseller_manage_in_whm')); ?>'); setTimeout(function(){ window.open('https://<?php echo e($rs['hostname']); ?>:2087', '_blank'); }, 400);" class="ds-btn ds-btn--primary">
                 <i class="fas fa-right-to-bracket"></i>
                 <span><?php echo e(__('reseller_login_btn')); ?></span>
             </a>
@@ -165,11 +165,11 @@ $breadcrumbs_data = [
 
 <!-- ═══ TAB BAR ═══ -->
 <div class="db-tab-bar db-srvd-tabs" data-tab-bar data-tab-content="#rsTabs">
-    <button type="button" class="db-tab-bar__btn is-active" data-tab-target="overview"><i class="fas fa-table-cells"></i> <?php echo e(__('cpanel_tab_overview')); ?></button>
+    <button type="button" class="db-tab-bar__btn is-active" data-tab-target="overview"><i class="fas fa-table-cells"></i> <?php echo e(__('dom_tab_overview')); ?></button>
     <button type="button" class="db-tab-bar__btn" data-tab-target="cpanels"><i class="fas fa-users"></i> <?php echo e(__('reseller_tab_cpanels')); ?> <span class="db-tab-bar__count"><?php echo count($rs_cpanels); ?></span></button>
-    <button type="button" class="db-tab-bar__btn" data-tab-target="nameservers"><i class="fas fa-network-wired"></i> <?php echo e(__('cpanel_tab_nameservers')); ?></button>
+    <button type="button" class="db-tab-bar__btn" data-tab-target="nameservers"><i class="fas fa-network-wired"></i> <?php echo e(__('cpanel_ns_title')); ?></button>
     <button type="button" class="db-tab-bar__btn" data-tab-target="domains"><i class="fas fa-globe"></i> <?php echo e(__('cpanel_tab_domains')); ?> <span class="db-tab-bar__count"><?php echo count($rs_domains); ?></span></button>
-    <button type="button" class="db-tab-bar__btn" data-tab-target="billing"><i class="fas fa-coins"></i> <?php echo e(__('cpanel_tab_billing')); ?></button>
+    <button type="button" class="db-tab-bar__btn" data-tab-target="billing"><i class="fas fa-coins"></i> <?php echo e(__('nav_billing')); ?></button>
     <button type="button" class="db-tab-bar__btn" data-tab-target="upgrade"><i class="fas fa-arrow-up-right-dots"></i> <?php echo e(__('cpanel_tab_upgrade')); ?></button>
 </div>
 
@@ -198,7 +198,7 @@ $breadcrumbs_data = [
                 </button>
                 <div class="db-srvd-access-chip db-srvd-access-chip--password">
                     <div class="db-srvd-access-chip__head">
-                        <span class="db-srvd-access-chip__label"><i class="fas fa-lock"></i> <?php echo e(__('cpanel_password')); ?></span>
+                        <span class="db-srvd-access-chip__label"><i class="fas fa-lock"></i> <?php echo e(__('auth_password')); ?></span>
                         <div class="db-srvd-access-chip__tools">
                             <button type="button" class="db-srvd-password-toggle" id="rsPwdToggle" aria-label="<?php echo e(__('common_reveal')); ?>"><i class="fas fa-eye" id="rsPwdEye"></i></button>
                             <button type="button" class="db-srvd-access-chip__copy-btn" onclick="DashCopy && DashCopy(this,'<?php echo e($rs['password']); ?>');" aria-label="<?php echo e(__('common_copy')); ?>"><i class="fas fa-copy"></i></button>
@@ -232,7 +232,7 @@ $breadcrumbs_data = [
             </div>
             <div class="db-cpanel-facts">
                 <div class="db-cpanel-fact">
-                    <span class="db-cpanel-fact__label"><?php echo e(__('cpanel_fact_status')); ?></span>
+                    <span class="db-cpanel-fact__label"><?php echo e(__('common_status')); ?></span>
                     <span class="db-cpanel-fact__value"><i class="fas fa-circle-check" style="color: var(--status-active);"></i> <?php echo e(__('services_status_' . $rs['status'])); ?></span>
                 </div>
                 <div class="db-cpanel-fact">
@@ -240,15 +240,15 @@ $breadcrumbs_data = [
                     <span class="db-cpanel-fact__value"><span class="fi fi-<?php echo e($rs['location_flag']); ?>"></span> <?php echo e($rs['location']); ?></span>
                 </div>
                 <div class="db-cpanel-fact">
-                    <span class="db-cpanel-fact__label"><?php echo e(__('cpanel_fact_cycle')); ?></span>
+                    <span class="db-cpanel-fact__label"><?php echo e(__('cpanel_bf_cycle')); ?></span>
                     <span class="db-cpanel-fact__value"><i class="fas fa-clock" style="color: rgb(var(--seed-0));"></i> <?php echo e($rs['cycle']); ?></span>
                 </div>
                 <div class="db-cpanel-fact">
-                    <span class="db-cpanel-fact__label"><?php echo e(__('cpanel_fact_renewal')); ?></span>
+                    <span class="db-cpanel-fact__label"><?php echo e(__('cpanel_bf_renewal')); ?></span>
                     <span class="db-cpanel-fact__value"><i class="fas fa-euro-sign" style="color: var(--brand-warning);"></i> <?php echo format_money($rs['amount']); ?></span>
                 </div>
                 <div class="db-cpanel-fact">
-                    <span class="db-cpanel-fact__label"><?php echo e(__('cpanel_fact_due')); ?></span>
+                    <span class="db-cpanel-fact__label"><?php echo e(__('cpanel_bf_due')); ?></span>
                     <span class="db-cpanel-fact__value"><i class="fas fa-calendar" style="color: var(--brand-error);"></i> <?php echo e($rs['due_date']); ?></span>
                 </div>
             </div>
@@ -339,7 +339,7 @@ $breadcrumbs_data = [
                     <div class="db-fbar__tools">
                         <select class="db-fbar__sort" data-table-filter="rsCpanelsTable" data-filter-key="status">
                             <option value=""><?php echo e(__('common_all')); ?></option>
-                            <option value="active"><?php echo e(__('services_status_active')); ?></option>
+                            <option value="active"><?php echo e(__('domains_stat_active')); ?></option>
                             <option value="suspended"><?php echo e(__('services_status_suspended')); ?></option>
                         </select>
                         <?php include __DIR__ . '/../../../components/export-dropdown.php'; ?>
@@ -350,9 +350,9 @@ $breadcrumbs_data = [
                 <div class="db-table-wrapper">
                     <table class="db-table" id="rsCpanelsTable" data-table-tools>
                         <thead><tr>
-                            <th class="db-table-sortable" data-sort-key="username"><?php echo e(__('reseller_col_user')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
-                            <th class="db-table-sortable" data-sort-key="domain"><?php echo e(__('reseller_col_domain')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
-                            <th class="db-table-sortable db-table-hide-mobile" data-sort-key="package"><?php echo e(__('reseller_col_package')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
+                            <th class="db-table-sortable" data-sort-key="username"><?php echo e(__('cpanel_username')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
+                            <th class="db-table-sortable" data-sort-key="domain"><?php echo e(__('cpanel_domain')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
+                            <th class="db-table-sortable db-table-hide-mobile" data-sort-key="package"><?php echo e(__('create_label_package')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
                             <th class="db-table-sortable db-table-hide-tablet" data-sort-key="disk"><?php echo e(__('reseller_col_disk')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
                             <th class="db-table-sortable" data-sort-key="status"><?php echo e(__('common_status')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
                             <th style="width:80px;"></th>
@@ -464,7 +464,7 @@ $breadcrumbs_data = [
                 <div class="db-table-wrapper">
                     <table class="db-table">
                         <thead><tr>
-                            <th><?php echo e(__('cpanel_dom_col_domain')); ?></th>
+                            <th><?php echo e(__('cpanel_domain')); ?></th>
                             <th><?php echo e(__('reseller_col_owner')); ?></th>
                         </tr></thead>
                         <tbody>
@@ -489,8 +489,32 @@ $breadcrumbs_data = [
         $rs_days_left    = 29;
         $rs_days_elapsed = $rs_days_total - $rs_days_left;
         $rs_progress     = max(0, min(100, round(($rs_days_elapsed / max(1, $rs_days_total)) * 100)));
+
+        $rs_total_paid    = 0;
+        $rs_total_pending = 0;
+        foreach ($rs_invoices as $rs_inv) {
+            if ($rs_inv['status'] === 'paid') { $rs_total_paid += (float)$rs_inv['amount']; }
+            else { $rs_total_pending += (float)$rs_inv['amount']; }
+        }
         ?>
-        <h3 class="db-srv-section-title"><?php echo e(__('cpanel_billing_info')); ?></h3>
+
+        <!-- Summary strip (same pattern as cPanel billing) -->
+        <div class="db-billing-summary-strip">
+            <div class="db-billing-summary-strip__item">
+                <span class="db-billing-summary-strip__label"><i class="fas fa-check-double"></i> <?php echo e(__('cpanel_billing_lifetime_paid')); ?></span>
+                <span class="db-billing-summary-strip__value"><?php echo format_money($rs_total_paid); ?></span>
+            </div>
+            <div class="db-billing-summary-strip__item<?php echo $rs_total_pending > 0 ? ' db-billing-summary-strip__item--warn' : ''; ?>">
+                <span class="db-billing-summary-strip__label"><i class="fas fa-hourglass-half"></i> <?php echo e(__('cpanel_billing_outstanding')); ?></span>
+                <span class="db-billing-summary-strip__value"><?php echo format_money($rs_total_pending); ?></span>
+            </div>
+            <div class="db-billing-summary-strip__item">
+                <span class="db-billing-summary-strip__label"><i class="fas fa-calendar-day"></i> <?php echo e(__('cpanel_billing_next_due')); ?></span>
+                <span class="db-billing-summary-strip__value"><?php echo e($rs['due_date']); ?></span>
+            </div>
+        </div>
+
+        <h3 class="db-srv-section-title db-srvd-inner--mt-md"><?php echo e(__('cpanel_billing_info')); ?></h3>
         <div class="db-billing-facts">
             <div class="db-billing-fact">
                 <span class="db-billing-fact__icon" style="--fact-color: var(--brand-primary);"><i class="fas fa-calendar-check"></i></span>
@@ -546,6 +570,26 @@ $breadcrumbs_data = [
                     <span class="db-toggle-track"><span class="db-toggle-thumb"></span></span>
                 </label>
             </div>
+            <div class="db-billing-tool">
+                <div>
+                    <strong><?php echo e(__('cpanel_bt_renew_now_title')); ?></strong>
+                    <span><?php echo e(__('cpanel_bt_renew_now_desc')); ?></span>
+                </div>
+                <button class="db-btn db-btn--primary db-btn--sm"
+                        onclick="DashToast.show('success','','<?php echo e(__('cpanel_bt_renew_now_queued')); ?>')">
+                    <i class="fas fa-arrow-rotate-right"></i> <?php echo e(__('dom_renew_now')); ?>
+                </button>
+            </div>
+            <div class="db-billing-tool">
+                <div>
+                    <strong><?php echo e(__('cpanel_bt_change_cycle_title')); ?></strong>
+                    <span><?php echo e(__('cpanel_bt_change_cycle_desc')); ?></span>
+                </div>
+                <button class="db-btn db-btn--secondary db-btn--sm"
+                        onclick="DashToast.show('info','','<?php echo e(__('cpanel_bt_change_cycle_soon')); ?>')">
+                    <i class="fas fa-calendar-days"></i> <?php echo e(__('cpanel_bt_change_cycle_btn')); ?>
+                </button>
+            </div>
         </div>
 
         <div class="db-card db-mt">
@@ -559,8 +603,8 @@ $breadcrumbs_data = [
                             <th>#</th>
                             <th><?php echo e(__('cpanel_inv_date')); ?></th>
                             <th><?php echo e(__('cpanel_inv_due')); ?></th>
-                            <th class="db-table-cell--right"><?php echo e(__('cpanel_inv_amount')); ?></th>
-                            <th><?php echo e(__('cpanel_inv_status')); ?></th>
+                            <th class="db-table-cell--right"><?php echo e(__('keys_col_amount')); ?></th>
+                            <th><?php echo e(__('common_status')); ?></th>
                         </tr></thead>
                         <tbody>
                             <?php foreach ($rs_invoices as $inv): ?>
@@ -581,17 +625,90 @@ $breadcrumbs_data = [
 
     <!-- ═══ UPGRADE ═══ -->
     <div class="db-tab-pane" data-tab-pane="upgrade">
+        <?php
+        // MOCK — Reseller upgrade tiers. Each tier matches a WHM plan sold in
+        // the main catalog. Backend: pull real packages from the catalog and
+        // flag `is_current` based on the service's current plan id.
+        $rs_upgrade_packages = [
+            ['id' => 'RS-STR', 'name' => __('reseller_up_pkg_starter'), 'storage' => '15 GB',  'accounts' => 15, 'cpu' => '1.5', 'ram' => '2 GB',  'price_m' => 3.49,  'is_current' => ($rs['amount'] < 10)],
+            ['id' => 'RS-GRW', 'name' => __('reseller_up_pkg_growth'),  'storage' => '40 GB',  'accounts' => 40, 'cpu' => '2',   'ram' => '4 GB',  'price_m' => 9.99,  'is_current' => ($rs['amount'] >= 10 && $rs['amount'] < 30), 'is_featured' => true],
+            ['id' => 'RS-PRO', 'name' => __('reseller_up_pkg_pro'),     'storage' => '100 GB', 'accounts' => 100,'cpu' => '4',   'ram' => '8 GB',  'price_m' => 19.99, 'is_current' => ($rs['amount'] >= 30 && $rs['amount'] < 80)],
+            ['id' => 'RS-MAS', 'name' => __('reseller_up_pkg_master'),  'storage' => '250 GB', 'accounts' => '∞','cpu' => '8',   'ram' => '16 GB', 'price_m' => 49.99, 'is_current' => ($rs['amount'] >= 80)],
+        ];
+        ?>
         <div class="db-card">
             <div class="db-card-header db-card-header--md">
-                <h3 class="db-card-title"><i class="fas fa-arrow-up-right-dots db-card-title-icon"></i> <?php echo e(__('cpanel_upgrade_title')); ?></h3>
+                <h3 class="db-card-title"><i class="fas fa-arrow-up-right-dots db-card-title-icon"></i> <?php echo e(__('cpanel_tab_upgrade')); ?></h3>
+                <p class="db-card-subtitle"><?php echo e(__('reseller_upgrade_sub')); ?></p>
             </div>
             <div class="db-card-body">
                 <div class="db-notice db-notice--info">
                     <i class="fas fa-circle-info"></i>
                     <span><?php echo e(__('reseller_upgrade_hint')); ?></span>
                 </div>
-                <div style="margin-top:14px;">
-                    <a href="<?php echo DASH_BASE_PATH; ?>/pages/services/order.php" class="db-btn db-btn--primary">
+
+                <!-- Current plan summary -->
+                <div class="db-srvd-current-pkg db-srvd-inner--mt-md">
+                    <div class="db-srvd-current-pkg__label">
+                        <i class="fas fa-crown"></i>
+                        <?php echo e(__('cpanel_upgrade_current_pkg')); ?>
+                    </div>
+                    <div class="db-srvd-current-pkg__name"><?php echo e($rs['plan']); ?></div>
+                    <div class="db-srvd-current-pkg__meta">
+                        <span><?php echo e($rs['cycle']); ?></span>
+                        <span class="db-srvd-current-pkg__price"><?php echo format_money($rs['amount']); ?>/<?php echo e(strtolower(substr($rs['cycle'], 0, 2))); ?></span>
+                    </div>
+                </div>
+
+                <!-- Available reseller tiers — same visual language as Cloud/Servers -->
+                <h4 class="db-srv-section-title db-srvd-inner--mt-md"><?php echo e(__('reseller_upgrade_packages_title')); ?></h4>
+                <div class="db-package-grid">
+                    <?php foreach ($rs_upgrade_packages as $pkg): ?>
+                    <div class="db-package-card<?php echo !empty($pkg['is_featured']) ? ' is-featured' : ''; ?><?php echo !empty($pkg['is_current']) ? ' is-current is-selected' : ''; ?>">
+                        <div class="db-package-card__head">
+                            <div class="db-package-card__id">
+                                <?php echo e($pkg['name']); ?>
+                                <?php if (!empty($pkg['is_current'])): ?>
+                                <span class="db-package-card__ribbon db-package-card__ribbon--current"><i class="fas fa-circle-check"></i> <?php echo e(__('cpanel_upgrade_current_label')); ?></span>
+                                <?php elseif (!empty($pkg['is_featured'])): ?>
+                                <span class="db-package-card__ribbon"><i class="fas fa-star"></i> <?php echo e(__('create_package_popular')); ?></span>
+                                <?php endif; ?>
+                            </div>
+                            <div class="db-package-card__price">
+                                <span class="db-package-card__price-m"><?php echo format_money($pkg['price_m']); ?><small>/m</small></span>
+                            </div>
+                        </div>
+                        <div class="db-package-card__specs">
+                            <span class="db-package-spec db-package-spec--accent"><?php echo e($pkg['cpu']); ?> <?php echo e(__('create_pkg_cores')); ?></span>
+                            <span class="db-package-spec db-package-spec--accent"><?php echo e($pkg['ram']); ?> RAM</span>
+                            <span class="db-package-spec db-package-spec--accent"><?php echo e($pkg['storage']); ?></span>
+                        </div>
+                        <div class="db-package-card__specs">
+                            <span class="db-package-spec db-package-spec--info"><?php echo e($pkg['accounts']); ?> <?php echo e(__('reseller_up_spec_accounts')); ?></span>
+                            <span class="db-package-spec db-package-spec--primary">WHM</span>
+                            <span class="db-package-spec db-package-spec--primary"><?php echo e(__('reseller_up_spec_whitelabel')); ?></span>
+                        </div>
+                        <?php if (empty($pkg['is_current'])): ?>
+                        <button class="db-btn db-btn--primary db-btn--sm db-srvd-inner--mt-md db-btn--full"
+                                onclick="DashToast.show('info','', '<?php echo e(__('cpanel_upgrade_queued')); ?>')">
+                            <i class="fas fa-arrow-up-right-dots"></i> <?php echo e(__('cpanel_upgrade_switch_to', ['pkg' => $pkg['name']])); ?>
+                        </button>
+                        <?php endif; ?>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+
+                <!-- Reseller-specific notes -->
+                <div class="db-srvd-notice-list db-srvd-inner--mt-md">
+                    <ul class="db-srvd-notice-list">
+                        <li><i class="fas fa-circle"></i> <?php echo e(__('reseller_upgrade_note_1')); ?></li>
+                        <li><i class="fas fa-circle"></i> <?php echo e(__('reseller_upgrade_note_2')); ?></li>
+                        <li class="db-srvd-notice--warn"><i class="fas fa-circle"></i> <?php echo e(__('reseller_upgrade_note_3')); ?></li>
+                    </ul>
+                </div>
+
+                <div class="db-srvd-inner--mt-md">
+                    <a href="<?php echo DASH_BASE_PATH; ?>/pages/services/order.php" class="db-btn db-btn--secondary">
                         <i class="fas fa-cart-plus"></i> <?php echo e(__('cpanel_upgrade_browse')); ?>
                     </a>
                 </div>

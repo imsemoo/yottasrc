@@ -12,11 +12,11 @@ $nav_active_override = 'changelog';
 
 require_once __DIR__ . '/../../layouts/config.php';
 
-$page_title = __('changelog_bug_title') . ' — ' . SITE_NAME;
+$page_title = __('changelog_tab_bug') . ' — ' . SITE_NAME;
 $breadcrumbs_data = [
     ['label' => __('nav_dashboard'),       'url' => DASH_BASE_PATH . '/'],
     ['label' => __('changelog_title'),     'url' => DASH_BASE_PATH . '/pages/changelog/index.php'],
-    ['label' => __('changelog_bug_title'), 'url' => null],
+    ['label' => __('changelog_tab_bug'), 'url' => null],
 ];
 
 require_once __DIR__ . '/../../layouts/shell.php';
@@ -31,7 +31,7 @@ $severity_labels = [
 ?>
 
 <?php
-$ph_title   = __('changelog_bug_title');
+$ph_title   = __('changelog_tab_bug');
 $ph_desc    = __('changelog_bug_desc');
 $ph_actions = '';
 include __DIR__ . '/../../components/page-header.php';

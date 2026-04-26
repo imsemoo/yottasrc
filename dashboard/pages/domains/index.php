@@ -154,7 +154,7 @@ include __DIR__ . '/../../components/page-header.php';
                     <div class="db-fbar__tools">
                         <select class="db-fbar__sort" data-table-filter="domainsTable" data-filter-key="status">
                             <option value=""><?php echo e(__('domains_filter_all')); ?></option>
-                            <option value="active"><?php echo e(__('domain_status_active')); ?></option>
+                            <option value="active"><?php echo e(__('status_active')); ?></option>
                             <option value="expiring"><?php echo e(__('domain_status_expiring')); ?></option>
                             <option value="expired"><?php echo e(__('domain_status_expired')); ?></option>
                         </select>
@@ -176,7 +176,7 @@ include __DIR__ . '/../../components/page-header.php';
                             <th class="db-table-hide-tablet db-table-sortable" data-sort-key="registered"><?php echo e(__('domains_col_registered')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
                             <th class="db-table-sortable" data-sort-key="expires"><?php echo e(__('domains_col_expires')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
                             <th class="db-table-hide-mobile" style="width:90px;"><?php echo e(__('domains_col_auto_renew')); ?></th>
-                            <th class="db-table-sortable" style="width:110px;" data-sort-key="status"><?php echo e(__('domains_col_status')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
+                            <th class="db-table-sortable" style="width:110px;" data-sort-key="status"><?php echo e(__('common_status')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
                             <th style="width:80px;"></th>
                         </tr>
                     </thead>
@@ -217,10 +217,10 @@ include __DIR__ . '/../../components/page-header.php';
                                     <div class="db-dropdown-wrapper">
                                         <button class="db-row-action db-row-action--solid db-row-action--menu" data-dropdown-toggle><i class="fas fa-ellipsis-vertical"></i></button>
                                         <div class="db-dropdown-menu">
-                                            <a href="<?php echo e($det_url); ?>" class="db-dropdown-item"><i class="fas fa-gear"></i> <?php echo e(__('domains_manage')); ?></a>
-                                            <a href="<?php echo e($det_url); ?>#tab-dns" class="db-dropdown-item"><i class="fas fa-server"></i> <?php echo e(__('domains_dns')); ?></a>
-                                            <a href="<?php echo e($det_url); ?>#tab-nameservers" class="db-dropdown-item"><i class="fas fa-network-wired"></i> <?php echo e(__('domains_nameservers')); ?></a>
-                                            <a href="<?php echo e($det_url); ?>#tab-whois" class="db-dropdown-item"><i class="fas fa-circle-info"></i> <?php echo e(__('domains_whois')); ?></a>
+                                            <a href="<?php echo e($det_url); ?>" class="db-dropdown-item"><i class="fas fa-gear"></i> <?php echo e(__('common_manage')); ?></a>
+                                            <a href="<?php echo e($det_url); ?>#tab-dns" class="db-dropdown-item"><i class="fas fa-server"></i> <?php echo e(__('dom_tab_dns')); ?></a>
+                                            <a href="<?php echo e($det_url); ?>#tab-nameservers" class="db-dropdown-item"><i class="fas fa-network-wired"></i> <?php echo e(__('dom_nameservers')); ?></a>
+                                            <a href="<?php echo e($det_url); ?>#tab-whois" class="db-dropdown-item"><i class="fas fa-circle-info"></i> <?php echo e(__('dom_tab_whois')); ?></a>
                                             <div class="db-dropdown-divider"></div>
                                             <?php if ($d['status'] === 'expired' || $d['status'] === 'expiring'): ?>
                                             <button class="db-dropdown-item" onclick="DashToast.show('info','','Renewing domain...')"><i class="fas fa-rotate-right"></i> <?php echo e(__('domains_renew')); ?></button>
@@ -271,7 +271,7 @@ include __DIR__ . '/../../components/page-header.php';
                                 </span>
                             </div>
                             <div class="db-svc-card__right">
-                                <a href="<?php echo e($det_url); ?>" class="db-btn db-btn--primary db-btn--sm db-svc-card__manage"><?php echo e(__('domains_manage')); ?> <i class="fas fa-arrow-right"></i></a>
+                                <a href="<?php echo e($det_url); ?>" class="db-btn db-btn--primary db-btn--sm db-svc-card__manage"><?php echo e(__('common_manage')); ?> <i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>

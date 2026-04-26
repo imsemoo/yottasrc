@@ -13,8 +13,8 @@ require_once __DIR__ . '/../../layouts/config.php';
 $page_title = __('order_title') . ' — ' . SITE_NAME;
 $breadcrumbs_data = [
     ['label' => __('nav_dashboard'), 'url' => DASH_BASE_PATH . '/'],
-    ['label' => __('nav_my_services'), 'url' => DASH_BASE_PATH . '/pages/services/index.php'],
-    ['label' => __('nav_order_new'), 'url' => null],
+    ['label' => __('services_title'), 'url' => DASH_BASE_PATH . '/pages/services/index.php'],
+    ['label' => __('order_title'), 'url' => null],
 ];
 
 require_once __DIR__ . '/../../layouts/shell.php';
@@ -100,7 +100,7 @@ $catalog = [
         'color' => 'accent',
         'products' => [
             ['name' => __('order_prod_register_domain'),  'desc' => __('order_prod_register_domain_desc'),  'icon' => 'fas fa-plus-circle',   'from' => null, 'url' => '#'],
-            ['name' => __('order_prod_transfer_domain'),  'desc' => __('order_prod_transfer_domain_desc'),  'icon' => 'fas fa-right-left',    'from' => null, 'url' => '#'],
+            ['name' => __('domains_transfer'),  'desc' => __('order_prod_transfer_domain_desc'),  'icon' => 'fas fa-right-left',    'from' => null, 'url' => '#'],
         ],
     ],
     [

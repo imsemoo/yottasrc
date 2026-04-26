@@ -319,7 +319,7 @@ $hero_stats_meta = [
         'variant'     => 'accent',
         'icon'        => 'fa-cloud',
         'spark_color' => 'var(--brand-accent)',
-        'label'       => __('dash_cloud_servers'),
+        'label'       => __('nav_cloud_servers'),
     ],
     'invoices' => [
         'href'        => DASH_BASE_PATH . '/pages/billing/invoices.php',
@@ -404,12 +404,12 @@ $hero_stats_meta = [
     </a>
     <a href="<?php echo e(DASH_BASE_PATH); ?>/pages/domains/index.php" class="db-action-card db-action-card--domain">
         <div class="db-action-card-icon"><i class="fas fa-earth-americas"></i></div>
-        <span class="db-action-card-title"><?php echo e(__('dash_register_domain')); ?></span>
+        <span class="db-action-card-title"><?php echo e(__('domains_register')); ?></span>
         <span class="db-action-card-desc"><?php echo e(__('dash_register_domain_desc')); ?></span>
     </a>
     <a href="<?php echo e(DASH_BASE_PATH); ?>/pages/billing/add-funds.php" class="db-action-card db-action-card--funds">
         <div class="db-action-card-icon"><i class="fas fa-coins"></i></div>
-        <span class="db-action-card-title"><?php echo e(__('dash_add_funds')); ?></span>
+        <span class="db-action-card-title"><?php echo e(__('nav_add_funds')); ?></span>
         <span class="db-action-card-desc"><?php echo e(__('dash_add_funds_desc')); ?></span>
     </a>
     <a href="<?php echo e(DASH_BASE_PATH); ?>/pages/support/new.php" class="db-action-card db-action-card--ticket">
@@ -499,7 +499,7 @@ $hero_stats_meta = [
         <div class="db-card-header">
             <h3 class="db-card-title">
                 <i class="fas fa-server db-card-title-icon"></i>
-                <?php echo e(__('dash_active_services_title')); ?>
+                <?php echo e(__('dash_active_services')); ?>
             </h3>
             <a href="<?php echo e(DASH_BASE_PATH); ?>/pages/services/index.php" class="db-card-link">
                 <?php echo e(__('dash_view_all')); ?> <i class="fas fa-arrow-right"></i>
@@ -689,7 +689,7 @@ $hero_stats_meta = [
                 <?php endif; ?>
             </div>
             <a href="<?php echo e(DASH_BASE_PATH); ?>/pages/billing/add-funds.php" class="db-btn db-btn--primary db-btn--sm">
-                <i class="fas fa-plus"></i> <?php echo e(__('balance_add_funds')); ?>
+                <i class="fas fa-plus"></i> <?php echo e(__('nav_add_funds')); ?>
             </a>
         </div>
 

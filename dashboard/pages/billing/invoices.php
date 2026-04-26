@@ -15,7 +15,7 @@ $breadcrumbs_data = null;
 
 require_once __DIR__ . '/../../layouts/config.php';
 
-$page_title = __('invoices_title') . ' — ' . SITE_NAME;
+$page_title = __('nav_invoices') . ' — ' . SITE_NAME;
 $breadcrumbs_data = [
     ['label' => __('nav_dashboard'), 'url' => DASH_BASE_PATH . '/'],
     ['label' => __('nav_invoices'), 'url' => null],
@@ -115,7 +115,7 @@ $outstanding_total = array_sum(array_column($outstanding, 'amount'));
 ?>
 
 <?php
-$ph_title = __('invoices_title');
+$ph_title = __('nav_invoices');
 $ph_desc = __('invoices_desc');
 $ph_actions = '';
 include __DIR__ . '/../../components/page-header.php';
@@ -186,7 +186,7 @@ include __DIR__ . '/../../components/page-header.php';
                     </div>
                     <div class="db-fbar__tools">
                         <select class="db-fbar__sort" data-table-filter="invoicesTable" data-filter-key="status">
-                            <option value=""><?php echo e(__('invoices_filter_all')); ?></option>
+                            <option value=""><?php echo e(__('domains_filter_all')); ?></option>
                             <option value="paid"><?php echo e(__('status_paid')); ?></option>
                             <option value="unpaid"><?php echo e(__('status_unpaid')); ?></option>
                             <option value="overdue"><?php echo e(__('status_overdue')); ?></option>
@@ -195,7 +195,7 @@ include __DIR__ . '/../../components/page-header.php';
                             <option value=""><?php echo e(__('toolbar_all_types')); ?></option>
                             <option value="new_service"><?php echo e(__('invoices_type_new_service')); ?></option>
                             <option value="renewal"><?php echo e(__('invoices_type_renewal')); ?></option>
-                            <option value="upgrade"><?php echo e(__('invoices_type_upgrade')); ?></option>
+                            <option value="upgrade"><?php echo e(__('services_upgrade_btn')); ?></option>
                         </select>
                         <?php include __DIR__ . '/../../components/export-dropdown.php'; ?>
                     </div>
@@ -208,11 +208,11 @@ include __DIR__ . '/../../components/page-header.php';
                     <thead>
                         <tr>
                             <th class="db-table-sortable" data-sort-key="id"><?php echo e(__('invoices_col_invoice')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
-                            <th class="db-table-hide-mobile db-table-sortable" data-sort-key="date"><?php echo e(__('invoices_col_date')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
-                            <th class="db-table-hide-tablet db-table-sortable" data-sort-key="due"><?php echo e(__('invoices_col_due_date')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
-                            <th class="db-table-hide-tablet db-table-sortable" data-sort-key="type"><?php echo e(__('invoices_col_type')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
+                            <th class="db-table-hide-mobile db-table-sortable" data-sort-key="date"><?php echo e(__('credit_col_date')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
+                            <th class="db-table-hide-tablet db-table-sortable" data-sort-key="due"><?php echo e(__('keys_col_due')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
+                            <th class="db-table-hide-tablet db-table-sortable" data-sort-key="type"><?php echo e(__('dom_dns_type')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
                             <th class="db-table-sortable" data-sort-key="status"><?php echo e(__('common_status')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
-                            <th class="db-table-cell--right db-table-sortable" data-sort-key="amount"><?php echo e(__('invoices_col_amount')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
+                            <th class="db-table-cell--right db-table-sortable" data-sort-key="amount"><?php echo e(__('keys_col_amount')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
                             <th style="width:90px;"></th>
                         </tr>
                     </thead>

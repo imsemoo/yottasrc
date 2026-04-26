@@ -122,7 +122,7 @@ include __DIR__ . '/../../components/page-header.php';
     $es_icon   = 'fa-wallet';
     $es_title  = __('credit_empty_title');
     $es_desc   = __('credit_empty_desc');
-    $es_action = '<a href="' . DASH_BASE_PATH . '/pages/billing/add-funds.php" class="db-btn db-btn--primary"><i class="fas fa-plus"></i> ' . e(__('credit_add_funds')) . '</a>';
+    $es_action = '<a href="' . DASH_BASE_PATH . '/pages/billing/add-funds.php" class="db-btn db-btn--primary"><i class="fas fa-plus"></i> ' . e(__('nav_add_funds')) . '</a>';
     include __DIR__ . '/../../components/empty-state.php';
     ?>
 
@@ -132,7 +132,7 @@ include __DIR__ . '/../../components/page-header.php';
     <div class="db-wallet-hero">
         <div class="db-wallet-hero__main">
             <div class="db-wallet-hero__balance">
-                <div class="db-wallet-hero__label"><?php echo e(__('credit_available_balance')); ?></div>
+                <div class="db-wallet-hero__label"><?php echo e(__('aff_stat_available')); ?></div>
                 <div class="db-wallet-hero__amount"><?php echo format_money($balance); ?></div>
                 <div class="db-wallet-hero__sub"><?php echo e(__('credit_wallet_sub')); ?></div>
             </div>
@@ -209,7 +209,7 @@ include __DIR__ . '/../../components/page-header.php';
                         <th style="width:40px;"></th>
                         <th class="db-table-sortable" data-sort-key="desc"><?php echo e(__('credit_col_description')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
                         <th class="db-table-hide-mobile db-table-sortable" data-sort-key="date"><?php echo e(__('credit_col_date')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
-                        <th class="db-table-cell--right db-table-sortable" data-sort-key="amount"><?php echo e(__('credit_col_amount')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
+                        <th class="db-table-cell--right db-table-sortable" data-sort-key="amount"><?php echo e(__('keys_col_amount')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
                         <th class="db-table-hide-mobile db-table-cell--right db-table-sortable" data-sort-key="balance"><?php echo e(__('credit_col_balance')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
                     </tr></thead>
                     <tbody>

@@ -105,7 +105,7 @@ $referral_sources = [
     ['id' => 'forum',    'label' => __('verify_referral_forum')],
     ['id' => 'youtube',  'label' => __('verify_referral_youtube')],
     ['id' => 'ad',       'label' => __('verify_referral_ad')],
-    ['id' => 'other',    'label' => __('verify_referral_other')],
+    ['id' => 'other',    'label' => __('verify_purpose_other')],
 ];
 
 /* ══════════════  END OF MOCK DATA  ══════════════ */
@@ -194,7 +194,7 @@ $referral_sources = [
             <div class="ds-hero__title-block">
                 <span class="ds-eyebrow">
                     <i class="fas fa-shield-halved"></i>
-                    <?php echo e(__('verify_vx_eyebrow')); ?>
+                    <?php echo e(__('verify_title')); ?>
                 </span>
                 <h1 class="ds-hero__title" style="margin-top:10px;"><?php echo e(__('verify_vx_intro_title')); ?></h1>
                 <p class="ds-hero__sub"><?php echo e(__('verify_vx_intro_sub')); ?></p>
@@ -222,7 +222,7 @@ $referral_sources = [
                 <i class="fas fa-check db-cs-stepper__tick"></i>
             </div>
             <div class="db-cs-stepper__label">
-                <span class="db-cs-stepper__meta"><?php echo e(__('verify_vx_step_prefix')); ?> <?php echo $n; ?></span>
+                <span class="db-cs-stepper__meta"><?php echo e(__('create_cs_step_prefix')); ?> <?php echo $n; ?></span>
                 <span class="db-cs-stepper__name"><?php echo e($label); ?></span>
             </div>
         </div>
@@ -239,7 +239,7 @@ $referral_sources = [
             <!-- ═══ STEP 1: Information ═══ -->
             <div class="db-verify-panel <?php echo $current_step === 1 ? 'is-active' : ''; ?>" data-panel="1">
                 <header class="db-cs-step-head">
-                    <span class="ds-eyebrow"><?php echo e(__('verify_vx_step_prefix')); ?> 1 / 3</span>
+                    <span class="ds-eyebrow"><?php echo e(__('create_cs_step_prefix')); ?> 1 / 3</span>
                     <h2 class="db-cs-step-head__title"><?php echo e(__('verify_vx_step1_title')); ?></h2>
                     <p class="db-cs-step-head__sub"><?php echo e(__('verify_vx_step1_sub')); ?></p>
                 </header>
@@ -290,7 +290,7 @@ $referral_sources = [
             <!-- ═══ STEP 2: Payment ═══ -->
             <div class="db-verify-panel <?php echo $current_step === 2 ? 'is-active' : ''; ?>" data-panel="2">
                 <header class="db-cs-step-head">
-                    <span class="ds-eyebrow"><?php echo e(__('verify_vx_step_prefix')); ?> 2 / 3</span>
+                    <span class="ds-eyebrow"><?php echo e(__('create_cs_step_prefix')); ?> 2 / 3</span>
                     <h2 class="db-cs-step-head__title"><?php echo e(__('verify_vx_step2_title')); ?></h2>
                     <p class="db-cs-step-head__sub"><?php echo e(__('verify_vx_step2_sub')); ?></p>
                 </header>
@@ -321,7 +321,7 @@ $referral_sources = [
                 <div class="db-vx-nav">
                     <button type="button" class="ds-btn ds-btn--ghost" data-verify-prev="1">
                         <i class="fas fa-arrow-left"></i>
-                        <span><?php echo e(__('verify_back')); ?></span>
+                        <span><?php echo e(__('auth_back')); ?></span>
                     </button>
                     <span class="db-vx-nav__spacer">
                         <button type="button" class="ds-btn ds-btn--ghost ds-btn--sm" id="verifyGenerateInvoice">
@@ -339,7 +339,7 @@ $referral_sources = [
             <!-- ═══ STEP 3: Review ═══ -->
             <div class="db-verify-panel <?php echo $current_step === 3 ? 'is-active' : ''; ?>" data-panel="3">
                 <header class="db-cs-step-head">
-                    <span class="ds-eyebrow"><?php echo e(__('verify_vx_step_prefix')); ?> 3 / 3</span>
+                    <span class="ds-eyebrow"><?php echo e(__('create_cs_step_prefix')); ?> 3 / 3</span>
                     <h2 class="db-cs-step-head__title"><?php echo e(__('verify_vx_step3_title')); ?></h2>
                     <p class="db-cs-step-head__sub"><?php echo e(__('verify_vx_step3_sub')); ?></p>
                 </header>
@@ -348,27 +348,27 @@ $referral_sources = [
                     <div class="db-vx-summary__row">
                         <dt><?php echo e(__('verify_purpose')); ?></dt>
                         <dd id="sumPurpose">—</dd>
-                        <button type="button" class="db-vx-summary__edit" data-verify-prev="1" title="<?php echo e(__('verify_vx_edit')); ?>"><i class="fas fa-pen"></i></button>
+                        <button type="button" class="db-vx-summary__edit" data-verify-prev="1" title="<?php echo e(__('common_edit')); ?>"><i class="fas fa-pen"></i></button>
                     </div>
                     <div class="db-vx-summary__row">
                         <dt><?php echo e(__('verify_entity_type')); ?></dt>
                         <dd id="sumEntity">—</dd>
-                        <button type="button" class="db-vx-summary__edit" data-verify-prev="1" title="<?php echo e(__('verify_vx_edit')); ?>"><i class="fas fa-pen"></i></button>
+                        <button type="button" class="db-vx-summary__edit" data-verify-prev="1" title="<?php echo e(__('common_edit')); ?>"><i class="fas fa-pen"></i></button>
                     </div>
                     <div class="db-vx-summary__row">
                         <dt><?php echo e(__('verify_language')); ?></dt>
                         <dd id="sumLang">—</dd>
-                        <button type="button" class="db-vx-summary__edit" data-verify-prev="1" title="<?php echo e(__('verify_vx_edit')); ?>"><i class="fas fa-pen"></i></button>
+                        <button type="button" class="db-vx-summary__edit" data-verify-prev="1" title="<?php echo e(__('common_edit')); ?>"><i class="fas fa-pen"></i></button>
                     </div>
                     <div class="db-vx-summary__row">
                         <dt><?php echo e(__('verify_referral')); ?></dt>
                         <dd id="sumReferral">—</dd>
-                        <button type="button" class="db-vx-summary__edit" data-verify-prev="1" title="<?php echo e(__('verify_vx_edit')); ?>"><i class="fas fa-pen"></i></button>
+                        <button type="button" class="db-vx-summary__edit" data-verify-prev="1" title="<?php echo e(__('common_edit')); ?>"><i class="fas fa-pen"></i></button>
                     </div>
                     <div class="db-vx-summary__row db-vx-summary__row--amount">
-                        <dt><?php echo e(__('verify_vx_starting_balance')); ?></dt>
+                        <dt><?php echo e(__('verify_vx_step_nav_pay')); ?></dt>
                         <dd id="sumAmount">€10</dd>
-                        <button type="button" class="db-vx-summary__edit" data-verify-prev="2" title="<?php echo e(__('verify_vx_edit')); ?>"><i class="fas fa-pen"></i></button>
+                        <button type="button" class="db-vx-summary__edit" data-verify-prev="2" title="<?php echo e(__('common_edit')); ?>"><i class="fas fa-pen"></i></button>
                     </div>
                 </dl>
 
@@ -381,7 +381,7 @@ $referral_sources = [
                 <div class="db-vx-nav">
                     <button type="button" class="ds-btn ds-btn--ghost" data-verify-prev="2">
                         <i class="fas fa-arrow-left"></i>
-                        <span><?php echo e(__('verify_back')); ?></span>
+                        <span><?php echo e(__('auth_back')); ?></span>
                     </button>
                     <button type="button" class="ds-btn ds-btn--primary" id="verifySubmitBtn">
                         <i class="fas fa-paper-plane"></i>
@@ -530,7 +530,7 @@ $referral_sources = [
         submitBtn.addEventListener('click', function () {
             var tos = document.getElementById('verifyTos');
             if (!tos.checked) {
-                if (window.DashToast) DashToast.show('warning', '', '<?php echo e(__('verify_tos_required')); ?>');
+                if (window.DashToast) DashToast.show('warning', '', '<?php echo e(__('auth_terms_required')); ?>');
                 return;
             }
             submitBtn.disabled = true;

@@ -16,12 +16,12 @@ $project_id         = $_GET['id'] ?? '';
 $current_project    = cloud_require_project($project_id);
 $project_nav_active = 'api';
 
-$page_title = __('project_page_api') . ' — #' . $current_project['id'] . ' — ' . SITE_NAME;
+$page_title = __('project_nav_api') . ' — #' . $current_project['id'] . ' — ' . SITE_NAME;
 $breadcrumbs_data = [
     ['label' => __('nav_dashboard'),       'url' => DASH_BASE_PATH . '/'],
     ['label' => __('cloud_title'),          'url' => DASH_BASE_PATH . '/pages/cloud/index.php'],
     ['label' => '#' . $current_project['id'] . ' - ' . $current_project['name'], 'url' => cloud_project_url('servers', $current_project['id'])],
-    ['label' => __('project_page_api'),     'url' => null],
+    ['label' => __('project_nav_api'),     'url' => null],
 ];
 
 require_once __DIR__ . '/../../../layouts/project-shell.php';
@@ -115,7 +115,7 @@ $hero_title   = $current_project['name'];
 $hero_sub     = __('project_pro_sub_api');
 $hero_stats   = empty($api_keys) ? null : [
     ['icon' => 'fa-key',          'label' => __('project_api_stat_total'),   'value' => $api_stats['total'],   'seed' => 0],
-    ['icon' => 'fa-circle-check', 'label' => __('project_api_stat_active'),  'value' => $api_stats['active'],  'seed' => 1],
+    ['icon' => 'fa-circle-check', 'label' => __('domains_stat_active'),  'value' => $api_stats['active'],  'seed' => 1],
     ['icon' => 'fa-ban',          'label' => __('project_api_stat_revoked'), 'value' => $api_stats['revoked'], 'seed' => 3],
 ];
 $hero_actions  = '<a href="https://docs.yottasrc.com/api" target="_blank" rel="noopener" class="ds-btn"><i class="fas fa-book"></i> <span>' . e(__('project_api_docs_btn')) . '</span></a>';
@@ -183,7 +183,7 @@ unset($hero_eyebrow, $hero_title, $hero_sub, $hero_stats, $hero_actions);
                 </div>
                 <div class="db-fbar__tools">
                     <select class="db-fbar__sort" data-table-filter="apiKeysTable" data-filter-key="status">
-                        <option value=""><?php echo e(__('project_api_filter_all')); ?></option>
+                        <option value=""><?php echo e(__('aff_ref_filter_all')); ?></option>
                         <option value="active"><?php echo e(__('status_active')); ?></option>
                         <option value="revoked"><?php echo e(__('project_api_status_revoked')); ?></option>
                     </select>
@@ -197,11 +197,11 @@ unset($hero_eyebrow, $hero_title, $hero_sub, $hero_stats, $hero_actions);
                 <table class="db-table" id="apiKeysTable" data-table-tools>
                     <thead>
                         <tr>
-                            <th class="db-table-sortable" data-sort-key="name"><?php echo e(__('project_api_col_name')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
+                            <th class="db-table-sortable" data-sort-key="name"><?php echo e(__('dom_dns_name')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
                             <th><?php echo e(__('project_api_col_key')); ?></th>
                             <th class="db-table-hide-tablet"><?php echo e(__('project_api_col_scopes')); ?></th>
                             <th class="db-table-sortable db-table-hide-mobile" data-sort-key="last_used"><?php echo e(__('project_api_col_last_used')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
-                            <th class="db-table-sortable db-table-hide-mobile" data-sort-key="created"><?php echo e(__('project_api_col_created')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
+                            <th class="db-table-sortable db-table-hide-mobile" data-sort-key="created"><?php echo e(__('srvd_backup_col_date')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
                             <th class="db-table-sortable" data-sort-key="status"><?php echo e(__('common_status')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
                             <th style="width:80px;"></th>
                         </tr>
@@ -255,8 +255,8 @@ unset($hero_eyebrow, $hero_title, $hero_sub, $hero_stats, $hero_actions);
                             <td>
                                 <div class="db-row-actions db-row-actions--solid">
                                     <button type="button" class="db-row-action db-row-action--solid db-row-action--primary"
-                                        data-tooltip="<?php echo e(__('project_api_action_view')); ?>"
-                                        onclick="DashToast.show('info','','<?php echo e(__('project_api_action_view')); ?>: <?php echo e($k['name']); ?>');">
+                                        data-tooltip="<?php echo e(__('common_view')); ?>"
+                                        onclick="DashToast.show('info','','<?php echo e(__('common_view')); ?>: <?php echo e($k['name']); ?>');">
                                         <i class="fas fa-arrow-up-right-from-square"></i>
                                     </button>
                                     <div class="db-dropdown-wrapper">
@@ -266,7 +266,7 @@ unset($hero_eyebrow, $hero_title, $hero_sub, $hero_stats, $hero_actions);
                                             <button class="db-dropdown-item" data-api-regenerate data-key-id="<?php echo e($k['id']); ?>" data-key-name="<?php echo e($k['name']); ?>"><i class="fas fa-rotate"></i> <?php echo e(__('project_api_action_regenerate')); ?></button>
                                             <?php if ($k['status'] === 'active'): ?>
                                             <div class="db-dropdown-divider"></div>
-                                            <button class="db-dropdown-item db-dropdown-item--danger" data-api-revoke data-key-id="<?php echo e($k['id']); ?>" data-key-name="<?php echo e($k['name']); ?>"><i class="fas fa-ban"></i> <?php echo e(__('project_api_action_revoke')); ?></button>
+                                            <button class="db-dropdown-item db-dropdown-item--danger" data-api-revoke data-key-id="<?php echo e($k['id']); ?>" data-key-name="<?php echo e($k['name']); ?>"><i class="fas fa-ban"></i> <?php echo e(__('security_revoke')); ?></button>
                                             <?php endif; ?>
                                         </div>
                                     </div>
@@ -309,13 +309,13 @@ include __DIR__ . '/../../../components/modal.php';
         <p class="db-modal-lead"><?php echo e(__('project_api_create_intro')); ?></p>
 
         <div class="db-form-group">
-            <label class="db-form-label" for="apiKeyName"><?php echo e(__('project_api_col_name')); ?> <span class="db-required">*</span></label>
+            <label class="db-form-label" for="apiKeyName"><?php echo e(__('dom_dns_name')); ?> <span class="db-required">*</span></label>
             <input type="text" id="apiKeyName" class="db-input" required minlength="3" maxlength="60" placeholder="<?php echo e(__('project_api_name_ph')); ?>">
             <div class="db-form-hint"><?php echo e(__('project_api_name_hint')); ?></div>
         </div>
 
         <div class="db-form-group">
-            <label class="db-form-label"><?php echo e(__('project_api_scopes_label')); ?> <span class="db-required">*</span></label>
+            <label class="db-form-label"><?php echo e(__('project_api_col_scopes')); ?> <span class="db-required">*</span></label>
             <div class="db-api-scopes-pick">
                 <?php foreach ($scope_labels as $id => $sl): ?>
                 <label class="db-check-pill">
@@ -392,7 +392,7 @@ include __DIR__ . '/../../../components/modal.php';
         <p><?php echo e(__('project_api_revoke_desc')); ?></p>
         <div class="db-confirm-summary">
             <div class="db-confirm-summary__row">
-                <span><?php echo e(__('project_api_col_name')); ?></span>
+                <span><?php echo e(__('dom_dns_name')); ?></span>
                 <span id="apiRevokeName" class="db-confirm-summary__target"></span>
             </div>
         </div>

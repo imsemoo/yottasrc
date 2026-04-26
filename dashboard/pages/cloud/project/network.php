@@ -12,12 +12,12 @@ $project_id         = $_GET['id'] ?? '';
 $current_project    = cloud_require_project($project_id);
 $project_nav_active = 'network';
 
-$page_title = __('project_page_network') . ' — #' . $current_project['id'] . ' — ' . SITE_NAME;
+$page_title = __('srvd_tele_net') . ' — #' . $current_project['id'] . ' — ' . SITE_NAME;
 $breadcrumbs_data = [
     ['label' => __('nav_dashboard'),       'url' => DASH_BASE_PATH . '/'],
     ['label' => __('cloud_title'),          'url' => DASH_BASE_PATH . '/pages/cloud/index.php'],
     ['label' => '#' . $current_project['id'] . ' - ' . $current_project['name'], 'url' => cloud_project_url('servers', $current_project['id'])],
-    ['label' => __('project_page_network'), 'url' => null],
+    ['label' => __('srvd_tele_net'), 'url' => null],
 ];
 
 require_once __DIR__ . '/../../../layouts/project-shell.php';
@@ -109,7 +109,7 @@ $ipv4_count    = count(array_filter($ips, fn($x) => $x['protocol'] === 'IPv4'));
 $ipv6_count    = count(array_filter($ips, fn($x) => $x['protocol'] === 'IPv6'));
 $primary_count = count(array_filter($ips, fn($x) => $x['type'] === 'primary'));
 
-$hero_eyebrow = __('project_pro_eyebrow_network');
+$hero_eyebrow = __('srvd_tele_net');
 $hero_title   = $current_project['name'];
 $hero_sub     = __('project_pro_sub_network');
 $hero_stats   = empty($ips) ? null : [
@@ -118,7 +118,7 @@ $hero_stats   = empty($ips) ? null : [
     ['icon' => 'fa-diamond',     'label' => 'IPv6',                       'value' => $ipv6_count,     'seed' => 2],
     ['icon' => 'fa-star',        'label' => __('project_pro_stat_primary'),'value'=> $primary_count,  'seed' => 3],
 ];
-$hero_actions = '<a href="' . e(cloud_project_url('create-server', $current_project['id'])) . '" class="ds-btn ds-btn--primary"><i class="fas fa-plus"></i> <span>' . e(__('project_create_server')) . '</span></a>';
+$hero_actions = '<a href="' . e(cloud_project_url('create-server', $current_project['id'])) . '" class="ds-btn ds-btn--primary"><i class="fas fa-plus"></i> <span>' . e(__('create_confirm_title')) . '</span></a>';
 include __DIR__ . '/../../../components/project-pro-hero.php';
 unset($hero_eyebrow, $hero_title, $hero_sub, $hero_stats, $hero_actions);
 ?>
@@ -135,7 +135,7 @@ unset($hero_eyebrow, $hero_title, $hero_sub, $hero_stats, $hero_actions);
         <span>
             <?php echo e(__('project_no_ips_hint_prefix')); ?>
             <a href="<?php echo e(cloud_project_url('create-server', $current_project['id'])); ?>" class="db-empty-hint__link">
-                <?php echo e(__('project_create_server')); ?>
+                <?php echo e(__('create_confirm_title')); ?>
             </a>
             <?php echo e(__('project_no_ips_hint_suffix')); ?>
         </span>
@@ -168,7 +168,7 @@ unset($hero_eyebrow, $hero_title, $hero_sub, $hero_stats, $hero_actions);
                             <option value="IPv6">IPv6</option>
                         </select>
                         <select class="db-fbar__sort" data-table-filter="networkTable" data-filter-key="type">
-                            <option value=""><?php echo e(__('project_filter_all_types')); ?></option>
+                            <option value=""><?php echo e(__('credit_filter_all')); ?></option>
                             <option value="primary"><?php echo e(__('project_ip_type_primary')); ?></option>
                             <option value="additional"><?php echo e(__('project_ip_type_additional')); ?></option>
                         </select>
@@ -182,8 +182,8 @@ unset($hero_eyebrow, $hero_title, $hero_sub, $hero_stats, $hero_actions);
                     <thead>
                         <tr>
                             <th style="width:50px;">#</th>
-                            <th class="db-table-sortable" data-sort-key="ip"><?php echo e(__('project_col_ip')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
-                            <th class="db-table-sortable" style="width:120px;" data-sort-key="type"><?php echo e(__('project_col_type')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
+                            <th class="db-table-sortable" data-sort-key="ip"><?php echo e(__('cpanel_ip')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
+                            <th class="db-table-sortable" style="width:120px;" data-sort-key="type"><?php echo e(__('dom_dns_type')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
                             <th class="db-table-hide-mobile" data-sort-key="rdns">rDNS</th>
                             <th class="db-table-sortable db-table-hide-tablet" style="width:100px;" data-sort-key="protocol"><?php echo e(__('project_col_protocol')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
                             <th class="db-table-sortable" data-sort-key="server"><?php echo e(__('project_col_assigned_server')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
@@ -238,7 +238,7 @@ unset($hero_eyebrow, $hero_title, $hero_sub, $hero_stats, $hero_actions);
                                         <button class="db-row-action db-row-action--solid db-row-action--menu" data-dropdown-toggle><i class="fas fa-ellipsis-vertical"></i></button>
                                         <div class="db-dropdown-menu">
                                             <button class="db-dropdown-item" data-rdns-edit data-ip="<?php echo e($ip['ip']); ?>" data-rdns-current="<?php echo e($ip['rdns'] ?? ''); ?>"><i class="fas fa-pen"></i> <?php echo e(__('project_ip_action_rdns')); ?></button>
-                                            <button class="db-dropdown-item" onclick="DashModal.open('netInstructionsModal')"><i class="fas fa-book"></i> <?php echo e(__('project_ip_action_instructions')); ?></button>
+                                            <button class="db-dropdown-item" onclick="DashModal.open('netInstructionsModal')"><i class="fas fa-book"></i> <?php echo e(__('srvd_network_instructions')); ?></button>
                                             <?php if ($ip['type'] !== 'primary'): ?>
                                             <div class="db-dropdown-divider"></div>
                                             <button class="db-dropdown-item db-dropdown-item--danger" data-remove-ip data-ip="<?php echo e($ip['ip']); ?>"><i class="fas fa-trash"></i> <?php echo e(__('project_ip_action_remove')); ?></button>
@@ -329,7 +329,7 @@ include __DIR__ . '/../../../components/modal-end.php';
 <!-- ═══ INSTRUCTIONS MODAL (Network page) ═══ -->
 <?php
 $modal_id    = 'netInstructionsModal';
-$modal_title = __('project_ip_action_instructions');
+$modal_title = __('srvd_network_instructions');
 $modal_size  = '';
 include __DIR__ . '/../../../components/modal.php';
 ?>

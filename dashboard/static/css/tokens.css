@@ -8,6 +8,12 @@
     --font-display: 'Plus Jakarta Sans', sans-serif;
     --font-body: 'DM Sans', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
+    /* Arabic fallbacks — picked up when dir="rtl" via the override below.
+       Cairo matches Plus Jakarta Sans for display weight; for body we
+       share the same family so there's no mismatch between headings and
+       paragraphs in RTL mode. */
+    --font-display-rtl: 'Cairo', 'Plus Jakarta Sans', sans-serif;
+    --font-body-rtl:    'Cairo', 'DM Sans', sans-serif;
 
     /* Spacing */
     --section-gap: 60px;
@@ -91,6 +97,30 @@
     --topbar-height: 64px;
     --content-padding: 24px;
     --content-max-width: 1200px;
+}
+
+
+/* ═══ RTL font override ═══
+   Swap the display + body tokens to Arabic-first stacks whenever the
+   document is in RTL mode. Every style that references --font-display or
+   --font-body automatically picks up Cairo in Arabic, so headings and
+   paragraphs stay in one typeface without per-component overrides. */
+html[dir="rtl"] {
+    --font-display: var(--font-display-rtl);
+    --font-body:    var(--font-body-rtl);
+}
+
+/* Belt-and-braces: any element whose font-family is literally
+   "Plus Jakarta Sans" or "DM Sans" gets the RTL stack too, so plain CSS
+   overrides that pre-date the token system still render consistently. */
+html[dir="rtl"] h1,
+html[dir="rtl"] h2,
+html[dir="rtl"] h3,
+html[dir="rtl"] h4,
+html[dir="rtl"] h5,
+html[dir="rtl"] h6,
+html[dir="rtl"] body {
+    font-family: var(--font-body-rtl);
 }
 
 

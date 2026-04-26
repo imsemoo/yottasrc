@@ -138,14 +138,14 @@ require_once __DIR__ . '/../../layouts/auth-shell.php';
                 <div class="reg-step__num">
                     <span>1</span><i class="fas fa-check"></i>
                 </div>
-                <div class="reg-step__label"><?php echo e(__('auth_step_account')); ?></div>
+                <div class="reg-step__label"><?php echo e(__('nav_account')); ?></div>
             </div>
             <div class="reg-step__line" data-line="1"></div>
             <div class="reg-step" data-step="2">
                 <div class="reg-step__num">
                     <span>2</span><i class="fas fa-check"></i>
                 </div>
-                <div class="reg-step__label"><?php echo e(__('auth_step_address')); ?></div>
+                <div class="reg-step__label"><?php echo e(__('auth_address')); ?></div>
             </div>
             <div class="reg-step__line" data-line="2"></div>
             <div class="reg-step" data-step="3">

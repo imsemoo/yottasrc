@@ -87,34 +87,73 @@
 
         // Hover-to-expand: when the sidebar is collapsed, hovering it adds
         // `.is-hover-expanded` so CSS shows the full-width overlay state.
-        // On mouseleave we wait LEAVE_DELAY ms before removing the class,
-        // which prevents flicker when the chevron button shifts position
-        // as the sidebar grows/shrinks. Any re-entry cancels the timer.
+        //
+        // ENTER_DELAY: we wait before triggering the expand so:
+        //   1. Mouse passes don't accidentally pop the sidebar open.
+        //   2. The user has time to click the chevron button (which sits at
+        //      the right edge of the collapsed sidebar) without the sidebar
+        //      sliding away from the cursor mid-click.
+        //
+        // LEAVE_DELAY: small grace period on exit so quick re-entries don't
+        //   cause a flash when the chevron shifts with the edge.
+        //
+        // The chevron itself bypasses the delay (handled below) — clicking
+        // it is an explicit user intent to commit the expanded state.
         initHoverExpand() {
-            const LEAVE_DELAY = 180;
+            const ENTER_DELAY = 350;
+            const LEAVE_DELAY = 220;
+            let enterTimer = null;
             let leaveTimer = null;
+
+            const cancelTimers = () => {
+                if (enterTimer) { clearTimeout(enterTimer); enterTimer = null; }
+                if (leaveTimer) { clearTimeout(leaveTimer); leaveTimer = null; }
+            };
 
             const enter = () => {
                 if (window.innerWidth <= 1024) return;
                 if (!this.sidebar.classList.contains('collapsed')) return;
-                if (leaveTimer) { clearTimeout(leaveTimer); leaveTimer = null; }
-                this.sidebar.classList.add('is-hover-expanded');
+                cancelTimers();
+                enterTimer = setTimeout(() => {
+                    // Re-check state at fire time — user may have already
+                    // clicked the chevron to permanently expand.
+                    if (this.sidebar.classList.contains('collapsed')) {
+                        this.sidebar.classList.add('is-hover-expanded');
+                    }
+                    enterTimer = null;
+                }, ENTER_DELAY);
             };
 
             const leave = () => {
-                if (leaveTimer) clearTimeout(leaveTimer);
+                cancelTimers();
                 leaveTimer = setTimeout(() => {
                     this.sidebar.classList.remove('is-hover-expanded');
+                    // Also close any inline-opened submenus so the next hover
+                    // starts from a clean state.
+                    this.sidebar.querySelectorAll('.db-nav-expand.open')
+                        .forEach(el => el.classList.remove('open'));
                     leaveTimer = null;
                 }, LEAVE_DELAY);
             };
 
             this.sidebar.addEventListener('mouseenter', enter);
             this.sidebar.addEventListener('mouseleave', leave);
+
+            // The chevron button is the explicit "I want to expand" intent.
+            // Cancel any pending hover-timer so the button click is committed
+            // immediately as a permanent toggle, never as a transient hover.
+            if (this.collapseBtn) {
+                this.collapseBtn.addEventListener('mouseenter', cancelTimers);
+                this.collapseBtn.addEventListener('mousedown',  cancelTimers);
+            }
         },
 
         toggleCollapse() {
             const isCollapsed = this.sidebar.classList.toggle('collapsed');
+            // Always strip the transient hover-expanded class on a click
+            // toggle. Otherwise it stays around and the next collapse pops
+            // straight into the hover state (visually confusing).
+            this.sidebar.classList.remove('is-hover-expanded');
             localStorage.setItem(this.STORAGE_KEY, isCollapsed ? 'collapsed' : 'expanded');
             const shell = document.querySelector('.db-shell');
             if (shell) shell.classList.toggle('db-shell--collapsed', isCollapsed);
@@ -140,7 +179,16 @@
             this.sidebar.querySelectorAll('.db-nav-expand-trigger').forEach(trigger => {
                 const parent = trigger.closest('.db-nav-expand');
                 trigger.addEventListener('click', () => {
-                    if (window.innerWidth > 1024 && this.sidebar.classList.contains('collapsed')) return;
+                    // Block inline toggle only when sidebar is collapsed AND not
+                    // hover-expanded. In hover-expanded state, the full layout
+                    // is visible, so the user expects the submenu to open inline.
+                    if (
+                        window.innerWidth > 1024 &&
+                        this.sidebar.classList.contains('collapsed') &&
+                        !this.sidebar.classList.contains('is-hover-expanded')
+                    ) {
+                        return;
+                    }
                     parent.classList.toggle('open');
                 });
             });
@@ -743,28 +791,6 @@
 
 
     // ═══════════════════════════════════════════
-    // Auto Skeleton Loading
-    // ═══════════════════════════════════════════
-
-    const AutoSkeleton = {
-        init() {
-            document.querySelectorAll('[data-skeleton-auto]').forEach(wrapper => {
-                const skeleton = wrapper.querySelector('.db-skeleton-zone');
-                const content = wrapper.querySelector('.db-content-zone');
-                if (!skeleton || !content) return;
-
-                content.style.display = 'none';
-                const delay = parseInt(wrapper.dataset.skeletonAuto) || 600;
-                setTimeout(() => {
-                    skeleton.style.display = 'none';
-                    content.style.display = '';
-                }, delay);
-            });
-        }
-    };
-
-
-    // ═══════════════════════════════════════════
     // Global Escape Key Handler
     // ═══════════════════════════════════════════
 
@@ -826,7 +852,6 @@
         PasswordToggle.init();
         FormValidation.init();
         RowDropdown.init();
-        AutoSkeleton.init();
 
         // Single global click handler — no conflicts
         initGlobalClickHandler();

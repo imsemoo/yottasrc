@@ -11,7 +11,7 @@ $page_js = 'pages/settings.js';
 
 require_once __DIR__ . '/../../layouts/config.php';
 
-$page_title = __('settings_title') . ' — ' . SITE_NAME;
+$page_title = __('nav_settings') . ' — ' . SITE_NAME;
 $breadcrumbs_data = [
     ['label' => __('nav_dashboard'), 'url' => DASH_BASE_PATH . '/'],
     ['label' => __('profile_settings_title'), 'url' => null],
@@ -127,7 +127,7 @@ include __DIR__ . '/../../components/page-header.php';
             </div>
             <div class="db-settings-item">
                 <div class="db-settings-item-info">
-                    <div class="db-settings-item-title"><?php echo e(__('settings_language')); ?></div>
+                    <div class="db-settings-item-title"><?php echo e(__('language')); ?></div>
                     <div class="db-settings-item-desc"><?php echo e(__('settings_language_desc')); ?></div>
                 </div>
                 <div class="db-settings-item-control">
@@ -215,7 +215,7 @@ include __DIR__ . '/../../components/page-header.php';
                     <div class="db-settings-item-desc"><?php echo e(__('settings_close_account_desc')); ?></div>
                 </div>
                 <div class="db-settings-item-control">
-                    <button class="db-btn db-btn--danger db-btn--sm" id="closeAccountBtn"><?php echo e(__('settings_close_account_btn')); ?></button>
+                    <button class="db-btn db-btn--danger db-btn--sm" id="closeAccountBtn"><?php echo e(__('settings_close_account')); ?></button>
                 </div>
             </div>
         </div>

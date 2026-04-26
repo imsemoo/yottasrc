@@ -18,7 +18,7 @@ require_once __DIR__ . '/../../layouts/config.php';
 $page_title = __('aff_title') . ' — ' . SITE_NAME;
 $breadcrumbs_data = [
     ['label' => __('nav_dashboard'), 'url' => DASH_BASE_PATH . '/'],
-    ['label' => __('nav_affiliates'), 'url' => null],
+    ['label' => __('aff_title'), 'url' => null],
 ];
 
 require_once __DIR__ . '/../../layouts/shell.php';
@@ -362,7 +362,7 @@ $method_label = [
                 <select class="db-fbar__sort" data-table-filter="affReferralsTable" data-filter-key="status">
                     <option value=""><?php echo e(__('aff_ref_filter_all')); ?></option>
                     <option value="confirmed"><?php echo e(__('aff_status_confirmed')); ?></option>
-                    <option value="pending"><?php echo e(__('aff_status_pending')); ?></option>
+                    <option value="pending"><?php echo e(__('status_pending')); ?></option>
                     <option value="rejected"><?php echo e(__('aff_status_rejected')); ?></option>
                 </select>
                 <?php include __DIR__ . '/../../components/export-dropdown.php'; ?>
@@ -375,7 +375,7 @@ $method_label = [
             <table class="db-table" id="affReferralsTable" data-table-tools>
                 <thead>
                     <tr>
-                        <th class="db-table-sortable" data-sort-key="date"><?php echo e(__('aff_ref_col_date')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
+                        <th class="db-table-sortable" data-sort-key="date"><?php echo e(__('credit_col_date')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
                         <th class="db-table-sortable" data-sort-key="user"><?php echo e(__('aff_ref_col_user')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
                         <th class="db-table-sortable db-table-hide-tablet" data-sort-key="source"><?php echo e(__('aff_ref_col_source')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
                         <th class="db-table-sortable db-table-cell--right" data-sort-key="amount"><?php echo e(__('aff_ref_col_amount')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
@@ -442,9 +442,9 @@ $method_label = [
                 <thead>
                     <tr>
                         <th><?php echo e(__('aff_pay_col_ref')); ?></th>
-                        <th><?php echo e(__('aff_pay_col_date')); ?></th>
+                        <th><?php echo e(__('credit_col_date')); ?></th>
                         <th><?php echo e(__('aff_pay_col_method')); ?></th>
-                        <th class="db-table-cell--right"><?php echo e(__('aff_pay_col_amount')); ?></th>
+                        <th class="db-table-cell--right"><?php echo e(__('keys_col_amount')); ?></th>
                         <th><?php echo e(__('common_status')); ?></th>
                     </tr>
                 </thead>
@@ -524,7 +524,7 @@ include __DIR__ . '/../../components/modal.php';
         <p class="db-modal-lead"><?php echo e(__('aff_withdraw_modal_intro', ['available' => format_money($stats['available'])])); ?></p>
 
         <div class="db-form-group">
-            <label class="db-form-label" for="affWithdrawAmount"><?php echo e(__('aff_withdraw_amount')); ?> <span class="db-required">*</span></label>
+            <label class="db-form-label" for="affWithdrawAmount"><?php echo e(__('keys_col_amount')); ?> <span class="db-required">*</span></label>
             <div class="db-input-icon-wrapper">
                 <input type="number" id="affWithdrawAmount" class="db-input" required
                        min="<?php echo (int)$min_payout; ?>"

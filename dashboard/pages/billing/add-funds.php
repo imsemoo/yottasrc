@@ -12,7 +12,7 @@ $page_js = 'pages/add-funds.js';
 
 require_once __DIR__ . '/../../layouts/config.php';
 
-$page_title = __('add_funds_title') . ' — ' . SITE_NAME;
+$page_title = __('nav_add_funds') . ' — ' . SITE_NAME;
 $breadcrumbs_data = [
     ['label' => __('nav_dashboard'), 'url' => DASH_BASE_PATH . '/'],
     ['label' => __('nav_add_funds'), 'url' => null],
@@ -74,7 +74,7 @@ $methods = [
 ?>
 
 <?php
-$ph_title = __('add_funds_title');
+$ph_title = __('nav_add_funds');
 $ph_desc = __('add_funds_desc');
 $ph_actions = '';
 include __DIR__ . '/../../components/page-header.php';
@@ -125,7 +125,7 @@ include __DIR__ . '/../../components/page-header.php';
         <!-- Payment Method -->
         <div class="db-card">
             <div class="db-card-header db-card-header--md">
-                <h2 class="db-card-title db-card-title--sm"><i class="db-card-title-icon fas fa-lock"></i> <?php echo e(__('add_funds_payment_method')); ?></h2>
+                <h2 class="db-card-title db-card-title--sm"><i class="db-card-title-icon fas fa-lock"></i> <?php echo e(__('invoices_txn_method')); ?></h2>
             </div>
             <div class="db-card-body db-card-body--tight">
                 <div class="db-pay-grid">
@@ -175,7 +175,7 @@ include __DIR__ . '/../../components/page-header.php';
 
             <button class="db-checkout-summary__pay" id="confirmFundsBtn" disabled onclick="DashToast.show('success','','Funds added successfully!')">
                 <i class="fas fa-lock"></i>
-                <span id="payBtnText"><?php echo e(__('add_funds_pay_btn')); ?></span>
+                <span id="payBtnText"><?php echo e(__('nav_add_funds')); ?></span>
             </button>
 
             <div class="db-checkout-summary__trust">

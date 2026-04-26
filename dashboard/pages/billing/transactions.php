@@ -12,10 +12,10 @@ $breadcrumbs_data = null;
 
 require_once __DIR__ . '/../../layouts/config.php';
 
-$page_title = __('transactions_title') . ' — ' . SITE_NAME;
+$page_title = __('txn_total_count') . ' — ' . SITE_NAME;
 $breadcrumbs_data = [
     ['label' => __('nav_dashboard'), 'url' => DASH_BASE_PATH . '/'],
-    ['label' => __('nav_transactions'), 'url' => null],
+    ['label' => __('txn_total_count'), 'url' => null],
 ];
 
 require_once __DIR__ . '/../../layouts/shell.php';
@@ -74,8 +74,8 @@ $transactions = [
    ────────────────────────────────────────── */
 $type_icons = [
     'credit'  => ['fas fa-arrow-down',         'success', __('transactions_type_credit')],
-    'payment' => ['fas fa-arrow-up',            'error',   __('transactions_type_payment')],
-    'refund'  => ['fas fa-arrow-rotate-left',   'warning', __('transactions_type_refund')],
+    'payment' => ['fas fa-arrow-up',            'error',   __('credit_type_payment')],
+    'refund'  => ['fas fa-arrow-rotate-left',   'warning', __('credit_type_refund')],
     'invoice' => ['fas fa-file-invoice',        'primary', __('transactions_type_invoice')],
 ];
 
@@ -99,7 +99,7 @@ foreach ($transactions as $t) {
 ?>
 
 <?php
-$ph_title = __('transactions_title');
+$ph_title = __('txn_total_count');
 $ph_desc = __('transactions_desc');
 $ph_actions = '';
 include __DIR__ . '/../../components/page-header.php';
@@ -125,7 +125,7 @@ include __DIR__ . '/../../components/page-header.php';
 <?php else: ?>
 
     <!-- ═══ INSIGHTS ═══ -->
-    <div class="db-wallet-insights" style="grid-template-columns:repeat(4,1fr);">
+    <div class="db-wallet-insights db-wallet-insights--4">
         <div class="db-wallet-insight">
             <div class="db-wallet-insight__icon db-wallet-insight__icon--success"><i class="fas fa-arrow-down"></i></div>
             <div>
@@ -163,14 +163,14 @@ include __DIR__ . '/../../components/page-header.php';
                 <div class="db-fbar__top">
                     <div class="db-fbar__search">
                         <i class="fas fa-magnifying-glass"></i>
-                        <input type="text" id="txnSearch" placeholder="<?php echo e(__('transactions_search_placeholder')); ?>">
+                        <input type="text" id="txnSearch" placeholder="<?php echo e(__('credit_search_history')); ?>">
                     </div>
                     <div class="db-fbar__tools">
                         <select class="db-fbar__sort" id="txnTypeFilter">
-                            <option value=""><?php echo e(__('transactions_filter_all')); ?></option>
-                            <option value="payment"><?php echo e(__('transactions_type_payment')); ?></option>
+                            <option value=""><?php echo e(__('toolbar_all_types')); ?></option>
+                            <option value="payment"><?php echo e(__('credit_type_payment')); ?></option>
                             <option value="credit"><?php echo e(__('transactions_type_credit')); ?></option>
-                            <option value="refund"><?php echo e(__('transactions_type_refund')); ?></option>
+                            <option value="refund"><?php echo e(__('credit_type_refund')); ?></option>
                             <option value="invoice"><?php echo e(__('transactions_type_invoice')); ?></option>
                         </select>
                         <select class="db-fbar__sort" id="txnDateFilter">
@@ -208,11 +208,19 @@ include __DIR__ . '/../../components/page-header.php';
                                 <td style="width:40px;"><div class="db-txn-icon db-txn-icon--<?php echo e($ti[1]); ?>"><i class="<?php echo e($ti[0]); ?>"></i></div></td>
                                 <td>
                                     <div class="db-table-cell-main"><?php echo e($txn['desc']); ?></div>
-                                    <div class="db-table-cell-sub"><?php echo e($ti[2]); ?> · <?php echo e($txn['id']); ?></div>
+                                    <div class="db-table-cell-sub">
+                                        <?php echo e($ti[2]); ?> · <?php echo e($txn['id']); ?>
+                                        <!-- Date as part of the sub-line on mobile so users still
+                                             see it when the dedicated date column is hidden. -->
+                                        <span class="db-table-cell-sub__mobile-only"> · <?php echo e($txn['date']); ?></span>
+                                    </div>
                                 </td>
                                 <td class="db-table-hide-mobile" style="width:100px;"><?php echo e($txn['date']); ?></td>
                                 <td class="db-table-cell--right" style="width:110px;">
                                     <span class="db-table-cell-amount <?php echo $txn['amount'] >= 0 ? 'db-amount--positive' : ''; ?>"><?php echo $txn['amount'] >= 0 ? '+' : ''; ?><?php echo format_money($txn['amount']); ?></span>
+                                    <!-- Balance surfaces in a tiny line beneath the amount when the
+                                         balance column is hidden on mobile, so it's not lost. -->
+                                    <span class="db-table-cell-sub__mobile-only db-txn-balance"><?php echo e(__('txn_balance_after')); ?>: <?php echo format_money($txn['balance']); ?></span>
                                 </td>
                                 <td class="db-table-hide-mobile db-table-cell--right" style="width:90px;"><span class="db-table-cell-mono"><?php echo format_money($txn['balance']); ?></span></td>
                             </tr>

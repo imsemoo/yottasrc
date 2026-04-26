@@ -222,11 +222,17 @@ textarea {
     display: flex;
     flex-direction: column;
     z-index: 100;
-    transition: transform var(--duration-base) var(--ease-out),
-        width var(--duration-base) var(--ease-out),
-        top var(--duration-base) var(--ease-out),
-        height var(--duration-base) var(--ease-out);
+    /* Slower, gentler transition (440ms) for the width grow/shrink so the
+       expansion reads as a deliberate slide rather than a snap. The cubic
+       easing is heavier on the trailing end which makes the final settle
+       feel softer to the eye than the default ease. */
+    transition: transform 440ms cubic-bezier(0.22, 1, 0.36, 1),
+        width 440ms cubic-bezier(0.22, 1, 0.36, 1),
+        top var(--motion-base) var(--ease-glide),
+        height var(--motion-base) var(--ease-glide),
+        box-shadow 320ms var(--ease-glide);
     /* overflow: hidden; */
+    will-change: width;
 }
 
 /* RTL: sidebar on right */
@@ -383,6 +389,11 @@ textarea {
     color: var(--sidebar-group-text);
     user-select: none;
     opacity: 0.7;
+    /* Smooth font-size + opacity collapse so the section labels (MAIN,
+       BILLING, ACCOUNT) fade rather than snap to nothing. */
+    transition: font-size 280ms cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 220ms cubic-bezier(0.22, 1, 0.36, 1),
+        padding 280ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .db-nav-group:first-child .db-nav-group-label {
@@ -453,23 +464,19 @@ textarea {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    /* Smooth fade + width collapse on collapse/expand so nothing snaps in
+       or out. Visibility carries a delay opposite to the fade direction so
+       screen-readers don't see ghost text in the collapsed state. */
+    opacity: 1;
+    max-width: 200px;
+    visibility: visible;
+    transition: opacity 280ms cubic-bezier(0.22, 1, 0.36, 1),
+        max-width 380ms cubic-bezier(0.22, 1, 0.36, 1),
+        visibility 0s linear 0s;
 }
 
 /* Nav Item with Badge */
-.db-nav-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 18px;
-    height: 18px;
-    padding: 0 5px;
-    border-radius: var(--radius-full);
-    background: var(--brand-error);
-    color: #fff;
-    font-size: 0.68rem;
-    font-weight: 700;
-    flex-shrink: 0;
-}
+
 
 /* Expandable Nav (Services sub-items) */
 .db-nav-expand {
@@ -536,6 +543,18 @@ textarea {
 
 .db-nav-expand.open .db-nav-expand-items {
     display: block;
+    animation: db-nav-expand-slide var(--motion-base) var(--ease-glide);
+}
+
+@keyframes db-nav-expand-slide {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .db-nav-expand-items .db-nav-item {
@@ -649,7 +668,15 @@ textarea {
     flex-shrink: 0;
 }
 
-/* Helper: elements that hide/show in collapsed mode */
+/* Helper: elements that hide/show in collapsed mode. We default both to a
+   fade transition so toggling never produces a hard pop — actual hide/show
+   is driven by opacity + max-width rather than display. */
+.db-hide-collapsed {
+    opacity: 1;
+    transition: opacity 220ms cubic-bezier(0.22, 1, 0.36, 1),
+        max-width 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 .db-show-collapsed {
     display: none;
 }
@@ -665,11 +692,90 @@ textarea {
        The class is toggled by JS (mouseenter adds, mouseleave removes with
        a short delay) to prevent flicker as the chevron moves with the edge. */
     .db-sidebar.collapsed.is-hover-expanded {
+        width: var(--sidebar-width);
         box-shadow: 4px 0 24px rgba(0, 0, 0, 0.28);
     }
 
     [dir="rtl"] .db-sidebar.collapsed.is-hover-expanded {
         box-shadow: -4px 0 24px rgba(0, 0, 0, 0.28);
+    }
+
+    /* Fade text in only AFTER the sidebar has visibly grown — keeps the
+       width slide and the text reveal from competing for attention.
+       Total = 440ms width slide + 80ms gap + 240ms fade = ~760ms full feel,
+       but the fade itself is slow and soft so it never reads as a snap. */
+    .db-sidebar.collapsed.is-hover-expanded .db-nav-item-text,
+    .db-sidebar.collapsed.is-hover-expanded .db-nav-group-label,
+    .db-sidebar.collapsed.is-hover-expanded .db-hide-collapsed,
+    .db-sidebar.collapsed.is-hover-expanded .db-nav-expand-arrow,
+    .db-sidebar.collapsed.is-hover-expanded .db-sidebar-balance-label,
+    .db-sidebar.collapsed.is-hover-expanded .db-sidebar-balance-breakdown {
+        animation: db-sidebar-fade-in 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    /* Stagger slight per-group so the menu reveals in a wave instead of a
+       single hard pop. 5 groups × ~30ms each = ~150ms of soft cascade. */
+    .db-sidebar.collapsed.is-hover-expanded .db-nav-group:nth-child(1) .db-nav-item-text,
+    .db-sidebar.collapsed.is-hover-expanded .db-nav-group:nth-child(1) .db-nav-group-label,
+    .db-sidebar.collapsed.is-hover-expanded .db-nav-group:nth-child(1) .db-nav-expand-arrow {
+        animation-delay: 200ms;
+    }
+    .db-sidebar.collapsed.is-hover-expanded .db-nav-group:nth-child(2) .db-nav-item-text,
+    .db-sidebar.collapsed.is-hover-expanded .db-nav-group:nth-child(2) .db-nav-group-label {
+        animation-delay: 230ms;
+    }
+    .db-sidebar.collapsed.is-hover-expanded .db-nav-group:nth-child(3) .db-nav-item-text,
+    .db-sidebar.collapsed.is-hover-expanded .db-nav-group:nth-child(3) .db-nav-group-label {
+        animation-delay: 260ms;
+    }
+    .db-sidebar.collapsed.is-hover-expanded .db-nav-group:nth-child(4) .db-nav-item-text,
+    .db-sidebar.collapsed.is-hover-expanded .db-nav-group:nth-child(4) .db-nav-group-label {
+        animation-delay: 290ms;
+    }
+
+    @keyframes db-sidebar-fade-in {
+        0% {
+            opacity: 0;
+            transform: translateX(-8px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    [dir="rtl"] .db-sidebar.collapsed.is-hover-expanded .db-nav-item-text,
+    [dir="rtl"] .db-sidebar.collapsed.is-hover-expanded .db-nav-group-label,
+    [dir="rtl"] .db-sidebar.collapsed.is-hover-expanded .db-hide-collapsed,
+    [dir="rtl"] .db-sidebar.collapsed.is-hover-expanded .db-nav-expand-arrow,
+    [dir="rtl"] .db-sidebar.collapsed.is-hover-expanded .db-sidebar-balance-label,
+    [dir="rtl"] .db-sidebar.collapsed.is-hover-expanded .db-sidebar-balance-breakdown {
+        animation-name: db-sidebar-fade-in-rtl;
+    }
+
+    @keyframes db-sidebar-fade-in-rtl {
+        0% {
+            opacity: 0;
+            transform: translateX(8px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    /* Respect users who prefer less motion */
+    @media (prefers-reduced-motion: reduce) {
+        .db-sidebar.collapsed.is-hover-expanded .db-nav-item-text,
+        .db-sidebar.collapsed.is-hover-expanded .db-nav-group-label,
+        .db-sidebar.collapsed.is-hover-expanded .db-hide-collapsed,
+        .db-sidebar.collapsed.is-hover-expanded .db-nav-expand-arrow,
+        .db-sidebar.collapsed.is-hover-expanded .db-sidebar-balance-label,
+        .db-sidebar.collapsed.is-hover-expanded .db-sidebar-balance-breakdown {
+            animation-duration: 0.01ms;
+            animation-delay: 0ms;
+        }
+        .db-sidebar { transition-duration: 0.01ms; }
     }
 
     .db-sidebar.collapsed+.db-sidebar-overlay+.db-main,
@@ -691,21 +797,76 @@ textarea {
         max-width: 100%;
     }
 
-    /* Header: center logo mark, hide full logo */
+    /* Header: center logo mark, hide full logo. The header padding shifts
+       smoothly so the logo swap doesn't look like a layout pop. */
+    .db-sidebar-header {
+        transition: padding 380ms cubic-bezier(0.22, 1, 0.36, 1),            justify-content 0s linear;
+        -webkit-transition: padding 380ms cubic-bezier(0.22, 1, 0.36, 1),;
+        -moz-transition: padding 380ms cubic-bezier(0.22, 1, 0.36, 1),;
+        -ms-transition: padding 380ms cubic-bezier(0.22, 1, 0.36, 1),;
+        -o-transition: padding 380ms cubic-bezier(0.22, 1, 0.36, 1),;
+}
+
     .db-sidebar.collapsed:not(.is-hover-expanded) .db-sidebar-header {
         justify-content: center;
         padding: 16px 0;
     }
 
-    .db-sidebar.collapsed:not(.is-hover-expanded) .db-logo-full {
-        display: none;
+    /* Logo swap — keep both logos always rendered at the same anchor and
+       crossfade between them. The full logo's max-width collapses to 0 when
+       hidden so it doesn't keep the header wide. The mark slot keeps its
+       fixed 36px footprint either way, so the header center never jumps. */
+    .db-sidebar-logo {
+        position: relative;
+        min-height: 36px;
+        min-width: 36px;
+    }
+
+    .db-logo-full,
+    .db-logo-mark {
+        transition: opacity 280ms cubic-bezier(0.22, 1, 0.36, 1),
+            transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* Mark sits on top of the full logo via absolute positioning. When the
+       sidebar is expanded it's faded out and inert; when collapsed it fades
+       in over the (also-collapsing) full logo. */
+    .db-logo-mark {
+        display: flex;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%) scale(0.9);
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    [dir="rtl"] .db-logo-mark {
+        left: auto;
+        right: 0;
     }
 
     .db-sidebar.collapsed:not(.is-hover-expanded) .db-logo-mark {
-        display: flex;
+        opacity: 1;
+        transform: translateY(-50%) scale(1);
+        pointer-events: auto;
     }
 
-    /* Collapse button: rotate arrow */
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-logo-full {
+        opacity: 0;
+        max-width: 0;
+        overflow: hidden;
+        pointer-events: none;
+        transition: opacity 220ms cubic-bezier(0.22, 1, 0.36, 1),
+            max-width 360ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* Collapse button: rotate arrow smoothly. Without an explicit
+       transition the icon snaps 180° instantly when toggling. */
+    .db-collapse-icon {
+        transition: transform 380ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
     .db-sidebar.collapsed:not(.is-hover-expanded) .db-collapse-icon {
         transform: rotate(180deg);
     }
@@ -734,8 +895,21 @@ textarea {
         background: var(--sidebar-bg);
         border: 1px solid var(--sidebar-border);
         border-radius: var(--radius-full);
-        z-index: 10;
+        z-index: 110; /* above the sidebar so it stays clickable mid-expand */
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+        color: var(--brand-primary);
+        opacity: 1;
+        /* Subtle pulse on first idle so users notice it's clickable.
+           Cancelled the moment the user actually interacts with anything. */
+    }
+
+    /* Stays put while the sidebar slides — without overriding the transform,
+       the chevron would inherit the parent's width transition jitter. */
+    .db-sidebar.collapsed .db-sidebar-collapse:hover {
+        background: var(--bg-elevated);
+        color: var(--brand-primary-hover);
+        transform: translateY(-50%) scale(1.12);
+        box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
     }
 
     [dir="rtl"] .db-sidebar.collapsed .db-sidebar-collapse {
@@ -754,8 +928,12 @@ textarea {
         border: 1px solid var(--sidebar-border);
         border-radius: var(--radius-full);
         z-index: 10;
-        opacity: 0;
-        transition: opacity var(--duration-fast) ease, background var(--duration-fast) ease, color var(--duration-fast) ease;
+        opacity: 1;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+        transition: opacity var(--motion-fast) var(--ease-glide),
+            background var(--motion-fast) var(--ease-glide),
+            color var(--motion-fast) var(--ease-glide),
+            transform var(--motion-fast) var(--ease-glide);
     }
 
     [dir="rtl"] .db-sidebar:not(.collapsed) .db-sidebar-collapse {
@@ -763,8 +941,16 @@ textarea {
         left: -14px;
     }
 
-    .db-sidebar:not(.collapsed):hover .db-sidebar-collapse {
-        opacity: 1;
+    .db-sidebar:not(.collapsed) .db-sidebar-collapse:hover {
+        background: var(--sidebar-item-hover);
+        color: var(--text-primary);
+        transform: translateY(-50%) scale(1.08);
+    }
+
+    .db-sidebar.collapsed .db-sidebar-collapse:hover {
+        background: var(--sidebar-item-hover);
+        color: var(--text-primary);
+        transform: translateY(-50%) scale(1.08);
     }
 
     /* Search: icon only */
@@ -777,8 +963,19 @@ textarea {
         padding: 8px;
     }
 
+    /* Fade the "expand-only" markup (search label, kbd hint, balance label,
+       sidebar action labels) instead of display: none. The visibility delay
+       reads them out of the AOM after the fade completes. */
     .db-sidebar.collapsed:not(.is-hover-expanded) .db-hide-collapsed {
-        display: none;
+        opacity: 0;
+        max-width: 0;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        visibility: hidden;
+        transition: opacity 200ms cubic-bezier(0.22, 1, 0.36, 1),
+            max-width 280ms cubic-bezier(0.22, 1, 0.36, 1),
+            visibility 0s linear 200ms;
     }
 
     .db-sidebar.collapsed:not(.is-hover-expanded) .db-show-collapsed {
@@ -817,8 +1014,21 @@ textarea {
         position: relative;
     }
 
-    .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-item .db-nav-item-text {
-        display: none;
+    /* Use opacity (not display: none) so the text fades smoothly with the
+       width transition. The 0 max-width keeps the icon centered without the
+       text occupying invisible flex space. visibility (delayed) handles a11y. */
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-item .db-nav-item-text,
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-expand-trigger .db-nav-item-text,
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-sidebar-logout .db-nav-item-text {
+        opacity: 0;
+        max-width: 0;
+        flex: 0 0 0;
+        margin: 0;
+        padding: 0;
+        visibility: hidden;
+        transition: opacity 200ms cubic-bezier(0.22, 1, 0.36, 1),
+            max-width 280ms cubic-bezier(0.22, 1, 0.36, 1),
+            visibility 0s linear 200ms;
     }
 
     .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-item i {
@@ -892,6 +1102,47 @@ textarea {
     }
 
     .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-expand-items .db-nav-item .db-nav-item-text {
+        display: block;
+    }
+
+    /* Hover-expanded state: behave exactly like the fully-expanded sidebar.
+       The popup positioning from `:not(.is-hover-expanded)` no longer
+       applies, so this rule reasserts inline behaviour explicitly — items
+       drop down inside the nav column when the user clicks Services. */
+    .db-sidebar.collapsed.is-hover-expanded .db-nav-expand-items {
+        position: static;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        padding-left: 28px;
+        padding-right: 0;
+        margin: 0;
+        min-width: 0;
+        z-index: auto;
+    }
+
+    [dir="rtl"] .db-sidebar.collapsed.is-hover-expanded .db-nav-expand-items {
+        padding-left: 0;
+        padding-right: 28px;
+    }
+
+    /* Show submenu when the parent has .open OR the user is hovering it.
+       Hovering covers the case where the user reaches the trigger before
+       clicking — the items appear immediately, matching the popup behavior
+       in the pure-collapsed state. */
+    .db-sidebar.collapsed.is-hover-expanded .db-nav-expand.open .db-nav-expand-items,
+    .db-sidebar.collapsed.is-hover-expanded .db-nav-expand:hover .db-nav-expand-items {
+        display: block;
+    }
+
+    /* Force the inline submenu items to use the regular layout (left-aligned,
+       text visible) — overrides any leftover collapsed-state declarations. */
+    .db-sidebar.collapsed.is-hover-expanded .db-nav-expand-items .db-nav-item {
+        justify-content: flex-start;
+        padding: 6px 12px;
+    }
+
+    .db-sidebar.collapsed.is-hover-expanded .db-nav-expand-items .db-nav-item .db-nav-item-text {
         display: block;
     }
 
@@ -991,6 +1242,111 @@ textarea {
 }
 
 
+/* Prevent stray horizontal scroll on every page — Cloud server wizards and
+   project-shell hero strips occasionally grew a few pixels past the viewport
+   (long pill labels, large icons, etc.), producing a slight left/right jitter
+   when users scrolled vertically on mobile. Contain it at the shell level so
+   individual widgets still scroll their own axis when they need to. */
+.db-shell,
+.db-content {
+    overflow-x: clip;
+    max-width: 100vw;
+}
+
+/* Tables are the most common culprit — wrap them with their own horizontal
+   scroll so long rows scroll themselves instead of expanding the page. */
+.db-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+
+/* ═══════════════════════════════════════════
+   DASHBOARD FOOTER (compact strip)
+   ═══════════════════════════════════════════ */
+
+.db-footer {
+    flex-shrink: 0;
+    padding: 14px var(--content-padding);
+    background: var(--bg-footer, var(--bg-secondary));
+    border-top: 1px solid var(--border-secondary);
+    font-size: 0.78rem;
+    color: var(--text-tertiary);
+}
+
+.db-footer__inner {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.db-footer__left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.db-footer__copy {
+    font-weight: 500;
+    color: var(--text-tertiary);
+}
+
+.db-footer__divider,
+.db-footer__sep {
+    color: var(--border-primary);
+    user-select: none;
+}
+
+.db-footer__links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.db-footer__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color var(--motion-fast) var(--ease-glide);
+}
+
+.db-footer__link:hover {
+    color: var(--brand-primary);
+}
+
+.db-footer__link--muted {
+    color: var(--text-tertiary);
+}
+
+.db-footer__link i {
+    font-size: 0.72rem;
+    opacity: 0.8;
+}
+
+@media (max-width: 680px) {
+    .db-footer__inner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .db-footer__left,
+    .db-footer__links {
+        justify-content: center;
+    }
+}
+
+
 /* ═══════════════════════════════════════════
    MAIN CONTENT AREA
    ═══════════════════════════════════════════ */
@@ -1002,13 +1358,24 @@ textarea {
     min-width: 0;
     display: flex;
     flex-direction: column;
-    transition: margin-left var(--duration-base) var(--ease-out);
+    /* Use the SAME duration + curve as .db-sidebar so the main content
+       glides in lockstep with the sidebar width. Mismatched durations were
+       causing the "flash" — the content slid 140ms before the sidebar
+       finished, briefly showing the page background underneath. */
+    transition: margin-left 440ms cubic-bezier(0.22, 1, 0.36, 1);
+    /* Contain any child element that tries to grow past the viewport — stops
+       the whole page from developing a horizontal scrollbar when a wide
+       card (table, stats strip) refuses to wrap on small screens. Each
+       scrollable child still scrolls on its own axis. */
+    overflow-x: hidden;
+    will-change: margin-left;
 }
 
 [dir="rtl"] .db-main {
     margin-left: 0;
     margin-right: var(--sidebar-width);
-    transition: margin-right var(--duration-base) var(--ease-out);
+    transition: margin-right 440ms cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: margin-right;
 }
 
 /* Collapsed sidebar — reduce main content margin + expand content */
@@ -1023,6 +1390,12 @@ textarea {
 
 .db-shell--collapsed .db-content {
     max-width: 100%;
+}
+
+/* Match the sidebar/main transition curve so the content's max-width grows
+   in lockstep with the layout, no jump when the inner column re-flows. */
+.db-content {
+    transition: max-width 440ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 
@@ -1092,7 +1465,7 @@ textarea {
     display: none;
 }
 
-[dir="rtl"] .db-breadcrumbs {
+/* [dir="rtl"] .db-breadcrumbs {
     -webkit-mask-image: linear-gradient(to left,
             transparent 0,
             black 12px,
@@ -1103,7 +1476,7 @@ textarea {
             black 12px,
             black calc(100% - 16px),
             transparent 100%);
-}
+} */
 
 .db-breadcrumb-link,
 .db-breadcrumb-current,
@@ -1794,74 +2167,27 @@ textarea {
 }
 
 /* Notification Item (for future use) */
-.db-notif-item {
-    display: flex;
-    gap: 12px;
-    padding: 12px 16px;
-    border-bottom: 1px solid var(--border-secondary);
-    transition: background var(--duration-fast) ease;
-    cursor: pointer;
-}
 
-.db-notif-item:hover {
-    background: var(--bg-card-hover);
-}
 
-.db-notif-item:last-child {
-    border-bottom: none;
-}
 
-.db-notif-item-icon {
-    width: 32px;
-    height: 32px;
-    border-radius: var(--radius-full);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    font-size: 0.78rem;
-}
 
-.db-notif-item-icon--info {
-    background: rgba(37, 99, 235, 0.12);
-    color: var(--brand-primary);
-}
 
-.db-notif-item-icon--success {
-    background: rgba(16, 185, 129, 0.12);
-    color: var(--brand-secondary);
-}
 
-.db-notif-item-icon--warning {
-    background: rgba(245, 158, 11, 0.12);
-    color: var(--brand-warning);
-}
 
-.db-notif-item-content {
-    flex: 1;
-    min-width: 0;
-}
 
-.db-notif-item-text {
-    font-size: 0.84rem;
-    color: var(--text-primary);
-    line-height: 1.4;
-}
 
-.db-notif-item-time {
-    font-size: 0.72rem;
-    color: var(--text-tertiary);
-    margin-top: 2px;
-}
 
-.db-notif-item-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--brand-primary);
-    flex-shrink: 0;
-    margin-top: 6px;
-}
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* ─── Content ─── */
@@ -1883,19 +2209,9 @@ textarea {
     flex-wrap: wrap;
 }
 
-.db-page-title {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    color: var(--text-primary);
-}
 
-.db-page-subtitle {
-    font-size: 0.88rem;
-    color: var(--text-secondary);
-    margin-top: 2px;
-}
+
+
 
 
 /* ═══════════════════════════════════════════
@@ -2281,9 +2597,7 @@ textarea {
         align-items: flex-start;
     }
 
-    .db-page-title {
-        font-size: 1.25rem;
-    }
+    
 }
 
 /* Small Mobile: <=480px */
@@ -2292,9 +2606,7 @@ textarea {
         --content-padding: 12px;
     }
 
-    .db-page-title {
-        font-size: 1.1rem;
-    }
+    
 }
 
 

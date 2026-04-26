@@ -165,7 +165,7 @@ include __DIR__ . '/../../components/page-header.php';
     <!-- Stats -->
     <div class="db-stats-row">
         <div class="db-stat-card"><div class="db-stat-card-icon db-stat-card-icon--primary"><i class="fas fa-headset"></i></div><div class="db-stat-card-body"><div class="db-stat-card-value"><?php echo $stats['total']; ?></div><div class="db-stat-card-label"><?php echo e(__('tickets_stat_total')); ?></div></div></div>
-        <div class="db-stat-card"><div class="db-stat-card-icon db-stat-card-icon--warning"><i class="fas fa-clock"></i></div><div class="db-stat-card-body"><div class="db-stat-card-value"><?php echo $stats['pending']; ?></div><div class="db-stat-card-label"><?php echo e(__('tickets_stat_pending')); ?></div></div></div>
+        <div class="db-stat-card"><div class="db-stat-card-icon db-stat-card-icon--warning"><i class="fas fa-clock"></i></div><div class="db-stat-card-body"><div class="db-stat-card-value"><?php echo $stats['pending']; ?></div><div class="db-stat-card-label"><?php echo e(__('status_pending')); ?></div></div></div>
         <div class="db-stat-card"><div class="db-stat-card-icon db-stat-card-icon--secondary"><i class="fas fa-circle-check"></i></div><div class="db-stat-card-body"><div class="db-stat-card-value"><?php echo $stats['closed']; ?></div><div class="db-stat-card-label"><?php echo e(__('tickets_stat_closed')); ?></div></div></div>
         <div class="db-stat-card"><div class="db-stat-card-icon db-stat-card-icon--accent"><i class="fas fa-spinner"></i></div><div class="db-stat-card-body"><div class="db-stat-card-value"><?php echo $stats['progress']; ?></div><div class="db-stat-card-label"><?php echo e(__('tickets_stat_progress')); ?></div></div></div>
     </div>
@@ -181,10 +181,10 @@ include __DIR__ . '/../../components/page-header.php';
                     </div>
                     <div class="db-fbar__tools">
                         <select class="db-fbar__sort" id="ticketsStatusFilter" data-table-filter="ticketsTable" data-filter-key="status">
-                            <option value=""><?php echo e(__('tickets_filter_all')); ?></option>
+                            <option value=""><?php echo e(__('domains_filter_all')); ?></option>
                             <option value="answered"><?php echo e(__('ticket_status_answered')); ?></option>
                             <option value="customer_reply"><?php echo e(__('ticket_status_customer_reply')); ?></option>
-                            <option value="in_progress"><?php echo e(__('ticket_status_in_progress')); ?></option>
+                            <option value="in_progress"><?php echo e(__('tickets_stat_progress')); ?></option>
                             <option value="closed"><?php echo e(__('ticket_status_closed')); ?></option>
                         </select>
                         <?php include __DIR__ . '/../../components/export-dropdown.php'; ?>
@@ -198,8 +198,8 @@ include __DIR__ . '/../../components/page-header.php';
                         <tr>
                             <th style="width:130px;" class="db-table-sortable" data-sort-key="id"><?php echo e(__('tickets_col_id')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
                             <th class="db-table-sortable" data-sort-key="subject"><?php echo e(__('tickets_col_subject')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
-                            <th class="db-table-hide-tablet db-table-sortable" style="width:120px;" data-sort-key="department"><?php echo e(__('tickets_col_department')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
-                            <th class="db-table-sortable" style="width:120px;" data-sort-key="status"><?php echo e(__('tickets_col_status')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
+                            <th class="db-table-hide-tablet db-table-sortable" style="width:120px;" data-sort-key="department"><?php echo e(__('ticket_new_department')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
+                            <th class="db-table-sortable" style="width:120px;" data-sort-key="status"><?php echo e(__('common_status')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
                             <th class="db-table-hide-mobile db-table-sortable" style="width:130px;" data-sort-key="last_update"><?php echo e(__('tickets_col_last_update')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
                             <th style="width:96px;"></th>
                         </tr>

@@ -12,7 +12,7 @@ $page_js = 'pages/security.js';
 
 require_once __DIR__ . '/../../layouts/config.php';
 
-$page_title = __('security_title') . ' — ' . SITE_NAME;
+$page_title = __('nav_security') . ' — ' . SITE_NAME;
 $breadcrumbs_data = [
     ['label' => __('nav_dashboard'), 'url' => DASH_BASE_PATH . '/'],
     ['label' => __('profile_settings_title'), 'url' => null],
@@ -60,7 +60,7 @@ $security_features = [
         'title'   => __('security_feat_2fa'),
         'desc'    => __('security_feat_2fa_desc'),
         'enabled' => false,
-        'btn_on'  => __('security_feat_enable'),
+        'btn_on'  => __('balance_enable'),
         'btn_off' => __('security_feat_disable'),
         'color'   => 'warning',
     ],
@@ -70,7 +70,7 @@ $security_features = [
         'title'   => __('security_feat_email_login'),
         'desc'    => __('security_feat_email_login_desc'),
         'enabled' => false,
-        'btn_on'  => __('security_feat_enable'),
+        'btn_on'  => __('balance_enable'),
         'btn_off' => __('security_feat_disable'),
         'color'   => 'primary',
     ],
@@ -80,7 +80,7 @@ $security_features = [
         'title'   => __('security_feat_telegram'),
         'desc'    => __('security_feat_telegram_desc'),
         'enabled' => false,
-        'btn_on'  => __('security_feat_enable'),
+        'btn_on'  => __('balance_enable'),
         'btn_off' => __('security_feat_disable'),
         'color'   => 'primary',
     ],
@@ -90,7 +90,7 @@ $security_features = [
         'title'   => __('security_feat_sms'),
         'desc'    => __('security_feat_sms_desc'),
         'enabled' => false,
-        'btn_on'  => __('security_feat_enable'),
+        'btn_on'  => __('balance_enable'),
         'btn_off' => __('security_feat_disable'),
         'color'   => 'accent',
         'soon'    => true,
@@ -101,7 +101,7 @@ $security_features = [
         'title'   => __('security_feat_sso'),
         'desc'    => __('security_feat_sso_desc'),
         'enabled' => true,
-        'btn_on'  => __('security_feat_enable'),
+        'btn_on'  => __('balance_enable'),
         'btn_off' => __('security_feat_disable'),
         'color'   => 'secondary',
     ],
@@ -273,7 +273,7 @@ include __DIR__ . '/../../components/page-header.php';
 <!-- Modals for security features -->
 <?php foreach ($security_features as $feat):
     if (!empty($feat['soon'])) continue;
-    $action_label = $feat['enabled'] ? __('security_feat_disable') : __('security_feat_enable');
+    $action_label = $feat['enabled'] ? __('security_feat_disable') : __('balance_enable');
     $action_class = $feat['enabled'] ? 'db-btn--danger' : 'db-btn--primary';
     $toast_msg = $feat['enabled'] ? __('security_feat_disabled_toast') : __('security_feat_enabled_toast');
 ?>

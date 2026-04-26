@@ -29,7 +29,7 @@ if ($spin_variant === 'inline'):
     <i class="fas fa-shield-halved db-support-pin__icon"></i>
     <span class="db-support-pin__label"><?php echo e(__('support_pin_label')); ?></span>
     <code class="db-support-pin__value" data-pin-value><?php echo e($spin_pin); ?></code>
-    <button type="button" class="db-support-pin__btn" data-pin-copy title="<?php echo e(__('support_pin_copy')); ?>" aria-label="<?php echo e(__('support_pin_copy')); ?>">
+    <button type="button" class="db-support-pin__btn" data-pin-copy title="<?php echo e(__('common_copy')); ?>" aria-label="<?php echo e(__('common_copy')); ?>">
         <i class="fas fa-copy"></i>
     </button>
     <button type="button" class="db-support-pin__btn" data-pin-refresh title="<?php echo e(__('support_pin_refresh')); ?>" aria-label="<?php echo e(__('support_pin_refresh')); ?>">
@@ -54,7 +54,7 @@ if ($spin_variant === 'inline'):
             </div>
             <div class="db-support-pin__actions">
                 <button type="button" class="db-btn db-btn--secondary db-btn--sm" data-pin-copy>
-                    <i class="fas fa-copy"></i> <?php echo e(__('support_pin_copy')); ?>
+                    <i class="fas fa-copy"></i> <?php echo e(__('common_copy')); ?>
                 </button>
                 <button type="button" class="db-btn db-btn--secondary db-btn--sm" data-pin-refresh title="<?php echo e(__('support_pin_refresh_hint')); ?>">
                     <i class="fas fa-rotate"></i> <?php echo e(__('support_pin_refresh')); ?>

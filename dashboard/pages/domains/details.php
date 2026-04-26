@@ -311,10 +311,10 @@ $st_var = $status_variant[$domain['status']] ?? 'warning';
 <div class="db-tab-bar" data-tab-bar data-tab-content="#domTabs">
     <button type="button" class="db-tab-bar__btn is-active" data-tab-target="overview"><i class="fas fa-table-cells"></i> <?php echo e(__('dom_tab_overview')); ?></button>
     <button type="button" class="db-tab-bar__btn" data-tab-target="dns"><i class="fas fa-server"></i> <?php echo e(__('dom_tab_dns')); ?> <span class="db-tab-bar__count"><?php echo count($domain['dns']); ?></span></button>
-    <button type="button" class="db-tab-bar__btn" data-tab-target="nameservers"><i class="fas fa-network-wired"></i> <?php echo e(__('dom_tab_nameservers')); ?></button>
+    <button type="button" class="db-tab-bar__btn" data-tab-target="nameservers"><i class="fas fa-network-wired"></i> <?php echo e(__('cpanel_ns_title')); ?></button>
     <button type="button" class="db-tab-bar__btn" data-tab-target="glue"><i class="fas fa-link"></i> <?php echo e(__('dom_tab_glue')); ?> <span class="db-tab-bar__count"><?php echo count($domain['glue']); ?></span></button>
     <button type="button" class="db-tab-bar__btn" data-tab-target="whois"><i class="fas fa-circle-info"></i> <?php echo e(__('dom_tab_whois')); ?></button>
-    <button type="button" class="db-tab-bar__btn" data-tab-target="settings"><i class="fas fa-gear"></i> <?php echo e(__('dom_tab_settings')); ?></button>
+    <button type="button" class="db-tab-bar__btn" data-tab-target="settings"><i class="fas fa-gear"></i> <?php echo e(__('nav_settings')); ?></button>
 </div>
 
 <div id="domTabs">
@@ -609,7 +609,7 @@ $st_var = $status_variant[$domain['status']] ?? 'warning';
                 <div class="db-dom-kv__row"><dt><?php echo e(__('dom_whois_registrant')); ?></dt><dd><?php echo e($domain['registrant']['name']); ?></dd></div>
                 <div class="db-dom-kv__row"><dt><?php echo e(__('dom_whois_org')); ?></dt><dd><?php echo e($domain['registrant']['org']); ?></dd></div>
                 <div class="db-dom-kv__row"><dt><?php echo e(__('dom_whois_email')); ?></dt><dd class="db-dom-mono"><?php echo e($domain['registrant']['email']); ?></dd></div>
-                <div class="db-dom-kv__row"><dt><?php echo e(__('dom_whois_country')); ?></dt><dd><span class="fi fi-<?php echo e(strtolower($domain['registrant']['country'])); ?>"></span> <?php echo e($domain['registrant']['country']); ?></dd></div>
+                <div class="db-dom-kv__row"><dt><?php echo e(__('auth_country')); ?></dt><dd><span class="fi fi-<?php echo e(strtolower($domain['registrant']['country'])); ?>"></span> <?php echo e($domain['registrant']['country']); ?></dd></div>
                 <div class="db-dom-kv__row"><dt><?php echo e(__('dom_whois_registrar')); ?></dt><dd><?php echo e($domain['registrar']); ?></dd></div>
             </dl>
         </div>
@@ -621,7 +621,7 @@ $st_var = $status_variant[$domain['status']] ?? 'warning';
             <div class="ds-section__head">
                 <h3 class="ds-section__title">
                     <span class="ds-section__icon"><i class="fas fa-gear"></i></span>
-                    <?php echo e(__('dom_tab_settings')); ?>
+                    <?php echo e(__('nav_settings')); ?>
                 </h3>
                 <p class="ds-section__sub"><?php echo e(__('dom_settings_sub')); ?></p>
             </div>
@@ -834,7 +834,7 @@ include __DIR__ . '/../../components/modal.php';
             <div class="db-dom-epp__actions">
                 <button type="button" class="db-dom-epp__btn" id="eppRevealBtn">
                     <i class="fas fa-eye" id="eppRevealIcon"></i>
-                    <span id="eppRevealLabel"><?php echo e(__('dom_epp_reveal')); ?></span>
+                    <span id="eppRevealLabel"><?php echo e(__('common_reveal')); ?></span>
                 </button>
                 <button type="button" class="db-dom-epp__btn" id="eppCopyBtn">
                     <i class="fas fa-copy"></i> <?php echo e(__('common_copy')); ?>
@@ -1143,7 +1143,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!eppValue) return;
         eppValue.textContent = eppValue.getAttribute('data-masked');
         if (eppIcon)  eppIcon.className = 'fas fa-eye';
-        if (eppLabel) eppLabel.textContent = <?php echo json_encode(__('dom_epp_reveal')); ?>;
+        if (eppLabel) eppLabel.textContent = <?php echo json_encode(__('common_reveal')); ?>;
         eppShown = false;
     }
 

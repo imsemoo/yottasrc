@@ -216,7 +216,7 @@ $pay_methods = [
     <div class="db-inv-hero__actions db-inv-actions">
         <button class="db-btn db-btn--ghost db-btn--sm" onclick="DashToast.show('success','','<?php echo e(__('invoices_share_msg')); ?>')"><i class="fas fa-share-nodes"></i></button>
         <button class="db-btn db-btn--ghost db-btn--sm" onclick="downloadInvoice()" title="<?php echo e(__('invoices_download')); ?>"><i class="fas fa-download"></i></button>
-        <button class="db-btn db-btn--ghost db-btn--sm" onclick="window.print()" title="<?php echo e(__('invoices_print')); ?>"><i class="fas fa-print"></i></button>
+        <button class="db-btn db-btn--ghost db-btn--sm" onclick="window.print()" title="<?php echo e(__('toolbar_print')); ?>"><i class="fas fa-print"></i></button>
         <?php if ($is_unpaid): ?>
         <button class="db-btn db-btn--ghost db-btn--sm db-btn--danger-text" onclick="DashModal.open('cancelInvoiceModal')"><i class="fas fa-xmark"></i></button>
         <?php endif; ?>
@@ -267,11 +267,11 @@ $pay_methods = [
                         <span class="db-inv-info-item__value"><?php echo e($invoice['date']); ?></span>
                     </div>
                     <div class="db-inv-info-item">
-                        <span class="db-inv-info-item__label"><?php echo e(__('invoices_meta_due')); ?></span>
+                        <span class="db-inv-info-item__label"><?php echo e(__('keys_col_due')); ?></span>
                         <span class="db-inv-info-item__value"><?php echo e($invoice['due']); ?></span>
                     </div>
                     <div class="db-inv-info-item">
-                        <span class="db-inv-info-item__label"><?php echo e(__('invoices_col_type')); ?></span>
+                        <span class="db-inv-info-item__label"><?php echo e(__('dom_dns_type')); ?></span>
                         <span class="db-inv-info-item__value"><span class="db-badge db-badge--<?php echo e($invoice['type']); ?>"><?php echo e(__('invoices_type_' . $invoice['type'])); ?></span></span>
                     </div>
                 </div>
@@ -283,8 +283,8 @@ $pay_methods = [
                     <table class="db-table">
                         <thead><tr>
                             <th class="db-col-num">#</th>
-                            <th><?php echo e(__('invoices_line_service_details')); ?></th>
-                            <th class="db-col-amount"><?php echo e(__('invoices_col_amount')); ?></th>
+                            <th><?php echo e(__('services_detail_title')); ?></th>
+                            <th class="db-col-amount"><?php echo e(__('keys_col_amount')); ?></th>
                         </tr></thead>
                         <tbody>
                             <?php foreach ($line_items as $item): ?>
@@ -378,7 +378,7 @@ $pay_methods = [
                 <div class="db-inv-paid__desc"><?php echo e(__('invoices_paid_desc')); ?></div>
                 <div class="db-inv-paid__actions">
                     <button class="db-btn db-btn--secondary db-btn--sm" onclick="downloadInvoice()"><i class="fas fa-download"></i> <?php echo e(__('invoices_download')); ?></button>
-                    <button class="db-btn db-btn--ghost db-btn--sm" onclick="window.print()"><i class="fas fa-print"></i> <?php echo e(__('invoices_print')); ?></button>
+                    <button class="db-btn db-btn--ghost db-btn--sm" onclick="window.print()"><i class="fas fa-print"></i> <?php echo e(__('toolbar_print')); ?></button>
                 </div>
             </div>
         </div>
@@ -425,16 +425,72 @@ include __DIR__ . '/../../components/modal-end.php';
 <div class="db-toast-container" id="toastContainer"></div>
 
 <script>
-/*  Invoice download / print: both route through window.print() so the
-    @media print CSS hides the app chrome, payment-method column and
-    action buttons. Browser's built-in "Save as PDF" in the print
-    dialog doubles as the download. */
+/*  Invoice download — produces a standalone HTML file the user can save
+    or forward without going through the browser's print dialog.
+    We bundle the stylesheets (inline <link> refs) + the rendered invoice
+    markup into a self-contained document served via a Blob download.
+    Backend note: when a real PDF endpoint exists (e.g. /api/invoices/{id}.pdf),
+    replace this function with a direct navigation to that URL. */
 function downloadInvoice() {
-    if (window.DashToast) {
-        DashToast.show('info', '', <?php echo json_encode(__('invoices_download_hint')); ?>);
+    try {
+        var doc = document.querySelector('.db-inv-doc');
+        if (!doc) throw new Error('Invoice content not found');
+
+        // Collect every stylesheet link the current page uses so the
+        // download renders with the correct typography & layout.
+        var styleLinks = Array.prototype.map.call(
+            document.querySelectorAll('link[rel="stylesheet"]'),
+            function (l) { return '<link rel="stylesheet" href="' + l.href + '">'; }
+        ).join('\n');
+
+        var invoiceId = <?php echo json_encode((string)$invoice['id']); ?>;
+        var filename  = 'invoice-' + invoiceId + '.html';
+        var title     = <?php echo json_encode(__('invoices_detail_title') . ' — #' . $invoice['id']); ?>;
+        var themeAttr = document.documentElement.getAttribute('data-theme') || 'light';
+        var dirAttr   = document.documentElement.getAttribute('dir') || 'ltr';
+        var langAttr  = document.documentElement.getAttribute('lang') || 'en';
+
+        // Standalone HTML: the <link>s point at absolute URLs already, so
+        // the saved file keeps its styling when opened offline (or at least
+        // once the CDN links are reachable).
+        var html =
+            '<!DOCTYPE html>' +
+            '<html lang="' + langAttr + '" dir="' + dirAttr + '" data-theme="' + themeAttr + '">' +
+            '<head>' +
+                '<meta charset="utf-8">' +
+                '<meta name="viewport" content="width=device-width,initial-scale=1">' +
+                '<title>' + title + '</title>' +
+                styleLinks +
+                '<style>' +
+                    'body{margin:0;padding:24px;background:var(--bg-primary);}' +
+                    '.db-inv-pay,.db-sticky-cta,.db-inv-hero__actions{display:none!important;}' +
+                '</style>' +
+            '</head>' +
+            '<body class="db-shell">' +
+                '<main class="db-main"><div class="db-content">' +
+                    doc.outerHTML +
+                '</div></main>' +
+            '</body></html>';
+
+        var blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+        var url  = URL.createObjectURL(blob);
+        var a    = document.createElement('a');
+        a.href     = url;
+        a.download = filename;
+        a.rel      = 'noopener';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(function () { URL.revokeObjectURL(url); }, 1500);
+
+        if (window.DashToast) {
+            DashToast.show('success', '', <?php echo json_encode(__('invoices_download_success')); ?>);
+        }
+    } catch (err) {
+        if (window.DashToast) {
+            DashToast.show('error', '', <?php echo json_encode(__('invoices_download_failed')); ?>);
+        }
     }
-    // Give the toast a moment to render, then open the print dialog.
-    setTimeout(function () { window.print(); }, 250);
 }
 </script>
 

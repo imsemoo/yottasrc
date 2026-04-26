@@ -8,7 +8,7 @@
  */
 $tab = $changelog_tab ?? 'changelog';
 $tabs = [
-    'changelog' => ['label' => __('changelog_tab_changelog'), 'icon' => 'fas fa-list-ul',     'url' => DASH_BASE_PATH . '/pages/changelog/index.php'],
+    'changelog' => ['label' => __('changelog_title'), 'icon' => 'fas fa-list-ul',     'url' => DASH_BASE_PATH . '/pages/changelog/index.php'],
     'feature'   => ['label' => __('changelog_tab_feature'),   'icon' => 'fas fa-lightbulb',   'url' => DASH_BASE_PATH . '/pages/changelog/feature-request.php'],
     'bug'       => ['label' => __('changelog_tab_bug'),       'icon' => 'fas fa-bug',         'url' => DASH_BASE_PATH . '/pages/changelog/report-bug.php'],
 ];

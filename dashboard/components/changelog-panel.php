@@ -17,7 +17,7 @@ $panel_entries = array_slice($changelog ?? [], 0, 3);
         <header class="db-whatsnew-panel__head">
             <div class="db-whatsnew-panel__title-wrap">
                 <span class="db-whatsnew-panel__icon"><i class="fas fa-wand-magic-sparkles"></i></span>
-                <h2 id="whatsnewTitle" class="db-whatsnew-panel__title"><?php echo e(__('whatsnew_title')); ?></h2>
+                <h2 id="whatsnewTitle" class="db-whatsnew-panel__title"><?php echo e(__('nav_whatsnew')); ?></h2>
             </div>
             <button class="db-whatsnew-panel__close" data-whatsnew-close aria-label="<?php echo e(__('common_close')); ?>">
                 <i class="fas fa-xmark"></i>

@@ -10,11 +10,11 @@ $breadcrumbs_data = null;
 
 require_once __DIR__ . '/../../layouts/config.php';
 
-$page_title = __('ticket_new_title') . ' — ' . SITE_NAME;
+$page_title = __('nav_new_ticket') . ' — ' . SITE_NAME;
 $breadcrumbs_data = [
     ['label' => __('nav_dashboard'), 'url' => DASH_BASE_PATH . '/'],
     ['label' => __('tickets_title'), 'url' => DASH_BASE_PATH . '/pages/support/index.php'],
-    ['label' => __('ticket_new_title'), 'url' => null],
+    ['label' => __('nav_new_ticket'), 'url' => null],
 ];
 
 require_once __DIR__ . '/../../layouts/shell.php';
@@ -57,9 +57,9 @@ $services = [
    PRIORITIES  (select options — SLA routing)
    ────────────────────────────────────────── */
 $priorities = [
-    ['id' => 'low',    'name' => __('ticket_priority_low')],
-    ['id' => 'medium', 'name' => __('ticket_priority_medium')],
-    ['id' => 'high',   'name' => __('ticket_priority_high')],
+    ['id' => 'low',    'name' => __('bug_severity_low')],
+    ['id' => 'medium', 'name' => __('bug_severity_medium')],
+    ['id' => 'high',   'name' => __('bug_severity_high')],
     ['id' => 'urgent', 'name' => __('ticket_priority_urgent')],
 ];
 
@@ -67,7 +67,7 @@ $priorities = [
 ?>
 
 <?php
-$ph_title = __('ticket_new_title');
+$ph_title = __('nav_new_ticket');
 $ph_desc = __('ticket_new_desc');
 $ph_actions = '';
 include __DIR__ . '/../../components/page-header.php';
@@ -156,7 +156,7 @@ include __DIR__ . '/../../components/page-header.php';
 
             <!-- File Upload -->
             <div class="db-form-group">
-                <label class="db-form-label"><?php echo e(__('ticket_new_attachments')); ?></label>
+                <label class="db-form-label"><?php echo e(__('ticket_attachments')); ?></label>
                 <div class="db-file-upload" id="ticketAttachments">
                     <label class="db-file-upload__area" for="ticketAttachmentsInput">
                         <i class="fas fa-cloud-arrow-up"></i>

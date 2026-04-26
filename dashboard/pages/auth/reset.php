@@ -10,7 +10,7 @@ $breadcrumbs_data = null;
 
 require_once __DIR__ . '/../../layouts/config.php';
 
-$page_title = __('auth_reset_title') . ' — ' . SITE_NAME;
+$page_title = __('auth_reset_btn') . ' — ' . SITE_NAME;
 $auth_heading = __('auth_reset_heading');
 $auth_subheading = __('auth_reset_subheading');
 $auth_css = 'reset.css';

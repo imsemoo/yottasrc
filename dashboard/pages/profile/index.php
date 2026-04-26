@@ -11,7 +11,7 @@ $page_js = 'pages/profile.js';
 
 require_once __DIR__ . '/../../layouts/config.php';
 
-$page_title = __('profile_title') . ' — ' . SITE_NAME;
+$page_title = __('nav_profile') . ' — ' . SITE_NAME;
 $breadcrumbs_data = [
     ['label' => __('nav_dashboard'), 'url' => DASH_BASE_PATH . '/'],
     ['label' => __('profile_settings_title'), 'url' => null],
@@ -195,12 +195,12 @@ include __DIR__ . '/../../components/page-header.php';
 
                 <div class="db-form-row">
                     <div class="db-form-group" data-validate="required">
-                        <label class="db-form-label" for="first_name"><?php echo e(__('profile_first_name')); ?> <span class="db-required">*</span></label>
+                        <label class="db-form-label" for="first_name"><?php echo e(__('auth_first_name')); ?> <span class="db-required">*</span></label>
                         <input type="text" class="db-input" id="first_name" value="<?php echo e($user['first_name']); ?>" name="first_name" placeholder="<?php echo e(__('profile_first_name_placeholder')); ?>" required>
                         <span class="db-form-error" hidden><i class="fas fa-circle-exclamation"></i> <?php echo e(__('validation_required')); ?></span>
                     </div>
                     <div class="db-form-group" data-validate="required">
-                        <label class="db-form-label" for="last_name"><?php echo e(__('profile_last_name')); ?> <span class="db-required">*</span></label>
+                        <label class="db-form-label" for="last_name"><?php echo e(__('auth_last_name')); ?> <span class="db-required">*</span></label>
                         <input type="text" class="db-input" id="last_name" value="<?php echo e($user['last_name']); ?>" name="last_name" placeholder="<?php echo e(__('profile_last_name_placeholder')); ?>" required>
                         <span class="db-form-error" hidden><i class="fas fa-circle-exclamation"></i> <?php echo e(__('validation_required')); ?></span>
                     </div>
@@ -209,7 +209,7 @@ include __DIR__ . '/../../components/page-header.php';
                 <div class="db-form-row">
                     <div class="db-form-group">
                         <label class="db-form-label" for="email">
-                            <?php echo e(__('profile_email')); ?>
+                            <?php echo e(__('auth_email')); ?>
                             <?php if ($user['email_verified']): ?>
                             <span class="db-badge db-badge--active db-badge--inline"><?php echo e(__('profile_verified')); ?></span>
                             <?php endif; ?>
@@ -218,7 +218,7 @@ include __DIR__ . '/../../components/page-header.php';
                         <input type="email" class="db-input" id="email" value="<?php echo e($user['email']); ?>" readonly disabled>
                     </div>
                     <div class="db-form-group">
-                        <label class="db-form-label" for="phone_number"><?php echo e(__('profile_phone')); ?></label>
+                        <label class="db-form-label" for="phone_number"><?php echo e(__('auth_phone')); ?></label>
                         <div class="db-phone-wrapper">
                             <div class="db-phone-input" id="phoneInput">
                                 <button type="button" class="db-phone-country" id="phoneCountryBtn" aria-expanded="false" aria-haspopup="listbox">
@@ -249,13 +249,13 @@ include __DIR__ . '/../../components/page-header.php';
                 </div>
 
                 <div class="db-form-group">
-                    <label class="db-form-label" for="company"><?php echo e(__('profile_company')); ?></label>
+                    <label class="db-form-label" for="company"><?php echo e(__('auth_company')); ?></label>
                     <input type="text" class="db-input" id="company" value="<?php echo e($user['company']); ?>" name="company" placeholder="<?php echo e(__('profile_company_placeholder')); ?>">
                 </div>
 
                 <!-- Section: Address -->
                 <div class="db-form-separator"></div>
-                <div class="db-form-section-title"><?php echo e(__('profile_section_address')); ?></div>
+                <div class="db-form-section-title"><?php echo e(__('auth_address')); ?></div>
 
                 <div class="db-form-row">
                     <div class="db-form-group" style="grid-column: 1 / -1;">
@@ -266,7 +266,7 @@ include __DIR__ . '/../../components/page-header.php';
 
                 <div class="db-form-row">
                     <div class="db-form-group">
-                        <label class="db-form-label" for="city"><?php echo e(__('profile_city')); ?></label>
+                        <label class="db-form-label" for="city"><?php echo e(__('auth_city')); ?></label>
                         <input type="text" class="db-input" id="city" value="<?php echo e($user['city']); ?>" name="city" placeholder="<?php echo e(__('profile_city_placeholder')); ?>">
                     </div>
                     <div class="db-form-group">
@@ -293,7 +293,7 @@ include __DIR__ . '/../../components/page-header.php';
                 ?>
                 <div class="db-form-row">
                     <div class="db-form-group">
-                        <label class="db-form-label" for="country"><?php echo e(__('profile_country')); ?></label>
+                        <label class="db-form-label" for="country"><?php echo e(__('auth_country')); ?></label>
                         <div class="db-country-wrapper">
                             <button type="button" class="db-country-select" id="countrySelectBtn" aria-expanded="false">
                                 <span class="fi fi-<?php echo e($selected_country_code); ?> db-country-flag" id="countrySelectFlag"></span>

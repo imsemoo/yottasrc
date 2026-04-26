@@ -52,10 +52,10 @@
                 </button>
                 <div class="db-nav-expand-items">
                     <a href="<?php echo e(DASH_BASE_PATH); ?>/pages/services/index.php" class="db-nav-item<?php echo is_active('services'); ?>">
-                        <span class="db-nav-item-text"><?php echo e(__('nav_my_services')); ?></span>
+                        <span class="db-nav-item-text"><?php echo e(__('services_title')); ?></span>
                     </a>
                     <a href="<?php echo e(DASH_BASE_PATH); ?>/pages/services/order.php" class="db-nav-item<?php echo is_active('order'); ?>">
-                        <span class="db-nav-item-text"><?php echo e(__('nav_order_new')); ?></span>
+                        <span class="db-nav-item-text"><?php echo e(__('order_title')); ?></span>
                     </a>
                 </div>
             </div>
@@ -90,9 +90,9 @@
                 <span class="db-nav-item-text"><?php echo e(__('nav_credit_balance')); ?></span>
             </a>
 
-            <a href="<?php echo e(DASH_BASE_PATH); ?>/pages/billing/transactions.php" class="db-nav-item<?php echo is_active('transactions'); ?>" data-tooltip="<?php echo e(__('nav_transactions')); ?>">
+            <a href="<?php echo e(DASH_BASE_PATH); ?>/pages/billing/transactions.php" class="db-nav-item<?php echo is_active('transactions'); ?>" data-tooltip="<?php echo e(__('txn_total_count')); ?>">
                 <i class="fas fa-arrow-right-arrow-left"></i>
-                <span class="db-nav-item-text"><?php echo e(__('nav_transactions')); ?></span>
+                <span class="db-nav-item-text"><?php echo e(__('txn_total_count')); ?></span>
             </a>
 
             <a href="<?php echo e(DASH_BASE_PATH); ?>/pages/billing/add-funds.php" class="db-nav-item<?php echo is_active('add-funds'); ?>" data-tooltip="<?php echo e(__('nav_add_funds')); ?>">
@@ -100,9 +100,9 @@
                 <span class="db-nav-item-text"><?php echo e(__('nav_add_funds')); ?></span>
             </a>
 
-            <a href="<?php echo e(DASH_BASE_PATH); ?>/pages/affiliates/index.php" class="db-nav-item<?php echo is_active('affiliates'); ?>" data-tooltip="<?php echo e(__('nav_affiliates')); ?>">
+            <a href="<?php echo e(DASH_BASE_PATH); ?>/pages/affiliates/index.php" class="db-nav-item<?php echo is_active('affiliates'); ?>" data-tooltip="<?php echo e(__('aff_title')); ?>">
                 <i class="fas fa-handshake-angle"></i>
-                <span class="db-nav-item-text"><?php echo e(__('nav_affiliates')); ?></span>
+                <span class="db-nav-item-text"><?php echo e(__('aff_title')); ?></span>
             </a>
         </div>
 
@@ -167,7 +167,7 @@
             </div> -->
             <a href="<?php echo e(DASH_BASE_PATH); ?>/pages/billing/add-funds.php" class="db-sidebar-balance-action">
                 <i class="fas fa-plus db-show-collapsed"></i>
-                <span class="db-hide-collapsed"><?php echo e(__('balance_add_funds')); ?></span>
+                <span class="db-hide-collapsed"><?php echo e(__('nav_add_funds')); ?></span>
             </a>
         </div>
 

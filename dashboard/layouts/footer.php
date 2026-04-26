@@ -23,16 +23,16 @@
 <script>
 window.__dashSearchSuggestions = [
     { type: 'page',    icon: 'fas fa-table-cells',        label: '<?php echo e(__('nav_dashboard')); ?>',         href: '<?php echo e(DASH_BASE_PATH); ?>/' },
-    { type: 'page',    icon: 'fas fa-server',             label: '<?php echo e(__('nav_my_services')); ?>',       href: '<?php echo e(DASH_BASE_PATH); ?>/pages/services/index.php' },
-    { type: 'page',    icon: 'fas fa-plus',               label: '<?php echo e(__('nav_order_new')); ?>',         href: '<?php echo e(DASH_BASE_PATH); ?>/pages/services/order.php' },
+    { type: 'page',    icon: 'fas fa-server',             label: '<?php echo e(__('services_title')); ?>',       href: '<?php echo e(DASH_BASE_PATH); ?>/pages/services/index.php' },
+    { type: 'page',    icon: 'fas fa-plus',               label: '<?php echo e(__('order_title')); ?>',         href: '<?php echo e(DASH_BASE_PATH); ?>/pages/services/order.php' },
     { type: 'page',    icon: 'fas fa-cloud',              label: '<?php echo e(__('nav_cloud_servers')); ?>',     href: '<?php echo e(DASH_BASE_PATH); ?>/pages/cloud/index.php' },
     { type: 'page',    icon: 'fas fa-globe',              label: '<?php echo e(__('nav_domains')); ?>',           href: '<?php echo e(DASH_BASE_PATH); ?>/pages/domains/index.php' },
     { type: 'page',    icon: 'fas fa-file-lines',         label: '<?php echo e(__('nav_invoices')); ?>',          href: '<?php echo e(DASH_BASE_PATH); ?>/pages/billing/invoices.php' },
     { type: 'page',    icon: 'fas fa-credit-card',        label: '<?php echo e(__('nav_payment_methods')); ?>',   href: '<?php echo e(DASH_BASE_PATH); ?>/pages/billing/payment-methods.php' },
     { type: 'page',    icon: 'fas fa-wallet',             label: '<?php echo e(__('nav_credit_balance')); ?>',    href: '<?php echo e(DASH_BASE_PATH); ?>/pages/billing/credit-balance.php' },
-    { type: 'page',    icon: 'fas fa-arrow-right-arrow-left', label: '<?php echo e(__('nav_transactions')); ?>',  href: '<?php echo e(DASH_BASE_PATH); ?>/pages/billing/transactions.php' },
+    { type: 'page',    icon: 'fas fa-arrow-right-arrow-left', label: '<?php echo e(__('txn_total_count')); ?>',  href: '<?php echo e(DASH_BASE_PATH); ?>/pages/billing/transactions.php' },
     { type: 'page',    icon: 'fas fa-circle-plus',        label: '<?php echo e(__('nav_add_funds')); ?>',         href: '<?php echo e(DASH_BASE_PATH); ?>/pages/billing/add-funds.php' },
-    { type: 'page',    icon: 'fas fa-handshake-angle',    label: '<?php echo e(__('nav_affiliates')); ?>',        href: '<?php echo e(DASH_BASE_PATH); ?>/pages/affiliates/index.php' },
+    { type: 'page',    icon: 'fas fa-handshake-angle',    label: '<?php echo e(__('aff_title')); ?>',        href: '<?php echo e(DASH_BASE_PATH); ?>/pages/affiliates/index.php' },
     { type: 'page',    icon: 'fas fa-message',            label: '<?php echo e(__('nav_tickets')); ?>',           href: '<?php echo e(DASH_BASE_PATH); ?>/pages/support/index.php' },
     { type: 'page',    icon: 'fas fa-plus',               label: '<?php echo e(__('nav_new_ticket')); ?>',        href: '<?php echo e(DASH_BASE_PATH); ?>/pages/support/new.php' },
     { type: 'page',    icon: 'fas fa-user',               label: '<?php echo e(__('nav_profile')); ?>',           href: '<?php echo e(DASH_BASE_PATH); ?>/pages/profile/index.php' },
@@ -54,6 +54,8 @@ window.__dashSearchSuggestions = [
 ];
 </script>
 
+        </main><!-- /.db-content (opened in layouts/shell.php or project-shell.php) -->
+        <?php include __DIR__ . '/../components/dashboard-footer.php'; ?>
     </div><!-- /.db-main -->
 </div><!-- /.db-shell -->
 
