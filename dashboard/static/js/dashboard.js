@@ -127,11 +127,17 @@
             const leave = () => {
                 cancelTimers();
                 leaveTimer = setTimeout(() => {
+                    // Only reset submenus when we were in the transient
+                    // hover-expanded state. If the sidebar is permanently
+                    // expanded, the user's explicit click on Services should
+                    // persist until they click it again — never auto-close
+                    // on mouse leave.
+                    const wasHoverExpanded = this.sidebar.classList.contains('is-hover-expanded');
                     this.sidebar.classList.remove('is-hover-expanded');
-                    // Also close any inline-opened submenus so the next hover
-                    // starts from a clean state.
-                    this.sidebar.querySelectorAll('.db-nav-expand.open')
-                        .forEach(el => el.classList.remove('open'));
+                    if (wasHoverExpanded) {
+                        this.sidebar.querySelectorAll('.db-nav-expand.open')
+                            .forEach(el => el.classList.remove('open'));
+                    }
                     leaveTimer = null;
                 }, LEAVE_DELAY);
             };
