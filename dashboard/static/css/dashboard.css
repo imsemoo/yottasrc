@@ -991,6 +991,7 @@ textarea {
         font-size: 0;
         padding: 6px 0 2px;
         text-align: center;
+        display: none;
     }
 
     /* Render a tiny dot separator instead of text */
@@ -1014,21 +1015,13 @@ textarea {
         position: relative;
     }
 
-    /* Use opacity (not display: none) so the text fades smoothly with the
-       width transition. The 0 max-width keeps the icon centered without the
-       text occupying invisible flex space. visibility (delayed) handles a11y. */
+    /* Hide the label completely when collapsed. display:none takes the span
+       out of the flex layout so the parent's `gap` no longer applies — that
+       gap was the reason the icon sat ~5px off-center. */
     .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-item .db-nav-item-text,
     .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-expand-trigger .db-nav-item-text,
     .db-sidebar.collapsed:not(.is-hover-expanded) .db-sidebar-logout .db-nav-item-text {
-        opacity: 0;
-        max-width: 0;
-        flex: 0 0 0;
-        margin: 0;
-        padding: 0;
-        visibility: hidden;
-        transition: opacity 200ms cubic-bezier(0.22, 1, 0.36, 1),
-            max-width 280ms cubic-bezier(0.22, 1, 0.36, 1),
-            visibility 0s linear 200ms;
+        display: none;
     }
 
     .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-item i {
@@ -1089,6 +1082,29 @@ textarea {
 
     .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-expand {
         position: relative;
+    }
+
+    /* Invisible hover bridge: fills the 8px gap between the trigger and the
+       floating popup so the cursor never leaves `.db-nav-expand:hover` while
+       crossing over. Without this, CSS :hover flips to false in the gap and
+       the popup vanishes before the user can reach its items. */
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-expand-trigger {
+        position: relative;
+    }
+
+    .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-expand-trigger::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 100%;
+        width: 8px;
+        height: 100%;
+        background: transparent;
+    }
+
+    [dir="rtl"] .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-expand-trigger::after {
+        left: auto;
+        right: 100%;
     }
 
     .db-sidebar.collapsed:not(.is-hover-expanded) .db-nav-expand:hover .db-nav-expand-items,
