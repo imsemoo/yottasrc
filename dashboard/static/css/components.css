@@ -12385,6 +12385,16 @@ a.db-balance-stat:hover .db-balance-stat__value {
     gap: 8px;
     padding: 9px 18px;
     border-radius: var(--radius-sm);
+}
+
+/* Honour the [hidden] attribute (used by the JS on step 1 to remove the
+   Back button). The class rule above sets display:inline-flex which
+   otherwise overrides the UA stylesheet's [hidden] { display:none }. */
+.db-create-nav__btn[hidden] {
+    display: none;
+}
+
+.db-create-nav__btn-placeholder {
     border: 1px solid transparent;
     font-family: var(--font-display);
     font-weight: 700;
