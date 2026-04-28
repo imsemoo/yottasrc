@@ -1508,10 +1508,15 @@ return [
     'srvd_access_password_copied'  => 'Password copied.',
 
     // Specs
-    'srvd_specs_sub'               => 'Hardware and billing overview for this server.',
-    'srvd_spec_cores'              => 'cores',
-    'srvd_spec_status_sub'         => 'all systems nominal',
-    'srvd_spec_cycle'              => 'Plan Cost',
+    'srvd_specs_sub'                => 'Hardware shape for this server.',
+    'srvd_spec_cores'               => 'cores',
+    'srvd_spec_status_sub'          => 'all systems nominal',
+    'srvd_spec_cycle'               => 'Plan Cost',
+    'srvd_overview_status_title'    => 'Specifications & Status',
+    'srvd_overview_status_sub'      => 'Service state, location, and billing lifecycle.',
+    'common_supported'              => 'Supported',
+    'common_not_supported'          => 'Not supported',
+    'os_current_installed'          => 'Currently installed',
 
     // ═══ M4 PREMIUM — Create Server wizard ═══
     'create_cs_step_prefix'        => 'Step',

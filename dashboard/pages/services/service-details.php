@@ -195,8 +195,8 @@ $bandwidth = [
      id, date, due, amount, status, type
    ────────────────────────────────────────── */
 $linked_invoices = [
-    ['id' => 310630, 'date' => '03/04/2026', 'due' => '05/04/2026', 'amount' => 3.42, 'status' => 'unpaid', 'type' => 'renewal'],
-    ['id' => 307776, 'date' => '24/03/2026', 'due' => '24/03/2026', 'amount' => 3.42, 'status' => 'paid',   'type' => 'new_service'],
+    ['id' => 310630, 'date' => '03/04/2026', 'due' => '05/04/2026', 'amount' => 3.42, 'status' => 'unpaid', 'type' => 'renewal',     'desc' => $service['plan'] . ' · ' . $service['cycle'] . ' renewal'],
+    ['id' => 307776, 'date' => '24/03/2026', 'due' => '24/03/2026', 'amount' => 3.42, 'status' => 'paid',   'type' => 'new_service', 'desc' => $service['plan'] . ' · Initial setup'],
 ];
 
 /* ──────────────────────────────────────────
@@ -206,11 +206,24 @@ $linked_invoices = [
    and shown with a checkmark.
    ────────────────────────────────────────── */
 $os_list = [
-    ['name' => 'Ubuntu 24.04'], ['name' => 'Ubuntu 22.04', 'current' => true], ['name' => 'Ubuntu 20.04'], ['name' => 'Ubuntu 18.04'],
-    ['name' => 'Rocky Linux 9'], ['name' => 'Rocky Linux 8'], ['name' => 'Rocky Linux 10'], ['name' => 'Debian 9'],
-    ['name' => 'Debian 8'], ['name' => 'Debian 12'], ['name' => 'Debian 11'], ['name' => 'Debian 10'],
-    ['name' => 'CentOS Stream 9'], ['name' => 'CentOS Stream 8'], ['name' => 'CentOS 7'],
-    ['name' => 'AlmaLinux 9'], ['name' => 'AlmaLinux 8'], ['name' => 'AlmaLinux 10'],
+    ['name' => 'Ubuntu 24.04',     'tag' => 'LTS · Latest'],
+    ['name' => 'Ubuntu 22.04',     'tag' => 'LTS', 'current' => true],
+    ['name' => 'Ubuntu 20.04',     'tag' => 'LTS'],
+    ['name' => 'Ubuntu 18.04',     'tag' => 'EOL'],
+    ['name' => 'Rocky Linux 9',    'tag' => 'Stable'],
+    ['name' => 'Rocky Linux 8',    'tag' => 'Stable'],
+    ['name' => 'Rocky Linux 10',   'tag' => 'Latest'],
+    ['name' => 'Debian 9',         'tag' => 'EOL'],
+    ['name' => 'Debian 8',         'tag' => 'EOL'],
+    ['name' => 'Debian 12',        'tag' => 'Stable · Latest'],
+    ['name' => 'Debian 11',        'tag' => 'Old Stable'],
+    ['name' => 'Debian 10',        'tag' => 'EOL'],
+    ['name' => 'CentOS Stream 9',  'tag' => 'Stream'],
+    ['name' => 'CentOS Stream 8',  'tag' => 'Stream · EOL'],
+    ['name' => 'CentOS 7',         'tag' => 'EOL'],
+    ['name' => 'AlmaLinux 9',      'tag' => 'Stable'],
+    ['name' => 'AlmaLinux 8',      'tag' => 'Stable'],
+    ['name' => 'AlmaLinux 10',     'tag' => 'Latest'],
 ];
 
 /* ──────────────────────────────────────────
@@ -399,8 +412,44 @@ $os_icon    = $os_icons[$os_key] ?? 'fab fa-linux';
             </div>
         </div>
 
-        <!-- Package Specifications — 6-tile premium grid -->
+        <!-- Specifications & Status — billing/lifecycle facts (split out from
+             the hardware grid below so the user can scan business state and
+             hardware shape independently, mirroring the legacy dashboard). -->
         <div class="db-srvd-specs">
+            <div class="db-srvd-specs__head">
+                <h3 class="db-srvd-specs__title">
+                    <span class="db-srvd-specs__icon"><i class="fas fa-circle-info"></i></span>
+                    <?php echo e(__('srvd_overview_status_title')); ?>
+                </h3>
+                <p class="db-srvd-specs__sub"><?php echo e(__('srvd_overview_status_sub')); ?></p>
+            </div>
+            <div class="db-srvd-specs__grid">
+                <?php
+                $status_specs = [
+                    ['icon' => 'fa-circle-check',  'label' => __('common_status'),         'value' => strtoupper($service['status']),                  'unit' => '', 'meta' => __('srvd_spec_status_sub'), 'seed' => 1, 'is_status' => true],
+                    ['icon' => 'fa-location-dot',  'label' => __('cpanel_fact_location'),  'value' => $service['location'],                            'unit' => '', 'meta' => '',                          'seed' => 0],
+                    ['icon' => 'fa-clock',         'label' => __('cpanel_bf_cycle'),       'value' => $service['cycle'],                               'unit' => '', 'meta' => '',                          'seed' => 2],
+                    ['icon' => 'fa-euro-sign',     'label' => __('cpanel_bf_renewal'),     'value' => format_money($service['amount']),                'unit' => '', 'meta' => '/' . strtolower(substr($service['cycle'], 0, 2)), 'seed' => 3],
+                    ['icon' => 'fa-calendar-day',  'label' => __('services_info_next_due'),'value' => $service['due_date'],                            'unit' => '', 'meta' => '',                          'seed' => 1],
+                ];
+                foreach ($status_specs as $s): ?>
+                <div class="db-srvd-spec" style="--spec-seed: var(--seed-<?php echo $s['seed']; ?>);">
+                    <div class="db-srvd-spec__icon"><i class="fas <?php echo e($s['icon']); ?>"></i></div>
+                    <div class="db-srvd-spec__label"><?php echo e($s['label']); ?></div>
+                    <div class="db-srvd-spec__value<?php echo !empty($s['is_status']) ? ' db-srvd-spec__value--status' : ''; ?>">
+                        <span class="db-srvd-spec__num" style="font-size:1rem;"><?php echo e($s['value']); ?></span>
+                        <?php if (!empty($s['unit'])): ?><span class="db-srvd-spec__unit"><?php echo e($s['unit']); ?></span><?php endif; ?>
+                    </div>
+                    <?php if (!empty($s['meta'])): ?><div class="db-srvd-spec__meta"><?php echo e($s['meta']); ?></div><?php endif; ?>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+
+        <!-- Package Specifications — pure hardware shape (CPU/RAM/SSD/BW/IPv6).
+             Status / cycle / renewal moved up into "Specifications & Status"
+             so each section answers a single question. -->
+        <div class="db-srvd-specs db-srvd-inner--mt-lg">
             <div class="db-srvd-specs__head">
                 <h3 class="db-srvd-specs__title">
                     <span class="db-srvd-specs__icon"><i class="fas fa-microchip"></i></span>
@@ -411,12 +460,11 @@ $os_icon    = $os_icons[$os_key] ?? 'fab fa-linux';
             <div class="db-srvd-specs__grid">
                 <?php
                 $specs = [
-                    ['icon' => 'fa-microchip',         'label' => __('srvd_spec_cpu'),       'value' => $service['cpu_cores'],   'unit' => __('srvd_spec_cores'),                                                     'meta' => $service['cpu_arch'],       'seed' => 0],
-                    ['icon' => 'fa-memory',            'label' => __('srvd_spec_ram'),       'value' => $service['ram_gb'],      'unit' => 'GB',                                                                      'meta' => $service['ram_type'],       'seed' => 1],
-                    ['icon' => 'fa-hard-drive',        'label' => __('srvd_spec_ssd'),       'value' => $service['disk_gb'],     'unit' => 'GB',                                                                      'meta' => $service['disk_type'],      'seed' => 2],
-                    ['icon' => 'fa-arrows-left-right', 'label' => __('srvd_tab_bandwidth'), 'value' => $service['bw_total_tb'], 'unit' => 'TB',                                                                      'meta' => $service['bw_speed'],       'seed' => 3],
-                    ['icon' => 'fa-circle-check',      'label' => __('common_status'),    'value' => strtoupper($service['status']), 'unit' => '',                                                                'meta' => __('srvd_spec_status_sub'), 'seed' => 1, 'is_status' => true],
-                    ['icon' => 'fa-hashtag',           'label' => __('srvd_spec_cycle'),     'value' => '€' . number_format($service['amount'], 2), 'unit' => '/' . strtolower(substr($service['cycle'], 0, 2)),     'meta' => $service['cycle'],          'seed' => 2],
+                    ['icon' => 'fa-microchip',         'label' => __('srvd_spec_cpu'),       'value' => $service['cpu_cores'],   'unit' => __('srvd_spec_cores'),  'meta' => $service['cpu_arch'],       'seed' => 0],
+                    ['icon' => 'fa-memory',            'label' => __('srvd_spec_ram'),       'value' => $service['ram_gb'],      'unit' => 'GB',                   'meta' => $service['ram_type'],       'seed' => 1],
+                    ['icon' => 'fa-hard-drive',        'label' => __('srvd_spec_ssd'),       'value' => $service['disk_gb'],     'unit' => 'GB',                   'meta' => $service['disk_type'],      'seed' => 2],
+                    ['icon' => 'fa-arrows-left-right', 'label' => __('srvd_tab_bandwidth'),  'value' => $service['bw_total_tb'], 'unit' => 'TB',                   'meta' => $service['bw_speed'],       'seed' => 3],
+                    ['icon' => 'fa-network-wired',     'label' => 'IPv6',                    'value' => !empty($service['ipv6']) ? __('common_supported') : __('common_not_supported'), 'unit' => '', 'meta' => '', 'seed' => 1, 'is_status' => !empty($service['ipv6'])],
                 ];
                 foreach ($specs as $s): ?>
                 <div class="db-srvd-spec" style="--spec-seed: var(--seed-<?php echo $s['seed']; ?>);">
@@ -598,16 +646,23 @@ $os_icon    = $os_icons[$os_key] ?? 'fab fa-linux';
     <!-- ═══ REINSTALL — OS grouped by family (enhancement) ═══ -->
     <div class="db-tab-pane" data-tab-pane="reinstall">
         <?php
-        $os_families = ['Ubuntu' => [], 'Debian' => [], 'Rocky Linux' => [], 'CentOS' => [], 'AlmaLinux' => []];
-        foreach ($os_list as $os) {
-            foreach (array_keys($os_families) as $family) {
-                if (strpos($os['name'], $family) === 0) {
-                    $os_families[$family][] = $os;
-                    break;
-                }
+        /* OS rows are rendered as a flat grid (no family grouping) — the
+           grid mirrors the legacy dashboard pattern customers are already
+           used to. Each card derives its brand identity from the OS family
+           prefix in the name (Ubuntu / Debian / ...). */
+        $os_brand_map = [
+            'Ubuntu'      => ['icon' => 'fab fa-ubuntu',   'class' => 'db-os-card--ubuntu'],
+            'Debian'      => ['icon' => 'fab fa-debian',   'class' => 'db-os-card--debian'],
+            'Rocky Linux' => ['icon' => 'fab fa-redhat',   'class' => 'db-os-card--rocky'],
+            'CentOS'      => ['icon' => 'fab fa-centos',   'class' => 'db-os-card--centos'],
+            'AlmaLinux'   => ['icon' => 'fab fa-linux',    'class' => 'db-os-card--alma'],
+        ];
+        $os_brand_for = function ($name) use ($os_brand_map) {
+            foreach ($os_brand_map as $prefix => $brand) {
+                if (strpos($name, $prefix) === 0) return $brand;
             }
-        }
-        $family_icons = ['Ubuntu' => 'fab fa-ubuntu', 'Debian' => 'fab fa-debian', 'Rocky Linux' => 'fab fa-redhat', 'CentOS' => 'fab fa-centos', 'AlmaLinux' => 'fab fa-linux'];
+            return ['icon' => 'fab fa-linux', 'class' => ''];
+        };
         ?>
         <div class="db-srvd-card">
             <div class="db-srvd-card__head"><i class="fas fa-rotate"></i> <?php echo e(__('services_reinstall_title')); ?></div>
@@ -617,27 +672,32 @@ $os_icon    = $os_icons[$os_key] ?? 'fab fa-linux';
                 <li><i class="fas fa-circle"></i> <?php echo e(__('services_reinstall_note3')); ?></li>
             </ul>
 
-            <?php foreach ($os_families as $family => $items):
-                if (empty($items)) continue;
-            ?>
-            <div class="db-vps-os-family">
-                <div class="db-vps-os-family__head">
-                    <i class="<?php echo e($family_icons[$family] ?? 'fab fa-linux'); ?>"></i>
-                    <span><?php echo e($family); ?></span>
-                    <span class="db-vps-os-family__count"><?php echo count($items); ?></span>
-                </div>
-                <div class="db-os-grid">
-                    <?php foreach ($items as $os): ?>
-                    <div class="db-os-card<?php echo !empty($os['current']) ? ' selected' : ''; ?>" onclick="document.querySelectorAll('.db-os-card').forEach(c=>c.classList.remove('selected')); this.classList.add('selected');">
+            <div class="db-os-grid db-srvd-inner--mt-md">
+                <?php foreach ($os_list as $os):
+                    $brand   = $os_brand_for($os['name']);
+                    $tag     = $os['tag'] ?? '';
+                    $is_eol  = stripos($tag, 'EOL') !== false;
+                    $is_curr = !empty($os['current']);
+                ?>
+                <div class="db-os-card <?php echo e($brand['class']); ?><?php echo $is_curr ? ' selected is-current' : ''; ?><?php echo $is_eol ? ' is-eol' : ''; ?>" onclick="document.querySelectorAll('.db-os-card').forEach(c=>c.classList.remove('selected')); this.classList.add('selected');">
+                    <div class="db-os-card__body">
+                        <?php if ($is_curr): ?>
+                        <span class="db-os-card__current-pill"><i class="fas fa-circle-check"></i> <?php echo e(__('os_current_installed')); ?></span>
+                        <?php endif; ?>
                         <span class="db-os-card__name"><?php echo e($os['name']); ?></span>
-                        <i class="fas fa-circle-check db-os-card__check"></i>
+                        <?php if ($tag): ?>
+                        <span class="db-os-card__tag<?php echo $is_eol ? ' db-os-card__tag--eol' : ''; ?>"><?php echo e($tag); ?></span>
+                        <?php endif; ?>
                     </div>
-                    <?php endforeach; ?>
+                    <span class="db-os-card__brand" aria-hidden="true"><i class="<?php echo e($brand['icon']); ?>"></i></span>
+                    <?php if (!$is_curr): ?>
+                    <span class="db-os-card__check" aria-hidden="true"><i class="fas fa-check"></i></span>
+                    <?php endif; ?>
                 </div>
+                <?php endforeach; ?>
             </div>
-            <?php endforeach; ?>
 
-            <div class="db-srvd-actions-row db-srvd-inner--mt-lg">
+            <div class="db-srvd-actions-row db-srvd-actions-row--center db-srvd-inner--mt-lg">
                 <button class="db-btn db-btn--danger" onclick="DashModal.open('reinstallModal')">
                     <i class="fas fa-rotate"></i> <?php echo e(__('srvd_reinstall_btn')); ?>
                 </button>
@@ -657,26 +717,31 @@ $os_icon    = $os_icons[$os_key] ?? 'fab fa-linux';
         <div class="db-srvd-card">
             <div class="db-srvd-card__head"><i class="fas fa-file-invoice"></i> <?php echo e(__('cpanel_billing_info')); ?></div>
 
-            <div class="db-srvd-specs__grid db-srvd-inner--mt-lg" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
-                <div class="db-srvd-spec" style="--spec-seed: var(--seed-0);">
+            <div class="db-srvd-specs__grid db-srvd-inner--mt-lg" style="grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));">
+                <div class="db-srvd-spec db-srvd-spec--with-icon" style="--spec-seed: var(--seed-0);">
+                    <div class="db-srvd-spec__icon"><i class="fas fa-calendar-check"></i></div>
                     <div class="db-srvd-spec__label"><?php echo e(__('cpanel_bf_reg')); ?></div>
                     <div class="db-srvd-spec__value"><span class="db-srvd-spec__num" style="font-size:1.05rem;"><?php echo e($service['created']); ?></span></div>
                 </div>
-                <div class="db-srvd-spec" style="--spec-seed: var(--seed-1);">
+                <div class="db-srvd-spec db-srvd-spec--with-icon" style="--spec-seed: var(--seed-1);">
+                    <div class="db-srvd-spec__icon"><i class="fas fa-clock"></i></div>
                     <div class="db-srvd-spec__label"><?php echo e(__('cpanel_bf_cycle')); ?></div>
                     <div class="db-srvd-spec__value"><span class="db-srvd-spec__num" style="font-size:1.05rem;"><?php echo e($service['cycle']); ?></span></div>
                 </div>
-                <div class="db-srvd-spec" style="--spec-seed: var(--seed-2);">
+                <div class="db-srvd-spec db-srvd-spec--with-icon" style="--spec-seed: var(--seed-2);">
+                    <div class="db-srvd-spec__icon"><i class="fas fa-euro-sign"></i></div>
                     <div class="db-srvd-spec__label"><?php echo e(__('cpanel_bf_renewal')); ?></div>
                     <div class="db-srvd-spec__value"><span class="db-srvd-spec__num"><?php echo format_money($service['amount']); ?></span></div>
                 </div>
-                <div class="db-srvd-spec" style="--spec-seed: var(--seed-3);">
+                <div class="db-srvd-spec db-srvd-spec--with-icon" style="--spec-seed: var(--seed-3);">
+                    <div class="db-srvd-spec__icon"><i class="fas fa-calendar-day"></i></div>
                     <div class="db-srvd-spec__label"><?php echo e(__('services_info_next_due')); ?></div>
                     <div class="db-srvd-spec__value"><span class="db-srvd-spec__num" style="font-size:1.05rem;"><?php echo e($service['due_date']); ?></span></div>
                 </div>
             </div>
 
-            <div class="db-progress-wrap db-srvd-inner--mt-lg">
+            <div class="db-progress-wrap db-progress-wrap--with-icon db-srvd-inner--mt-lg">
+                <span class="db-progress-wrap__icon" aria-hidden="true"><i class="fas fa-calendar-days"></i></span>
                 <div class="db-progress-bar db-progress-bar--sm"><div class="db-progress-bar__fill" style="width:<?php echo $pct; ?>%;"></div></div>
                 <span class="db-progress-badge"><?php echo $service['days_left']; ?> <?php echo e(__('services_billing_days_left')); ?></span>
             </div>
@@ -704,25 +769,103 @@ $os_icon    = $os_icons[$os_key] ?? 'fab fa-linux';
             </div>
         </div>
 
-        <div class="db-srvd-card db-srvd-card--mt">
-            <div class="db-srvd-card__head"><i class="fas fa-list"></i> <?php echo e(__('keys_invoices_title')); ?></div>
-            <div class="db-table-wrapper db-srvd-inner--mt-md">
-                <table class="db-table">
-                    <thead><tr><th>#</th><th><?php echo e(__('credit_col_date')); ?></th><th><?php echo e(__('keys_col_due')); ?></th><th><?php echo e(__('keys_col_amount')); ?></th><th><?php echo e(__('common_status')); ?></th></tr></thead>
-                    <tbody>
-                        <?php foreach ($linked_invoices as $inv):
-                            $is_urgent = ($inv['status'] === 'unpaid' || $inv['status'] === 'overdue');
-                        ?>
-                        <tr class="db-table-row-link <?php echo $is_urgent ? 'db-table-row--urgent' : ''; ?>" onclick="window.location='<?php echo DASH_BASE_PATH; ?>/pages/billing/invoice-details.php?id=<?php echo $inv['id']; ?>&status=<?php echo $inv['status']; ?>'">
-                            <td><span class="db-table-cell-link">#<?php echo e($inv['id']); ?></span></td>
-                            <td><?php echo e($inv['date']); ?></td>
-                            <td><?php echo e($inv['due']); ?></td>
-                            <td><?php echo format_money($inv['amount']); ?></td>
-                            <td><span class="db-badge db-badge--<?php echo e($inv['status']); ?>"><?php echo e(__('status_' . $inv['status'])); ?></span></td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+        <!-- Linked invoices — same pattern as the main /billing/invoices.php
+             page (filter bar with search + status/type filters + export
+             dropdown, sortable columns, row actions, pagination). Same
+             markup contract so the dashboard-wide DashTableTools / DashExport /
+             DashTablePager JS picks it up automatically. -->
+        <div class="db-card db-srvd-card--mt">
+            <div class="db-srvd-card__head" style="padding:16px 18px 0;"><i class="fas fa-list"></i> <?php echo e(__('keys_invoices_title')); ?></div>
+            <div class="db-card-body--table">
+                <div class="db-fbar">
+                    <div class="db-fbar__top">
+                        <div class="db-fbar__search">
+                            <i class="fas fa-magnifying-glass"></i>
+                            <input type="text" data-table-search="serviceInvoicesTable" placeholder="<?php echo e(__('invoices_search_placeholder')); ?>">
+                        </div>
+                        <div class="db-fbar__tools">
+                            <select class="db-fbar__sort" data-table-filter="serviceInvoicesTable" data-filter-key="status">
+                                <option value=""><?php echo e(__('domains_filter_all')); ?></option>
+                                <option value="paid"><?php echo e(__('status_paid')); ?></option>
+                                <option value="unpaid"><?php echo e(__('status_unpaid')); ?></option>
+                                <option value="overdue"><?php echo e(__('status_overdue')); ?></option>
+                            </select>
+                            <select class="db-fbar__sort" data-table-filter="serviceInvoicesTable" data-filter-key="type">
+                                <option value=""><?php echo e(__('toolbar_all_types')); ?></option>
+                                <option value="new_service"><?php echo e(__('invoices_type_new_service')); ?></option>
+                                <option value="renewal"><?php echo e(__('invoices_type_renewal')); ?></option>
+                                <option value="upgrade"><?php echo e(__('services_upgrade_btn')); ?></option>
+                            </select>
+                            <?php include __DIR__ . '/../../components/export-dropdown.php'; ?>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="db-table-wrapper">
+                    <table class="db-table" id="serviceInvoicesTable" data-table-tools>
+                        <thead>
+                            <tr>
+                                <th class="db-table-sortable" data-sort-key="id"><?php echo e(__('invoices_col_invoice')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
+                                <th class="db-table-hide-mobile db-table-sortable" data-sort-key="date"><?php echo e(__('credit_col_date')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
+                                <th class="db-table-hide-tablet db-table-sortable" data-sort-key="due"><?php echo e(__('keys_col_due')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
+                                <th class="db-table-hide-tablet db-table-sortable" data-sort-key="type"><?php echo e(__('dom_dns_type')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
+                                <th class="db-table-sortable" data-sort-key="status"><?php echo e(__('common_status')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
+                                <th class="db-table-cell--right db-table-sortable" data-sort-key="amount"><?php echo e(__('keys_col_amount')); ?> <span class="db-sort-icon"><i class="fas fa-sort"></i></span></th>
+                                <th style="width:90px;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($linked_invoices as $inv):
+                                $detail_url = DASH_BASE_PATH . '/pages/billing/invoice-details.php?id=' . urlencode((string)$inv['id']) . '&status=' . urlencode($inv['status']);
+                                $is_urgent  = ($inv['status'] === 'unpaid' || $inv['status'] === 'overdue');
+                            ?>
+                            <tr class="db-table-row-link <?php echo $is_urgent ? 'db-table-row--urgent' : ''; ?>"
+                                data-row
+                                data-id="<?php echo e(strtolower((string)$inv['id'])); ?>"
+                                data-desc="<?php echo e(strtolower($inv['desc'])); ?>"
+                                data-date="<?php echo e($inv['date']); ?>"
+                                data-due="<?php echo e($inv['due']); ?>"
+                                data-type="<?php echo e($inv['type']); ?>"
+                                data-status="<?php echo e($inv['status']); ?>"
+                                data-amount="<?php echo e($inv['amount']); ?>"
+                                onclick="window.location='<?php echo $detail_url; ?>'">
+                                <td>
+                                    <div class="db-table-cell-main">#<?php echo e($inv['id']); ?></div>
+                                    <div class="db-table-cell-sub"><?php echo e($inv['desc']); ?></div>
+                                </td>
+                                <td class="db-table-hide-mobile"><?php echo e($inv['date']); ?></td>
+                                <td class="db-table-hide-tablet"><?php echo e($inv['due']); ?></td>
+                                <td class="db-table-hide-tablet"><span class="db-badge db-badge--<?php echo e($inv['type']); ?>"><?php echo e(__('invoices_type_' . $inv['type'])); ?></span></td>
+                                <td><span class="db-badge db-badge--<?php echo e($inv['status']); ?>"><?php echo e(__('status_' . $inv['status'])); ?></span></td>
+                                <td class="db-table-cell--right"><span class="db-table-cell-amount"><?php echo format_money($inv['amount']); ?></span></td>
+                                <td>
+                                    <div class="db-row-actions db-row-actions--solid" onclick="event.stopPropagation();">
+                                        <a href="<?php echo $detail_url; ?>" class="db-row-action db-row-action--solid db-row-action--primary" data-tooltip="<?php echo e(__('common_open')); ?>"><i class="fas fa-arrow-up-right-from-square"></i></a>
+                                        <div class="db-dropdown-wrapper">
+                                            <button class="db-row-action db-row-action--solid db-row-action--menu" data-dropdown-toggle><i class="fas fa-ellipsis-vertical"></i></button>
+                                            <div class="db-dropdown-menu">
+                                                <a href="<?php echo $detail_url; ?>" class="db-dropdown-item"><i class="fas fa-eye"></i> <?php echo e(__('common_view')); ?></a>
+                                                <button class="db-dropdown-item" onclick="DashToast.show('success','','Invoice PDF downloaded.');"><i class="fas fa-download"></i> <?php echo e(__('invoices_download')); ?></button>
+                                                <?php if ($inv['status'] === 'unpaid' || $inv['status'] === 'overdue'): ?>
+                                                <div class="db-dropdown-divider"></div>
+                                                <a href="<?php echo $detail_url; ?>" class="db-dropdown-item"><i class="fas fa-credit-card"></i> <?php echo e(__('invoices_pay_now')); ?></a>
+                                                <?php endif; ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                            <?php
+                            $te_colspan = 7; $te_text = __('invoices_empty_search');
+                            include __DIR__ . '/../../components/table-empty.php';
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Client-side pagination — same component used on the main invoices page. -->
+                <div id="serviceInvoicesPagination" data-pager-for="serviceInvoicesTable" data-page-size="10"></div>
             </div>
         </div>
     </div>

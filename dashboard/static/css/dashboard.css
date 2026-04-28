@@ -1382,8 +1382,13 @@ textarea {
     /* Contain any child element that tries to grow past the viewport — stops
        the whole page from developing a horizontal scrollbar when a wide
        card (table, stats strip) refuses to wrap on small screens. Each
-       scrollable child still scrolls on its own axis. */
-    overflow-x: hidden;
+       scrollable child still scrolls on its own axis.
+       NOTE: `clip` not `hidden`. `overflow:hidden` creates a scrolling
+       containing block, which breaks `position: sticky` on the topbar (it
+       starts sticking relative to `.db-main` instead of the viewport, and
+       drifts off-screen as the page scrolls). `clip` clips overflow without
+       creating a scroll context, so sticky descendants behave correctly. */
+    overflow-x: clip;
     will-change: margin-left;
 }
 
@@ -2525,6 +2530,56 @@ textarea {
 
     .db-content {
         max-width: 100%;
+    }
+
+    /* ── Topbar compaction for tablet ─────────────────────────────────────
+       At iPad-Air widths (~820px portrait) the desktop topbar layout
+       (menu • breadcrumbs • [+ New Order] [+ New Ticket] EN ☀ 🔔 user)
+       runs out of space and the breadcrumbs get sliced ("Order New
+       Service" became just "On…"). We collapse three things:
+         1. Quick-action buttons → icon-only
+         2. Switcher label + user name → hidden
+         3. Intermediate breadcrumbs → hidden, leaving only the first crumb,
+            a separator, and the current page. */
+    .db-topbar {
+        gap: 10px;
+    }
+
+    .db-topbar-action-btn {
+        padding: 0;
+        width: 36px;
+        height: 36px;
+        justify-content: center;
+        gap: 0;
+    }
+
+    .db-topbar-action-btn > span {
+        display: none;
+    }
+
+    .db-topbar-action-btn > i {
+        font-size: 0.92rem;
+    }
+
+    .db-topbar-user-name,
+    .db-switcher-label,
+    .db-switcher-arrow {
+        display: none;
+    }
+
+    .db-switcher-toggle {
+        padding: 0 8px;
+        height: 36px;
+        min-width: 36px;
+        justify-content: center;
+    }
+
+    /* Compact breadcrumbs: keep the root crumb (Dashboard) and the
+       current page, hide everything between them. The CSS reads "every
+       child except the first, the last, and the separator before the
+       last" — these get display:none. The result is "Dashboard ▸ <page>". */
+    .db-breadcrumbs > *:not(:first-child):not(:last-child):not(:nth-last-child(2)) {
+        display: none;
     }
 }
 

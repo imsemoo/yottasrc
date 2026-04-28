@@ -132,7 +132,11 @@ html[dir="rtl"] body {
     --bg-card: #111B30;
     --bg-card-hover: #162040;
     --bg-elevated: #1A2540;
-    --bg-footer: #040910;
+    /* Footer mirrors the sidebar/topbar layer so the bottom strip reads as
+       part of the same shell chrome instead of a darker disconnected band.
+       The previous #040910 was darker than --bg-primary, which made the
+       footer feel like a foreign element below the page. */
+    --bg-footer: #0A1020;
     --bg-glass: rgba(13, 21, 39, 0.75);
     --bg-glass-border: rgba(255, 255, 255, 0.06);
 
@@ -215,7 +219,8 @@ html[dir="rtl"] body {
     --bg-card: #FFFFFF;
     --bg-card-hover: #F8FAFF;
     --bg-elevated: #FFFFFF;
-    --bg-footer: #E6EBF4;
+    /* Match the white sidebar/topbar layer — see dark-theme note above. */
+    --bg-footer: #FFFFFF;
     --bg-glass: rgba(255, 255, 255, 0.8);
     --bg-glass-border: rgba(0, 0, 0, 0.06);
 

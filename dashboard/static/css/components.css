@@ -5862,50 +5862,266 @@ a.db-balance-stat:hover .db-balance-stat__value {
    SERVICE DETAIL — OS GRID (Reinstall)
    ═══════════════════════════════════════════ */
 
+/* Flat OS grid (4 columns on desktop). Each card shows the OS name on the
+   start side and a brand-coloured icon badge on the end side. The legacy
+   dashboard used this same flat pattern — we keep the structure but layer
+   the new modern card treatment (gradient hover, soft shadow, brand-tinted
+   icon badge). */
 .db-os-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 8px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+}
+
+@media (max-width: 1180px) {
+    .db-os-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 760px) {
+    .db-os-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 420px) {
+    .db-os-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .db-os-card {
+    --os-brand: 37, 99, 235;
+    position: relative;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 10px 14px;
+    gap: 14px;
+    padding: 16px 24px;
     background: var(--bg-secondary);
-    border: 2px solid var(--border-primary);
+    border: 1.5px solid var(--border-primary);
     border-radius: var(--radius-md);
     cursor: pointer;
-    transition: all var(--duration-fast) ease;
+    overflow: hidden;
+    isolation: isolate;
+    transition: border-color var(--motion-fast) var(--ease-glide),
+        background var(--motion-fast) var(--ease-glide),
+        transform var(--motion-fast) var(--ease-glide),
+        box-shadow var(--motion-fast) var(--ease-glide);
+}
+
+/* Per-OS brand colour — drives the icon badge tint and the selected-state
+   accent. Values are CSS RGB triplets so we can mix alpha through rgba(). */
+.db-os-card--ubuntu { --os-brand: 233, 84, 32; }
+.db-os-card--debian { --os-brand: 215, 10, 83; }
+.db-os-card--rocky  { --os-brand: 16, 185, 129; }
+.db-os-card--centos { --os-brand: 147, 51, 234; }
+.db-os-card--alma   { --os-brand: 14, 165, 233; }
+
+/* Subtle gradient bleed from the icon side — gives the card depth without
+   adding noise. Sits behind the content via z-index. */
+.db-os-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(120% 100% at 100% 50%,
+        rgba(var(--os-brand), 0.08),
+        transparent 60%);
+    opacity: 0;
+    transition: opacity var(--motion-fast) var(--ease-glide);
+}
+
+[dir="rtl"] .db-os-card::before {
+    background: radial-gradient(120% 100% at 0% 50%,
+        rgba(var(--os-brand), 0.08),
+        transparent 60%);
 }
 
 .db-os-card:hover {
-    border-color: var(--brand-primary);
-    background: var(--bg-tertiary);
+    border-color: rgba(var(--os-brand), 0.45);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px -10px rgba(var(--os-brand), 0.32);
+}
+
+.db-os-card:hover::before {
+    opacity: 1;
 }
 
 .db-os-card.selected {
-    border-color: var(--brand-primary);
-    background: rgba(37, 99, 235, 0.06);
+    border-color: rgb(var(--os-brand));
+    background: linear-gradient(135deg,
+        rgba(var(--os-brand), 0.12),
+        rgba(var(--os-brand), 0.02) 70%);
+    box-shadow: 0 0 0 3px rgba(var(--os-brand), 0.16),
+        0 10px 26px -12px rgba(var(--os-brand), 0.45);
+}
+
+.db-os-card.selected::before {
+    opacity: 1;
+}
+
+/* EOL distros render slightly muted to discourage casual selection. They
+   still work — just visually de-emphasised. */
+.db-os-card.is-eol:not(.selected):not(:hover) {
+    opacity: 0.62;
+}
+
+.db-os-card__body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 .db-os-card__name {
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--text-primary);
-}
-
-
-
-.db-os-card__check {
-    display: none;
-    color: var(--brand-primary);
+    font-family: var(--font-display);
     font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
 }
 
-.db-os-card.selected .db-os-card__check {
-    display: block;
+.db-os-card.selected .db-os-card__name {
+    color: rgb(var(--os-brand));
+}
+
+/* Version tag — small, uppercase, mono. Distinguishes Ubuntu 22.04 (LTS)
+   from a Debian "Old Stable" at a glance, without making the card busy. */
+.db-os-card__tag {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+}
+
+.db-os-card.selected .db-os-card__tag {
+    color: rgba(var(--os-brand), 0.85);
+}
+
+.db-os-card__tag--eol {
+    color: var(--brand-warning);
+}
+
+.db-os-card.selected .db-os-card__tag--eol {
+    color: var(--brand-warning);
+}
+
+/* Brand icon badge on the end — square tile tinted with the OS colour.
+   Sits on the trailing edge so the brand glyph reads first in a quick scan. */
+.db-os-card__brand {
+    flex-shrink: 0;
+    display: inline-grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: rgba(var(--os-brand), 0.14);
+    color: rgb(var(--os-brand));
+    font-size: 1.15rem;
+    transition: background var(--motion-fast) var(--ease-glide),
+        transform var(--motion-fast) var(--ease-glide),
+        box-shadow var(--motion-fast) var(--ease-glide);
+}
+
+.db-os-card:hover .db-os-card__brand {
+    transform: scale(1.06);
+    box-shadow: 0 4px 12px -4px rgba(var(--os-brand), 0.45);
+}
+
+.db-os-card.selected .db-os-card__brand {
+    background: rgb(var(--os-brand));
+    color: #fff;
+    box-shadow: 0 6px 16px -4px rgba(var(--os-brand), 0.55);
+}
+
+/* Check indicator — top-right when selected. */
+.db-os-card__check {
+    position: absolute;
+    top: 8px;
+    inset-inline-end: 8px;
+    width: 18px;
+    height: 18px;
+    display: inline-grid;
+    place-items: center;
+    border-radius: 50%;
+    background: rgb(var(--os-brand));
+    color: #fff;
+    font-size: 0.65rem;
+    opacity: 0;
+    transform: scale(0.6);
+    transition: opacity var(--motion-fast) var(--ease-glide),
+        transform var(--motion-fast) var(--ease-glide);
+}
+
+.db-os-card.selected:not(.is-current) .db-os-card__check {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* "Currently installed" pill — sits ABOVE the OS name inside the body
+   (not floating in a corner) so it doesn't clash with the brand icon on
+   the trailing edge. align-self:flex-start keeps it hugging its content
+   instead of stretching to the body width. */
+.db-os-card__current-pill {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 2px;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: rgb(var(--os-brand));
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 1;
+    box-shadow: 0 4px 10px -3px rgba(var(--os-brand), 0.55);
+    white-space: nowrap;
+}
+
+.db-os-card__current-pill > i {
+    font-size: 0.6rem;
+}
+
+/* When the current pill is shown, the version tag below the name is
+   redundant decoration — hide it so the card stays focused. */
+.db-os-card.is-current .db-os-card__tag {
+    display: none;
+}
+
+/* Center-align action rows when needed (Reinstall Now button). */
+.db-srvd-actions-row--center {
+    justify-content: center;
+}
+
+/* Premium "Reinstall Now" — gradient + soft glow so it reads as a
+   committed action, not a bland flat button. */
+.db-srvd-actions-row--center .db-btn--danger {
+    padding: 11px 28px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    border: none;
+    box-shadow: 0 8px 24px -6px rgba(220, 38, 38, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    transition: transform var(--motion-fast) var(--ease-glide),
+        box-shadow var(--motion-fast) var(--ease-glide),
+        filter var(--motion-fast) var(--ease-glide);
+}
+
+.db-srvd-actions-row--center .db-btn--danger:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.06);
+    box-shadow: 0 14px 32px -8px rgba(220, 38, 38, 0.55),
+        inset 0 1px 0 rgba(255, 255, 255, 0.22);
 }
 
 
@@ -6326,15 +6542,24 @@ a.db-balance-stat:hover .db-balance-stat__value {
     gap: 0;
 }
 
-@media (max-width: 768px) {
+/* Drop to a single column at ≤980px. iPad Air portrait sits at 820px CSS
+   pixels — the previous 768px breakpoint kept it at 2 columns, which made
+   each product card ~390px wide and the (icon + name + desc + price + arrow)
+   row felt cramped. Single column on portrait tablets gives each card the
+   full content width; landscape (1180px+) still gets 2 columns. */
+@media (max-width: 980px) {
     .db-order-product-grid {
         grid-template-columns: 1fr;
     }
 
-    /* On phones, the odd-row right-border leaves a weird vertical line —
-       strip it when columns collapse to one. */
+    /* Vertical separator between odd/even cards is meaningless once they
+       stack — strip it so the single column has a clean rhythm. */
     .db-order-prod-card:nth-child(odd) {
         border-right: none;
+    }
+
+    [dir="rtl"] .db-order-prod-card:nth-child(odd) {
+        border-left: none;
     }
 
     [dir="rtl"] .db-order-prod-card:nth-child(odd) {
@@ -9123,16 +9348,30 @@ a.db-balance-stat:hover .db-balance-stat__value {
     list-style: none;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 10px;
     transition: background var(--duration-fast) ease;
+}
+
+/* Icon stays at the start, fixed width so labels align across rows. */
+.db-faq-item__q > i:first-child {
+    flex-shrink: 0;
+    width: 18px;
+    text-align: center;
+    color: var(--brand-primary);
+    font-size: 0.85rem;
 }
 
 .db-faq-item__q:hover {
     background: var(--bg-secondary);
 }
 
+/* Chevron is pushed to the far end by margin-left:auto so the question
+   label sits next to the icon on the start side instead of being centered
+   between icon and chevron (which is what `justify-content: space-between`
+   was causing — three flex items getting evenly distributed). */
 .db-faq-item__q::after {
     content: '\f078';
+    margin-inline-start: auto;
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
     font-size: 0.65rem;
@@ -22188,6 +22427,24 @@ button.db-srvd-access-chip:hover .db-srvd-access-chip__copy {
     flex: 1;
 }
 
+/* Calendar icon badge next to the billing progress bar — gives the bar a
+   visual anchor and matches the legacy dashboard pattern customers expect. */
+.db-progress-wrap--with-icon {
+    gap: 14px;
+}
+
+.db-progress-wrap__icon {
+    flex-shrink: 0;
+    display: inline-grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: rgba(var(--seed-0), 0.14);
+    color: rgb(var(--seed-0));
+    font-size: 0.95rem;
+}
+
 
 /* ── Notice bullet-list inside .db-notice ── */
 
@@ -22271,7 +22528,10 @@ button.db-srvd-access-chip:hover .db-srvd-access-chip__copy {
     .db-stats-rail,
     .db-action-card,
     .db-fbar,
-    .db-pagination-bar {
+    .db-pagination-bar,
+    .db-footer,
+    .db-promo-bar,
+    .db-search-overlay {
         display: none !important;
     }
 
@@ -23259,8 +23519,18 @@ button.db-srvd-access-chip:hover .db-srvd-access-chip__copy {
     transform: translateX(50%);
 }
 
-/* Billing-tools toggle row */
-.db-billing-tool {
+/* Billing-tools toggle row — written for the SIMPLE markup pattern used by
+   cpanel.php and reseller.php:
+       <div class="db-billing-tool">
+           <div><strong>title</strong><span>desc</span></div>
+           <label|button>...</label|button>
+       </div>
+   service-details.php uses a different BEM pattern (db-billing-tool__info /
+   __action). The rules below must NOT bleed into that pattern, otherwise
+   the action wrapper gets `flex: 1 1 260px` and the button stretches across
+   half the row. The :not() filter on `> div` and the `:scope > strong/span`
+   on text rules keep this rule scoped to the simple markup only. */
+.db-billing-tool:not(:has(> .db-billing-tool__info)) {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -23269,7 +23539,7 @@ button.db-srvd-access-chip:hover .db-srvd-access-chip__copy {
     flex-wrap: wrap;
 }
 
-.db-billing-tool > div {
+.db-billing-tool:not(:has(> .db-billing-tool__info)) > div {
     display: flex;
     flex-direction: column;
     gap: 2px;
@@ -23277,19 +23547,19 @@ button.db-srvd-access-chip:hover .db-srvd-access-chip__copy {
     min-width: 0;
 }
 
-.db-billing-tool strong {
+.db-billing-tool:not(:has(> .db-billing-tool__info)) strong {
     color: var(--text-primary);
     font-size: var(--fs-sm);
     font-weight: 700;
 }
 
-.db-billing-tool span {
+.db-billing-tool:not(:has(> .db-billing-tool__info)) span {
     color: var(--text-secondary);
     font-size: var(--fs-sm);
 }
 
-.db-billing-tool strong ~ span strong,
-.db-billing-tool span strong {
+.db-billing-tool:not(:has(> .db-billing-tool__info)) strong ~ span strong,
+.db-billing-tool:not(:has(> .db-billing-tool__info)) span strong {
     color: var(--brand-primary);
     font-weight: 700;
 }

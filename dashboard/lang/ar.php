@@ -1474,10 +1474,15 @@ return [
     'srvd_access_password_copied'  => 'تم نسخ كلمة المرور.',
 
     // Specs
-    'srvd_specs_sub'               => 'مواصفات الهاردوير والفوترة لهذا السيرفر.',
-    'srvd_spec_cores'              => 'نوى',
-    'srvd_spec_status_sub'         => 'كل شيء يعمل بشكل طبيعي',
-    'srvd_spec_cycle'              => 'تكلفة الباقة',
+    'srvd_specs_sub'                => 'مواصفات الهاردوير لهذا السيرفر.',
+    'srvd_spec_cores'               => 'نوى',
+    'srvd_spec_status_sub'          => 'كل شيء يعمل بشكل طبيعي',
+    'srvd_spec_cycle'               => 'تكلفة الباقة',
+    'srvd_overview_status_title'    => 'المواصفات والحالة',
+    'srvd_overview_status_sub'      => 'حالة الخدمة، الموقع، ودورة الفوترة.',
+    'common_supported'              => 'مدعوم',
+    'common_not_supported'          => 'غير مدعوم',
+    'os_current_installed'          => 'مثبّت حالياً',
 
     // ═══ M4 PREMIUM — Create Server wizard ═══
     'create_cs_step_prefix'        => 'الخطوة',

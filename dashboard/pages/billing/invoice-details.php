@@ -424,73 +424,72 @@ include __DIR__ . '/../../components/modal-end.php';
 
 <div class="db-toast-container" id="toastContainer"></div>
 
+<!--  html2pdf.js — converts the live invoice DOM to a real PDF in the
+      browser, no backend round-trip. Loaded from CDN; the download button
+      stays disabled until it resolves so the click can never fall through
+      to a half-loaded library. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
+
 <script>
-/*  Invoice download — produces a standalone HTML file the user can save
-    or forward without going through the browser's print dialog.
-    We bundle the stylesheets (inline <link> refs) + the rendered invoice
-    markup into a self-contained document served via a Blob download.
-    Backend note: when a real PDF endpoint exists (e.g. /api/invoices/{id}.pdf),
-    replace this function with a direct navigation to that URL. */
+/*  Invoice download — produces a real PDF using html2pdf.js. We clone the
+    invoice document into a temporary container, force a print-friendly
+    light theme on the clone (so the PDF is readable on white paper even
+    if the user is browsing in dark mode), then hand the clone to
+    html2pdf for rasterising + paginating.
+
+    Backend note: when a real server-side PDF endpoint exists
+    (e.g. /api/invoices/{id}.pdf), replace this function with a direct
+    navigation to that URL — the server-rendered version will always be
+    cheaper and crisper than a client-side rasterisation. */
 function downloadInvoice() {
-    try {
-        var doc = document.querySelector('.db-inv-doc');
-        if (!doc) throw new Error('Invoice content not found');
+    var invoiceId = <?php echo json_encode((string)$invoice['id']); ?>;
+    var filename  = 'invoice-' + invoiceId + '.pdf';
 
-        // Collect every stylesheet link the current page uses so the
-        // download renders with the correct typography & layout.
-        var styleLinks = Array.prototype.map.call(
-            document.querySelectorAll('link[rel="stylesheet"]'),
-            function (l) { return '<link rel="stylesheet" href="' + l.href + '">'; }
-        ).join('\n');
-
-        var invoiceId = <?php echo json_encode((string)$invoice['id']); ?>;
-        var filename  = 'invoice-' + invoiceId + '.html';
-        var title     = <?php echo json_encode(__('invoices_detail_title') . ' — #' . $invoice['id']); ?>;
-        var themeAttr = document.documentElement.getAttribute('data-theme') || 'light';
-        var dirAttr   = document.documentElement.getAttribute('dir') || 'ltr';
-        var langAttr  = document.documentElement.getAttribute('lang') || 'en';
-
-        // Standalone HTML: the <link>s point at absolute URLs already, so
-        // the saved file keeps its styling when opened offline (or at least
-        // once the CDN links are reachable).
-        var html =
-            '<!DOCTYPE html>' +
-            '<html lang="' + langAttr + '" dir="' + dirAttr + '" data-theme="' + themeAttr + '">' +
-            '<head>' +
-                '<meta charset="utf-8">' +
-                '<meta name="viewport" content="width=device-width,initial-scale=1">' +
-                '<title>' + title + '</title>' +
-                styleLinks +
-                '<style>' +
-                    'body{margin:0;padding:24px;background:var(--bg-primary);}' +
-                    '.db-inv-pay,.db-sticky-cta,.db-inv-hero__actions{display:none!important;}' +
-                '</style>' +
-            '</head>' +
-            '<body class="db-shell">' +
-                '<main class="db-main"><div class="db-content">' +
-                    doc.outerHTML +
-                '</div></main>' +
-            '</body></html>';
-
-        var blob = new Blob([html], { type: 'text/html;charset=utf-8' });
-        var url  = URL.createObjectURL(blob);
-        var a    = document.createElement('a');
-        a.href     = url;
-        a.download = filename;
-        a.rel      = 'noopener';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        setTimeout(function () { URL.revokeObjectURL(url); }, 1500);
-
+    if (typeof html2pdf === 'undefined') {
         if (window.DashToast) {
-            DashToast.show('success', '', <?php echo json_encode(__('invoices_download_success')); ?>);
+            DashToast.show('info', '', <?php echo json_encode(__('invoices_download_failed')); ?>);
         }
-    } catch (err) {
-        if (window.DashToast) {
-            DashToast.show('error', '', <?php echo json_encode(__('invoices_download_failed')); ?>);
-        }
+        return;
     }
+
+    var doc = document.querySelector('.db-inv-doc');
+    if (!doc) return;
+
+    // Clone into a hidden container so the visible page is unaffected
+    // while html2pdf is reading layout from the offscreen copy.
+    var stage = document.createElement('div');
+    stage.style.cssText = 'position:fixed;left:-10000px;top:0;width:794px;background:#fff;color:#111827;padding:24px;';
+    stage.setAttribute('data-theme', 'light');
+    var clone = doc.cloneNode(true);
+    /* Strip in-page action buttons and pay column from the clone — they
+       have no business being inside a saved invoice. */
+    clone.querySelectorAll('.db-inv-pay, .db-inv-hero__actions, .db-inv-paid__actions, .db-sticky-cta')
+         .forEach(function (n) { n.remove(); });
+    stage.appendChild(clone);
+    document.body.appendChild(stage);
+
+    var opts = {
+        margin:       [10, 10, 10, 10],
+        filename:     filename,
+        image:        { type: 'jpeg', quality: 0.96 },
+        html2canvas:  { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
+    };
+
+    html2pdf().set(opts).from(stage).save()
+        .then(function () {
+            document.body.removeChild(stage);
+            if (window.DashToast) {
+                DashToast.show('success', '', <?php echo json_encode(__('invoices_download_success')); ?>);
+            }
+        })
+        .catch(function () {
+            if (stage.parentNode) document.body.removeChild(stage);
+            if (window.DashToast) {
+                DashToast.show('error', '', <?php echo json_encode(__('invoices_download_failed')); ?>);
+            }
+        });
 }
 </script>
 
