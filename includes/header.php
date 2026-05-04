@@ -223,6 +223,7 @@
                             <a href="<?php echo e(SITE_URL); ?>/vps/windows-servers/"><i class="fab fa-windows"></i> <?php echo e(__('nav_windows_vps')); ?></a>
                             <a href="<?php echo e(SITE_URL); ?>/cloud/"><i class="fas fa-cloud"></i> <?php echo e(__('nav_cloud_servers')); ?></a>
                             <a href="<?php echo e(SITE_URL); ?>/dedicated-servers/"><i class="fas fa-database"></i> <?php echo e(__('nav_dedicated')); ?></a>
+                            <a href="<?php echo e(SITE_URL); ?>/unmetered-bandwidth/"><i class="fas fa-infinity"></i> <?php echo e(__('nav_unmetered_bandwidth')); ?></a>
                         </div>
                     </li>
                     <li>
@@ -287,6 +288,7 @@
                         <a href="<?php echo e(SITE_URL); ?>/vps/windows-servers/"><i class="fab fa-windows"></i> <?php echo e(__('nav_windows_vps')); ?></a>
                         <a href="<?php echo e(SITE_URL); ?>/cloud/"><i class="fas fa-cloud"></i> <?php echo e(__('nav_cloud_servers')); ?></a>
                         <a href="<?php echo e(SITE_URL); ?>/dedicated-servers/"><i class="fas fa-database"></i> <?php echo e(__('nav_dedicated')); ?></a>
+                        <a href="<?php echo e(SITE_URL); ?>/unmetered-bandwidth/"><i class="fas fa-infinity"></i> <?php echo e(__('nav_unmetered_bandwidth')); ?></a>
                     </div>
                 </li>
                 <li class="mobile-nav-group">
